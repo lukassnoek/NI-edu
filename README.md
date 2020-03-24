@@ -18,6 +18,8 @@ This repository contains two courses: *neuroimaging: introduction* and *neuroima
 * Week 7: Introduction to [nilearn](https://nilearn.github.io/)
 
 ### Neuroimaging: pattern analysis
+*THIS COURSE IS BEING UPDATED. WILL BE ONLINE ~MAY 2020*
+
 * Week 1: pattern estimation
 * Week 2: machine learning ("decoding")
 * Week 3: representational similarity analysis
@@ -36,5 +38,5 @@ This will install the Python dependencies (`nibabel`, `matplotlib`, etc. etc.) f
 
 For week 4-7 of the the *neuroimaging: introduction* course, you also need to install FSL (ideally version 6.0.1, but any version>=6 should work).
 
-Once everything is installed, navigate to the course directory and run `jupyter notebook {name of notebook}.ipynb`.
+Once everything is installed, navigate to the course directory (e.g., neuroimaging-introduction/week_1) and run `jupyter notebook {name of notebook}.ipynb`.
 
