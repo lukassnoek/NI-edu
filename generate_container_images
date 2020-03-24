@@ -1,0 +1,27 @@
+#!/usr/bin/env bash
+set -e
+
+neurodocker generate docker \
+    --base=neurodebian:stretch-non-free \
+    --pkg-manager=apt \
+    --install vim \
+    --fsl version=6.0.1 \
+    --vnc passwd=neuroimg start_at_runtime=True \
+    --user=neuro \
+    --workdir='/home/neuro' \
+    --miniconda \
+      conda_install="python=3.7 jupyter nbgrader jupyter_contrib_nbextensions
+                     matplotlib scikit-learn seaborn" \
+      pip_install="nilearn nibabel" \
+      create_env="neuro_py37" \
+      activate=true \
+    --run "curl -L https://github.com/krallin/tini/releases/download/v0.6.0/tini > tini && chmod +x tini" \
+    --add-to-entrypoint "~/tini -- jupyter notebook --ip=0.0.0.0 --port 9999 &> /dev/null &" \
+    --copy . /home/neuro/ \
+    --run 'mv course_settings_container.yml course_settings.yml' \
+    --run 'mkdir -p ~/.jupyter && echo c.NotebookApp.ip = \"0.0.0.0\" > ~/.jupyter/jupyter_notebook_config.py' \
+    --run-bash "source activate neuro_py37 && pip install . && jupyter nbextension install --sys-prefix --py nbgrader --overwrite && jupyter nbextension enable --sys-prefix --py nbgrader && jupyter serverextension enable --sys-prefix --py nbgrader" \
+    --expose 9999 \
+    --expose 5901 \
+    --output Dockerfile
+

@@ -1,0 +1,2 @@
+include niedu/data/*
+include niedu/tests/*/*.pyc

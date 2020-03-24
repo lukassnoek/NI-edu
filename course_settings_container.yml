@@ -1,0 +1,3 @@
+# This is a settings-file for running the NI-edu (f)MRI courses!
+role: admin
+data_dir: /home/neuro/niedu/data
