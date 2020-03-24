@@ -15,12 +15,12 @@ This repository contains two courses: *neuroimaging: introduction* and *neuroima
 * Week 4: Preprocessing
 * Week 5: Linux and the command line, FSL, and introduction to multilevel analyses 
 * Week 6: Grouplevel models, multiple comparison correction, and ROI analyses
-* Week 7: Introduction to [nilearn](https://nilearn.github.io/)
+* Week 7: Introduction to [nilearn](https://nilearn.github.io/) and [nistats](https://nistats.github.io)
 
 ### Neuroimaging: pattern analysis
 *THIS COURSE IS BEING UPDATED. WILL BE ONLINE ~MAY 2020*
 
-* Week 1: pattern estimation
+* Week 1: pattern estimation (+nilearn/nistats)
 * Week 2: machine learning ("decoding")
 * Week 3: representational similarity analysis
 * Week 4: final project (using publicly available data)
