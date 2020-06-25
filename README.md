@@ -18,6 +18,8 @@ This repository contains two courses: *neuroimaging: introduction* and *neuroima
 * Week 7: Introduction to [nilearn](https://nilearn.github.io/) and [nistats](https://nistats.github.io)
 
 ### Neuroimaging: pattern analysis
+Unless you're already very familiar with functional MRI (analyses), we highly recommend you do the full "Neuroimaging: introduction" course before this one.
+
 *THIS COURSE IS BEING UPDATED. WILL BE ONLINE ~MAY 2020*
 
 * Week 1: pattern estimation (+nilearn/nistats)
