@@ -1,0 +1,71 @@
+[environment]
+cpu_count = 56
+exec_docker_version = "18.09.5"
+exec_env = "fmriprep-docker"
+free_mem = 14.5
+overcommit_policy = "heuristic"
+overcommit_limit = "50%"
+nipype_version = "1.5.0"
+templateflow_version = "0.6.2"
+version = "20.1.1"
+
+[execution]
+bids_dir = "/data"
+boilerplate_only = false
+debug = false
+fs_subjects_dir = "/out/freesurfer"
+layout = "BIDS Layout: .../data | Subjects: 1 | Sessions: 0 | Runs: 0"
+log_dir = "/out/fmriprep/logs"
+log_level = 25
+low_mem = false
+md_only_boilerplate = false
+notrack = false
+output_dir = "/out"
+output_spaces = "T1w MNI152NLin2009cAsym:res-native"
+reports_only = false
+run_uuid = "20200714-084520_931229e1-e3eb-43f2-aef3-9482a71a0766"
+participant_label = [ "03",]
+templateflow_home = "/home/fmriprep/.cache/templateflow"
+work_dir = "/tmp/work"
+write_graph = false
+
+[workflow]
+anat_only = false
+aroma_err_on_warn = false
+aroma_melodic_dim = -200
+bold2t1w_dof = 6
+bold2t1w_init = "register"
+cifti_output = false
+fmap_bspline = false
+force_syn = false
+hires = true
+ignore = []
+longitudinal = false
+medial_surface_nan = false
+regressors_all_comps = false
+regressors_dvars_th = 1.5
+regressors_fd_th = 0.5
+run_reconall = true
+skull_strip_fixed_seed = false
+skull_strip_template = "OASIS30ANTs"
+skull_strip_t1w = "force"
+spaces = "T1w MNI152NLin2009cAsym:res-native"
+use_aroma = false
+use_syn_sdc = false
+
+[nipype]
+crashfile_format = "txt"
+get_linked_libs = false
+nprocs = 56
+omp_nthreads = 8
+plugin = "MultiProc"
+resource_monitor = false
+stop_on_first_crash = false
+
+[seeds]
+master = 42974
+ants = 41612
+
+[nipype.plugin_args]
+maxtasksperchild = 1
+raise_insufficient = false

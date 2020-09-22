@@ -2,7 +2,7 @@ import numpy as np
 import nibabel as nib
 import matplotlib.pyplot as plt
 from glob import glob
-from nistats.hemodynamic_models import glover_hrf, glover_time_derivative
+from nilearn.glm.first_level.hemodynamic_models import glover_hrf, glover_time_derivative
 from scipy.interpolate import interp1d
 from scipy.stats import pearsonr
 from scipy.linalg import toeplitz
@@ -15,10 +15,7 @@ from numpy.linalg import inv
 ### week 1, 2 ###
 def simulate_signal(onsets, conditions, TR=2, duration=None, icept=0, params_canon=None, params_tderiv=None,
                     params_deriv1=None, phi=None, std_noise=1, osf=100, rnd_seed=None, plot=True):
-    """
-    Note: I think the glover_dispersion_derivative is implemented incorrectly, so that's not included.
-    """
-
+    """ Simulates a somewhat realistic voxel signal with an associated design matrix. """
     if rnd_seed is not None:
         np.random.seed(rnd_seed)
     
@@ -108,7 +105,7 @@ np.save('example_voxel_signal.npy', y)
 """
 
 def plot_signal_and_predicted_signal(y, X, x_lim=None, y_lim=None):
-
+    """ Plots a signal and its GLM prediction. """
     des = np.hstack((np.ones((y.size, 1)), X))
     betas_simple = np.linalg.lstsq(des, y, rcond=None)[0]
     plt.figure(figsize=(15, 5))
@@ -130,7 +127,7 @@ def plot_signal_and_predicted_signal(y, X, x_lim=None, y_lim=None):
     
     
 def plot_signal_and_predicted_signal_zoom(y, X, x_lim, y_lim, plot_params=True):
-    
+    """ Same as previous function, but zoomed in. """
     des = np.hstack((np.ones((y.size, 1)), X))
     betas_simple = np.linalg.lstsq(des, y, rcond=None)[0]
     yhat = des @ betas_simple

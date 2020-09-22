@@ -79,7 +79,7 @@ def plot_ortho_slices(img):
 
 def convert_grades_to_canvas_format(csv):
 
-    df = pd.read_csv('grades.csv').loc[:, [
+    df = pd.read_csv(csv).loc[:, [
         'assignment',
         'first_name',
         'last_name',
@@ -90,10 +90,9 @@ def convert_grades_to_canvas_format(csv):
     df = df.dropna(how='any', axis=0)
     df['final_score'] = df['score'] / df['max_score']
     df = df.loc[df['final_score'] != 0, :]
-    df = df.loc[df['assignment'] != 'week_7', :]
     df.loc[:, 'assignment'] = 'lab_' + df.loc[:, 'assignment']
 
     df = df.pivot(columns='assignment', values='final_score', index='last_name')
     df = df.reset_index()
     df.iloc[:, 1:] = df.iloc[:, 1:].round(2) * 10
-    df.to_csv('grades_fixed.csv', index=None)
+    df.to_csv(csv.replace('.csv', '_fixed.csv'), index=None)
