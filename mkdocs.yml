@@ -4,3 +4,9 @@ theme:
     highlightjs: true
     hljs_languages:
         - python
+nav:
+    - Home: index.md
+    - Installation: installation.md
+
+extra_css:
+    - css/extra.css
