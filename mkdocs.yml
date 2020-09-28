@@ -1,1 +1,6 @@
 site_name: NI-edu
+theme:
+    name: mkdocs
+    highlightjs: true
+    hljs_languages:
+        - python
