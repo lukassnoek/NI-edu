@@ -1,4 +1,7 @@
-# Installation instructions
+# Getting started
+Bla bla
+
+# Installation
 Importantly, these courses assume you have Python version 3.7.3 installed. Most code will run properly with other Python versions (>3), but the compiled test functions will only work with Python 3.7.3 specifically.
 
 To fetch the course material, clone this directory (or download as zip) and run:

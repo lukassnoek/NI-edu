@@ -6,7 +6,9 @@ theme:
         - python
 nav:
     - Home: index.md
-    - Installation: installation.md
+    - 'Getting started': installation.md
+    - fMRI-introduction: fMRI-introduction.md
+    - fMRI-pattern-analysis: fMRI-pattern-analysis.md
 
 extra_css:
     - css/extra.css
