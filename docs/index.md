@@ -1,42 +1,26 @@
-# NI-edu
-Main repository for student-version of the neuroimaging (MRI) courses. To get access to the admin-version (including answers to the exercises/assignments), email Lukas (address on top of the organization's [page](https://github.com/Neuroimaging-UvA)).
+Welcome to NI-edu, a collection of neuroimaging-related course materials developed at the University of Amsterdam. This website contains, at the moment, information about two courses, "fMRI-introduction" and "fMRI-pattern-analysis", which are completely free and open-source. The courses contain lectures, extensive computer labs/tutorials, and seminars. The materials documented here refer to the lectures (i.e., slides) and computer labs (i.e., interactive Jupyter notebooks).
 
-**WARNING**: this is work-in-progress!
+Below, the contents of the two courses are described in more detail.
 
-Check out the (very incomplete) [documentation](https://neuroimaging-uva.github.io/NI-edu/)!
+### fMRI-introduction
+The purpose of this course is to teach you the basic concepts and methodology of functional MRI (fMRI) research. By the end of the course you will be able to walk through the full empirical cycle (design, acquisition, analysis and report) of an fMRI experiment. With regard to the type of analysis, this course focuses on standard univariate analysis. Also, you'll learn how to actually implement neuroimaging analyses, which is a fairly "technical" process, including working on Linux, programming, (relatively simple) mathematics, and statistics. So prepare to work with code, encounter mathematical formulas, and apply statistical models!
 
-## Contents
-This repository contains two courses: *fMRI-introduction* and *fMRI-pattern-analysis*, containing course material from thetwo courses with the same name taught at the University of Amsterdam (at the Research Master Psychology). The introductorycourse is an eight-week course, containing seven computer labs in which students have to work through one or multiple jupyter notebooks with exercises. These notebooks (but not the lecture slides and material from the seminars) are available in this repository. We highly recommend doing the *introduction* course **before** doing the *pattern analysis* course. The contents of the two courses are listed below.
+Below, you can find the topics listed per week.
 
-### Neuroimaging: introduction
-* Week 1: Python tutorial (including working with Nifti images)
-* Week 2: GLM (part 1: estimation)
-* Week 3: GLM (part 2: inference) and design of experiments
-* Week 4: Preprocessing
-* Week 5: Linux and the command line, FSL, and introduction to multilevel analyses
-* Week 6: Grouplevel models, multiple comparison correction, and ROI analyses
-* Week 7: Introduction to [nilearn](https://nilearn.github.io/)
+* Week 1: Introduction to fMRI (lecture) + Python tutorial (lab)
+* Week 2: GLM (lecture + lab)
+* Week 3: GLM (lab) + design of experiments (lecture + lab)
+* Week 4: Preprocessing (lecture + lab)
+* Week 5: Multilevel analyses (lecture + lab)
+* Week 6: Multiple comparisons correction + ROI analysis (lecture + lab)
+* Week 7: Using [Nilearn](https://nilearn.github.io/) for fMRI analysis and visualization (lab)
 
-### Neuroimaging: pattern analysis
-Unless you're already very familiar with functional MRI (analyses), we highly recommend you do the full "Neuroimaging: introduction" course before this one.
+### fMRI-pattern-analyses
+The purpose of this course is to learn how to implement "pattern analyses" for analysis of fMRI data. It discusses the two most prominent pattern analyses: machine-learning based 'decoding' and representational similarity analysis (RSA). At the end of the course, you will know when and why to use for the different types of analyses ('univariate' vs. decoding/RSA) and how to implement them. Note that it is meant as a follow-up course to fMRI-introduction.
 
-*THIS COURSE IS BEING UPDATED. WILL BE ONLINE ~MAY 2020*
+Below, you can find the topics listed per week.
 
 * Week 1: pattern estimation (+ recap nilearn)
 * Week 2: machine learning ("decoding")
 * Week 3: representational similarity analysis
 * Week 4: final project (using publicly available data)
-
-## Installation
-Importantly, these courses assume you have Python version 3.7.3 installed. Most code will run properly with other Python versions (>3), but the compiled test functions will only work with Python 3.7.3 specifically.
-
-To fetch the course material, clone this directory (or download as zip) and run:
-
-```
-pip install .
-```
-
-This will install the Python dependencies (`nibabel`, `matplotlib`, etc. etc.) for you, including the `niedu` package, containing utility functions and (compiled) test functions for the exercises.
-For week 4-7 of the the *neuroimaging: introduction* course, you also need to install FSL (ideally version 6.0.1, but any version>=6 should work).
-
-Once everything is installed, navigate to the course directory (e.g., fMRI-introduction/week_1) and run `jupyter notebook {name of notebook}.ipynb`.
