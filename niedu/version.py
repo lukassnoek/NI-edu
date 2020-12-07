@@ -75,9 +75,8 @@ REQUIRES = [
     "statsmodels",
     "nibabel",
     "nilearn",
-    "nistats",
-    "ipywidgets",
-    "jupyter",
     "click",
-    "pyyaml"
+    "jupyter",
+    "pyyaml",
+    "tqdm"
 ]

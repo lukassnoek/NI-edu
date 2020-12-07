@@ -3,6 +3,7 @@ import os
 import sys
 import yaml
 import os.path as op
+from pathlib import Path
 
 here = op.dirname(__file__)
 
@@ -69,38 +70,53 @@ else:
     has_fsl = True
     print("OK!")       
 
-print('')
+print('Checking Jupyterhub data access ... \t\t', end='')
+ddir = Path(data_dir)
+if not has_data:
+    jhub_access = False
+    print("WARNING")
+elif ddir.group() != 'xjupyterhub-users':
+    jhub_access = False
+    print("WARNING")
+else:
+    jhub_access = True
+    print("OK")
 
 if not has_py37:
-    print("You either do not have Python installed or have the 'wrong' version.\n"
+    print("\nYou either do not have Python installed or have the 'wrong' version.\n"
           "We recommend installing the Anaconda Python distribution from this URL:\n"
           "https://repo.anaconda.com/archive/. Please download the version from July 2019 \n"
           "(starting with Anaconda3-2019.07).\n"
           "If you have Python installed, but not version 3.7.3, we recommend either installing\n"
           "the July 2019 version (which contains Python 3.7.3.) or create a new Python environment\n"
-          "with Python 3.7.6. (e.g., using conda: conda create -n ni-edu python=3.7.3).\n"
+          "with Python 3.7.3. (e.g., using conda: conda create -n ni-edu python=3.7.3).\n"
           "The specific version has to do with the fact that the answer-modules are compiled with this\n"
-          "specific version, and won't work otherwise!\n")
+          "specific version, and won't work otherwise!")
 
 if not has_anaconda:
-    print("While it's not strictly necessary, we highly recommend\n"
+    print("\nWhile it's not strictly necessary, we highly recommend\n"
           "using the Anaconda distrution for Python!")
 
 if not has_nbgrader:
-    print("The 'nbgrader' package was not installed (or not the right version; should be 0.6.1).\n"
+    print("\nThe 'nbgrader' package was not installed (or not the right version; should be 0.6.1).\n"
           "While the nbgrader package is not strictly necessary,\n"
           "you need to install it if you want do do/check the exercises!\n"
           "Install nbgrader using 'pip install -U nbgrader'.")
 
 if not has_niedu:
-    print("You MUST install the 'niedu' package to follow this course.\n"
+    print("\nYou MUST install the 'niedu' package to follow this course.\n"
           "Please run 'pip install .' to do so!")
 
 if not has_data:
-    print("You MUST download the data for this course, otherwise\n"
+    print("\nYou MUST download the data for this course, otherwise\n"
           "you cannot run most of the notebooks. Please run\n"
           "'bash download_data.sh' to do so (uses 'curl').")
 
 if not has_fsl:
-    print("While not strictly necessary, you need FSL (version 6.0.1) for some of the exercises.\n"
+    print("\nWhile not strictly necessary, you need FSL (version 6.0.1) for some of the exercises.\n"
           "Download the software from https://fsl.fmrib.ox.ac.uk/fsl/fslwiki (MAC/LINUX only).")
+
+if not jhub_access and has_data:
+    print(f"\nIt seems that the group of the data directory ({data_dir}) is '{ddir.group()}'. But this shoulld be\n"
+            "'jupyterhub-users', if you want to use it with The Littlest Jupyterhub! To do so, run:\n"
+            f"sudo chgrp -R {data_dir} jupyterhub-users")

@@ -11,6 +11,7 @@ ver_file = os.path.join('niedu', 'version.py')
 with open(ver_file) as f:
     exec(f.read())
 
+print(REQUIRES)
 opts = dict(
     name=NAME,
     maintainer=MAINTAINER,
@@ -27,8 +28,7 @@ opts = dict(
     version=VERSION,
     packages=PACKAGES,
     include_package_data=True,
-    install_requires=["neurodesign@git+https://github.com/Neuroimaging-UvA/neurodesign.git"],
-    requires=REQUIRES,
+    install_requires=["neurodesign@git+https://github.com/Neuroimaging-UvA/neurodesign.git", REQUIRES],
     zip_safe=True
 )
 
