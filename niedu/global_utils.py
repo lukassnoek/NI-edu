@@ -7,22 +7,32 @@ import matplotlib.pyplot as plt
 here = op.dirname(__file__)
 
 
-def get_data_dir():
+def get_data_dir(course='introduction'):
     """ Returns the course's data directory.
     
+    Parameters
+    ----------
+    course : str
+        Which course do you want the data for? (introduction/pattern-analysis)
+
     Returns
     -------
     data_dir : str
         Absolute path to data directory
     """
+    
+    courses = ['introduction', 'pattern-analysis']
+    if course not in courses:
+        raise ValueError(f"Please choose course from {courses}!")
+
     cs = op.join(here, 'data', 'course_settings.yml')
     with open(cs, 'r') as f_in:
         settings = yaml.safe_load(f_in)
 
-    data_dir = op.abspath(settings['data_dir'])
+    data_dir = settings['data_dir'][course]
     if not op.isdir(data_dir):
-        print("WARNING: data dir %s does not exist!" % data_dir)
-        print("Please adjust the course_settings.yml file!")
+        print(f"WARNING: data dir {data_dir} does not exist!"
+              "Please adjust the course_settings.yml file!")
     
     return data_dir
 
