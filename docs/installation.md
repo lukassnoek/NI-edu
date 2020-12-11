@@ -72,3 +72,10 @@ python download_data.py {directory_to_save_data} --course introduction
 ```
 
 where `{directory_to_save_data}` represents the location where you'd like to store the data. The dataset is about 8GB, so it might take a while to download everything. Then, after downloading the data, you need to install the `niedu` package again by running the command `pip install .` again.
+
+## Running some post-installation stuff
+Finally, we need to change some minor things in the dataset to make sure the notebooks run properly. Run the following in the root of course material directory:
+
+```
+python post_install.py
+```

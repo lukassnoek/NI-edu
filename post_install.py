@@ -1,25 +1,9 @@
 import os
 import click
-import subprocess
-import numpy as np
 import pandas as pd
 import os.path as op
 from glob import glob
 from niedu.global_utils import get_data_dir
-
-
-def skullstrip_t1s(data_dir, fsldir):
-    """ Skullstrips T1-weighted files using FSL bet. """
-    subs = sorted(glob(op.join(data_dir, 'sub-03')))
-    for sub in subs:
-        bsub = op.basename(sub)
-        anat = op.join(sub, 'ses-1', 'anat', f'{bsub}_ses-1_acq-AxialNsig2Mm1_T1w.nii.gz')
-        if op.isfile(anat):
-            skullstripped = anat.replace('.nii.gz', '_brain.nii.gz')
-            if not op.isfile(skullstripped):
-                print(f"INFO: going to skullstrip {anat}!")
-                cmd = f'{fsldir}/bin/bet {anat} {skullstripped} -R'
-                subprocess.call(cmd, shell=True)
 
 
 def create_fsl_onset_files(data_dir):
@@ -56,15 +40,6 @@ def api(datadir, fsldir):
         raise ValueError(f"Datadir {datadir} does not exist!")
 
     print(f"Found {datadir} with data!")
-
-    if fsldir is None:
-        fsldir = os.environ.get('FSLDIR')
-    
-    if fsldir is None:
-        print("Could not find FSL, so cannot skullstrip anatomical scans!")
-    else:
-        skullstrip_t1s(datadir, fsldir)
-
     create_fsl_onset_files(datadir)
 
 
