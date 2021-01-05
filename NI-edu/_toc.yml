@@ -10,41 +10,64 @@
 
 - part: "fMRI-introduction"
   chapters:
-  - file: section_intros/fMRI-introduction/week_1
+  - file: section_intros/week_1
     sections:
-    - file: fMRI-introduction/week_1/python_tutorial
-  - file: section_intros/fMRI-introduction/week_2
+    - file: other/python_recap
+    - file: fMRI-introduction/week_1/python_for_mri
+      title: "Working with MRI data in Python (T)"
+
+  - file: section_intros/week_2
     sections:
     - file: fMRI-introduction/week_2/glm_part1_estimation
+      title: "The GLM, part 1: estimation (T)"
     - file: fMRI-introduction/week_3/glm_part2_inference
-  - file: section_intros/fMRI-introduction/week_3
-    sections:
-    - file: fMRI-introduction/week_3/design_of_experiments
-  - file: section_intros/fMRI-introduction/week_4
+      title: "The GLM, part 2: inference (T)"
+
+  - file: fMRI-introduction/week_3/design_of_experiments
+    title: "Design of experiments (T)"
+
+  - file: section_intros/week_4
     sections:
     - file: fMRI-introduction/week_4/temporal_preprocessing
+      title: "Temporal preprocessing (T)"
     - file: fMRI-introduction/week_4/spatial_preprocessing
+      title: "Spatial preprocessing (T)"
     - file: fMRI-introduction/week_4/fmriprep
-  - file: section_intros/fMRI-introduction/week_5
+      title: "Fmriprep (T)"
+
+  - file: section_intros/week_5
     sections:
     - file: fMRI-introduction/week_5/linux_and_the_cmd
+      title: "Linux and the CMD (T)"
     - file: fMRI-introduction/week_5/first_level_analyses
+      title: "First level analyses (T)"
     - file: fMRI-introduction/week_5/run_level_analyses
-  - file: section_intros/fMRI-introduction/week_6
+      title: "Run-level analyses (T)"
+
+  - file: section_intros/week_6
     sections:
     - file: fMRI-introduction/week_6/group_level_analyses
+      title: "Group-level analyses (T)"
     - file: fMRI-introduction/week_6/MCC
+      title: "Multiple comparison correction (T)"
     - file: fMRI-introduction/week_6/ROI_analysis
-  - file: section_intros/fMRI-introduction/week_7
+      title: "ROI analysis (T)"
+
+  - file: section_intros/week_7
     sections:
     - file: fMRI-introduction/week_7/nilearn
+      title: "Introduction to Nilearn (T)"
     - file: fMRI-introduction/week_7/nilearn_stats
+      title: "Statistics with Nilearn (T)"
 
 - part: "fMRI-pattern-analysis"
   chapters:
   - file: fMRI-pattern-analysis/week_1/design_and_pattern_estimation
+    title: "Design and pattern estimation (T)"
   - file: fMRI-pattern-analysis/week_2/decoding_analyses
+    title: "Machine learning/decoding (T)"
   - file: fMRI-pattern-analysis/week_3/rsa
+    title: "Representational Similarity Analysis (T)"
 
 - part: Misc
   chapters:

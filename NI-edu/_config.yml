@@ -8,7 +8,7 @@
 title                       : NI-edu  # The title of the book. Will be placed in the left navbar.
 author                      : Lukas Snoek  # The author of the book
 copyright                   : "2021"  # Copyright year to be placed in the footer
-logo                        : img/logo.png  # A path to the book logo
+logo                        : img/fmri.gif # A path to the book logo
 
 # Global settings
 only_build_toc_files        : false
