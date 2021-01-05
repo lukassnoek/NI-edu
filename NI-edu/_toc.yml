@@ -8,17 +8,43 @@
   - file: getting_started/installation
   - file: getting_started/jupyter
 
-- part: Introduction to fMRI
+- part: "fMRI-introduction"
   chapters:
-  - file: fMRI-introduction/week_1
+  - file: section_intros/fMRI-introduction/week_1
     sections:
     - file: fMRI-introduction/week_1/python_tutorial
+  - file: section_intros/fMRI-introduction/week_2
+    sections:
+    - file: fMRI-introduction/week_2/glm_part1_estimation
+    - file: fMRI-introduction/week_3/glm_part2_inference
+  - file: section_intros/fMRI-introduction/week_3
+    sections:
+    - file: fMRI-introduction/week_3/design_of_experiments
+  - file: section_intros/fMRI-introduction/week_4
+    sections:
+    - file: fMRI-introduction/week_4/temporal_preprocessing
+    - file: fMRI-introduction/week_4/spatial_preprocessing
+    - file: fMRI-introduction/week_4/fmriprep
+  - file: section_intros/fMRI-introduction/week_5
+    sections:
+    - file: fMRI-introduction/week_5/linux_and_the_cmd
+    - file: fMRI-introduction/week_5/first_level_analyses
+    - file: fMRI-introduction/week_5/run_level_analyses
+  - file: section_intros/fMRI-introduction/week_6
+    sections:
+    - file: fMRI-introduction/week_6/group_level_analyses
+    - file: fMRI-introduction/week_6/MCC
+    - file: fMRI-introduction/week_6/ROI_analysis
+  - file: section_intros/fMRI-introduction/week_7
+    sections:
+    - file: fMRI-introduction/week_7/nilearn
+    - file: fMRI-introduction/week_7/nilearn_stats
 
-- part: fMRI pattern analysis
+- part: "fMRI-pattern-analysis"
   chapters:
-  - file: week_2/psychopy
-  - file: week_2/intro_psychopy
-    title: Introduction to PsychoPy (T)
+  - file: fMRI-pattern-analysis/week_1/design_and_pattern_estimation
+  - file: fMRI-pattern-analysis/week_2/decoding_analyses
+  - file: fMRI-pattern-analysis/week_3/rsa
 
 - part: Misc
   chapters:

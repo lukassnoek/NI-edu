@@ -1,4 +1,2 @@
-jupyter-book
-ghp-import
 pytest
 nbval

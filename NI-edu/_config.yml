@@ -13,7 +13,9 @@ logo                        : img/logo.png  # A path to the book logo
 # Global settings
 only_build_toc_files        : false
 exclude_patterns            : [_build, Thumbs.db, .DS_Store, "**.ipynb_checkpoints",
-                               "**.pytest_cache", "*/*/nilearn*", "fMRI-pattern-analysis"]
+                               "**.pytest_cache", "fMRI-pattern-analysis/week_1/nilearn*", 
+                               "fMRI-introduction/week_4/bids/derivatives/fmriprep",
+                               "fMRI-pattern-analysis/week_4"]
 
 execute:
   timeout                   : 300    # The maximum time (in seconds) each notebook cell is allowed to run.

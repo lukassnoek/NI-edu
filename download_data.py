@@ -50,7 +50,7 @@ def main(save_dir, course):
         with open('course_settings.yml', 'r') as stream:
             settings = yaml.safe_load(stream)
     
-        settings['data_dir'][c] = this_save_dir
+        settings['data_dir'][c] = op.abspath(this_save_dir)
         with open('course_settings.yml', 'w') as outfile:
             yaml.dump(settings, outfile, default_flow_style=False)
 
