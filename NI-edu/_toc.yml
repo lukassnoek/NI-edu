@@ -1,0 +1,28 @@
+# Table of contents
+# Learn more at https://jupyterbook.org/customize/toc.html
+- file: index
+
+- part: Getting started
+  chapters:
+  - file: getting_started/about
+  - file: getting_started/installation
+  - file: getting_started/jupyter
+
+- part: Introduction to fMRI
+  chapters:
+  - file: fMRI-introduction/week_1
+    sections:
+    - file: fMRI-introduction/week_1/python_tutorial
+
+- part: fMRI pattern analysis
+  chapters:
+  - file: week_2/psychopy
+  - file: week_2/intro_psychopy
+    title: Introduction to PsychoPy (T)
+
+- part: Misc
+  chapters:
+  - file: misc/bibliography
+  - file: misc/for_developers
+  - file: misc/CONTRIBUTING
+  - file: misc/CONDUCT

@@ -7,7 +7,7 @@ import os.path as op
 
 @click.command()
 @click.argument('save_dir', type=click.Path(exists=False))
-@click.option('--course', type=click.Choice(['introduction', 'pattern-analysis', 'both'], help='Which course?')
+@click.option('--course', type=click.Choice(['introduction', 'pattern-analysis', 'both']), help='Which course?')
 def main(save_dir, course):
 
     if op.isdir(save_dir):
@@ -30,7 +30,7 @@ def main(save_dir, course):
     if resp in ['n', 'N', 'no', 'NO', 'No']:
         exit()
 
-    aws_bucket = {'introduction': 'ds003349', 'pattern-analysis': 'ds000000'}
+    aws_bucket = {'introduction': 'ds003422', 'pattern-analysis': 'ds000000'}
     to_loop = [course] if course != 'both' else ['introduction', 'pattern-analysis']
     for c in to_loop:
         if course == 'both':

@@ -1,0 +1,46 @@
+#!/usr/bin/env bash
+set -e
+
+# First, build book
+jupyter-book build intropy
+
+# Then, fix Jupyterhub path and Binder path
+if [[ "$OSTYPE" == "linux-gnu"* ]]; then
+    OS=linux
+    echo "Probably on GH actions!"
+    nb_html=$(ls intropy/_build/html/solutions/week_1/*.html)
+else
+    OS=mac
+    echo "Working on Mac!"
+    nb_html=$(ls intropy/_build/html/solutions/week_1/*.html)
+fi
+
+for nb in $nb_html; do
+    echo "Fixing $nb ..."
+    nb_name=$(basename $nb)
+    nb_name=${nb_name/.html/}
+    to_replace="https://neuroimaging.lukas-snoek.com/hub/user-redirect/git-pull?repo=https://github.com/lukassnoek/introPy&urlpath=lab/tree/introPy/intropy/solutions/week_1/${nb_name}.ipynb&branch=master"
+    
+    # Replace Jupyterhub url
+    if [ $OS == linux ]; then
+        sed -i "s+${to_replace}+https://neuroimaging.lukas-snoek.com+g" $nb
+        sed -i "s+solutions/week_1+tutorials/week_1+g" $nb
+    else
+        sed -i '' "s+${to_replace}+https://neuroimaging.lukas-snoek.com+g" $nb
+        sed -i '' "s+solutions/week_1+tutorials/week_1+g" $nb
+    fi
+
+    # Fix admonitions
+    for ad in warning info success danger; do
+        if [ $OS == linux ]; then
+            sed -i "s+<div class='alert alert-${ad}'>+<div class='alert alert-${ad}' style='padding-bottom:10px'>+g" $nb
+            sed -i 's+<div class="alert alert-${ad}">+<div class="alert alert-${ad}" style="padding-bottom:10px">+g' $nb
+        else
+            sed -i '' "s+<div class='alert alert-${ad}'>+<div class='alert alert-${ad}' style='padding-bottom:10px'>+g" $nb
+            sed -i '' 's+<div class="alert alert-${ad}">+<div class="alert alert-${ad}" style="padding-bottom:10px">+g' $nb
+        fi
+    done
+    # Note to self: if you want to run the above loop on Mac, change `sed -i "s+..."` to `sed -i '' "s+..."`
+done
+
+python remove_solutions.py

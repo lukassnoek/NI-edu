@@ -1,0 +1,37 @@
+#######################################################################################
+# A default configuration that will be loaded for all jupyter books
+# See the documentation for help and more options: 
+# https://jupyterbook.org/customize/config.html
+
+#######################################################################################
+# Book settings
+title                       : NI-edu  # The title of the book. Will be placed in the left navbar.
+author                      : Lukas Snoek  # The author of the book
+copyright                   : "2021"  # Copyright year to be placed in the footer
+logo                        : img/logo.png  # A path to the book logo
+
+# Global settings
+only_build_toc_files        : false
+exclude_patterns            : [_build, Thumbs.db, .DS_Store, "**.ipynb_checkpoints",
+                               "**.pytest_cache", "*/*/nilearn*", "fMRI-pattern-analysis"]
+
+execute:
+  timeout                   : 300    # The maximum time (in seconds) each notebook cell is allowed to run.
+
+parse:
+  myst_extended_syntax: true
+
+# Online stuff
+repository:
+  url                       : https://github.com/lukassnoek/NI-edu
+  path_to_book              : NI-edu
+
+launch_buttons:
+  notebook_interface        : jupyterlab
+  binderhub_url             : https://mybinder.org
+  jupyterhub_url            : https://neuroimaging.lukas-snoek.com
+
+html:
+  use_repository_button: true
+  use_issues_button: true
+  use_edit_page_button: true

@@ -109,3 +109,6 @@ venv.bak/
 niedu/tests/*/*.py
 !niedu/tests/*/*.pyc
 niedu/data/course_settings.yml
+
+# Book
+NI-edu/_build
