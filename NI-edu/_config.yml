@@ -19,7 +19,9 @@ exclude_patterns            : [_build, Thumbs.db, .DS_Store, "**.ipynb_checkpoin
 
 execute:
   timeout                   : 300    # The maximum time (in seconds) each notebook cell is allowed to run.
-  execute_notebooks         : "off"
+  execute_notebooks         : "auto"
+  allow_errors              : true
+  stderr_output             : "remove"
 
 parse:
   myst_extended_syntax: true
@@ -30,7 +32,7 @@ repository:
   path_to_book              : NI-edu
 
 launch_buttons:
-  notebook_interface        : jupyterlab
+  notebook_interface        : classic
   binderhub_url             : https://mybinder.org
   jupyterhub_url            : https://neuroimaging.lukas-snoek.com
 

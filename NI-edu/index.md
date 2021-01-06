@@ -9,6 +9,8 @@ The purpose of this course is to teach you the basic concepts and methodology of
 ## fMRI-pattern-analyses
 The purpose of this course is to learn how to implement "pattern analyses" for analysis of fMRI data. It discusses the two most prominent pattern analyses: machine-learning based 'decoding' and representational similarity analysis (RSA). At the end of the course, you will know when and why to use for the different types of analyses ('univariate' vs. decoding/RSA) and how to implement them. Note that it is meant as a follow-up course to fMRI-introduction.
 
+*The materials for this course are not completely ready yet. Stay tuned!*
+
 ## Prerequisites
 This course assumes that you have some experience with basic descriptive and inferential statistics (e.g., multiple linear regression) and Python programming. In case you have never programmed (in Python) before, fear not! As part of [another course](https://lukas-snoek.com/introPy), we created several introductory tutorials about Python and the most important Python packages for data analysis (i.e., Pandas, Matplotlib, and Numpy). These tutorials are listed on [https://lukas-snoek.com/introPy](https://lukas-snoek.com/introPy) (under the *PYTHON (WEEK 1)* header).
 
