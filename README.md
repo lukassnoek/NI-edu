@@ -1,3 +1,3 @@
-Welcome to NI-edu, a collection of neuroimaging-related course materials developed at the University of Amsterdam. This repository contains, at the moment, materials from two courses, "fMRI-introduction" and "fMRI-pattern-analysis", which are completely free and open-source, and they can be done at home as long as you have a computer with internet, a decent amount of RAM (ideally >= 8GB) and free disk space (at least 20 GB). Oh, and some motivation to learn Python!
+Welcome to NI-edu, a collection of neuroimaging-related course materials developed at the University of Amsterdam. This repository contains, at the moment, materials from two courses, "fMRI-introduction" and "fMRI-pattern-analysis", which are completely free and open-source.
 
-For a complete documentation (including installation instructions), see [our website](https://neuroimaging-uva.github.io/NI-edu/)!
+For a complete documentation (including installation instructions), see [our website](https://lukas-snoek.com/NI-edu/)!

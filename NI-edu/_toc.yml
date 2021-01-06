@@ -6,27 +6,30 @@
   chapters:
   - file: getting_started/about
   - file: getting_started/installation
-  - file: getting_started/jupyter
 
 - part: "fMRI-introduction"
   chapters:
-  - file: section_intros/week_1
+  - file: section_intros/1_python
     sections:
     - file: other/python_recap
     - file: fMRI-introduction/week_1/python_for_mri
       title: "Working with MRI data in Python (T)"
 
-  - file: section_intros/week_2
+  - file: section_intros/2_glm
     sections:
     - file: fMRI-introduction/week_2/glm_part1_estimation
-      title: "The GLM, part 1: estimation (T)"
+      title: "The GLM: estimation (T)"
     - file: fMRI-introduction/week_3/glm_part2_inference
-      title: "The GLM, part 2: inference (T)"
+      title: "The GLM: inference (T)"
 
-  - file: fMRI-introduction/week_3/design_of_experiments
-    title: "Design of experiments (T)"
+  - file: section_intros/3_design_of_experiments_T 
+    sections:
+    - file: fMRI-introduction/week_3/design_of_experiments
+      title: "Design of experiments (T)"
+    - file: fMRI-introduction/week_3/neurodesign
+      title: "Neurodesign (T)"
 
-  - file: section_intros/week_4
+  - file: section_intros/4_preprocessing
     sections:
     - file: fMRI-introduction/week_4/temporal_preprocessing
       title: "Temporal preprocessing (T)"
@@ -35,7 +38,7 @@
     - file: fMRI-introduction/week_4/fmriprep
       title: "Fmriprep (T)"
 
-  - file: section_intros/week_5
+  - file: section_intros/5_multilevel
     sections:
     - file: fMRI-introduction/week_5/linux_and_the_cmd
       title: "Linux and the CMD (T)"
@@ -44,7 +47,7 @@
     - file: fMRI-introduction/week_5/run_level_analyses
       title: "Run-level analyses (T)"
 
-  - file: section_intros/week_6
+  - file: section_intros/6_grouplevel
     sections:
     - file: fMRI-introduction/week_6/group_level_analyses
       title: "Group-level analyses (T)"
@@ -53,7 +56,7 @@
     - file: fMRI-introduction/week_6/ROI_analysis
       title: "ROI analysis (T)"
 
-  - file: section_intros/week_7
+  - file: section_intros/7_nilearn
     sections:
     - file: fMRI-introduction/week_7/nilearn
       title: "Introduction to Nilearn (T)"

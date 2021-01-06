@@ -1,5 +1,7 @@
 # About this course
-These two neuroimaging courses were created for the Research Master Psychology at the University of Amsterdam.
+These two neuroimaging courses were created for the Research Master Psychology at the University of Amsterdam. The *fMRI-introduction* course is an eight-week course, which contains seven weeks of extensive tutorials (and a final exam in the eighth week). The *fMRI-pattern-analysis* is a four-week course, with three weeks of tutorials (and a final project in the last week).
+
+The week-by-week contents of the course roughtly match the sections on this website (see left sidebar). 
 
 ## Tutorials
 This website contains information and tutorials about fMRI analyses. Each topic/tutorial has its own page. Tutorials are designed with a `(T)` in the menu on the left. The tutorials were written in Jupyter notebooks, which are embedded as static HTML files on the website. You can, of course, just read through these pages, but Jupyter notebooks really shine when used *interactively*, which allows you to add, change, run the Python code embedded in these notebooks. To use these notebooks interactively, you can click on the "rocket" button at the top right of the page (see below; note that this button doesn't do anything). This reveals two options: *Binder* and *JupyterHub*. Both allow you to run the notebooks interactively, but the latter is only available to students of the Research Master Psychology. JupyterHub and Jupyter notebooks are explained in more detail [here](jupyter.md).
