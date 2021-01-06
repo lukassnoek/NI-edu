@@ -8,4 +8,4 @@ To build the book, make sure you have the [jupyter book](https://jupyterbook.org
 ./build_book
 ```
 
-Note that this does not work on Windows (Mac/Linux) only.
+Note that this does not work on Windows (Mac/Linux only).
