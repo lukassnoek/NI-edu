@@ -1,4 +1,4 @@
-# Using NI-edu as an educator
+# For educators
 The publicly avaiable version of NI-edu is geared towards students. At the University of Amsterdam,
 we also have an "teacher" version available: NI-edu-admin. The source material (i.e., the notebooks)
 are identical, but they contain the solutions to the exercises (the "ToDos" and "ToThinks"). These
@@ -8,13 +8,11 @@ to teach this course in a Jupyterhub environment. Using the shared environment p
 smooth experience for both students and teachers. (Trust me, setting up personal Python environments of students' own
 laptops is a nightmare.)
 
-How to get access to NI-edu-admin? Email Lukas (L.Snoek@uva.nl), who will add you to the NI-edu-admin Github repository.
-In case you have access to a Linux server to use for Jupyterhub, see the installation instructions below.
+How to get access to NI-edu-admin? Email Lukas (his email address can be found on his [website](https://lukas-snoek.com/)), who will add you to the NI-edu-admin Github repository. In case you have access to a Linux server to use for Jupyterhub, see the installation instructions below.
 
 ## Installing Jupyterhub
 At the University of Amsterdam, we use Jupyterhub in combination with *nbgrader* on a shared server for our "labs" (i.e., the notebooks).
-If you have access to a Linux server *and* you have root access, we highly recommend to use Jupyterhub (and *nbgrader*). 
-By far the easiest way to install Jupyterhub (for relatively small classes) is through "[The Littlest Jupyterhub](https://tljh.jupyter.org/en/latest/index.html)" (TLJH). Read through the [installation](https://tljh.jupyter.org/en/latest/install/index.html) manual on the site. Again, this is only possible if you have root access (i.e., you have *sudo* rights).
+If you have access to a Linux server *and* you have root access, we highly recommend to use Jupyterhub (and *nbgrader*). By far the easiest way to install Jupyterhub (for relatively small classes) is through "[The Littlest Jupyterhub](https://tljh.jupyter.org/en/latest/index.html)" (TLJH). Read through the [installation](https://tljh.jupyter.org/en/latest/install/index.html) manual on the site. Again, this is only possible if you have root access (i.e., you have *sudo* rights).
 
 ## Installing *nbgrader*
 Using the admin account, install *nbgrader* as follows:
@@ -43,9 +41,11 @@ Note: your Formgrader tab may not yet "find" your `nbgrader_config.py` file, so 
 sudo tljh-config reload hub
 ```
 
-Lastly, you need to add students to the database. Personally, I do that programatically using the command line interface of t
+Lastly, you need to add students to the database. Personally, I do that programatically using the command line interface of the *nbgrader* package but you can also do this manually in the Formgrader.
 
 ## Troubleshooting
+See the short troubleshooting guide when encountering issues.
+
 **A student cannot login even though it's their first time logging in!**
 
 The first time a student logs in, it sets their password. If this doesn't work, check whether you added the student to the "whitelist". Using an admin account, go to "Control panel", "Admin", and check if the student (e.g., "nim_01") is included in the list of Users. If not, click "Add user" and add the user (e.g., "nim_01", **not** "jupyter-nim_01").

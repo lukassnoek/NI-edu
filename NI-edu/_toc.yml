@@ -40,7 +40,7 @@
 
   - file: section_intros/5_multilevel
     sections:
-    - file: fMRI-introduction/week_5/linux_and_the_cmd
+    - file: fMRI-introduction/week_5/linux_and_the_command_line
       title: "Linux and the CMD (T)"
     - file: fMRI-introduction/week_5/first_level_analyses
       title: "First level analyses (T)"
@@ -75,6 +75,6 @@
 - part: Misc
   chapters:
   - file: misc/bibliography
-  - file: misc/for_developers
+  - file: misc/for_educators
   - file: misc/CONTRIBUTING
   - file: misc/CONDUCT

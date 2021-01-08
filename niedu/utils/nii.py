@@ -1,5 +1,7 @@
 import numpy as np
+import pandas as pd
 import nibabel as nib
+import os.path as op
 import matplotlib.pyplot as plt
 from glob import glob
 from nilearn.glm.first_level.hemodynamic_models import glover_hrf, glover_time_derivative
@@ -400,3 +402,25 @@ def rft_cluster_threshold(data, z_thresh=3, p_clust=0.05):
             mask[clust_idx] = True
             
     return mask
+
+
+def create_fsl_onset_files(data_dir):
+    """ Creates FSL-style onset files (tab-delimited, without headers). """
+    subs = sorted(glob(op.join(data_dir, 'sub-03')))
+    for sub in subs:
+        # first flocBLOCKED and flocER files
+        flocs = sorted(glob(op.join(sub, 'ses-*', 'func', '*floc*_events.tsv')))
+
+        for floc in flocs:
+            df = pd.read_csv(floc, sep='\t')
+            conds = np.unique(df['trial_type'])
+            for con in conds:
+                f_out = floc.replace('_events.tsv', f'_condition-{con}_events.txt')
+                #if op.isfile(f_out):
+                #    continue
+
+                tmp = df.query("trial_type == @con").copy()
+                tmp.loc[:, 'weight'] = 1
+                tmp.loc[:, 'duration'] = tmp.loc[:, 'duration'].round(1)
+                tmp = tmp.loc[:, ['onset', 'duration', 'weight']]  # reorder
+                tmp.to_csv(f_out, header=False, index=False, sep='\t')
