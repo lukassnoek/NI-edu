@@ -1,5 +1,5 @@
 # Installation
-The course materials of fMRI-introduction and fMRI-pattern analyses contain Python-based Jupyter notebooks with tutorials and exercises (the "labs"). To do the labs, you need a working installation of Python (and [FSL](https://fsl.fmrib.ox.ac.uk/fsl/fslwiki)), the course materials themselves of course, and in addition some (f)MRI data that need to be downloaded separately. Below, we explain in detail how to do these three things.
+The course materials of fMRI-introduction and fMRI-pattern analyses contain Python-based Jupyter notebooks with tutorials and exercises (the "labs"). To do the labs, you need a working installation of Python (and [FSL](https://fsl.fmrib.ox.ac.uk/fsl/fslwiki)) and the course materials themselves of course. Below, we explain in detail how to do these things.
 
 ## Software requirements: Python & FSL
 Below, we discuss how to install Python and (optionally) how to install FSL.
@@ -12,10 +12,10 @@ After installation, you need to create a new *environment* to make sure you're u
 To create a new environment called `ni-edu` with the proper Python version after installing Anaconda, open a terminal and run the following command:
 
 ```
-conda create -n niedu anaconda python=3.7.3
+conda create -n niedu anaconda python=3.8.5
 ```
 
-When promped to install a long list of packages (`Proceed ([y]/n)?`), type "y" and press enter. This will install a bunch of Python packages contained in the Anaconda distribution into the new environment. This may take a while. After the creation of the new environment (named "ni-edu") is done, you can activate the environment as follows:
+Note that you specifically need Python version 3.8.5, because the code that tests the answers to the exercises was compiled with this specific version. After running this command, you'll be promped to install a long list of packages (`Proceed ([y]/n)?`), type "y" and press enter. This will install a bunch of Python packages contained in the Anaconda distribution into the new environment. This may take a while. After the creation of the new environment (named "ni-edu") is done, you can activate the environment as follows:
 
 ```
 conda activate ni-edu
@@ -36,10 +36,10 @@ import sys
 sys.version
 ```
 
-If you installed everything correctly, it should print out "3.7.3 (default ...)" etc. To open a tutorial notebook, navigate to the particular notebook you want to run in Jupyter file browser (e.g., *fMRI-introduction* &rarr; *week_1* &rarr; *python_for_mri.ipynb), and click on the file. This should open a new tab with the notebook. However, please go through the rest of the installation instructions below before starting to work on the tutorials.
+If you installed everything correctly, it should print out "3.8.5 (default ...)" etc. To open a tutorial notebook, navigate to the particular notebook you want to run in Jupyter file browser (e.g., *fMRI-introduction* &rarr; *week_1* &rarr; *python_for_mri.ipynb), and click on the file. This should open a new tab with the notebook. However, please go through the rest of the installation instructions below before starting to work on the tutorials.
 
 ### Running Python online (optional)
-Some tutorials from this course can also be run in an online environment (instead of using a local Python installation). 
+Some tutorials from this course can also be run in an online environment (instead of using a local Python installation).
 
 ### FSL
 In addition, a few tutorials will discuss how to work with the open-source MRI software package [FSL](https://fsl.fmrib.ox.ac.uk/fsl/fslwiki). FSL works natively on Linux and Mac and, if you're tech savvy, also on Windows (through the "Windows Subsystem for Linux"). Installation instructions for FSL can be found [here](https://fsl.fmrib.ox.ac.uk/fsl/fslwiki/FslInstallation). Note that FSL is only used in two labs (*First * run-level analyses* and *Group-level analyses*) in the fMRI-introduction course, and it discusses no new concepts, so it can safely be skipped.
@@ -65,17 +65,6 @@ python -c 'import niedu'
 
 If it *doesn't* say `ModuleNotFoundError: No module named 'niedu'`, the package was correctly installed!
 
-Some notebooks need some extra data that we couldn't store on Github because it's too large (>8GB). The next section describes how to download this data. Note that this extra data is only needed for two tutorials of the fMRI-introduction course (*First- & run-level analyses* and *Group-analyses*) and two tutorials of the fMRI-pattern-analysis course (*Decoding* and *RSA*). The other notebooks can be done without downloading the extra data.
-
-## Downloading the NI-edu dataset
-In the course materials, we included a script to download the data for the courses: `download_data.py`. For now, you can only download the data for the `fMRI-introduction` course. In the root directory of the course materials, run the following command:
-
-```
-python download_data.py {directory_to_save_data} --course introduction
-```
-
-where `{directory_to_save_data}` represents the location where you'd like to store the data. The dataset is about 8.2GB, so it might take a while to download everything. Then, after downloading the data, you need to install the `niedu` package again by running the command `pip install .` (note the dot).
-
 ## Checking installation
 To check whether everything is installed properly, run the `test_course_environment.py` script in the root of the course materials folder:
 
@@ -88,11 +77,9 @@ which should print out something like:
 ```
 Checking Python version ...                     OK!
 Checking anaconda installation ...              OK!
-Checking nbgrader installation ...              OK!
 Checking niedu installation ...                 OK!
-Checking whether data is in place ...           OK!
 Checking FSL installation ...                   OK!
-Checking Jupyterhub data access ...             WARNING
 ```
 
-You may ignore the `Checking Jupyterhub data access` warning (this is only for instructors).
+In case of issues, some hints at solving them will be printed as well.
+

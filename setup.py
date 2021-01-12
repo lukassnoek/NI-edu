@@ -15,9 +15,6 @@ class PostInstallCommand(install):
 
 PACKAGES = find_packages()
 
-# Add to pacakge upon installing
-shutil.copyfile('course_settings.yml', os.path.join('niedu', 'data', 'course_settings.yml'))
-
 # Get version and release info, which is all stored in shablona/version.py
 ver_file = os.path.join('niedu', 'version.py')
 with open(ver_file) as f:

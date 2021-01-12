@@ -80,5 +80,6 @@ REQUIRES = [
     "pyyaml",
     "tqdm",
     "jupyter_contrib_nbextensions",
-    "awscli"
+    "awscli",
+    "nbgrader"
 ]
