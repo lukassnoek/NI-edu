@@ -9,11 +9,12 @@ here = op.dirname(__file__)
 
 
 print("Checking Python version ... \t\t\t", end='')
-if sys.version[:5] == '3.8.5':
-    has_py38 = True
+# Note to self: version 3.7.3 because of TLJH
+if sys.version[:5] == '3.7.3':
+    has_py37 = True
     print("OK!")
 else:
-    has_py38 = False
+    has_py37 = False
     print("NOT OK!")
 
 # Check anaconda
@@ -49,7 +50,7 @@ if not has_anaconda:
           "using the Anaconda distrution for Python! See this website\n"
           "for more information: https://lukas-snoek.com/NI-edu/getting_started/installation.html")
 else:
-    if not has_py38:
+    if not has_py37:
         print("\nYou seem to have the 'wrong' Python version. Please see the installation\n"
               "instructions here: https://lukas-snoek.com/NI-edu/getting_started/installation.html")
 

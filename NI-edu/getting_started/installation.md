@@ -16,10 +16,10 @@ After installation, you need to create a new *environment* to make sure you're u
 To create a new environment called `ni-edu` with the proper Python version after installing Anaconda, open a terminal and run the following command:
 
 ```
-conda create -n niedu anaconda python=3.8.5
+conda create -n niedu anaconda python=3.7.3
 ```
 
-Note that you specifically need Python version 3.8.5, because the code that tests the answers to the exercises was compiled with this specific version. After running this command, you'll be promped to install a long list of packages (`Proceed ([y]/n)?`), type "y" and press enter. This will install a bunch of Python packages contained in the Anaconda distribution into the new environment. This may take a while. After the creation of the new environment (named "ni-edu") is done, you can activate the environment as follows:
+Note that you specifically need Python version 3.7.3, because the code that tests the answers to the exercises was compiled with this specific version. After running this command, you'll be promped to install a long list of packages (`Proceed ([y]/n)?`), type "y" and press enter. This will install a bunch of Python packages contained in the Anaconda distribution into the new environment. This may take a while. After the creation of the new environment (named "ni-edu") is done, you can activate the environment as follows:
 
 ```
 conda activate ni-edu
@@ -40,7 +40,7 @@ import sys
 sys.version
 ```
 
-If you installed everything correctly, it should print out "3.8.5 (default ...)" etc. To open a tutorial notebook, navigate to the particular notebook you want to run in Jupyter file browser (e.g., *fMRI-introduction* &rarr; *week_1* &rarr; *python_for_mri.ipynb), and click on the file. This should open a new tab with the notebook. However, please go through the rest of the installation instructions below before starting to work on the tutorials.
+If you installed everything correctly, it should print out "3.7.3 (default ...)" etc. To open a tutorial notebook, navigate to the particular notebook you want to run in Jupyter file browser (e.g., *fMRI-introduction* &rarr; *week_1* &rarr; *python_for_mri.ipynb*), and click on the file. This should open a new tab with the notebook. However, please go through the rest of the installation instructions below before starting to work on the tutorials.
 
 ### Running Python online
 Many of the tutorials from this course can also be run in an online environment (instead of using a local Python installation). This option can be used as an alternative to installing Python and running the notebooks locally on your own computer.
