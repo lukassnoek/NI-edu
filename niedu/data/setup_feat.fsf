@@ -273,7 +273,7 @@ set fmri(totalVoxels) 91520000
 set fmri(ncopeinputs) 0
 
 # 4D AVW data or FEAT directory (1)
-set feat_files(1) "/home/Public/NI-edu/sub-03/ses-1/func/sub-03_ses-1_task-flocBLOCKED_acq-Mb4Mm27Tr700_bold"
+set feat_files(1) "/home/Public/NI-edu/sub-03/ses-1/func/sub-03_ses-1_task-flocBLOCKED_bold"
 
 # Add confound EVs text file
 set fmri(confoundevs) 0
@@ -314,7 +314,7 @@ set fmri(tempfilt_yn1) 1
 set fmri(deriv_yn1) 0
 
 # Custom EV file (EV 1)
-set fmri(custom1) "/home/Public/NI-edu/sub-03/ses-1/func/sub-03_ses-1_task-flocBLOCKED_acq-Mb4Mm27Tr700_condition-face_events.txt"
+set fmri(custom1) "/home/Public/NI-edu/sub-03/ses-1/func/sub-03_ses-1_task-flocBLOCKED_condition-face_events.txt"
 
 # Orthogonalise EV 1 wrt EV 0
 set fmri(ortho1.0) 0
@@ -370,7 +370,7 @@ set fmri(tempfilt_yn2) 1
 set fmri(deriv_yn2) 0
 
 # Custom EV file (EV 2)
-set fmri(custom2) "/home/Public/NI-edu/sub-03/ses-1/func/sub-03_ses-1_task-flocBLOCKED_acq-Mb4Mm27Tr700_condition-body_events.txt"
+set fmri(custom2) "/home/Public/NI-edu/sub-03/ses-1/func/sub-03_ses-1_task-flocBLOCKED_condition-body_events.txt"
 
 # Orthogonalise EV 2 wrt EV 0
 set fmri(ortho2.0) 0
@@ -426,7 +426,7 @@ set fmri(tempfilt_yn3) 1
 set fmri(deriv_yn3) 0
 
 # Custom EV file (EV 3)
-set fmri(custom3) "/home/Public/NI-edu/sub-03/ses-1/func/sub-03_ses-1_task-flocBLOCKED_acq-Mb4Mm27Tr700_condition-place_events.txt"
+set fmri(custom3) "/home/Public/NI-edu/sub-03/ses-1/func/sub-03_ses-1_task-flocBLOCKED_condition-place_events.txt"
 
 # Orthogonalise EV 3 wrt EV 0
 set fmri(ortho3.0) 0
@@ -482,7 +482,7 @@ set fmri(tempfilt_yn4) 1
 set fmri(deriv_yn4) 0
 
 # Custom EV file (EV 4)
-set fmri(custom4) "/home/Public/NI-edu/sub-03/ses-1/func/sub-03_ses-1_task-flocBLOCKED_acq-Mb4Mm27Tr700_condition-character_events.txt"
+set fmri(custom4) "/home/Public/NI-edu/sub-03/ses-1/func/sub-03_ses-1_task-flocBLOCKED_condition-character_events.txt"
 
 # Orthogonalise EV 4 wrt EV 0
 set fmri(ortho4.0) 0
@@ -538,7 +538,7 @@ set fmri(tempfilt_yn5) 1
 set fmri(deriv_yn5) 0
 
 # Custom EV file (EV 5)
-set fmri(custom5) "/home/Public/NI-edu/sub-03/ses-1/func/sub-03_ses-1_task-flocBLOCKED_acq-Mb4Mm27Tr700_condition-object_events.txt"
+set fmri(custom5) "/home/Public/NI-edu/sub-03/ses-1/func/sub-03_ses-1_task-flocBLOCKED_condition-object_events.txt"
 
 # Orthogonalise EV 5 wrt EV 0
 set fmri(ortho5.0) 0
@@ -594,7 +594,7 @@ set fmri(tempfilt_yn6) 1
 set fmri(deriv_yn6) 0
 
 # Custom EV file (EV 6)
-set fmri(custom6) "/home/Public/NI-edu/sub-03/ses-1/func/sub-03_ses-1_task-flocBLOCKED_acq-Mb4Mm27Tr700_condition-response_events.txt"
+set fmri(custom6) "/home/Public/NI-edu/sub-03/ses-1/func/sub-03_ses-1_task-flocBLOCKED_condition-response_events.txt"
 
 # Orthogonalise EV 6 wrt EV 0
 set fmri(ortho6.0) 0
