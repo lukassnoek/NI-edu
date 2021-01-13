@@ -36,7 +36,7 @@ opts = dict(
     version=VERSION,
     packages=PACKAGES,
     include_package_data=True,
-    install_requires=["neurodesign@git+https://github.com/Neuroimaging-UvA/neurodesign.git", REQUIRES],
+    install_requires=["neurodesign@git+https://github.com/lukassnoek/neurodesign.git", REQUIRES],
     zip_safe=True,
     cmdclass={'install': PostInstallCommand}
 )
