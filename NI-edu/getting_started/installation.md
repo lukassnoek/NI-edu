@@ -11,15 +11,15 @@ Note that many of the notebooks (with the exception of those discussing FSL func
 ### Installing Python
 We *highly* recommend installing Python through Anaconda. To do so, go to the [Anaconda website](https://www.anaconda.com/products/individual) and download the latest *Anaconda installer* for your OS (Windows, MacOS, or Linux). Both the graphical and command-line installers are fine. After downloading the installer, run the installer. The default options suggested during installation are all fine (but no need to install the Pycharm IDE).
 
-After installation, you need to create a new *environment* to make sure you're using the correct Python version. This is because the exercises (an important feature of the tutorials) only work when you have Python version 3.7.3 installed specifically. Fortunately, it's easy to create a new environment with Conda, the open-source package manager shipped with any Anaconda Python distribution. Creating a new environment is easiest through a command-line interface (CLI) in a *terminal*. Mac and Linux computers are shipped with a terminal, but we recommend that Windows users use the *Anaconda prompt* (which is shipped with Anaconda) as their terminal.
+After installation, you need to create a new *environment* to make sure you're using the correct Python version. This is because the exercises (an important feature of the tutorials) only work when you have Python version 3.8.5 installed specifically. Fortunately, it's easy to create a new environment with Conda, the open-source package manager shipped with any Anaconda Python distribution. Creating a new environment is easiest through a command-line interface (CLI) in a *terminal*. Mac and Linux computers are shipped with a terminal, but we recommend that Windows users use the *Anaconda prompt* (which is shipped with Anaconda) as their terminal.
 
 To create a new environment called `ni-edu` with the proper Python version after installing Anaconda, open a terminal and run the following command:
 
 ```
-conda create -n niedu anaconda python=3.7.3
+conda create -n niedu anaconda python=3.8.5
 ```
 
-Note that you specifically need Python version 3.7.3, because the code that tests the answers to the exercises was compiled with this specific version. After running this command, you'll be promped to install a long list of packages (`Proceed ([y]/n)?`), type "y" and press enter. This will install a bunch of Python packages contained in the Anaconda distribution into the new environment. This may take a while. After the creation of the new environment (named "ni-edu") is done, you can activate the environment as follows:
+Note that you specifically need Python version 3.8.5, because the code that tests the answers to the exercises was compiled with this specific version. After running this command, you'll be promped to install a long list of packages (`Proceed ([y]/n)?`), type "y" and press enter. This will install a bunch of Python packages contained in the Anaconda distribution into the new environment. This may take a while. After the creation of the new environment (named "ni-edu") is done, you can activate the environment as follows:
 
 ```
 conda activate ni-edu
@@ -40,7 +40,7 @@ import sys
 sys.version
 ```
 
-If you installed everything correctly, it should print out "3.7.3 (default ...)" etc. To open a tutorial notebook, navigate to the particular notebook you want to run in Jupyter file browser (e.g., *fMRI-introduction* &rarr; *week_1* &rarr; *python_for_mri.ipynb*), and click on the file. This should open a new tab with the notebook. However, please go through the rest of the installation instructions below before starting to work on the tutorials.
+If you installed everything correctly, it should print out "3.8.5 (default ...)" etc. To open a tutorial notebook, navigate to the particular notebook you want to run in Jupyter file browser (e.g., *fMRI-introduction* &rarr; *week_1* &rarr; *python_for_mri.ipynb*), and click on the file. This should open a new tab with the notebook. However, please go through the rest of the installation instructions below before starting to work on the tutorials.
 
 ### Running Python online
 Many of the tutorials from this course can also be run in an online environment (instead of using a local Python installation). This option can be used as an alternative to installing Python and running the notebooks locally on your own computer.
