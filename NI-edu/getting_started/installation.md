@@ -1,8 +1,12 @@
 # Installation
-The course materials of fMRI-introduction and fMRI-pattern analyses contain Python-based Jupyter notebooks with tutorials and exercises (the "labs"). To do the labs, you need a working installation of Python (and [FSL](https://fsl.fmrib.ox.ac.uk/fsl/fslwiki)) and the course materials themselves of course. Below, we explain in detail how to do these things.
+The course materials of fMRI-introduction and fMRI-pattern analyses contain Python-based Jupyter notebooks with tutorials and exercises (the "labs"). To be able to do all the tutorials, you need a working installation of Python and [FSL](https://fsl.fmrib.ox.ac.uk/fsl/fslwiki), as well as the course materials themselves of course. Below, we explain in detail how to do these things.
 
 ## Software requirements: Python & FSL
-Below, we discuss how to install Python and (optionally) how to install FSL.
+Below, we discuss how to install Python and (optionally) how to install FSL. 
+
+:::{tip}
+Note that many of the notebooks (with the exception of those discussing FSL functionality) can actually be run in the cloud using Binder or any other JupyterHub server, which is explained in the section **Running Python online** on this page.
+:::
 
 ### Installing Python
 We *highly* recommend installing Python through Anaconda. To do so, go to the [Anaconda website](https://www.anaconda.com/products/individual) and download the latest *Anaconda installer* for your OS (Windows, MacOS, or Linux). Both the graphical and command-line installers are fine. After downloading the installer, run the installer. The default options suggested during installation are all fine (but no need to install the Pycharm IDE).
@@ -38,8 +42,14 @@ sys.version
 
 If you installed everything correctly, it should print out "3.8.5 (default ...)" etc. To open a tutorial notebook, navigate to the particular notebook you want to run in Jupyter file browser (e.g., *fMRI-introduction* &rarr; *week_1* &rarr; *python_for_mri.ipynb), and click on the file. This should open a new tab with the notebook. However, please go through the rest of the installation instructions below before starting to work on the tutorials.
 
-### Running Python online (optional)
-Some tutorials from this course can also be run in an online environment (instead of using a local Python installation).
+### Running Python online
+Many of the tutorials from this course can also be run in an online environment (instead of using a local Python installation). This option can be used as an alternative to installing Python and running the notebooks locally on your own computer.
+
+Any tutorial page on this website &mdash; designated by `(T)` in the menu bar on the left &mdash; contains a "rocket" button on the top of the page. Clicking this reveals two options, [*Binder*](https://mybinder.org/) and *JupyterHub*. Clicking on the *Binder* option will spin up an online Jupyter environment in which you can run the tutorial interactively. The *JupyterHub* option redirects to the JupyterHub instance we use for the Research Master courses at the University of Amsterdam and is only accessible to students currently enrolled in any of the Research Master courses.
+
+:::{warning}
+*Binder* instances shut down after a given period of inactivity and does not save your results!
+:::
 
 ### FSL
 In addition, a few tutorials will discuss how to work with the open-source MRI software package [FSL](https://fsl.fmrib.ox.ac.uk/fsl/fslwiki). FSL works natively on Linux and Mac and, if you're tech savvy, also on Windows (through the "Windows Subsystem for Linux"). Installation instructions for FSL can be found [here](https://fsl.fmrib.ox.ac.uk/fsl/fslwiki/FslInstallation). Note that FSL is only used in two labs (*First * run-level analyses* and *Group-level analyses*) in the fMRI-introduction course, and it discusses no new concepts, so it can safely be skipped.
