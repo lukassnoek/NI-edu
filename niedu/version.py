@@ -81,5 +81,7 @@ REQUIRES = [
     "tqdm",
     "jupyter_contrib_nbextensions",
     "awscli",
-    "nbgrader"
+    "nbgrader",
+    "tqdm",
+    "imageio"
 ]
