@@ -23,4 +23,4 @@ jobs:
         pip install .
     - name: Test with pytest
       run: |
-        pytest --nbval --ignore=NI-edu/_build --ignore=NI-edu/fMRI-pattern-analysis
+        ./test_notebooks

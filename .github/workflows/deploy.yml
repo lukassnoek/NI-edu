@@ -9,11 +9,11 @@ on:
 # This job installs dependencies, build the book, and pushes it to `gh-pages`
 jobs:
   build-and-deploy-book:
-    runs-on: ${{ matrix.os }}
+    runs-on: ubuntu-latest
     strategy:
       matrix:
-        os: [ubuntu-latest]
         python-version: [3.8.5]
+  
     steps:
     - uses: actions/checkout@v2
 
