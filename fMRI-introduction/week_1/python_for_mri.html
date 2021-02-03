@@ -1,0 +1,1135 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Working with MRI data in Python &#8212; NI-edu</title>
+    
+  <link rel="stylesheet" href="../../_static/css/index.73d71520a4ca3b99cfee5594769eaaae.css">
+
+    
+  <link rel="stylesheet"
+    href="../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+  <link rel="stylesheet"
+    href="../../_static/vendor/open-sans_all/1.44.1/index.css">
+  <link rel="stylesheet"
+    href="../../_static/vendor/lato_latin-ext/1.44.1/index.css">
+
+    
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/sphinx-book-theme.40e2e510f6b7d1648584402491bb10fe.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../../_static/js/index.3da636dd464baa7582d2.js">
+
+    <script id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/togglebutton.js"></script>
+    <script src="../../_static/clipboard.min.js"></script>
+    <script src="../../_static/copybutton.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../../_static/sphinx-book-theme.d31b09fe5c1d09cb49b26a786de4a05d.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.0/dist/embed-amd.js"></script>
+    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="../../_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Using the GLM to model fMRI data" href="../../section_intros/2_glm.html" />
+    <link rel="prev" title="Python recap" href="../../other/python_recap.html" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+
+
+
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+<a class="navbar-brand text-wrap" href="../../index.html">
+  
+  <img src="../../_static/fmri.gif" class="logo" alt="logo">
+  
+  
+  <h1 class="site-logo" id="site-title">NI-edu</h1>
+  
+</a>
+</div><form class="bd-search d-flex align-items-center" action="../../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form>
+<nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+    <ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../index.html">
+   Welcome to NI-edu
+  </a>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  Getting started
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../getting_started/about.html">
+   About this course
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../getting_started/installation.html">
+   Installation
+  </a>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  fMRI-introduction
+ </span>
+</p>
+<ul class="current nav sidenav_l1">
+ <li class="toctree-l1 current active collapsible-parent">
+  <a class="reference internal" href="../../section_intros/1_python.html">
+   Python for (f)MRI analysis
+  </a>
+  <ul class="current collapse-ul">
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../other/python_recap.html">
+     Python recap
+    </a>
+   </li>
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
+     Working with MRI data in Python (T)
+    </a>
+   </li>
+  </ul>
+  <i class="fas fa-chevron-down">
+  </i>
+ </li>
+ <li class="toctree-l1 collapsible-parent">
+  <a class="reference internal" href="../../section_intros/2_glm.html">
+   Using the GLM to model fMRI data
+  </a>
+  <ul class="collapse-ul">
+   <li class="toctree-l2">
+    <a class="reference internal" href="../week_2/glm_part1_estimation.html">
+     The GLM: estimation (T)
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../week_3/glm_part2_inference.html">
+     The GLM: inference (T)
+    </a>
+   </li>
+  </ul>
+  <i class="fas fa-chevron-down">
+  </i>
+ </li>
+ <li class="toctree-l1 collapsible-parent">
+  <a class="reference internal" href="../../section_intros/3_design_of_experiments_T.html">
+   Design of experiments
+  </a>
+  <ul class="collapse-ul">
+   <li class="toctree-l2">
+    <a class="reference internal" href="../week_3/design_of_experiments.html">
+     Design of experiments (T)
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../week_3/neurodesign.html">
+     Neurodesign (T)
+    </a>
+   </li>
+  </ul>
+  <i class="fas fa-chevron-down">
+  </i>
+ </li>
+ <li class="toctree-l1 collapsible-parent">
+  <a class="reference internal" href="../../section_intros/4_preprocessing.html">
+   Preprocessing
+  </a>
+  <ul class="collapse-ul">
+   <li class="toctree-l2">
+    <a class="reference internal" href="../week_4/temporal_preprocessing.html">
+     Temporal preprocessing (T)
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../week_4/spatial_preprocessing.html">
+     Spatial preprocessing (T)
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../week_4/fmriprep.html">
+     Fmriprep (T)
+    </a>
+   </li>
+  </ul>
+  <i class="fas fa-chevron-down">
+  </i>
+ </li>
+ <li class="toctree-l1 collapsible-parent">
+  <a class="reference internal" href="../../section_intros/5_multilevel.html">
+   First &amp; run-level analyses
+  </a>
+  <ul class="collapse-ul">
+   <li class="toctree-l2">
+    <a class="reference internal" href="../week_5/linux_and_the_command_line.html">
+     Linux and the CMD (T)
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../week_5/first_level_analyses.html">
+     First level analyses (T)
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../week_5/run_level_analyses.html">
+     Run-level analyses (T)
+    </a>
+   </li>
+  </ul>
+  <i class="fas fa-chevron-down">
+  </i>
+ </li>
+ <li class="toctree-l1 collapsible-parent">
+  <a class="reference internal" href="../../section_intros/6_grouplevel.html">
+   Group-level analyses
+  </a>
+  <ul class="collapse-ul">
+   <li class="toctree-l2">
+    <a class="reference internal" href="../week_6/group_level_analyses.html">
+     Group-level analyses (T)
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../week_6/MCC.html">
+     Multiple comparison correction (T)
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../week_6/ROI_analysis.html">
+     ROI analysis (T)
+    </a>
+   </li>
+  </ul>
+  <i class="fas fa-chevron-down">
+  </i>
+ </li>
+ <li class="toctree-l1 collapsible-parent">
+  <a class="reference internal" href="../../section_intros/7_nilearn.html">
+   Introduction to Nilearn
+  </a>
+  <ul class="collapse-ul">
+   <li class="toctree-l2">
+    <a class="reference internal" href="../week_7/nilearn.html">
+     Introduction to Nilearn (T)
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../week_7/nilearn_stats.html">
+     Statistics with Nilearn (T)
+    </a>
+   </li>
+  </ul>
+  <i class="fas fa-chevron-down">
+  </i>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  fMRI-pattern-analysis
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../fMRI-pattern-analysis/week_1/design_and_pattern_estimation.html">
+   Design and pattern estimation (T)
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../fMRI-pattern-analysis/week_2/decoding_analyses.html">
+   Machine learning/decoding (T)
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../fMRI-pattern-analysis/week_3/rsa.html">
+   Representational Similarity Analysis (T)
+  </a>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  Misc
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../misc/bibliography.html">
+   Bibliography
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../misc/for_educators.html">
+   For educators
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../misc/CONTRIBUTING.html">
+   Contributing
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../misc/CONDUCT.html">
+   Code of Conduct
+  </a>
+ </li>
+</ul>
+
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="row topbar fixed-top container-xl">
+    <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show">
+    </div>
+    <div class="col pl-2 topbar-main">
+        
+        <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+            data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+            aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+            title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+            <i class="fas fa-bars"></i>
+            <i class="fas fa-arrow-left"></i>
+            <i class="fas fa-arrow-up"></i>
+        </button>
+        
+        
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../../_sources/fMRI-introduction/week_1/python_for_mri.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+        <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/lukassnoek/NI-edu"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        <a class="issues-button"
+            href="https://github.com/lukassnoek/NI-edu/issues/new?title=Issue%20on%20page%20%2FfMRI-introduction/week_1/python_for_mri.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
+        <a class="edit-button" href="https://github.com/lukassnoek/NI-edu/edit/master/NI-edu/fMRI-introduction/week_1/python_for_mri.ipynb"><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Edit this page"><i class="fas fa-pencil-alt"></i>suggest edit</button></a>
+    </div>
+</div>
+
+
+        <!-- Full screen (wrap in <a> to have style consistency -->
+        <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+                data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+                title="Fullscreen mode"><i
+                    class="fas fa-expand"></i></button></a>
+
+        <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/lukassnoek/NI-edu/master?urlpath=tree/NI-edu/fMRI-introduction/week_1/python_for_mri.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="../../_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        <a class="jupyterhub-button" href="https://neuroimaging.lukas-snoek.com/hub/user-redirect/git-pull?repo=https://github.com/lukassnoek/NI-edu&urlpath=tree/NI-edu/NI-edu/fMRI-introduction/week_1/python_for_mri.ipynb&branch=master"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch JupyterHub" data-toggle="tooltip"
+                data-placement="left"><img class="jupyterhub-button-logo"
+                    src="../../_static/images/logo_jupyterhub.svg"
+                    alt="Interact on JupyterHub">JupyterHub</button></a>
+        
+        
+        
+    </div>
+</div>
+
+    </div>
+
+    <!-- Table of contents -->
+    <div class="d-none d-md-block col-md-2 bd-toc show">
+        
+        <div class="tocsection onthispage pt-5 pb-3">
+            <i class="fas fa-list"></i> Contents
+        </div>
+        <nav id="bd-toc-nav">
+            <ul class="nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#what-is-nifti">
+   What is “nifti”?
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#the-three-parts-of-nifti-images">
+   The three parts of nifti images
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#the-header">
+     The header
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#the-data">
+     The data
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#the-affine">
+     The affine
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+        </nav>
+        
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="working-with-mri-data-in-python">
+<h1>Working with MRI data in Python<a class="headerlink" href="#working-with-mri-data-in-python" title="Permalink to this headline">¶</a></h1>
+<p>In this tutorial we will discuss how to interact with <em>Nifti</em> files — the file format used most in the MRI community — using the Python package <em>Nibabel</em>. We assume that you have experience with basic Python syntax and Numpy and Matplotlib functionality. If not, please consult <a class="reference external" href="https://lukas-snoek.com/NI-edu/other/python_recap.html">this page</a> for an overview of resources.</p>
+<p><strong>What you’ll learn</strong>: after this week’s lab …</p>
+<ul class="simple">
+<li><p>you know how to load, manipulate, and analyze Nifti-files</p></li>
+</ul>
+<p><strong>Estimated time to complete</strong>: 1-2 hours</p>
+<div class="section" id="what-is-nifti">
+<h2>What is “nifti”?<a class="headerlink" href="#what-is-nifti" title="Permalink to this headline">¶</a></h2>
+<p>Usually, every scanner manufacturer (Philips, Siemens, GE, etc.) have their own proprietary data format. For example, here at the University of Amsterdam, we have a Philips scanner and we often export our data as PAR/REC files. However, to streamline the development and use of neuroimaging software packages, the Neuroimaging InFormatics Technology Initiative came up with a new, standardized format, <em>nifti</em>, that most neuroimaging packages should support. As such, usually the first step in any (f)MRI preprocessing pipeline is to convert the scanner-specific files (e.g., PAR/RECs) to nifti. This is beyond the scope of this course, but if at one point you need to do this yourself, we highly recommed the <a class="reference external" href="https://github.com/rordenlab/dcm2niix">dcm2niix</a> package!</p>
+<p>Throughout these tutorials you’ll work with these nifti-files (also called nifti images), which you can recognize by their extension of <em>.nii</em> or its compressed version <em>.nii.gz</em>. This file-format is supported by most neuroimaging software packages (such as FSL, which you’ll use later in this course!).</p>
+<p>However, we’d like to inspect and analyze nifti images in Python as well! <em>Nibabel</em> is an awesome Python package that allows us to read and load nifti images, and convert them to numpy arrays in a straightforward manner.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Let&#39;s load some other packages we need</span>
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="o">%</span><span class="k">matplotlib</span> inline
+<span class="kn">import</span> <span class="nn">nibabel</span> <span class="k">as</span> <span class="nn">nib</span> <span class="c1"># common way of importing nibabel</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>We’ll load in an example anatomical MRI scan (<code class="docutils literal notranslate"><span class="pre">anat.nii.gz</span></code>) from the current directory using nibabel below:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mri_file</span> <span class="o">=</span> <span class="s1">&#39;anat.nii.gz&#39;</span>
+<span class="n">img</span> <span class="o">=</span> <span class="n">nib</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">mri_file</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Note the type of <code class="docutils literal notranslate"><span class="pre">img</span></code>: the <code class="docutils literal notranslate"><span class="pre">Nifti1Image</span></code> class. This is a custom class just like a Numpy array, with its own attributes and methods!</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">img</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;class &#39;nibabel.nifti1.Nifti1Image&#39;&gt;
+</pre></div>
+</div>
+</div>
+</div>
+<p>For example, one attribute of <code class="docutils literal notranslate"><span class="pre">Nifti1Image</span></code> objects is the <code class="docutils literal notranslate"><span class="pre">shape</span></code> (which is similar to the numpy array attribute with the same name):</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">img</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(240, 240, 220)
+</pre></div>
+</div>
+</div>
+</div>
+<p>Here, the <code class="docutils literal notranslate"><span class="pre">shape</span></code> attribute is telling us that this is a 3D (anatomical) scan and has 240 voxels in the first dimension, 240 voxels in the second dimension, and 220 voxels in the third dimension.</p>
+</div>
+<div class="section" id="the-three-parts-of-nifti-images">
+<h2>The three parts of nifti images<a class="headerlink" href="#the-three-parts-of-nifti-images" title="Permalink to this headline">¶</a></h2>
+<p>Nifti images can be roughly divided into three “parts”:</p>
+<ol class="simple">
+<li><p>The header with metadata;</p></li>
+<li><p>The image data;</p></li>
+<li><p>The affine matrix</p></li>
+</ol>
+<p>All three parts are of course represented in nibabel’s <code class="docutils literal notranslate"><span class="pre">Nifti1Image</span></code> class. Let’s go through them one by one.</p>
+<div class="section" id="the-header">
+<h3>The header<a class="headerlink" href="#the-header" title="Permalink to this headline">¶</a></h3>
+<p>The header of nifti files contain metadata about the scan, such as the units of measurement, the voxel size, etc. In <code class="docutils literal notranslate"><span class="pre">Nifti1Images</span></code>, the header is an attribute:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># here, we&#39;re storing the header attribute in a new variable, hdr, for easy of use</span>
+<span class="n">hdr</span> <span class="o">=</span> <span class="n">img</span><span class="o">.</span><span class="n">header</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Perhaps confusingly, the header is a custom object (a <code class="docutils literal notranslate"><span class="pre">Nifti1Header</span></code> object) as well, with its own methods and attributes. For example, it has a method called <code class="docutils literal notranslate"><span class="pre">get_zooms()</span></code>, which returns the voxel size (and optionally the sampling rate, if it’s a fMRI file):</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">hdr</span><span class="o">.</span><span class="n">get_zooms</span><span class="p">()</span>  <span class="c1"># it&#39;s a 1x1x1 mm MRI file!</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(1.0, 1.0, 1.0)
+</pre></div>
+</div>
+</div>
+</div>
+<p>Another useful method is the <code class="docutils literal notranslate"><span class="pre">get_xyzt_units</span></code> which returns the units of the measurements (here: voxel size in millimeter and time in seconds):</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">hdr</span><span class="o">.</span><span class="n">get_xyzt_units</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(&#39;mm&#39;, &#39;sec&#39;)
+</pre></div>
+</div>
+</div>
+</div>
+<p>Let’s also load in a functional MRI file (<code class="docutils literal notranslate"><span class="pre">func.nii.gz</span></code>) to see the difference with an anatomical MRI file:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fmri_file</span> <span class="o">=</span> <span class="s1">&#39;func.nii.gz&#39;</span>
+<span class="n">f_img</span> <span class="o">=</span> <span class="n">nib</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">fmri_file</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">f_img</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">f_img</span><span class="o">.</span><span class="n">header</span><span class="o">.</span><span class="n">get_zooms</span><span class="p">())</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">f_img</span><span class="o">.</span><span class="n">header</span><span class="o">.</span><span class="n">get_xyzt_units</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(80, 80, 44, 50)
+(2.7, 2.7, 2.97, 0.7)
+(&#39;mm&#39;, &#39;sec&#39;)
+</pre></div>
+</div>
+</div>
+</div>
+<p>In case of fMRI files, the fourth dimension (almost) always represents the “time” dimension. So you can assume that a nifti image of an fMRI file has 4 dimensions, with the first three being the spatial dimensions (similar to the anatomical MRI file: <span class="math notranslate nohighlight">\(X \times Y \times Z\)</span>) and the last (fourth) being the time dimension (<span class="math notranslate nohighlight">\(T\)</span>).</p>
+<p>So for the above file, you can assume that it has 50 timepoints and has a sampling rate of 0.7 seconds (i.e., a new volume was scanned every 0.7 seconds).</p>
+<p>Moreover, you can infer that this file contains data from <span class="math notranslate nohighlight">\(80 \times 80 \times 44\)</span> voxels with dimensions <span class="math notranslate nohighlight">\(2.7 \times 2.7 \times 2.97\)</span> (in millimeters). To be honest, in practice, you won’t deal a lot with the header (as you are generally aware of the dimensions/units of your data), so let’s look at the <em>actual</em> data!</p>
+</div>
+<div class="section" id="the-data">
+<h3>The data<a class="headerlink" href="#the-data" title="Permalink to this headline">¶</a></h3>
+<p>When we loaded in the data and created a <code class="docutils literal notranslate"><span class="pre">Nifti1Image</span></code> object, we actually didn’t load in the <em>actual</em> data (i.e., voxel intensities) in memory yet! This is postponed because it’s quite a memory-intensive operation: remember, loading in an fMRI scan with dimensions <span class="math notranslate nohighlight">\(80 \times 80 \times 44 \times 50\)</span> is effectively loading in over 14 million numbers (which is, in this case, more than 50MB in size)! By postponing loading the data, you can, for example, peek at the image dimensions without loading all the data in memory.</p>
+<p>Anyway, to actually load in the data, you can call the <code class="docutils literal notranslate"><span class="pre">get_fdata()</span></code> method, which will return a numpy array with the same dimensions as the image data. We’ll take a look at the anatomical MRI data (<code class="docutils literal notranslate"><span class="pre">anat.nii.gz</span></code>):</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">img_data</span> <span class="o">=</span> <span class="n">img</span><span class="o">.</span><span class="n">get_fdata</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">img_data</span><span class="p">))</span>  <span class="c1"># it&#39;s a numpy array!</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">img_data</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;class &#39;numpy.ndarray&#39;&gt;
+(240, 240, 220)
+</pre></div>
+</div>
+</div>
+</div>
+<p>Okay, so <code class="docutils literal notranslate"><span class="pre">img_data</span></code> is a 3D numpy array with … what exactly? Let’s check it out:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">img_data</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[[[0. 0. 0. ... 0. 0. 0.]
+  [0. 0. 0. ... 0. 0. 0.]
+  [0. 0. 0. ... 0. 0. 0.]
+  ...
+  [0. 0. 0. ... 0. 0. 0.]
+  [0. 0. 0. ... 0. 0. 0.]
+  [0. 0. 0. ... 0. 0. 0.]]
+
+ [[0. 0. 0. ... 0. 0. 0.]
+  [0. 0. 0. ... 0. 0. 0.]
+  [0. 0. 0. ... 0. 0. 0.]
+  ...
+  [0. 0. 0. ... 0. 0. 0.]
+  [0. 0. 0. ... 0. 0. 0.]
+  [0. 0. 0. ... 0. 0. 0.]]
+
+ [[0. 0. 0. ... 0. 0. 0.]
+  [0. 0. 0. ... 0. 0. 0.]
+  [0. 0. 0. ... 0. 0. 0.]
+  ...
+  [0. 0. 0. ... 0. 0. 0.]
+  [0. 0. 0. ... 0. 0. 0.]
+  [0. 0. 0. ... 0. 0. 0.]]
+
+ ...
+
+ [[0. 0. 0. ... 0. 0. 0.]
+  [0. 0. 0. ... 0. 0. 0.]
+  [0. 0. 0. ... 0. 0. 0.]
+  ...
+  [0. 0. 0. ... 0. 0. 0.]
+  [0. 0. 0. ... 0. 0. 0.]
+  [0. 0. 0. ... 0. 0. 0.]]
+
+ [[0. 0. 0. ... 0. 0. 0.]
+  [0. 0. 0. ... 0. 0. 0.]
+  [0. 0. 0. ... 0. 0. 0.]
+  ...
+  [0. 0. 0. ... 0. 0. 0.]
+  [0. 0. 0. ... 0. 0. 0.]
+  [0. 0. 0. ... 0. 0. 0.]]
+
+ [[0. 0. 0. ... 0. 0. 0.]
+  [0. 0. 0. ... 0. 0. 0.]
+  [0. 0. 0. ... 0. 0. 0.]
+  ...
+  [0. 0. 0. ... 0. 0. 0.]
+  [0. 0. 0. ... 0. 0. 0.]
+  [0. 0. 0. ... 0. 0. 0.]]]
+</pre></div>
+</div>
+</div>
+</div>
+<p>It’s just a bunch of numbers! This is important to remember: <strong>like any image (like your standard png, jpeg, or gif), MRI scans are also just (3D or 4D) arrays of numbers</strong>! The higher the number, the more signal the scanner recorded at that voxel. (It’s actually a little more complex than this, but that’s beyond the scope of this course!)</p>
+<p>Often, the absolute value of the signal intensities is not necessarily most or only important thing. The <em>relative differences</em> between different voxels in space or within voxels across time is also important. For example, for anatomical scans, apart from a high overall signal intensity, you often want a good <em>contrast</em> between white and gray matter (i.e., different signal intensities between voxels in these two tissue types). For functional MRI, apart from a clear tissue contrast and a high overall signal intensity, you often also want little (non-experimentally related) differences in signal intensity within a voxel across time.</p>
+<p>Anyway, when we printed this 3D array (of <span class="math notranslate nohighlight">\(240 \times 240 \times 220\)</span>), the notebook chose not to display all 12,672,000 numbers but instead truncated it. The reason it only printed zeros is because the first and last couple of numbers in each dimension likely doesn’t contain any (signal related to) brain, just empty space!</p>
+<p>So, let’s index a small <span class="math notranslate nohighlight">\(3 \times 3 \times 3\)</span> patch of voxels in the middle of the brain to check what values these voxels contain:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mid_vox</span> <span class="o">=</span> <span class="n">img_data</span><span class="p">[</span><span class="mi">118</span><span class="p">:</span><span class="mi">121</span><span class="p">,</span> <span class="mi">118</span><span class="p">:</span><span class="mi">121</span><span class="p">,</span> <span class="mi">108</span><span class="p">:</span><span class="mi">111</span><span class="p">]</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">mid_vox</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[[[61978.4609375  49358.4140625  60996.90234375]
+  [67727.59375    49498.63671875 55808.66015625]
+  [72775.6171875  49077.96875    51041.0859375 ]]
+
+ [[65484.03125    50199.75       54827.1015625 ]
+  [71653.828125   50199.75       55107.546875  ]
+  [75299.625      50760.640625   55387.9921875 ]]
+
+ [[78524.75       51882.421875   51321.53125   ]
+  [82310.765625   56229.328125   47815.9609375 ]
+  [84694.546875   59594.67578125 41646.16015625]]]
+</pre></div>
+</div>
+</div>
+</div>
+<p>That’s better! The exact values are not necessarily directly interpretable, i.e., you cannot say that the value 61978.46 is good (or bad), because the exact <em>scale</em> of the signal intensities (whether it goes from 0-100 or from 0-100,000) depends on the specific scanner hardware and specific nifti conversion software.</p>
+<p>Like any image, (f)MRI scans can be visualized by plotting the numbers and assigning colors to the numbers. Often we visualize brain images in brain and white, with higher signal intensities being brighter and lower signal intensities being darker. Importantly, remember that our data here cannot directly be plotted as a (2D) image, because our data (an anatomical scan) is 3D! However, we <em>can</em> just plot a single <em>slice</em> of the 3D volume, for example, the middle slice of our first voxel axis:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mid_slice_x</span> <span class="o">=</span> <span class="n">img_data</span><span class="p">[</span><span class="mi">119</span><span class="p">,</span> <span class="p">:,</span> <span class="p">:]</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">mid_slice_x</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(240, 220)
+</pre></div>
+</div>
+</div>
+</div>
+<p>We can use matplotlib to plot this slice as an image using the <code class="docutils literal notranslate"><span class="pre">imshow</span></code> function you’re seen before:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Note that the transpose the slice (using the .T attribute).</span>
+<span class="c1"># This is because imshow plots the first dimension on the y-axis and the</span>
+<span class="c1"># second on the x-axis, but we&#39;d like to plot the first on the x-axis and the</span>
+<span class="c1"># second on the y-axis. Also, the origin to &quot;lower&quot;, as the data was saved in</span>
+<span class="c1"># &quot;cartesian&quot; coordinates.</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">mid_slice_x</span><span class="o">.</span><span class="n">T</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;gray&#39;</span><span class="p">,</span> <span class="n">origin</span><span class="o">=</span><span class="s1">&#39;lower&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;First axis&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Second axis&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">colorbar</span><span class="p">(</span><span class="n">label</span><span class="o">=</span><span class="s1">&#39;Signal intensity&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/python_for_mri_29_0.png" src="../../_images/python_for_mri_29_0.png" />
+</div>
+</div>
+<p>Alright, time to practice.</p>
+<div class='alert alert-warning'>
+<b>ToDo</b> (1 point): Remember numpy indexing? For this ToDo, extract the second entry from the <em>last</em> dimension of <tt>img_data</tt> and store it in a new variable called <tt>second_slice</tt>. Tip: this variable should have a shape of $240 \times 240$!
+</div><div class="cell tag_raises-exception tag_remove-output docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># YOUR CODE HERE</span>
+<span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell tag_raises-exception tag_remove-output docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="sd">&#39;&#39;&#39; Tests the above ToDo &#39;&#39;&#39;</span>
+<span class="kn">from</span> <span class="nn">niedu.tests.nii.week_1</span> <span class="kn">import</span> <span class="n">test_extract_second_slice</span>
+<span class="n">test_extract_second_slice</span><span class="p">(</span><span class="n">img_data</span><span class="p">,</span> <span class="n">second_slice</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>So far, we have only looked at <em>structural</em> (3D) MRI data. This course is mainly about analyzing <em>functional</em> data, so let’s look at the data from an fMRI scan. We’ll use the <code class="docutils literal notranslate"><span class="pre">Nifti1Image</span></code> object <code class="docutils literal notranslate"><span class="pre">func_img</span></code> from before. We’ll load the memory with the <code class="docutils literal notranslate"><span class="pre">get_fdata</span></code> method. Note that this takes a little longer than loading in the structural data, because instead of (<span class="math notranslate nohighlight">\(240 \times 240 \times 220 = \)</span>) 12,672,000 datapoints, we’re loading in (<span class="math notranslate nohighlight">\(80 \times 80 \times 44 \times 347 =\)</span>) 97,715,200 datapoints!</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">f_img_data</span> <span class="o">=</span> <span class="n">f_img</span><span class="o">.</span><span class="n">get_fdata</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">f_img_data</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(80, 80, 44, 50)
+</pre></div>
+</div>
+</div>
+</div>
+<p>Now, you can think about this 4D array as a series of 3D arrays (volumes), in which the fourth dimension represents time (as shown in the image below).
+<br><br>
+<img alt="img" src="https://nilearn.github.io/_images/niimgs1.jpg" />
+<em>Source: <a class="reference external" href="https://nilearn.github.io/_images/niimgs1.jpg">nilearn website</a></em></p>
+<p>These separate 3D arrays (from the first three dimensions) in fMRI files are often called “volumes” or “dynamics”. So, for example, the first volume refers to the first 3D array that was recorded.</p>
+<p>Just like the anatomical MRI data, the values in the fMRI data just represent numbers:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># printing a small 3x3x3 volume of voxels from the first timepoint</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">f_img_data</span><span class="p">[</span><span class="mi">38</span><span class="p">:</span><span class="mi">41</span><span class="p">,</span> <span class="mi">38</span><span class="p">:</span><span class="mi">41</span><span class="p">,</span> <span class="mi">20</span><span class="p">:</span><span class="mi">23</span><span class="p">,</span> <span class="mi">0</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[[[52805.65625    60819.890625   20578.92578125]
+  [57084.4453125  55794.015625   17047.22851562]
+  [55318.59375    54130.04296875  7301.10351562]]
+
+ [[53111.28515625 43500.99609375 28661.07617188]
+  [55488.38671875 49715.421875   20477.04882812]
+  [53281.078125   50224.80078125  9304.66210938]]
+
+ [[56846.734375   53756.5        52567.9453125 ]
+  [55114.84375    55182.76171875 48798.5390625 ]
+  [50055.0078125  56201.51953125 45334.76171875]]]
+</pre></div>
+</div>
+</div>
+</div>
+<p>Again, we can visualize these numbers as images, at least for the first three dimensions, as these represent the spatial dimensions (the fourth dimension represents time). For example, we can visualize a single slice (e.g., <span class="math notranslate nohighlight">\(x = 39\)</span>) of the first volume (<span class="math notranslate nohighlight">\(t = 0\)</span>) as follows:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mid_slice_x_fmri</span> <span class="o">=</span> <span class="n">f_img_data</span><span class="p">[</span><span class="mi">39</span><span class="p">,</span> <span class="p">:,</span> <span class="p">:,</span> <span class="mi">0</span><span class="p">]</span>  <span class="c1"># x = 39, t = 0</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Shape of slice: </span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">mid_slice_x_fmri</span><span class="o">.</span><span class="n">shape</span><span class="p">,))</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">mid_slice_x_fmri</span><span class="o">.</span><span class="n">T</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;gray&#39;</span><span class="p">,</span> <span class="n">origin</span><span class="o">=</span><span class="s1">&#39;lower&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;First axis&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Second axis&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">colorbar</span><span class="p">(</span><span class="n">label</span><span class="o">=</span><span class="s1">&#39;Signal intensity&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Shape of slice: (80, 44)
+</pre></div>
+</div>
+<img alt="../../_images/python_for_mri_39_1.png" src="../../_images/python_for_mri_39_1.png" />
+</div>
+</div>
+<p>However, we can also look at fMRI data from a different perspective, that is, from the time dimension! For example, we could extract a single voxel’s <em>time series</em> (i.e., how the signal intensity varies across time) and plot the signal intensity values of that voxel across time. First, let’s extract the time series of one particular voxel (e.g., the middle one across all spatial dimensions):</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mid_vox_ts</span> <span class="o">=</span> <span class="n">f_img_data</span><span class="p">[</span><span class="mi">39</span><span class="p">,</span> <span class="mi">39</span><span class="p">,</span> <span class="mi">21</span><span class="p">,</span> <span class="p">:]</span>  <span class="c1"># note the &quot;:&quot;, saying: give me ALL the timepoints</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Voxel timeseries shape: </span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">mid_vox_ts</span><span class="o">.</span><span class="n">shape</span><span class="p">,))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Voxel timeseries shape: (50,)
+</pre></div>
+</div>
+</div>
+</div>
+<p>What we effectively did in the previous cell is to extract the signal intensity at the <em>same</em> spatial coordinates (<span class="math notranslate nohighlight">\(x=39, y=39, z=21\)</span>) across all 347 timepoints. We show this visually in the next cell, where the show the coordinates as a red box across 20 timepoints (not all 347, because that would clutter the notebook too much):</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">patches</span>
+
+<span class="n">fig</span><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">ncols</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">nrows</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">20</span><span class="p">,</span> <span class="mi">10</span><span class="p">))</span>  <span class="c1"># 20 timepoints</span>
+<span class="c1"># Loop over the first 20 volumes/timepoints</span>
+<span class="k">for</span> <span class="n">t</span><span class="p">,</span> <span class="n">ax</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">axes</span><span class="o">.</span><span class="n">flatten</span><span class="p">()):</span>    
+    <span class="n">ax</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">f_img_data</span><span class="p">[</span><span class="mi">39</span><span class="p">,</span> <span class="p">:,</span> <span class="p">:,</span> <span class="n">t</span><span class="p">]</span><span class="o">.</span><span class="n">T</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;gray&#39;</span><span class="p">,</span> <span class="n">origin</span><span class="o">=</span><span class="s1">&#39;lower&#39;</span><span class="p">)</span>  <span class="c1"># index with t!</span>
+    <span class="n">rect</span> <span class="o">=</span> <span class="n">patches</span><span class="o">.</span><span class="n">Rectangle</span><span class="p">((</span><span class="mi">38</span><span class="p">,</span> <span class="mi">20</span><span class="p">),</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">edgecolor</span><span class="o">=</span><span class="s1">&#39;r&#39;</span><span class="p">,</span> <span class="n">facecolor</span><span class="o">=</span><span class="s1">&#39;none&#39;</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">add_patch</span><span class="p">(</span><span class="n">rect</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s1">&#39;off&#39;</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;t = </span><span class="si">%i</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="n">t</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/python_for_mri_43_0.png" src="../../_images/python_for_mri_43_0.png" />
+</div>
+</div>
+<p>Note that it is <em>really</em> hard to spot whether the image of the slice is actually different between different time points! To the naked eye, it just seems like the same image. This is because activity fluctations (over time) in fMRI are <strong>very</strong> small - most of the time just 1-3% compared to baseline (average) activity. That’s why it’s hard to spot activity differences by looking at the pictures alone (without any scaling).</p>
+<p>It’s actually easier to see these time-by-time fluctuations in signal intensity by plotting the time series directly:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">18</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">mid_vox_ts</span><span class="p">,</span> <span class="s1">&#39;o-&#39;</span><span class="p">,</span> <span class="n">ms</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">mid_vox_ts</span><span class="o">.</span><span class="n">size</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">(</span><span class="mi">38000</span><span class="p">,</span> <span class="mi">55000</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Signal intensity&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">15</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Time (nr. of volumes)&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">15</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/python_for_mri_45_0.png" src="../../_images/python_for_mri_45_0.png" />
+</div>
+</div>
+<p>In the plot above, the blue dots are the signal intensity values (y-axis), plotted across time (x-axis). The blue lines interconnecting the blue dots are just interpolated values in between the different datapoints (the dots) and serve mostly for visualization purposes (it just looks prettier).</p>
+<p>Time for a ToDo!</p>
+<div class='alert alert-warning'>
+    <b>ToDo</b> (1 point): From the the variable <tt>f_img_data</tt>, extract the <em>odd</em> timepoints (i.e., 1, 3, 5, etc.) of this 4D nummpy and store it in a new variable called <tt>f_img_data_odd</tt>. This should be of shape $80 \times 80 \times 44 \times 25$.
+</div><div class="cell tag_raises-exception tag_remove-output docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># YOUR CODE HERE</span>
+<span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell tag_raises-exception tag_remove-output docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="sd">&#39;&#39;&#39; Tests the above ToDo. &#39;&#39;&#39;</span>
+<span class="kn">from</span> <span class="nn">niedu.tests.nii.week_1</span> <span class="kn">import</span> <span class="n">test_extract_voxel_timeseries</span>
+<span class="k">if</span> <span class="s1">&#39;f_img_data_odd&#39;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="nb">dir</span><span class="p">():</span>
+    <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Could not find any variable named &#39;f_img_odd&#39;; did you spell it correctly?&quot;</span><span class="p">)</span>
+
+<span class="n">test_extract_voxel_timeseries</span><span class="p">(</span><span class="n">f_img_data</span><span class="p">,</span> <span class="n">f_img_data_odd</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="the-affine">
+<h3>The affine<a class="headerlink" href="#the-affine" title="Permalink to this headline">¶</a></h3>
+<p>Each nifti file contains, in addition to the (meta)data, als an <em>affine</em> matrix, which relates the position of the image coordinates to real word coordinates. This may sound vague (it definitely did to us at first!), so let’s sketch a scenario in which the image’s affine becomes important.</p>
+<p>Suppose you were given a nifti file by a colleague (we’ll pretend that the <code class="docutils literal notranslate"><span class="pre">img</span></code> variable represents this mysterious nifti file). You have no idea whether it’s even a brain scan, so you decide to plot three slices - one from each of the three axes. You pick slice 70 (index 69, because Python is zero-based; first axis), 100 (second axis), and again 100 (third axis).</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">ncols</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
+
+<span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">img_data</span><span class="p">[</span><span class="mi">69</span><span class="p">,</span> <span class="p">:,</span> <span class="p">:]</span><span class="o">.</span><span class="n">T</span><span class="p">,</span> <span class="n">origin</span><span class="o">=</span><span class="s1">&#39;lower&#39;</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;gray&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;Second dim voxel coords.&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Third dim voxel coords&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;First dimension, slice nr. 70&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">15</span><span class="p">)</span>
+
+<span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">img_data</span><span class="p">[:,</span> <span class="mi">99</span><span class="p">,</span> <span class="p">:]</span><span class="o">.</span><span class="n">T</span><span class="p">,</span> <span class="n">origin</span><span class="o">=</span><span class="s1">&#39;lower&#39;</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;gray&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;First dim voxel coords.&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Third dim voxel coords&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Second dimension, slice nr. 100&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">15</span><span class="p">)</span>
+
+<span class="n">ax</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">img_data</span><span class="p">[:,</span> <span class="p">:,</span> <span class="mi">99</span><span class="p">]</span><span class="o">.</span><span class="n">T</span><span class="p">,</span> <span class="n">origin</span><span class="o">=</span><span class="s1">&#39;lower&#39;</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;gray&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;First dim voxel coords.&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Second dim voxel coords&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Third dimension, slice nr. 100&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">15</span><span class="p">)</span>
+
+<span class="n">fig</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/python_for_mri_51_0.png" src="../../_images/python_for_mri_51_0.png" />
+</div>
+</div>
+<p>Alright, so, you figured out it’s definitely a (structural) MRI scan.You can clearly see that the first voxel axis represents the sagittal dimension (left ←→ right), the second voxel axis represents the coronal dimension (anterior ←→ posterior), and the third voxel axis represents the axial dimension (inferior ←→ superior).</p>
+<p>So far, so good!</p>
+<p>Now, if we were to ask you: “In the first plot, are we looking at the left or right side of the brain?” Due to the left-right symmetry of the brain, this is actually impossible to tell! As such, we need a way to tell what is left and right (and anterior/posterior and inferior/superior) in our voxel space - this is what the affine is for! It will tell us, basically, whether “left” in our “voxel space” is also “left” in the “real world”.</p>
+<p>Here, the real world space refers to the position of the voxels (in millimeters) <em>relative to the isocenter of the scanner</em>. In this world space, the coordinate <span class="math notranslate nohighlight">\((0, 0, 0)\)</span> refers to the isocenter (see image below). Furthermore, nibabel <code class="docutils literal notranslate"><span class="pre">Nifti1Images</span></code> assume that the first axis goes from left to right, the second axis goes posterior to anterior, and the third axis from inferior to superior. A short-hand for this convention is <em>RAS+</em>, which basically says that coordinates to the Right, Anterior, and Superior of the isocenter should be positive (+). It follows that coordinates to the left, posterior, and inferior of the isocenter should be negative (-).</p>
+<p><img alt="img" src="http://www.grahamwideman.com/gw/brain/fs/coords/FSCoords_RAS01.gif" />
+(Source: Graham Wideman, <a class="reference external" href="http://www.grahamwideman.com/gw/brain/fs/coords/fscoords.htm">link</a>)</p>
+<p>Alright, but how does the affine help us recover the real word coordinates of our voxels? It turns out you only need a simple matrix operation: for a set of voxel coordinates <span class="math notranslate nohighlight">\((i, j, k)\)</span>, appended with a single 1, and an <span class="math notranslate nohighlight">\(4 \times 4\)</span> affine matrix <span class="math notranslate nohighlight">\(A\)</span>, you can get the real word coordinates (in RAS+) by the dot product (matrix multiplication) of <span class="math notranslate nohighlight">\(A\)</span> and <span class="math notranslate nohighlight">\((i, j, k, 1)\)</span>:</p>
+<div class="amsmath math notranslate nohighlight" id="equation-d937c4be-d1a3-4cc1-85c5-e15cb45d83ed">
+<span class="eqno">(1)<a class="headerlink" href="#equation-d937c4be-d1a3-4cc1-85c5-e15cb45d83ed" title="Permalink to this equation">¶</a></span>\[\begin{align}
+\begin{bmatrix} x &amp; y &amp; z &amp; 1 \end{bmatrix} = A\begin{bmatrix}
+           i \\
+           j \\
+           k \\
+           1
+         \end{bmatrix}
+\end{align}\]</div>
+<p>So, our image’s affine should be a <span class="math notranslate nohighlight">\(4 \times 4\)</span> matrix. Let’s see whether that’s the case. The affine of a <code class="docutils literal notranslate"><span class="pre">Nifti1Image</span></code> is an attribute named, well, <code class="docutils literal notranslate"><span class="pre">affine</span></code>, and is a 2D numpy array:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">set_printoptions</span><span class="p">(</span><span class="n">suppress</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">precision</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>  <span class="c1"># suppresses scientific notation</span>
+<span class="n">A</span> <span class="o">=</span> <span class="n">img</span><span class="o">.</span><span class="n">affine</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">A</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[[  -0.999   -0.035   -0.006  122.245]
+ [  -0.035    0.997    0.066 -117.457]
+ [  -0.004   -0.066    0.998  -51.112]
+ [   0.       0.       0.       1.   ]]
+</pre></div>
+</div>
+</div>
+</div>
+<p>Now, suppose that you want to know whether the sagittal slice from the leftmost plot in the previous figure is on the left side or the right side. So we want to know the real world <span class="math notranslate nohighlight">\(x\)</span> coordinate for our voxel coordinate <span class="math notranslate nohighlight">\(i=69\)</span>. Let’s pick the middle voxel index for our other two dimensions (<span class="math notranslate nohighlight">\(j=119, k=109\)</span>) (we’re plotting this 3D coordinate below in red).</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.patches</span> <span class="k">as</span> <span class="nn">patches</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">ncols</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
+
+<span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">img_data</span><span class="p">[</span><span class="mi">69</span><span class="p">,</span> <span class="p">:,</span> <span class="p">:]</span><span class="o">.</span><span class="n">T</span><span class="p">,</span> <span class="n">origin</span><span class="o">=</span><span class="s1">&#39;lower&#39;</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;gray&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;Second dim voxel coords.&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Third dim voxel coords&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;First dimension, slice nr. 70&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">15</span><span class="p">)</span>
+<span class="n">rect</span> <span class="o">=</span> <span class="n">patches</span><span class="o">.</span><span class="n">Rectangle</span><span class="p">((</span><span class="mi">119</span><span class="p">,</span> <span class="mi">109</span><span class="p">),</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">edgecolor</span><span class="o">=</span><span class="s1">&#39;r&#39;</span><span class="p">,</span> <span class="n">facecolor</span><span class="o">=</span><span class="s1">&#39;none&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">add_patch</span><span class="p">(</span><span class="n">rect</span><span class="p">)</span>
+
+<span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">img_data</span><span class="p">[:,</span> <span class="mi">99</span><span class="p">,</span> <span class="p">:]</span><span class="o">.</span><span class="n">T</span><span class="p">,</span> <span class="n">origin</span><span class="o">=</span><span class="s1">&#39;lower&#39;</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;gray&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;First dim voxel coords.&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Third dim voxel coords&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Second dimension, slice nr. 100&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">15</span><span class="p">)</span>
+<span class="n">rect</span> <span class="o">=</span> <span class="n">patches</span><span class="o">.</span><span class="n">Rectangle</span><span class="p">((</span><span class="mi">69</span><span class="p">,</span> <span class="mi">109</span><span class="p">),</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">edgecolor</span><span class="o">=</span><span class="s1">&#39;r&#39;</span><span class="p">,</span> <span class="n">facecolor</span><span class="o">=</span><span class="s1">&#39;none&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">add_patch</span><span class="p">(</span><span class="n">rect</span><span class="p">)</span>
+
+<span class="n">ax</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">img_data</span><span class="p">[:,</span> <span class="p">:,</span> <span class="mi">99</span><span class="p">]</span><span class="o">.</span><span class="n">T</span><span class="p">,</span> <span class="n">origin</span><span class="o">=</span><span class="s1">&#39;lower&#39;</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;gray&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;First dim voxel coords.&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Second dim voxel coords&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Third dimension, slice nr. 100&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">15</span><span class="p">)</span>
+<span class="n">rect</span> <span class="o">=</span> <span class="n">patches</span><span class="o">.</span><span class="n">Rectangle</span><span class="p">((</span><span class="mi">69</span><span class="p">,</span> <span class="mi">119</span><span class="p">),</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">edgecolor</span><span class="o">=</span><span class="s1">&#39;r&#39;</span><span class="p">,</span> <span class="n">facecolor</span><span class="o">=</span><span class="s1">&#39;none&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">add_patch</span><span class="p">(</span><span class="n">rect</span><span class="p">)</span>
+
+<span class="n">fig</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/python_for_mri_55_0.png" src="../../_images/python_for_mri_55_0.png" />
+</div>
+</div>
+<p>To get the real world coordinate, we need to evaluate the following:</p>
+<div class="amsmath math notranslate nohighlight" id="equation-ea4e939a-953f-45d5-aa72-8149b8049c58">
+<span class="eqno">(2)<a class="headerlink" href="#equation-ea4e939a-953f-45d5-aa72-8149b8049c58" title="Permalink to this equation">¶</a></span>\[\begin{align}
+x, y, z, 1 = A\begin{bmatrix}
+           69 \\
+           119 \\
+           109 \\
+           1
+         \end{bmatrix}
+\end{align}\]</div>
+<p>Let’s do that below:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">xyz1</span> <span class="o">=</span> <span class="n">A</span> <span class="o">@</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">69</span><span class="p">,</span> <span class="mi">119</span><span class="p">,</span> <span class="mi">109</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">xyz1</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[48.472  5.972 49.516  1.   ]
+</pre></div>
+</div>
+</div>
+</div>
+<p>Here we see that the real world <span class="math notranslate nohighlight">\(x\)</span> coordinate is 48.472, which means that this coordinate is 48.472 millimeters to the <em>right</em> of the isocenter (remember <em>RAS+</em>!).</p>
+<p>So, why is this important, you might ask? Well, actually, for your statistical analysis, it doesn’t! The general linear model (GLM), which we’ll use as our main statistical workhorse in this course, doesn’t care whether a voxel is on the left or right side of the brain. But when it comes to visualization and reporting, it does! Suppose that you find unilateral amygdala activity for a particular experimental condition - you want to know whether this is on the left or right side, both for your figures and for your paper that you might write about it!</p>
+<p>Moreover, the affine will become important when we’ll talk about realignment of different fMRI volumes (in motion correction) and registration of the fMRI volumes to the structural MRI volume or standard space (which might be in different orientations!), which is the topic of week 4.</p>
+<div class='alert alert-warning'>
+<b>ToDo</b> (1 point):
+<p>Suppose that you want to know whether the how much the middle of the image (i.e., the center in voxel coordinates) deviates from the isocenter of the scanner. In other words, you want to check whether the center of the image was in the isocenter of the scanner. You should do this for the <tt>img_data</tt> array!</p>
+<p>Store these world coordinates in a new array named <tt>xyz_middle</tt>, which should be of size 3 (representing the three coordinates, so make sure to remove the extra <tt>1</tt>). Remember, indexing is Python is zero-based (so the first index is 0).</p>
+</div><div class="cell tag_raises-exception tag_remove-output docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># YOUR CODE HERE</span>
+<span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell tag_raises-exception tag_remove-output docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="sd">&#39;&#39;&#39; Tests the above ToDo &#39;&#39;&#39;</span> 
+<span class="kn">from</span> <span class="nn">niedu.tests.nii.week_1</span> <span class="kn">import</span> <span class="n">test_affine_middle_coords</span>
+<span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">xyz_middle</span><span class="p">)</span> <span class="o">!=</span> <span class="mi">3</span><span class="p">:</span>
+    <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Did you remove the last 1?&quot;</span><span class="p">)</span>
+
+<span class="n">test_affine_middle_coords</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">xyz_middle</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class='alert alert-warning'>
+<b>ToDo</b> (3 points):
+<p>Alright, almost done! Let’s practice some of the skills that you learned in this tutorial! For this assignment, you goal is to <em>plot an histogram of the average activity value across time for all non-zero voxels in the brain</em> from the <tt>f_img_data</tt> array. So, what you have to do is the following:</p>
+<ol class="simple">
+<li><p>Average the <tt>func_img_data</tt> variable across time (resulting array should by of shape (80, 80, 44)</p></li>
+<li><p>Remove all voxels which are zero (use boolean indexing!)</p></li>
+<li><p>Make a histogram of all the resulting non-zero voxels (make sure the histogram has 50 bins)</p></li>
+</ol>
+<p>Do this in the code-cell below. Also, give the plot sensible labels for the axes. This is a manually graded assignment, so there is no test-cell/feedback.</p>
+<p>The resulting histogram should show a “bimodal distribution” of average activity values — roughly with a peak around <span class="math notranslate nohighlight">\(x = 0\)</span> and a peak round <span class="math notranslate nohighlight">\(x = 42,000\)</span>.</p>
+</div><div class="cell tag_raises-exception tag_remove-output docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Implement to ToDo here</span>
+
+<span class="c1"># YOUR CODE HERE</span>
+<span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Alright, that’s it! You finished the notebook of this week!</p>
+<div class='alert alert-success'>
+    <b>Tip</b>: In this notebook, we used several basic Python packages for data processing, analysis, manipulation and plotting (such as numpy, scipy, and matplotlib). We'll make heavy use of this "stack" for the rest of the course. Many procedures we'll discuss in the rest of the course (such as fMRI preprocessing and analysis) can also, and more efficiently, be implemented using <a href="https://nilearn.github.io/">Nilearn</a>, a Python package for fast and easy statistical learning on neuroimaging data. This package and its functionality is discussed in detail in week 7.
+</div></div>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./fMRI-introduction/week_1"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        </div>
+    </div>
+    
+    
+    <div class='prev-next-bottom'>
+        
+    <a class='left-prev' id="prev-link" href="../../other/python_recap.html" title="previous page">Python recap</a>
+    <a class='right-next' id="next-link" href="../../section_intros/2_glm.html" title="next page">Using the GLM to model fMRI data</a>
+
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By Lukas Snoek<br/>
+        
+            &copy; Copyright 2021.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+
+    
+  <script src="../../_static/js/index.3da636dd464baa7582d2.js"></script>
+
+
+    
+  </body>
+</html>

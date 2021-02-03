@@ -1,0 +1,741 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ROI analysis &#8212; NI-edu</title>
+    
+  <link rel="stylesheet" href="../../_static/css/index.73d71520a4ca3b99cfee5594769eaaae.css">
+
+    
+  <link rel="stylesheet"
+    href="../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+  <link rel="stylesheet"
+    href="../../_static/vendor/open-sans_all/1.44.1/index.css">
+  <link rel="stylesheet"
+    href="../../_static/vendor/lato_latin-ext/1.44.1/index.css">
+
+    
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/sphinx-book-theme.40e2e510f6b7d1648584402491bb10fe.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../../_static/js/index.3da636dd464baa7582d2.js">
+
+    <script id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/togglebutton.js"></script>
+    <script src="../../_static/clipboard.min.js"></script>
+    <script src="../../_static/copybutton.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../../_static/sphinx-book-theme.d31b09fe5c1d09cb49b26a786de4a05d.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.0/dist/embed-amd.js"></script>
+    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="../../_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Introduction to Nilearn" href="../../section_intros/7_nilearn.html" />
+    <link rel="prev" title="Multiple comparison correction (MCC)" href="MCC.html" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+
+
+
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+<a class="navbar-brand text-wrap" href="../../index.html">
+  
+  <img src="../../_static/fmri.gif" class="logo" alt="logo">
+  
+  
+  <h1 class="site-logo" id="site-title">NI-edu</h1>
+  
+</a>
+</div><form class="bd-search d-flex align-items-center" action="../../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form>
+<nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+    <ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../index.html">
+   Welcome to NI-edu
+  </a>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  Getting started
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../getting_started/about.html">
+   About this course
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../getting_started/installation.html">
+   Installation
+  </a>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  fMRI-introduction
+ </span>
+</p>
+<ul class="current nav sidenav_l1">
+ <li class="toctree-l1 collapsible-parent">
+  <a class="reference internal" href="../../section_intros/1_python.html">
+   Python for (f)MRI analysis
+  </a>
+  <ul class="collapse-ul">
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../other/python_recap.html">
+     Python recap
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../week_1/python_for_mri.html">
+     Working with MRI data in Python (T)
+    </a>
+   </li>
+  </ul>
+  <i class="fas fa-chevron-down">
+  </i>
+ </li>
+ <li class="toctree-l1 collapsible-parent">
+  <a class="reference internal" href="../../section_intros/2_glm.html">
+   Using the GLM to model fMRI data
+  </a>
+  <ul class="collapse-ul">
+   <li class="toctree-l2">
+    <a class="reference internal" href="../week_2/glm_part1_estimation.html">
+     The GLM: estimation (T)
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../week_3/glm_part2_inference.html">
+     The GLM: inference (T)
+    </a>
+   </li>
+  </ul>
+  <i class="fas fa-chevron-down">
+  </i>
+ </li>
+ <li class="toctree-l1 collapsible-parent">
+  <a class="reference internal" href="../../section_intros/3_design_of_experiments_T.html">
+   Design of experiments
+  </a>
+  <ul class="collapse-ul">
+   <li class="toctree-l2">
+    <a class="reference internal" href="../week_3/design_of_experiments.html">
+     Design of experiments (T)
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../week_3/neurodesign.html">
+     Neurodesign (T)
+    </a>
+   </li>
+  </ul>
+  <i class="fas fa-chevron-down">
+  </i>
+ </li>
+ <li class="toctree-l1 collapsible-parent">
+  <a class="reference internal" href="../../section_intros/4_preprocessing.html">
+   Preprocessing
+  </a>
+  <ul class="collapse-ul">
+   <li class="toctree-l2">
+    <a class="reference internal" href="../week_4/temporal_preprocessing.html">
+     Temporal preprocessing (T)
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../week_4/spatial_preprocessing.html">
+     Spatial preprocessing (T)
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../week_4/fmriprep.html">
+     Fmriprep (T)
+    </a>
+   </li>
+  </ul>
+  <i class="fas fa-chevron-down">
+  </i>
+ </li>
+ <li class="toctree-l1 collapsible-parent">
+  <a class="reference internal" href="../../section_intros/5_multilevel.html">
+   First &amp; run-level analyses
+  </a>
+  <ul class="collapse-ul">
+   <li class="toctree-l2">
+    <a class="reference internal" href="../week_5/linux_and_the_command_line.html">
+     Linux and the CMD (T)
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../week_5/first_level_analyses.html">
+     First level analyses (T)
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../week_5/run_level_analyses.html">
+     Run-level analyses (T)
+    </a>
+   </li>
+  </ul>
+  <i class="fas fa-chevron-down">
+  </i>
+ </li>
+ <li class="toctree-l1 current active collapsible-parent">
+  <a class="reference internal" href="../../section_intros/6_grouplevel.html">
+   Group-level analyses
+  </a>
+  <ul class="current collapse-ul">
+   <li class="toctree-l2">
+    <a class="reference internal" href="group_level_analyses.html">
+     Group-level analyses (T)
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="MCC.html">
+     Multiple comparison correction (T)
+    </a>
+   </li>
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
+     ROI analysis (T)
+    </a>
+   </li>
+  </ul>
+  <i class="fas fa-chevron-down">
+  </i>
+ </li>
+ <li class="toctree-l1 collapsible-parent">
+  <a class="reference internal" href="../../section_intros/7_nilearn.html">
+   Introduction to Nilearn
+  </a>
+  <ul class="collapse-ul">
+   <li class="toctree-l2">
+    <a class="reference internal" href="../week_7/nilearn.html">
+     Introduction to Nilearn (T)
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../week_7/nilearn_stats.html">
+     Statistics with Nilearn (T)
+    </a>
+   </li>
+  </ul>
+  <i class="fas fa-chevron-down">
+  </i>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  fMRI-pattern-analysis
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../fMRI-pattern-analysis/week_1/design_and_pattern_estimation.html">
+   Design and pattern estimation (T)
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../fMRI-pattern-analysis/week_2/decoding_analyses.html">
+   Machine learning/decoding (T)
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../fMRI-pattern-analysis/week_3/rsa.html">
+   Representational Similarity Analysis (T)
+  </a>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  Misc
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../misc/bibliography.html">
+   Bibliography
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../misc/for_educators.html">
+   For educators
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../misc/CONTRIBUTING.html">
+   Contributing
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../misc/CONDUCT.html">
+   Code of Conduct
+  </a>
+ </li>
+</ul>
+
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="row topbar fixed-top container-xl">
+    <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show">
+    </div>
+    <div class="col pl-2 topbar-main">
+        
+        <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+            data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+            aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+            title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+            <i class="fas fa-bars"></i>
+            <i class="fas fa-arrow-left"></i>
+            <i class="fas fa-arrow-up"></i>
+        </button>
+        
+        
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../../_sources/fMRI-introduction/week_6/ROI_analysis.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+        <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/lukassnoek/NI-edu"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        <a class="issues-button"
+            href="https://github.com/lukassnoek/NI-edu/issues/new?title=Issue%20on%20page%20%2FfMRI-introduction/week_6/ROI_analysis.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
+        <a class="edit-button" href="https://github.com/lukassnoek/NI-edu/edit/master/NI-edu/fMRI-introduction/week_6/ROI_analysis.ipynb"><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Edit this page"><i class="fas fa-pencil-alt"></i>suggest edit</button></a>
+    </div>
+</div>
+
+
+        <!-- Full screen (wrap in <a> to have style consistency -->
+        <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+                data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+                title="Fullscreen mode"><i
+                    class="fas fa-expand"></i></button></a>
+
+        <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/lukassnoek/NI-edu/master?urlpath=tree/NI-edu/fMRI-introduction/week_6/ROI_analysis.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="../../_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        <a class="jupyterhub-button" href="https://neuroimaging.lukas-snoek.com/hub/user-redirect/git-pull?repo=https://github.com/lukassnoek/NI-edu&urlpath=tree/NI-edu/NI-edu/fMRI-introduction/week_6/ROI_analysis.ipynb&branch=master"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch JupyterHub" data-toggle="tooltip"
+                data-placement="left"><img class="jupyterhub-button-logo"
+                    src="../../_static/images/logo_jupyterhub.svg"
+                    alt="Interact on JupyterHub">JupyterHub</button></a>
+        
+        
+        
+    </div>
+</div>
+
+    </div>
+
+    <!-- Table of contents -->
+    <div class="d-none d-md-block col-md-2 bd-toc show">
+        
+        <div class="tocsection onthispage pt-5 pb-3">
+            <i class="fas fa-list"></i> Contents
+        </div>
+        <nav id="bd-toc-nav">
+            <ul class="nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#what-is-an-roi">
+   What is an ROI?
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#an-example-roi-analysis-using-an-anatomical-roi">
+   An example ROI-analysis using an anatomical ROI
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#functional-rois-neurosynth">
+   Functional ROIs &amp; neurosynth
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#the-end">
+     The end!
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+        </nav>
+        
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="roi-analysis">
+<h1>ROI analysis<a class="headerlink" href="#roi-analysis" title="Permalink to this headline">¶</a></h1>
+<p>In the previous notebooks from this week, we’ve discussed how to implement “whole-brain” analyses: models that are applied to <em>all</em> voxels in the brain separately. As we’ve seen in the MCC notebook, this rather “exploratory” approach leads to issues of multiple comparisons, which are deceptively difficult to properly control for.</p>
+<p>One alternative way to deal with the multiple comparisons problem is a more “confirmatory” approach: region-of-interest (ROI) analysis, which is the topic of this notebook.</p>
+<p><strong>What you’ll learn</strong>: after this lab, you’ll …</p>
+<ul class="simple">
+<li><p>understand and implement ROI-based analyses (in Python)</p></li>
+</ul>
+<p><strong>Estimated time needed to complete</strong>: 1 hour<br></p>
+<div class="section" id="what-is-an-roi">
+<h2>What is an ROI?<a class="headerlink" href="#what-is-an-roi" title="Permalink to this headline">¶</a></h2>
+<p>An ROI is a prespecified brain region that is hypothesized to contain the hypothesized effects. These can be anatomically or functionally defined. Anatomical ROIs are regions of interest based on anatomical landmarks (such as folding pattern or histology), for example the caudate nucleus, inferior temporal gyrus, and anterior cingulate cortex.</p>
+<p>As opposed to anatomical ROIs, functional ROIs are not based on anatomical properties, but on <em>functional</em> properties. These regions are usually determined on other, independent data and analyses. Sometimes, the data used for defining such a functional ROI comes from the same study, which acquired a so-called “functional localizer” in order to define a ROI for analysis of other data. This is also what we did in the NI-edu dataset: we acquired the <code class="docutils literal notranslate"><span class="pre">floc</span></code> runs in order to define functionally-defined “FFA” regions (based on the <span class="math notranslate nohighlight">\(\beta_{face} &gt; \mathrm{other}\)</span> contrast) that can be used for ROI-analyses of the <code class="docutils literal notranslate"><span class="pre">face</span> <span class="pre">perception</span></code> runs (e.g., to answer questions like: does attractiveness of faces modulate FFA activity?).</p>
+<p>In this section, we’ll show you how a typical ROI-analysis is done using an anatomical ROI. Then, the section after that will discuss how to derive functional ROIs within a single dataset.</p>
+</div>
+<div class="section" id="an-example-roi-analysis-using-an-anatomical-roi">
+<h2>An example ROI-analysis using an anatomical ROI<a class="headerlink" href="#an-example-roi-analysis-using-an-anatomical-roi" title="Permalink to this headline">¶</a></h2>
+<p>For our anatomical ROI-analysis, we’ll stick to the <code class="docutils literal notranslate"><span class="pre">flocBLOCKED</span></code> data. Specifically, we will analyze the “face &gt; other” contrast (i.e., <span class="math notranslate nohighlight">\(4\cdot \beta_{face} - \beta_{place} - \beta_{body} - \beta_{character} - \beta_{object}\)</span>) within the right amygdala (similar to <a class="reference external" href="https://academic.oup.com/scan/article/3/4/303/1628260">this study</a>). Our group-level hypothesis is that the amygdala activates significantly in response to faces (i.e., a one-sample, one-sided <span class="math notranslate nohighlight">\(t\)</span>-test):</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(H_{0}: \beta^{\dagger}_{face &gt; other} = 0\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(H_{a}: \beta^{\dagger}_{face &gt; other} &gt; 0\)</span></p></li>
+</ul>
+<p>The data that we load in below represents run-level <span class="math notranslate nohighlight">\(c\hat{\beta}^{*}\)</span> images corresponding to the “face &gt; other” contrast from our 12 subjects. Data is in MNI152 (2 mm) space with voxel dimensions <span class="math notranslate nohighlight">\([91, 109, 91]\)</span>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">nibabel</span> <span class="k">as</span> <span class="nn">nib</span>
+<span class="n">cope_4d_img</span> <span class="o">=</span> <span class="n">nib</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="s1">&#39;contrast-faceGTother_level-run_stat-cope.nii.gz&#39;</span><span class="p">)</span>
+<span class="n">cope_4d</span> <span class="o">=</span> <span class="n">cope_4d_img</span><span class="o">.</span><span class="n">get_fdata</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Shape of data: </span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">cope_4d</span><span class="o">.</span><span class="n">shape</span><span class="p">,))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Shape of data: (91, 109, 91, 12)
+</pre></div>
+</div>
+</div>
+</div>
+<p>Let’s visualize this data. We’ll plot (using <code class="docutils literal notranslate"><span class="pre">plt.imshow</span></code>) a single (right-hemisphere) sagittal slice of each subjects’ COPE-image, with red indicating positive contrast-values (i.e., <span class="math notranslate nohighlight">\(4\cdot \beta_{face} - \beta_{place} - \beta_{body} - \beta_{character} - \beta_{object} &gt; 0\)</span>) and blue indicating negative contrast-values (i.e., <span class="math notranslate nohighlight">\(4\cdot \beta_{face} - \beta_{place} - \beta_{body} - \beta_{character} - \beta_{object} &lt; 0\)</span>).</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">from</span> <span class="nn">nilearn.datasets</span> <span class="kn">import</span> <span class="n">load_mni152_template</span>
+<span class="n">mni</span> <span class="o">=</span> <span class="n">load_mni152_template</span><span class="p">()</span><span class="o">.</span><span class="n">get_fdata</span><span class="p">()</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+<span class="n">subjects</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;sub-</span><span class="si">%s</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="nb">str</span><span class="p">(</span><span class="n">i</span><span class="p">)</span><span class="o">.</span><span class="n">zfill</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">14</span><span class="p">)]</span> 
+
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">cope_4d</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]):</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="n">subjects</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">mni</span><span class="p">[:,</span> <span class="p">:,</span> <span class="mi">26</span><span class="p">]</span><span class="o">.</span><span class="n">T</span><span class="p">,</span> <span class="n">origin</span><span class="o">=</span><span class="s1">&#39;lower&#39;</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;gray&#39;</span><span class="p">)</span>
+    <span class="n">this_data</span> <span class="o">=</span> <span class="n">cope_4d</span><span class="p">[:,</span> <span class="p">:,</span> <span class="mi">26</span><span class="p">,</span> <span class="n">i</span><span class="p">]</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">this_data</span><span class="o">.</span><span class="n">T</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;seismic&#39;</span><span class="p">,</span> <span class="n">origin</span><span class="o">=</span><span class="s1">&#39;lower&#39;</span><span class="p">,</span>
+               <span class="n">vmin</span><span class="o">=-</span><span class="mi">500</span><span class="p">,</span> <span class="n">vmax</span><span class="o">=</span><span class="mi">500</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.6</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s1">&#39;off&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/ROI_analysis_5_0.png" src="../../_images/ROI_analysis_5_0.png" />
+</div>
+</div>
+<p>Now, conventional (exploratory) whole-brain analysis would fit a GLM on each voxel separately, but for our ROI-analysis, we’re going to do it differently: we’re only going to analyze the across-voxel average lower-level <span class="math notranslate nohighlight">\(c\hat{\beta}^{*}\)</span> values within the right amygdala.</p>
+<p>We’ll load in the right amygdala mask first. This is a region from the probabilistic Harvard-Oxford subcortical atlas.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">amygdala_probmask_img</span> <span class="o">=</span> <span class="n">nib</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="s1">&#39;amygdala_lat-right_atlas-harvardoxford_thresh-0.nii.gz&#39;</span><span class="p">)</span>
+<span class="n">amygdala_probmask</span> <span class="o">=</span> <span class="n">amygdala_probmask_img</span><span class="o">.</span><span class="n">get_fdata</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Shape of probabilistic amygdala mask: </span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">amygdala_probmask</span><span class="o">.</span><span class="n">shape</span><span class="p">,))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Shape of probabilistic amygdala mask: (91, 109, 91)
+</pre></div>
+</div>
+</div>
+</div>
+<div class='alert alert-warning'>
+<b>ToDo</b> (3 points): We now have the data (of shape $91 \times 109 \times 91 \times 12$) and a mask (of shape $91 \times 109 \times 91$). In this assignment, you'll implement the actual ROI analysis using this data.
+<p>You have to do the following:</p>
+<ol class="simple">
+<li><p>Create a boolean mask (array with <tt>True</tt>/<tt>False</tt> values) by tresholding the probabilitic mask at 20 (i.e., <span class="math notranslate nohighlight">\(p(\mathrm{amygdala}) \geq 0.2\)</span>). There should be 549 voxels surviving this threshold;</p></li>
+<li><p>Average, per subject, the <span class="math notranslate nohighlight">\(c\hat{\beta}^{*}\)</span> values within this mask. You <em>do not</em> need a for-loop for this (hint: numpy broadcasting!);</p></li>
+<li><p>Set up an appropriate group-level design matrix (<span class="math notranslate nohighlight">\(\mathbf{X}^{\dagger}\)</span>) that allows you to compute the average effect (<span class="math notranslate nohighlight">\(\beta^{\dagger}\)</span>) across the 12 ROI-average values (<span class="math notranslate nohighlight">\(y^{\dagger}\)</span>) and run a GLM;</p></li>
+<li><p>With an appropriate group-level contrast, compute the <span class="math notranslate nohighlight">\(t\)</span>-value and <span class="math notranslate nohighlight">\(p\)</span>-value associated with our group-level hypothesis (outlined in the beginning of this section).</p></li>
+</ol>
+<p>Store the ROI-average values (in total 12) as a numpy array in a variable named <tt>y_group</tt>, your group-level design matrix (a <span class="math notranslate nohighlight">\(12 \times 1\)</span> numpy array) in a variable named <tt>X_group</tt>, your group-level parameter (there should be only one) in a variabled named <tt>beta_group</tt>, and your <span class="math notranslate nohighlight">\(t\)</span>-value and <span class="math notranslate nohighlight">\(p\)</span>-value in variables named <tt>t_group</tt> and <tt>p_group</tt> respectively. You can use the <tt>stats.t.sf</tt> function to calculate the <em>one-sided</em> <span class="math notranslate nohighlight">\(p\)</span>-value from your <span class="math notranslate nohighlight">\(t\)</span>-value.</p>
+</div><div class="cell tag_raises-exception tag_remove-output docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="sd">&quot;&quot;&quot; Implement the above ToDo here (step 1 and 2). &quot;&quot;&quot;</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="c1"># YOUR CODE HERE</span>
+<span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell tag_raises-exception tag_remove-output docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="sd">&#39;&#39;&#39; Tests step 1 and 2. &#39;&#39;&#39;</span>
+<span class="kn">from</span> <span class="nn">niedu.tests.nii.week_6</span> <span class="kn">import</span> <span class="n">test_roi_analysis_step1_step2</span>
+<span class="n">test_roi_analysis_step1_step2</span><span class="p">(</span><span class="n">amygdala_probmask</span><span class="p">,</span> <span class="n">cope_4d</span><span class="p">,</span> <span class="n">y_group</span><span class="p">)</span>    
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell tag_raises-exception tag_remove-output docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="sd">&quot;&quot;&quot; Implement the above ToDo here (step 3). &quot;&quot;&quot;</span>
+
+<span class="c1"># YOUR CODE HERE</span>
+<span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell tag_raises-exception tag_remove-output docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="sd">&#39;&#39;&#39; Tests step 3. &#39;&#39;&#39;</span>
+<span class="kn">from</span> <span class="nn">niedu.tests.nii.week_6</span> <span class="kn">import</span> <span class="n">test_roi_analysis_step3</span>
+<span class="n">test_roi_analysis_step3</span><span class="p">(</span><span class="n">y_group</span><span class="p">,</span> <span class="n">X_group</span><span class="p">,</span> <span class="n">beta_group</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell tag_raises-exception tag_remove-output docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="sd">&quot;&quot;&quot; Implement the above ToDo here (step 4). &quot;&quot;&quot;</span>
+<span class="kn">from</span> <span class="nn">scipy</span> <span class="kn">import</span> <span class="n">stats</span>
+
+<span class="c1"># YOUR CODE HERE</span>
+<span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell tag_raises-exception tag_remove-output docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="sd">&#39;&#39;&#39; Tests step 4 (t_group, p_group). &#39;&#39;&#39;</span>
+<span class="kn">from</span> <span class="nn">niedu.tests.nii.week_6</span> <span class="kn">import</span> <span class="n">test_roi_analysis_step4</span>    
+<span class="n">test_roi_analysis_step4</span><span class="p">(</span><span class="n">y_group</span><span class="p">,</span> <span class="n">X_group</span><span class="p">,</span> <span class="n">beta_group</span><span class="p">,</span> <span class="n">t_group</span><span class="p">,</span> <span class="n">p_group</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="functional-rois-neurosynth">
+<h2>Functional ROIs &amp; neurosynth<a class="headerlink" href="#functional-rois-neurosynth" title="Permalink to this headline">¶</a></h2>
+<p>In addition to anatomical ROIs, you can also restrict your analyses to functionally defined ROIs. “Functionally defined”, here, means that the region has been derived from or determined by its assumed function. This can be done using a (separate) dataset specifically designed to localize a particular functional region (the “functional localizer” approach). Another option is to define your ROI based on a meta-analysis on a particular topic. For example, you could base your ROI on (a set of) region(s) on a meta-analysis of the neural correlates of face processing.</p>
+<p>One particular uesful tool for this is <a class="reference external" href="https://neurosynth.org/">neurosynth</a> (see also the associated <a class="reference external" href="https://www.nature.com/articles/nmeth.1635">article</a>). Neurosynth is a tool that, amongst other things, can perform “automatic” meta-analyses of fMRI data. As stated on its <a class="reference external" href="https://neurosynth.org/">website</a>, “it takes thousands of published articles reporting the results of fMRI studies, chews on them for a bit, and then spits out images” that you can use, for example, a functional ROIs.</p>
+<div class='alert alert-warning'>
+    <b>ToDo</b> (ungraded): Go to <a href="https://neurosynth.org">https://neurosynth.org</a> and read through the text on its homepage. Then, click on "Meta-analyses" &rarr; "Terms". Here, you can search for a particular term that you want Neurosynth to compute the meta-analysis for. For example, in the search bar on the right, fill in the term "face", and you should see a list of "face" related terms (e.g., "emotional faces", "face", "face ffa", "face recognition", etc.). 
+<p>Now, click on the term “emotional faces”.</p>
+</div><p>After selecting a particular term, Neurosynth will open a new page with an interactive image viewer. By default, it shows you the result (i.e., <span class="math notranslate nohighlight">\(z\)</span>-values) of an “association test” of your selected term across voxels, which tests whether voxels are <em>preferentially</em> related to your selected term (click on “FAQs” for more information).</p>
+<div class='alert alert-warning'>
+    <b>ToDo</b> (ungraded): Under "Thresholds", move the right slider up and down to adjust the $z$-value threshold of the association test values, which should immediately update the images on the right. 
+</div><div class='alert alert-warning'>
+    <b>ToDo</b> (ungraded): Click on "Studies" to view the studies that Neurosynth based this meta-analysis on. You'll see that the exact topic differs across studies (from face processing in alcohol use disorder to the role of expectations in face processing), but the term ("face processing") is common to all studies.
+</div><div class='alert alert-warning'>
+    <b>ToDo</b> (1 point): Now, suppose that I believe that perceiving faces is intrisically rewarding, because humans are social animals, and I want to see whether perceiving faces (relative to other types of images) significantly activates the brain's reward circuitry. 
+<p>Conduct a meta-analysis using the term “reward”, set the threshold to <span class="math notranslate nohighlight">\(z &gt; 12\)</span> (note that this exact value is somewhat arbitrary; make sure to decide on this cutoff <em>before</em> looking at your own data as to avoid circularity in your analysis!). Download this thresholded map by clicking on the download symbol (next to the trash bin icon) next to “reward: association test”. This will download a nifti file <em>to your own computer</em>.</p>
+<p>If you’re working on a Jupyterhub instance, upload this image as follows:</p>
+<ul class="simple">
+<li><p>Under the “Files” tab in Jupyterhub, navigate to your <tt>week_6</tt> folder (with your mouse);</p></li>
+<li><p>Click on the “Upload” button, select the downloaded file (<tt>reward_association-test_z_FDR_0.01.nii.gz</tt>), and click on the blue “Upload” button to confirm.</p></li>
+</ul>
+</div><div class="cell tag_raises-exception tag_remove-output docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="sd">&#39;&#39;&#39; Tests the ToDo above. &#39;&#39;&#39;</span>
+<span class="kn">import</span> <span class="nn">os.path</span> <span class="k">as</span> <span class="nn">op</span>
+<span class="n">here</span> <span class="o">=</span> <span class="n">op</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">)</span>
+<span class="n">par_dir</span> <span class="o">=</span> <span class="n">op</span><span class="o">.</span><span class="n">basename</span><span class="p">(</span><span class="n">op</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="n">here</span><span class="p">))</span>
+
+<span class="k">if</span> <span class="n">par_dir</span> <span class="o">!=</span> <span class="s1">&#39;solutions&#39;</span><span class="p">:</span>  <span class="c1"># must be student account</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="k">assert</span><span class="p">(</span><span class="n">op</span><span class="o">.</span><span class="n">isfile</span><span class="p">(</span><span class="s1">&#39;reward_association-test_z_FDR_0.01.nii.gz&#39;</span><span class="p">))</span>
+    <span class="k">except</span> <span class="ne">AssertionError</span><span class="p">:</span>
+        <span class="n">msg</span> <span class="o">=</span> <span class="s2">&quot;Could not find &#39;reward_association-test_z_FDR_0.01.nii.gz&#39; file!&quot;</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Well done!&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Although slightly off-topic, another great Neurosynth functionality is its “decoder”. As opposed to its meta-analysis functionality which generates the most likely (and specific) brain map given a particular term, the decoder produces the most likely terms given a particular (untresholded) brain map! This is great way to help you interpret your (whole-brain) results (but this does <em>not</em> replace a proper and rigorous experimental design).</p>
+<div class='alert alert-warning'>
+    <b>ToDo</b> (ungraded/optional): To use the decoder, click on the "Decoder" tab on the Neurosynth website and subsequently on the "Upload an Image" button. This will redirect you to another website, <a href="https://neurovault.org">Neurovault</a>. You'll have to create an account on Neurovault in order to use Neurosynth's decoder (if you don't want to, that's fine, as this is an optional ToDo).
+<p>In this week’s directory (<tt>week_6</tt>), we included the unthresholded <span class="math notranslate nohighlight">\(z\)</span>-value map from the group-level (mixed-effects) analysis of the <span class="math notranslate nohighlight">\(4\cdot \beta_{face} - \beta_{place} - \beta_{body} - \beta_{character} - \beta_{object}\)</span> contrast: <tt>contrast-faceGTother_level-group_stat-zstat.nii.gz</tt>. You need to download this file to your computer, which you can do by navigating to your <tt>week_6</tt> directory in Jupyterhub, selecting the file, and clicking on “Download”. Now, let’s decode this image.</p>
+<p>After registration on the Neurovault website, you should be redirected to a short “questionnaire” where you have to fill in some metadata associated with the image. Give it a name (e.g., “FFA localizer”), add it to a particular “collection” (“{your username} temporary collection” is fine), set the map type to “Z map”, set the modality &amp; acquisition type to “fMRI-BOLD”, and “Cognitive Atlas Paradigm” to “face recognition task” (this is unimportant for now). Finally, under “File with the unthresholded volume map”, select the just downloaded file and click “Submit” at the very bottom.</p>
+<p>You should be redirected to “Neurosynth”, which should now visualize our group-level “face &gt; other” <span class="math notranslate nohighlight">\(z\)</span>-statistic file. Now, at the bottom of the page, you find a table with “Term similarity”, showing the terms whose unthresholded brain maps correlate the most with our just uploaded brain map. Scrolling through these terms, you’ll notice a lot of terms associated with the “default mode network” (DMN)! We are not sure why our “face map” correlates so highly with the brain map typically associated with the DMN … One reason might be that faces deactivate the DMN <em>less</em> than the other conditions (bodies, places, etc.), which shows up as a positive effect in the “face &gt; other” contrast.</p>
+</div><p>Alright, let’s get back to the topic of functional ROIs again. Given that you defined a functional ROI, the process of analyzing your data proceeds in the same fashion as with anatomical ROIs:</p>
+<ol class="simple">
+<li><p>You average your lower-level data (<span class="math notranslate nohighlight">\(c\hat{\beta}^{*}\)</span>) within your ROI;</p></li>
+<li><p>You construct a group-level design matrix and run a GLM;</p></li>
+<li><p>Proceed as usual (construct group-level contrats, calculate <span class="math notranslate nohighlight">\(t\)</span>/<span class="math notranslate nohighlight">\(z\)</span>-values, etc.)</p></li>
+</ol>
+<div class="section" id="the-end">
+<h3>The end!<a class="headerlink" href="#the-end" title="Permalink to this headline">¶</a></h3>
+<p>You finished the last (mandatory) notebook! If you want, there are two optional notebooks next week, in which you can try out the functionality of the awesome <a class="reference external" href="https://nilearn.github.io/">Nilearn</a> package.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Well done!&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Well done!
+</pre></div>
+</div>
+</div>
+</div>
+<div class='alert alert-success'>
+    <b>Tip!</b>
+    Before handing in your notebooks, we recommend restarting your kernel (<em>Kernel</em> &rarr; <em>Restart & Clear Ouput</em>) and running all your cells again (manually, or by <em>Cell</em> &rarr; <em>Run all</em>). By running all your cells one by one (from "top" to "bottom" of the notebook), you may spot potential errors that are caused by accidentally overwriting your variables or running your cells out of order (e.g., defining the variable 'x' in cell 28 which you then use in cell 15).
+</div></div>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./fMRI-introduction/week_6"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        </div>
+    </div>
+    
+    
+    <div class='prev-next-bottom'>
+        
+    <a class='left-prev' id="prev-link" href="MCC.html" title="previous page">Multiple comparison correction (MCC)</a>
+    <a class='right-next' id="next-link" href="../../section_intros/7_nilearn.html" title="next page">Introduction to Nilearn</a>
+
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By Lukas Snoek<br/>
+        
+            &copy; Copyright 2021.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+
+    
+  <script src="../../_static/js/index.3da636dd464baa7582d2.js"></script>
+
+
+    
+  </body>
+</html>

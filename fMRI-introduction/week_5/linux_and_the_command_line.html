@@ -1,0 +1,722 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Linux and the command line &#8212; NI-edu</title>
+    
+  <link rel="stylesheet" href="../../_static/css/index.73d71520a4ca3b99cfee5594769eaaae.css">
+
+    
+  <link rel="stylesheet"
+    href="../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+  <link rel="stylesheet"
+    href="../../_static/vendor/open-sans_all/1.44.1/index.css">
+  <link rel="stylesheet"
+    href="../../_static/vendor/lato_latin-ext/1.44.1/index.css">
+
+    
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/sphinx-book-theme.40e2e510f6b7d1648584402491bb10fe.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../../_static/js/index.3da636dd464baa7582d2.js">
+
+    <script id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/togglebutton.js"></script>
+    <script src="../../_static/clipboard.min.js"></script>
+    <script src="../../_static/copybutton.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../../_static/sphinx-book-theme.d31b09fe5c1d09cb49b26a786de4a05d.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.0/dist/embed-amd.js"></script>
+    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="../../_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="First-level analyses (using FSL)" href="first_level_analyses.html" />
+    <link rel="prev" title="First &amp; run-level analyses" href="../../section_intros/5_multilevel.html" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+
+
+
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+<a class="navbar-brand text-wrap" href="../../index.html">
+  
+  <img src="../../_static/fmri.gif" class="logo" alt="logo">
+  
+  
+  <h1 class="site-logo" id="site-title">NI-edu</h1>
+  
+</a>
+</div><form class="bd-search d-flex align-items-center" action="../../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form>
+<nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+    <ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../index.html">
+   Welcome to NI-edu
+  </a>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  Getting started
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../getting_started/about.html">
+   About this course
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../getting_started/installation.html">
+   Installation
+  </a>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  fMRI-introduction
+ </span>
+</p>
+<ul class="current nav sidenav_l1">
+ <li class="toctree-l1 collapsible-parent">
+  <a class="reference internal" href="../../section_intros/1_python.html">
+   Python for (f)MRI analysis
+  </a>
+  <ul class="collapse-ul">
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../other/python_recap.html">
+     Python recap
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../week_1/python_for_mri.html">
+     Working with MRI data in Python (T)
+    </a>
+   </li>
+  </ul>
+  <i class="fas fa-chevron-down">
+  </i>
+ </li>
+ <li class="toctree-l1 collapsible-parent">
+  <a class="reference internal" href="../../section_intros/2_glm.html">
+   Using the GLM to model fMRI data
+  </a>
+  <ul class="collapse-ul">
+   <li class="toctree-l2">
+    <a class="reference internal" href="../week_2/glm_part1_estimation.html">
+     The GLM: estimation (T)
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../week_3/glm_part2_inference.html">
+     The GLM: inference (T)
+    </a>
+   </li>
+  </ul>
+  <i class="fas fa-chevron-down">
+  </i>
+ </li>
+ <li class="toctree-l1 collapsible-parent">
+  <a class="reference internal" href="../../section_intros/3_design_of_experiments_T.html">
+   Design of experiments
+  </a>
+  <ul class="collapse-ul">
+   <li class="toctree-l2">
+    <a class="reference internal" href="../week_3/design_of_experiments.html">
+     Design of experiments (T)
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../week_3/neurodesign.html">
+     Neurodesign (T)
+    </a>
+   </li>
+  </ul>
+  <i class="fas fa-chevron-down">
+  </i>
+ </li>
+ <li class="toctree-l1 collapsible-parent">
+  <a class="reference internal" href="../../section_intros/4_preprocessing.html">
+   Preprocessing
+  </a>
+  <ul class="collapse-ul">
+   <li class="toctree-l2">
+    <a class="reference internal" href="../week_4/temporal_preprocessing.html">
+     Temporal preprocessing (T)
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../week_4/spatial_preprocessing.html">
+     Spatial preprocessing (T)
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../week_4/fmriprep.html">
+     Fmriprep (T)
+    </a>
+   </li>
+  </ul>
+  <i class="fas fa-chevron-down">
+  </i>
+ </li>
+ <li class="toctree-l1 current active collapsible-parent">
+  <a class="reference internal" href="../../section_intros/5_multilevel.html">
+   First &amp; run-level analyses
+  </a>
+  <ul class="current collapse-ul">
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
+     Linux and the CMD (T)
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="first_level_analyses.html">
+     First level analyses (T)
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="run_level_analyses.html">
+     Run-level analyses (T)
+    </a>
+   </li>
+  </ul>
+  <i class="fas fa-chevron-down">
+  </i>
+ </li>
+ <li class="toctree-l1 collapsible-parent">
+  <a class="reference internal" href="../../section_intros/6_grouplevel.html">
+   Group-level analyses
+  </a>
+  <ul class="collapse-ul">
+   <li class="toctree-l2">
+    <a class="reference internal" href="../week_6/group_level_analyses.html">
+     Group-level analyses (T)
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../week_6/MCC.html">
+     Multiple comparison correction (T)
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../week_6/ROI_analysis.html">
+     ROI analysis (T)
+    </a>
+   </li>
+  </ul>
+  <i class="fas fa-chevron-down">
+  </i>
+ </li>
+ <li class="toctree-l1 collapsible-parent">
+  <a class="reference internal" href="../../section_intros/7_nilearn.html">
+   Introduction to Nilearn
+  </a>
+  <ul class="collapse-ul">
+   <li class="toctree-l2">
+    <a class="reference internal" href="../week_7/nilearn.html">
+     Introduction to Nilearn (T)
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../week_7/nilearn_stats.html">
+     Statistics with Nilearn (T)
+    </a>
+   </li>
+  </ul>
+  <i class="fas fa-chevron-down">
+  </i>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  fMRI-pattern-analysis
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../fMRI-pattern-analysis/week_1/design_and_pattern_estimation.html">
+   Design and pattern estimation (T)
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../fMRI-pattern-analysis/week_2/decoding_analyses.html">
+   Machine learning/decoding (T)
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../fMRI-pattern-analysis/week_3/rsa.html">
+   Representational Similarity Analysis (T)
+  </a>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  Misc
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../misc/bibliography.html">
+   Bibliography
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../misc/for_educators.html">
+   For educators
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../misc/CONTRIBUTING.html">
+   Contributing
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../misc/CONDUCT.html">
+   Code of Conduct
+  </a>
+ </li>
+</ul>
+
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="row topbar fixed-top container-xl">
+    <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show">
+    </div>
+    <div class="col pl-2 topbar-main">
+        
+        <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+            data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+            aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+            title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+            <i class="fas fa-bars"></i>
+            <i class="fas fa-arrow-left"></i>
+            <i class="fas fa-arrow-up"></i>
+        </button>
+        
+        
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../../_sources/fMRI-introduction/week_5/linux_and_the_command_line.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+        <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/lukassnoek/NI-edu"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        <a class="issues-button"
+            href="https://github.com/lukassnoek/NI-edu/issues/new?title=Issue%20on%20page%20%2FfMRI-introduction/week_5/linux_and_the_command_line.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
+        <a class="edit-button" href="https://github.com/lukassnoek/NI-edu/edit/master/NI-edu/fMRI-introduction/week_5/linux_and_the_command_line.ipynb"><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Edit this page"><i class="fas fa-pencil-alt"></i>suggest edit</button></a>
+    </div>
+</div>
+
+
+        <!-- Full screen (wrap in <a> to have style consistency -->
+        <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+                data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+                title="Fullscreen mode"><i
+                    class="fas fa-expand"></i></button></a>
+
+        <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/lukassnoek/NI-edu/master?urlpath=tree/NI-edu/fMRI-introduction/week_5/linux_and_the_command_line.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="../../_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        <a class="jupyterhub-button" href="https://neuroimaging.lukas-snoek.com/hub/user-redirect/git-pull?repo=https://github.com/lukassnoek/NI-edu&urlpath=tree/NI-edu/NI-edu/fMRI-introduction/week_5/linux_and_the_command_line.ipynb&branch=master"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch JupyterHub" data-toggle="tooltip"
+                data-placement="left"><img class="jupyterhub-button-logo"
+                    src="../../_static/images/logo_jupyterhub.svg"
+                    alt="Interact on JupyterHub">JupyterHub</button></a>
+        
+        
+        
+    </div>
+</div>
+
+    </div>
+
+    <!-- Table of contents -->
+    <div class="d-none d-md-block col-md-2 bd-toc show">
+        
+        <div class="tocsection onthispage pt-5 pb-3">
+            <i class="fas fa-list"></i> Contents
+        </div>
+        <nav id="bd-toc-nav">
+            <ul class="nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#creating-a-remote-desktop-instance">
+   Creating a remote desktop instance
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#a-short-tutorial-about-the-linux-command-line">
+   A short tutorial about the Linux command line
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#practice-your-cmd-skills-with-fsl">
+   Practice your CMD-skills with FSL
+  </a>
+ </li>
+</ul>
+
+        </nav>
+        
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="linux-and-the-command-line">
+<h1>Linux and the command line<a class="headerlink" href="#linux-and-the-command-line" title="Permalink to this headline">¶</a></h1>
+<p>This week, there are three notebooks: this one, which explains you some features of Linux and how to work with its command line (CMD), and two about first-level and run-level analyses.</p>
+<p><strong>What you’ll learn</strong>: after this lab, you’ll …</p>
+<ul class="simple">
+<li><p>know some basic Linux commands related to navigating the operating system;</p></li>
+<li><p>be able to call FSL functions from the command line</p></li>
+</ul>
+<p><strong>Estimated time needed to complete</strong>: 1-2 hours</p>
+<div class="section" id="creating-a-remote-desktop-instance">
+<h2>Creating a remote desktop instance<a class="headerlink" href="#creating-a-remote-desktop-instance" title="Permalink to this headline">¶</a></h2>
+<p>Like the previous labs, we will use notebooks to explain the most important concepts of the assigned material in the upcoming weeks. However, in addition, we’re also going to use FSL, a software package dedicated to (f)MRI analysis. Most FSL tools have both a “command line interface” (CLI) and a “graphical user interface” (GUI). We’ll explain you later in the lab what this means.</p>
+<p>Anyway, we unfortunately cannot use GUI-based FSL tools from Jupyter notebooks. To use FSL GUIs, we need to create a “remote desktop” instance of the server using <a class="reference external" href="https://wiki.x2go.org/doku.php">X2Go</a>, which gives you access to a terminal with a “command line”.</p>
+<div class='alert alert-warning'>
+<b>ToDo</b> (not graded): Create a remote desktop session using X2Go using your username and password. Make sure you set the desktop to "MATE".
+</div><p>Note that you might experience a bit of “lag” with the remote desktop instance. This is, unfortunately, an unavoidable annoyance with remote desktop software, which is usually caused by an unstable or (relatively) slow internet connection.</p>
+<p>Anyway, if you successfully created a remote desktop instance, you should see something similar to the image below:</p>
+<p><img alt="" src="https://docs.google.com/drawings/d/e/2PACX-1vTKJh6sF6K91r-3LdqeLD294gfO1hRMeTUJnqceDu2vie94M_KmJNRMttMVRX-poEIvLMSjJJqu6IYF/pub?w=930&amp;h=567" /></p>
+<p>Now, this interface is probably quite similar to the interface of your own Mac/Windows laptop: it has a file navigator (“Caja”, similar to Windows’ “explorer” and Mac’s “Finder”), a browser (Firefox), and several programs (e.g., FileZilla for file transfer, a calculator, etc.). However, instead of using the server’s functionalities manually (i.e., by clicking on stuff), we’re going to use a “terminal” to work with the command line.</p>
+<div class='alert alert-warning'>
+<b>ToDo</b> (not graded): Start a terminal by double-clicking the "MATE Terminal" icon on the desktop.
+</div><p>The command line is software that allows you to programatically control your operating system (amongst other things). Using specific Linux <em>commands</em>, you can for example navigate through your filesystem (e.g., go into the <em>week_5</em> folder) or copy/rename/remove files. In addition to built-in Linux commands, you can also interact with other software packages through the command line. FSL is an example of such software; many FSL tools have a command line interface, such that you can use them programatically from the command line. Check out the image below for an example of a built-in Linux command and a command calling an FSL-tool (<code class="docutils literal notranslate"><span class="pre">bet</span></code>):</p>
+<p><img alt="" src="https://docs.google.com/drawings/d/e/2PACX-1vRiPkYmwSD5_gnhqWOw1jRcbiNPYKdWTMZaL7XHrYczmb8etG56Q_7k3c6MJbVqw-eA0GrW0by9kY58/pub?w=1075&amp;h=603" /></p>
+<p>In the next section, we’ll give you a quick tutorial to teach you some of the most important Linux commands that you need to efficiently use the command line.</p>
+</div>
+<div class="section" id="a-short-tutorial-about-the-linux-command-line">
+<h2>A short tutorial about the Linux command line<a class="headerlink" href="#a-short-tutorial-about-the-linux-command-line" title="Permalink to this headline">¶</a></h2>
+<p>As explained, the command line allows you to do stuff by typing in specific commands. One example of such a command is <code class="docutils literal notranslate"><span class="pre">pwd</span></code>, which is short for “print working directory”. As you might guess, this prints out the directory you are currently in. If you open a terminal, you always start in your “home directory”, which is something like “<code class="docutils literal notranslate"><span class="pre">/home/{your</span> <span class="pre">username}</span></code>” (or <code class="docutils literal notranslate"><span class="pre">/Users/{your</span> <span class="pre">username}</span></code> for Mac users). Let’s check this is indeed the case.</p>
+<div class='alert alert-warning'>
+    <b>ToDo</b> (not graded): Type <tt>pwd</tt> in your command line and press enter. Does it print your home directory?
+</div><p>Now, you also navigate through your filesystem using the command <code class="docutils literal notranslate"><span class="pre">cd</span></code>, which stands for “change directory”. For example, to go to the folder <code class="docutils literal notranslate"><span class="pre">week_5</span></code>, simply type: <code class="docutils literal notranslate"><span class="pre">cd</span> <span class="pre">week_5</span></code>. Note that this is always relative to your current directory!</p>
+<div class='alert alert-warning'>
+<b>ToDo</b> (not graded): Navigate to the folder <tt>week_5</tt>.
+</div><div class='alert alert-success'>
+    <b>Tip!</b> In most terminals, you can use the tab key to "autocomplete" your commands. For example, from your home directory, you can type <tt>cd w</tt> and then press the "tab" key, which will autocomplete the command to <tt>cd week_</tt>. It won't complete your command all the way to <tt>cd week_5</tt>, because there are also other directories starting with <tt>week_</tt> (i.e., week_1, week_2, etc.). Keep this tip in mind, as it will save you a lot of time when you need to execute long commands (e.g., <tt>cd /home/some/very/deeply/nested/directory/with/many/subdirectories</tt>).
+</div><p>If you call the command <code class="docutils literal notranslate"><span class="pre">pwd</span></code> again, you should see that your current directory updated to <code class="docutils literal notranslate"><span class="pre">/home/{your</span> <span class="pre">username}/week_5</span></code>. Note that if you want to go one folder back/higher (i.e., from <code class="docutils literal notranslate"><span class="pre">/home/{your</span> <span class="pre">username}/week_5</span></code> back to <code class="docutils literal notranslate"><span class="pre">/home/{your</span> <span class="pre">username}</span></code>), you use the command: <code class="docutils literal notranslate"><span class="pre">cd</span> <span class="pre">..</span></code> (in which the <code class="docutils literal notranslate"><span class="pre">..</span></code> refers to the “parent directory”).</p>
+<p>Another useful command is <code class="docutils literal notranslate"><span class="pre">ls</span></code>, which stands for “list” and <em>lists the contents of a directory</em>. To list the contents of your current directory, you can simply type <code class="docutils literal notranslate"><span class="pre">ls</span></code>.</p>
+<div class='alert alert-warning'>
+<b>ToDo</b> (not graded): List the contents of your current directory (which should be <tt>/home/{your username}/week_5</tt>).
+</div><p>Alright, let’s look at a (slightly) more complex command: <code class="docutils literal notranslate"><span class="pre">cp</span></code>, which stands for “copy”. As the name suggest, this command is able to copy files. Importantly, it takes “arguments” (input and output) and “flags” (options), in the form of:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cp</span> <span class="n">input_filename</span> <span class="n">output_filename</span> <span class="p">[</span><span class="n">flags</span><span class="p">]</span>
+</pre></div>
+</div>
+<p>Like many other commands, <code class="docutils literal notranslate"><span class="pre">cp</span></code> takes (in this case two) mandatory arguments, in which the first is the file-to-be-copied and the second is the name you want the copied file to have. Then, after the two mandatory arguments, you can add optional “flags”, which are like options. You can recognize these “flags” by the single (or sometimes double) dash (<code class="docutils literal notranslate"><span class="pre">-</span></code>). For example, the flag “<code class="docutils literal notranslate"><span class="pre">-v</span></code>” (which refers to the option “verbose”) prints extra information upon calling <code class="docutils literal notranslate"><span class="pre">cp</span></code>. So, a call to the utility <code class="docutils literal notranslate"><span class="pre">cp</span></code> might look like: <code class="docutils literal notranslate"><span class="pre">cp</span> <span class="pre">original_file</span> <span class="pre">copied_file</span> <span class="pre">-v</span></code>.</p>
+<p>Now, if you called <code class="docutils literal notranslate"><span class="pre">ls</span></code> in the previous ToDo, you should have seen that the <code class="docutils literal notranslate"><span class="pre">week_5</span></code> directory contains a file <code class="docutils literal notranslate"><span class="pre">some_file.txt</span></code>.</p>
+<div class='alert alert-warning'>
+    <b>ToDo</b> (ungraded): Copy the file <tt>some_file.txt</tt> and name the copied file <tt>some_file_copy.txt</tt>, all using the command <tt>cp</tt>. 
+</div><div class="cell tag_raises-exception tag_remove-output docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="sd">&#39;&#39;&#39; Tests the above ToDo (but is not graded). Only run this after you&#39;ve created the new file!&#39;&#39;&#39;</span>
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">from</span> <span class="nn">glob</span> <span class="kn">import</span> <span class="n">glob</span>
+
+<span class="n">here</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">)</span>
+<span class="n">par_dir</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">basename</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="n">here</span><span class="p">))</span>
+<span class="k">if</span> <span class="n">par_dir</span> <span class="o">!=</span> <span class="s1">&#39;solutions&#39;</span><span class="p">:</span>  <span class="c1"># must be a student-account</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="k">assert</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isfile</span><span class="p">(</span><span class="s1">&#39;some_file_copy.txt&#39;</span><span class="p">))</span>
+    <span class="k">except</span> <span class="ne">AssertionError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;File &#39;some_file_copy.txt&#39; doesnt&#39;t exist! I only found:</span><span class="se">\n</span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">glob</span><span class="p">(</span><span class="s1">&#39;*&#39;</span><span class="p">),</span> <span class="p">))</span>
+        <span class="k">raise</span><span class="p">(</span><span class="n">e</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Well done!&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Importantly, built-in Linux commands and other tools that interface with the command-line differ in which and how many arguments they expect and which flag you can optionally use. You can get more info on the expected arguments and possible flags by using the command with the <code class="docutils literal notranslate"><span class="pre">--help</span></code> flag, like:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cp</span> <span class="o">--</span><span class="n">help</span>
+</pre></div>
+</div>
+<p>This prints out some information about the expected arguments and flags. However, while commands differ in which arguments and flags they expect, the structure of <em>any</em> command-line program (including FSL tools) is the same:
+<code class="docutils literal notranslate"><span class="pre">command</span> <span class="pre">arg_1</span> <span class="pre">arg_2</span> <span class="pre">arg_3</span> <span class="pre">arg_N</span> <span class="pre">-flag</span></code></p>
+<div class='alert alert-warning'>
+    <b>ToDo</b> (ungraded): Another useful Linux command is <tt>cat</tt>. This command is used in combination with a filename (<tt>cat some_file_that_you_want_to_print_the_contents_from.txt</tt>), which will print the contents of that file on the terminal window. Try this with the <tt>some_file.txt</tt> file!
+<p>Note: don’t use <tt>cat</tt> with nifti files, as it will try to print millions of numbers to the terminal, which might cause it to crash!</p>
+</div><div class='alert alert-success'>
+    <b>Tip!</b> With the "up" and "down" arrows on your keyboard, you can "scroll" through previous commands you entered. Try it yourself!
+</div></div>
+<div class="section" id="practice-your-cmd-skills-with-fsl">
+<h2>Practice your CMD-skills with FSL<a class="headerlink" href="#practice-your-cmd-skills-with-fsl" title="Permalink to this headline">¶</a></h2>
+<p>As explained before, FSL has both a graphical user interface (GUI) and a command line interface (CLI). You can “access” the CLI in the terminal by typing the specific FSL-command followed by the (mandatory) input arguments.</p>
+<p>Let’s start with a very simple example: the FSL command <code class="docutils literal notranslate"><span class="pre">fslinfo</span></code>. You can use this command to check out some basic information about nifti images (from their header), such as voxel size and number of volumes. You always call this command in combination with a filename:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">fslinfo</span> <span class="n">your_nifti_file</span><span class="o">.</span><span class="n">nii</span><span class="o">.</span><span class="n">gz</span>
+</pre></div>
+</div>
+<p>This may then print something like the following to your terminal window:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">data_type</span>       <span class="n">FLOAT32</span>
+<span class="n">dim1</span>            <span class="mi">80</span>
+<span class="n">dim2</span>            <span class="mi">80</span>
+<span class="n">dim3</span>            <span class="mi">44</span>
+<span class="n">dim4</span>            <span class="mi">50</span>
+<span class="n">datatype</span>        <span class="mi">16</span>
+<span class="n">pixdim1</span>         <span class="mf">2.700000</span>
+<span class="n">pixdim2</span>         <span class="mf">2.700000</span>
+<span class="n">pixdim3</span>         <span class="mf">2.970000</span>
+<span class="n">pixdim4</span>         <span class="mf">0.700000</span>
+<span class="n">cal_max</span>         <span class="mf">0.000000</span>
+<span class="n">cal_min</span>         <span class="mf">0.000000</span>
+<span class="n">file_type</span>       <span class="n">NIFTI</span><span class="o">-</span><span class="mi">1</span><span class="o">+</span>
+</pre></div>
+</div>
+<p>Here, <code class="docutils literal notranslate"><span class="pre">dim[1,2,3,4]</span></code> represents the number of points in each dimension (e.g., 80 voxels in the first dimension) and <code class="docutils literal notranslate"><span class="pre">pixdim[1,2,3,4]</span></code> represents the size/length of each point in each dimension (e.g., 2.7 mm in the first dimension and 0.7 seconds in the fourth/time dimension).</p>
+<div class='alert alert-warning'>
+    <b>ToDo</b>: Run <tt>fslinfo</tt> on the <tt>corrupted.nii.gz</tt> file. Is this a functional or anatomical file? And what are the voxel dimensions?
+</div><p>Let’s practice your command-line skills with another practical example. In the directory of this week’s lab (<code class="docutils literal notranslate"><span class="pre">week_5</span></code>), there is a T1-weighted structural image (<code class="docutils literal notranslate"><span class="pre">t1w.nii.gz</span></code>). Turns out, it is not in the “right” orientation, i.e., it is not in RAS+ orientation (left-to-Right, posterior-to-Anterior, and inferior-to-Superior), but the other way around! Below, we plot three slices (in three dimensions) of the file, so you can see what’s wrong with it:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">nibabel</span> <span class="k">as</span> <span class="nn">nib</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">from</span> <span class="nn">niedu.global_utils</span> <span class="kn">import</span> <span class="n">plot_ortho_slices</span>
+<span class="o">%</span><span class="k">matplotlib</span> inline
+
+<span class="n">t1</span> <span class="o">=</span> <span class="n">nib</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="s1">&#39;t1w.nii.gz&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">get_fdata</span><span class="p">()</span>
+<span class="n">plot_ortho_slices</span><span class="p">(</span><span class="n">t1</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/linux_and_the_command_line_23_1.png" src="../../_images/linux_and_the_command_line_23_1.png" />
+</div>
+</div>
+<p>Technically, it doesn’t <em>really</em> matter whether the file is upside down or not (as long as the corresponding affine is correct), but most software programs (like FSL) assume that they are in a standard RAS+ orientation. Fortunately, FSL has a tool to fix the orientation issue we have with our T1-weighted file: the <code class="docutils literal notranslate"><span class="pre">fslreorient2std</span></code> command. The format for this command is as follows:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">fslreorient2std</span> <span class="n">input_file</span> <span class="n">output_file</span>
+</pre></div>
+</div>
+<p>where “input_file” should name the path to the input-file and “output_file” indicates what name you want to give to the output of the function (i.e., the correctly oriented file).</p>
+<div class='alert alert-warning'>
+    <b>ToDo</b> (ungraded): In the terminal, run <tt>fslreorient2std</tt> on our T1-weighted file and name it <tt>t1w_reoriented.nii.gz</tt>.
+</div><div class="cell tag_raises-exception tag_remove-output docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="sd">&#39;&#39;&#39; Tests the above ToDo. Here, we test whether the reorientation process worked.</span>
+<span class="sd">The slices should not be upside down anymore. &#39;&#39;&#39;</span>
+<span class="k">if</span> <span class="n">par_dir</span> <span class="o">!=</span> <span class="s1">&#39;solutions&#39;</span><span class="p">:</span>  <span class="c1"># must be student account</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isfile</span><span class="p">(</span><span class="s1">&#39;t1w_reoriented.nii.gz&#39;</span><span class="p">):</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Cannot find the file &#39;t1w_reoriented.nii.gz&#39; - did you name it correctly?&quot;</span><span class="p">)</span>
+    <span class="n">t1</span> <span class="o">=</span> <span class="n">nib</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="s1">&#39;t1w_reoriented.nii.gz&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">get_fdata</span><span class="p">()</span>
+<span class="k">else</span><span class="p">:</span>  <span class="c1"># admin account</span>
+    <span class="n">t1</span> <span class="o">=</span> <span class="n">nib</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="s1">&#39;t1w.nii.gz&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">get_fdata</span><span class="p">()[::</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="p">::</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="p">::</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Well done!&quot;</span><span class="p">)</span>
+<span class="n">plot_ortho_slices</span><span class="p">(</span><span class="n">t1</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Alright, let’s practice your CMD skills with one more nifty (pun intended) FSL command called <code class="docutils literal notranslate"><span class="pre">fslroi</span></code>. This command allows you to slice your file in several dimensions. For example, you can use it to remove the upper 20 slices in the <code class="docutils literal notranslate"><span class="pre">X</span></code> direction or remove several volumes (i.e., slicing in the “Time” direction, the fourth dimension of functional data). Below, we loaded functional data from a very short run (only 12 volumes; usually, runs are of course often much longer). We’ll plot an axial slice for all 12 volumes below:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="n">func</span> <span class="o">=</span> <span class="n">nib</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="s1">&#39;corrupted.nii.gz&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">get_fdata</span><span class="p">()</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">func</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]):</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">func</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">func</span><span class="p">[:,</span> <span class="p">:,</span> <span class="mi">25</span><span class="p">,</span> <span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">T</span><span class="p">,</span> <span class="n">origin</span><span class="o">=</span><span class="s1">&#39;lower&#39;</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;gray&#39;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Vol </span><span class="si">%i</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="n">i</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s1">&#39;off&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/linux_and_the_command_line_28_0.png" src="../../_images/linux_and_the_command_line_28_0.png" />
+</div>
+</div>
+<p>As you can see, something went wrong for the last two slices (slice 10 and slice 11, counting from zero), which only seem to contain some noise. This may be caused by, for example, reconstruction errors (converting data from K-space to image space). In the last ToDo of this notebook, you are going to use <code class="docutils literal notranslate"><span class="pre">fslroi</span></code> to cut off these two “corrupted” volumes. The format for <code class="docutils literal notranslate"><span class="pre">fslroi</span></code> is as follows:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>Usage: fslroi &lt;input_file&gt; &lt;output_file&gt; &lt;xmin&gt; &lt;xsize&gt; &lt;ymin&gt; &lt;ysize&gt; &lt;zmin&gt; &lt;zsize&gt;
+       fslroi &lt;input_file&gt; &lt;output_file&gt; &lt;tmin&gt; &lt;tsize&gt;
+
+Note: indexing (in both time and space) starts with 0 not 1! Inputting -1 for a size
+will set it to the full image extent for that dimension.
+</pre></div>
+</div>
+<p>As you can see, <code class="docutils literal notranslate"><span class="pre">fslroi</span></code> always needs an input file (the first argument) and an output file (the second argument). Then, if you only want to slice in the time-direction, you specify two extra arguments: where you want to start slicing (i.e., <code class="docutils literal notranslate"><span class="pre">tmin</span></code>; the third argument) and the size of your slice (i.e., <code class="docutils literal notranslate"><span class="pre">tsize</span></code>; the fourth argument).</p>
+<div class='alert alert-warning'>
+    <b>ToDo</b> (ungraded): In the terminal, run <tt>fslroi</tt> to cut off the last two volumes of the <tt>corrupted.nii.gz</tt> file. Name the output file <tt>fixed.nii.gz</tt>.
+</div><div class="cell tag_raises-exception tag_remove-output docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="sd">&#39;&#39;&#39; Tests the above ToDo. Here, you can check if your fslroi command worked! </span>
+<span class="sd">It should show 10 volumes (vol 0-9), and the noise-volumes should be removed.&#39;&#39;&#39;</span>
+
+<span class="k">if</span> <span class="n">par_dir</span> <span class="o">!=</span> <span class="s1">&#39;solutions&#39;</span><span class="p">:</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isfile</span><span class="p">(</span><span class="s1">&#39;fixed.nii.gz&#39;</span><span class="p">):</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Cannot find the file &#39;fixed.nii.gz&#39; - did you name it correctly?&quot;</span><span class="p">)</span>
+    <span class="n">func_fixed</span> <span class="o">=</span> <span class="n">nib</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="s1">&#39;fixed.nii.gz&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">get_fdata</span><span class="p">()</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="n">func_fixed</span> <span class="o">=</span> <span class="n">nib</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="s1">&#39;corrupted.nii.gz&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">get_fdata</span><span class="p">()[:,</span> <span class="p">:,</span> <span class="p">:,</span> <span class="p">:</span><span class="o">-</span><span class="mi">2</span><span class="p">]</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">func_fixed</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]):</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">func_fixed</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">func_fixed</span><span class="p">[:,</span> <span class="p">:,</span> <span class="mi">25</span><span class="p">,</span> <span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">T</span><span class="p">,</span> <span class="n">origin</span><span class="o">=</span><span class="s1">&#39;lower&#39;</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;gray&#39;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Vol </span><span class="si">%i</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="n">i</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s1">&#39;off&#39;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Well done!&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>(You might wonder: well, why use <code class="docutils literal notranslate"><span class="pre">fslroi</span></code> while I could simply use Python to cut off the last two volumes? That’s a good point. Here, we made you work with <code class="docutils literal notranslate"><span class="pre">fslroi</span></code> to practice your command line skills, but using Python to do this is completely fine too. Ultimately, if you work with real data, it’s up to you which software/programming language you want to use.)</p>
+<hr class="docutils" />
+<p>Alright, enough practice with Linux, the command line, and FSL commands! You can start the other notebook (<code class="docutils literal notranslate"><span class="pre">first_level_analysis.ipynb</span></code>) now.</p>
+<div class='alert alert-success'>
+    <b>Tip!</b>
+    Before handing in your notebooks, we recommend restarting your kernel (<em>Kernel</em> &rarr; <em>Restart & Clear Ouput</em>) and running all your cells again (manually, or by <em>Cell</em> &rarr; <em>Run all</em>). By running all your cells one by one (from "top" to "bottom" of the notebook), you may spot potential errors that are caused by accidentally overwriting your variables or running your cells out of order (e.g., defining the variable 'x' in cell 28 which you then use in cell 15).
+</div></div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./fMRI-introduction/week_5"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        </div>
+    </div>
+    
+    
+    <div class='prev-next-bottom'>
+        
+    <a class='left-prev' id="prev-link" href="../../section_intros/5_multilevel.html" title="previous page">First &amp; run-level analyses</a>
+    <a class='right-next' id="next-link" href="first_level_analyses.html" title="next page">First-level analyses (using FSL)</a>
+
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By Lukas Snoek<br/>
+        
+            &copy; Copyright 2021.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+
+    
+  <script src="../../_static/js/index.3da636dd464baa7582d2.js"></script>
+
+
+    
+  </body>
+</html>

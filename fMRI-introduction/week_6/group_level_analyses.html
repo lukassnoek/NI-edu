@@ -1,0 +1,1081 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Group-level analyses &#8212; NI-edu</title>
+    
+  <link rel="stylesheet" href="../../_static/css/index.73d71520a4ca3b99cfee5594769eaaae.css">
+
+    
+  <link rel="stylesheet"
+    href="../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+  <link rel="stylesheet"
+    href="../../_static/vendor/open-sans_all/1.44.1/index.css">
+  <link rel="stylesheet"
+    href="../../_static/vendor/lato_latin-ext/1.44.1/index.css">
+
+    
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/sphinx-book-theme.40e2e510f6b7d1648584402491bb10fe.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../../_static/js/index.3da636dd464baa7582d2.js">
+
+    <script id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/togglebutton.js"></script>
+    <script src="../../_static/clipboard.min.js"></script>
+    <script src="../../_static/copybutton.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../../_static/sphinx-book-theme.d31b09fe5c1d09cb49b26a786de4a05d.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.0/dist/embed-amd.js"></script>
+    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="../../_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Multiple comparison correction (MCC)" href="MCC.html" />
+    <link rel="prev" title="Group-level analyses" href="../../section_intros/6_grouplevel.html" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+
+
+
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+<a class="navbar-brand text-wrap" href="../../index.html">
+  
+  <img src="../../_static/fmri.gif" class="logo" alt="logo">
+  
+  
+  <h1 class="site-logo" id="site-title">NI-edu</h1>
+  
+</a>
+</div><form class="bd-search d-flex align-items-center" action="../../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form>
+<nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+    <ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../index.html">
+   Welcome to NI-edu
+  </a>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  Getting started
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../getting_started/about.html">
+   About this course
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../getting_started/installation.html">
+   Installation
+  </a>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  fMRI-introduction
+ </span>
+</p>
+<ul class="current nav sidenav_l1">
+ <li class="toctree-l1 collapsible-parent">
+  <a class="reference internal" href="../../section_intros/1_python.html">
+   Python for (f)MRI analysis
+  </a>
+  <ul class="collapse-ul">
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../other/python_recap.html">
+     Python recap
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../week_1/python_for_mri.html">
+     Working with MRI data in Python (T)
+    </a>
+   </li>
+  </ul>
+  <i class="fas fa-chevron-down">
+  </i>
+ </li>
+ <li class="toctree-l1 collapsible-parent">
+  <a class="reference internal" href="../../section_intros/2_glm.html">
+   Using the GLM to model fMRI data
+  </a>
+  <ul class="collapse-ul">
+   <li class="toctree-l2">
+    <a class="reference internal" href="../week_2/glm_part1_estimation.html">
+     The GLM: estimation (T)
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../week_3/glm_part2_inference.html">
+     The GLM: inference (T)
+    </a>
+   </li>
+  </ul>
+  <i class="fas fa-chevron-down">
+  </i>
+ </li>
+ <li class="toctree-l1 collapsible-parent">
+  <a class="reference internal" href="../../section_intros/3_design_of_experiments_T.html">
+   Design of experiments
+  </a>
+  <ul class="collapse-ul">
+   <li class="toctree-l2">
+    <a class="reference internal" href="../week_3/design_of_experiments.html">
+     Design of experiments (T)
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../week_3/neurodesign.html">
+     Neurodesign (T)
+    </a>
+   </li>
+  </ul>
+  <i class="fas fa-chevron-down">
+  </i>
+ </li>
+ <li class="toctree-l1 collapsible-parent">
+  <a class="reference internal" href="../../section_intros/4_preprocessing.html">
+   Preprocessing
+  </a>
+  <ul class="collapse-ul">
+   <li class="toctree-l2">
+    <a class="reference internal" href="../week_4/temporal_preprocessing.html">
+     Temporal preprocessing (T)
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../week_4/spatial_preprocessing.html">
+     Spatial preprocessing (T)
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../week_4/fmriprep.html">
+     Fmriprep (T)
+    </a>
+   </li>
+  </ul>
+  <i class="fas fa-chevron-down">
+  </i>
+ </li>
+ <li class="toctree-l1 collapsible-parent">
+  <a class="reference internal" href="../../section_intros/5_multilevel.html">
+   First &amp; run-level analyses
+  </a>
+  <ul class="collapse-ul">
+   <li class="toctree-l2">
+    <a class="reference internal" href="../week_5/linux_and_the_command_line.html">
+     Linux and the CMD (T)
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../week_5/first_level_analyses.html">
+     First level analyses (T)
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../week_5/run_level_analyses.html">
+     Run-level analyses (T)
+    </a>
+   </li>
+  </ul>
+  <i class="fas fa-chevron-down">
+  </i>
+ </li>
+ <li class="toctree-l1 current active collapsible-parent">
+  <a class="reference internal" href="../../section_intros/6_grouplevel.html">
+   Group-level analyses
+  </a>
+  <ul class="current collapse-ul">
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
+     Group-level analyses (T)
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="MCC.html">
+     Multiple comparison correction (T)
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="ROI_analysis.html">
+     ROI analysis (T)
+    </a>
+   </li>
+  </ul>
+  <i class="fas fa-chevron-down">
+  </i>
+ </li>
+ <li class="toctree-l1 collapsible-parent">
+  <a class="reference internal" href="../../section_intros/7_nilearn.html">
+   Introduction to Nilearn
+  </a>
+  <ul class="collapse-ul">
+   <li class="toctree-l2">
+    <a class="reference internal" href="../week_7/nilearn.html">
+     Introduction to Nilearn (T)
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../week_7/nilearn_stats.html">
+     Statistics with Nilearn (T)
+    </a>
+   </li>
+  </ul>
+  <i class="fas fa-chevron-down">
+  </i>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  fMRI-pattern-analysis
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../fMRI-pattern-analysis/week_1/design_and_pattern_estimation.html">
+   Design and pattern estimation (T)
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../fMRI-pattern-analysis/week_2/decoding_analyses.html">
+   Machine learning/decoding (T)
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../fMRI-pattern-analysis/week_3/rsa.html">
+   Representational Similarity Analysis (T)
+  </a>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  Misc
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../misc/bibliography.html">
+   Bibliography
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../misc/for_educators.html">
+   For educators
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../misc/CONTRIBUTING.html">
+   Contributing
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../misc/CONDUCT.html">
+   Code of Conduct
+  </a>
+ </li>
+</ul>
+
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="row topbar fixed-top container-xl">
+    <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show">
+    </div>
+    <div class="col pl-2 topbar-main">
+        
+        <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+            data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+            aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+            title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+            <i class="fas fa-bars"></i>
+            <i class="fas fa-arrow-left"></i>
+            <i class="fas fa-arrow-up"></i>
+        </button>
+        
+        
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../../_sources/fMRI-introduction/week_6/group_level_analyses.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+        <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/lukassnoek/NI-edu"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        <a class="issues-button"
+            href="https://github.com/lukassnoek/NI-edu/issues/new?title=Issue%20on%20page%20%2FfMRI-introduction/week_6/group_level_analyses.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
+        <a class="edit-button" href="https://github.com/lukassnoek/NI-edu/edit/master/NI-edu/fMRI-introduction/week_6/group_level_analyses.ipynb"><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Edit this page"><i class="fas fa-pencil-alt"></i>suggest edit</button></a>
+    </div>
+</div>
+
+
+        <!-- Full screen (wrap in <a> to have style consistency -->
+        <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+                data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+                title="Fullscreen mode"><i
+                    class="fas fa-expand"></i></button></a>
+
+        <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/lukassnoek/NI-edu/master?urlpath=tree/NI-edu/fMRI-introduction/week_6/group_level_analyses.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="../../_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        <a class="jupyterhub-button" href="https://neuroimaging.lukas-snoek.com/hub/user-redirect/git-pull?repo=https://github.com/lukassnoek/NI-edu&urlpath=tree/NI-edu/NI-edu/fMRI-introduction/week_6/group_level_analyses.ipynb&branch=master"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch JupyterHub" data-toggle="tooltip"
+                data-placement="left"><img class="jupyterhub-button-logo"
+                    src="../../_static/images/logo_jupyterhub.svg"
+                    alt="Interact on JupyterHub">JupyterHub</button></a>
+        
+        
+        
+    </div>
+</div>
+
+    </div>
+
+    <!-- Table of contents -->
+    <div class="d-none d-md-block col-md-2 bd-toc show">
+        
+        <div class="tocsection onthispage pt-5 pb-3">
+            <i class="fas fa-list"></i> Contents
+        </div>
+        <nav id="bd-toc-nav">
+            <ul class="nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#what-are-group-level-models">
+   What are group-level models?
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#parametric-analyses">
+   Parametric analyses
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#random-effects">
+     Random effects
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#mixed-effects-in-fsl">
+     Mixed-effects (in FSL)
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#non-parametric-analyses">
+   Non-parametric analyses
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#computing-the-observed-statistic">
+     Computing the “observed” statistic
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#run-the-permutations">
+     Run the permutations
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#calculate-the-p-value">
+     Calculate the p-value
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#threshold-free-cluster-enhancement-tfce">
+     Threshold-Free Cluster Enhancement (TFCE)
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#checking-out-results-from-group-level-feat-analyses">
+   Checking out results from group-level FEAT analyses
+  </a>
+ </li>
+</ul>
+
+        </nav>
+        
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="group-level-analyses">
+<h1>Group-level analyses<a class="headerlink" href="#group-level-analyses" title="Permalink to this headline">¶</a></h1>
+<p>This week’s lab is about group-level models, multiple comparison correction (MCC), and region-of-interest (ROI) analysis. In this notebook, we will focus on group-level models, which we’ll demonstrate and explain using both FSL and Python.</p>
+<p>We’ll focus on the “summary statistics” approach again, in which we’ll demonstrate how we average <span class="math notranslate nohighlight">\(c\beta\)</span>-terms across runs (in run-level analyses) and subjects (in grouplevel analyses) using the GLM. Then, we’re going to show you how to test more extensive hypotheses in grouplevel models.</p>
+<p><strong>What you’ll learn</strong>: after this lab, you’ll …</p>
+<ul class="simple">
+<li><p>understand the concept of the summary statistics approach</p></li>
+<li><p>be able to construct different grouplevel models (in FSL)</p></li>
+</ul>
+<p><strong>Estimated time needed to complete</strong>: 2 hours<br></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Some imports</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="o">%</span><span class="k">matplotlib</span> inline
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="what-are-group-level-models">
+<h2>What are group-level models?<a class="headerlink" href="#what-are-group-level-models" title="Permalink to this headline">¶</a></h2>
+<p>Last week, we discussed the multilevel models and the summary statistics approach. Specifically, we focused on how data from different runs are usually (in non-fMRI contexts) are analyzed in a single multilevel GLM by “concatenating” the data. And how, in fMRI, we usually don’t take this approach due to the computational burden and use the summary statistics approach, which analyzes each run separately and subsequently aggregates the data in a second, run-level GLM.</p>
+<p>In this notebook, we will extend this idea of analyzing data from multiple levels by looking at data from multiple subjects and how to analyze this data in group-level models. We will look at two “flavors” of group-level analyses: parametric and non-parametric.</p>
+<p><img alt="" src="https://docs.google.com/drawings/d/e/2PACX-1vQxCH3WU3nTqFlHUZb49rf9zioivGQ-flVfRpwmXQx7OF5Wm_1T6gFMYQqpqt-NPITNHUaRoVYEREgT/pub?w=965&amp;h=745" /></p>
+</div>
+<div class="section" id="parametric-analyses">
+<h2>Parametric analyses<a class="headerlink" href="#parametric-analyses" title="Permalink to this headline">¶</a></h2>
+<p>The most often used “flavor” of fMRI (group-level) analyses are <em>parametric</em>: it assumes that the data can be modeled using specific probability distributions. For example, we assume that the results of statistical tests of parameters (i.e., <span class="math notranslate nohighlight">\(t\)</span>-values), given that null hypothesis is true, are distributed according to the Students <span class="math notranslate nohighlight">\(t\)</span>-distribution (with a particular degrees-of-freedom):</p>
+<div class="amsmath math notranslate nohighlight" id="equation-d9065333-5e0c-4446-87c8-e1bf2f8f033f">
+<span class="eqno">(74)<a class="headerlink" href="#equation-d9065333-5e0c-4446-87c8-e1bf2f8f033f" title="Permalink to this equation">¶</a></span>\[\begin{align}
+t_{c\hat{\beta}} \sim \mathcal{T}(\mathrm{df})
+\end{align}\]</div>
+<p>where you can read the <span class="math notranslate nohighlight">\(\sim\)</span> symbol as “is distributed as”. Importantly, the validity of the computed <span class="math notranslate nohighlight">\(p\)</span>-values depends on whether the choice of distribution is appropriate. If not, you might risk inflated type 1 or type 2 errors.</p>
+<p>The first-level and run-level GLMs that we have discussed so far are examples of parametric analyses. There are also <em>non-parametric</em> versions of the GLM that do not assume any particular form of distribution; while somewhat more computationally expensive, this is become a more and more popular alternative to (group-level) parametric analyses. Importantly, the difference between parametric and non-parametric analyses is only important for the <em>inference</em> (not the <em>estimation</em>) aspect of the (group-level) analyses.</p>
+<p>Now, let’s focus on the parametric version of group-level analyses. Basically, this amounts to doing the same thing as we did last week with the run-level analyses, but this time, the results from our run-level analyses (<span class="math notranslate nohighlight">\(c\hat{\beta}^{*}\)</span>) across different subjects will become our target (<span class="math notranslate nohighlight">\(y^{\dagger}\)</span>). Note that we will use the “dagger” (<span class="math notranslate nohighlight">\(^{\dagger}\)</span>) superscript to denote that the mathematical terms belong to the group-level model (just like the <span class="math notranslate nohighlight">\(^{*}\)</span> superscript in our notebooks refers to terms belonging to the run-level models).</p>
+<p>To reiterate, the results from our run-level analyses (<span class="math notranslate nohighlight">\(c\hat{\beta}^{*}\)</span>), or first-level analyses if we only have a single run, become our dependent variable in our group-level analysis (<span class="math notranslate nohighlight">\(y^{\dagger}\)</span>):</p>
+<div class="amsmath math notranslate nohighlight" id="equation-c4a9c83b-1da7-45d0-93cb-a7f464167766">
+<span class="eqno">(75)<a class="headerlink" href="#equation-c4a9c83b-1da7-45d0-93cb-a7f464167766" title="Permalink to this equation">¶</a></span>\[\begin{align}
+y^{\dagger} = c\hat{\beta}^{*}
+\end{align}\]</div>
+<p>Again, the group-level represents a GLM with a particular design matrix (<span class="math notranslate nohighlight">\(\mathbf{X}^{\dagger}\)</span>) and parameters (<span class="math notranslate nohighlight">\(\beta^{\dagger}\)</span>):</p>
+<div class="amsmath math notranslate nohighlight" id="equation-99a3be09-36af-4c6a-9441-657a060473ba">
+<span class="eqno">(76)<a class="headerlink" href="#equation-99a3be09-36af-4c6a-9441-657a060473ba" title="Permalink to this equation">¶</a></span>\[\begin{align}
+y^{\dagger} = \mathbf{X}^{\dagger}\beta^{\dagger} + \epsilon^{\dagger}
+\end{align}\]</div>
+<p>And the group-level parameters can be estimated with OLS:</p>
+<div class="amsmath math notranslate nohighlight" id="equation-8895e89b-f560-4b47-86a6-59f3d2c3b73b">
+<span class="eqno">(77)<a class="headerlink" href="#equation-8895e89b-f560-4b47-86a6-59f3d2c3b73b" title="Permalink to this equation">¶</a></span>\[\begin{align}
+\hat{\beta}^{\dagger} = (\mathbf{X}^{\dagger\ T} \mathbf{X}^{\dagger})^{-1}\mathbf{X}^{\dagger}y^{\dagger}
+\end{align}\]</div>
+<p>As mentioned last week, the parameter estimation procedure (i.e., estimating <span class="math notranslate nohighlight">\(\hat{\beta}^{\dagger}\)</span>) is relatively straightforward, but the inference procedure depends on the specific variance approach: fixed, random, or mixed effects. If your aim is to perform inference to the population, <em>you should never use a fixed-effects type of analysis across subjects</em>, as this will typically inflate your type 1 error greatly.</p>
+<p>That leaves us with random effects and mixed effects GLMs.</p>
+<div class="section" id="random-effects">
+<h3>Random effects<a class="headerlink" href="#random-effects" title="Permalink to this headline">¶</a></h3>
+<p>Let’s first focus on a random effects type of analysis (which is commonly used in group-level analysis in the SPM software package, for example), as this is relatively easy to understand. For now, let’s use simulated data. Suppose that we want to do a group-analysis of our run-level <code class="docutils literal notranslate"><span class="pre">flocBLOCKED</span></code> data. Specifically, we are interested in the difference between faces and places (<span class="math notranslate nohighlight">\(H_{0}: \beta_{face}^{*} = \beta_{house}^{*} = 0\)</span>, <span class="math notranslate nohighlight">\(H_{a}: \beta_{face}^{*} &gt; \beta_{house}^{*}\)</span>). As such, we’ll use the corresponding <span class="math notranslate nohighlight">\(c\hat{\beta}^{*}\)</span> terms from our run-level analysis (i.e., the contrasts against baseline, COPE1 and COPE2) as our new target <span class="math notranslate nohighlight">\(y^{\dagger}\)</span> as follows:</p>
+<div class="amsmath math notranslate nohighlight" id="equation-b3920cae-a3ed-4851-a510-dc02f0aa1094">
+<span class="eqno">(78)<a class="headerlink" href="#equation-b3920cae-a3ed-4851-a510-dc02f0aa1094" title="Permalink to this equation">¶</a></span>\[\begin{align}
+y^{\dagger} = \begin{bmatrix}
+c\hat{\beta}^{*}_{1, F&gt;0} \\
+c\hat{\beta}^{*}_{2, F&gt;0} \\
+\vdots \\
+c\hat{\beta}^{*}_{N, F&gt;0} \\
+c\hat{\beta}^{*}_{1, P&gt;0} \\
+c\hat{\beta}^{*}_{2, P&gt;0} \\
+\vdots \\
+c\hat{\beta}^{*}_{N, P&gt;0}
+\end{bmatrix}
+\end{align}\]</div>
+<p>For our simulation, we’ll assume that we have 20 subjects (<span class="math notranslate nohighlight">\(N=20\)</span>).</p>
+<div class='alert alert-info'>
+    <b>ToThink</b> (0 points): You might think, why compute the difference contrast at the <em>group-level</em>, while we could have computed this already in the first-level analysis (and subsequently average this in the run-level and group-level analyses)? In fact, this is mathematically (largely) equivalent. However, most people prefer to postpone this step to the group-level analysis. Can you think of a reason why?
+</div><p>Before we are going to simulate the data, let’s construct our design-matrix, <span class="math notranslate nohighlight">\(\mathbf{X}^{*}\)</span>. Assuming we have 20 subjects and two types of inputs (<span class="math notranslate nohighlight">\(c\hat{\beta}^{*}_{F&gt;0}\)</span> and <span class="math notranslate nohighlight">\(c\hat{\beta}^{*}_{P&gt;0}\)</span>, our design matrix will be:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">N</span> <span class="o">=</span> <span class="mi">20</span>
+<span class="n">X</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">N</span> <span class="o">*</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">))</span>
+<span class="n">X</span><span class="p">[:</span><span class="n">N</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="n">X</span><span class="p">[</span><span class="n">N</span><span class="p">:,</span> <span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[[1. 0.]
+ [1. 0.]
+ [1. 0.]
+ [1. 0.]
+ [1. 0.]
+ [1. 0.]
+ [1. 0.]
+ [1. 0.]
+ [1. 0.]
+ [1. 0.]
+ [1. 0.]
+ [1. 0.]
+ [1. 0.]
+ [1. 0.]
+ [1. 0.]
+ [1. 0.]
+ [1. 0.]
+ [1. 0.]
+ [1. 0.]
+ [1. 0.]
+ [0. 1.]
+ [0. 1.]
+ [0. 1.]
+ [0. 1.]
+ [0. 1.]
+ [0. 1.]
+ [0. 1.]
+ [0. 1.]
+ [0. 1.]
+ [0. 1.]
+ [0. 1.]
+ [0. 1.]
+ [0. 1.]
+ [0. 1.]
+ [0. 1.]
+ [0. 1.]
+ [0. 1.]
+ [0. 1.]
+ [0. 1.]
+ [0. 1.]]
+</pre></div>
+</div>
+</div>
+</div>
+<div class='alert alert-info'>
+    <b>ToThink</b> (1 point): In the above design matrix, we did not specify an intercept (i.e., a vector of ones). With good reason, because our group-level GLM will crash if we did. Explain shortly why an intercept for this particular design matrix (i.e., as represented by the variable <tt>X</tt> above) is not only redundant, but will make the GLM impossible to estimate. Hint: try adding an intercept, run a GLM, and see what happens.
+</div><p>YOUR ANSWER HERE</p>
+<p>We are going to simulate data for a single voxel, which shows a slight preference (in run-level <span class="math notranslate nohighlight">\(c\hat{\beta}^{*}\)</span> estimates across subjects) for faces relative to places. Specifically, we’ll assume that the voxel activates on average with <span class="math notranslate nohighlight">\(\beta^{\dagger}_{faces} = 5\)</span> for faces, while it activates on average with <span class="math notranslate nohighlight">\(\beta^{\dagger}_{places} = 4.5\)</span> for places:</p>
+<div class="amsmath math notranslate nohighlight" id="equation-88819085-431d-4f48-9a9b-c587b70dc983">
+<span class="eqno">(79)<a class="headerlink" href="#equation-88819085-431d-4f48-9a9b-c587b70dc983" title="Permalink to this equation">¶</a></span>\[\begin{align}
+y^{*} = \mathbf{X}^{\dagger}_{faces}\cdot 5 + \mathbf{X}^{\dagger}_{places} \cdot 4.5 + \epsilon^{\dagger} 
+\end{align}\]</div>
+<p>where the noise, <span class="math notranslate nohighlight">\(\epsilon^{\dagger}\)</span>, is normally distributed with mean 0 and a standard deviation of 1:</p>
+<div class="amsmath math notranslate nohighlight" id="equation-25cb61f2-5cd2-40fe-9077-83a6e4d9f659">
+<span class="eqno">(80)<a class="headerlink" href="#equation-25cb61f2-5cd2-40fe-9077-83a6e4d9f659" title="Permalink to this equation">¶</a></span>\[\begin{align}
+\epsilon^{\dagger} \sim \mathcal{N}(0, 1)
+\end{align}\]</div>
+<p>(The symbol <span class="math notranslate nohighlight">\(\sim\)</span> stands for “is distributed as”.) We’ll implement this in code below:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">N</span> <span class="o">=</span> <span class="mi">20</span>
+<span class="n">beta_f</span> <span class="o">=</span> <span class="mi">5</span>
+<span class="n">beta_p</span> <span class="o">=</span> <span class="mf">4.5</span>
+<span class="n">std_noise</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">42</span><span class="p">)</span>
+<span class="n">noise</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">std_noise</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="n">N</span> <span class="o">*</span> <span class="mi">2</span><span class="p">)</span>
+
+<span class="n">y_sim</span> <span class="o">=</span> <span class="n">X</span> <span class="o">@</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">beta_f</span><span class="p">,</span> <span class="n">beta_p</span><span class="p">])</span> <span class="o">+</span> <span class="n">noise</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>And let’s plot it:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">16</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">y_sim</span><span class="p">[:</span><span class="n">N</span><span class="p">],</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">y_sim</span><span class="o">.</span><span class="n">size</span> <span class="o">//</span> <span class="mi">2</span><span class="p">),</span> <span class="n">marker</span><span class="o">=</span><span class="s1">&#39;o&#39;</span><span class="p">,</span> <span class="n">ms</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">y_sim</span><span class="p">[</span><span class="n">N</span><span class="p">:],</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">y_sim</span><span class="o">.</span><span class="n">size</span> <span class="o">//</span> <span class="mi">2</span><span class="p">,</span> <span class="n">y_sim</span><span class="o">.</span><span class="n">size</span><span class="p">),</span> <span class="n">marker</span><span class="o">=</span><span class="s1">&#39;o&#39;</span><span class="p">,</span> <span class="n">ms</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">(</span><span class="n">y_sim</span><span class="o">.</span><span class="n">size</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">([</span><span class="sa">r</span><span class="s2">&quot;$c\hat{\beta}^{*}_</span><span class="si">{face}</span><span class="s2">$&quot;</span><span class="p">,</span> <span class="sa">r</span><span class="s2">&quot;$c\hat{\beta}^{*}_</span><span class="si">{place}</span><span class="s2">$&quot;</span><span class="p">],</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">15</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;Subjects&quot;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;$c\hat{\beta}^{*}$&quot;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;$y^{\dagger}$ (run-level estimates)&quot;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">25</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/group_level_analyses_14_0.png" src="../../_images/group_level_analyses_14_0.png" />
+</div>
+</div>
+<p>Note that these <span class="math notranslate nohighlight">\(c\hat{\beta}^{*}\)</span> estimates are the only thing you need for a random effects analysis! We’re simply ignoring the lower-level variance terms.</p>
+<div class='alert alert-warning'>
+    <b>ToDo</b> (2 points): Run a group-level random-effects GLM (using the variable <tt>X</tt> as design matrix and <tt>y_sim</tt> as dependent variable). Store the estimated parameters in a variable named <tt>gl_params</tt>. Then, compute the $t$-value for the contrast $\beta^{\dagger}_{face} > \beta^{\dagger}_{place}$ and store this in a variable named <tt>gl_tvalue</tt>.
+</div><div class="cell tag_raises-exception tag_remove-output docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="sd">&#39;&#39;&#39; Implement the ToDo here. &#39;&#39;&#39;</span>
+<span class="kn">from</span> <span class="nn">numpy.linalg</span> <span class="kn">import</span> <span class="n">inv</span>
+
+<span class="c1"># YOUR CODE HERE</span>
+<span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell tag_raises-exception tag_remove-output docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="sd">&#39;&#39;&#39; Tests the above ToDo. &#39;&#39;&#39;</span>
+<span class="kn">from</span> <span class="nn">niedu.tests.nii.week_6</span> <span class="kn">import</span> <span class="n">test_rfx_glm</span>
+<span class="n">test_rfx_glm</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y_sim</span><span class="p">,</span> <span class="n">gl_params</span><span class="p">,</span> <span class="n">gl_tvalue</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="mixed-effects-in-fsl">
+<h3>Mixed-effects (in FSL)<a class="headerlink" href="#mixed-effects-in-fsl" title="Permalink to this headline">¶</a></h3>
+<p>Proper mixed-effects models are a bit too complex to implement ourselves in Python, so we’ll show you how to do it in FSL! We ran the (fixed-effects) run-level models for the <code class="docutils literal notranslate"><span class="pre">flocBLOCKED</span></code> data for you already, which we download below:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">os</span>
+<span class="n">data_dir</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">expanduser</span><span class="p">(</span><span class="s2">&quot;~&quot;</span><span class="p">),</span> <span class="s1">&#39;NI-edu-data&#39;</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Downloading run-level FSL FEAT results (+- 450MB) ...&quot;</span><span class="p">)</span>
+<span class="o">!</span>aws s3 sync --no-sign-request s3://openneuro.org/ds003477 <span class="o">{</span>data_dir<span class="o">}</span> --exclude <span class="s2">&quot;*&quot;</span> --include <span class="s2">&quot;derivatives/fsl/sub-*/flocBLOCKED/runlevel.gfeat/*&quot;</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Done!&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Downloading run-level FSL FEAT results (+- 450MB) ...
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Done!
+</pre></div>
+</div>
+</div>
+</div>
+<p>Within the <code class="docutils literal notranslate"><span class="pre">flocBLOCKED</span></code> directory, the first-level (<code class="docutils literal notranslate"><span class="pre">ses-1.feat</span></code> and <code class="docutils literal notranslate"><span class="pre">ses-2.feat</span></code>) and run-level results (<code class="docutils literal notranslate"><span class="pre">runlevel.gfeat</span></code>) are stored for each subject.</p>
+<div class='alert alert-warning'>
+    <b>ToDo</b> (ungraded): Start a remote desktop environment, open a terminal, navigate to the <tt>runlevel.gfeat</tt> directory of the task <tt>flocBLOCKED</tt> of subject <tt>sub-03</tt> (so <tt>sub-03/flocBLOCKED/runlevel.gfeat</tt>), and print the directory's contents to the terminal.
+<p>(Note that the following ToDos will be checked later using test-cells.)</p>
+</div><p>You should see that the <code class="docutils literal notranslate"><span class="pre">runlevel.gfeat</span></code> directory contains multiple <code class="docutils literal notranslate"><span class="pre">cope*.feat</span></code> directories. These directories correspond to the results of the run-level (intercept-only) analyses of the seven different first-level contrasts. In contrast to what you did yourself last week (in which you concatenated the COPEs from the <span class="math notranslate nohighlight">\(c\hat{\beta}_{\mathrm{face}}\)</span> and <span class="math notranslate nohighlight">\(c\hat{\beta}_{\mathrm{place}}\)</span> contrasts in a single GLM), we were lazy and used the “Inputs are lower-level FEAT directories” option in FEAT. This runs the exact same GLM (using an intercept-only run-level design matrix) for all first-level contrasts separately.</p>
+<p>For example, the data in the <code class="docutils literal notranslate"><span class="pre">runlevel.gfeat/cope1.feat</span></code> directory corresponds to the first contrast from the first-level analysis (<span class="math notranslate nohighlight">\(\beta_{face} &gt; 0\)</span>), the data in the <code class="docutils literal notranslate"><span class="pre">runlevel.gfeat/cope2.feat</span></code> directory corresponds to the second contrast from the first-level analysis (<span class="math notranslate nohighlight">\(\beta_{place} &gt; 0\)</span>), etc. etc.</p>
+<p>In our intercept-only run-level analysis, we only computed a run-level contrast reflecting the average across the two sessions, i.e., using the contrast vector <span class="math notranslate nohighlight">\([1]\)</span>. The results of this run-level contrast, for each first-level contrast, are stored in the <code class="docutils literal notranslate"><span class="pre">cope1.nii.gz</span></code> file.</p>
+<div class='alert alert-warning'>
+    <b>ToDo</b> (ungraded): Open Feat, change "First-level analysis" to "Higher-level analysis" and change the input type to "Inputs are 3D cope images from feat directories". Then, click on the "Stats" tab.
+</div><p>Under the “Stats” tab, you can change the type of inference you want FEAT to do. By default, it uses a particular mixed-effects approach that FSL calls “FLAME 1”. In general, we recommend using this type of inference. The other mixed-effects approach, “FLAME 1+2”, is also a good choice, but may take much longer to run. The “Mixed effects: Simple OLS” is, unlike the same suggests, the random-effects option, which discards the lower-level variance estimates. Lastly, the “Randomise” option is a non-parametric (random-effects) variant, that will be discussed in more detail later.</p>
+<div class='alert alert-warning'>
+    <b>ToDo</b> (ungraded): Set the option to "Mixed effects: FLAME 1". Enable the "use automatic outlier de-weighting" option (should be yellow). Then, go to post-stats and set the "Thresholding" option to "Cluster" with a Z threshold of 3.7 and a "Cluster P threshold" of 0.05. This refers to a particular type of multiple comparison correction that will be discussed later.
+</div><p>Now, let’s define the dependent variable (<span class="math notranslate nohighlight">\(y^{\dagger}\)</span>). Suppose, just like we did with the simulated data, that we have the following null and alternative hypothesis:</p>
+<p><span class="math notranslate nohighlight">\(H_{0}: \beta_{face}^{*} - \beta_{house}^{*} = 0\)</span><br>
+<span class="math notranslate nohighlight">\(H_{a}: \beta_{face}^{*} - \beta_{house}^{*} &gt; 0\)</span></p>
+<p>Note that the contrast evaluating the difference between these two parameters was <em>not</em> computed in the first-level or run-level analyses, so we have to create this ourselves by concatenating the COPEs corresponding to the <span class="math notranslate nohighlight">\(\beta_{face}^{*} &gt; 0\)</span> and <span class="math notranslate nohighlight">\(\beta_{house}^{*} &gt; 0\)</span> run-level contrasts, just like you did last week.</p>
+<p>Doing this for all subjects becomes a bit cumbersome though, so you only need to do this for <code class="docutils literal notranslate"><span class="pre">sub-02</span></code>, <code class="docutils literal notranslate"><span class="pre">sub-03</span></code>, and <code class="docutils literal notranslate"><span class="pre">sub-04</span></code>. Make sure the first three inputs correspond to the face-against-baseline COPE (COPE nr. 1) and the last three inputs correspond to the place-against-baseline COPE (COPE nr. 2).</p>
+<div class="amsmath math notranslate nohighlight" id="equation-618ee207-e4f6-4659-8448-46c206898f71">
+<span class="eqno">(81)<a class="headerlink" href="#equation-618ee207-e4f6-4659-8448-46c206898f71" title="Permalink to this equation">¶</a></span>\[\begin{align}
+y^{\dagger} = \begin{bmatrix}
+c\hat{\beta}^{*}_{\mathrm{face&gt;0,\ sub-02}} \\
+c\hat{\beta}^{*}_{\mathrm{face&gt;0,\ sub-03}} \\
+c\hat{\beta}^{*}_{\mathrm{face&gt;0,\ sub-04}} \\
+c\hat{\beta}^{*}_{\mathrm{place&gt;0,\ sub-02}} \\
+c\hat{\beta}^{*}_{\mathrm{place&gt;0,\ sub-03}} \\
+c\hat{\beta}^{*}_{\mathrm{place&gt;0,\ sub-04}} \\
+\end{bmatrix}
+\end{align}\]</div>
+<p>Note that you need the actual <code class="docutils literal notranslate"><span class="pre">cope*.nii.gz</span></code> files — <em>not</em> the <code class="docutils literal notranslate"><span class="pre">.feat</span></code> directory itself.</p>
+<p>(Realize, though,  that having only 3 subjects for your group-analysis would be a hopelessly underpowered study.)</p>
+<div class='alert alert-warning'>
+    <b>ToDo</b> (1 point): In the "Data" tab, use the option "Inputs are 3D cope images from FEAT directories", set the number of inputs to 6, and select the correct files. Note that within the "Select input data" window, you can copy/paste the paths using CTRL+C / CTRL+V, which might make the process a little easier/faster (not forget to actually modify the paths after copy/pasting).
+</div><div class='alert alert-warning'>
+    <b>ToDo</b> (ungraded): In the "Data" tab, set the output directory to your home folder + <tt>grouplevel_task-flockBLOCKED</tt>.
+</div><div class='alert alert-warning'>
+    <b>ToDo</b> (1 point): In the “Stats” tab, click on "Full model setup". Create two predictors ("EVs") that model the mean of the $c\beta^{*}_{face} > 0$ (first EV) and the $c\beta^{*}_{place} > 0$ (second EV). Then, add another predictor that models the effect of age on the $c\beta^{*}_{face}$ contrast *only*. The ages of the three participants (from sub-02 to sub-04) are: $[21, 32, 25]$. Importantly, make sure you center (de-mean) the age values before entering them in FEAT, as this improves the interpretation of the other predictors (you can compute the de-meaned age values, for example, in a new code cell).
+</div><div class='alert alert-warning'>
+    <b>ToDo</b> (1 point): In the "Contrasts & F-tests" tab, define the following group-level contrasts:<br>
+<ol class="simple">
+<li><p><span class="math notranslate nohighlight">\(H_{0}: \beta^{\dagger}_{face} = 0\)</span><br><span class="math notranslate nohighlight">\(H_{a}: \beta^{\dagger}_{face} &gt; 0\)</span><br><br></p></li>
+<li><p><span class="math notranslate nohighlight">\(H_{0}: \beta^{\dagger}_{place} = 0\)</span><br><span class="math notranslate nohighlight">\(H_{a}: \beta^{\dagger}_{place} &gt; 0\)</span><br><br></p></li>
+<li><p><span class="math notranslate nohighlight">\(H_{0}: \beta^{\dagger}_{face} - \beta^{\dagger}_{place} = 0\)</span><br><span class="math notranslate nohighlight">\(H_{a}: \beta^{\dagger}_{face} - \beta^{\dagger}_{place} &gt; 0\)</span><br><br></p></li>
+<li><p><span class="math notranslate nohighlight">\(H_{0}: \beta^{\dagger}_{age} = 0\)</span><br><span class="math notranslate nohighlight">\(H_{a}: \beta^{\dagger}_{age} &gt; 0\)</span><br><br></p></li>
+<li><p><span class="math notranslate nohighlight">\(H_{0}: \beta^{\dagger}_{age} = 0\)</span><br><span class="math notranslate nohighlight">\(H_{a}: \beta^{\dagger}_{age} &lt; 0\)</span><br></p></li>
+</ol>
+</div><div class='alert alert-warning'>
+    <b>ToDo</b> (ungraded): Save your design (using the "Save" button in the bottom of the FEAT window) in your `week_6` directory and name it <tt>setup_feat_grouplevel.fsf</tt>.
+</div><p>Below, you can test your implementation.</p>
+<div class="cell tag_raises-exception tag_remove-output docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="sd">&#39;&#39;&#39; Tests your setup_feat.fsf file: inputs&#39;&#39;&#39;</span>
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">os.path</span> <span class="k">as</span> <span class="nn">op</span>
+<span class="kn">import</span> <span class="nn">niedu</span>
+
+<span class="n">here</span> <span class="o">=</span> <span class="n">op</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">)</span>
+<span class="n">par_dir</span> <span class="o">=</span> <span class="n">op</span><span class="o">.</span><span class="n">basename</span><span class="p">(</span><span class="n">op</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="n">here</span><span class="p">))</span>
+<span class="n">home</span> <span class="o">=</span> <span class="n">op</span><span class="o">.</span><span class="n">expanduser</span><span class="p">(</span><span class="s2">&quot;~&quot;</span><span class="p">)</span>
+
+<span class="n">fsl_deriv_dir</span> <span class="o">=</span> <span class="n">op</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">expanduser</span><span class="p">(</span><span class="s2">&quot;~&quot;</span><span class="p">),</span> <span class="s1">&#39;NI-edu-data&#39;</span><span class="p">,</span> <span class="s1">&#39;derivatives&#39;</span><span class="p">,</span> <span class="s1">&#39;fsl&#39;</span><span class="p">)</span>
+    
+<span class="k">if</span> <span class="n">par_dir</span> <span class="o">!=</span> <span class="s1">&#39;solutions&#39;</span><span class="p">:</span>  <span class="c1"># must be a student-account</span>
+    <span class="n">fsf</span> <span class="o">=</span> <span class="s1">&#39;setup_feat_grouplevel.fsf&#39;</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">op</span><span class="o">.</span><span class="n">isfile</span><span class="p">(</span><span class="n">fsf</span><span class="p">):</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Couldn&#39;t find a &#39;setup_feat_group.fsf&#39; file in your week_6 directory!&quot;</span><span class="p">)</span>
+
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">fsf</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+        <span class="n">fsf</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">readlines</span><span class="p">()</span>
+
+    <span class="n">fsf</span> <span class="o">=</span> <span class="p">[</span><span class="n">txt</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">)</span> <span class="k">for</span> <span class="n">txt</span> <span class="ow">in</span> <span class="n">fsf</span> <span class="k">if</span> <span class="n">txt</span> <span class="o">!=</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">]</span>
+    <span class="n">fsf</span> <span class="o">=</span> <span class="p">[</span><span class="n">txt</span> <span class="k">for</span> <span class="n">txt</span> <span class="ow">in</span> <span class="n">fsf</span> <span class="k">if</span> <span class="n">txt</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">!=</span> <span class="s1">&#39;#&#39;</span><span class="p">]</span>  <span class="c1"># remove commnts</span>
+
+    <span class="kn">from</span> <span class="nn">niedu.tests.nii.week_6</span> <span class="kn">import</span> <span class="n">test_grouplevel_fsf_inputs</span>
+    <span class="n">test_grouplevel_fsf_inputs</span><span class="p">(</span><span class="n">fsf</span><span class="p">,</span> <span class="n">fsl_deriv_dir</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell tag_raises-exception tag_remove-output docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="sd">&#39;&#39;&#39; Tests your setup_feat.fsf file: Evs&#39;&#39;&#39;</span>
+<span class="k">if</span> <span class="n">par_dir</span> <span class="o">!=</span> <span class="s1">&#39;solutions&#39;</span><span class="p">:</span>
+    <span class="kn">from</span> <span class="nn">niedu.tests.nii.week_6</span> <span class="kn">import</span> <span class="n">test_grouplevel_fsf_evs</span>
+    <span class="n">test_grouplevel_fsf_evs</span><span class="p">(</span><span class="n">fsf</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell tag_raises-exception tag_remove-output docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="sd">&#39;&#39;&#39; Tests your setup_feat.fsf file: contrasts&#39;&#39;&#39;</span>
+<span class="k">if</span> <span class="n">par_dir</span> <span class="o">!=</span> <span class="s1">&#39;solutions&#39;</span><span class="p">:</span>
+    <span class="kn">from</span> <span class="nn">niedu.tests.nii.week_6</span> <span class="kn">import</span> <span class="n">test_grouplevel_fsf_cons</span>
+    <span class="n">test_grouplevel_fsf_cons</span><span class="p">(</span><span class="n">fsf</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="non-parametric-analyses">
+<h2>Non-parametric analyses<a class="headerlink" href="#non-parametric-analyses" title="Permalink to this headline">¶</a></h2>
+<p><em>This is an optional section</em></p>
+<p>Before we go on with the topic of “multiple comparison correction” in the next notebook, let’s focus on another type of inference in statistical models: permutation-based non-parametric analyses. Unlike parametric analyses (which we discussed in the previous section), non-parametric analyses do not assume anything about how our statistics-of-interest are distributed. Instead, it uses the data itself to estimate a distribution of your test-statistic under the null hypothesis. Note that this type of inference is also available in FSL, where it is called “randomise”.</p>
+<p>Permutation tests work (roughly) as follows:</p>
+<ol class="simple">
+<li><p>The statistic (e.g., <span class="math notranslate nohighlight">\(t\)</span>-value) is computed as normal;</p></li>
+<li><p>The rows of design matrix (<span class="math notranslate nohighlight">\(\mathbf{X}\)</span>) are shuffled and the statistic is (re-)computed, which is iterated a number of times (e.g., 1000);</p></li>
+<li><p>The (“non-parametric”) <span class="math notranslate nohighlight">\(p\)</span>-value is computed</p></li>
+</ol>
+<p>Let’s do this for our previously simulated data (the variables <code class="docutils literal notranslate"><span class="pre">X</span></code> and <code class="docutils literal notranslate"><span class="pre">y_sim</span></code>).</p>
+<div class="section" id="computing-the-observed-statistic">
+<h3>Computing the “observed” statistic<a class="headerlink" href="#computing-the-observed-statistic" title="Permalink to this headline">¶</a></h3>
+<p>First, we need to compute our “observed” statistic. In the framework of the GLM, this is often a <span class="math notranslate nohighlight">\(t\)</span>-statistic (or <span class="math notranslate nohighlight">\(F\)</span>-statistic). But note that permutation-based tests work for any kind of statistics. (In fact, permutation-based tests are especially useful for statistics with unknown distributions!)</p>
+<p>We are sure that you, by now, know how to compute <span class="math notranslate nohighlight">\(t\)</span>-values, so we are going to use a predefined function <code class="docutils literal notranslate"><span class="pre">compute_tvalue</span></code> with three arguments: <code class="docutils literal notranslate"><span class="pre">X</span></code>, <code class="docutils literal notranslate"><span class="pre">y</span></code>, and <code class="docutils literal notranslate"><span class="pre">c</span></code>. We’ll compute the <span class="math notranslate nohighlight">\(t\)</span>-value for our data (<code class="docutils literal notranslate"><span class="pre">X</span></code> and <code class="docutils literal notranslate"><span class="pre">y_sim</span></code>) and store it in a variable called <code class="docutils literal notranslate"><span class="pre">t_obs</span></code> (for “observed”).</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">niedu.utils.nii</span> <span class="kn">import</span> <span class="n">compute_tvalue</span>
+<span class="n">t_obs</span> <span class="o">=</span> <span class="n">compute_tvalue</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y_sim</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">]))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+</div>
+</div>
+</div>
+<div class="section" id="run-the-permutations">
+<h3>Run the permutations<a class="headerlink" href="#run-the-permutations" title="Permalink to this headline">¶</a></h3>
+<p>The second step is to, iteratively, permute the data and (re-)compute the test statistic. In most cases (assuming that the datapoints, <span class="math notranslate nohighlight">\(y\)</span>, are completely independent, i.e., there is no “autocorrelation”), permutation within the GLM framework is done by shuffling the rows of the design matrix (<span class="math notranslate nohighlight">\(\mathbf{X}\)</span>). This is usually done a larger number of times (e.g., 1000 or more).</p>
+<div class='alert alert-warning'>
+    <b>ToDo</b> (ungraded): Below, we started implementing the permutation loop. Can you finish it? You may want to use the <a href="https://docs.scipy.org/doc/numpy-1.14.0/reference/generated/numpy.random.permutation.html">np.random.permutation</a> function. Make sure to save the permuted t-value each iteration (by storing it in the <tt>t_perm</tt> array).
+</div><div class="cell tag_raises-exception tag_remove-output docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="sd">&quot;&quot;&quot; Implement the ToDo here. &quot;&quot;&quot;</span>
+<span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">42</span><span class="p">)</span>
+<span class="n">iters</span> <span class="o">=</span> <span class="mi">1000</span>
+<span class="n">t_perm</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">iters</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">iters</span><span class="p">):</span>
+    <span class="c1"># YOUR CODE HERE</span>
+    <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell tag_raises-exception tag_remove-output docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="sd">&#39;&#39;&#39; Tests the ToDo above. &#39;&#39;&#39;</span>
+<span class="n">np</span><span class="o">.</span><span class="n">testing</span><span class="o">.</span><span class="n">assert_almost_equal</span><span class="p">(</span><span class="n">t_perm</span><span class="o">.</span><span class="n">mean</span><span class="p">(),</span> <span class="mi">0</span><span class="p">,</span> <span class="n">decimal</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Well done!&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="calculate-the-p-value">
+<h3>Calculate the p-value<a class="headerlink" href="#calculate-the-p-value" title="Permalink to this headline">¶</a></h3>
+<p>The last step is to calculate the <span class="math notranslate nohighlight">\(p\)</span>-value. This is done by dividing the number of permuted statistics <em>larger</em> than the observed statistic plus one by the total number of permutations plus one. Or, mathematically, for <span class="math notranslate nohighlight">\(P\)</span> permutations, the <span class="math notranslate nohighlight">\(p\)</span>-value for any statistic <span class="math notranslate nohighlight">\(s\)</span> with observed value <span class="math notranslate nohighlight">\(s^{\mathrm{obs}}\)</span> and vector of permuted values <span class="math notranslate nohighlight">\(\mathbf{s}^{\mathrm{perm}}\)</span> is defined as:</p>
+<div class="amsmath math notranslate nohighlight" id="equation-bbb0abc8-2b5c-4a69-8040-dd3ef96ce174">
+<span class="eqno">(82)<a class="headerlink" href="#equation-bbb0abc8-2b5c-4a69-8040-dd3ef96ce174" title="Permalink to this equation">¶</a></span>\[\begin{align}
+p = \frac{\sum_{i=1}^{P}\mathbf{I}(\mathbf{s}^{\mathrm{perm}}_{i} \geq s^{\mathrm{obs}}) + 1}{P + 1}
+\end{align}\]</div>
+<p>where <span class="math notranslate nohighlight">\(\mathbf{I}\)</span> is an indicator function, returning <span class="math notranslate nohighlight">\(1\)</span> when the condition is true and <span class="math notranslate nohighlight">\(0\)</span> otherwise.</p>
+<p>We can also visualize it:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">t_perm</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">axvline</span><span class="p">(</span><span class="n">t_obs</span><span class="p">,</span> <span class="n">ls</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="s1">&#39;red&#39;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">([</span><span class="s1">&#39;observed&#39;</span><span class="p">,</span> <span class="s1">&#39;permuted&#39;</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$t$-value&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Frequency&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/group_level_analyses_45_0.png" src="../../_images/group_level_analyses_45_0.png" />
+</div>
+</div>
+<p>In the above figure, the number of values right of the dashed red line (<span class="math notranslate nohighlight">\(t^{obs}\)</span>) plus 1 divided by the number of permutations plus 1 (<span class="math notranslate nohighlight">\(P+1\)</span>) is our <span class="math notranslate nohighlight">\(p\)</span>-value! Now, try computing it yourself!</p>
+<div class='alert alert-warning'>
+    <b>ToDo</b> (ungraded): Compute the $p$-value corresponding to our observed $t$-statistic (<tt>t_obs</tt>) and store it in a variable named <tt>p_perm</tt>.
+</div><div class="cell tag_raises-exception tag_remove-output docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Implement your ToDo here</span>
+<span class="c1"># YOUR CODE HERE</span>
+<span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell tag_raises-exception tag_remove-output docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="sd">&#39;&#39;&#39; Tests the above ToDo. </span>
+<span class="sd">Note: this may differ slightly due to the exact implementation of the permutation procedure</span>
+<span class="sd">&#39;&#39;&#39;</span>
+<span class="n">np</span><span class="o">.</span><span class="n">testing</span><span class="o">.</span><span class="n">assert_almost_equal</span><span class="p">(</span><span class="n">p_perm</span><span class="p">,</span> <span class="mf">0.03</span><span class="p">,</span> <span class="n">decimal</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Well done!&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class='alert alert-warning'>
+    <b>ToDo</b> (ungraded): Shuffling rows works for most designs, but what if you have an intercept-only model (i.e., a one-sample $t$-test), where a design matrix consisting only of a vector of ones? Permuting the rows won't work there. An alternative for this scenario is "sign flipping": randomly changing ones to minus ones (with replacement).
+<p>Below, we simulate some new data (<tt>y_sim2</tt> and <tt>X2</tt>). Can you compute the non-parametric <span class="math notranslate nohighlight">\(p\)</span>-value for this one-sample <span class="math notranslate nohighlight">\(t\)</span>-test? Use a 1000 permutations and store the <span class="math notranslate nohighlight">\(p\)</span>-value in a new variable named <tt>p_perm2</tt>.</p>
+<p>Hint: to generate random “signs”, take a look <a href="https://stackoverflow.com/questions/46820182/randomly-generate-1-or-1-positive-or-negative-integer">here</a>.</p>
+</div><div class="cell tag_raises-exception tag_remove-output docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">17</span><span class="p">)</span>
+<span class="n">y_sim2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
+<span class="n">X2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="mi">100</span><span class="p">)[:,</span> <span class="n">np</span><span class="o">.</span><span class="n">newaxis</span><span class="p">]</span>
+
+<span class="n">iters</span> <span class="o">=</span> <span class="mi">1000</span>
+
+<span class="c1"># YOUR CODE HERE</span>
+<span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell tag_raises-exception tag_remove-output docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="sd">&#39;&#39;&#39; Tests the above ToDo. &#39;&#39;&#39;</span>
+<span class="c1"># The p-value might slightly differ from 0.17 depending on the</span>
+<span class="c1"># exact method of generating random signs.</span>
+<span class="n">np</span><span class="o">.</span><span class="n">testing</span><span class="o">.</span><span class="n">assert_almost_equal</span><span class="p">(</span><span class="n">p_perm2</span><span class="p">,</span> <span class="mf">0.17</span><span class="p">,</span> <span class="n">decimal</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Well done!&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="threshold-free-cluster-enhancement-tfce">
+<h3>Threshold-Free Cluster Enhancement (TFCE)<a class="headerlink" href="#threshold-free-cluster-enhancement-tfce" title="Permalink to this headline">¶</a></h3>
+<p>Apart from (or perhaps because of) the fact that non-parametric analyses are blind to the distribution of effects, non-parametric analyses have an additional advantage: they can use a “trick” called “Threshold-Free Cluster Enhancement” (TFCE). This method allows for voxel-based inference while taking into account the spatial size of the effect. You could see TFCE as a method to “boost” high-amplitude voxels that are located within a cluster of other high-amplitude voxels.</p>
+<p>However, we don’t know how these “boosted” values are distributed (they might or might not be <span class="math notranslate nohighlight">\(\mathcal{T}\)</span> distributed)! Fortunately, as said before, non-parameteric analyses don’t care how the computed statistic is distributed (under the null). How TFCE works mathematically is beyond the scope of the course (but you can learn more in <a class="reference external" href="https://www.youtube.com/watch?v=q7cWw8WC0Ws">this video</a>), but in fact recommend using this technique in combination with FSL’s <code class="docutils literal notranslate"><span class="pre">randomise</span></code> tool, also because it provides an elegant and effective way to control for multiple comparisons (the topic of section 3).</p>
+</div>
+</div>
+<div class="section" id="checking-out-results-from-group-level-feat-analyses">
+<h2>Checking out results from group-level FEAT analyses<a class="headerlink" href="#checking-out-results-from-group-level-feat-analyses" title="Permalink to this headline">¶</a></h2>
+<p>We have run a group-level model for a couple of our lower-level contrasts. The results from the group-level analysis that we are going to take a look at will be downloaded below:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Downloading group-level FSL FEAT results (+- 67MB) ...&quot;</span><span class="p">)</span>
+<span class="o">!</span>aws s3 sync --no-sign-request s3://openneuro.org/ds003477 <span class="o">{</span>data_dir<span class="o">}</span> --exclude <span class="s2">&quot;*&quot;</span> --include <span class="s2">&quot;derivatives/fsl/grouplevel_task-flocBLOCKED/contrast-faceGTother_method-FLAME1_thresh-uncorr05.gfeat/*&quot;</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Done!&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Downloading group-level FSL FEAT results (+- 67MB) ...
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Done!
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">gl_dir</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">fsl_deriv_dir</span><span class="p">,</span> <span class="s1">&#39;grouplevel_task-flocBLOCKED&#39;</span><span class="p">,</span> <span class="s1">&#39;contrast-faceGTother_method-FLAME1_thresh-uncorr05.gfeat&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Data is located here: </span><span class="si">{</span><span class="n">gl_dir</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Data is located here: /Users/lukas/NI-edu-data/derivatives/fsl/grouplevel_task-flocBLOCKED/contrast-faceGTother_method-FLAME1_thresh-uncorr05.gfeat
+</pre></div>
+</div>
+</div>
+</div>
+<p>This contains the results from the group-level analysis of the lower-level <span class="math notranslate nohighlight">\(4 \cdot \beta_{face} - \beta_{place} - \beta_{body} - \beta_{character} - \beta_{object} &gt; 0\)</span> contrast. (The “faceGTother” stands for “face greater than other conditions”.)</p>
+<div class='alert alert-warning'>
+    <b>ToDo</b> (ungraded): Open a terminal, navigate to the above directory, and print its contents to the terminal window.
+</div><p>You should see the usual files: HTML-reports, thresholded results (as nifti files), and files with information about the design (<code class="docutils literal notranslate"><span class="pre">design.con</span></code>, <code class="docutils literal notranslate"><span class="pre">design.fsf</span></code>, etc.).</p>
+<div class='alert alert-warning'>
+    <b>ToDo</b> (ungraded): Open the <tt>report.html</tt> file (with the command <tt>firefox report.html</tt>). Click on "Inputs", which will show you the data that we used as inputs (i.e., $y^{\dagger}$) for our group-level analysis.
+</div><p>As you can see, the inputs for our group-level analysis are not individual <code class="docutils literal notranslate"><span class="pre">cope*.nii.gz</span></code> files, but entire <code class="docutils literal notranslate"><span class="pre">.feat</span></code> directories. This is because we used the “Inputs are lower-level FEAT directories” option.</p>
+<div class='alert alert-warning'>
+    <b>ToDo</b> (ungraded): Click on "Results". This will show you a page with the simple "intercept-only" design (i.e., a design for a one-sample $t$-test). Now, click on "Lower-level contrast 1 (average)" to view in the group-level result from this particular run-level contrast.
+</div><p>On this page, you can view the results, as <span class="math notranslate nohighlight">\(z\)</span>-statistic images, from the group-level analysis plotted on a set of axial slices. Below the brain plot, you can see the “time series plot”, which does not actually show a “time series”, but rather the input (i.e., <span class="math notranslate nohighlight">\(y^{\dagger}\)</span>) of the voxel with the highest <span class="math notranslate nohighlight">\(z\)</span>-value. Thus, the “time series” here do not reflect datapoints over time (as in first-level analyses), but run-level <span class="math notranslate nohighlight">\(c\hat{\beta}^{*}\)</span> estimates of different subjects!</p>
+<div class='alert alert-warning'>
+    <b>ToDo</b> (ungraded): In your terminal, open <tt>FSLeyes</tt>. Then, click on <tt>File</tt> &rarr; <tt>Add standard</tt> &rarr; select <tt>MNI152_T1_2mm_brain.nii.gz</tt> &rarr; click on <tt>Open</tt>.
+<p>Then, click on <tt>File</tt> → <tt>Add from directory</tt> → navigate to and select the <tt>contrast-faceGTothers_method-FLAME1_thresh-uncorr05.gfeat/cope1.feat</tt> directory → click <tt>Open</tt>.</p>
+</div><p>This automatically opens the <code class="docutils literal notranslate"><span class="pre">filtered_func_data.nii.gz</span></code> file: a 4D nifti file with the run-level <span class="math notranslate nohighlight">\(c\hat{\beta}^{*}\)</span> estimates of different subjects across the fourth dimension (i.e., data from different subjects are represented by different volumes, our new <span class="math notranslate nohighlight">\(y^{\dagger}\)</span>).</p>
+<div class='alert alert-warning'>
+    <b>ToDo</b> (ungraded): Set the minimum value to 100 (in the top menu) and change the colormap to "Red-Yellow". Note that the minimum value of 100 is rather arbitrary, but it removes some of the "visual clutter".
+<p>Now, go to voxel <span class="math notranslate nohighlight">\([26, 39, 25]\)</span>, which is (roughly) located in the right fusiform gyrus (the “FFA”) and, <em>for this participant</em> (<tt>sub-02</tt>), seems to activate relatively strongly in response to faces (rather than to other images).</p>
+</div><div class='alert alert-warning'>
+    <b>ToDo</b> (ungraded): Increase the volume number from 0 to 1 (in the "Location" panel), which will show you the run-level $c\hat{\beta}^{*}$ estimates from a different subject (i.e., <tt>sub-03</tt>). You'll notice that this participant's "FFA" is in a slightly different location! In fact, when you view the other volumes (i.e., the $c\hat{\beta}^{*}$ maps of other subjects), you see that the anatomical location of the effects varies substantially!
+</div><div class='alert alert-info'>
+    <b>ToThink</b> (1 point): Name two reasons why an effect (i.e., a significant "blob") may differ in anatomical location across subjects.
+</div><p>YOUR ANSWER HERE</p>
+<p>Alright, now let’s look at some real group-level results in FSLeyes!</p>
+<div class='alert alert-warning'>
+    <b>ToDo</b> (ungraded): In FSLeyes, delete the <tt>cope1: filtered_func_data</tt> overlay (or make it invisible by clicking on the eye icon). Then, open the <tt>thresh_zstat1.nii.gz</tt> (<tt>File</tt> &rarr; <tt>Add from file</tt>) and set the colormap to "Red-Yellow".
+</div><p>Here, you see the “thresholded” <span class="math notranslate nohighlight">\(z\)</span>-values plotted on the template (MNI152, 2mm) that FSL by default uses for its group-analyses.</p>
+<div class='alert alert-warning'>
+    <b>ToDo/ToThink</b> (1 point): Go to the voxel at location $[37, 60, 28]$. According to the Harvard-Oxford Subcortical structural atlas, to what anatomical brain region does this voxel most likely belong? Write this down in the text cell below. Check out the notebook from last week if you forgot how to open the Atlas panel.
+</div><p>YOUR ANSWER HERE</p>
+<p>The red-yellow voxels that you see are those that have <span class="math notranslate nohighlight">\(z\)</span>-values corresponding to <span class="math notranslate nohighlight">\(p\)</span>-values smaller than 0.05 (the other voxels with <span class="math notranslate nohighlight">\(p\)</span> &gt; 0.05 are set to 0). This particular thresholding procedure gives what people often refer to as “uncorrected results”. Although they are thresholded at a particular <span class="math notranslate nohighlight">\(p\)</span>-value, the results are referred to as “uncorrected” because they have not been corrected for multiple comparisons — the topic of the next notebook (<code class="docutils literal notranslate"><span class="pre">MCC.ipynb</span></code>).</p>
+<div class='alert alert-success'>
+    <b>Tip!</b>
+    Before handing in your notebooks, we recommend restarting your kernel (<em>Kernel</em> &rarr; <em>Restart & Clear Ouput</em>) and running all your cells again (manually, or by <em>Cell</em> &rarr; <em>Run all</em>). By running all your cells one by one (from "top" to "bottom" of the notebook), you may spot potential errors that are caused by accidentally overwriting your variables or running your cells out of order (e.g., defining the variable 'x' in cell 28 which you then use in cell 15).
+</div></div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./fMRI-introduction/week_6"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        </div>
+    </div>
+    
+    
+    <div class='prev-next-bottom'>
+        
+    <a class='left-prev' id="prev-link" href="../../section_intros/6_grouplevel.html" title="previous page">Group-level analyses</a>
+    <a class='right-next' id="next-link" href="MCC.html" title="next page">Multiple comparison correction (MCC)</a>
+
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By Lukas Snoek<br/>
+        
+            &copy; Copyright 2021.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+
+    
+  <script src="../../_static/js/index.3da636dd464baa7582d2.js"></script>
+
+
+    
+  </body>
+</html>

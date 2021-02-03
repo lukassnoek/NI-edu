@@ -1,0 +1,1134 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Multiple comparison correction (MCC) &#8212; NI-edu</title>
+    
+  <link rel="stylesheet" href="../../_static/css/index.73d71520a4ca3b99cfee5594769eaaae.css">
+
+    
+  <link rel="stylesheet"
+    href="../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+  <link rel="stylesheet"
+    href="../../_static/vendor/open-sans_all/1.44.1/index.css">
+  <link rel="stylesheet"
+    href="../../_static/vendor/lato_latin-ext/1.44.1/index.css">
+
+    
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/sphinx-book-theme.40e2e510f6b7d1648584402491bb10fe.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../../_static/js/index.3da636dd464baa7582d2.js">
+
+    <script id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/togglebutton.js"></script>
+    <script src="../../_static/clipboard.min.js"></script>
+    <script src="../../_static/copybutton.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../../_static/sphinx-book-theme.d31b09fe5c1d09cb49b26a786de4a05d.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.0/dist/embed-amd.js"></script>
+    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="../../_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="ROI analysis" href="ROI_analysis.html" />
+    <link rel="prev" title="Group-level analyses" href="group_level_analyses.html" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+
+
+
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+<a class="navbar-brand text-wrap" href="../../index.html">
+  
+  <img src="../../_static/fmri.gif" class="logo" alt="logo">
+  
+  
+  <h1 class="site-logo" id="site-title">NI-edu</h1>
+  
+</a>
+</div><form class="bd-search d-flex align-items-center" action="../../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form>
+<nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+    <ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../index.html">
+   Welcome to NI-edu
+  </a>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  Getting started
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../getting_started/about.html">
+   About this course
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../getting_started/installation.html">
+   Installation
+  </a>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  fMRI-introduction
+ </span>
+</p>
+<ul class="current nav sidenav_l1">
+ <li class="toctree-l1 collapsible-parent">
+  <a class="reference internal" href="../../section_intros/1_python.html">
+   Python for (f)MRI analysis
+  </a>
+  <ul class="collapse-ul">
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../other/python_recap.html">
+     Python recap
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../week_1/python_for_mri.html">
+     Working with MRI data in Python (T)
+    </a>
+   </li>
+  </ul>
+  <i class="fas fa-chevron-down">
+  </i>
+ </li>
+ <li class="toctree-l1 collapsible-parent">
+  <a class="reference internal" href="../../section_intros/2_glm.html">
+   Using the GLM to model fMRI data
+  </a>
+  <ul class="collapse-ul">
+   <li class="toctree-l2">
+    <a class="reference internal" href="../week_2/glm_part1_estimation.html">
+     The GLM: estimation (T)
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../week_3/glm_part2_inference.html">
+     The GLM: inference (T)
+    </a>
+   </li>
+  </ul>
+  <i class="fas fa-chevron-down">
+  </i>
+ </li>
+ <li class="toctree-l1 collapsible-parent">
+  <a class="reference internal" href="../../section_intros/3_design_of_experiments_T.html">
+   Design of experiments
+  </a>
+  <ul class="collapse-ul">
+   <li class="toctree-l2">
+    <a class="reference internal" href="../week_3/design_of_experiments.html">
+     Design of experiments (T)
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../week_3/neurodesign.html">
+     Neurodesign (T)
+    </a>
+   </li>
+  </ul>
+  <i class="fas fa-chevron-down">
+  </i>
+ </li>
+ <li class="toctree-l1 collapsible-parent">
+  <a class="reference internal" href="../../section_intros/4_preprocessing.html">
+   Preprocessing
+  </a>
+  <ul class="collapse-ul">
+   <li class="toctree-l2">
+    <a class="reference internal" href="../week_4/temporal_preprocessing.html">
+     Temporal preprocessing (T)
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../week_4/spatial_preprocessing.html">
+     Spatial preprocessing (T)
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../week_4/fmriprep.html">
+     Fmriprep (T)
+    </a>
+   </li>
+  </ul>
+  <i class="fas fa-chevron-down">
+  </i>
+ </li>
+ <li class="toctree-l1 collapsible-parent">
+  <a class="reference internal" href="../../section_intros/5_multilevel.html">
+   First &amp; run-level analyses
+  </a>
+  <ul class="collapse-ul">
+   <li class="toctree-l2">
+    <a class="reference internal" href="../week_5/linux_and_the_command_line.html">
+     Linux and the CMD (T)
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../week_5/first_level_analyses.html">
+     First level analyses (T)
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../week_5/run_level_analyses.html">
+     Run-level analyses (T)
+    </a>
+   </li>
+  </ul>
+  <i class="fas fa-chevron-down">
+  </i>
+ </li>
+ <li class="toctree-l1 current active collapsible-parent">
+  <a class="reference internal" href="../../section_intros/6_grouplevel.html">
+   Group-level analyses
+  </a>
+  <ul class="current collapse-ul">
+   <li class="toctree-l2">
+    <a class="reference internal" href="group_level_analyses.html">
+     Group-level analyses (T)
+    </a>
+   </li>
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
+     Multiple comparison correction (T)
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="ROI_analysis.html">
+     ROI analysis (T)
+    </a>
+   </li>
+  </ul>
+  <i class="fas fa-chevron-down">
+  </i>
+ </li>
+ <li class="toctree-l1 collapsible-parent">
+  <a class="reference internal" href="../../section_intros/7_nilearn.html">
+   Introduction to Nilearn
+  </a>
+  <ul class="collapse-ul">
+   <li class="toctree-l2">
+    <a class="reference internal" href="../week_7/nilearn.html">
+     Introduction to Nilearn (T)
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../week_7/nilearn_stats.html">
+     Statistics with Nilearn (T)
+    </a>
+   </li>
+  </ul>
+  <i class="fas fa-chevron-down">
+  </i>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  fMRI-pattern-analysis
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../fMRI-pattern-analysis/week_1/design_and_pattern_estimation.html">
+   Design and pattern estimation (T)
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../fMRI-pattern-analysis/week_2/decoding_analyses.html">
+   Machine learning/decoding (T)
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../fMRI-pattern-analysis/week_3/rsa.html">
+   Representational Similarity Analysis (T)
+  </a>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  Misc
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../misc/bibliography.html">
+   Bibliography
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../misc/for_educators.html">
+   For educators
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../misc/CONTRIBUTING.html">
+   Contributing
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../misc/CONDUCT.html">
+   Code of Conduct
+  </a>
+ </li>
+</ul>
+
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="row topbar fixed-top container-xl">
+    <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show">
+    </div>
+    <div class="col pl-2 topbar-main">
+        
+        <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+            data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+            aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+            title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+            <i class="fas fa-bars"></i>
+            <i class="fas fa-arrow-left"></i>
+            <i class="fas fa-arrow-up"></i>
+        </button>
+        
+        
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../../_sources/fMRI-introduction/week_6/MCC.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+        <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/lukassnoek/NI-edu"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        <a class="issues-button"
+            href="https://github.com/lukassnoek/NI-edu/issues/new?title=Issue%20on%20page%20%2FfMRI-introduction/week_6/MCC.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
+        <a class="edit-button" href="https://github.com/lukassnoek/NI-edu/edit/master/NI-edu/fMRI-introduction/week_6/MCC.ipynb"><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Edit this page"><i class="fas fa-pencil-alt"></i>suggest edit</button></a>
+    </div>
+</div>
+
+
+        <!-- Full screen (wrap in <a> to have style consistency -->
+        <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+                data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+                title="Fullscreen mode"><i
+                    class="fas fa-expand"></i></button></a>
+
+        <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/lukassnoek/NI-edu/master?urlpath=tree/NI-edu/fMRI-introduction/week_6/MCC.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="../../_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        <a class="jupyterhub-button" href="https://neuroimaging.lukas-snoek.com/hub/user-redirect/git-pull?repo=https://github.com/lukassnoek/NI-edu&urlpath=tree/NI-edu/NI-edu/fMRI-introduction/week_6/MCC.ipynb&branch=master"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch JupyterHub" data-toggle="tooltip"
+                data-placement="left"><img class="jupyterhub-button-logo"
+                    src="../../_static/images/logo_jupyterhub.svg"
+                    alt="Interact on JupyterHub">JupyterHub</button></a>
+        
+        
+        
+    </div>
+</div>
+
+    </div>
+
+    <!-- Table of contents -->
+    <div class="d-none d-md-block col-md-2 bd-toc show">
+        
+        <div class="tocsection onthispage pt-5 pb-3">
+            <i class="fas fa-list"></i> Contents
+        </div>
+        <nav id="bd-toc-nav">
+            <ul class="nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#why-do-we-need-mcc">
+   Why do we need MCC?
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#the-example">
+     The example
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#the-data">
+   The data
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#uncorrected-statistics-maps">
+   Uncorrected statistics maps
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#bonferroni-correction">
+   Bonferroni-correction
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#fdr-correction">
+   FDR correction
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#rft-based-correction">
+   RFT-based correction
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#voxel-level-rft">
+     Voxel-level RFT
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#cluster-level-rft">
+     Cluster-level RFT
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#non-parametric-mcc">
+   Non-parametric MCC
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#exercise-on-new-data">
+   Exercise on new data
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#effect-of-different-mcc-strategies-on-real-data">
+   Effect of different MCC strategies on real data
+  </a>
+ </li>
+</ul>
+
+        </nav>
+        
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="multiple-comparison-correction-mcc">
+<h1>Multiple comparison correction (MCC)<a class="headerlink" href="#multiple-comparison-correction-mcc" title="Permalink to this headline">¶</a></h1>
+<p>In this notebook, we’ll continue with the topic of multiple comparison correction (MCC).</p>
+<p><strong>What you’ll learn</strong>: after this lab, you’ll …</p>
+<ul class="simple">
+<li><p>know the relative advantages and disadvantages of different MCC techniques</p></li>
+</ul>
+<p><strong>Estimated time needed to complete</strong>: 1 hour<br>
+<strong>Credits</strong>: This notebook is based on a blog by <a class="reference external" href="https://matthew-brett.github.io/teaching/random_fields.html">Matthew Brett</a> and a previous Matlab-based lab by H. Steven Scholte.</p>
+<div class="section" id="why-do-we-need-mcc">
+<h2>Why do we need MCC?<a class="headerlink" href="#why-do-we-need-mcc" title="Permalink to this headline">¶</a></h2>
+<p>Univariate analyses of fMRI data essentially test hypotheses about your data (operationalized as contrasts between your <span class="math notranslate nohighlight">\(\hat{\beta}\)</span> estimates) <em>for each voxel</em> separately. So, in practice, given that the MNI (2 mm) standard template brain contains about 260,000 voxels, you’re conducting 260,000 different statistical tests! The obvious problem, here, is that some tests might turn out significant, while they in fact do not contain any (task-related) activity: the result is driven just by chance.</p>
+<p>As a researcher, you should strive to “filter out” the results which are driven by noise (<em>false positives</em>) and keep the results which are actually driven by the true effect (<em>true positives</em>) as much as possible. It turns out that the more tests you do, the larger the chance is that you will find one or more <em>false positives</em>. To deal with this, researchers often employ techniques for <em>multiple comparison correction</em> (MCC): <strong>correcting</strong> for the inflated chance of false positives when you have <strong>multiple</strong> tests (<strong>comparisons</strong>).</p>
+<p>In this tutorial, we will walk you through an example (simulated) dataset on which different MCC techniques are employed. We’ll focus on how these different techniques influence the chance for finding false positives.</p>
+<div class="section" id="the-example">
+<h3>The example<a class="headerlink" href="#the-example" title="Permalink to this headline">¶</a></h3>
+<p>We’ll work with the (simulated) group-level results of a hypothetical fMRI experiment. Suppose that the subjects in our hypothetical experiment were shown pictures of cats in the scanner, because we (the experimenters) were interested in which voxels would (de)activate significantly in reponse to these cat pictures (i.e. a contrast of the cat-picture-condition against baseline).</p>
+<p>An example of an image shown to the subjects:
+<img alt="test" src="../../_images/cute_cat.jpeg" /></p>
+<p>After extensive preprocessing, we fitted first-level models in which we evaluated the cat-against-baseline contrast, in which the <span class="math notranslate nohighlight">\(t\)</span>-statistic refers to how strongly each voxel responded to the pictures of cats. After doing a proper group-level analysis, we now have a group-level <span class="math notranslate nohighlight">\(t\)</span>-statistic map, reflecting whether voxels on average (de)activated in response to the pictures of cats.</p>
+<div class='alert alert-info'>
+<b>ToThink</b> (0.5 point): On average, what group-level $t$-statistic would you (approximately) expect to find if, in fact, there would be no voxel which reliably (de)activated in response to the cat-pictures?
+</div><p>YOUR ANSWER HERE</p>
+</div>
+</div>
+<div class="section" id="the-data">
+<h2>The data<a class="headerlink" href="#the-data" title="Permalink to this headline">¶</a></h2>
+<p>Usually, your whole-brain group-level results are 3D <span class="math notranslate nohighlight">\(z\)</span>- or <span class="math notranslate nohighlight">\(t\)</span>-statictic maps of the size of a standard brain (usually the MNI 2mm template, which has about 260,000 voxels). Plotting in 3D, however, is incredibly cumbersome, so for the sake of the example, we’ll assume that our group-level results are represented as a 2D <span class="math notranslate nohighlight">\(z\)</span>-statistic map, with dimensions <span class="math notranslate nohighlight">\(200 \times 200\)</span>. So, we’ll pretend we analyzed the results based on a 2D brain with <span class="math notranslate nohighlight">\(200 \times 200\)</span> “voxels”.</p>
+<p>Because we work with simulated data, we can actually specify the “true effect”. In reality, we never know this of course! We are going to assume that there is a small “blob” of voxels in the middle of our “brain” that activates reliably to pictures of cats (with a <span class="math notranslate nohighlight">\(z\)</span>-value of 5.5). This blob is therefore the true effect in our simulation.</p>
+<p>Let’s first simulate the data.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="c1"># You don&#39;t have to understand how this simulation works exactly</span>
+<span class="n">k</span> <span class="o">=</span> <span class="mi">200</span>  <span class="c1"># number of vox in each dimension</span>
+<span class="n">signal</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">k</span><span class="p">,</span> <span class="n">k</span><span class="p">))</span>
+<span class="n">r</span> <span class="o">=</span> <span class="mi">10</span>  <span class="c1"># middle of the image</span>
+<span class="n">a</span><span class="p">,</span> <span class="n">b</span> <span class="o">=</span> <span class="n">k</span> <span class="o">//</span> <span class="mi">2</span><span class="p">,</span> <span class="n">k</span> <span class="o">//</span> <span class="mi">2</span>  <span class="c1"># width and height of the circle</span>
+<span class="n">y</span><span class="p">,</span> <span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ogrid</span><span class="p">[</span><span class="o">-</span><span class="n">a</span><span class="p">:</span><span class="n">k</span><span class="o">-</span><span class="n">a</span><span class="p">,</span> <span class="o">-</span><span class="n">b</span><span class="p">:</span><span class="n">k</span><span class="o">-</span><span class="n">b</span><span class="p">]</span>
+<span class="n">mask</span> <span class="o">=</span> <span class="n">x</span> <span class="o">*</span> <span class="n">x</span> <span class="o">+</span> <span class="n">y</span> <span class="o">*</span> <span class="n">y</span> <span class="o">&lt;=</span> <span class="n">r</span> <span class="o">*</span> <span class="n">r</span>
+<span class="n">signal</span><span class="p">[</span><span class="n">mask</span><span class="p">]</span> <span class="o">=</span> <span class="mf">5.5</span>  <span class="c1"># amplitude of effect!</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Shape of statistic map: </span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">signal</span><span class="o">.</span><span class="n">shape</span><span class="p">,))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Shape of statistic map: (200, 200)
+</pre></div>
+</div>
+</div>
+</div>
+<p>Alright, now let’s plot the true effect as a 2D image. We’ll define a custom function for this, <code class="docutils literal notranslate"><span class="pre">plot_sim_brain</span></code>, to save us some work later.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+
+<span class="k">def</span> <span class="nf">plot_sim_brain</span><span class="p">(</span><span class="n">brain</span><span class="p">,</span> <span class="n">mask</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">vmin</span><span class="o">=-</span><span class="mi">7</span><span class="p">,</span> <span class="n">vmax</span><span class="o">=</span><span class="mi">7</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;seismic&#39;</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Z-value&#39;</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot; Plots an image of a simulated 2D &#39;brain&#39; with statistic values, which may be &#39;masked&#39;.</span>
+<span class="sd">    </span>
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    brain : numpy array</span>
+<span class="sd">        A 2D numpy array with statistics</span>
+<span class="sd">    mask : numpy array (or None)</span>
+<span class="sd">        A 2D numpy array with booleans (True = do plot, False = do not plot). If None,</span>
+<span class="sd">        the &#39;brain&#39; is not masked.</span>
+<span class="sd">    vmin : int/float</span>
+<span class="sd">        Minimum value of colorbar</span>
+<span class="sd">    vmax : int/float</span>
+<span class="sd">        Maximum value of colorbar</span>
+<span class="sd">    cmap : str</span>
+<span class="sd">        Name of colormap to use</span>
+<span class="sd">    title : str</span>
+<span class="sd">        Title of plot</span>
+<span class="sd">    label : str</span>
+<span class="sd">        Label for colorbar</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    
+    <span class="n">brainm</span> <span class="o">=</span> <span class="n">brain</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+    <span class="k">if</span> <span class="n">mask</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>  <span class="c1"># threshold!</span>
+        <span class="n">brainm</span><span class="p">[</span><span class="o">~</span><span class="n">mask</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
+
+    <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">10</span><span class="p">))</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">brainm</span><span class="p">,</span> <span class="n">vmin</span><span class="o">=</span><span class="n">vmin</span><span class="p">,</span> <span class="n">vmax</span><span class="o">=</span><span class="n">vmax</span><span class="p">,</span> <span class="n">aspect</span><span class="o">=</span><span class="s1">&#39;auto&#39;</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="n">cmap</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s1">&#39;off&#39;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="n">title</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">25</span><span class="p">)</span>
+    
+    <span class="n">cb</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">colorbar</span><span class="p">(</span><span class="n">orientation</span><span class="o">=</span><span class="s1">&#39;horizontal&#39;</span><span class="p">,</span> <span class="n">pad</span><span class="o">=</span><span class="mf">0.05</span><span class="p">)</span>
+    <span class="n">cb</span><span class="o">.</span><span class="n">set_label</span><span class="p">(</span><span class="n">label</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+    
+<span class="n">plot_sim_brain</span><span class="p">(</span><span class="n">signal</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s2">&quot;True effect&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/MCC_8_0.png" src="../../_images/MCC_8_0.png" />
+</div>
+</div>
+<p>Now, due to the inherent spatial smoothness of fMRI, this particular manifestation of the effect is not very realistic. In particular, the sharp “edges” of the effect are unlikely to occur in real fMRI data. Therefore, to make it a little more realistic, we can spatially smooth the “true effect map”! We will use the <code class="docutils literal notranslate"><span class="pre">gaussian_filter</span></code> function (from <code class="docutils literal notranslate"><span class="pre">scipy.ndimage</span></code>) with a FWHM of 12 “voxels”.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">scipy.ndimage</span> <span class="kn">import</span> <span class="n">gaussian_filter</span>
+
+<span class="n">fwhm</span> <span class="o">=</span> <span class="mi">12</span>
+<span class="c1"># Convert FWHM to sigma</span>
+<span class="n">sigma</span> <span class="o">=</span> <span class="n">fwhm</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">8</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="mi">2</span><span class="p">))</span>
+<span class="n">signal_smooth</span> <span class="o">=</span> <span class="n">gaussian_filter</span><span class="p">(</span><span class="n">signal</span><span class="p">,</span> <span class="n">sigma</span><span class="o">=</span><span class="n">sigma</span><span class="p">)</span>
+<span class="n">plot_sim_brain</span><span class="p">(</span><span class="n">signal_smooth</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s2">&quot;True effect (smooth)&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/MCC_10_0.png" src="../../_images/MCC_10_0.png" />
+</div>
+</div>
+<p>As you’ve learned in the past weeks, the chances are very slim that you’ll find such a “crisp” (true) effect as shown above; often, you might observe significant voxels that are not driven by a true effect, but by (spurious) noise, reflecting false positives.</p>
+<p>So, let’s make our data a little more realistic by simulating some random noise, sampled from a normal distribution with mean 0 and a standard deviation of 1. Importantly, we are also going to smooth our noise with the same gaussian filter (with FWHM = 12):</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>  <span class="c1"># for reproducibility</span>
+<span class="n">noise</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="n">signal</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+<span class="n">noise</span> <span class="o">=</span> <span class="n">gaussian_filter</span><span class="p">(</span><span class="n">noise</span><span class="p">,</span> <span class="n">sigma</span><span class="o">=</span><span class="n">sigma</span><span class="p">)</span>
+<span class="n">noise</span> <span class="o">=</span> <span class="n">noise</span> <span class="o">/</span> <span class="n">noise</span><span class="o">.</span><span class="n">std</span><span class="p">()</span>
+
+<span class="n">plot_sim_brain</span><span class="p">(</span><span class="n">noise</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;The noise&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/MCC_12_0.png" src="../../_images/MCC_12_0.png" />
+</div>
+</div>
+<p>Now, to complete our simulation, we’ll simply add the signal and the noise together (we’ll call this variable <code class="docutils literal notranslate"><span class="pre">data</span></code>).</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data</span> <span class="o">=</span> <span class="n">signal_smooth</span> <span class="o">+</span> <span class="n">noise</span>
+<span class="n">plot_sim_brain</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;The data!&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/MCC_14_0.png" src="../../_images/MCC_14_0.png" />
+</div>
+</div>
+<p>The plot above now represents our simulated data, which contains both a true signal (the “blob” in the middle) and some (spatially correlated) noise. As a researcher, you aim to threshold your data in such a way that you maximize the chance of finding your true signal (true positive effects) and minimize the chance of erroneously treating noise as significant effects (false positive effects).</p>
+</div>
+<div class="section" id="uncorrected-statistics-maps">
+<h2>Uncorrected statistics maps<a class="headerlink" href="#uncorrected-statistics-maps" title="Permalink to this headline">¶</a></h2>
+<p>In the early days of fMRI analyses, the extent of the MCC problem (more tests = more false positives) was not yet widely known. What researchers simply did was to calculate the <span class="math notranslate nohighlight">\(p\)</span>-values corresponding to the <span class="math notranslate nohighlight">\(z\)</span>-value (or <span class="math notranslate nohighlight">\(t\)</span>-value) maps and threshold those <span class="math notranslate nohighlight">\(p\)</span>-values using some fixed cutoff (“alpha value”), usually 0.05 or 0.01.</p>
+<p>To implement this, we can convert all our <span class="math notranslate nohighlight">\(z\)</span>-values to <span class="math notranslate nohighlight">\(p\)</span>-values, compute a “mask” (i.e., an array with <code class="docutils literal notranslate"><span class="pre">True</span></code> and <code class="docutils literal notranslate"><span class="pre">False</span></code> values, indicating which “voxels” survive the threshold and which do not), and set all “voxels” outside the mask to 0.</p>
+<p>Let’s choose a significance level (<span class="math notranslate nohighlight">\(\alpha\)</span>) of 0.05.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">alpha</span> <span class="o">=</span> <span class="mf">0.05</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Now, let’s convert the <span class="math notranslate nohighlight">\(z\)</span>-values (in the variable <code class="docutils literal notranslate"><span class="pre">data</span></code>) to <span class="math notranslate nohighlight">\(p\)</span>-values. We’ll use the <code class="docutils literal notranslate"><span class="pre">stats.norm.sf</span></code> function from the <code class="docutils literal notranslate"><span class="pre">scipy</span></code> package for this. (This is the same type of function — a “survival function” — that we used to calculate the <span class="math notranslate nohighlight">\(p\)</span>-values corresponding to <span class="math notranslate nohighlight">\(t\)</span>-values before, but this time we use it for <span class="math notranslate nohighlight">\(z\)</span>-values)</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># This line converts the z-values to p-values</span>
+<span class="kn">from</span> <span class="nn">scipy</span> <span class="kn">import</span> <span class="n">stats</span>
+
+<span class="n">data_pvals</span> <span class="o">=</span> <span class="n">stats</span><span class="o">.</span><span class="n">norm</span><span class="o">.</span><span class="n">sf</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class='alert alert-warning'>
+    <b>ToDo</b> (1 point): Compute how many voxels are deemed to be "significant" (assuming $\alpha = 0.05$), using the variable <tt>data_pvals</tt>, in this approach in which we neglect the multiple comparison approach. Store this number (an integer) in a new variable named <tt>nsig_uncorrected</tt>.
+</div><div class="cell tag_raises-exception tag_remove-output docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Implement your ToDo here</span>
+<span class="c1"># YOUR CODE HERE</span>
+<span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell tag_raises-exception tag_remove-output docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="sd">&#39;&#39;&#39; Tests the above ToDo. &#39;&#39;&#39;</span>
+<span class="kn">from</span> <span class="nn">niedu.tests.nii.week_6</span> <span class="kn">import</span> <span class="n">test_nsig_uncorrected</span>   
+<span class="n">test_nsig_uncorrected</span><span class="p">(</span><span class="n">data_pvals</span><span class="p">,</span> <span class="n">alpha</span><span class="p">,</span> <span class="n">nsig_uncorrected</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>We can create a “mask” by comparing our <span class="math notranslate nohighlight">\(p\)</span>-values to our significance level and we can give this mask to our plotting-function (<code class="docutils literal notranslate"><span class="pre">plot_sim_brain</span></code>), which will set all “voxels” outside the mask (i.e., those which are <code class="docutils literal notranslate"><span class="pre">False</span></code> in the mask) to 0.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">smaller_than_alpha</span> <span class="o">=</span> <span class="n">data_pvals</span> <span class="o">&lt;</span> <span class="n">alpha</span>
+<span class="c1"># Note that &#39;smaller_than_alpha&#39; is a 2D numpy array with booleans</span>
+
+<span class="n">plot_sim_brain</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">mask</span><span class="o">=</span><span class="n">smaller_than_alpha</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="sa">r</span><span class="s1">&#39;Uncorrected ($p &lt; </span><span class="si">%.4f</span><span class="s1">$)&#39;</span> <span class="o">%</span> <span class="n">alpha</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/MCC_24_0.png" src="../../_images/MCC_24_0.png" />
+</div>
+</div>
+<div class='alert alert-warning'>
+    <b>ToDo/ToThink</b> (1 point): Change the value of $\alpha$ (i.e., the variable <tt>alpha</tt>) from before to 0.01. Does the resulting thresholded map look "better"? And what about 0.001? And 0.0001? Theoretically, you could try different values to see what gives the "best" results. This practice of trying out different parameters or strategies leads to another problem: can you think of what this could be? Write down your answer below.
+</div><p>YOUR ANSWER HERE</p>
+</div>
+<div class="section" id="bonferroni-correction">
+<h2>Bonferroni-correction<a class="headerlink" href="#bonferroni-correction" title="Permalink to this headline">¶</a></h2>
+<p>Obviously, given that we know our “true effect”, we can see that the uncorrected results contain <em>a lot</em> of false positives, something that we’d like to avoid! The most obvious way to counter the MCC problem is to adjust the significance level (<span class="math notranslate nohighlight">\(\alpha\)</span>) by the amount of tests we’re performing. Bonferroni correction is such an approach. The way the Bonferroni method does this is by simply dividing the significance level by the amount of tests.</p>
+<div class='alert alert-warning'>
+<b>ToDo</b> (1 point): Calculate the Bonferroni-adjusted significance level (and store this in a variable named <tt>bonf_alpha</tt>) and create a new mask by comparing the previously computed $p$-values against this new significance level. Then, plot the data (using <tt>plot_sim_brain</tt>) with the mask you just created.
+</div><div class="cell tag_raises-exception tag_remove-output docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="sd">&quot;&quot;&quot; Implement the ToDo here. &quot;&quot;&quot;</span>
+
+<span class="c1"># YOUR CODE HERE</span>
+<span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell tag_raises-exception tag_remove-output docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="sd">&#39;&#39;&#39; Tests the above ToDo. &#39;&#39;&#39;</span>
+<span class="kn">from</span> <span class="nn">niedu.tests.nii.week_6</span> <span class="kn">import</span> <span class="n">test_bonferroni_alpha</span>
+<span class="n">test_bonferroni_alpha</span><span class="p">(</span><span class="n">alpha</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">bonf_alpha</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class='alert alert-info'>
+<b>ToThink</b> (not graded): Many argue that Bonferroni correction for whole-brain fMRI results is too strict (conservative), which is also the case in our simulation (the recovered "blob" is a lot smaller than the true effect).
+<p>This conservative nature of Bonferroni correction, for fMRI at least, is due to the violation of a crucial assumption of Bonferroni correctoin. Which assumption is this, and why does fMRI data/results likely violate this assumption?</p>
+</div><p>YOUR ANSWER HERE</p>
+</div>
+<div class="section" id="fdr-correction">
+<h2>FDR correction<a class="headerlink" href="#fdr-correction" title="Permalink to this headline">¶</a></h2>
+<p>As you’ve seen so far, uncorrected results tend to be too liberal (too many false positives) and Bonferroni-corrected results are too strict (too many false negatives). The “False Discovery Rate-correction” (FDR) technique is a method to adjust <span class="math notranslate nohighlight">\(p\)</span>-values in a less stringent way. Essentially, while traditional MCC methods (such as Bonferroni) try to control the chance of finding at least one false positive result <strong>amongst all your tests</strong> (i.e. controlling the “familywise error rate” method), the FDR-method tries to limit the proportion of false positives <strong>amongst all your tests which turned out significant</strong>. So, if you set your “FDR-proportion” (confusingly also referred to as “alpha”) to 0.05, then it will adjust your initial <span class="math notranslate nohighlight">\(p\)</span>-values such that out of all your significant results, on average 5% will be false positives.</p>
+<p>In general, FDR-correction is more sensitive than the Bonferroni correction method (i.e. FDR has a lower type 2 error rate/it is less strict), but if you use it, you <em>do</em> have to accept that about 5% of your (significant) results are false positives!</p>
+<p>Now, let’s check out what our results look like after FDR correction:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">statsmodels.stats.multitest</span> <span class="kn">import</span> <span class="n">fdrcorrection</span>
+<span class="n">alpha_fdr</span> <span class="o">=</span> <span class="mf">0.05</span> <span class="c1"># we use an alpha of 0.05 (5%)</span>
+
+<span class="c1"># The fdrcorrection function already returns a &quot;mask&quot;</span>
+<span class="c1"># Note that it doesn&#39;t accept 2D arrays, so we ravel() and then reshape() it</span>
+<span class="n">fdr_mask</span> <span class="o">=</span> <span class="n">fdrcorrection</span><span class="p">(</span><span class="n">data_pvals</span><span class="o">.</span><span class="n">ravel</span><span class="p">(),</span> <span class="n">alpha</span><span class="o">=</span><span class="n">alpha_fdr</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">fdr_mask</span> <span class="o">=</span> <span class="n">fdr_mask</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+
+<span class="n">plot_sim_brain</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">mask</span><span class="o">=</span><span class="n">fdr_mask</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;FDR correction&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/MCC_34_0.png" src="../../_images/MCC_34_0.png" />
+</div>
+</div>
+<p>As you can see, the FDR-correction is way more sensitive than the Bonferroni correction (it “recovers” more of the true signal), but it still results in many false positives (but not as many as uncorrected data).</p>
+</div>
+<div class="section" id="rft-based-correction">
+<h2>RFT-based correction<a class="headerlink" href="#rft-based-correction" title="Permalink to this headline">¶</a></h2>
+<p>As you’ve seen in the previous examples, it’s quite hard to pick a significance level that strikes a good balance between type 1 errors and type 2 errors, or, phrased differently, between sensitivity (with respect to discovering the true signal) and specificy (i.e. how many of our significant voxels are driven by a true effect).</p>
+<p>Let’s go back to the results of the Bonferroni correction. We’ve seen that the results are extremely conservative (few false positives, but many false negatives, i.e. large type 2 error). The major reason for this is that the correction assumes that each test is <em>independent</em>, but in our simulation (and in any fMRI dataset), we <em>know</em> that there exists spatial correlation, meaning that our tests are <em>not</em> independent. In other words, if we know that a certain voxel is signficant in a certain test, it is quite likely that the voxel directly <em>next</em> (or above/below) to it is also significant. Therefore, spatially correlated fMRI statistic maps violate Bonferroni’s assumption of independent tests (this is also the answer to the ToThink from earlier).</p>
+<p>As a possible solution to this problem, neuroscientists have developed a method — random field theory — that allows for multiple comparison correction (using FWER) that “corrects” for the smoothness in our data and thresholds accordingly.</p>
+<p>Importantly, RFT-correction can either be performed at the voxel-level (testing whether the <em>amplitude</em>, i.e., height of the statistic of a voxel is significant, given the smoothness of the data) and at the cluster-level (testing whether the <em>size</em> of a cluster of voxels is significantly large, given the smoothness of the data). We’ll start with voxel-level RFT.</p>
+<div class="section" id="voxel-level-rft">
+<h3>Voxel-level RFT<a class="headerlink" href="#voxel-level-rft" title="Permalink to this headline">¶</a></h3>
+<p>Voxel-level RFT allows for “smoothness-adjusted” thresholding for individual voxels. It does so by assuming a particular distribution for the <em>number of clusters</em> (or “blobs”) one would observe given (1) a particular initial threshold and (2) the smoothness of the data, assuming there is no effect (i.e., the null hypothesis is true). This expected “number of blobs” after thresholding is known as the <em>Euler characteristic</em>. And for standard normal data (i.e., <span class="math notranslate nohighlight">\(z\)</span>-statistics), the expected Euler characteristic is computed as:</p>
+<div class="amsmath math notranslate nohighlight" id="equation-48254b68-769a-4531-a00b-f780ad30d228">
+<span class="eqno">(83)<a class="headerlink" href="#equation-48254b68-769a-4531-a00b-f780ad30d228" title="Permalink to this equation">¶</a></span>\[\begin{align}
+EC = N_{resel}\ (4\ \log_{e}2)\ (2\pi)^{-\frac{2}{3}}\ z\cdot e^{-\frac{1}{2} z}
+\end{align}\]</div>
+<p>where <span class="math notranslate nohighlight">\(R\)</span> refers to the number of “resels” (a number that depends on the smoothness of your data, which we’ll discuss in a bit) and <span class="math notranslate nohighlight">\(z\)</span> refers to the <span class="math notranslate nohighlight">\(z\)</span>-value that you use as an initial threshold. In code, this is:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">expected_EC</span><span class="p">(</span><span class="n">z</span><span class="p">,</span> <span class="n">n_resel</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot; Computes the expected Euler Characteristic for a given number of resels</span>
+<span class="sd">    and initial z-value cutoff. </span>
+<span class="sd">    </span>
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    z : int/float or array of int/float</span>
+<span class="sd">        Initial z-value cutoff (can be array)</span>
+<span class="sd">    </span>
+<span class="sd">    n_resel : int/float</span>
+<span class="sd">        Number of &quot;resels&quot;</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">n_resel</span> <span class="o">*</span> <span class="p">(</span><span class="mi">4</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="mi">2</span><span class="p">))</span> <span class="o">*</span> <span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">)</span> <span class="o">**</span> <span class="p">(</span><span class="o">-</span><span class="p">(</span><span class="mi">2</span><span class="o">/</span><span class="mi">3</span><span class="p">))</span> <span class="o">*</span> <span class="n">z</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="mf">0.5</span> <span class="o">*</span> <span class="n">z</span> <span class="o">**</span> <span class="mi">2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Importantly, suppose for now that the number of resels is 1000. Then, we can get the expected number of “blobs” in our data for a given <span class="math notranslate nohighlight">\(z\)</span>-value threshold, let’s say <span class="math notranslate nohighlight">\(z = 3\)</span>, as follows:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">zthresh</span> <span class="o">=</span> <span class="mi">3</span>
+<span class="n">n_blobs</span> <span class="o">=</span> <span class="n">expected_EC</span><span class="p">(</span><span class="n">z</span><span class="o">=</span><span class="n">zthresh</span><span class="p">,</span> <span class="n">n_resel</span><span class="o">=</span><span class="mi">1000</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;For a z-threshold of </span><span class="si">%i</span><span class="s2">, we expect </span><span class="si">%.2f</span><span class="s2"> blobs in random 2D data with 100 resels.&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">zthresh</span><span class="p">,</span> <span class="n">n_blobs</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>For a z-threshold of 3, we expect 27.14 blobs in random 2D data with 100 resels.
+</pre></div>
+</div>
+</div>
+</div>
+<p>We can also evaluate the expected EC for a range of potential <span class="math notranslate nohighlight">\(z\)</span>-value thresholds (e.g., from 0-5) and plot it:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">zx</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>  <span class="c1"># 100 values between 0 and 5</span>
+<span class="n">ecs</span> <span class="o">=</span> <span class="n">expected_EC</span><span class="p">(</span><span class="n">zx</span><span class="p">,</span> <span class="n">n_resel</span><span class="o">=</span><span class="mi">1000</span><span class="p">)</span>  <span class="c1"># expected EC also works for multiple z-values at once</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">zx</span><span class="p">,</span> <span class="n">ecs</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Expected EC&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Z-value threshold&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/MCC_42_0.png" src="../../_images/MCC_42_0.png" />
+</div>
+</div>
+<p>To compute the Euler characteristic, we first need to know how to estimate the number of “resels” for our data. You can think of the number of resels as the number of truly independent elements in your data (“resel” is short for “RESolution ELement”). The number of resels is usually estimated by dividing the number of voxels by the estimated size of the resel. For our simulated 2D data, the number of resels is defined as follows:</p>
+<div class="amsmath math notranslate nohighlight" id="equation-45dc1ff5-e489-47cd-bb88-e73a17aaea0d">
+<span class="eqno">(84)<a class="headerlink" href="#equation-45dc1ff5-e489-47cd-bb88-e73a17aaea0d" title="Permalink to this equation">¶</a></span>\[\begin{align}
+N_{resel} = \frac{N_{X}\cdot N_{Y}}{\mathrm{size}_{resel}}
+\end{align}\]</div>
+<p>where <span class="math notranslate nohighlight">\(N_{X}\)</span> is the number of “voxels” in the first dimension and <span class="math notranslate nohighlight">\(N_{Y}\)</span> the number of “voxels” in the second dimension, and where the resel size (<span class="math notranslate nohighlight">\(\mathrm{size}_{resel}\)</span>) is estimated as the product of the smoothness of our data in all dimensions, measured in FWHM:</p>
+<div class="amsmath math notranslate nohighlight" id="equation-bc974cff-246b-464c-8171-9ccef8dba1cf">
+<span class="eqno">(85)<a class="headerlink" href="#equation-bc974cff-246b-464c-8171-9ccef8dba1cf" title="Permalink to this equation">¶</a></span>\[\begin{align}
+\mathrm{size}_{resel} = \mathrm{FWHM}_{X} \cdot \mathrm{FWHM}_{Y}
+\end{align}\]</div>
+<p>So, given a particular size of our resel, <span class="math notranslate nohighlight">\(N_{resel}\)</span> represents how many resels there would “fit” in our data.</p>
+<div class='alert alert-warning'>
+    <b>ToDo</b> (1 point): Usually, the smoothness of the data has to be estimated (usually from the residuals), but in our simulation, we know the smoothness: it's the FWHM we used for our gaussian filter to smooth out data! Compute the number of resels in our simulated data and store it in a variable named <tt>n_resel</tt>.
+</div><div class="cell tag_raises-exception tag_remove-output docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Implement your ToDo here</span>
+
+<span class="c1"># YOUR CODE HERE</span>
+<span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell tag_raises-exception tag_remove-output docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="sd">&#39;&#39;&#39; Tests the above ToDo. &#39;&#39;&#39;</span>
+<span class="kn">from</span> <span class="nn">niedu.tests.nii.week_6</span> <span class="kn">import</span> <span class="n">test_n_resel</span>
+<span class="n">test_n_resel</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">n_resel</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Now, another way to interpret EC values is as <span class="math notranslate nohighlight">\(p\)</span>-values: the chance of finding one or more “blobs” for a given <span class="math notranslate nohighlight">\(z\)</span>-value! This way, we can choose a particular <span class="math notranslate nohighlight">\(z\)</span>-value threshold that would correspond to <span class="math notranslate nohighlight">\(p = 0.05\)</span>. We do this below:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ecs</span> <span class="o">=</span> <span class="n">expected_EC</span><span class="p">(</span><span class="n">zx</span><span class="p">,</span> <span class="mi">278</span><span class="p">)</span>
+
+<span class="c1"># find the index of the EC value closest to alpha</span>
+<span class="n">idx_z</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">ecs</span> <span class="o">-</span> <span class="n">alpha</span><span class="p">)</span><span class="o">.</span><span class="n">argmin</span><span class="p">()</span>
+
+<span class="c1"># Index the z-values with idx_z</span>
+<span class="n">z_thresh</span> <span class="o">=</span> <span class="n">zx</span><span class="p">[</span><span class="n">idx_z</span><span class="p">]</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;The z-value threshold corresponding to p = 0.05: </span><span class="si">%.3f</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">z_thresh</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The z-value threshold corresponding to p = 0.05: 4.444
+</pre></div>
+</div>
+</div>
+</div>
+<div class='alert alert-info'>
+<b>ToThink</b> (1 point): As you (should) see in the plot above, the RTF-based correction is still quite strict/conservative (i.e. misses quite some of the true effect), although arguably not as strict as Bonferroni correction. Given the way how to calculate the number of RESELS, can you think of two ways on how to improve the sensitivity of RFT-based MCC?
+</div><p>YOUR ANSWER HERE</p>
+</div>
+<div class="section" id="cluster-level-rft">
+<h3>Cluster-level RFT<a class="headerlink" href="#cluster-level-rft" title="Permalink to this headline">¶</a></h3>
+<p>In all the previous MCC techniques, we have used voxel-level corrections, which resulting <span class="math notranslate nohighlight">\(p\)</span>-values tell us something about whether the <em>height</em> of a voxel’s statistic (often referred to as “amplitude”) is higher than would be expected under the null-hypothesis. Basically, because we investigated <em>per voxel</em> whether its value is higher than expected, we are making inferences on the level of voxels.</p>
+<p>Another type of inference is <em>cluster</em>-level inference, in which you do not test the voxel amplitude, but the <em>size of clusters</em>. Basically, in this type of cluster-extent testing, you are investigating whether the size of the clusters you find are (significantly) larger than to be expected under the null-hypothesis (i.e., no effect).</p>
+<p>However, as you can imagine, the null-distribution of cluster sizes (i.e. the size of “significant” clusters you’d expect by chance alone) depends strongly on the initial smoothness of your data. Again: RFT to the rescue!</p>
+<p>Basically, RFT can <em>also</em> give us the <span class="math notranslate nohighlight">\(p\)</span>-value for clusters, given their size, by estimating the null-distribution of cluster-sizes based on the data’s smoothness. So, instead of giving us the <span class="math notranslate nohighlight">\(p\)</span>-value for voxels based on the height of their value and the data’s smoothness (i.e., voxel-level RFT), RFT can also do this on the <em>cluster-level</em> by investigating the <span class="math notranslate nohighlight">\(p\)</span>-value of the size of clusters. See how these two RFT-methods relate to each other? They’re doing the same thing — estimating a null-distribution given the smoothness of the data — but for different things: either for the <em>height</em> of the (<span class="math notranslate nohighlight">\(z\)</span>-)statistic value per voxel (voxel-level RFT) or for the <em>size</em> per cluster (cluster-level RFT).</p>
+<p>How RFT does this is way beyond the scope of this course, but we’ll walk you through it conceptually, so that you understand the implications of this technique.</p>
+<p>Anyway, a first step in cluster-level RFT is to determine a minimum (cutoff) value for your statistics map, which you can use to evaluate whether there are actually clusters in your data. Let’s look at an example, in which we use a minimum value of 3.0:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">min_z</span> <span class="o">=</span> <span class="mi">3</span>
+<span class="n">thresh_data</span> <span class="o">=</span> <span class="p">(</span><span class="n">data</span> <span class="o">&gt;</span> <span class="n">min_z</span><span class="p">)</span>
+
+<span class="n">plot_sim_brain</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">mask</span><span class="o">=</span><span class="n">thresh_data</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="sa">r</span><span class="s2">&quot;Clusters after thresholding at $z$ &gt; 3&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/MCC_52_0.png" src="../../_images/MCC_52_0.png" />
+</div>
+</div>
+<p>Now, we can use cluster-based RFT to calculate the <span class="math notranslate nohighlight">\(p\)</span>-value for each cluster in the above thresholded data plot. This <span class="math notranslate nohighlight">\(p\)</span>-value reflects the probably of this cluster-size (or larger) under the null-hypothesis. We can then threshold this map with clusters, using a ‘cluster-wise’ <span class="math notranslate nohighlight">\(p\)</span>-value cutoff of 0.01 for example, and plot it again to see how this method affects type 1 and type 2 errors. The function below (<code class="docutils literal notranslate"><span class="pre">threshold_RFT_cluster</span></code>) takes three arguments: the statistics-map (our <code class="docutils literal notranslate"><span class="pre">data</span></code> variable), a minimum <span class="math notranslate nohighlight">\(z\)</span>-value, and a <span class="math notranslate nohighlight">\(p\)</span>-value cutoff which is used to threshold the clusters.</p>
+<p>Below, we do this for a <span class="math notranslate nohighlight">\(z\)</span>-threshold of 3.1 (corresponding to a <span class="math notranslate nohighlight">\(p\)</span>-value of approx. 0.001) and a cluster <span class="math notranslate nohighlight">\(p\)</span>-value threshold of 0.05.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">niedu.utils.nii</span> <span class="kn">import</span> <span class="n">rft_cluster_threshold</span>
+
+<span class="n">rft_cl_mask</span> <span class="o">=</span> <span class="n">rft_cluster_threshold</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">z_thresh</span><span class="o">=</span><span class="mf">3.1</span><span class="p">,</span> <span class="n">p_clust</span><span class="o">=</span><span class="mf">0.01</span><span class="p">)</span>
+<span class="n">plot_sim_brain</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">mask</span><span class="o">=</span><span class="n">rft_cl_mask</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;RFT thresholding (cluster-based)&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/MCC_54_1.png" src="../../_images/MCC_54_1.png" />
+</div>
+</div>
+<p>From the above plots, you should see that cluster-thresholding can be a very sensitive way to threshold your data if you expect your effects to occur in relatively large clusters (and given that you’re able to estimate the smoothness of the data appropriately, something that is a topic of debate). As such, it is by far the most used MCC method in univariate fMRI research today (but this does not necessarily mean it’s the <em>best</em> way).</p>
+</div>
+</div>
+<div class="section" id="non-parametric-mcc">
+<h2>Non-parametric MCC<a class="headerlink" href="#non-parametric-mcc" title="Permalink to this headline">¶</a></h2>
+<p>In addition to the previously discussed MCC approaches (which are common in parametric group-level models), non-parametric analyses offer another approach. In this approach, the algorithm keeps track of the <em>maximum</em> statistic across permutations. This statistic can refer to the highest voxel-wise amplitude (for voxel-based), largest cluster size (for cluster-based, given some initial <span class="math notranslate nohighlight">\(z\)</span>-value cutoff), or even highest TFCE-transformed amplitude, across permutations.</p>
+<p>If we, for example, want to perform a cluster-based non-parametric analyses, we can save the largest cluster size (given some initial <span class="math notranslate nohighlight">\(z\)</span>-value threshold) for each iteration. Then, across our (let’s say) 5000 permutations, we have acquired a <em>distribution</em> of maximum cluster sizes under the null hypothesis of no effect.</p>
+<p>We actually did this for our simulated data: we kept track of the maximum cluster size across 1000 permutations given some initial <span class="math notranslate nohighlight">\(z\)</span>-value cutoff. We’ll plot such a non-parametric distribution below (for an arbitrary <span class="math notranslate nohighlight">\(z\)</span>-value cutoff of 3):</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">np_dist</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="s1">&#39;clust_size_dist_data.npz&#39;</span><span class="p">)</span>
+<span class="n">zx</span><span class="p">,</span> <span class="n">clust_sizes</span> <span class="o">=</span> <span class="n">np_dist</span><span class="p">[</span><span class="s1">&#39;zx&#39;</span><span class="p">],</span> <span class="n">np_dist</span><span class="p">[</span><span class="s1">&#39;dist&#39;</span><span class="p">]</span>
+<span class="n">z_cutoff</span> <span class="o">=</span> <span class="mi">3</span>
+<span class="n">z_idx</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">zx</span> <span class="o">-</span> <span class="n">z_cutoff</span><span class="p">)</span><span class="o">.</span><span class="n">argmin</span><span class="p">()</span>
+<span class="n">clust_size_dist</span> <span class="o">=</span> <span class="n">clust_sizes</span><span class="p">[:,</span> <span class="n">z_idx</span><span class="p">]</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Max. cluster size across 1000 permutations&quot;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">25</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">clust_size_dist</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="mi">50</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;Max. cluster size&quot;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;Frequency&quot;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/MCC_57_0.png" src="../../_images/MCC_57_0.png" />
+</div>
+</div>
+<p>With that information, we can calculate the non-parametric <span class="math notranslate nohighlight">\(p\)</span>-value of each of our <em>observed</em> clusters using the same type of formula as we used earlier:</p>
+<div class="amsmath math notranslate nohighlight" id="equation-099f0f81-3eb6-4159-9720-457172d362cb">
+<span class="eqno">(86)<a class="headerlink" href="#equation-099f0f81-3eb6-4159-9720-457172d362cb" title="Permalink to this equation">¶</a></span>\[\begin{align}
+p_{\mathrm{cluster}} = \frac{\sum_{i=1}^{P}\mathbf{I}(\mathbf{\mathrm{max.\ cluster\ size}}^{\mathrm{perm}}_{i} \geq \mathrm{cluster\ size}^{\mathrm{obs}}) + 1}{P + 1}
+\end{align}\]</div>
+<p>The same logic holds for voxel-based (TFCE-transformed) amplitude, where you wouldn’t keep track of the maximum cluster size, but the maximum amplitude across permutations.</p>
+<div class='alert alert-warning'>
+    <b>ToDo</b> (ungraded/optional): Suppose I have found an effect within our simulated data with a cluster size of 231 "voxels" (using an initial $z$-value threshold of 3). Using the distribution of maximum cluster sizes above (i.e., the variable <tt>clust_size_dist</tt>), can you compute the associated cluster $p$-value? Store it in a variable named <tt>pval_clust_size</tt>.
+</div> <div class="cell tag_raises-exception tag_remove-output docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="sd">&quot;&quot;&quot; Implement the (optional) ToDo here. &quot;&quot;&quot;</span>
+<span class="c1"># YOUR CODE HERE</span>
+<span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell tag_raises-exception tag_remove-output docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="sd">&#39;&#39;&#39; Tests the above (optional) ToDo. &#39;&#39;&#39;</span>
+<span class="n">np</span><span class="o">.</span><span class="n">testing</span><span class="o">.</span><span class="n">assert_almost_equal</span><span class="p">(</span><span class="n">pval_clust_size</span><span class="p">,</span> <span class="mf">0.001998</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Well done!&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>In our experience, non-parametric analyses (e.g., <code class="docutils literal notranslate"><span class="pre">randomise</span></code> in FSL) in combination with TFCE (also supported in FSL) is a very sensitive approach, allowing for voxel-wise inference while taking into account the “blobbiness” of effects!</p>
+</div>
+<div class="section" id="exercise-on-new-data">
+<h2>Exercise on new data<a class="headerlink" href="#exercise-on-new-data" title="Permalink to this headline">¶</a></h2>
+<p>Suppose we repeat the cat-picture experiment which we described earlier. Based on the literature, we expect to find strong activation in a small group of voxels — known as the <em>nucleus felix</em> — which is about 29 “voxels” in volume, located in the middle of the brain (here: our 2D brain). Like our other example, we’ve measured a group-level (2D) statistics (<span class="math notranslate nohighlight">\(z\)</span>-values) map which represents the cat-against-baseline contrast.</p>
+<p>We’ll load in and plot the new data below:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="s1">&#39;data_assignment.npy&#39;</span><span class="p">)</span>
+<span class="n">plot_sim_brain</span><span class="p">(</span><span class="n">data2</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;Simulated data assignment&#39;</span><span class="p">,</span> <span class="n">vmin</span><span class="o">=-</span><span class="mi">10</span><span class="p">,</span> <span class="n">vmax</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/MCC_64_0.png" src="../../_images/MCC_64_0.png" />
+</div>
+</div>
+<div class='alert alert-warning'>
+<b>ToDo/ToThink</b> (1 point): Given that cluster-based RFT correction worked really well in our last example, should we use this technique again on this dataset, given our expectations of the true effect?  Why (not)? Hint: actually apply the cluster-based RFT correction to the new data (you may assume that the new data has the same smoothness as the previous data).
+</div><div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Apply cluster-based RFT</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>YOUR ANSWER HERE</p>
+</div>
+<div class="section" id="effect-of-different-mcc-strategies-on-real-data">
+<h2>Effect of different MCC strategies on real data<a class="headerlink" href="#effect-of-different-mcc-strategies-on-real-data" title="Permalink to this headline">¶</a></h2>
+<p>We actually ran group-level analyses (using FLAME1-type mixed-effects) with different MCC methods on our run-level <span class="math notranslate nohighlight">\(4\cdot \beta_{face} - \beta_{place} - \beta_{body} - \beta_{character} - \beta_{object}\)</span> contrast from 12 subjects, which we download below:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">os</span>
+<span class="n">data_dir</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">expanduser</span><span class="p">(</span><span class="s2">&quot;~&quot;</span><span class="p">),</span> <span class="s1">&#39;NI-edu-data&#39;</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Downloading group-level FSL FEAT results (+- 133MB) ...&quot;</span><span class="p">)</span>
+<span class="o">!</span>aws s3 sync --no-sign-request s3://openneuro.org/ds003477 <span class="o">{</span>data_dir<span class="o">}</span> --exclude <span class="s2">&quot;*&quot;</span> --include <span class="s2">&quot;derivatives/fsl/grouplevel_task-flocBLOCKED/contrast-faceGTother_method-FLAME1*/*&quot;</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Done!&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Downloading group-level FSL FEAT results (+- 133MB) ...
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Done!
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">glob</span> <span class="kn">import</span> <span class="n">glob</span>
+<span class="n">fsl_deriv_dir</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">data_dir</span><span class="p">,</span> <span class="s1">&#39;derivatives&#39;</span><span class="p">,</span> <span class="s1">&#39;fsl&#39;</span><span class="p">)</span>
+<span class="n">gl_paths</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">glob</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">fsl_deriv_dir</span><span class="p">,</span> <span class="s1">&#39;grouplevel_task-flocBLOCKED&#39;</span><span class="p">,</span> <span class="s1">&#39;*&#39;</span><span class="p">)))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">gl_paths</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>As you can see, there are results for three different MCC strategies:</p>
+<ul class="simple">
+<li><p>uncorrected (with <span class="math notranslate nohighlight">\(p &lt; 0.05\)</span>);</p></li>
+<li><p>cluster-based (with <span class="math notranslate nohighlight">\(z &gt; 3.1\)</span> and <span class="math notranslate nohighlight">\(p_{\mathrm{cluster}} &lt; 0.05\)</span>);</p></li>
+<li><p>voxel-based RFT (with <span class="math notranslate nohighlight">\(p_{\mathrm{voxel}} &gt; 0.05\)</span>);</p></li>
+<li><p>non-parametric (“randomise” with TFCE, non-parametric <span class="math notranslate nohighlight">\(p &lt; 0.05\)</span>)</p></li>
+</ul>
+<p>Let’s take a look at the thresholded <span class="math notranslate nohighlight">\(z\)</span>-statistic maps for each of those analyses.</p>
+<div class='alert alert-warning'>
+    <b>ToDo</b> (ungraded): If not yet opened, open FSLeyes. Add the standard MNI brain as a background image (<tt>File</tt> &rarr; <tt>Add standard</tt> &rarr; select <tt>MNI152_T1_2mm_brain.nii.gz</tt>). Then, add the <tt>thresh_zstat1.nii.gz</tt> image from the <tt>contrast-faceGTother_method-FLAME1_thresh-uncorr05.gfeat/cope1.feat</tt> directory (<tt>File</tt> &rarr; <tt>Add from file</tt>). Change the colormap to "Red-Yellow".
+</div><p>You have seen this brain map before, and you should know by now that this brain map likely contains many false positives as it’s not corrected for multiple comparisons.</p>
+<div class='alert alert-warning'>
+    <b>ToDo</b> (ungraded): Add the <tt>thresh_zstat1.nii.gz</tt> file from the <tt>contrast-faceGTother_method-FLAME1_thresh-cluster.gfeat/cope1.feat</tt> directory (<tt>File</tt> &rarr; <tt>Add from file</tt>). Change to colormap to "Blue-Light blue". 
+</div><p>Here, you see a much more modest effect, where only a couple of clusters (in the superior temporal gyrus and posterior cingulate cortex) survived.</p>
+<div class='alert alert-warning'>
+    <b>ToDo</b> (ungraded): Add the <tt>thresh_zstat1.nii.gz</tt> file from the <tt>contrast-faceGTother_method-FLAME1_thresh-voxel.gfeat/cope1.feat</tt> directory, and change the colormap to "Green".
+</div><p>If you don’t see any green voxels, that’s right! No voxel “survived” the relatively conservative voxel-based RFT tresholding!</p>
+<div class='alert alert-warning'>
+    <b>ToDo</b> (ungraded): Lastly, add the <tt>thresh_zstat1.nii.gz</tt> file from the <tt>contrast-faceGTother_method-randmoise_thresh-TFCE05.gfeat/cope1.feat</tt> directory, and change the colormap to "Blue".
+</div><p>This looks quite alright (in the sense that at least some voxels survive the MCC procedure)! Does this mean that we should always use cluster-based or non-parametric (TFCE-boosted) MCC? Not necessarily. Like always, this depends on your data, the effect you expect, and the conclusions that you want to draw from your results.</p>
+<div class='alert alert-success'>
+    <b>Tip!</b>
+    Before handing in your notebooks, we recommend restarting your kernel (<em>Kernel</em> &rarr; <em>Restart & Clear Ouput</em>) and running all your cells again (manually, or by <em>Cell</em> &rarr; <em>Run all</em>). By running all your cells one by one (from "top" to "bottom" of the notebook), you may spot potential errors that are caused by accidentally overwriting your variables or running your cells out of order (e.g., defining the variable 'x' in cell 28 which you then use in cell 15).
+</div></div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./fMRI-introduction/week_6"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        </div>
+    </div>
+    
+    
+    <div class='prev-next-bottom'>
+        
+    <a class='left-prev' id="prev-link" href="group_level_analyses.html" title="previous page">Group-level analyses</a>
+    <a class='right-next' id="next-link" href="ROI_analysis.html" title="next page">ROI analysis</a>
+
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By Lukas Snoek<br/>
+        
+            &copy; Copyright 2021.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+
+    
+  <script src="../../_static/js/index.3da636dd464baa7582d2.js"></script>
+
+
+    
+  </body>
+</html>
