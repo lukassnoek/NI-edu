@@ -12,9 +12,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        # Have to build the book using Python 3.8.7 because 3.8.5 is not available
-        # in Github Actions
-        python-version: [3.8.7]
+        python-version: [3.8.5]
   
     steps:
     - uses: actions/checkout@v2
