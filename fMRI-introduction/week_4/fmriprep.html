@@ -1,0 +1,926 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Fmriprep &#8212; NI-edu</title>
+    
+  <link rel="stylesheet" href="../../_static/css/index.f658d18f9b420779cfdf24aa0a7e2d77.css">
+
+    
+  <link rel="stylesheet"
+    href="../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+  <link rel="stylesheet"
+    href="../../_static/vendor/open-sans_all/1.44.1/index.css">
+  <link rel="stylesheet"
+    href="../../_static/vendor/lato_latin-ext/1.44.1/index.css">
+
+    
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/sphinx-book-theme.40e2e510f6b7d1648584402491bb10fe.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../../_static/js/index.d3f166471bb80abb5163.js">
+
+    <script id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/togglebutton.js"></script>
+    <script src="../../_static/clipboard.min.js"></script>
+    <script src="../../_static/copybutton.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../../_static/sphinx-book-theme.d31b09fe5c1d09cb49b26a786de4a05d.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.0/dist/embed-amd.js"></script>
+    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="../../_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="First &amp; run-level analyses" href="../../section_intros/5_multilevel.html" />
+    <link rel="prev" title="Spatial preprocessing" href="spatial_preprocessing.html" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+
+
+
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+<a class="navbar-brand text-wrap" href="../../index.html">
+  
+  <img src="../../_static/fmri.gif" class="logo" alt="logo">
+  
+  
+  <h1 class="site-logo" id="site-title">NI-edu</h1>
+  
+</a>
+</div><form class="bd-search d-flex align-items-center" action="../../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form>
+<nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+    <ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../index.html">
+   Welcome to NI-edu
+  </a>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  Getting started
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../getting_started/about.html">
+   About this course
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../getting_started/installation.html">
+   Installation
+  </a>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  fMRI-introduction
+ </span>
+</p>
+<ul class="current nav sidenav_l1">
+ <li class="toctree-l1 collapsible-parent">
+  <a class="reference internal" href="../../section_intros/1_python.html">
+   Python for (f)MRI analysis
+  </a>
+  <ul class="collapse-ul">
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../other/python_recap.html">
+     Python recap
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../week_1/python_for_mri.html">
+     Working with MRI data in Python (T)
+    </a>
+   </li>
+  </ul>
+  <i class="fas fa-chevron-down">
+  </i>
+ </li>
+ <li class="toctree-l1 collapsible-parent">
+  <a class="reference internal" href="../../section_intros/2_glm.html">
+   Using the GLM to model fMRI data
+  </a>
+  <ul class="collapse-ul">
+   <li class="toctree-l2">
+    <a class="reference internal" href="../week_2/glm_part1_estimation.html">
+     The GLM: estimation (T)
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../week_3/glm_part2_inference.html">
+     The GLM: inference (T)
+    </a>
+   </li>
+  </ul>
+  <i class="fas fa-chevron-down">
+  </i>
+ </li>
+ <li class="toctree-l1 collapsible-parent">
+  <a class="reference internal" href="../../section_intros/3_design_of_experiments_T.html">
+   Design of experiments
+  </a>
+  <ul class="collapse-ul">
+   <li class="toctree-l2">
+    <a class="reference internal" href="../week_3/design_of_experiments.html">
+     Design of experiments (T)
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../week_3/neurodesign.html">
+     Neurodesign (T)
+    </a>
+   </li>
+  </ul>
+  <i class="fas fa-chevron-down">
+  </i>
+ </li>
+ <li class="toctree-l1 current active collapsible-parent">
+  <a class="reference internal" href="../../section_intros/4_preprocessing.html">
+   Preprocessing
+  </a>
+  <ul class="current collapse-ul">
+   <li class="toctree-l2">
+    <a class="reference internal" href="temporal_preprocessing.html">
+     Temporal preprocessing (T)
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="spatial_preprocessing.html">
+     Spatial preprocessing (T)
+    </a>
+   </li>
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
+     Fmriprep (T)
+    </a>
+   </li>
+  </ul>
+  <i class="fas fa-chevron-down">
+  </i>
+ </li>
+ <li class="toctree-l1 collapsible-parent">
+  <a class="reference internal" href="../../section_intros/5_multilevel.html">
+   First &amp; run-level analyses
+  </a>
+  <ul class="collapse-ul">
+   <li class="toctree-l2">
+    <a class="reference internal" href="../week_5/linux_and_the_command_line.html">
+     Linux and the CMD (T)
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../week_5/first_level_analyses.html">
+     First level analyses (T)
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../week_5/run_level_analyses.html">
+     Run-level analyses (T)
+    </a>
+   </li>
+  </ul>
+  <i class="fas fa-chevron-down">
+  </i>
+ </li>
+ <li class="toctree-l1 collapsible-parent">
+  <a class="reference internal" href="../../section_intros/6_grouplevel.html">
+   Group-level analyses
+  </a>
+  <ul class="collapse-ul">
+   <li class="toctree-l2">
+    <a class="reference internal" href="../week_6/group_level_analyses.html">
+     Group-level analyses (T)
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../week_6/MCC.html">
+     Multiple comparison correction (T)
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../week_6/ROI_analysis.html">
+     ROI analysis (T)
+    </a>
+   </li>
+  </ul>
+  <i class="fas fa-chevron-down">
+  </i>
+ </li>
+ <li class="toctree-l1 collapsible-parent">
+  <a class="reference internal" href="../../section_intros/7_nilearn.html">
+   Introduction to Nilearn
+  </a>
+  <ul class="collapse-ul">
+   <li class="toctree-l2">
+    <a class="reference internal" href="../week_7/nilearn.html">
+     Introduction to Nilearn (T)
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../week_7/nilearn_stats.html">
+     Statistics with Nilearn (T)
+    </a>
+   </li>
+  </ul>
+  <i class="fas fa-chevron-down">
+  </i>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  fMRI-pattern-analysis
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../fMRI-pattern-analysis/week_1/design_and_pattern_estimation.html">
+   Design and pattern estimation (T)
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../fMRI-pattern-analysis/week_2/decoding_analyses.html">
+   Machine learning/decoding (T)
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../fMRI-pattern-analysis/week_3/rsa.html">
+   Representational Similarity Analysis (T)
+  </a>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  Misc
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../misc/bibliography.html">
+   Bibliography
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../misc/for_educators.html">
+   For educators
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../misc/CONTRIBUTING.html">
+   Contributing
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../misc/CONDUCT.html">
+   Code of Conduct
+  </a>
+ </li>
+</ul>
+
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="row topbar fixed-top container-xl">
+    <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show">
+    </div>
+    <div class="col pl-2 topbar-main">
+        
+        <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+            data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+            aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+            title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+            <i class="fas fa-bars"></i>
+            <i class="fas fa-arrow-left"></i>
+            <i class="fas fa-arrow-up"></i>
+        </button>
+        
+        
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../../_sources/fMRI-introduction/week_4/fmriprep.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+        <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/lukassnoek/NI-edu"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        <a class="issues-button"
+            href="https://github.com/lukassnoek/NI-edu/issues/new?title=Issue%20on%20page%20%2FfMRI-introduction/week_4/fmriprep.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
+        <a class="edit-button" href="https://github.com/lukassnoek/NI-edu/edit/master/NI-edu/fMRI-introduction/week_4/fmriprep.ipynb"><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Edit this page"><i class="fas fa-pencil-alt"></i>suggest edit</button></a>
+    </div>
+</div>
+
+
+        <!-- Full screen (wrap in <a> to have style consistency -->
+        <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+                data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+                title="Fullscreen mode"><i
+                    class="fas fa-expand"></i></button></a>
+
+        <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/lukassnoek/NI-edu/master?urlpath=tree/NI-edu/fMRI-introduction/week_4/fmriprep.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="../../_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        <a class="jupyterhub-button" href="https://neuroimaging.lukas-snoek.com/hub/user-redirect/git-pull?repo=https://github.com/lukassnoek/NI-edu&urlpath=tree/NI-edu/NI-edu/fMRI-introduction/week_4/fmriprep.ipynb&branch=master"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch JupyterHub" data-toggle="tooltip"
+                data-placement="left"><img class="jupyterhub-button-logo"
+                    src="../../_static/images/logo_jupyterhub.svg"
+                    alt="Interact on JupyterHub">JupyterHub</button></a>
+        
+        
+        
+    </div>
+</div>
+
+    </div>
+
+    <!-- Table of contents -->
+    <div class="d-none d-md-block col-md-2 bd-toc show">
+        
+        <div class="tocsection onthispage pt-5 pb-3">
+            <i class="fas fa-list"></i> Contents
+        </div>
+        <nav id="bd-toc-nav">
+            <ul class="nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#the-bids-format">
+   The BIDS-format
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#installing-fmriprep">
+   Installing Fmriprep
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#running-fmriprep">
+   Running Fmriprep
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#freesurfer">
+     Freesurfer
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#configuring-what-is-preprocessed">
+     Configuring what is preprocessed
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#handling-performance">
+     Handling performance
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#output-spaces">
+     Output spaces
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#other-parameters">
+     Other parameters
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#issues-errors-and-troubleshooting">
+   Issues, errors, and troubleshooting
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#fmriprep-output-reports">
+   Fmriprep output/reports
+  </a>
+ </li>
+</ul>
+
+        </nav>
+        
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="fmriprep">
+<h1>Fmriprep<a class="headerlink" href="#fmriprep" title="Permalink to this headline">¶</a></h1>
+<p>Today, many excellent general-purpose, open-source neuroimaging software packages exist: <a class="reference external" href="https://www.fil.ion.ucl.ac.uk/spm/">SPM</a> (Matlab-based), <a class="reference external" href="https://fsl.fmrib.ox.ac.uk/fsl/fslwiki">FSL</a>, <a class="reference external" href="https://afni.nimh.nih.gov/">AFNI</a>, and <a class="reference external" href="https://surfer.nmr.mgh.harvard.edu/">Freesurfer</a> (with a shell interface). We argue that there is not one single package that is always the best choice for every step in your preprocessing pipeline. Fortunately, people from the <a class="reference external" href="https://poldracklab.stanford.edu/">Poldrack lab</a> created <a class="reference external" href="https://fmriprep.readthedocs.io/en/stable/">fmriprep</a>, a software package that offers a preprocessing pipeline which “glues together” functionality from different neuroimaging software packages (such as Freesurfer and FSL), such that each step in the pipeline is executed by the software package that (arguably) does it best.</p>
+<p>We have been using <em>Fmriprep</em> for preprocessing of our own data and we strongly recommend it. It is relatively simple to use, requires minimal user intervention, and creates extensive visual reports for users to do visual quality control (to check whether each step in the pipeline worked as expected). The <em>only</em> requirement to use Fmriprep is that your data is formatted as specified in the Brain Imaging Data Structure (BIDS).</p>
+<div class="section" id="the-bids-format">
+<h2>The BIDS-format<a class="headerlink" href="#the-bids-format" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference external" href="https://bids.neuroimaging.io/">BIDS</a> is a specification on how to format, name, and organize your MRI dataset. It specifies the file format of MRI files (i.e., compressed Nifti: <code class="docutils literal notranslate"><span class="pre">.nii.gz</span></code> files), lays out rules for how you should name your files (i.e., with “key-value” pairs, such as: <code class="docutils literal notranslate"><span class="pre">sub-01_ses-1_task-1back_run-1_bold.nii.gz</span></code>), and outlines the file/folder structure of your dataset (where each subject has its own directory with separate subdirectories for different MRI modalities, including fieldmaps, functional, diffusion, and anatomical MRI). Additionally, it specifies a way to include “metadata” about the (MRI) files in your dataset with <a class="reference external" href="https://en.wikipedia.org/wiki/JSON">JSON</a> files: plain-text files with key-value pairs (in the form “parameter: value”). Given that your dataset is BIDS-formatted and contains the necessary metadata, you can use <code class="docutils literal notranslate"><span class="pre">fmriprep</span></code> on your dataset. (You can use the awesome <a class="reference external" href="https://bids-standard.github.io/bids-validator/">bids-validator</a> to see whether your dataset is completely valid according to BIDS.)</p>
+<p>There are different tools to convert your “raw” scanner data (e.g., in DICOM or PAR/REC format) to BIDS, including <a class="reference external" href="https://heudiconv.readthedocs.io/en/latest/">heudiconv</a>, <a class="reference external" href="https://github.com/Donders-Institute/bidscoin">bidscoin</a>, and <a class="reference external" href="https://github.com/NILAB-UvA/bidsify">bidsify</a> (created by Lukas). We’ll skip over this step and assume that you’ll be able to convert your data to BIDS.</p>
+</div>
+<div class="section" id="installing-fmriprep">
+<h2>Installing Fmriprep<a class="headerlink" href="#installing-fmriprep" title="Permalink to this headline">¶</a></h2>
+<p>Now, having your data in BIDS is an important step in getting started with Fmriprep. The next step is installing the package. Technically, Fmriprep is a Python package, so it can be installed as such (using <code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">fmriprep</span></code>), but we do not recommend this “bare metal” installation, because it depends on a host of neuroimaging software packages (including FSL, Freesurfer, AFNI, and ANTs). So if you’d want to directly install Fmriprep, you’d need to install those extra neuroimaging software packages as well (which is not worth your time, trust us).</p>
+<p>Fortunately, Fmriprep also offers a “Docker container” in which Fmriprep and all the associated dependencies are already installed. <a class="reference external" href="https://www.docker.com/">Docker</a> is software that allows you to create “containers”, which are like lightweight “virtual machines” (<a class="reference external" href="https://en.wikipedia.org/wiki/Virtual_machine">VM</a>) that are like a separate (Linux-based) operating system with a specific software configuration. You can download the Fmriprep-specific docker “image”, which is like a “recipe”, build the Fmriprep-specific “container” according to this “recipe” on your computer, and finally use this container to run Fmriprep on your computer as if all dependencies were actually installed on your computer! Docker is available on Linux, Mac, and Windows. To install Docker, google something like “install docker for {Windows,Mac,Linux}” to find a google walkthrough.</p>
+<p>Note that you need administrator (“root”) privilege on your computer (which is likely the case for your own computer, but not on shared analysis servers) to run Docker. If you don’t have root access on your computer/server, ask you administrator/sysadmin to install <a class="reference external" href="https://fmriprep.readthedocs.io/en/stable/installation.html#singularity-container">singularity</a>, which allows you to convert Docker images to Singularity images, which you can run without administrator privileges.</p>
+<p>Assuming you have installed Docker, you can run the “containerized” Fmriprep from your command line directly, which involves a fairly long and complicated command (i.e., <code class="docutils literal notranslate"><span class="pre">docker</span> <span class="pre">run</span> <span class="pre">-it</span> <span class="pre">--rm</span> <span class="pre">-v</span> <span class="pre">bids_dir</span> <span class="pre">/data</span> <span class="pre">...</span> <span class="pre">etc</span></code>), or using the <code class="docutils literal notranslate"><span class="pre">fmriprep-docker</span></code> Python package. This <code class="docutils literal notranslate"><span class="pre">fmriprep-docker</span></code> package is just a simple wrapper around the appropriate Docker command to run the complicated “containerized” Fmriprep command. We strongly recommend this method.</p>
+<p>To install <code class="docutils literal notranslate"><span class="pre">fmriprep-docker</span></code>, you can use <code class="docutils literal notranslate"><span class="pre">pip</span></code> (from your command line):</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pip</span> <span class="n">install</span> <span class="n">fmriprep</span><span class="o">-</span><span class="n">docker</span>
+</pre></div>
+</div>
+<p>Now, you should have access to the <code class="docutils literal notranslate"><span class="pre">fmriprep-docker</span></code> command on your command line and you’re ready to start preprocessing your dataset. For more detailed information about installing Fmriprep, check out their <a class="reference external" href="https://fmriprep.readthedocs.io/en/stable/installation.html">website</a>.</p>
+</div>
+<div class="section" id="running-fmriprep">
+<h2>Running Fmriprep<a class="headerlink" href="#running-fmriprep" title="Permalink to this headline">¶</a></h2>
+<p>Assuming you have Docker and <code class="docutils literal notranslate"><span class="pre">fmriprep-docker</span></code> installed, you’re ready to run Fmriprep. The basic format of the <code class="docutils literal notranslate"><span class="pre">fmriprep-docker</span></code> command is as follows:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">fmriprep</span><span class="o">-</span><span class="n">docker</span> <span class="o">&lt;</span><span class="n">your</span> <span class="n">bids</span><span class="o">-</span><span class="n">folder</span><span class="o">&gt;</span> <span class="o">&lt;</span><span class="n">your</span> <span class="n">output</span><span class="o">-</span><span class="n">folder</span><span class="o">&gt;</span> 
+</pre></div>
+</div>
+<p>This means that <code class="docutils literal notranslate"><span class="pre">fmriprep-docker</span></code> has two mandatory positional arguments: the first one being your BIDS-folder (i.e., the path to your folder with BIDS-formattefd data), and the second one being the output-folder (i.e., where you want Fmriprep to output the preprocessed data). We recommend setting your output-folder to a subfolder of your BIDS-folder named “derivatives”: <code class="docutils literal notranslate"><span class="pre">&lt;your</span> <span class="pre">bids-folder&gt;/derivatives</span></code>.</p>
+<p>Then, you can add a bunch of extra “flags” (parameters) to the command to specify the preprocessing pipeline as you like it. We highlight a couple of important ones here, but for the full list of parameters, check out the <a class="reference external" href="https://fmriprep.readthedocs.io/en/stable/usage.html">Fmriprep</a> website.</p>
+<div class="section" id="freesurfer">
+<h3>Freesurfer<a class="headerlink" href="#freesurfer" title="Permalink to this headline">¶</a></h3>
+<p>When running Fmriprep from Docker, you don’t need to have Freesurfer installed, but you <em>do</em> need a Freesurfer license. You can download this here: https://surfer.nmr.mgh.harvard.edu/fswiki/License. Then, you need to supply the <code class="docutils literal notranslate"><span class="pre">--fs-license-file</span> <span class="pre">&lt;path</span> <span class="pre">to</span> <span class="pre">license</span> <span class="pre">file&gt;</span></code> parameter to your <code class="docutils literal notranslate"><span class="pre">fmriprep-docker</span></code> command:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">fmriprep</span><span class="o">-</span><span class="n">docker</span> <span class="o">&lt;</span><span class="n">your</span> <span class="n">bids</span><span class="o">-</span><span class="n">folder</span><span class="o">&gt;</span> <span class="o">&lt;</span><span class="n">your</span> <span class="n">output</span><span class="o">-</span><span class="n">folder</span><span class="o">&gt;</span> <span class="o">--</span><span class="n">fs</span><span class="o">-</span><span class="n">license</span><span class="o">-</span><span class="n">file</span> <span class="o">/</span><span class="n">home</span><span class="o">/</span><span class="n">lukas</span><span class="o">/</span><span class="n">license</span><span class="o">.</span><span class="n">txt</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="configuring-what-is-preprocessed">
+<h3>Configuring what is preprocessed<a class="headerlink" href="#configuring-what-is-preprocessed" title="Permalink to this headline">¶</a></h3>
+<p>If you just run Fmriprep with the mandatory BIDS-folder and output-folder arguments, it will preprocess everything it finds in the BIDS-folder. Sometimes, however, you may just want to run one (or several) specific participants, or one (or more) specific tasks (e.g., only the MRI files associated with the localizer runs, but not the working memory runs). You can do this by adding the <code class="docutils literal notranslate"><span class="pre">--participant</span></code> and <code class="docutils literal notranslate"><span class="pre">--task</span></code> flags to the command:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">fmriprep</span><span class="o">-</span><span class="n">docker</span> <span class="o">&lt;</span><span class="n">your</span> <span class="n">bids</span><span class="o">-</span><span class="n">folder</span><span class="o">&gt;</span> <span class="o">&lt;</span><span class="n">your</span> <span class="n">output</span><span class="o">-</span><span class="n">folder</span><span class="o">&gt;</span> <span class="o">--</span><span class="n">participant</span> <span class="n">sub</span><span class="o">-</span><span class="mi">01</span> <span class="o">--</span><span class="n">task</span> <span class="n">localizer</span>
+</pre></div>
+</div>
+<p>You can also specify some things to be ignored during preprocessing using the <code class="docutils literal notranslate"><span class="pre">--ignore</span></code> parameters (like <code class="docutils literal notranslate"><span class="pre">fieldmaps</span></code>):</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">fmriprep</span><span class="o">-</span><span class="n">docker</span> <span class="o">&lt;</span><span class="n">your</span> <span class="n">bids</span><span class="o">-</span><span class="n">folder</span><span class="o">&gt;</span> <span class="o">&lt;</span><span class="n">your</span> <span class="n">output</span><span class="o">-</span><span class="n">folder</span><span class="o">&gt;</span> <span class="o">--</span><span class="n">ignore</span> <span class="n">fieldmaps</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="handling-performance">
+<h3>Handling performance<a class="headerlink" href="#handling-performance" title="Permalink to this headline">¶</a></h3>
+<p>It’s very easy to parallelize the preprocessing pipeline by setting the <code class="docutils literal notranslate"><span class="pre">--nthreads</span></code> and <code class="docutils literal notranslate"><span class="pre">--omp-nthreads</span></code> parameters, which refer to the number of threads that should be used to run Fmriprep on. Note that laptops usually have 4 threads available (but analysis servers usually have more!). You can also specify the maximum of RAM that Fmriprep is allowed to use by the <code class="docutils literal notranslate"><span class="pre">--mem_mb</span></code> parameters. So, if you for example want to run Fmriprep with 3 threads and a maximum of 3GB of RAM, you can run:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">fmriprep</span><span class="o">-</span><span class="n">docker</span> <span class="o">&lt;</span><span class="n">your</span> <span class="n">bids</span><span class="o">-</span><span class="n">folder</span><span class="o">&gt;</span> <span class="o">&lt;</span><span class="n">your</span> <span class="n">output</span><span class="o">-</span><span class="n">folder</span><span class="o">&gt;</span> <span class="o">--</span><span class="n">nthreads</span> <span class="mi">3</span> <span class="o">--</span><span class="n">omp</span><span class="o">-</span><span class="n">nthreads</span> <span class="mi">3</span> <span class="o">--</span><span class="n">mem_mb</span> <span class="mi">3000</span>
+</pre></div>
+</div>
+<p>In our experience, however, specifying the <code class="docutils literal notranslate"><span class="pre">--mem_mb</span></code> parameter is rarely necessary if you don’t parallelize too much.</p>
+</div>
+<div class="section" id="output-spaces">
+<h3>Output spaces<a class="headerlink" href="#output-spaces" title="Permalink to this headline">¶</a></h3>
+<p>Specifying your “output spaces” (with the <code class="docutils literal notranslate"><span class="pre">--output-spaces</span></code> flag) tells Fmriprep to what “space(s)” you want your preprocessed data registered to. For example, you can specify <code class="docutils literal notranslate"><span class="pre">T1w</span></code> to have your functional data registered to the participant’s T1 scan. You can, instead or in addition to, also specify some standard template, like the MNI template (<code class="docutils literal notranslate"><span class="pre">MNI152NLin2009cAsym</span></code> or <code class="docutils literal notranslate"><span class="pre">MNI152NLin6Asym</span></code>). You can even specify surface templates if you want (like <code class="docutils literal notranslate"><span class="pre">fsaverage</span></code>), which will sample your volumetric functional data onto the surface (as computed by freesurfer). In addition to the specific output space(s), you can add a resolution “modifier” to the parameter to specify in what spatial resolution you want your resampled data to be. Without any resolution modifier, the native resolution of your functional files (e.g., <span class="math notranslate nohighlight">\(3\times3\times3\)</span> mm.) will be kept intact. But if you want to upsample your resampled files to 2mm, you can add <code class="docutils literal notranslate"><span class="pre">YourTemplate:2mm</span></code>. For example, if you want to use the FSL-style MNI template (<code class="docutils literal notranslate"><span class="pre">MNI152NLin6Asym</span></code>) resampled at 2 mm, you’d use:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">fmriprep</span><span class="o">-</span><span class="n">docker</span> <span class="o">&lt;</span><span class="n">your</span> <span class="n">bids</span><span class="o">-</span><span class="n">folder</span><span class="o">&gt;</span> <span class="o">&lt;</span><span class="n">your</span> <span class="n">output</span><span class="o">-</span><span class="n">folder</span><span class="o">&gt;</span> <span class="o">--</span><span class="n">output</span><span class="o">-</span><span class="n">spaces</span> <span class="n">MNI152NLin6Asym</span><span class="p">:</span><span class="mi">2</span><span class="n">mm</span>
+</pre></div>
+</div>
+<p>You can of course specify multiple output-spaces:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">fmriprep</span><span class="o">-</span><span class="n">docker</span> <span class="o">&lt;</span><span class="n">your</span> <span class="n">bids</span><span class="o">-</span><span class="n">folder</span><span class="o">&gt;</span> <span class="o">&lt;</span><span class="n">your</span> <span class="n">output</span><span class="o">-</span><span class="n">folder</span><span class="o">&gt;</span> <span class="o">--</span><span class="n">output</span><span class="o">-</span><span class="n">spaces</span> <span class="n">MNI152NLin6Asym</span><span class="p">:</span><span class="mi">2</span><span class="n">mm</span> <span class="n">T1w</span> <span class="n">fsaverage</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="other-parameters">
+<h3>Other parameters<a class="headerlink" href="#other-parameters" title="Permalink to this headline">¶</a></h3>
+<p>There are many options that you can set when running Fmriprep. Check out the <a class="reference external" href="https://fmriprep.readthedocs.io/">Fmriprep website</a> (under “Usage”) for a list of all options!</p>
+</div>
+</div>
+<div class="section" id="issues-errors-and-troubleshooting">
+<h2>Issues, errors, and troubleshooting<a class="headerlink" href="#issues-errors-and-troubleshooting" title="Permalink to this headline">¶</a></h2>
+<p>While Fmriprep often works out-of-the-box (assuming your data are properly BIDS-formatted), it may happen that it crashes or otherwise gives unexpected results. A great place to start looking for help is <a class="reference external" href="https://neurostars.org">neurostars.org</a>. This website is dedicated to helping neuroscientists with neuroimaging/neuroscience-related questions. Make sure to check whether your question has been asked here already and, if not, pose it here!</p>
+<p>If you encounter Fmriprep-specific bugs, you can also submit and issue at the <a class="reference external" href="https://github.com/poldracklab/fmriprep">Github repository</a> of Fmriprep.</p>
+</div>
+<div class="section" id="fmriprep-output-reports">
+<h2>Fmriprep output/reports<a class="headerlink" href="#fmriprep-output-reports" title="Permalink to this headline">¶</a></h2>
+<p>After Fmriprep has run, it outputs, for each participants separately, a directory with results (i.e., preprocessed files) and an HTML-file with a summary and figures of the different steps in the preprocessing pipeline.</p>
+<p>We ran Fmriprep on a single run/task (<code class="docutils literal notranslate"><span class="pre">flocBLOCKED</span></code>) from a single subject (<code class="docutils literal notranslate"><span class="pre">sub-03</span></code>) some data with the following command:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">fmriprep</span><span class="o">-</span><span class="n">docker</span> <span class="o">/</span><span class="n">home</span><span class="o">/</span><span class="n">lsnoek1</span><span class="o">/</span><span class="n">ni</span><span class="o">-</span><span class="n">edu</span><span class="o">/</span><span class="n">bids</span> <span class="o">/</span><span class="n">home</span><span class="o">/</span><span class="n">lsnoek1</span><span class="o">/</span><span class="n">ni</span><span class="o">-</span><span class="n">edu</span><span class="o">/</span><span class="n">bids</span><span class="o">/</span><span class="n">derivatives</span> <span class="o">--</span><span class="n">participant</span><span class="o">-</span><span class="n">label</span> <span class="n">sub</span><span class="o">-</span><span class="mi">03</span> <span class="o">--</span><span class="n">output</span><span class="o">-</span><span class="n">spaces</span> <span class="n">T1w</span> <span class="n">MNI152NLin2009cAsym</span>
+</pre></div>
+</div>
+<p>We’ve copied the Fmriprep output for this subject (<code class="docutils literal notranslate"><span class="pre">sub-03</span></code>) in the <code class="docutils literal notranslate"><span class="pre">fmriprep</span></code> subdirectory of the <code class="docutils literal notranslate"><span class="pre">week_4</span></code> directory. Let’s check its contents:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">os</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">(</span><span class="s1">&#39;bids/derivatives/fmriprep&#39;</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;dataset_description.json&#39;, &#39;desc-aparcaseg_dseg.tsv&#39;, &#39;sub-03.html&#39;, &#39;logs&#39;, &#39;sub-03&#39;, &#39;desc-aseg_dseg.tsv&#39;]
+</pre></div>
+</div>
+</div>
+</div>
+<p>As said, Fmriprep outputs a directory with results (<code class="docutils literal notranslate"><span class="pre">sub-03</span></code>) and an associated HTML-file with a summary of the (intermediate and final) results. Let’s check the directory with results first:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pprint</span> <span class="kn">import</span> <span class="n">pprint</span>  <span class="c1"># pprint stands for &quot;pretty print&quot;, </span>
+
+<span class="n">sub_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="s1">&#39;bids/derivatives/fmriprep&#39;</span><span class="p">,</span> <span class="s1">&#39;sub-03&#39;</span><span class="p">)</span>
+<span class="n">pprint</span><span class="p">(</span><span class="nb">sorted</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">(</span><span class="n">sub_path</span><span class="p">)))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;anat&#39;, &#39;figures&#39;, &#39;func&#39;, &#39;log&#39;]
+</pre></div>
+</div>
+</div>
+</div>
+<p>The <code class="docutils literal notranslate"><span class="pre">figures</span></code> directory contains several figures with the result of different preprocessing stages (like functional → high-res anatomical registration), but these figures are also included in the HTML-file, so we’ll leave that for now. The other two directories, <code class="docutils literal notranslate"><span class="pre">anat</span></code> and <code class="docutils literal notranslate"><span class="pre">func</span></code>, contain the preprocessed anatomical and functional files, respectively. Let’s inspect the <code class="docutils literal notranslate"><span class="pre">anat</span></code> directory:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">anat_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">sub_path</span><span class="p">,</span> <span class="s1">&#39;anat&#39;</span><span class="p">)</span>
+<span class="n">pprint</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">(</span><span class="n">anat_path</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;sub-03_desc-aseg_dseg.nii.gz&#39;,
+ &#39;sub-03_space-MNI152NLin2009cAsym_desc-brain_mask.nii.gz&#39;,
+ &#39;sub-03_space-MNI152NLin2009cAsym_label-WM_probseg.nii.gz&#39;,
+ &#39;sub-03_label-GM_probseg.nii.gz&#39;,
+ &#39;sub-03_space-MNI152NLin2009cAsym_desc-brain_mask.json&#39;,
+ &#39;sub-03_dseg.nii.gz&#39;,
+ &#39;sub-03_label-WM_probseg.nii.gz&#39;,
+ &#39;sub-03_space-MNI152NLin2009cAsym_label-CSF_probseg.nii.gz&#39;,
+ &#39;sub-03_from-MNI152NLin2009cAsym_to-T1w_mode-image_xfm.h5&#39;,
+ &#39;sub-03_desc-preproc_T1w.json&#39;,
+ &#39;sub-03_space-MNI152NLin2009cAsym_desc-preproc_T1w.json&#39;,
+ &#39;sub-03_space-MNI152NLin2009cAsym_desc-preproc_T1w.nii.gz&#39;,
+ &#39;sub-03_desc-preproc_T1w.nii.gz&#39;,
+ &#39;sub-03_label-CSF_probseg.nii.gz&#39;,
+ &#39;sub-03_space-MNI152NLin2009cAsym_label-GM_probseg.nii.gz&#39;,
+ &#39;sub-03_desc-brain_mask.json&#39;,
+ &#39;sub-03_space-MNI152NLin2009cAsym_dseg.nii.gz&#39;,
+ &#39;sub-03_from-T1w_to-MNI152NLin2009cAsym_mode-image_xfm.h5&#39;,
+ &#39;sub-03_desc-brain_mask.nii.gz&#39;,
+ &#39;sub-03_desc-aparcaseg_dseg.nii.gz&#39;]
+</pre></div>
+</div>
+</div>
+</div>
+<p>Here, we see a couple of different files. There are both (preprocessed) nifti images (<code class="docutils literal notranslate"><span class="pre">*.nii.gz</span></code>) and associated meta-data (plain-text files in JSON format: <code class="docutils literal notranslate"><span class="pre">*.json</span></code>).</p>
+<p>Importantly, the nifti outputs are in two different spaces: one set of files are in the original “T1 space”, so without any resampling to another space (these files have the same resolution and orientation as the original T1 anatomical scan). For example, the <code class="docutils literal notranslate"><span class="pre">sub_03_desc-preproc_T1w.nii.gz</span></code> scan is the preprocessed (i.e., bias-corrected) T1 scan. In addition, most files are also available in <code class="docutils literal notranslate"><span class="pre">MNI152NLin2009cAsym</span></code> space, a standard template. For example, the <code class="docutils literal notranslate"><span class="pre">sub-03_space-MNI152NLin2009cAsym_desc-preproc_T1w.nii.gz</span></code> is the same file as <code class="docutils literal notranslate"><span class="pre">sub_03_desc-preproc_T1w.nii.gz</span></code>, but resampled to the <code class="docutils literal notranslate"><span class="pre">MNI152NLin2009cAsym</span></code> template. In addition, there are subject-specific brain parcellations (the <code class="docutils literal notranslate"><span class="pre">*aparcaseg_dseg.nii.gz</span> </code>and <code class="docutils literal notranslate"><span class="pre">*aseg_dseg.nii.gz</span></code> files), files with registration parameters (<code class="docutils literal notranslate"><span class="pre">*from-</span> <span class="pre">...</span> <span class="pre">-to</span> <span class="pre">...</span></code> files), probabilistic tissue segmentation files (<code class="docutils literal notranslate"><span class="pre">*label-{CSF,GM,WM}_probseg.nii.gz</span></code>) files, and brain masks (to outline what is brain and not skull/dura/etc; <code class="docutils literal notranslate"><span class="pre">*brain_mask.nii.gz</span></code>).</p>
+<p>Again, on the <a class="reference external" href="https://fmriprep.readthedocs.io/">Fmriprep website</a>, you can find more information about the specific outputs.</p>
+<p>Now, let’s check out the <code class="docutils literal notranslate"><span class="pre">func</span></code> directory:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">func_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">sub_path</span><span class="p">,</span> <span class="s1">&#39;func&#39;</span><span class="p">)</span>
+<span class="n">pprint</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">(</span><span class="n">func_path</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;sub-03_task-flocBLOCKED_space-T1w_desc-preproc_bold.nii.gz&#39;,
+ &#39;sub-03_task-flocBLOCKED_space-T1w_desc-preproc_bold.json&#39;,
+ &#39;sub-03_task-flocBLOCKED_space-T1w_desc-aparcaseg_dseg.nii.gz&#39;,
+ &#39;sub-03_task-flocBLOCKED_space-MNI152NLin2009cAsym_desc-brain_mask.nii.gz&#39;,
+ &#39;sub-03_task-flocBLOCKED_space-MNI152NLin2009cAsym_desc-preproc_bold.json&#39;,
+ &#39;sub-03_task-flocBLOCKED_space-T1w_desc-aseg_dseg.nii.gz&#39;,
+ &#39;sub-03_task-flocBLOCKED_desc-confounds_regressors.tsv&#39;,
+ &#39;sub-03_task-flocBLOCKED_space-MNI152NLin2009cAsym_desc-preproc_bold.nii.gz&#39;,
+ &#39;sub-03_task-flocBLOCKED_space-T1w_desc-brain_mask.json&#39;,
+ &#39;sub-03_task-flocBLOCKED_space-MNI152NLin2009cAsym_desc-aparcaseg_dseg.nii.gz&#39;,
+ &#39;sub-03_task-flocBLOCKED_desc-confounds_regressors.json&#39;,
+ &#39;sub-03_task-flocBLOCKED_space-MNI152NLin2009cAsym_desc-brain_mask.json&#39;,
+ &#39;sub-03_task-flocBLOCKED_space-T1w_desc-brain_mask.nii.gz&#39;,
+ &#39;sub-03_task-flocBLOCKED_space-MNI152NLin2009cAsym_boldref.nii.gz&#39;,
+ &#39;sub-03_task-flocBLOCKED_space-T1w_boldref.nii.gz&#39;,
+ &#39;sub-03_task-flocBLOCKED_space-MNI152NLin2009cAsym_desc-aseg_dseg.nii.gz&#39;]
+</pre></div>
+</div>
+</div>
+</div>
+<p>Again, like the files in the <code class="docutils literal notranslate"><span class="pre">anat</span></code> folder, the functional outputs are available in two spaces: <code class="docutils literal notranslate"><span class="pre">T1w</span></code> and <code class="docutils literal notranslate"><span class="pre">MNI152NLin2009cAsym</span></code>. In terms of actual images, there are preprocessed BOLD files (ending in <code class="docutils literal notranslate"><span class="pre">preproc_bold.nii.gz</span></code>), the functional volume used for “functional → anatomical” registration (ending in <code class="docutils literal notranslate"><span class="pre">boldref.nii.gz</span></code>), brain parcellations in functional space (ending in <code class="docutils literal notranslate"><span class="pre">dseg.nii.gz</span></code>), and brain masks (ending in <code class="docutils literal notranslate"><span class="pre">brain_mask.nii.gz</span></code>). In addition, there are files with “confounds” (ending in <code class="docutils literal notranslate"><span class="pre">confounds_regressors.tsv</span></code>) which contain variables that you might want to include as nuisance regressors in your first-level analysis. These confound files are speadsheet-like files (like <code class="docutils literal notranslate"><span class="pre">csv</span></code> files, but instead of being comma-delimited, they are tab-delimited) and can be easily loaded in Python using the <a class="reference external" href="https://pandas.pydata.org/">pandas</a> package:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="n">conf_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">func_path</span><span class="p">,</span> <span class="s1">&#39;sub-03_task-flocBLOCKED_desc-confounds_regressors.tsv&#39;</span><span class="p">)</span>
+<span class="n">conf</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">conf_path</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s1">&#39;</span><span class="se">\t</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="n">conf</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>csf</th>
+      <th>csf_derivative1</th>
+      <th>csf_derivative1_power2</th>
+      <th>csf_power2</th>
+      <th>white_matter</th>
+      <th>white_matter_derivative1</th>
+      <th>white_matter_derivative1_power2</th>
+      <th>white_matter_power2</th>
+      <th>global_signal</th>
+      <th>global_signal_derivative1</th>
+      <th>...</th>
+      <th>rot_x_derivative1_power2</th>
+      <th>rot_x_power2</th>
+      <th>rot_y</th>
+      <th>rot_y_derivative1</th>
+      <th>rot_y_power2</th>
+      <th>rot_y_derivative1_power2</th>
+      <th>rot_z</th>
+      <th>rot_z_derivative1</th>
+      <th>rot_z_power2</th>
+      <th>rot_z_derivative1_power2</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>47509.215863</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>2.257126e+09</td>
+      <td>33060.738398</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>1.093012e+09</td>
+      <td>30699.602599</td>
+      <td>NaN</td>
+      <td>...</td>
+      <td>NaN</td>
+      <td>0.000000e+00</td>
+      <td>-0.000149</td>
+      <td>NaN</td>
+      <td>2.208969e-08</td>
+      <td>NaN</td>
+      <td>0.000000</td>
+      <td>NaN</td>
+      <td>0.000000e+00</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>47183.542928</td>
+      <td>-325.672935</td>
+      <td>106062.860766</td>
+      <td>2.226287e+09</td>
+      <td>33021.566030</td>
+      <td>-39.172367</td>
+      <td>1534.474371</td>
+      <td>1.090424e+09</td>
+      <td>30659.901226</td>
+      <td>-39.701373</td>
+      <td>...</td>
+      <td>3.384482e-09</td>
+      <td>3.384482e-09</td>
+      <td>-0.000000</td>
+      <td>0.000149</td>
+      <td>0.000000e+00</td>
+      <td>2.208969e-08</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000e+00</td>
+      <td>0.000000e+00</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>47116.085111</td>
+      <td>-67.457818</td>
+      <td>4550.557152</td>
+      <td>2.219925e+09</td>
+      <td>33110.393546</td>
+      <td>88.827516</td>
+      <td>7890.327596</td>
+      <td>1.096298e+09</td>
+      <td>30679.787487</td>
+      <td>19.886260</td>
+      <td>...</td>
+      <td>1.956213e-08</td>
+      <td>3.922024e-08</td>
+      <td>-0.000158</td>
+      <td>-0.000158</td>
+      <td>2.510704e-08</td>
+      <td>2.510704e-08</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000e+00</td>
+      <td>0.000000e+00</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>46920.666512</td>
+      <td>-195.418599</td>
+      <td>38188.428865</td>
+      <td>2.201549e+09</td>
+      <td>33027.273113</td>
+      <td>-83.120433</td>
+      <td>6909.006414</td>
+      <td>1.090801e+09</td>
+      <td>30670.787218</td>
+      <td>-9.000269</td>
+      <td>...</td>
+      <td>7.606564e-12</td>
+      <td>4.032024e-08</td>
+      <td>-0.000202</td>
+      <td>-0.000043</td>
+      <td>4.074342e-08</td>
+      <td>1.883386e-09</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000e+00</td>
+      <td>0.000000e+00</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>46876.911781</td>
+      <td>-43.754731</td>
+      <td>1914.476452</td>
+      <td>2.197445e+09</td>
+      <td>33013.589153</td>
+      <td>-13.683960</td>
+      <td>187.250764</td>
+      <td>1.089897e+09</td>
+      <td>30636.632976</td>
+      <td>-34.154242</td>
+      <td>...</td>
+      <td>4.032024e-08</td>
+      <td>4.379051e-47</td>
+      <td>-0.000187</td>
+      <td>0.000015</td>
+      <td>3.485764e-08</td>
+      <td>2.294619e-10</td>
+      <td>-0.000219</td>
+      <td>-0.000219</td>
+      <td>4.783144e-08</td>
+      <td>4.783144e-08</td>
+    </tr>
+  </tbody>
+</table>
+<p>5 rows × 263 columns</p>
+</div></div></div>
+</div>
+<p>Confound files from Fmriprep contain a large set of confounds, ranging from motion parameters (<code class="docutils literal notranslate"><span class="pre">rot_x</span></code>, <code class="docutils literal notranslate"><span class="pre">rot_y</span></code>, <code class="docutils literal notranslate"><span class="pre">rot_z</span></code>, <code class="docutils literal notranslate"><span class="pre">trans_x</span></code>, <code class="docutils literal notranslate"><span class="pre">trans_y</span></code>, and <code class="docutils literal notranslate"><span class="pre">trans_z</span></code>) and their derivatives (<code class="docutils literal notranslate"><span class="pre">*derivative1</span></code>) and squares (<code class="docutils literal notranslate"><span class="pre">*_power2</span></code>) to the average signal from the brain’s white matter and cerebrospinal fluid (CSF), which should contain sources of noise such as respiratory, cardiac, or motion related signals (but not signal from neural sources, which should be largely constrained to gray matter). For a full list and explanation of Fmriprep’s estimated confounds, check their website. Also, check <a class="reference external" href="https://neurostars.org/t/confounds-from-fmriprep-which-one-would-you-use-for-glm/326">this thread</a> on Neurostars for a discussion on which confounds to include in your analyses.</p>
+<p>In addition to the actual preprocessed outputs, Fmriprep also provides you with a nice (visual) summary of the different (major) preprocessing steps in an HTML-file, which you’d normally open in any standard browser to view. Here. we load this file for our example participants (<code class="docutils literal notranslate"><span class="pre">sub-03</span></code>) inside the notebook below. Scroll through it to see which preprocessing steps are highlighted. Note that the images from the HTML-file are not properly rendered in Jupyter notebooks, but you can right-click the image links (e.g., <code class="docutils literal notranslate"><span class="pre">sub-03/figures/sub-03_dseg.svg</span></code>) and click “Open link in new tab” to view the image.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">IPython.display</span> <span class="kn">import</span> <span class="n">IFrame</span>
+<span class="n">IFrame</span><span class="p">(</span><span class="n">src</span><span class="o">=</span><span class="s1">&#39;./bids/derivatives/fmriprep/sub-03.html&#39;</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mi">700</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="mi">600</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html">
+<iframe
+    width="700"
+    height="600"
+    src="./bids/derivatives/fmriprep/sub-03.html"
+    frameborder="0"
+    allowfullscreen
+></iframe>
+</div></div>
+</div>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./fMRI-introduction/week_4"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        </div>
+    </div>
+    
+    
+    <div class='prev-next-bottom'>
+        
+    <a class='left-prev' id="prev-link" href="spatial_preprocessing.html" title="previous page">Spatial preprocessing</a>
+    <a class='right-next' id="next-link" href="../../section_intros/5_multilevel.html" title="next page">First &amp; run-level analyses</a>
+
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By Lukas Snoek<br/>
+        
+            &copy; Copyright 2021.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+
+    
+  <script src="../../_static/js/index.d3f166471bb80abb5163.js"></script>
+
+
+    
+  </body>
+</html>

@@ -1,0 +1,1205 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>The GLM, part 2: inference &#8212; NI-edu</title>
+    
+  <link rel="stylesheet" href="../../_static/css/index.f658d18f9b420779cfdf24aa0a7e2d77.css">
+
+    
+  <link rel="stylesheet"
+    href="../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+  <link rel="stylesheet"
+    href="../../_static/vendor/open-sans_all/1.44.1/index.css">
+  <link rel="stylesheet"
+    href="../../_static/vendor/lato_latin-ext/1.44.1/index.css">
+
+    
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/sphinx-book-theme.40e2e510f6b7d1648584402491bb10fe.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../../_static/js/index.d3f166471bb80abb5163.js">
+
+    <script id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/togglebutton.js"></script>
+    <script src="../../_static/clipboard.min.js"></script>
+    <script src="../../_static/copybutton.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../../_static/sphinx-book-theme.d31b09fe5c1d09cb49b26a786de4a05d.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.0/dist/embed-amd.js"></script>
+    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="../../_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Design of experiments" href="../../section_intros/3_design_of_experiments_T.html" />
+    <link rel="prev" title="The GLM, part 1: estimation" href="../week_2/glm_part1_estimation.html" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+
+
+
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+<a class="navbar-brand text-wrap" href="../../index.html">
+  
+  <img src="../../_static/fmri.gif" class="logo" alt="logo">
+  
+  
+  <h1 class="site-logo" id="site-title">NI-edu</h1>
+  
+</a>
+</div><form class="bd-search d-flex align-items-center" action="../../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form>
+<nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+    <ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../index.html">
+   Welcome to NI-edu
+  </a>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  Getting started
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../getting_started/about.html">
+   About this course
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../getting_started/installation.html">
+   Installation
+  </a>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  fMRI-introduction
+ </span>
+</p>
+<ul class="current nav sidenav_l1">
+ <li class="toctree-l1 collapsible-parent">
+  <a class="reference internal" href="../../section_intros/1_python.html">
+   Python for (f)MRI analysis
+  </a>
+  <ul class="collapse-ul">
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../other/python_recap.html">
+     Python recap
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../week_1/python_for_mri.html">
+     Working with MRI data in Python (T)
+    </a>
+   </li>
+  </ul>
+  <i class="fas fa-chevron-down">
+  </i>
+ </li>
+ <li class="toctree-l1 current active collapsible-parent">
+  <a class="reference internal" href="../../section_intros/2_glm.html">
+   Using the GLM to model fMRI data
+  </a>
+  <ul class="current collapse-ul">
+   <li class="toctree-l2">
+    <a class="reference internal" href="../week_2/glm_part1_estimation.html">
+     The GLM: estimation (T)
+    </a>
+   </li>
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
+     The GLM: inference (T)
+    </a>
+   </li>
+  </ul>
+  <i class="fas fa-chevron-down">
+  </i>
+ </li>
+ <li class="toctree-l1 collapsible-parent">
+  <a class="reference internal" href="../../section_intros/3_design_of_experiments_T.html">
+   Design of experiments
+  </a>
+  <ul class="collapse-ul">
+   <li class="toctree-l2">
+    <a class="reference internal" href="design_of_experiments.html">
+     Design of experiments (T)
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="neurodesign.html">
+     Neurodesign (T)
+    </a>
+   </li>
+  </ul>
+  <i class="fas fa-chevron-down">
+  </i>
+ </li>
+ <li class="toctree-l1 collapsible-parent">
+  <a class="reference internal" href="../../section_intros/4_preprocessing.html">
+   Preprocessing
+  </a>
+  <ul class="collapse-ul">
+   <li class="toctree-l2">
+    <a class="reference internal" href="../week_4/temporal_preprocessing.html">
+     Temporal preprocessing (T)
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../week_4/spatial_preprocessing.html">
+     Spatial preprocessing (T)
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../week_4/fmriprep.html">
+     Fmriprep (T)
+    </a>
+   </li>
+  </ul>
+  <i class="fas fa-chevron-down">
+  </i>
+ </li>
+ <li class="toctree-l1 collapsible-parent">
+  <a class="reference internal" href="../../section_intros/5_multilevel.html">
+   First &amp; run-level analyses
+  </a>
+  <ul class="collapse-ul">
+   <li class="toctree-l2">
+    <a class="reference internal" href="../week_5/linux_and_the_command_line.html">
+     Linux and the CMD (T)
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../week_5/first_level_analyses.html">
+     First level analyses (T)
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../week_5/run_level_analyses.html">
+     Run-level analyses (T)
+    </a>
+   </li>
+  </ul>
+  <i class="fas fa-chevron-down">
+  </i>
+ </li>
+ <li class="toctree-l1 collapsible-parent">
+  <a class="reference internal" href="../../section_intros/6_grouplevel.html">
+   Group-level analyses
+  </a>
+  <ul class="collapse-ul">
+   <li class="toctree-l2">
+    <a class="reference internal" href="../week_6/group_level_analyses.html">
+     Group-level analyses (T)
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../week_6/MCC.html">
+     Multiple comparison correction (T)
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../week_6/ROI_analysis.html">
+     ROI analysis (T)
+    </a>
+   </li>
+  </ul>
+  <i class="fas fa-chevron-down">
+  </i>
+ </li>
+ <li class="toctree-l1 collapsible-parent">
+  <a class="reference internal" href="../../section_intros/7_nilearn.html">
+   Introduction to Nilearn
+  </a>
+  <ul class="collapse-ul">
+   <li class="toctree-l2">
+    <a class="reference internal" href="../week_7/nilearn.html">
+     Introduction to Nilearn (T)
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../week_7/nilearn_stats.html">
+     Statistics with Nilearn (T)
+    </a>
+   </li>
+  </ul>
+  <i class="fas fa-chevron-down">
+  </i>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  fMRI-pattern-analysis
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../fMRI-pattern-analysis/week_1/design_and_pattern_estimation.html">
+   Design and pattern estimation (T)
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../fMRI-pattern-analysis/week_2/decoding_analyses.html">
+   Machine learning/decoding (T)
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../fMRI-pattern-analysis/week_3/rsa.html">
+   Representational Similarity Analysis (T)
+  </a>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  Misc
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../misc/bibliography.html">
+   Bibliography
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../misc/for_educators.html">
+   For educators
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../misc/CONTRIBUTING.html">
+   Contributing
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../misc/CONDUCT.html">
+   Code of Conduct
+  </a>
+ </li>
+</ul>
+
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="row topbar fixed-top container-xl">
+    <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show">
+    </div>
+    <div class="col pl-2 topbar-main">
+        
+        <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+            data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+            aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+            title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+            <i class="fas fa-bars"></i>
+            <i class="fas fa-arrow-left"></i>
+            <i class="fas fa-arrow-up"></i>
+        </button>
+        
+        
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../../_sources/fMRI-introduction/week_3/glm_part2_inference.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+        <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/lukassnoek/NI-edu"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        <a class="issues-button"
+            href="https://github.com/lukassnoek/NI-edu/issues/new?title=Issue%20on%20page%20%2FfMRI-introduction/week_3/glm_part2_inference.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
+        <a class="edit-button" href="https://github.com/lukassnoek/NI-edu/edit/master/NI-edu/fMRI-introduction/week_3/glm_part2_inference.ipynb"><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Edit this page"><i class="fas fa-pencil-alt"></i>suggest edit</button></a>
+    </div>
+</div>
+
+
+        <!-- Full screen (wrap in <a> to have style consistency -->
+        <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+                data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+                title="Fullscreen mode"><i
+                    class="fas fa-expand"></i></button></a>
+
+        <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/lukassnoek/NI-edu/master?urlpath=tree/NI-edu/fMRI-introduction/week_3/glm_part2_inference.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="../../_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        <a class="jupyterhub-button" href="https://neuroimaging.lukas-snoek.com/hub/user-redirect/git-pull?repo=https://github.com/lukassnoek/NI-edu&urlpath=tree/NI-edu/NI-edu/fMRI-introduction/week_3/glm_part2_inference.ipynb&branch=master"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch JupyterHub" data-toggle="tooltip"
+                data-placement="left"><img class="jupyterhub-button-logo"
+                    src="../../_static/images/logo_jupyterhub.svg"
+                    alt="Interact on JupyterHub">JupyterHub</button></a>
+        
+        
+        
+    </div>
+</div>
+
+    </div>
+
+    <!-- Table of contents -->
+    <div class="d-none d-md-block col-md-2 bd-toc show">
+        
+        <div class="tocsection onthispage pt-5 pb-3">
+            <i class="fas fa-list"></i> Contents
+        </div>
+        <nav id="bd-toc-nav">
+            <ul class="nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#introduction">
+   Introduction
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#how-to-compute-t-values-and-p-values">
+   How to compute
+   <em>
+    t
+   </em>
+   -values and
+   <em>
+    p
+   </em>
+   -values
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#t-values">
+     <em>
+      t
+     </em>
+     -values
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#p-values">
+     P-values
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#contrasts">
+   Contrasts
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#t-tests">
+     <em>
+      t
+     </em>
+     -tests
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#f-tests-on-contrasts">
+     <em>
+      F
+     </em>
+     -tests on contrasts
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#summary">
+     Summary
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+        </nav>
+        
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="the-glm-part-2-inference">
+<h1>The GLM, part 2: inference<a class="headerlink" href="#the-glm-part-2-inference" title="Permalink to this headline">¶</a></h1>
+<p>In this notebook, we’ll continue with the GLM, focusing on statistical tests (i.e., inference) of parameters. Note that there are two notebooks this week: this one, <code class="docutils literal notranslate"><span class="pre">glm_part2_inference.ipynb</span></code>, and <code class="docutils literal notranslate"><span class="pre">design_of_experiments.ipynb</span></code>. Please do this one first.</p>
+<p>Last week, you learned how to estimate parameters of the GLM and how to interpret them. This week, we’ll focus on statistical inference of those estimated parameters (and design of experiment, in another notebook). Importantly, we are going to introduce the most important formula in the context of univariate fMRI analyses: the formula for the <em>t-value</em>. Make sure you understand this formula, as we will continue to discuss it in the next weeks.</p>
+<p><strong>What you’ll learn</strong>: after this week’s lab …</p>
+<ul class="simple">
+<li><p>you know how the different parts of the t-value formula and how they relate to your data and experiment;</p></li>
+<li><p>you are able to calculate t-values and corresponding p-value of parameters from a GLM;</p></li>
+</ul>
+<p><strong>Estimated time needed to complete</strong>: 1-3 hours <br></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># First some imports</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">from</span> <span class="nn">numpy.linalg</span> <span class="kn">import</span> <span class="n">inv</span>
+<span class="o">%</span><span class="k">matplotlib</span> inline
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="introduction">
+<h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h2>
+<p>From your statistics classes, you might remember that many software packages (e.g. SPSS, R, SAS) do not only return beta-parameters of linear regression models, but also <em>t</em>-values and <em>p</em>-values associated with those parameters. Like beta-parameters, these statistics evaluate whether a beta-parameter (or combination of beta-parameters) differs significantly from 0 (or in fMRI terms: whether a voxel activates/deactivates significantly in response to one or more experimental factors).</p>
+<p>In univariate (activation-based) fMRI studies, we need statistics to evaluate the estimated parameters in context of the <em>uncertainty</em> of their estimation. As we’ll discuss later in more detail, interpreting (and performing inference about) the magnitude of GLM parameters without their associated uncertainty is rarely warranted in univariate fMRI studies. To illustrate the problem with this, let’s look at an example.</p>
+<p>In this example, we try to predict someone’s height (in meters; <span class="math notranslate nohighlight">\(\mathbf{y}\)</span>) using someone’s weight (in kilos; <span class="math notranslate nohighlight">\(\mathbf{X}\)</span>). (Note that the data is not necessarily representative of the true relationship between height and weight.)</p>
+<p>Anyway, let’s run a linear regression using weight (in kilos) as a predictor for height (in meters).</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="s1">&#39;weight_height_data.npz&#39;</span><span class="p">)</span>
+<span class="n">X</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;X&#39;</span><span class="p">],</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;y&#39;</span><span class="p">]</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Relation between weight and height (in meters)&#39;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="mf">1.05</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Weight (kg)&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Height (meters)&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
+
+<span class="n">Xn</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">hstack</span><span class="p">((</span><span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">((</span><span class="n">y</span><span class="o">.</span><span class="n">size</span><span class="p">,</span> <span class="mi">1</span><span class="p">)),</span> <span class="n">X</span><span class="p">))</span>
+<span class="n">beta</span> <span class="o">=</span> <span class="n">inv</span><span class="p">(</span><span class="n">Xn</span><span class="o">.</span><span class="n">T</span> <span class="o">@</span> <span class="n">Xn</span><span class="p">)</span> <span class="o">@</span> <span class="n">Xn</span><span class="o">.</span><span class="n">T</span> <span class="o">@</span> <span class="n">y</span>
+<span class="n">y_hat</span> <span class="o">=</span> <span class="n">Xn</span> <span class="o">@</span> <span class="n">beta</span>
+<span class="n">mse</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">((</span><span class="n">y_hat</span> <span class="o">-</span> <span class="n">y</span><span class="p">)</span> <span class="o">**</span> <span class="mi">2</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="n">X</span><span class="o">.</span><span class="n">min</span><span class="p">(),</span> <span class="n">X</span><span class="o">.</span><span class="n">max</span><span class="p">()],</span> <span class="p">[</span><span class="n">Xn</span><span class="o">.</span><span class="n">min</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span> <span class="o">@</span> <span class="n">beta</span><span class="p">,</span> <span class="n">Xn</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span> <span class="o">@</span> <span class="n">beta</span><span class="p">],</span> <span class="n">ls</span><span class="o">=</span><span class="s1">&#39;-&#39;</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="s1">&#39;r&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">((</span><span class="n">X</span><span class="o">.</span><span class="n">min</span><span class="p">(),</span> <span class="n">X</span><span class="o">.</span><span class="n">max</span><span class="p">()))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="mi">70</span><span class="p">,</span> <span class="mf">1.9</span><span class="p">,</span> <span class="sa">r</span><span class="s1">&#39;$\hat{\beta}_</span><span class="si">{weight}</span><span class="s1"> = </span><span class="si">%.5f</span><span class="s1">$&#39;</span> <span class="o">%</span> <span class="n">beta</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">18</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="mi">70</span><span class="p">,</span> <span class="mf">1.8</span><span class="p">,</span> <span class="sa">r</span><span class="s1">&#39;$MSE = </span><span class="si">%.5f</span><span class="s1">$&#39;</span> <span class="o">%</span> <span class="n">mse</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">18</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">()</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/glm_part2_inference_3_0.png" src="../../_images/glm_part2_inference_3_0.png" />
+</div>
+</div>
+<p>Well, quite a modest beta-parameter on the one hand, but on the other hand the Mean Squared Error is also quite low.
+Now, to illustrate the problem of interpretating ‘raw’ beta-weights, let’s rephrase our objective of predicting height based on weight: we’ll try to predict <em>height in centimeters</em> based on weight (still in kilos). So, what we’ll do is just rescale the data points of <span class="math notranslate nohighlight">\(\mathbf{y}\)</span> (height in meters) so that they reflect height in centimeters. We can simply do this by multipling our <span class="math notranslate nohighlight">\(\mathbf{y}\)</span> by 100.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">y_cm</span> <span class="o">=</span> <span class="n">y</span> <span class="o">*</span> <span class="mi">100</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Now, you wouldn’t expect our model to change, right? We only rescaled our target … As you’ll see below, this actually changes a lot!</p>
+<div class='alert alert-warning'>
+    <b>ToDo</b> (0 points): Run linear regression like the previous code block, but with <tt>y_cm</tt> instead of <tt>y</tt> as the target variable. You can use the same design (<tt>Xn</tt>). Calculate the beta-parameter and MSE (store them in the variables <tt>beta_cm</tt> and <tt>mse_cm</tt>).
+</div><div class="cell tag_raises-exception tag_remove-output docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="sd">&#39;&#39;&#39; Implement the ToDo here. &#39;&#39;&#39;</span>
+
+<span class="c1"># YOUR CODE HERE</span>
+<span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">beta_cm</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell tag_raises-exception tag_remove-output docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="sd">&#39;&#39;&#39; Tests the above ToDo&#39;&#39;&#39;</span>
+<span class="n">np</span><span class="o">.</span><span class="n">testing</span><span class="o">.</span><span class="n">assert_almost_equal</span><span class="p">(</span><span class="n">beta_cm</span><span class="p">,</span> <span class="n">beta</span> <span class="o">*</span> <span class="mi">100</span><span class="p">,</span> <span class="n">decimal</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span>
+<span class="n">np</span><span class="o">.</span><span class="n">testing</span><span class="o">.</span><span class="n">assert_almost_equal</span><span class="p">(</span><span class="n">mse_cm</span><span class="p">,</span> <span class="n">mse</span> <span class="o">*</span> <span class="mi">10000</span><span class="p">,</span> <span class="n">decimal</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Well done!&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>If you did it correctly, when you compare the beta-parameters between the two models (one where <span class="math notranslate nohighlight">\(y\)</span> is in meters, and one where <span class="math notranslate nohighlight">\(y\)</span> is in centimeters), you see a massive difference — a 100 fold difference to be exact*! This is a nice example where you see that the (raw) value of the beta-parameter is completely dependent on the scale of your variables. (Actually, you could either rescale <span class="math notranslate nohighlight">\(\mathbf{X}\)</span> or <span class="math notranslate nohighlight">\(\mathbf{y}\)</span>); both will have a similar effect on your estimated beta-parameter.)</p>
+<div class='alert alert-info'>
+    <b>ToThink</b> (0 points): Note that the MSE is a 10,000 times larger in the model with <tt>y_cm</tt> compared to <tt>y</tt> (in meters). From your understanding of how MSE is calculated, do you understand why?
+</div><div class='alert alert-info'>
+<b>ToThink</b> (2 points): By now, you know that the scale of the data (either $X$ or $y$) influences the magnitude of the raw parameter estimates. One could argue that this is not relevant for fMRI data because all data (i.e. different voxels in the brain) all measure the same type of signal, so their scale shouldn't differ that much. This, however, is a false assumption.
+<p>Think of (at least) two reasons why voxels might differ in their scale and write them down in the text cell below.</p>
+</div><p>YOUR ANSWER HERE</p>
+</div>
+<div class="section" id="how-to-compute-t-values-and-p-values">
+<h2>How to compute <em>t</em>-values and <em>p</em>-values<a class="headerlink" href="#how-to-compute-t-values-and-p-values" title="Permalink to this headline">¶</a></h2>
+<p>So, you’ve seen that interpreting beta-parameters by themselves is useless because their value depends very much on the scale of your variables. But how should we, then, interpret the effects of our predictors on our target-variable? From the plots above, you probably guessed already that it has something to do with the MSE of our model (or, more generally, the model fit). That is indeed the case. As you might have noticed, not only the beta-parameters depend on the scale of your data, the errors (residuals) depend on the scale as well. In other words, not only the <em>effect</em> (beta-values) but also the <em>noise</em> (errors, MSE) depend on the scale of the variables!</p>
+<div class="section" id="t-values">
+<h3><em>t</em>-values<a class="headerlink" href="#t-values" title="Permalink to this headline">¶</a></h3>
+<p>In fact, the key to getting interpretable effects of our predictors is to divide (“normalize”) our beta-parameter(s) by some quantity that summarizes how well our model describes the data. This quantity is the <strong>standard error of the beta-parameter</strong>, usually denoted by <span class="math notranslate nohighlight">\(\mathrm{SE}_{\beta}\)</span>. The standard error of the beta-parameter can be computed by taking the square root of the <strong>variance of the beta-parameter</strong>. If we’d divide our beta-estimate with it’s standard error, we compute a statistic you are all familiar with: the <em>t</em>-statistic! Formally:</p>
+<p>\begin{align}
+t_{\hat{\beta}} = \frac{\hat{\beta}}{\mathrm{SE}_{\hat{\beta}}} = \frac{\hat{\beta}}{\sqrt{\mathrm{var}(\hat{\beta})}}
+\end{align}</p>
+<div class='alert alert-info'>
+    <b>ToThink</b> (0 points): Suppose that I know the $\mathrm{SE}$ of a particular beta-parameter. How can I derive the variance of that parameter (i.e., how do I go from the $\mathrm{SE}$ to the variance)? And yes, the answer is as straightforward as you'd think.
+</div><p>Another way to think about it is that the t-value is the “effect” (<span class="math notranslate nohighlight">\(\hat{\beta}\)</span>) divided by your (un)certainty or confidence in the effect (<span class="math notranslate nohighlight">\(\mathrm{SE}_{\hat{\beta}}\)</span>). In a way, you can think of t-values as “uncertainty-normalized” effects.</p>
+<p>So, what drives (statistical) uncertainty about “effects” (here: <span class="math notranslate nohighlight">\(\hat{\beta}\)</span> parameters)? To find out, let’s dissect the uncertainty term, <span class="math notranslate nohighlight">\(\mathrm{SE}_{\hat{\beta}}\)</span>, a little more. The standard error of a parameter can interpreted conceptually as the “unexplained variance of the model” (or <em>noise</em>) multiplied with the “design variance” (or: <em>the variance of the parameter due to the design</em>). In this lab, we won’t explain what <em>design variance</em> means or how to compute this, as this is the topic of the second notebook of this week (<code class="docutils literal notranslate"><span class="pre">design_of_experiments</span></code>).</p>
+<p>For now, we treat “design variance”, here, as some known (constant) value given the design matrix (<span class="math notranslate nohighlight">\(\mathbf{X}\)</span>). So, with this information, we can construct a conceptual formula for the standard error of our parameter(s):</p>
+<p>\begin{align}
+\mathbf{SE}_{\hat{\beta}} = \sqrt{\mathrm{noise} \cdot \mathrm{design\ variance}}
+\end{align}</p>
+<p>Now we also create a “conceptual formula” for the <em>t</em>-statistic:</p>
+<p>\begin{align}
+t_{\hat{\beta}} = \frac{\hat{\beta}}{\mathrm{SE}_{\hat{\beta}}} = \frac{\mathrm{effect}}{\sqrt{\mathrm{noise} \cdot \mathrm{design\ variance}}}
+\end{align}</p>
+<p><strong>This (conceptual) formula involving effects, noise, and design variance is probably the most important concept of this course</strong>. The effects (<em>t</em>-values) we measure in GLM analyses of fMRI data depend on two things: the effect measured (<span class="math notranslate nohighlight">\(\hat{\beta}\)</span>) and the (un)certainty of the effect (<span class="math notranslate nohighlight">\(SE_{\hat{\beta}}\)</span>), of which the latter term can be divided into the unexplained variance (“noise”) and the design variance (uncertainty of the parameter due to the design).</p>
+<p>These two terms (noise and design variance) will be central to the next couple of weeks of this course. In this week’s second notebook (topic: design of experiments), we’ll focus on how to optimize our <em>t</em>-values by minimizing the “design variance” term. Next week (topic: preprocessing), we’ll focus on how to (further) optimize our <em>t</em>-values by minimizing the error/noise.</p>
+<p>While we’re going to ignore the design variance for now, we are, however, going to learn how to calculate the “noise” term.</p>
+<p>In fact, the noise term is <em>very</em> similar to the MSE, but instead of taking the <em>mean</em> of the squared residuals, we sum the squared residuals (“sums of squared erros”, SSE) and divide it by the model’s degrees of freedom (DF). People usually use the <span class="math notranslate nohighlight">\(\hat{\sigma}^{2}\)</span> symbol for this noise term:</p>
+<p>\begin{align}
+\mathrm{noise} = \hat{\sigma}^{2} = \frac{\sum_{i=1}^{N}(\hat{y_{i}} - y_{i})^2}{\mathrm{df}}
+\end{align}</p>
+<p>where the degrees of freedom (df) are defined as the number of samples (<span class="math notranslate nohighlight">\(N\)</span>) minus the number of predictors <em>including the intercept</em> (<span class="math notranslate nohighlight">\(P\)</span>):</p>
+<p>\begin{align}
+\mathrm{df} = N - P
+\end{align}</p>
+<p>So, the formula of the <em>t</em>-statistic becomes:</p>
+<p>\begin{align}
+t_{\hat{\beta}} = \frac{\hat{\beta}}{\sqrt{\frac{\sum_{i=1}^{N}(\hat{y_{i}} - y_{i})^2}{N - P} \cdot \mathrm{design\ variance}}}
+\end{align}</p>
+<p>Alright, enough formulas. Let’s see how we can compute these terms in Python. We’re going to calculate the <em>t</em>-statistic of the weight-predictor for both models (the meter and the centimeter model) to see whether we can show that essentially the (normalized) effect of weight on height in meters is the same as the effect on heigh in centimeters; in other words, we are going to investigate whether the conversion to <em>t</em>-values “normalizes” the beta-parameters.</p>
+<p>First, we’ll create a function for you to calculate the design-variance. You <em>don’t</em> have to understand how this works; we’re going to explain this to you in detail next week.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">design_variance</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">which_predictor</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39; Returns the design variance of a predictor (or contrast) in X.</span>
+<span class="sd">    </span>
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    X : numpy array</span>
+<span class="sd">        Array of shape (N, P)</span>
+<span class="sd">    which_predictor : int or list/array</span>
+<span class="sd">        The index of the predictor you want the design var from.</span>
+<span class="sd">        Note that 0 refers to the intercept!</span>
+<span class="sd">        Alternatively, &quot;which_predictor&quot; can be a contrast-vector</span>
+<span class="sd">        (which will be discussed later this lab).</span>
+<span class="sd">        </span>
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    des_var : float</span>
+<span class="sd">        Design variance of the specified predictor/contrast from X.</span>
+<span class="sd">    &#39;&#39;&#39;</span>
+    
+    <span class="n">is_single</span> <span class="o">=</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">which_predictor</span><span class="p">,</span> <span class="nb">int</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">is_single</span><span class="p">:</span>
+        <span class="n">idx</span> <span class="o">=</span> <span class="n">which_predictor</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">idx</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">which_predictor</span><span class="p">)</span> <span class="o">!=</span> <span class="mi">0</span>
+    
+    <span class="n">c</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">X</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+    <span class="n">c</span><span class="p">[</span><span class="n">idx</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span> <span class="k">if</span> <span class="n">is_single</span> <span class="o">==</span> <span class="mi">1</span> <span class="k">else</span> <span class="n">which_predictor</span><span class="p">[</span><span class="n">idx</span><span class="p">]</span>
+    <span class="n">des_var</span> <span class="o">=</span> <span class="n">c</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">inv</span><span class="p">(</span><span class="n">X</span><span class="o">.</span><span class="n">T</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">X</span><span class="p">)))</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">c</span><span class="o">.</span><span class="n">T</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">des_var</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>So, if you want the design variance of the ‘weight’ parameter in the varianble <code class="docutils literal notranslate"><span class="pre">Xn</span></code> from before, you do:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># use which_predictor=1, because the weight-column in Xn is at index 1 (index 0 = intercept)</span>
+<span class="n">design_variance_weight_predictor</span> <span class="o">=</span> <span class="n">design_variance</span><span class="p">(</span><span class="n">Xn</span><span class="p">,</span> <span class="n">which_predictor</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Design variance of weight predictor is: </span><span class="si">%.6f</span><span class="s2"> &quot;</span> <span class="o">%</span> <span class="n">design_variance_weight_predictor</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Design variance of weight predictor is: 0.000334 
+</pre></div>
+</div>
+</div>
+</div>
+<p>Alright, now we only need to calculate our noise-term (<span class="math notranslate nohighlight">\(\hat{\sigma}^2\)</span>):</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Let&#39;s just redo the linear regression (for clarity)</span>
+<span class="n">beta_meter</span> <span class="o">=</span> <span class="n">inv</span><span class="p">(</span><span class="n">Xn</span><span class="o">.</span><span class="n">T</span> <span class="o">@</span> <span class="n">Xn</span><span class="p">)</span> <span class="o">@</span> <span class="n">Xn</span><span class="o">.</span><span class="n">T</span> <span class="o">@</span> <span class="n">y</span>
+<span class="n">y_hat_meter</span> <span class="o">=</span> <span class="n">Xn</span> <span class="o">@</span> <span class="n">beta_meter</span>
+
+<span class="n">N</span> <span class="o">=</span> <span class="n">y</span><span class="o">.</span><span class="n">size</span>
+<span class="n">P</span> <span class="o">=</span> <span class="n">Xn</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+<span class="n">df</span> <span class="o">=</span> <span class="p">(</span><span class="n">N</span> <span class="o">-</span> <span class="n">P</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Degrees of freedom: </span><span class="si">%i</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">df</span><span class="p">)</span>
+<span class="n">sigma_hat</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">((</span><span class="n">y</span> <span class="o">-</span> <span class="n">y_hat_meter</span><span class="p">)</span> <span class="o">**</span> <span class="mi">2</span><span class="p">)</span> <span class="o">/</span> <span class="n">df</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Sigma-hat (noise) is: </span><span class="si">%.3f</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">sigma_hat</span><span class="p">)</span>
+<span class="n">design_variance_weight</span> <span class="o">=</span> <span class="n">design_variance</span><span class="p">(</span><span class="n">Xn</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Degrees of freedom: 98
+Sigma-hat (noise) is: 0.005
+</pre></div>
+</div>
+</div>
+</div>
+<p>Now we can calculate the <em>t</em>-value:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">t_meter</span> <span class="o">=</span> <span class="n">beta_meter</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">sigma_hat</span> <span class="o">*</span> <span class="n">design_variance_weight</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;The t-value for the weight-parameter (beta = </span><span class="si">%.3f</span><span class="s2">) is: </span><span class="si">%.3f</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">beta_meter</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">t_meter</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The t-value for the weight-parameter (beta = 0.013) is: 10.431
+</pre></div>
+</div>
+</div>
+</div>
+<p>That’s it! There’s not much more to calculating <em>t</em>-values in linear regression. Now it’s up to you to do the same thing and calculate the <em>t</em>-value for the model of height in centimeters, and check if it is the same as the <em>t</em>-value for the weight parameter in the model with height in meters.</p>
+<div class='alert alert-warning'>
+    <b>ToDo</b> (1 point): Calculate the <em>t</em>-statistic for the beta from the centimeter-model you calculated earlier. Store the value in a new variable named <tt>t_centimeter</tt>. Note: you don't have to calculate the design variance again (because <tt>X</tt> hasn't changed!) &mdash; you can reuse the variable <tt>design_variance_weight</tt>.
+</div><div class="cell tag_raises-exception tag_remove-output docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="sd">&#39;&#39;&#39; Implement your ToDo here. &#39;&#39;&#39;</span>
+
+<span class="c1"># YOUR CODE HERE</span>
+<span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell tag_raises-exception tag_remove-output docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="sd">&#39;&#39;&#39; Tests the above ToDo. &#39;&#39;&#39;</span>
+<span class="k">try</span><span class="p">:</span>
+    <span class="n">np</span><span class="o">.</span><span class="n">testing</span><span class="o">.</span><span class="n">assert_almost_equal</span><span class="p">(</span><span class="n">t_centimeter</span><span class="p">,</span> <span class="n">t_meter</span><span class="p">)</span>
+<span class="k">except</span> <span class="ne">AssertionError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;The t-value using height in centimeters is not the same as when using height in meters!&quot;</span><span class="p">)</span>
+    <span class="k">raise</span><span class="p">(</span><span class="n">e</span><span class="p">)</span>
+    
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Well done!&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="p-values">
+<h3>P-values<a class="headerlink" href="#p-values" title="Permalink to this headline">¶</a></h3>
+<p>As you can see, calculating <em>t</em>-values solves the “problem” of uninterpretable beta-parameters!</p>
+<p>Now, the last thing you need to know is how to calculate the statistical significance of your <em>t</em>-value, or in other words, how you calculate the corresponding <em>p</em>-value. You probably remember that the <em>p</em>-value corresponds to the area under the curve of a <em>t</em>-distribution associated with your observed <em>t</em>-value <em>and more extreme values</em>:
+<img alt="test" src="http://www.nku.edu/~statistics/Test_o12.gif" />
+<em>Image credits: Frank Dietrich and Mike Collins, Northern Kentucky University</em></p>
+<p>The function <code class="docutils literal notranslate"><span class="pre">stats.t.sf(t_value,</span> <span class="pre">df)</span></code> from the <code class="docutils literal notranslate"><span class="pre">scipy</span></code> package does exactly this. Importantly, this function <em>always</em> returns the right-tailed p-value. For negative t-values, however, you’d want the left-tailed <em>p</em>-value. One way to remedy this, is to always pass the absolute value of your <em>t</em>-value - <code class="docutils literal notranslate"><span class="pre">np.abs(t_value)</span></code> to the <code class="docutils literal notranslate"><span class="pre">stats.t.sf()</span></code> function. Also, the <code class="docutils literal notranslate"><span class="pre">stats.t.sf()</span></code> function by default returns the one-sided <em>p</em>-value. If you’d want the two-sided <em>p</em>-value, you can simply multiply the returned <em>p</em>-value by two to get the corresponding two-sided <em>p</em>-value.</p>
+<p>Let’s see how we’d do that in practice:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">scipy</span> <span class="kn">import</span> <span class="n">stats</span>
+
+<span class="c1"># take the absolute by np.abs(t)</span>
+<span class="n">p_value</span> <span class="o">=</span> <span class="n">stats</span><span class="o">.</span><span class="n">t</span><span class="o">.</span><span class="n">sf</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">t_meter</span><span class="p">),</span> <span class="n">df</span><span class="p">)</span> <span class="o">*</span> <span class="mi">2</span> <span class="c1"># multiply by two to create a two-tailed p-value</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;The p-value corresponding to t(</span><span class="si">%i</span><span class="s1">) = </span><span class="si">%.3f</span><span class="s1"> is: </span><span class="si">%.8f</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">t_meter</span><span class="p">,</span> <span class="n">p_value</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The p-value corresponding to t(98) = 10.431 is: 0.00000000
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="contrasts">
+<h2>Contrasts<a class="headerlink" href="#contrasts" title="Permalink to this headline">¶</a></h2>
+<p>We’re almost done! We’re really at 99% of what you should know about the GLM and fMRI analysis (except for some important caveats that have to do with GLM assumptions, that we’ll discuss next week). The only major concept that we need to discuss is <strong>contrasts</strong>. Contrasts are basically follow-up statistical tests of GLM parameters, with which you can implement any (linear) statistical test that you are familiar with. <em>t</em>-tests, <em>F</em>-tests, ANCOVAs — they can all be realized with the GLM and the right contrast(s). (Again, if you want to know more about this equivalence between the GLM and common statistical tests, check out this <a class="reference external" href="https://lindeloev.github.io/tests-as-linear/">blog post</a>.) Importantly, the choice of contrast should reflect the hypothesis that you want to test.</p>
+<div class="section" id="t-tests">
+<h3><em>t</em>-tests<a class="headerlink" href="#t-tests" title="Permalink to this headline">¶</a></h3>
+<p>T-tests in the GLM can be implemented in two general ways:</p>
+<p><strong>1. Using a contrast of a parameters “against baseline”</strong></p>
+<p>This type of contrast basically tests the hypothesis: “Does my predictor(s) have <em>any</em> effect on my dependent variable?” In other words, it tests the following hypothesis:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(H_{0}: \beta = 0\)</span>        (our null-hypothesis, i.e. no effect)</p></li>
+<li><p><span class="math notranslate nohighlight">\(H_{a}: \beta \neq 0\)</span>     (our two-sided alternative hypothesis, i.e. <em>some</em> effect)</p></li>
+</ul>
+<p>Note that a directional alternative hypothesis is also possible, i.e., <span class="math notranslate nohighlight">\(H_{a}: \beta &gt; 0\)</span> or <span class="math notranslate nohighlight">\(H_{a}: \beta &lt; 0\)</span>.</p>
+<p><strong>2. Using a contrast between parameters</strong></p>
+<p>This type of contrast basically tests hypotheses such as “Does predictor 1 have a larger effect on my dependent variable than predictor 1?”. In other words, it tests the following hypothesis:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(H_{0}: \beta_{1} - \beta_{2} = 0\)</span> (our null-hypothesis, i.e. there is no difference)</p></li>
+<li><p><span class="math notranslate nohighlight">\(H_{a}: \beta_{1} - \beta_{2} \neq 0\)</span>     (our alternative hypotehsis, i.e. there is some difference)</p></li>
+</ul>
+<p>Let’s look at an example of how we would evaluate a simple hypothesis that a beta has an <em>some</em> effect on the dependent variable. Say we’d have an experimental design with 6 conditions:</p>
+<ul class="simple">
+<li><p>condition 1: images of <strong>male</strong> faces with a <strong>happy</strong> expression</p></li>
+<li><p>condition 2: images of <strong>male</strong> faces with a <strong>sad</strong> expression</p></li>
+<li><p>condition 3: images of <strong>male</strong> faces with a <strong>neutral</strong> expression</p></li>
+<li><p>condition 4: images of <strong>female</strong> faces with a <strong>happy</strong> expression</p></li>
+<li><p>condition 5: images of <strong>female</strong> faces with a <strong>sad</strong> expression</p></li>
+<li><p>condition 6: images of <strong>female</strong> faces with a <strong>neutral</strong> expression</p></li>
+</ul>
+<p>Let’s assume we have fMRI data from a run with 100 volumes. We then have a target-signal of shape (<span class="math notranslate nohighlight">\(100,\)</span>) and a design-matrix (after convolution with a canonical HRF) of shape (<span class="math notranslate nohighlight">\(100 \times 7\)</span>) (the first predictor is the intercept!). We load in this data below:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="s1">&#39;data_contrast_example.npz&#39;</span><span class="p">)</span>
+<span class="n">X</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;X&#39;</span><span class="p">],</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;y&#39;</span><span class="p">]</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Shape of X: </span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">X</span><span class="o">.</span><span class="n">shape</span><span class="p">,))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Shape of y: </span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">y</span><span class="o">.</span><span class="n">shape</span><span class="p">,))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Shape of X: (100, 7)
+Shape of y: (100,)
+</pre></div>
+</div>
+</div>
+</div>
+<p>After performing linear regression with these 6 predictors (after convolving the stimulus-onset times with an HRF, etc. etc.), you end up with 7 beta values:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">betas</span> <span class="o">=</span> <span class="n">inv</span><span class="p">(</span><span class="n">X</span><span class="o">.</span><span class="n">T</span> <span class="o">@</span> <span class="n">X</span><span class="p">)</span> <span class="o">@</span> <span class="n">X</span><span class="o">.</span><span class="n">T</span> <span class="o">@</span> <span class="n">y</span>
+<span class="n">betas</span> <span class="o">=</span> <span class="n">betas</span><span class="o">.</span><span class="n">squeeze</span><span class="p">()</span>  <span class="c1"># remove singleton dimension; this is important for later</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Betas corresonding to our 6 conditions (and intercept):</span><span class="se">\n</span><span class="si">%r</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">betas</span><span class="o">.</span><span class="n">T</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Betas corresonding to our 6 conditions (and intercept):
+array([ 0.08208567, -0.21982422, -0.16284892,  0.53208935,  0.26214462,
+        0.38945094,  0.21565532])
+</pre></div>
+</div>
+</div>
+</div>
+<p>The first beta corresponds to the intercept, the second beta to the male/happy predictor, the third beta to the male/sad predictor, etc. etc. Now, suppose that we’d like to test whether images of male faces with a sad expression have an influence on voxel activity (our dependent variable).</p>
+<p>The first thing you need to do is extract this particular beta value from the array with beta values (I know this sounds really trivial, but bear with me):</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">beta_male_sad</span> <span class="o">=</span> <span class="n">betas</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;The &#39;extracted&#39; beta is </span><span class="si">%.3f</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">beta_male_sad</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The &#39;extracted&#39; beta is -0.163
+</pre></div>
+</div>
+</div>
+</div>
+<p>In neuroimaging analyses, however, this is usually done slightly differently: using <strong>contrast-vectors</strong>. Basically, it specifies your specific hypothesis about your beta(s) of interest in a vector. Before explaining it in more detail, let’s look at it in a code example:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Again, we&#39;d want to test whether the beta of &quot;male_sad&quot; is different from 0</span>
+<span class="n">contrast_vector</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">])</span>
+<span class="n">contrast</span> <span class="o">=</span> <span class="p">(</span><span class="n">betas</span> <span class="o">*</span> <span class="n">contrast_vector</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span> <span class="c1"># we simply elementwise multiply the contrast-vector with the betas and sum it!</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;The beta-contrast is: </span><span class="si">%.3f</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="n">contrast</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The beta-contrast is: -0.163
+</pre></div>
+</div>
+</div>
+</div>
+<p>“Wow, what a tedious way to just select the third value of the beta-array”, you might think. And, in a way, this is indeed somewhat tedious for a contrast against baseline. But let’s look at a case where you would want to investigate whether two betas are different - let’s say whether male sad faces have a larger effect on our voxel than male happy faces. Again, you <em>could</em> do this:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">beta_difference</span> <span class="o">=</span> <span class="n">betas</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">-</span> <span class="n">betas</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Difference between betas: </span><span class="si">%.3f</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">beta_difference</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Difference between betas: 0.057
+</pre></div>
+</div>
+</div>
+</div>
+<p>… but you could also use a contrast-vector:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">contrast_vector</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">])</span>
+<span class="n">contrast</span> <span class="o">=</span> <span class="p">(</span><span class="n">betas</span> <span class="o">*</span> <span class="n">contrast_vector</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;The contrast between beta 2 and beta 1 is: </span><span class="si">%.3f</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="n">contrast</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;This is exactly the same as beta[2] - beta[1]: </span><span class="si">%.3f</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">betas</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">-</span><span class="n">betas</span><span class="p">[</span><span class="mi">1</span><span class="p">]))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The contrast between beta 2 and beta 1 is: 0.057
+This is exactly the same as beta[2] - beta[1]: 0.057
+</pre></div>
+</div>
+</div>
+</div>
+<p>“Alright, so using contrast-vectors is just a fancy way of extracting and subtracting betas from each other …”, you might think. In a way, that’s true. But you have to realize that once the hypotheses you want to test become more complicated, using contrast-vectors actually starts to make sense.</p>
+<p>Let’s look at some more elaborate hypotheses. First, let’s test whether male faces lead to higher voxel activity than female faces, <em>regardless of emotion</em>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># male faces &gt; female faces</span>
+<span class="n">contrast_vector</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+<span class="n">male_female_contrast</span> <span class="o">=</span> <span class="p">(</span><span class="n">contrast_vector</span> <span class="o">*</span> <span class="n">betas</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Male - female contrast (regardless of expression): </span><span class="si">%.2f</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">male_female_contrast</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Male - female contrast (regardless of expression): -0.72
+</pre></div>
+</div>
+</div>
+</div>
+<p>… or whether emotional faces (regardless of <em>which</em> exact emotion) lead to higher activity than neutral faces:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Emotion (regardless of which emotion, i.e., regardless of sad/happy) - neutral</span>
+<span class="n">contrast_vector</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">2</span><span class="p">])</span>
+<span class="n">emo_neutral_contrast</span> <span class="o">=</span> <span class="p">(</span><span class="n">contrast_vector</span> <span class="o">*</span> <span class="n">betas</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Emotion - neutral contrast (regardless of which emotion): </span><span class="si">%.2f</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">emo_neutral_contrast</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Emotion - neutral contrast (regardless of which emotion): -1.23
+</pre></div>
+</div>
+</div>
+</div>
+<p>See how contrast-vectors come in handy when calculating (more intricate) comparisons? In the male-female contrast, for example, instead ‘manually’ picking out the betas of ‘sad_male’ and ‘happy_male’, averaging them, and subtracting their average beta from the average ‘female’ betas (‘happy_female’, ‘sad_female’), you can
+specify a contrast-vector, multiply it with your betas, and sum them. That’s it.</p>
+<div class='alert alert-info'>
+<b>ToThink</b> (1 point): In the last contrast (<tt>emo_neural_contrast</tt>), we set all the "emotional" predictors (sad/happy) to 1, but the neutral predictors to minus <em>2</em> ... Why are these set to -2 and not -1? Write your answer below.
+</div><p>YOUR ANSWER HERE</p>
+<div class='alert alert-warning'>
+<b>ToDo</b> (1 point): Create a contrast vector for the hypothesis: sad faces (regardless whether it's male or female) activate this voxel more than neutral faces (regardless of whether it's male/female). Multiply this contrast vector with the betas and store the result in a variable named <tt>contrast_todo</tt>.
+</div><div class="cell tag_raises-exception tag_remove-output docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Implement the sad - neutral contrast here:</span>
+
+<span class="c1"># YOUR CODE HERE</span>
+<span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell tag_raises-exception tag_remove-output docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="sd">&#39;&#39;&#39; Tests the above ToDo. &#39;&#39;&#39;</span>
+<span class="kn">from</span> <span class="nn">niedu.tests.nii.week_3</span> <span class="kn">import</span> <span class="n">test_contrast_todo_1</span>
+<span class="n">test_contrast_todo_1</span><span class="p">(</span><span class="n">betas</span><span class="p">,</span> <span class="n">contrast_todo</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>We’re not only telling you about contrasts because we think it’s an elegant way of computing beta-comparisons, but also because virtually every major neuroimaging software package uses them, so that you can specify what hypotheses you exactly want to test! You’ll also see this when we’re going to work with FSL (in week 5) to perform automated whole-brain linear regression analyses.</p>
+<p>Knowing how contrast-vectors work, we now can extend our formula for <em>t</em>-tests of beta-parameters such that they can describe <strong>every possible test</strong> (not only <em>t</em>-tests, but also ANOVAs, <em>F</em>-tests, etc.) of betas “against baseline” or between betas that you can think of:</p>
+<p>Our “old” formula of the <em>t</em>-test of a beta-parameter:
+\begin{align}
+t_{\hat{\beta}} = \frac{\hat{\beta}<em>{j}}{\mathrm{SE}</em>{\hat{\beta}}}
+\end{align}</p>
+<p>And now our “generalized” version of the <em>t</em>-test of <em>any</em> contrast/hypothesis:</p>
+<p>\begin{align}
+t_{\mathbf{c}\hat{\beta}} = \frac{\sum_{j=1}^{P}{c_{j}\hat{\beta}<em>{j}}}{\mathrm{SE}</em>{\mathbf{c}\hat{\beta}}}
+\end{align}</p>
+<p>in which <span class="math notranslate nohighlight">\(\mathbf{c}\)</span> represents the entire contrast-vector, and <span class="math notranslate nohighlight">\(c_{j}\)</span> represents the <span class="math notranslate nohighlight">\(j^{\mathrm{th}}\)</span> value in our contrast vector. By the way, we can simplify the (notation of the) numerator a little bit using some matrix algebra. Remember that multiplying two (equal length) vectors with each other and then summing the values together is the same thing as the (inner) “dot product” between the two vectors?</p>
+<p>This means that you can also evaluate this elementwise multiplication and sum of the contrast-vector and the betas using the dot-product:</p>
+<p>\begin{align}
+t_{\mathbf{c}\hat{\beta}} = \frac{\mathbf{c}\hat{\beta}}{\mathrm{SE}_{\mathbf{c}\hat{\beta}}}
+\end{align}</p>
+<div class='alert alert-warning'>
+    <b>ToDo</b> (0 points): Convince yourself that the elementwise multiplication and sum is mathematically exactly the same as the dot product! Below, we initialized a hypothetical vector with beta-values (<tt>some_betas</tt>) and a hypothetical contrast-vector (<tt>some_cvec</tt>). First, implement the "multiply and sum" approach and then implement the "dot product" approach. You should find that it gives you exactly the same value: -3.34
+</div><div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">some_betas</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">1.23</span><span class="p">,</span> <span class="mf">2.95</span><span class="p">,</span> <span class="mf">3.33</span><span class="p">,</span> <span class="mf">4.19</span><span class="p">])</span>
+<span class="n">some_cvec</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+
+<span class="c1"># Try to implement both approaches and convince yourself that it&#39;s</span>
+<span class="c1"># mathematically the same!</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>So, you need the contrast vector in the <em>numerator</em> of the <em>t</em>-value formula (i.e., <span class="math notranslate nohighlight">\(\mathbf{c}\hat{\beta}\)</span>), but it turns out that you actually also need the contrast-vector in the denominator, because it’s part of the calculation of design variance. Again, we will discuss how this works exactly in the next notebook. In the function <code class="docutils literal notranslate"><span class="pre">design_variance</span></code>, it is also possible to calculate design variance for a particular contrast (not just a single predictor) by passing a contrast vector to the <code class="docutils literal notranslate"><span class="pre">which_predictor</span></code> argument.</p>
+<p>We’ll show this below:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># E.g., get design-variance of happy/male - sad/male</span>
+<span class="n">c_vec</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">])</span>  <span class="c1"># our contrast vector!</span>
+<span class="n">dvar</span> <span class="o">=</span> <span class="n">design_variance</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">which_predictor</span><span class="o">=</span><span class="n">c_vec</span><span class="p">)</span>  <span class="c1"># pass c_vec to which_predictor</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Design variance of happy/male - sad/male: </span><span class="si">%.3f</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">dvar</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Design variance of happy/male - sad/male: 0.024
+</pre></div>
+</div>
+</div>
+</div>
+<p>For the rest of ToDos this lab, make sure to pass your contrast-vector to the <code class="docutils literal notranslate"><span class="pre">design_variance</span></code> function in order to calculate it correctly.</p>
+<p>Now you know enough to do it yourself!</p>
+<div class='alert alert-warning'>
+<b>ToDo</b> (2 points):
+<p>Calculate the <em>t</em>-value and <em>p</em>-value for the hypothesis “sad faces have a larger effect than happy faces (regardless of gender) on our dependent variabe” (i.e. voxel activity). In other words, test the hypothesis: <span class="math notranslate nohighlight">\(\beta_{sad} - \beta_{happy} \neq 0\)</span> (note that this is a two-sided test!).</p>
+<p>Store the <em>t</em>-value and <em>p</em>-value in the variables <tt>tval_todo</tt> and <tt>pval_todo</tt> respectively. We reload the variables below (we’ll call them <tt>X_new</tt> and <tt>y_new</tt>) to make sure you’re working with the correct data. Note that the <tt>X_new</tt> variable already contains an intercept; the other six columns correspond to the different predictors (male/hapy, male/sad, etc.). In summary, you have to do the following:</p>
+<ul class="simple">
+<li><p>(you don’t have to calculate the betas; this has already been done (stored in the variable <tt>betas</tt>)</p></li>
+<li><p>calculate “sigma-hat” (<span class="math notranslate nohighlight">\(\mathrm{SSE} / \mathrm{df}\)</span>)</p></li>
+<li><p>calculate design-variance (use the <tt>design_variance</tt> function with a proper contrast-vector)</p></li>
+<li><p>calculate the contrast (<span class="math notranslate nohighlight">\(\mathbf{c}\hat{\beta}\)</span>)</p></li>
+<li><p>calculate the t-value and p-value</p></li>
+</ul>
+</div><div class="cell tag_raises-exception tag_remove-output docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="s1">&#39;data_contrast_example.npz&#39;</span><span class="p">)</span>
+<span class="n">X_new</span><span class="p">,</span> <span class="n">y_new</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;X&#39;</span><span class="p">],</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;y&#39;</span><span class="p">]</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Shape of X: </span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">X_new</span><span class="o">.</span><span class="n">shape</span><span class="p">,))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Shape of y: </span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">y_new</span><span class="o">.</span><span class="n">shape</span><span class="p">,))</span>
+
+<span class="c1"># YOUR CODE HERE</span>
+<span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell tag_raises-exception tag_remove-output docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="sd">&#39;&#39;&#39; Part 1 of testing the above ToDo. &#39;&#39;&#39;</span> 
+<span class="kn">from</span> <span class="nn">niedu.tests.nii.week_3</span> <span class="kn">import</span> <span class="n">test_contrast_todo_2</span>
+<span class="n">test_contrast_todo_2</span><span class="p">(</span><span class="n">X_new</span><span class="p">,</span> <span class="n">y_new</span><span class="p">,</span> <span class="n">betas</span><span class="p">,</span> <span class="n">tval_todo</span><span class="p">,</span> <span class="n">pval_todo</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Well done!&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="f-tests-on-contrasts">
+<h3><em>F</em>-tests on contrasts<a class="headerlink" href="#f-tests-on-contrasts" title="Permalink to this headline">¶</a></h3>
+<p>In the previous section we discussed how to calculate <em>t</em>-values for single contrasts. However, sometimes you might have an hypothesis about multiple contrasts at the same time. This may sound weird, but let’s consider an experiment.</p>
+<p>Suppose you have data from an experiment in which you showed images circles which were either blue, red, or green. In that case, you have three predictors. Then, you could have very specific question, like “Do blue circles activate a voxel significantly compared to baseline”, which corresponds to the following null and alternative hypothesis:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(H_{0}: \beta_{blue} = 0\)</span> (our null-hypothesis, i.e. there is no activation compared to baseline)</p></li>
+<li><p><span class="math notranslate nohighlight">\(H_{a}: \beta_{blue} &gt; 0\)</span>   (our alternative hypothesis, i.e. blue activates relative to baseline)</p></li>
+</ul>
+<p>However, you can also have a more general question, like “Does the presentation of <em>any</em> circle (regardless of color) activate a voxel compared to baseline?”. This question represents the following null and alternative hypothesis:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(H_{0}: \beta_{blue} = \beta_{red} = \beta_{green} = 0\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(H_{a}: (\beta_{blue} &gt; 0) \vee (\beta_{red} &gt; 0) \vee (\beta_{green} &gt; 0)\)</span></p></li>
+</ul>
+<p>The <span class="math notranslate nohighlight">\(\vee\)</span> symbol in the alternative hypothesis means “or”. So the alternative hypothesis nicely illustrates our question: is there <em>any</em> condition (circle) that activates a voxel more than baseline? This hypothesis-test might sound familiar, because it encompasses the <em>F</em>-test! In other words, an <em>F</em>-test tests <em>a collection of contrasts</em> together. In the example here, the <em>F</em>-test tests the following contrasts together (ignoring the intercept) of our beta-parameters:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">[1,</span> <span class="pre">0,</span> <span class="pre">0]</span></code> (<span class="math notranslate nohighlight">\(\mathrm{red} &gt; 0\)</span>)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[0,</span> <span class="pre">1,</span> <span class="pre">0]</span></code> (<span class="math notranslate nohighlight">\(\mathrm{blue} &gt; 0\)</span>)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[0,</span> <span class="pre">0,</span> <span class="pre">1]</span></code> (<span class="math notranslate nohighlight">\(\mathrm{green} &gt; 0\)</span>)</p></li>
+</ul>
+<p>Thus, a <em>F</em>-test basically tests this contrast-<em>matrix</em> all at once! Therefore, the <em>F</em>-tests is a type of “omnibus test”!</p>
+<p>Now, let’s look at the math behind the <em>F</em>-statistic. The <em>F</em>-statistic for set of <span class="math notranslate nohighlight">\(K\)</span> contrasts (i.e., the number of rows in the contrast-matrix) is defined as follows:</p>
+<p>\begin{align}
+F = (\mathbf{c}\hat{\beta})^{T}[K\mathbf{c}((X^{T}X)^{-1}\hat{\sigma}^{2})\mathbf{c}^{T}]^{-1}(\mathbf{c}\hat{\beta})
+\end{align}</p>
+<p>With a little imagination, you can see how the <em>F</em>-test is an extension of the <em>t</em>-test of a single contrast to accomodate testing a set of contrasts together. Don’t worry, you don’t have to understand how the formula for the <em>F</em>-statistic works mathematically and you don’t have to implement this in Python. But you <em>do</em> need to understand what type of hypothesis an <em>F</em>-test tests!</p>
+<p>Let’s practice this in a ToDo!</p>
+<div class='alert alert-warning'>
+<b>ToDo</b> (1 point)
+<p>Remember the temporal basis sets from before? Suppose we have an experiment with two conditions (“A” and “B”) and suppose we’ve created a design matrix based on convolution with a single-gamma basis set (with a canonical HRF, its temporal derivative, and its dispersion derivative). Together with the intercept, the design matrix thus has 7 columns (2 conditions * 3 HRF + intercept).</p>
+<p>The order of the columns is as follows:</p>
+<ul class="simple">
+<li><p>column 1: intercept</p></li>
+<li><p>column 2: canonical HRF “A”</p></li>
+<li><p>column 3: temporal deriv “A”</p></li>
+<li><p>column 4: dispersion deriv “A”</p></li>
+<li><p>column 5: canonical HRF “B”</p></li>
+<li><p>column 6: temporal deriv “B”</p></li>
+<li><p>column 7: dispersion deriv “B”</p></li>
+</ul>
+<p>Suppose I want to test whether there is <em>any</em> difference in response to condition “A” (<span class="math notranslate nohighlight">\(A &gt; 0\)</span>) compared to baseline, and <em>I don’t care what element of the HRF caused it</em>. I can use an F-test for this. What would the corresponding contrast-<em>matrix</em> (in which each row represents a different contrast) look like?</p>
+<p>We’ve created an ‘empty’ (all-zeros) 2D matrix below with three rows. It’s up to you to fill in the matrix such that it can be used to test the above question/hypothesis.</p>
+</div><div class="cell tag_raises-exception tag_remove-output docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Fill in the correct values!</span>
+<span class="n">contrast_matrix</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span>
+
+    <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span>
+    <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span>
+    <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span>
+
+<span class="p">])</span>
+
+<span class="c1"># YOUR CODE HERE</span>
+<span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell tag_raises-exception tag_remove-output docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="sd">&#39;&#39;&#39; Tests the above ToDo. &#39;&#39;&#39;</span>
+<span class="kn">from</span> <span class="nn">niedu.tests.nii.week_3</span> <span class="kn">import</span> <span class="n">test_definition_ftest</span>
+
+<span class="n">test_definition_ftest</span><span class="p">(</span><span class="n">contrast_matrix</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Well done!&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="summary">
+<h3>Summary<a class="headerlink" href="#summary" title="Permalink to this headline">¶</a></h3>
+<p>Alright, now you know basically everything about how to perform a univariate fMRI analysis!</p>
+<p>“Wait, that’s it?”, you might ask (or not). Well, yeah, regular univariate analyses as you might read about in scientific journals do basically what you’ve just learned, but then not on a single voxel, but on each voxel in the brain separately. Basically just a gigantic for-loop across voxels in which everytime the same design (<span class="math notranslate nohighlight">\(\mathbf{X}\)</span>) is used to predict a new voxel-signal (<span class="math notranslate nohighlight">\(\mathbf{y}\)</span>). Afterwards, the <em>t</em>-values of the contrast (hypothesis) you’re interested in are plotted back onto a brain, color-code it (high t-values yellow, low t-values red), and voilà, you have your pretty brain plot.</p>
+<div class='alert alert-info'>
+    <b>ToThink</b> (1 point): More explained variance (i.e., a smaller "sums of squared error" term) does not always mean that your <em>t</em>-value is higher. Explain how this might happen.
+</div><p>YOUR ANSWER HERE</p>
+<div class='alert alert-warning'>
+    <b>ToDo</b> (2 points): Suppose that, within the hypothesized face-experiment explained earlier, you want to know which parts of the brain show (significantly) more activity during periods without stimuli (i.e., no faces were shown, i.e., "rest") than during periods with stimuli. Define a contrast vector which would test this hypothesis and store it in a variable <tt>cvec_rest</tt>. Remember: the original face experiment had 7 predictors (the first one being the intercept, followed by 6 face predictors).
+</div><div class="cell tag_raises-exception tag_remove-output docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Implement the assignment here</span>
+
+<span class="c1"># YOUR CODE HERE</span>
+<span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell tag_raises-exception tag_remove-output docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="sd">&#39;&#39;&#39; Tests the above ToDo. &#39;&#39;&#39;</span>
+<span class="kn">from</span> <span class="nn">niedu.tests.nii.week_3</span> <span class="kn">import</span> <span class="n">test_rest_vs_stim_contrast</span>
+<span class="n">test_rest_vs_stim_contrast</span><span class="p">(</span><span class="n">cvec_rest</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class='alert alert-success'>
+    <b>Tip!</b>
+    Before handing in your notebooks, we recommend restarting your kernel (<em>Kernel</em> &rarr; <em>Restart & Clear Ouput</em>) and running all your cells again (manually, or by <em>Cell</em> &rarr; <em>Run all</em>). By running all your cells one by one (from "top" to "bottom" of the notebook), you may spot potential errors that are caused by accidentally overwriting your variables or running your cells out of order (e.g., defining the variable 'x' in cell 28 which you then use in cell 15).
+</div></div>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./fMRI-introduction/week_3"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        </div>
+    </div>
+    
+    
+    <div class='prev-next-bottom'>
+        
+    <a class='left-prev' id="prev-link" href="../week_2/glm_part1_estimation.html" title="previous page">The GLM, part 1: estimation</a>
+    <a class='right-next' id="next-link" href="../../section_intros/3_design_of_experiments_T.html" title="next page">Design of experiments</a>
+
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By Lukas Snoek<br/>
+        
+            &copy; Copyright 2021.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+
+    
+  <script src="../../_static/js/index.d3f166471bb80abb5163.js"></script>
+
+
+    
+  </body>
+</html>
