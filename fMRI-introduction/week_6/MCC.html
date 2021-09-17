@@ -7,7 +7,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Multiple comparison correction (MCC) &#8212; NI-edu</title>
     
-  <link rel="stylesheet" href="../../_static/css/index.f658d18f9b420779cfdf24aa0a7e2d77.css">
+  <link href="../../_static/css/theme.css" rel="stylesheet" />
+  <link href="../../_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
 
     
   <link rel="stylesheet"
@@ -19,14 +20,10 @@
 
     
       
-  <link rel="stylesheet"
-    href="../../_static/vendor/open-sans_all/1.44.1/index.css">
-  <link rel="stylesheet"
-    href="../../_static/vendor/lato_latin-ext/1.44.1/index.css">
 
     
     <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="../../_static/sphinx-book-theme.40e2e510f6b7d1648584402491bb10fe.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/sphinx-book-theme.e8f53015daec13862f6db5e763c41738.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/mystnb.css" />
@@ -34,7 +31,7 @@
     <link rel="stylesheet" type="text/css" href="../../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
     
-  <link rel="preload" as="script" href="../../_static/js/index.d3f166471bb80abb5163.js">
+  <link rel="preload" as="script" href="../../_static/js/index.1c5a1a01449ed65a7b51.js">
 
     <script id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
     <script src="../../_static/jquery.js"></script>
@@ -44,12 +41,10 @@
     <script src="../../_static/clipboard.min.js"></script>
     <script src="../../_static/copybutton.js"></script>
     <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
-    <script src="../../_static/sphinx-book-theme.d31b09fe5c1d09cb49b26a786de4a05d.js"></script>
+    <script src="../../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
     <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
-    <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.0/dist/embed-amd.js"></script>
-    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
     <script >
         const thebe_selector = ".thebe"
         const thebe_selector_input = "pre"
@@ -60,14 +55,14 @@
     <link rel="search" title="Search" href="../../search.html" />
     <link rel="next" title="ROI analysis" href="ROI_analysis.html" />
     <link rel="prev" title="Group-level analyses" href="group_level_analyses.html" />
-
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="en" />
-
-
-
+    
   </head>
   <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
     
 
     <div class="container-xl">
@@ -76,32 +71,32 @@
 <div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
     
         <div class="navbar-brand-box">
-<a class="navbar-brand text-wrap" href="../../index.html">
-  
-  <img src="../../_static/fmri.gif" class="logo" alt="logo">
-  
-  
-  <h1 class="site-logo" id="site-title">NI-edu</h1>
-  
-</a>
+    <a class="navbar-brand text-wrap" href="../../index.html">
+      
+      <img src="../../_static/fmri.gif" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">NI-edu</h1>
+      
+    </a>
 </div><form class="bd-search d-flex align-items-center" action="../../search.html" method="get">
   <i class="icon fas fa-search"></i>
   <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
-</form>
-<nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
-    <ul class="nav sidenav_l1">
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="../../index.html">
    Welcome to NI-edu
   </a>
  </li>
 </ul>
-<p class="caption collapsible-parent">
+<p class="caption">
  <span class="caption-text">
   Getting started
  </span>
 </p>
-<ul class="nav sidenav_l1">
+<ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="../../getting_started/about.html">
    About this course
@@ -113,17 +108,22 @@
   </a>
  </li>
 </ul>
-<p class="caption collapsible-parent">
+<p class="caption">
  <span class="caption-text">
   fMRI-introduction
  </span>
 </p>
-<ul class="current nav sidenav_l1">
- <li class="toctree-l1 collapsible-parent">
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1 has-children">
   <a class="reference internal" href="../../section_intros/1_python.html">
    Python for (f)MRI analysis
   </a>
-  <ul class="collapse-ul">
+  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
    <li class="toctree-l2">
     <a class="reference internal" href="../../other/python_recap.html">
      Python recap
@@ -135,14 +135,17 @@
     </a>
    </li>
   </ul>
-  <i class="fas fa-chevron-down">
-  </i>
  </li>
- <li class="toctree-l1 collapsible-parent">
+ <li class="toctree-l1 has-children">
   <a class="reference internal" href="../../section_intros/2_glm.html">
    Using the GLM to model fMRI data
   </a>
-  <ul class="collapse-ul">
+  <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+  <label for="toctree-checkbox-2">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
    <li class="toctree-l2">
     <a class="reference internal" href="../week_2/glm_part1_estimation.html">
      The GLM: estimation (T)
@@ -154,14 +157,17 @@
     </a>
    </li>
   </ul>
-  <i class="fas fa-chevron-down">
-  </i>
  </li>
- <li class="toctree-l1 collapsible-parent">
+ <li class="toctree-l1 has-children">
   <a class="reference internal" href="../../section_intros/3_design_of_experiments_T.html">
    Design of experiments
   </a>
-  <ul class="collapse-ul">
+  <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
+  <label for="toctree-checkbox-3">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
    <li class="toctree-l2">
     <a class="reference internal" href="../week_3/design_of_experiments.html">
      Design of experiments (T)
@@ -173,14 +179,17 @@
     </a>
    </li>
   </ul>
-  <i class="fas fa-chevron-down">
-  </i>
  </li>
- <li class="toctree-l1 collapsible-parent">
+ <li class="toctree-l1 has-children">
   <a class="reference internal" href="../../section_intros/4_preprocessing.html">
    Preprocessing
   </a>
-  <ul class="collapse-ul">
+  <input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
+  <label for="toctree-checkbox-4">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
    <li class="toctree-l2">
     <a class="reference internal" href="../week_4/temporal_preprocessing.html">
      Temporal preprocessing (T)
@@ -197,14 +206,17 @@
     </a>
    </li>
   </ul>
-  <i class="fas fa-chevron-down">
-  </i>
  </li>
- <li class="toctree-l1 collapsible-parent">
+ <li class="toctree-l1 has-children">
   <a class="reference internal" href="../../section_intros/5_multilevel.html">
    First &amp; run-level analyses
   </a>
-  <ul class="collapse-ul">
+  <input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/>
+  <label for="toctree-checkbox-5">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
    <li class="toctree-l2">
     <a class="reference internal" href="../week_5/linux_and_the_command_line.html">
      Linux and the CMD (T)
@@ -221,14 +233,17 @@
     </a>
    </li>
   </ul>
-  <i class="fas fa-chevron-down">
-  </i>
  </li>
- <li class="toctree-l1 current active collapsible-parent">
+ <li class="toctree-l1 current active has-children">
   <a class="reference internal" href="../../section_intros/6_grouplevel.html">
    Group-level analyses
   </a>
-  <ul class="current collapse-ul">
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/>
+  <label for="toctree-checkbox-6">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul class="current">
    <li class="toctree-l2">
     <a class="reference internal" href="group_level_analyses.html">
      Group-level analyses (T)
@@ -245,14 +260,17 @@
     </a>
    </li>
   </ul>
-  <i class="fas fa-chevron-down">
-  </i>
  </li>
- <li class="toctree-l1 collapsible-parent">
+ <li class="toctree-l1 has-children">
   <a class="reference internal" href="../../section_intros/7_nilearn.html">
    Introduction to Nilearn
   </a>
-  <ul class="collapse-ul">
+  <input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/>
+  <label for="toctree-checkbox-7">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
    <li class="toctree-l2">
     <a class="reference internal" href="../week_7/nilearn.html">
      Introduction to Nilearn (T)
@@ -264,16 +282,14 @@
     </a>
    </li>
   </ul>
-  <i class="fas fa-chevron-down">
-  </i>
  </li>
 </ul>
-<p class="caption collapsible-parent">
+<p class="caption">
  <span class="caption-text">
   fMRI-pattern-analysis
  </span>
 </p>
-<ul class="nav sidenav_l1">
+<ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="../../fMRI-pattern-analysis/week_1/design_and_pattern_estimation.html">
    Design and pattern estimation (T)
@@ -290,12 +306,12 @@
   </a>
  </li>
 </ul>
-<p class="caption collapsible-parent">
+<p class="caption">
  <span class="caption-text">
   Misc
  </span>
 </p>
-<ul class="nav sidenav_l1">
+<ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="../../misc/bibliography.html">
    Bibliography
@@ -318,6 +334,7 @@
  </li>
 </ul>
 
+    </div>
 </nav> <!-- To handle the deprecated key -->
 
 <div class="navbar_extra_footer">
@@ -333,21 +350,21 @@
           
 <main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
     
-    <div class="row topbar fixed-top container-xl">
-    <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show">
-    </div>
-    <div class="col pl-2 topbar-main">
-        
-        <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
-            data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
-            aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
-            title="Toggle navigation" data-toggle="tooltip" data-placement="left">
-            <i class="fas fa-bars"></i>
-            <i class="fas fa-arrow-left"></i>
-            <i class="fas fa-arrow-up"></i>
-        </button>
-        
-        
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
 <div class="dropdown-buttons-trigger">
     <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
             class="fas fa-download"></i></button>
@@ -365,7 +382,7 @@
     </div>
 </div>
 
-        <!-- Source interaction buttons -->
+            <!-- Source interaction buttons -->
 
 <div class="dropdown-buttons-trigger">
     <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
@@ -385,14 +402,14 @@
     </div>
 </div>
 
+            <!-- Full screen (wrap in <a> to have style consistency -->
 
-        <!-- Full screen (wrap in <a> to have style consistency -->
-        <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
-                data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
-                title="Fullscreen mode"><i
-                    class="fas fa-expand"></i></button></a>
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
 
-        <!-- Launch buttons -->
+            <!-- Launch buttons -->
 
 <div class="dropdown-buttons-trigger">
     <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
@@ -417,16 +434,16 @@
     </div>
 </div>
 
-    </div>
-
-    <!-- Table of contents -->
-    <div class="d-none d-md-block col-md-2 bd-toc show">
-        
-        <div class="tocsection onthispage pt-5 pb-3">
-            <i class="fas fa-list"></i> Contents
         </div>
-        <nav id="bd-toc-nav">
-            <ul class="nav section-nav flex-column">
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav" aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#why-do-we-need-mcc">
    Why do we need MCC?
@@ -493,8 +510,8 @@
  </li>
 </ul>
 
-        </nav>
-        
+            </nav>
+        </div>
     </div>
 </div>
     <div id="main-content" class="row">
@@ -549,11 +566,6 @@
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Shape of statistic map: (200, 200)
-</pre></div>
-</div>
-</div>
 </div>
 <p>Alright, now let’s plot the true effect as a 2D image. We’ll define a custom function for this, <code class="docutils literal notranslate"><span class="pre">plot_sim_brain</span></code>, to save us some work later.</p>
 <div class="cell docutils container">
@@ -599,9 +611,6 @@
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<img alt="../../_images/MCC_8_0.png" src="../../_images/MCC_8_0.png" />
-</div>
 </div>
 <p>Now, due to the inherent spatial smoothness of fMRI, this particular manifestation of the effect is not very realistic. In particular, the sharp “edges” of the effect are unlikely to occur in real fMRI data. Therefore, to make it a little more realistic, we can spatially smooth the “true effect map”! We will use the <code class="docutils literal notranslate"><span class="pre">gaussian_filter</span></code> function (from <code class="docutils literal notranslate"><span class="pre">scipy.ndimage</span></code>) with a FWHM of 12 “voxels”.</p>
 <div class="cell docutils container">
@@ -615,9 +624,6 @@
 <span class="n">plot_sim_brain</span><span class="p">(</span><span class="n">signal_smooth</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s2">&quot;True effect (smooth)&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
-</div>
-<div class="cell_output docutils container">
-<img alt="../../_images/MCC_10_0.png" src="../../_images/MCC_10_0.png" />
 </div>
 </div>
 <p>As you’ve learned in the past weeks, the chances are very slim that you’ll find such a “crisp” (true) effect as shown above; often, you might observe significant voxels that are not driven by a true effect, but by (spurious) noise, reflecting false positives.</p>
@@ -633,9 +639,6 @@
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<img alt="../../_images/MCC_12_0.png" src="../../_images/MCC_12_0.png" />
-</div>
 </div>
 <p>Now, to complete our simulation, we’ll simply add the signal and the noise together (we’ll call this variable <code class="docutils literal notranslate"><span class="pre">data</span></code>).</p>
 <div class="cell docutils container">
@@ -644,9 +647,6 @@
 <span class="n">plot_sim_brain</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;The data!&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
-</div>
-<div class="cell_output docutils container">
-<img alt="../../_images/MCC_14_0.png" src="../../_images/MCC_14_0.png" />
 </div>
 </div>
 <p>The plot above now represents our simulated data, which contains both a true signal (the “blob” in the middle) and some (spatially correlated) noise. As a researcher, you aim to threshold your data in such a way that you maximize the chance of finding your true signal (true positive effects) and minimize the chance of erroneously treating noise as significant effects (false positive effects).</p>
@@ -704,9 +704,6 @@
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<img alt="../../_images/MCC_24_0.png" src="../../_images/MCC_24_0.png" />
-</div>
 </div>
 <div class='alert alert-warning'>
     <b>ToDo/ToThink</b> (1 point): Change the value of $\alpha$ (i.e., the variable <tt>alpha</tt>) from before to 0.01. Does the resulting thresholded map look "better"? And what about 0.001? And 0.0001? Theoretically, you could try different values to see what gives the "best" results. This practice of trying out different parameters or strategies leads to another problem: can you think of what this could be? Write down your answer below.
@@ -760,9 +757,6 @@
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<img alt="../../_images/MCC_34_0.png" src="../../_images/MCC_34_0.png" />
-</div>
 </div>
 <p>As you can see, the FDR-correction is way more sensitive than the Bonferroni correction (it “recovers” more of the true signal), but it still results in many false positives (but not as many as uncorrected data).</p>
 </div>
@@ -807,11 +801,6 @@ EC = N_{resel}\ (4\ \log_{e}2)\ (2\pi)^{-\frac{2}{3}}\ z\cdot e^{-\frac{1}{2} z}
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>For a z-threshold of 3, we expect 27.14 blobs in random 2D data with 100 resels.
-</pre></div>
-</div>
-</div>
 </div>
 <p>We can also evaluate the expected EC for a range of potential <span class="math notranslate nohighlight">\(z\)</span>-value thresholds (e.g., from 0-5) and plot it:</p>
 <div class="cell docutils container">
@@ -831,9 +820,6 @@ EC = N_{resel}\ (4\ \log_{e}2)\ (2\pi)^{-\frac{2}{3}}\ z\cdot e^{-\frac{1}{2} z}
 <span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">()</span>
 </pre></div>
 </div>
-</div>
-<div class="cell_output docutils container">
-<img alt="../../_images/MCC_42_0.png" src="../../_images/MCC_42_0.png" />
 </div>
 </div>
 <p>To compute the Euler characteristic, we first need to know how to estimate the number of “resels” for our data. You can think of the number of resels as the number of truly independent elements in your data (“resel” is short for “RESolution ELement”). The number of resels is usually estimated by dividing the number of voxels by the estimated size of the resel. For our simulated 2D data, the number of resels is defined as follows:</p>
@@ -880,11 +866,6 @@ N_{resel} = \frac{N_{X}\cdot N_{Y}}{\mathrm{size}_{resel}}
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The z-value threshold corresponding to p = 0.05: 4.444
-</pre></div>
-</div>
-</div>
 </div>
 <div class='alert alert-info'>
 <b>ToThink</b> (1 point): As you (should) see in the plot above, the RTF-based correction is still quite strict/conservative (i.e. misses quite some of the true effect), although arguably not as strict as Bonferroni correction. Given the way how to calculate the number of RESELS, can you think of two ways on how to improve the sensitivity of RFT-based MCC?
@@ -907,9 +888,6 @@ N_{resel} = \frac{N_{X}\cdot N_{Y}}{\mathrm{size}_{resel}}
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<img alt="../../_images/MCC_52_0.png" src="../../_images/MCC_52_0.png" />
-</div>
 </div>
 <p>Now, we can use cluster-based RFT to calculate the <span class="math notranslate nohighlight">\(p\)</span>-value for each cluster in the above thresholded data plot. This <span class="math notranslate nohighlight">\(p\)</span>-value reflects the probably of this cluster-size (or larger) under the null-hypothesis. We can then threshold this map with clusters, using a ‘cluster-wise’ <span class="math notranslate nohighlight">\(p\)</span>-value cutoff of 0.01 for example, and plot it again to see how this method affects type 1 and type 2 errors. The function below (<code class="docutils literal notranslate"><span class="pre">threshold_RFT_cluster</span></code>) takes three arguments: the statistics-map (our <code class="docutils literal notranslate"><span class="pre">data</span></code> variable), a minimum <span class="math notranslate nohighlight">\(z\)</span>-value, and a <span class="math notranslate nohighlight">\(p\)</span>-value cutoff which is used to threshold the clusters.</p>
 <p>Below, we do this for a <span class="math notranslate nohighlight">\(z\)</span>-threshold of 3.1 (corresponding to a <span class="math notranslate nohighlight">\(p\)</span>-value of approx. 0.001) and a cluster <span class="math notranslate nohighlight">\(p\)</span>-value threshold of 0.05.</p>
@@ -921,9 +899,6 @@ N_{resel} = \frac{N_{X}\cdot N_{Y}}{\mathrm{size}_{resel}}
 <span class="n">plot_sim_brain</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">mask</span><span class="o">=</span><span class="n">rft_cl_mask</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;RFT thresholding (cluster-based)&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
-</div>
-<div class="cell_output docutils container">
-<img alt="../../_images/MCC_54_1.png" src="../../_images/MCC_54_1.png" />
 </div>
 </div>
 <p>From the above plots, you should see that cluster-thresholding can be a very sensitive way to threshold your data if you expect your effects to occur in relatively large clusters (and given that you’re able to estimate the smoothness of the data appropriately, something that is a topic of debate). As such, it is by far the most used MCC method in univariate fMRI research today (but this does not necessarily mean it’s the <em>best</em> way).</p>
@@ -951,9 +926,6 @@ N_{resel} = \frac{N_{X}\cdot N_{Y}}{\mathrm{size}_{resel}}
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
-</div>
-<div class="cell_output docutils container">
-<img alt="../../_images/MCC_57_0.png" src="../../_images/MCC_57_0.png" />
 </div>
 </div>
 <p>With that information, we can calculate the non-parametric <span class="math notranslate nohighlight">\(p\)</span>-value of each of our <em>observed</em> clusters using the same type of formula as we used earlier:</p>
@@ -994,9 +966,6 @@ p_{\mathrm{cluster}} = \frac{\sum_{i=1}^{P}\mathbf{I}(\mathbf{\mathrm{max.\ clus
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<img alt="../../_images/MCC_64_0.png" src="../../_images/MCC_64_0.png" />
-</div>
 </div>
 <div class='alert alert-warning'>
 <b>ToDo/ToThink</b> (1 point): Given that cluster-based RFT correction worked really well in our last example, should we use this technique again on this dataset, given our expectations of the true effect?  Why (not)? Hint: actually apply the cluster-based RFT correction to the new data (you may assume that the new data has the same smoothness as the previous data).
@@ -1023,14 +992,6 @@ p_{\mathrm{cluster}} = \frac{\sum_{i=1}^{P}\mathbf{I}(\mathbf{\mathrm{max.\ clus
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Downloading group-level FSL FEAT results (+- 133MB) ...
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Done!
-</pre></div>
-</div>
-</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1038,11 +999,6 @@ p_{\mathrm{cluster}} = \frac{\sum_{i=1}^{P}\mathbf{I}(\mathbf{\mathrm{max.\ clus
 <span class="n">fsl_deriv_dir</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">data_dir</span><span class="p">,</span> <span class="s1">&#39;derivatives&#39;</span><span class="p">,</span> <span class="s1">&#39;fsl&#39;</span><span class="p">)</span>
 <span class="n">gl_paths</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">glob</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">fsl_deriv_dir</span><span class="p">,</span> <span class="s1">&#39;grouplevel_task-flocBLOCKED&#39;</span><span class="p">,</span> <span class="s1">&#39;*&#39;</span><span class="p">)))</span>
 <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">gl_paths</span><span class="p">))</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
 </pre></div>
 </div>
 </div>
@@ -1095,15 +1051,35 @@ p_{\mathrm{cluster}} = \frac{\sum_{i=1}^{P}\mathbf{I}(\mathbf{\mathrm{max.\ clus
 
               </div>
               
-        </div>
-    </div>
-    
-    
-    <div class='prev-next-bottom'>
         
-    <a class='left-prev' id="prev-link" href="group_level_analyses.html" title="previous page">Group-level analyses</a>
-    <a class='right-next' id="next-link" href="ROI_analysis.html" title="next page">ROI analysis</a>
+            
 
+
+
+<div class='prev-next-bottom'>
+    
+    <div id="prev">
+        <a class="left-prev" href="group_level_analyses.html" title="previous page">
+            <i class="prevnext-label fas fa-angle-left"></i>
+            <div class="prevnext-info">
+                <p class="prevnext-label">previous</p>
+                <p class="prevnext-title">Group-level analyses</p>
+            </div>
+        </a>
+    </div>
+     <div id="next">
+        <a class="right-next" href="ROI_analysis.html" title="next page">
+            <div class="prevnext-info">
+                <p class="prevnext-label">next</p>
+                <p class="prevnext-title">ROI analysis</p>
+            </div>
+            <i class="prevnext-label fas fa-angle-right"></i>
+        </a>
+     </div>
+
+</div>
+        
+        </div>
     </div>
     <footer class="footer mt-5 mt-md-0">
     <div class="container">
@@ -1120,11 +1096,9 @@ p_{\mathrm{cluster}} = \frac{\sum_{i=1}^{P}\mathbf{I}(\mathbf{\mathrm{max.\ clus
 
       </div>
     </div>
+  
+  <script src="../../_static/js/index.1c5a1a01449ed65a7b51.js"></script>
 
-    
-  <script src="../../_static/js/index.d3f166471bb80abb5163.js"></script>
-
-
-    
+  
   </body>
 </html>

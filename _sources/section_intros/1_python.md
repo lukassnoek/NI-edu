@@ -3,6 +3,6 @@ In this section (corresponding to week 1 of the course), you will learn how to u
 
 The [Working with MRI data in Python](../fMRI-introduction/week_1/python_for_mri.ipynb) tutorial in this section discusses the most used format to store MRI data, *nifti*, and discusses how to work with nifti files using the Python package [nibabel](https://nipy.org/nibabel/). 
 
-:::{note}
+```{note}
 The [Working with MRI data in Python](../fMRI-introduction/week_1/python_for_mri.ipynb) tutorial can be done online using Binder by clicking on the rocket icon in the top right of the tutorial page.
-:::
+```

@@ -7,7 +7,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Fmriprep &#8212; NI-edu</title>
     
-  <link rel="stylesheet" href="../../_static/css/index.f658d18f9b420779cfdf24aa0a7e2d77.css">
+  <link href="../../_static/css/theme.css" rel="stylesheet" />
+  <link href="../../_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
 
     
   <link rel="stylesheet"
@@ -19,14 +20,10 @@
 
     
       
-  <link rel="stylesheet"
-    href="../../_static/vendor/open-sans_all/1.44.1/index.css">
-  <link rel="stylesheet"
-    href="../../_static/vendor/lato_latin-ext/1.44.1/index.css">
 
     
     <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="../../_static/sphinx-book-theme.40e2e510f6b7d1648584402491bb10fe.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/sphinx-book-theme.e8f53015daec13862f6db5e763c41738.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/mystnb.css" />
@@ -34,7 +31,7 @@
     <link rel="stylesheet" type="text/css" href="../../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
     
-  <link rel="preload" as="script" href="../../_static/js/index.d3f166471bb80abb5163.js">
+  <link rel="preload" as="script" href="../../_static/js/index.1c5a1a01449ed65a7b51.js">
 
     <script id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
     <script src="../../_static/jquery.js"></script>
@@ -44,12 +41,10 @@
     <script src="../../_static/clipboard.min.js"></script>
     <script src="../../_static/copybutton.js"></script>
     <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
-    <script src="../../_static/sphinx-book-theme.d31b09fe5c1d09cb49b26a786de4a05d.js"></script>
+    <script src="../../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
     <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
-    <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.0/dist/embed-amd.js"></script>
-    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
     <script >
         const thebe_selector = ".thebe"
         const thebe_selector_input = "pre"
@@ -60,14 +55,14 @@
     <link rel="search" title="Search" href="../../search.html" />
     <link rel="next" title="First &amp; run-level analyses" href="../../section_intros/5_multilevel.html" />
     <link rel="prev" title="Spatial preprocessing" href="spatial_preprocessing.html" />
-
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="en" />
-
-
-
+    
   </head>
   <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
     
 
     <div class="container-xl">
@@ -76,32 +71,32 @@
 <div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
     
         <div class="navbar-brand-box">
-<a class="navbar-brand text-wrap" href="../../index.html">
-  
-  <img src="../../_static/fmri.gif" class="logo" alt="logo">
-  
-  
-  <h1 class="site-logo" id="site-title">NI-edu</h1>
-  
-</a>
+    <a class="navbar-brand text-wrap" href="../../index.html">
+      
+      <img src="../../_static/fmri.gif" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">NI-edu</h1>
+      
+    </a>
 </div><form class="bd-search d-flex align-items-center" action="../../search.html" method="get">
   <i class="icon fas fa-search"></i>
   <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
-</form>
-<nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
-    <ul class="nav sidenav_l1">
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="../../index.html">
    Welcome to NI-edu
   </a>
  </li>
 </ul>
-<p class="caption collapsible-parent">
+<p class="caption">
  <span class="caption-text">
   Getting started
  </span>
 </p>
-<ul class="nav sidenav_l1">
+<ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="../../getting_started/about.html">
    About this course
@@ -113,17 +108,22 @@
   </a>
  </li>
 </ul>
-<p class="caption collapsible-parent">
+<p class="caption">
  <span class="caption-text">
   fMRI-introduction
  </span>
 </p>
-<ul class="current nav sidenav_l1">
- <li class="toctree-l1 collapsible-parent">
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1 has-children">
   <a class="reference internal" href="../../section_intros/1_python.html">
    Python for (f)MRI analysis
   </a>
-  <ul class="collapse-ul">
+  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
    <li class="toctree-l2">
     <a class="reference internal" href="../../other/python_recap.html">
      Python recap
@@ -135,14 +135,17 @@
     </a>
    </li>
   </ul>
-  <i class="fas fa-chevron-down">
-  </i>
  </li>
- <li class="toctree-l1 collapsible-parent">
+ <li class="toctree-l1 has-children">
   <a class="reference internal" href="../../section_intros/2_glm.html">
    Using the GLM to model fMRI data
   </a>
-  <ul class="collapse-ul">
+  <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+  <label for="toctree-checkbox-2">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
    <li class="toctree-l2">
     <a class="reference internal" href="../week_2/glm_part1_estimation.html">
      The GLM: estimation (T)
@@ -154,14 +157,17 @@
     </a>
    </li>
   </ul>
-  <i class="fas fa-chevron-down">
-  </i>
  </li>
- <li class="toctree-l1 collapsible-parent">
+ <li class="toctree-l1 has-children">
   <a class="reference internal" href="../../section_intros/3_design_of_experiments_T.html">
    Design of experiments
   </a>
-  <ul class="collapse-ul">
+  <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
+  <label for="toctree-checkbox-3">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
    <li class="toctree-l2">
     <a class="reference internal" href="../week_3/design_of_experiments.html">
      Design of experiments (T)
@@ -173,14 +179,17 @@
     </a>
    </li>
   </ul>
-  <i class="fas fa-chevron-down">
-  </i>
  </li>
- <li class="toctree-l1 current active collapsible-parent">
+ <li class="toctree-l1 current active has-children">
   <a class="reference internal" href="../../section_intros/4_preprocessing.html">
    Preprocessing
   </a>
-  <ul class="current collapse-ul">
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
+  <label for="toctree-checkbox-4">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul class="current">
    <li class="toctree-l2">
     <a class="reference internal" href="temporal_preprocessing.html">
      Temporal preprocessing (T)
@@ -197,14 +206,17 @@
     </a>
    </li>
   </ul>
-  <i class="fas fa-chevron-down">
-  </i>
  </li>
- <li class="toctree-l1 collapsible-parent">
+ <li class="toctree-l1 has-children">
   <a class="reference internal" href="../../section_intros/5_multilevel.html">
    First &amp; run-level analyses
   </a>
-  <ul class="collapse-ul">
+  <input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/>
+  <label for="toctree-checkbox-5">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
    <li class="toctree-l2">
     <a class="reference internal" href="../week_5/linux_and_the_command_line.html">
      Linux and the CMD (T)
@@ -221,14 +233,17 @@
     </a>
    </li>
   </ul>
-  <i class="fas fa-chevron-down">
-  </i>
  </li>
- <li class="toctree-l1 collapsible-parent">
+ <li class="toctree-l1 has-children">
   <a class="reference internal" href="../../section_intros/6_grouplevel.html">
    Group-level analyses
   </a>
-  <ul class="collapse-ul">
+  <input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/>
+  <label for="toctree-checkbox-6">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
    <li class="toctree-l2">
     <a class="reference internal" href="../week_6/group_level_analyses.html">
      Group-level analyses (T)
@@ -245,14 +260,17 @@
     </a>
    </li>
   </ul>
-  <i class="fas fa-chevron-down">
-  </i>
  </li>
- <li class="toctree-l1 collapsible-parent">
+ <li class="toctree-l1 has-children">
   <a class="reference internal" href="../../section_intros/7_nilearn.html">
    Introduction to Nilearn
   </a>
-  <ul class="collapse-ul">
+  <input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/>
+  <label for="toctree-checkbox-7">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
    <li class="toctree-l2">
     <a class="reference internal" href="../week_7/nilearn.html">
      Introduction to Nilearn (T)
@@ -264,16 +282,14 @@
     </a>
    </li>
   </ul>
-  <i class="fas fa-chevron-down">
-  </i>
  </li>
 </ul>
-<p class="caption collapsible-parent">
+<p class="caption">
  <span class="caption-text">
   fMRI-pattern-analysis
  </span>
 </p>
-<ul class="nav sidenav_l1">
+<ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="../../fMRI-pattern-analysis/week_1/design_and_pattern_estimation.html">
    Design and pattern estimation (T)
@@ -290,12 +306,12 @@
   </a>
  </li>
 </ul>
-<p class="caption collapsible-parent">
+<p class="caption">
  <span class="caption-text">
   Misc
  </span>
 </p>
-<ul class="nav sidenav_l1">
+<ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="../../misc/bibliography.html">
    Bibliography
@@ -318,6 +334,7 @@
  </li>
 </ul>
 
+    </div>
 </nav> <!-- To handle the deprecated key -->
 
 <div class="navbar_extra_footer">
@@ -333,21 +350,21 @@
           
 <main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
     
-    <div class="row topbar fixed-top container-xl">
-    <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show">
-    </div>
-    <div class="col pl-2 topbar-main">
-        
-        <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
-            data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
-            aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
-            title="Toggle navigation" data-toggle="tooltip" data-placement="left">
-            <i class="fas fa-bars"></i>
-            <i class="fas fa-arrow-left"></i>
-            <i class="fas fa-arrow-up"></i>
-        </button>
-        
-        
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
 <div class="dropdown-buttons-trigger">
     <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
             class="fas fa-download"></i></button>
@@ -365,7 +382,7 @@
     </div>
 </div>
 
-        <!-- Source interaction buttons -->
+            <!-- Source interaction buttons -->
 
 <div class="dropdown-buttons-trigger">
     <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
@@ -385,14 +402,14 @@
     </div>
 </div>
 
+            <!-- Full screen (wrap in <a> to have style consistency -->
 
-        <!-- Full screen (wrap in <a> to have style consistency -->
-        <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
-                data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
-                title="Fullscreen mode"><i
-                    class="fas fa-expand"></i></button></a>
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
 
-        <!-- Launch buttons -->
+            <!-- Launch buttons -->
 
 <div class="dropdown-buttons-trigger">
     <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
@@ -417,16 +434,16 @@
     </div>
 </div>
 
-    </div>
-
-    <!-- Table of contents -->
-    <div class="d-none d-md-block col-md-2 bd-toc show">
-        
-        <div class="tocsection onthispage pt-5 pb-3">
-            <i class="fas fa-list"></i> Contents
         </div>
-        <nav id="bd-toc-nav">
-            <ul class="nav section-nav flex-column">
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav" aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#the-bids-format">
    The BIDS-format
@@ -481,8 +498,8 @@
  </li>
 </ul>
 
-        </nav>
-        
+            </nav>
+        </div>
     </div>
 </div>
     <div id="main-content" class="row">
@@ -581,11 +598,6 @@
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;dataset_description.json&#39;, &#39;desc-aparcaseg_dseg.tsv&#39;, &#39;sub-03.html&#39;, &#39;logs&#39;, &#39;sub-03&#39;, &#39;desc-aseg_dseg.tsv&#39;]
-</pre></div>
-</div>
-</div>
 </div>
 <p>As said, Fmriprep outputs a directory with results (<code class="docutils literal notranslate"><span class="pre">sub-03</span></code>) and an associated HTML-file with a summary of the (intermediate and final) results. Let’s check the directory with results first:</p>
 <div class="cell docutils container">
@@ -597,41 +609,12 @@
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;anat&#39;, &#39;figures&#39;, &#39;func&#39;, &#39;log&#39;]
-</pre></div>
-</div>
-</div>
 </div>
 <p>The <code class="docutils literal notranslate"><span class="pre">figures</span></code> directory contains several figures with the result of different preprocessing stages (like functional → high-res anatomical registration), but these figures are also included in the HTML-file, so we’ll leave that for now. The other two directories, <code class="docutils literal notranslate"><span class="pre">anat</span></code> and <code class="docutils literal notranslate"><span class="pre">func</span></code>, contain the preprocessed anatomical and functional files, respectively. Let’s inspect the <code class="docutils literal notranslate"><span class="pre">anat</span></code> directory:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">anat_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">sub_path</span><span class="p">,</span> <span class="s1">&#39;anat&#39;</span><span class="p">)</span>
 <span class="n">pprint</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">(</span><span class="n">anat_path</span><span class="p">))</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;sub-03_desc-aseg_dseg.nii.gz&#39;,
- &#39;sub-03_space-MNI152NLin2009cAsym_desc-brain_mask.nii.gz&#39;,
- &#39;sub-03_space-MNI152NLin2009cAsym_label-WM_probseg.nii.gz&#39;,
- &#39;sub-03_label-GM_probseg.nii.gz&#39;,
- &#39;sub-03_space-MNI152NLin2009cAsym_desc-brain_mask.json&#39;,
- &#39;sub-03_dseg.nii.gz&#39;,
- &#39;sub-03_label-WM_probseg.nii.gz&#39;,
- &#39;sub-03_space-MNI152NLin2009cAsym_label-CSF_probseg.nii.gz&#39;,
- &#39;sub-03_from-MNI152NLin2009cAsym_to-T1w_mode-image_xfm.h5&#39;,
- &#39;sub-03_desc-preproc_T1w.json&#39;,
- &#39;sub-03_space-MNI152NLin2009cAsym_desc-preproc_T1w.json&#39;,
- &#39;sub-03_space-MNI152NLin2009cAsym_desc-preproc_T1w.nii.gz&#39;,
- &#39;sub-03_desc-preproc_T1w.nii.gz&#39;,
- &#39;sub-03_label-CSF_probseg.nii.gz&#39;,
- &#39;sub-03_space-MNI152NLin2009cAsym_label-GM_probseg.nii.gz&#39;,
- &#39;sub-03_desc-brain_mask.json&#39;,
- &#39;sub-03_space-MNI152NLin2009cAsym_dseg.nii.gz&#39;,
- &#39;sub-03_from-T1w_to-MNI152NLin2009cAsym_mode-image_xfm.h5&#39;,
- &#39;sub-03_desc-brain_mask.nii.gz&#39;,
- &#39;sub-03_desc-aparcaseg_dseg.nii.gz&#39;]
 </pre></div>
 </div>
 </div>
@@ -647,26 +630,6 @@
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;sub-03_task-flocBLOCKED_space-T1w_desc-preproc_bold.nii.gz&#39;,
- &#39;sub-03_task-flocBLOCKED_space-T1w_desc-preproc_bold.json&#39;,
- &#39;sub-03_task-flocBLOCKED_space-T1w_desc-aparcaseg_dseg.nii.gz&#39;,
- &#39;sub-03_task-flocBLOCKED_space-MNI152NLin2009cAsym_desc-brain_mask.nii.gz&#39;,
- &#39;sub-03_task-flocBLOCKED_space-MNI152NLin2009cAsym_desc-preproc_bold.json&#39;,
- &#39;sub-03_task-flocBLOCKED_space-T1w_desc-aseg_dseg.nii.gz&#39;,
- &#39;sub-03_task-flocBLOCKED_desc-confounds_regressors.tsv&#39;,
- &#39;sub-03_task-flocBLOCKED_space-MNI152NLin2009cAsym_desc-preproc_bold.nii.gz&#39;,
- &#39;sub-03_task-flocBLOCKED_space-T1w_desc-brain_mask.json&#39;,
- &#39;sub-03_task-flocBLOCKED_space-MNI152NLin2009cAsym_desc-aparcaseg_dseg.nii.gz&#39;,
- &#39;sub-03_task-flocBLOCKED_desc-confounds_regressors.json&#39;,
- &#39;sub-03_task-flocBLOCKED_space-MNI152NLin2009cAsym_desc-brain_mask.json&#39;,
- &#39;sub-03_task-flocBLOCKED_space-T1w_desc-brain_mask.nii.gz&#39;,
- &#39;sub-03_task-flocBLOCKED_space-MNI152NLin2009cAsym_boldref.nii.gz&#39;,
- &#39;sub-03_task-flocBLOCKED_space-T1w_boldref.nii.gz&#39;,
- &#39;sub-03_task-flocBLOCKED_space-MNI152NLin2009cAsym_desc-aseg_dseg.nii.gz&#39;]
-</pre></div>
-</div>
-</div>
 </div>
 <p>Again, like the files in the <code class="docutils literal notranslate"><span class="pre">anat</span></code> folder, the functional outputs are available in two spaces: <code class="docutils literal notranslate"><span class="pre">T1w</span></code> and <code class="docutils literal notranslate"><span class="pre">MNI152NLin2009cAsym</span></code>. In terms of actual images, there are preprocessed BOLD files (ending in <code class="docutils literal notranslate"><span class="pre">preproc_bold.nii.gz</span></code>), the functional volume used for “functional → anatomical” registration (ending in <code class="docutils literal notranslate"><span class="pre">boldref.nii.gz</span></code>), brain parcellations in functional space (ending in <code class="docutils literal notranslate"><span class="pre">dseg.nii.gz</span></code>), and brain masks (ending in <code class="docutils literal notranslate"><span class="pre">brain_mask.nii.gz</span></code>). In addition, there are files with “confounds” (ending in <code class="docutils literal notranslate"><span class="pre">confounds_regressors.tsv</span></code>) which contain variables that you might want to include as nuisance regressors in your first-level analysis. These confound files are speadsheet-like files (like <code class="docutils literal notranslate"><span class="pre">csv</span></code> files, but instead of being comma-delimited, they are tab-delimited) and can be easily loaded in Python using the <a class="reference external" href="https://pandas.pydata.org/">pandas</a> package:</p>
 <div class="cell docutils container">
@@ -678,173 +641,6 @@
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output text_html"><div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>csf</th>
-      <th>csf_derivative1</th>
-      <th>csf_derivative1_power2</th>
-      <th>csf_power2</th>
-      <th>white_matter</th>
-      <th>white_matter_derivative1</th>
-      <th>white_matter_derivative1_power2</th>
-      <th>white_matter_power2</th>
-      <th>global_signal</th>
-      <th>global_signal_derivative1</th>
-      <th>...</th>
-      <th>rot_x_derivative1_power2</th>
-      <th>rot_x_power2</th>
-      <th>rot_y</th>
-      <th>rot_y_derivative1</th>
-      <th>rot_y_power2</th>
-      <th>rot_y_derivative1_power2</th>
-      <th>rot_z</th>
-      <th>rot_z_derivative1</th>
-      <th>rot_z_power2</th>
-      <th>rot_z_derivative1_power2</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>47509.215863</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>2.257126e+09</td>
-      <td>33060.738398</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>1.093012e+09</td>
-      <td>30699.602599</td>
-      <td>NaN</td>
-      <td>...</td>
-      <td>NaN</td>
-      <td>0.000000e+00</td>
-      <td>-0.000149</td>
-      <td>NaN</td>
-      <td>2.208969e-08</td>
-      <td>NaN</td>
-      <td>0.000000</td>
-      <td>NaN</td>
-      <td>0.000000e+00</td>
-      <td>NaN</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>47183.542928</td>
-      <td>-325.672935</td>
-      <td>106062.860766</td>
-      <td>2.226287e+09</td>
-      <td>33021.566030</td>
-      <td>-39.172367</td>
-      <td>1534.474371</td>
-      <td>1.090424e+09</td>
-      <td>30659.901226</td>
-      <td>-39.701373</td>
-      <td>...</td>
-      <td>3.384482e-09</td>
-      <td>3.384482e-09</td>
-      <td>-0.000000</td>
-      <td>0.000149</td>
-      <td>0.000000e+00</td>
-      <td>2.208969e-08</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000e+00</td>
-      <td>0.000000e+00</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>47116.085111</td>
-      <td>-67.457818</td>
-      <td>4550.557152</td>
-      <td>2.219925e+09</td>
-      <td>33110.393546</td>
-      <td>88.827516</td>
-      <td>7890.327596</td>
-      <td>1.096298e+09</td>
-      <td>30679.787487</td>
-      <td>19.886260</td>
-      <td>...</td>
-      <td>1.956213e-08</td>
-      <td>3.922024e-08</td>
-      <td>-0.000158</td>
-      <td>-0.000158</td>
-      <td>2.510704e-08</td>
-      <td>2.510704e-08</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000e+00</td>
-      <td>0.000000e+00</td>
-    </tr>
-    <tr>
-      <th>3</th>
-      <td>46920.666512</td>
-      <td>-195.418599</td>
-      <td>38188.428865</td>
-      <td>2.201549e+09</td>
-      <td>33027.273113</td>
-      <td>-83.120433</td>
-      <td>6909.006414</td>
-      <td>1.090801e+09</td>
-      <td>30670.787218</td>
-      <td>-9.000269</td>
-      <td>...</td>
-      <td>7.606564e-12</td>
-      <td>4.032024e-08</td>
-      <td>-0.000202</td>
-      <td>-0.000043</td>
-      <td>4.074342e-08</td>
-      <td>1.883386e-09</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000e+00</td>
-      <td>0.000000e+00</td>
-    </tr>
-    <tr>
-      <th>4</th>
-      <td>46876.911781</td>
-      <td>-43.754731</td>
-      <td>1914.476452</td>
-      <td>2.197445e+09</td>
-      <td>33013.589153</td>
-      <td>-13.683960</td>
-      <td>187.250764</td>
-      <td>1.089897e+09</td>
-      <td>30636.632976</td>
-      <td>-34.154242</td>
-      <td>...</td>
-      <td>4.032024e-08</td>
-      <td>4.379051e-47</td>
-      <td>-0.000187</td>
-      <td>0.000015</td>
-      <td>3.485764e-08</td>
-      <td>2.294619e-10</td>
-      <td>-0.000219</td>
-      <td>-0.000219</td>
-      <td>4.783144e-08</td>
-      <td>4.783144e-08</td>
-    </tr>
-  </tbody>
-</table>
-<p>5 rows × 263 columns</p>
-</div></div></div>
 </div>
 <p>Confound files from Fmriprep contain a large set of confounds, ranging from motion parameters (<code class="docutils literal notranslate"><span class="pre">rot_x</span></code>, <code class="docutils literal notranslate"><span class="pre">rot_y</span></code>, <code class="docutils literal notranslate"><span class="pre">rot_z</span></code>, <code class="docutils literal notranslate"><span class="pre">trans_x</span></code>, <code class="docutils literal notranslate"><span class="pre">trans_y</span></code>, and <code class="docutils literal notranslate"><span class="pre">trans_z</span></code>) and their derivatives (<code class="docutils literal notranslate"><span class="pre">*derivative1</span></code>) and squares (<code class="docutils literal notranslate"><span class="pre">*_power2</span></code>) to the average signal from the brain’s white matter and cerebrospinal fluid (CSF), which should contain sources of noise such as respiratory, cardiac, or motion related signals (but not signal from neural sources, which should be largely constrained to gray matter). For a full list and explanation of Fmriprep’s estimated confounds, check their website. Also, check <a class="reference external" href="https://neurostars.org/t/confounds-from-fmriprep-which-one-would-you-use-for-glm/326">this thread</a> on Neurostars for a discussion on which confounds to include in your analyses.</p>
 <p>In addition to the actual preprocessed outputs, Fmriprep also provides you with a nice (visual) summary of the different (major) preprocessing steps in an HTML-file, which you’d normally open in any standard browser to view. Here. we load this file for our example participants (<code class="docutils literal notranslate"><span class="pre">sub-03</span></code>) inside the notebook below. Scroll through it to see which preprocessing steps are highlighted. Note that the images from the HTML-file are not properly rendered in Jupyter notebooks, but you can right-click the image links (e.g., <code class="docutils literal notranslate"><span class="pre">sub-03/figures/sub-03_dseg.svg</span></code>) and click “Open link in new tab” to view the image.</p>
@@ -855,16 +651,6 @@
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output text_html">
-<iframe
-    width="700"
-    height="600"
-    src="./bids/derivatives/fmriprep/sub-03.html"
-    frameborder="0"
-    allowfullscreen
-></iframe>
-</div></div>
 </div>
 </div>
 </div>
@@ -891,15 +677,35 @@
 
               </div>
               
-        </div>
-    </div>
-    
-    
-    <div class='prev-next-bottom'>
         
-    <a class='left-prev' id="prev-link" href="spatial_preprocessing.html" title="previous page">Spatial preprocessing</a>
-    <a class='right-next' id="next-link" href="../../section_intros/5_multilevel.html" title="next page">First &amp; run-level analyses</a>
+            
 
+
+
+<div class='prev-next-bottom'>
+    
+    <div id="prev">
+        <a class="left-prev" href="spatial_preprocessing.html" title="previous page">
+            <i class="prevnext-label fas fa-angle-left"></i>
+            <div class="prevnext-info">
+                <p class="prevnext-label">previous</p>
+                <p class="prevnext-title">Spatial preprocessing</p>
+            </div>
+        </a>
+    </div>
+     <div id="next">
+        <a class="right-next" href="../../section_intros/5_multilevel.html" title="next page">
+            <div class="prevnext-info">
+                <p class="prevnext-label">next</p>
+                <p class="prevnext-title">First &amp; run-level analyses</p>
+            </div>
+            <i class="prevnext-label fas fa-angle-right"></i>
+        </a>
+     </div>
+
+</div>
+        
+        </div>
     </div>
     <footer class="footer mt-5 mt-md-0">
     <div class="container">
@@ -916,11 +722,9 @@
 
       </div>
     </div>
+  
+  <script src="../../_static/js/index.1c5a1a01449ed65a7b51.js"></script>
 
-    
-  <script src="../../_static/js/index.d3f166471bb80abb5163.js"></script>
-
-
-    
+  
   </body>
 </html>

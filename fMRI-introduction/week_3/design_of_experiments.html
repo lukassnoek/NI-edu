@@ -7,7 +7,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Design of experiments &#8212; NI-edu</title>
     
-  <link rel="stylesheet" href="../../_static/css/index.f658d18f9b420779cfdf24aa0a7e2d77.css">
+  <link href="../../_static/css/theme.css" rel="stylesheet" />
+  <link href="../../_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
 
     
   <link rel="stylesheet"
@@ -19,14 +20,10 @@
 
     
       
-  <link rel="stylesheet"
-    href="../../_static/vendor/open-sans_all/1.44.1/index.css">
-  <link rel="stylesheet"
-    href="../../_static/vendor/lato_latin-ext/1.44.1/index.css">
 
     
     <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="../../_static/sphinx-book-theme.40e2e510f6b7d1648584402491bb10fe.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/sphinx-book-theme.e8f53015daec13862f6db5e763c41738.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/mystnb.css" />
@@ -34,7 +31,7 @@
     <link rel="stylesheet" type="text/css" href="../../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
     
-  <link rel="preload" as="script" href="../../_static/js/index.d3f166471bb80abb5163.js">
+  <link rel="preload" as="script" href="../../_static/js/index.1c5a1a01449ed65a7b51.js">
 
     <script id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
     <script src="../../_static/jquery.js"></script>
@@ -44,12 +41,10 @@
     <script src="../../_static/clipboard.min.js"></script>
     <script src="../../_static/copybutton.js"></script>
     <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
-    <script src="../../_static/sphinx-book-theme.d31b09fe5c1d09cb49b26a786de4a05d.js"></script>
+    <script src="../../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
     <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
-    <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.0/dist/embed-amd.js"></script>
-    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
     <script >
         const thebe_selector = ".thebe"
         const thebe_selector_input = "pre"
@@ -60,14 +55,14 @@
     <link rel="search" title="Search" href="../../search.html" />
     <link rel="next" title="Neurodesign (tutorial)" href="neurodesign.html" />
     <link rel="prev" title="Design of experiments" href="../../section_intros/3_design_of_experiments_T.html" />
-
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="en" />
-
-
-
+    
   </head>
   <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
     
 
     <div class="container-xl">
@@ -76,32 +71,32 @@
 <div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
     
         <div class="navbar-brand-box">
-<a class="navbar-brand text-wrap" href="../../index.html">
-  
-  <img src="../../_static/fmri.gif" class="logo" alt="logo">
-  
-  
-  <h1 class="site-logo" id="site-title">NI-edu</h1>
-  
-</a>
+    <a class="navbar-brand text-wrap" href="../../index.html">
+      
+      <img src="../../_static/fmri.gif" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">NI-edu</h1>
+      
+    </a>
 </div><form class="bd-search d-flex align-items-center" action="../../search.html" method="get">
   <i class="icon fas fa-search"></i>
   <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
-</form>
-<nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
-    <ul class="nav sidenav_l1">
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="../../index.html">
    Welcome to NI-edu
   </a>
  </li>
 </ul>
-<p class="caption collapsible-parent">
+<p class="caption">
  <span class="caption-text">
   Getting started
  </span>
 </p>
-<ul class="nav sidenav_l1">
+<ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="../../getting_started/about.html">
    About this course
@@ -113,17 +108,22 @@
   </a>
  </li>
 </ul>
-<p class="caption collapsible-parent">
+<p class="caption">
  <span class="caption-text">
   fMRI-introduction
  </span>
 </p>
-<ul class="current nav sidenav_l1">
- <li class="toctree-l1 collapsible-parent">
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1 has-children">
   <a class="reference internal" href="../../section_intros/1_python.html">
    Python for (f)MRI analysis
   </a>
-  <ul class="collapse-ul">
+  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
    <li class="toctree-l2">
     <a class="reference internal" href="../../other/python_recap.html">
      Python recap
@@ -135,14 +135,17 @@
     </a>
    </li>
   </ul>
-  <i class="fas fa-chevron-down">
-  </i>
  </li>
- <li class="toctree-l1 collapsible-parent">
+ <li class="toctree-l1 has-children">
   <a class="reference internal" href="../../section_intros/2_glm.html">
    Using the GLM to model fMRI data
   </a>
-  <ul class="collapse-ul">
+  <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+  <label for="toctree-checkbox-2">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
    <li class="toctree-l2">
     <a class="reference internal" href="../week_2/glm_part1_estimation.html">
      The GLM: estimation (T)
@@ -154,14 +157,17 @@
     </a>
    </li>
   </ul>
-  <i class="fas fa-chevron-down">
-  </i>
  </li>
- <li class="toctree-l1 current active collapsible-parent">
+ <li class="toctree-l1 current active has-children">
   <a class="reference internal" href="../../section_intros/3_design_of_experiments_T.html">
    Design of experiments
   </a>
-  <ul class="current collapse-ul">
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
+  <label for="toctree-checkbox-3">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul class="current">
    <li class="toctree-l2 current active">
     <a class="current reference internal" href="#">
      Design of experiments (T)
@@ -173,14 +179,17 @@
     </a>
    </li>
   </ul>
-  <i class="fas fa-chevron-down">
-  </i>
  </li>
- <li class="toctree-l1 collapsible-parent">
+ <li class="toctree-l1 has-children">
   <a class="reference internal" href="../../section_intros/4_preprocessing.html">
    Preprocessing
   </a>
-  <ul class="collapse-ul">
+  <input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
+  <label for="toctree-checkbox-4">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
    <li class="toctree-l2">
     <a class="reference internal" href="../week_4/temporal_preprocessing.html">
      Temporal preprocessing (T)
@@ -197,14 +206,17 @@
     </a>
    </li>
   </ul>
-  <i class="fas fa-chevron-down">
-  </i>
  </li>
- <li class="toctree-l1 collapsible-parent">
+ <li class="toctree-l1 has-children">
   <a class="reference internal" href="../../section_intros/5_multilevel.html">
    First &amp; run-level analyses
   </a>
-  <ul class="collapse-ul">
+  <input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/>
+  <label for="toctree-checkbox-5">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
    <li class="toctree-l2">
     <a class="reference internal" href="../week_5/linux_and_the_command_line.html">
      Linux and the CMD (T)
@@ -221,14 +233,17 @@
     </a>
    </li>
   </ul>
-  <i class="fas fa-chevron-down">
-  </i>
  </li>
- <li class="toctree-l1 collapsible-parent">
+ <li class="toctree-l1 has-children">
   <a class="reference internal" href="../../section_intros/6_grouplevel.html">
    Group-level analyses
   </a>
-  <ul class="collapse-ul">
+  <input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/>
+  <label for="toctree-checkbox-6">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
    <li class="toctree-l2">
     <a class="reference internal" href="../week_6/group_level_analyses.html">
      Group-level analyses (T)
@@ -245,14 +260,17 @@
     </a>
    </li>
   </ul>
-  <i class="fas fa-chevron-down">
-  </i>
  </li>
- <li class="toctree-l1 collapsible-parent">
+ <li class="toctree-l1 has-children">
   <a class="reference internal" href="../../section_intros/7_nilearn.html">
    Introduction to Nilearn
   </a>
-  <ul class="collapse-ul">
+  <input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/>
+  <label for="toctree-checkbox-7">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
    <li class="toctree-l2">
     <a class="reference internal" href="../week_7/nilearn.html">
      Introduction to Nilearn (T)
@@ -264,16 +282,14 @@
     </a>
    </li>
   </ul>
-  <i class="fas fa-chevron-down">
-  </i>
  </li>
 </ul>
-<p class="caption collapsible-parent">
+<p class="caption">
  <span class="caption-text">
   fMRI-pattern-analysis
  </span>
 </p>
-<ul class="nav sidenav_l1">
+<ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="../../fMRI-pattern-analysis/week_1/design_and_pattern_estimation.html">
    Design and pattern estimation (T)
@@ -290,12 +306,12 @@
   </a>
  </li>
 </ul>
-<p class="caption collapsible-parent">
+<p class="caption">
  <span class="caption-text">
   Misc
  </span>
 </p>
-<ul class="nav sidenav_l1">
+<ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="../../misc/bibliography.html">
    Bibliography
@@ -318,6 +334,7 @@
  </li>
 </ul>
 
+    </div>
 </nav> <!-- To handle the deprecated key -->
 
 <div class="navbar_extra_footer">
@@ -333,21 +350,21 @@
           
 <main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
     
-    <div class="row topbar fixed-top container-xl">
-    <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show">
-    </div>
-    <div class="col pl-2 topbar-main">
-        
-        <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
-            data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
-            aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
-            title="Toggle navigation" data-toggle="tooltip" data-placement="left">
-            <i class="fas fa-bars"></i>
-            <i class="fas fa-arrow-left"></i>
-            <i class="fas fa-arrow-up"></i>
-        </button>
-        
-        
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
 <div class="dropdown-buttons-trigger">
     <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
             class="fas fa-download"></i></button>
@@ -365,7 +382,7 @@
     </div>
 </div>
 
-        <!-- Source interaction buttons -->
+            <!-- Source interaction buttons -->
 
 <div class="dropdown-buttons-trigger">
     <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
@@ -385,14 +402,14 @@
     </div>
 </div>
 
+            <!-- Full screen (wrap in <a> to have style consistency -->
 
-        <!-- Full screen (wrap in <a> to have style consistency -->
-        <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
-                data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
-                title="Fullscreen mode"><i
-                    class="fas fa-expand"></i></button></a>
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
 
-        <!-- Launch buttons -->
+            <!-- Launch buttons -->
 
 <div class="dropdown-buttons-trigger">
     <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
@@ -417,16 +434,16 @@
     </div>
 </div>
 
-    </div>
-
-    <!-- Table of contents -->
-    <div class="d-none d-md-block col-md-2 bd-toc show">
-        
-        <div class="tocsection onthispage pt-5 pb-3">
-            <i class="fas fa-list"></i> Contents
         </div>
-        <nav id="bd-toc-nav">
-            <ul class="nav section-nav flex-column">
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav" aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#types-of-designs-factorial-and-parametric-designs">
    Types of designs: factorial and parametric designs
@@ -546,8 +563,8 @@
  </li>
 </ul>
 
-        </nav>
-        
+            </nav>
+        </div>
     </div>
 </div>
     <div id="main-content" class="row">
@@ -575,8 +592,6 @@
 <span class="kn">from</span> <span class="nn">scipy.stats</span> <span class="kn">import</span> <span class="n">pearsonr</span>
 </pre></div>
 </div>
-</div>
-<div class="cell_output docutils container">
 </div>
 </div>
 <div class="section" id="types-of-designs-factorial-and-parametric-designs">
@@ -628,9 +643,6 @@
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<img alt="../../_images/design_of_experiments_4_0.png" src="../../_images/design_of_experiments_4_0.png" />
-</div>
 </div>
 <p>We have also the time series of a (hypothetical) fMRI voxel, loaded and plotted below:</p>
 <div class="cell docutils container">
@@ -645,9 +657,6 @@
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
-</div>
-<div class="cell_output docutils container">
-<img alt="../../_images/design_of_experiments_6_0.png" src="../../_images/design_of_experiments_6_0.png" />
 </div>
 </div>
 <div class='alert alert-warning'>
@@ -788,12 +797,6 @@
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Number of trials: 30
-</pre></div>
-</div>
-<img alt="../../_images/design_of_experiments_26_1.png" src="../../_images/design_of_experiments_26_1.png" />
-</div>
 </div>
 <p>Now, in non-parametric designs, we would create regressors with zeros everywhere and ones at the onset of stimuli (or whatever we think will impact the fMRI data). However, in parametric designs, we create two regressors for every parametric modulation: one for the unmodulated response and one for the modulated response.</p>
 <p>Let’s start with the unmodulated response. This predictor is created like we did before: convolving a stick predictor with an HRF:</p>
@@ -815,9 +818,6 @@
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
-</div>
-<div class="cell_output docutils container">
-<img alt="../../_images/design_of_experiments_28_0.png" src="../../_images/design_of_experiments_28_0.png" />
 </div>
 </div>
 <p>Now, the parametrically modulated regressor is created as follows: instead of created an initial array with zeros and <em>ones</em> at indices corresponding to the reward onset, we use the (mean-subtracted) <em>reward magnitude</em>. It is important to subtract the mean from the parametric modulation values, because this will “decorrelate” the modulated regressor from the unmodulated regressor (such that the modulated regressor explains only variance that is due to modulation of the response, not the common response towards the stimulus/task). In other words, subtracting the mean from the parametric regressor <em>orthogonalises</em> the parametric regressor with respect to the unmodulated regressor.</p>
@@ -989,12 +989,6 @@ t_{\mathbf{c}\hat{\beta}} = \frac{\mathbf{c}\hat{\beta}}{\sqrt{\hat{\sigma}^{2}\
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Effect (&#39;t-value&#39;): 8.929
-Efficiency: 50.000
-</pre></div>
-</div>
-</div>
 </div>
 <div class='alert alert-info'>
 <b>ToThink</b> (1 point): Researchers do not need to acquire (fMRI) data ($\mathbf{y}$) to calculate the efficiency of their design ($\mathbf{X}$). Why? 
@@ -1064,13 +1058,6 @@ Efficiency: 50.000
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Shape X: (100, 2)
-Shape y: (100,)
-</pre></div>
-</div>
-<img alt="../../_images/design_of_experiments_51_1.png" src="../../_images/design_of_experiments_51_1.png" />
-</div>
 </div>
 <p>This is pretty awesome data! On average, our prediction is on average less than 1 point off (i.e., <span class="math notranslate nohighlight">\(\mathrm{MSE} &lt; 1\)</span>)! But you might also have noticed that the <em>range</em> of values for <span class="math notranslate nohighlight">\(X\)</span> (i.e., IQ) is quite limited: we only measured people with IQs between about 118 and 127. This is quite a narrow range — in other words: little variance — knowing that IQ varies according to a normal distribution with mean 100 and standard deviation 15. In other words, we have a pretty good model, but it is only based on a specific range of the IQ-variable.</p>
 <p>Think about it this way: this model captures the relationship between IQ and income, but only for relatively high-intelligence people. Sure, you can extrapolate to IQ-values like 80 and 90, but this extrapolation is quite uncertain because you’ve never even measured someone with that IQ-value!</p>
@@ -1114,9 +1101,6 @@ Shape y: (100,)
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<img alt="../../_images/design_of_experiments_53_0.png" src="../../_images/design_of_experiments_53_0.png" />
-</div>
 </div>
 <p>As you can see from the plots of the two datasets side-by-side, both the low-variance (left) and the high-variance plot (right) capture approximately the model: for each increase in an IQ-point, people earn about 1000 (low-variance model) / 959 (high-variance model) euro extra (these are reflected by the beta-parameters!).</p>
 <p>But, you also see that the MSE for the high-variance model is <em>much</em> higher, which is also evident from the residuals (distance of the red points from the blue line).</p>
@@ -1127,11 +1111,6 @@ Shape y: (100,)
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The MSE of the high-variance data is 23.279 times larger than the low-variance data!
-</pre></div>
-</div>
-</div>
 </div>
 <p>Given these statistics, you might guess that the t-value of the IQ-parameter in the high-variance model would be way lower than the same parameter in the low-variance model, right? Well, let’s check it out:</p>
 <div class="cell docutils container">
@@ -1139,12 +1118,6 @@ Shape y: (100,)
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># We calcalated the t-values earlier with the calculate_stats_for_iq_income_dataset function</span>
 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;T-value low-variance model: </span><span class="si">%.3f</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">tval_lv</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;T-value high-variance model: </span><span class="si">%.3f</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">tval_hv</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>T-value low-variance model: 21.189
-T-value high-variance model: 31.156
 </pre></div>
 </div>
 </div>
@@ -1260,13 +1233,6 @@ T-value high-variance model: 31.156
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<img alt="../../_images/design_of_experiments_68_0.png" src="../../_images/design_of_experiments_68_0.png" />
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Variance predictor 1: 0.055
-Variance predictor 2: 0.055
-</pre></div>
-</div>
-</div>
 </div>
 <p>As you can see, the predictors are almost perfectly uncorrelated - <span class="math notranslate nohighlight">\(\mathrm{corr}(\mathbf{X}_{1}, \mathbf{X}_{2}) \approx 0\)</span> - which corresponds to a design efficiency of 4.539. Remember, the absolute value of efficiency is not interpretable, but we can interpret it <em>relative to other designs</em>. As such, we can investigate how a design with more correlated predictors will change in terms of efficiency.</p>
 <p>To do so, we can simply “shift” the second predictor (blue line) to the left (i.e., the stimuli of predictor 2 follow the stimuli of predictor 1 more quickly). Let’s check out what happens to the efficiency if we induce corelation this way:</p>
@@ -1294,24 +1260,12 @@ Variance predictor 2: 0.055
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<img alt="../../_images/design_of_experiments_70_0.png" src="../../_images/design_of_experiments_70_0.png" />
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Variance predictor 1: 0.055
-Variance predictor 2: 0.055
-</pre></div>
-</div>
-</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Let&#39;s calculate the reduction in efficiency</span>
 <span class="n">reduction_eff</span> <span class="o">=</span> <span class="p">((</span><span class="n">eff</span> <span class="o">-</span> <span class="n">eff2</span><span class="p">)</span> <span class="o">/</span> <span class="n">eff</span><span class="p">)</span> <span class="o">*</span> <span class="mi">100</span>
 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Efficiency is reduced with </span><span class="si">%.1f%%</span><span class="s2"> when increasing the correlation to </span><span class="si">%.3f</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">reduction_eff</span><span class="p">,</span> <span class="n">corr2</span><span class="p">))</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Efficiency is reduced with 76.4% when increasing the correlation to 0.750
 </pre></div>
 </div>
 </div>
@@ -1339,20 +1293,12 @@ Variance predictor 2: 0.055
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<img alt="../../_images/design_of_experiments_73_0.png" src="../../_images/design_of_experiments_73_0.png" />
-</div>
 </div>
 <p>Now, if we calculate the beta-parameters of both predictors, we see that they both are given approximately equal “importance” (i.e., their beta-parameters are about equally high):</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">betas</span> <span class="o">=</span> <span class="n">inv</span><span class="p">(</span><span class="n">X2</span><span class="o">.</span><span class="n">T</span> <span class="o">@</span> <span class="n">X2</span><span class="p">)</span> <span class="o">@</span> <span class="n">X2</span><span class="o">.</span><span class="n">T</span> <span class="o">@</span> <span class="n">sim_signal</span>
 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Betas (w/o intercept): </span><span class="si">%r</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">betas</span><span class="p">[</span><span class="mi">1</span><span class="p">:])</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Betas (w/o intercept): array([1.83906143, 1.96990025])
 </pre></div>
 </div>
 </div>
@@ -1507,9 +1453,6 @@ With the data from the correlation-simulation (i.e., the variable `X`), calculat
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<img alt="../../_images/design_of_experiments_86_0.png" src="../../_images/design_of_experiments_86_0.png" />
-</div>
 </div>
 <p>As you can see in the plot above, a blocked design groups trials of the same condition together in blocks, while the event-related design is completely random in the sequence of trials. Note that designs can of course also be a “mixture” between blocked and event-related (e.g., largely random with some “blocks” in between).</p>
 <p>So, if we’re interested in detection (i.e., the amplitude of the response), what should we choose?
@@ -1525,11 +1468,6 @@ Well, the answer is simple: <strong>blocked designs</strong>.</p>
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">corr_blocked</span> <span class="o">=</span> <span class="n">pearsonr</span><span class="p">(</span><span class="n">X_blocked</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">X_blocked</span><span class="p">[:,</span> <span class="mi">2</span><span class="p">])</span>
 <span class="n">corr_er</span> <span class="o">=</span> <span class="n">pearsonr</span><span class="p">(</span><span class="n">X_er</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">X_er</span><span class="p">[:,</span> <span class="mi">2</span><span class="p">])</span>
 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Correlation blocked: </span><span class="si">%.3f</span><span class="s2">. Correlation event-related: </span><span class="si">%.3f</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">corr_blocked</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">corr_er</span><span class="p">[</span><span class="mi">0</span><span class="p">]))</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Correlation blocked: -0.234. Correlation event-related: -0.284
 </pre></div>
 </div>
 </div>
@@ -1611,9 +1549,6 @@ Well, the answer is simple: <strong>blocked designs</strong>.</p>
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<img alt="../../_images/design_of_experiments_95_0.png" src="../../_images/design_of_experiments_95_0.png" />
-</div>
 </div>
 <p>YOUR ANSWER HERE</p>
 </div>
@@ -1676,9 +1611,6 @@ Well, the answer is simple: <strong>blocked designs</strong>.</p>
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<img alt="../../_images/design_of_experiments_100_0.png" src="../../_images/design_of_experiments_100_0.png" />
-</div>
 </div>
 <p>Often, though, researchers do not use a <em>fixed</em> ISI, but they vary the ISI from trial to trial. This process is called “jittering”. Usually, the ISIs are drawn randomly from a known distribution (e.g., truncated exponential or normal distribution). Compared to using fixed ISIs, jittering may yield more efficient designs by reducing covariance and increasing predictor variance. Let’s simulate another dataset, but this time with a variable ISI between 2-6 seconds (which is on average 4 seconds, but variable across trials):</p>
 <div class="cell docutils container">
@@ -1729,9 +1661,6 @@ Well, the answer is simple: <strong>blocked designs</strong>.</p>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
-</div>
-<div class="cell_output docutils container">
-<img alt="../../_images/design_of_experiments_102_0.png" src="../../_images/design_of_experiments_102_0.png" />
 </div>
 </div>
 <p>As you can see in the plot above, jittering improved design efficiency quite a bit! It is important to realize that jittering does not <em>always</em> improve design efficiency, but by “injecting” randomness (by selecting semi-random ISIs) it allows for <em>a larger variety</em> of designs, which also include designs that happen to be more efficient than the fixed-ISI designs.</p>
@@ -1793,15 +1722,35 @@ Well, the answer is simple: <strong>blocked designs</strong>.</p>
 
               </div>
               
-        </div>
-    </div>
-    
-    
-    <div class='prev-next-bottom'>
         
-    <a class='left-prev' id="prev-link" href="../../section_intros/3_design_of_experiments_T.html" title="previous page">Design of experiments</a>
-    <a class='right-next' id="next-link" href="neurodesign.html" title="next page">Neurodesign (tutorial)</a>
+            
 
+
+
+<div class='prev-next-bottom'>
+    
+    <div id="prev">
+        <a class="left-prev" href="../../section_intros/3_design_of_experiments_T.html" title="previous page">
+            <i class="prevnext-label fas fa-angle-left"></i>
+            <div class="prevnext-info">
+                <p class="prevnext-label">previous</p>
+                <p class="prevnext-title">Design of experiments</p>
+            </div>
+        </a>
+    </div>
+     <div id="next">
+        <a class="right-next" href="neurodesign.html" title="next page">
+            <div class="prevnext-info">
+                <p class="prevnext-label">next</p>
+                <p class="prevnext-title">Neurodesign (tutorial)</p>
+            </div>
+            <i class="prevnext-label fas fa-angle-right"></i>
+        </a>
+     </div>
+
+</div>
+        
+        </div>
     </div>
     <footer class="footer mt-5 mt-md-0">
     <div class="container">
@@ -1818,11 +1767,9 @@ Well, the answer is simple: <strong>blocked designs</strong>.</p>
 
       </div>
     </div>
+  
+  <script src="../../_static/js/index.1c5a1a01449ed65a7b51.js"></script>
 
-    
-  <script src="../../_static/js/index.d3f166471bb80abb5163.js"></script>
-
-
-    
+  
   </body>
 </html>
