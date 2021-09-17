@@ -1,78 +1,68 @@
-# Table of contents
-# Learn more at https://jupyterbook.org/customize/toc.html
-- file: index
-
-- part: Getting started
+format: jb-book
+root: index
+parts:
+- caption: Getting started
   chapters:
   - file: getting_started/about
   - file: getting_started/installation
-
-- part: "fMRI-introduction"
+- caption: fMRI-introduction
   chapters:
   - file: section_intros/1_python
     sections:
     - file: other/python_recap
     - file: fMRI-introduction/week_1/python_for_mri
-      title: "Working with MRI data in Python (T)"
-
+      title: 'Working with MRI data in Python (T)'
   - file: section_intros/2_glm
     sections:
     - file: fMRI-introduction/week_2/glm_part1_estimation
-      title: "The GLM: estimation (T)"
+      title: 'The GLM: estimation (T)'
     - file: fMRI-introduction/week_3/glm_part2_inference
-      title: "The GLM: inference (T)"
-
-  - file: section_intros/3_design_of_experiments_T 
+      title: 'The GLM: inference (T)'
+  - file: section_intros/3_design_of_experiments_T
     sections:
     - file: fMRI-introduction/week_3/design_of_experiments
-      title: "Design of experiments (T)"
+      title: 'Design of experiments (T)'
     - file: fMRI-introduction/week_3/neurodesign
-      title: "Neurodesign (T)"
-
+      title: 'Neurodesign (T)'
   - file: section_intros/4_preprocessing
     sections:
     - file: fMRI-introduction/week_4/temporal_preprocessing
-      title: "Temporal preprocessing (T)"
+      title: 'Temporal preprocessing (T)'
     - file: fMRI-introduction/week_4/spatial_preprocessing
-      title: "Spatial preprocessing (T)"
+      title: 'Spatial preprocessing (T)'
     - file: fMRI-introduction/week_4/fmriprep
-      title: "Fmriprep (T)"
-
+      title: 'Fmriprep (T)'
   - file: section_intros/5_multilevel
     sections:
     - file: fMRI-introduction/week_5/linux_and_the_command_line
-      title: "Linux and the CMD (T)"
+      title: 'Linux and the CMD (T)'
     - file: fMRI-introduction/week_5/first_level_analyses
-      title: "First level analyses (T)"
+      title: 'First level analyses (T)'
     - file: fMRI-introduction/week_5/run_level_analyses
-      title: "Run-level analyses (T)"
-
+      title: 'Run-level analyses (T)'
   - file: section_intros/6_grouplevel
     sections:
     - file: fMRI-introduction/week_6/group_level_analyses
-      title: "Group-level analyses (T)"
+      title: 'Group-level analyses (T)'
     - file: fMRI-introduction/week_6/MCC
-      title: "Multiple comparison correction (T)"
+      title: 'Multiple comparison correction (T)'
     - file: fMRI-introduction/week_6/ROI_analysis
-      title: "ROI analysis (T)"
-
+      title: 'ROI analysis (T)'
   - file: section_intros/7_nilearn
     sections:
     - file: fMRI-introduction/week_7/nilearn
-      title: "Introduction to Nilearn (T)"
+      title: 'Introduction to Nilearn (T)'
     - file: fMRI-introduction/week_7/nilearn_stats
-      title: "Statistics with Nilearn (T)"
-
-- part: "fMRI-pattern-analysis"
+      title: 'Statistics with Nilearn (T)'
+- caption: fMRI-pattern-analysis
   chapters:
   - file: fMRI-pattern-analysis/week_1/design_and_pattern_estimation
-    title: "Design and pattern estimation (T)"
+    title: 'Design and pattern estimation (T)'
   - file: fMRI-pattern-analysis/week_2/decoding_analyses
-    title: "Machine learning/decoding (T)"
+    title: 'Machine learning/decoding (T)'
   - file: fMRI-pattern-analysis/week_3/rsa
-    title: "Representational Similarity Analysis (T)"
-
-- part: Misc
+    title: 'Representational Similarity Analysis (T)'
+- caption: Misc
   chapters:
   - file: misc/bibliography
   - file: misc/for_educators

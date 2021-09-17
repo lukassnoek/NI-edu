@@ -11,6 +11,6 @@ The *First-level analyses* tutorial discusses how to implement and run first-lev
 
 The *Run-level analyses* tutorial introduces the idea of the two-stage multilevel model approximation used in many univariate fMRI analyses and demonstrates how to run a run-level analysis in FSL.
 
-:::{warning}
+```{warning}
 The FSL-part of the *first-level analyses* notebooks requires about 350MB of data to be downloaded. The code to download the data is included in the notebook.
-:::
+```

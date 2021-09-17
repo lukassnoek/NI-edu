@@ -4,9 +4,9 @@ The course materials of fMRI-introduction and fMRI-pattern analyses contain Pyth
 ## Software requirements: Python & FSL
 Below, we discuss how to install Python and (optionally) how to install FSL. 
 
-:::{tip}
+```{note}
 Note that many of the notebooks (with the exception of those discussing FSL functionality) can actually be run in the cloud using Binder or any other JupyterHub server, which is explained in the section **Running Python online** on this page.
-:::
+```
 
 ### Installing Python
 We *highly* recommend installing Python through Anaconda. To do so, go to the [Anaconda website](https://www.anaconda.com/products/individual) and download the latest *Anaconda installer* for your OS (Windows, MacOS, or Linux). Both the graphical and command-line installers are fine. After downloading the installer, run the installer. The default options suggested during installation are all fine (but no need to install the Pycharm IDE).
@@ -47,9 +47,9 @@ Many of the tutorials from this course can also be run in an online environment 
 
 Any tutorial page on this website &mdash; designated by `(T)` in the menu bar on the left &mdash; contains a "rocket" button on the top of the page. Clicking this reveals two options, [*Binder*](https://mybinder.org/) and *JupyterHub*. Clicking on the *Binder* option will spin up an online Jupyter environment in which you can run the tutorial interactively. The *JupyterHub* option redirects to the JupyterHub instance we use for the Research Master courses at the University of Amsterdam and is only accessible to students currently enrolled in any of the Research Master courses.
 
-:::{warning}
+```{warning}
 *Binder* instances shut down after a given period of inactivity and does not save your results!
-:::
+```
 
 ### FSL
 In addition, a few tutorials will discuss how to work with the open-source MRI software package [FSL](https://fsl.fmrib.ox.ac.uk/fsl/fslwiki). FSL works natively on Linux and Mac and, if you're tech savvy, also on Windows (through the "Windows Subsystem for Linux"). Installation instructions for FSL can be found [here](https://fsl.fmrib.ox.ac.uk/fsl/fslwiki/FslInstallation). Note that FSL is only used in two labs (*First * run-level analyses* and *Group-level analyses*) in the fMRI-introduction course, and it discusses no new concepts, so it can safely be skipped.

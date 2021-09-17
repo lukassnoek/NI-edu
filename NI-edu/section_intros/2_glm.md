@@ -8,6 +8,6 @@ The *estimation* tutorial discusses the basics of multiple linear regression and
 
 Note that these two notebooks are quite extensive (especially the *estimation* tutorial) and may take longer to complete than the other tutorials in this course. In our "offline" course at the University of Amsterdam, we therefore have students do the *estimation* tutorial in week 2 and the *inference* notebook for week 3.
 
-:::{note}
+```{note}
 The tutorials from this section can be done online using Binder by clicking on the rocket icon in the top right of the tutorial page.
-:::
+```

@@ -27,7 +27,7 @@ For more information about contributing, check out [this page](../misc/CONTRIBUT
 ## Acknowledgements
 The course material was developed by Lukas Snoek with help from Noor Seijdel, Jessica Loke, and Carolin Streitberger. The course structure was inherited from a previous Matlab-based course designed by H. Steven Scholte.
 
-The exercises in Jupyter notebook tutorials were created using the [nbgrader](https://nbgrader.readthedocs.io/en/stable/) package {cite}`hamrick2016creating`. This website was created using the awesome [Jupyter book](https://jupyterbook.org/) package.
+The exercises in Jupyter notebook tutorials were created using the [nbgrader](https://nbgrader.readthedocs.io/en/stable/) package {cite:p}`hamrick2016creating`. This website was created using the awesome [Jupyter book](https://jupyterbook.org/) package.
 
 ## Attribution
 To be added.
