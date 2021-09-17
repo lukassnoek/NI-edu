@@ -42,6 +42,8 @@
     <script src="../../_static/copybutton.js"></script>
     <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
     <script src="../../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.0/dist/embed-amd.js"></script>
     <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
     <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
@@ -646,8 +648,8 @@ We are going to work through a simple example.</p>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
 
-<span class="n">prespecified_covariance</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span> <span class="o">.</span><span class="mi">8</span><span class="p">],</span>
-                                    <span class="p">[</span><span class="o">.</span><span class="mi">8</span><span class="p">,</span> <span class="mi">1</span><span class="p">]])</span>
+<span class="n">prespecified_covariance</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span> <span class="mf">.8</span><span class="p">],</span>
+                                    <span class="p">[</span><span class="mf">.8</span><span class="p">,</span> <span class="mi">1</span><span class="p">]])</span>
 
 <span class="n">data</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">multivariate_normal</span><span class="p">(</span><span class="n">mean</span><span class="o">=</span><span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">7</span><span class="p">],</span> <span class="n">cov</span><span class="o">=</span><span class="n">prespecified_covariance</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">30</span><span class="p">)</span>
 
@@ -662,6 +664,12 @@ We are going to work through a simple example.</p>
 
 <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;The shape of X is: </span><span class="si">%s</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">X</span><span class="o">.</span><span class="n">shape</span><span class="p">,))</span>
 <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;The shape of y is: </span><span class="si">%s</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">y</span><span class="o">.</span><span class="n">shape</span><span class="p">,))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The shape of X is: (30, 1)
+The shape of y is: (30, 1)
 </pre></div>
 </div>
 </div>
@@ -693,11 +701,50 @@ We are going to work through a simple example.</p>
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Shape of X is now: (30, 2)
+</pre></div>
+</div>
+</div>
 </div>
 <p>Let’s take a look at the X matrix (“design matrix”) we have now. As you’ll see, we have two columns: the first one is our intercept-predictor, and the second one is our ‘regular’ predictor.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">X_with_icept</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[[1.         1.65246505]
+ [1.         3.84037019]
+ [1.         2.90681268]
+ [1.         1.58544098]
+ [1.         2.77619077]
+ [1.         2.26439631]
+ [1.         3.42732047]
+ [1.         2.27222802]
+ [1.         3.44118297]
+ [1.         2.77565017]
+ [1.         3.68214561]
+ [1.         1.98577328]
+ [1.         2.36158674]
+ [1.         3.41250018]
+ [1.         3.08642782]
+ [1.         3.78163148]
+ [1.         3.91918676]
+ [1.         3.64080489]
+ [1.         3.98584491]
+ [1.         1.19071843]
+ [1.         3.46268411]
+ [1.         3.17361546]
+ [1.         3.15323524]
+ [1.         2.15472268]
+ [1.         2.69083045]
+ [1.         2.82662461]
+ [1.         4.1943598 ]
+ [1.         3.01266793]
+ [1.         1.90963012]
+ [1.         2.44916186]]
 </pre></div>
 </div>
 </div>
@@ -714,6 +761,9 @@ We are going to work through a simple example.</p>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/glm_part1_estimation_15_0.png" src="../../_images/glm_part1_estimation_15_0.png" />
 </div>
 </div>
 </div>
@@ -793,6 +843,30 @@ X_{N, 1} &amp; X_{N, 2}
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[ -0.01338524   1.6703706    2.21587559  10.21759739   6.73838803
+  -8.73396662   3.42869211  -4.48842891   0.95290386   3.43650722
+  -1.71391492   2.1629619    1.34852454  -2.22062007   3.99755808
+   6.55005865  -3.79261597   2.34949198  -1.58847781  -1.00590812
+   1.43788029   3.79819378  -4.96641193   0.84168045  -1.23324889
+  -5.92010843   1.65225542  -2.18412034  -5.04079461   6.83379015
+  -2.44856964  12.2700849   -5.58141723   9.15228886  -3.40630421
+  -2.71636339  -4.49867819   2.09344214  -0.83014248   4.14900705
+  -1.23808648   6.5956657    3.06043025   2.24424643   3.21012702
+  -8.85509716  11.75506195   1.90635652  -1.03938628  -3.27900914
+  -5.57655277   0.35407235   1.95194714   5.57227764   5.26441588
+  -0.53012277  11.8957242   -0.46059776   5.79536197   2.4409444
+  -5.42215061   6.39560171  -2.40432132   3.53601676   1.18398727
+   6.910171    12.85646364  -1.58706604   4.27244301   7.18808465
+   0.4676259    3.05310707 -11.94182401 -10.92527308   0.27265972
+  -5.66052486   3.81234307  -3.5567501    1.81194083   7.42500474
+   9.59297064   8.12223579   1.24938396  -3.32538443  -4.11217587
+   1.81883774   8.68157606  -4.30168507  -7.90885419  -5.89588956
+  -3.42402275  -4.19931869  -2.28244723   1.76317986   5.1354938
+  -2.41745528  -8.15283856  -1.30210807  12.01285321   0.32663551]
+</pre></div>
+</div>
+</div>
 </div>
 <p>In other words, the non-matrix algebra notation …</p>
 <p>\begin{align}
@@ -836,6 +910,13 @@ X_{N, 1} &amp; X_{N, 2}
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Shape of estimated betas: (2, 1)
+[[4.25897963]
+ [0.88186203]]
+</pre></div>
+</div>
+</div>
 </div>
 <p>“What? Why are there two beta-parameters?”, you might think. This is of course because you also use the intercept as a predictor, which also has an associated beta-value (weighting factor). Here, the first beta refers to the intercept of the model (because it’s the first column in the design-matrix)! The second beta refers to our ‘original’ predictor. Thus, the model found by least squares for our generated data is (i.e. that leads to our best estimate of <span class="math notranslate nohighlight">\(y\)</span>, i.e. <span class="math notranslate nohighlight">\(\hat{y}\)</span>:</p>
 <p>\begin{align}
@@ -850,6 +931,18 @@ X_{N, 1} &amp; X_{N, 2}
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">y_hat</span> <span class="o">=</span> <span class="n">X_with_icept</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="n">est_betas</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="n">X_with_icept</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">]</span> <span class="o">*</span> <span class="n">est_betas</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
 <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;The predicted y-values are: </span><span class="se">\n\n</span><span class="si">%r</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="n">y_hat</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The predicted y-values are: 
+
+array([5.7162258 , 7.64565627, 6.82238735, 5.65711982, 6.70719685,
+       6.25586475, 7.2814034 , 6.26277124, 7.29362822, 6.70672011,
+       7.50612402, 6.01015768, 6.3415733 , 7.26833396, 6.98078313,
+       7.59385684, 7.71516161, 7.46966721, 7.77394491, 5.30902899,
+       7.31258926, 7.05767059, 7.03969805, 6.15914774, 6.63192082,
+       6.75167254, 7.95782627, 6.91573708, 5.94300991, 6.41880247])
 </pre></div>
 </div>
 </div>
@@ -872,6 +965,9 @@ X_{N, 1} &amp; X_{N, 2}
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<img alt="../../_images/glm_part1_estimation_30_0.png" src="../../_images/glm_part1_estimation_30_0.png" />
+</div>
 </div>
 <p>Actually, let’s just plot the predicted y-values as a line (effectively interpolating between adjacent predictions) - this gives us the linear regression plot as you’ve probably seen many times in your statistics classes!</p>
 <div class="cell docutils container">
@@ -891,6 +987,9 @@ X_{N, 1} &amp; X_{N, 2}
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/glm_part1_estimation_32_0.png" src="../../_images/glm_part1_estimation_32_0.png" />
 </div>
 </div>
 </div>
@@ -931,6 +1030,9 @@ X_{N, 1} &amp; X_{N, 2}
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<img alt="../../_images/glm_part1_estimation_34_0.png" src="../../_images/glm_part1_estimation_34_0.png" />
+</div>
 </div>
 <p>In fact, the model fit is often summarized as the <strong>mean of the squared residuals</strong> (also called the ‘mean squared error’ or MSE), which is thus simply the (length of the) red lines squared and averaged. In other words, the MSE refers to the average squared difference between our predicted <span class="math notranslate nohighlight">\(y\)</span> and the true <span class="math notranslate nohighlight">\(y\)</span>*:</p>
 <p>\begin{align}
@@ -970,6 +1072,11 @@ R^2 = 1 - \frac{\sum_{i=1}^{N}(y_{i} - \hat{y}<em>{i})^2}{\sum</em>{i=1}^{N}(y_{
 <span class="n">r_squared</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">-</span> <span class="n">numerator</span> <span class="o">/</span> <span class="n">denominator</span>
 
 <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;The R² value is: </span><span class="si">%.3f</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="n">r_squared</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The R² value is: 0.549
 </pre></div>
 </div>
 </div>
@@ -1025,6 +1132,9 @@ R^2 = 1 - \frac{\sum_{i=1}^{N}(y_{i} - \hat{y}<em>{i})^2}{\sum</em>{i=1}^{N}(y_{
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/glm_part1_estimation_45_1.png" src="../../_images/glm_part1_estimation_45_1.png" />
 </div>
 </div>
 <p>YOUR ANSWER HERE</p>
@@ -1168,6 +1278,9 @@ R^2 = 1 - \frac{\sum_{i=1}^{N}(y_{i} - \hat{y}<em>{i})^2}{\sum</em>{i=1}^{N}(y_{
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<img alt="../../_images/glm_part1_estimation_63_0.png" src="../../_images/glm_part1_estimation_63_0.png" />
+</div>
 </div>
 <p>So, the voxel timeseries (i.e. activation over time; often called ‘signal’) is our dependent variable (<span class="math notranslate nohighlight">\(y\)</span>). Thus, the different time points (with corresponding activity values) make up our observations/samples!</p>
 <div class='alert alert-info'>
@@ -1186,6 +1299,9 @@ R^2 = 1 - \frac{\sum_{i=1}^{N}(y_{i} - \hat{y}<em>{i})^2}{\sum</em>{i=1}^{N}(y_{
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/glm_part1_estimation_67_0.png" src="../../_images/glm_part1_estimation_67_0.png" />
 </div>
 </div>
 <p>Alright, this looks better. Now, let’s look at our potential predictors (<span class="math notranslate nohighlight">\(X\)</span>).</p>
@@ -1220,6 +1336,11 @@ R^2 = 1 - \frac{\sum_{i=1}^{N}(y_{i} - \hat{y}<em>{i})^2}{\sum</em>{i=1}^{N}(y_{
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[ 10 110 210 310 410 510 610 710  60 160 260 360 460 560 660 760]
+</pre></div>
+</div>
+</div>
 </div>
 <p>Now, we need to do one last thing: convert the <code class="docutils literal notranslate"><span class="pre">onsets_all</span></code> vector into a proper predictor. Right now, the variable contains only the onsets, but a predictor should be an array with the same shape as the target.</p>
 <p>Given that our predictor should represent the hypothesis that the signal responds to the presence of a stimulus (and doesn’t respond when a stimulus is absent), we can construct our predictor as a vector of all zeros, except at indices corresponding to the onsets of our stimuli, where the value is 1.</p>
@@ -1234,6 +1355,61 @@ R^2 = 1 - \frac{\sum_{i=1}^{N}(y_{i} - \hat{y}<em>{i})^2}{\sum</em>{i=1}^{N}(y_{
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Shape of predictor: (800,)
+
+Contents of our predictor array:
+array([0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 1., 0., 0., 0., 0., 0., 0.,
+       0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0.,
+       0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0.,
+       0., 0., 0., 0., 0., 0., 0., 0., 0., 1., 0., 0., 0., 0., 0., 0., 0.,
+       0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0.,
+       0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0.,
+       0., 0., 0., 0., 0., 0., 0., 0., 1., 0., 0., 0., 0., 0., 0., 0., 0.,
+       0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0.,
+       0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0.,
+       0., 0., 0., 0., 0., 0., 0., 1., 0., 0., 0., 0., 0., 0., 0., 0., 0.,
+       0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0.,
+       0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0.,
+       0., 0., 0., 0., 0., 0., 1., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0.,
+       0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0.,
+       0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0.,
+       0., 0., 0., 0., 0., 1., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0.,
+       0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0.,
+       0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0.,
+       0., 0., 0., 0., 1., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0.,
+       0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0.,
+       0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0.,
+       0., 0., 0., 1., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0.,
+       0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0.,
+       0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0.,
+       0., 0., 1., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0.,
+       0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0.,
+       0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0.,
+       0., 1., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0.,
+       0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0.,
+       0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0.,
+       1., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0.,
+       0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0.,
+       0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 1.,
+       0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0.,
+       0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0.,
+       0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 1., 0.,
+       0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0.,
+       0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0.,
+       0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 1., 0., 0.,
+       0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0.,
+       0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0.,
+       0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 1., 0., 0., 0.,
+       0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0.,
+       0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0.,
+       0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 1., 0., 0., 0., 0.,
+       0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0.,
+       0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0.,
+       0.])
+</pre></div>
+</div>
+</div>
 </div>
 <p>We can even plot it in a similar way as we did with the voxel signal:</p>
 <div class="cell docutils container">
@@ -1243,12 +1419,15 @@ R^2 = 1 - \frac{\sum_{i=1}^{N}(y_{i} - \hat{y}<em>{i})^2}{\sum</em>{i=1}^{N}(y_{
 <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Time points (seconds)&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Activity (arbitrary units)&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">800</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">(</span><span class="o">-.</span><span class="mi">5</span><span class="p">,</span> <span class="mf">1.5</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">(</span><span class="o">-</span><span class="mf">.5</span><span class="p">,</span> <span class="mf">1.5</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Example of stimulus predictor&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">25</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">()</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/glm_part1_estimation_76_0.png" src="../../_images/glm_part1_estimation_76_0.png" />
 </div>
 </div>
 </div>
@@ -1263,7 +1442,7 @@ R^2 = 1 - \frac{\sum_{i=1}^{N}(y_{i} - \hat{y}<em>{i})^2}{\sum</em>{i=1}^{N}(y_{
 <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Time points (seconds)&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Activity (arbitrary units)&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">200</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">(</span><span class="o">-.</span><span class="mi">5</span><span class="p">,</span> <span class="mf">1.5</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">(</span><span class="o">-</span><span class="mf">.5</span><span class="p">,</span> <span class="mf">1.5</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;How to downsample the predictor&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">25</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">()</span>
 
@@ -1273,6 +1452,9 @@ R^2 = 1 - \frac{\sum_{i=1}^{N}(y_{i} - \hat{y}<em>{i})^2}{\sum</em>{i=1}^{N}(y_{
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/glm_part1_estimation_78_0.png" src="../../_images/glm_part1_estimation_78_0.png" />
 </div>
 </div>
 <p>Resampling in Python can be done using the <code class="docutils literal notranslate"><span class="pre">interp1d</span></code> function from the <code class="docutils literal notranslate"><span class="pre">scipy.interpolate</span></code> package. It works by first creating a mapping between the <em>scale</em> of the original array and the <em>values</em> of the original array, and then converting the original array to a <em>different scale</em>. We’ll show you how this would be done with our <code class="docutils literal notranslate"><span class="pre">predictor_all</span></code> array.</p>
@@ -1297,11 +1479,39 @@ R^2 = 1 - \frac{\sum_{i=1}^{N}(y_{i} - \hat{y}<em>{i})^2}{\sum</em>{i=1}^{N}(y_{
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Original scale has 800 datapoints (0-800, in seconds)
+Desired scale has 400 datapoints (0, 2, 4, ... 800, in volumes)
+Downsampled predictor has 400 datapoints (in volumes)
+</pre></div>
+</div>
+</div>
 </div>
 <p>That seemed to have worked! Let’s print it to be sure:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">predictor_all_ds</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[0. 0. 0. 0. 0. 1. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0.
+ 0. 0. 0. 0. 0. 0. 1. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0.
+ 0. 0. 0. 0. 0. 0. 0. 1. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0.
+ 0. 0. 0. 0. 0. 0. 0. 0. 1. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0.
+ 0. 0. 0. 0. 0. 0. 0. 0. 0. 1. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0.
+ 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 1. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0.
+ 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 1. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0.
+ 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 1. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0.
+ 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 1. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0.
+ 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 1. 0. 0. 0. 0. 0. 0. 0. 0. 0.
+ 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 1. 0. 0. 0. 0. 0. 0. 0. 0.
+ 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 1. 0. 0. 0. 0. 0. 0. 0.
+ 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 1. 0. 0. 0. 0. 0. 0.
+ 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 1. 0. 0. 0. 0. 0.
+ 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 1. 0. 0. 0. 0.
+ 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 1. 0. 0. 0.
+ 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0.]
 </pre></div>
 </div>
 </div>
@@ -1322,6 +1532,9 @@ R^2 = 1 - \frac{\sum_{i=1}^{N}(y_{i} - \hat{y}<em>{i})^2}{\sum</em>{i=1}^{N}(y_{
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/glm_part1_estimation_84_0.png" src="../../_images/glm_part1_estimation_84_0.png" />
 </div>
 </div>
 <p>Often, the design matrix is actually specified with higher precision (e.g., on the scale of milliseconds) than we did in the previous example (i.e., seconds) to accomodate onsets that are not “locked” to full seconds (e.g., <span class="math notranslate nohighlight">\(t=10\)</span>, <span class="math notranslate nohighlight">\(t=60\)</span>, but never <span class="math notranslate nohighlight">\(t=10.296\)</span>). We’ll come back to this issue later in the tutorial.</p>
@@ -1440,6 +1653,9 @@ y_{voxel} = \beta_{intercept} + X_{stim}\beta_{stim} + \epsilon = 1000.647 + X_{
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<img alt="../../_images/glm_part1_estimation_96_1.png" src="../../_images/glm_part1_estimation_96_1.png" />
+</div>
 </div>
 <p>The orange line represents the predicted signal, which is based on the original predictor (<span class="math notranslate nohighlight">\(X\)</span>) multiplied (or “scaled”) by the associated beta-parameters (<span class="math notranslate nohighlight">\(\beta\)</span>). Graphically, you can interpret the beta-parameter of the stimulus-predictor (<span class="math notranslate nohighlight">\(\beta_{stim}\)</span>) as the maximum height of the peaks in the orange line* and the beta-parameter of the intercept (<span class="math notranslate nohighlight">\(\beta_{intercept}\)</span>) as the difference from the flat portion of the orange line and 0 (i.e. the “offset” of the signal).</p>
 <hr class="docutils" />
@@ -1451,6 +1667,9 @@ y_{voxel} = \beta_{intercept} + X_{stim}\beta_{stim} + \epsilon = 1000.647 + X_{
 <span class="n">plot_signal_and_predicted_signal_zoom</span><span class="p">(</span><span class="n">voxel_signal</span><span class="p">,</span> <span class="n">predictor_all_ds</span><span class="p">,</span> <span class="n">x_lim</span><span class="o">=</span><span class="p">(</span><span class="mi">20</span><span class="p">,</span> <span class="mi">60</span><span class="p">),</span> <span class="n">y_lim</span><span class="o">=</span><span class="p">(</span><span class="mi">995</span><span class="p">,</span> <span class="mi">1010</span><span class="p">))</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/glm_part1_estimation_99_0.png" src="../../_images/glm_part1_estimation_99_0.png" />
 </div>
 </div>
 <p>Anyway, there seems to be an effect on voxel activity when we show a stimulus — an increase of 1.023 in the signal on average (about 0.1% percent signal change) — but you’ve also seen that the model fit is quite bad (<span class="math notranslate nohighlight">\(R^2 = 0.004\)</span>, about 0.4% explained variance) …</p>
@@ -1487,6 +1706,11 @@ y_{voxel} = \beta_{intercept} + X_{stim}\beta_{stim} + \epsilon = 1000.647 + X_{
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Size of canonical hrf variable: 32
+</pre></div>
+</div>
+</div>
 </div>
 <p>As you can see, the length of the <code class="docutils literal notranslate"><span class="pre">canonical_hrf</span></code> variable is 32 (seconds). Now, let’s plot it:</p>
 <div class="cell docutils container">
@@ -1502,6 +1726,9 @@ y_{voxel} = \beta_{intercept} + X_{stim}\beta_{stim} + \epsilon = 1000.647 + X_{
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/glm_part1_estimation_107_0.png" src="../../_images/glm_part1_estimation_107_0.png" />
 </div>
 </div>
 </div>
@@ -1549,6 +1776,9 @@ X_{\mathrm{conv}} = \mathrm{HRF} * X_{\mathrm{original}}
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<img alt="../../_images/glm_part1_estimation_109_0.png" src="../../_images/glm_part1_estimation_109_0.png" />
+</div>
 </div>
 <p>The result — the convolved stimulus-vector — is basically the output of a the multiplication of the HRF and the stimulus-events when you would “slide” the HRF across the stimulus vector. As you can see, the convolved stimulus-vector correctly shows the to-be-expected lag and shape of the BOLD-response! Given that this new predictor incorporates this knowledge of the to-be expected response, it will probably model the activity of our voxel way better. Note that the temporal resolution of your convolved regressor is necessary limited by the resolution of your data (i.e. the TR of your fMRI acquisition). That’s why the convolved regressor doesn’t look as “smooth” as the HRF.</p>
 <p>As you can see in the code for the plot above, numpy provides us with a function to convolve two arrays:</p>
@@ -1581,6 +1811,13 @@ Therefore, we need to perform the convolution on the variable <code class="docut
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The shape of the convolved predictor after convolution: (831,)
+After trimming, the shape is: (800,)
+Shape after adding the new axis: (800, 1)
+</pre></div>
+</div>
+</div>
 </div>
 <p>It’s a bit of a hassle (squeezing out the singleton axis, trimming, adding the axis back …), but now we have a predictor which includes information about the expected HRF!</p>
 <p>Let’s look at the predictor before and after convolution in the same plot:</p>
@@ -1598,6 +1835,9 @@ Therefore, we need to perform the convolution on the variable <code class="docut
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/glm_part1_estimation_113_0.png" src="../../_images/glm_part1_estimation_113_0.png" />
 </div>
 </div>
 </div>
@@ -1659,6 +1899,9 @@ Therefore, we need to perform the convolution on the variable <code class="docut
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<img alt="../../_images/glm_part1_estimation_115_0.png" src="../../_images/glm_part1_estimation_115_0.png" />
+</div>
 </div>
 <p>Also, in our random stimulus-vector above (and also in the example we showed earlier) we assumed that each image was only showed briefly (i.e. we only modelled the onset) - but what if a stimulus (or task) may take longer, say, 15 seconds? Let’s see what happens.</p>
 <div class="cell docutils container">
@@ -1674,7 +1917,7 @@ Therefore, we need to perform the convolution on the variable <code class="docut
 <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">random_stim_vector2</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="s1">&#39;tab:blue&#39;</span><span class="p">)</span>
 
 <span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">((</span><span class="mi">0</span><span class="p">,</span> <span class="mi">100</span><span class="p">))</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">((</span><span class="o">-.</span><span class="mi">5</span><span class="p">,</span> <span class="mf">1.2</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">((</span><span class="o">-</span><span class="mf">.5</span><span class="p">,</span> <span class="mf">1.2</span><span class="p">))</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Activity (A.U.)&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
 
 <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Stimulus events&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">25</span><span class="p">)</span>
@@ -1690,6 +1933,9 @@ Therefore, we need to perform the convolution on the variable <code class="docut
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/glm_part1_estimation_117_0.png" src="../../_images/glm_part1_estimation_117_0.png" />
 </div>
 </div>
 <p>As you can see, convolution takes care to model the shape of the BOLD-response according to how long you specify the stimulus to take!</p>
@@ -1718,7 +1964,7 @@ Therefore, we need to perform the convolution on the variable <code class="docut
 <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Stimulus events&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">25</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">()</span>
 
-<span class="n">convolved_stim_vector3</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">convolve</span><span class="p">(</span><span class="n">random_stim_vector3</span> <span class="o">*</span> <span class="o">.</span><span class="mi">5</span><span class="p">,</span> <span class="n">canonical_hrf</span><span class="p">,</span> <span class="s1">&#39;full&#39;</span><span class="p">)[:</span><span class="n">random_stim_vector3</span><span class="o">.</span><span class="n">size</span><span class="p">]</span>
+<span class="n">convolved_stim_vector3</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">convolve</span><span class="p">(</span><span class="n">random_stim_vector3</span> <span class="o">*</span> <span class="mf">.5</span><span class="p">,</span> <span class="n">canonical_hrf</span><span class="p">,</span> <span class="s1">&#39;full&#39;</span><span class="p">)[:</span><span class="n">random_stim_vector3</span><span class="o">.</span><span class="n">size</span><span class="p">]</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">convolved_stim_vector3</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>
@@ -1731,6 +1977,9 @@ Therefore, we need to perform the convolution on the variable <code class="docut
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/glm_part1_estimation_122_1.png" src="../../_images/glm_part1_estimation_122_1.png" />
 </div>
 </div>
 <div class='alert alert-warning'>
@@ -1789,6 +2038,12 @@ Therefore, we need to perform the convolution on the variable <code class="docut
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Size convolved predictor: 800
+Size voxel signal: 400
+</pre></div>
+</div>
+</div>
 </div>
 <p>We can use resampling to find the data points of the convolved HRF predictor that correspond to the onset of the volumes of our voxel signal. Importantly, we have to “squeeze out” the singleton dimension before downsampling the predictor (otherwise it’ll give an error). Then, we can plot the convolved predictor and the signal in the same figure (because now they are defined on the same timescale!):</p>
 <div class="cell docutils container">
@@ -1812,6 +2067,9 @@ Therefore, we need to perform the convolution on the variable <code class="docut
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<img alt="../../_images/glm_part1_estimation_129_0.png" src="../../_images/glm_part1_estimation_129_0.png" />
+</div>
 </div>
 </div>
 <div class="section" id="initial-upsampling-of-predictors">
@@ -1829,6 +2087,11 @@ Therefore, we need to perform the convolution on the variable <code class="docut
 
 <span class="n">onsets2_in_msec</span> <span class="o">=</span> <span class="p">(</span><span class="n">onsets2</span> <span class="o">*</span> <span class="n">osf</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span>  <span class="c1"># we convert it to int, because floats (even when it&#39;s 5.0) cannot be used as indices</span>
 <span class="n">pred2</span><span class="p">[</span><span class="n">onsets2_in_msec</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Size of oversampled (factor: 1000) predictor: 5000
 </pre></div>
 </div>
 </div>
@@ -1852,6 +2115,9 @@ Therefore, we need to perform the convolution on the variable <code class="docut
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<img alt="../../_images/glm_part1_estimation_133_0.png" src="../../_images/glm_part1_estimation_133_0.png" />
+</div>
 </div>
 <p>Now, let’s convolve our predictor with the HRF again:</p>
 <div class="cell docutils container">
@@ -1867,6 +2133,9 @@ Therefore, we need to perform the convolution on the variable <code class="docut
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/glm_part1_estimation_135_0.png" src="../../_images/glm_part1_estimation_135_0.png" />
 </div>
 </div>
 <p>Now the only thing that we have to do is to downsample the convolved predictor!</p>
@@ -1947,6 +2216,9 @@ Therefore, we need to perform the convolution on the variable <code class="docut
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<img alt="../../_images/glm_part1_estimation_141_0.png" src="../../_images/glm_part1_estimation_141_0.png" />
+</div>
 </div>
 <p>Wow, that looks much better! First, let’s inspect the beta-parameters:</p>
 <div class="cell docutils container">
@@ -1957,6 +2229,12 @@ Therefore, we need to perform the convolution on the variable <code class="docut
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The beta-parameter of our stimulus-predictor is now: 6.511
+... which is 6.364 times larger than the beta of our original beta (based on the unconvolved predictors)!
+</pre></div>
+</div>
+</div>
 </div>
 <p>Like we did before, we’ll zoom in and show you how the estimated beta-parameters relate tho the data:</p>
 <div class="cell docutils container">
@@ -1964,6 +2242,9 @@ Therefore, we need to perform the convolution on the variable <code class="docut
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plot_signal_and_predicted_signal_zoom</span><span class="p">(</span><span class="n">voxel_signal</span><span class="p">,</span> <span class="n">predictor_conv_ds</span><span class="p">,</span> <span class="n">x_lim</span><span class="o">=</span><span class="p">(</span><span class="mi">25</span><span class="p">,</span> <span class="mi">65</span><span class="p">),</span> <span class="n">y_lim</span><span class="o">=</span><span class="p">(</span><span class="mi">995</span><span class="p">,</span> <span class="mi">1010</span><span class="p">))</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/glm_part1_estimation_145_0.png" src="../../_images/glm_part1_estimation_145_0.png" />
 </div>
 </div>
 <p>Alright, so we seem to measure a way larger effect of our stimulus on the voxel activity, but is the model fit actually also better? Let’s find out.</p>
@@ -1985,6 +2266,12 @@ Therefore, we need to perform the convolution on the variable <code class="docut
 
 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;R-squared of model with convolution is </span><span class="si">%.5f</span><span class="s2"> and without convolution it is </span><span class="si">%.5f</span><span class="s2">.&quot;</span> <span class="o">%</span> 
      <span class="p">(</span><span class="n">R2_conv</span><span class="p">,</span> <span class="n">R2_orig</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>MSE of model with convolution is 7.192 while the MSE of the model without convolution is 10.327.
+R-squared of model with convolution is 0.30629 and without convolution it is 0.00388.
 </pre></div>
 </div>
 </div>
@@ -2048,6 +2335,9 @@ Therefore, we need to perform the convolution on the variable <code class="docut
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<img alt="../../_images/glm_part1_estimation_155_0.png" src="../../_images/glm_part1_estimation_155_0.png" />
+</div>
 </div>
 <p>So, what should be do about this? Well, one solution is to use <em>temporal basis functions</em> (also called <em>temporal basis sets</em>). Temporal basis functions model the HRF as <em>a combination of (hemodynamic response) functions</em>.</p>
 <p>In practice, this amounts to convolving your predictor with not one, but multiple HRFs. This results in multiple predictors per stimulus-condition! Each HRF measures a “part” (or property) of the total HRF. Together, these predictors aim to estimate the complete HRF for a given stimulus-vector (condition).</p>
@@ -2085,6 +2375,9 @@ y = \beta_{0} + \mathbf{X}<em>{\mathrm{orig}}\beta</em>{1} + \mathbf{X}<em>{\mat
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/glm_part1_estimation_157_0.png" src="../../_images/glm_part1_estimation_157_0.png" />
 </div>
 </div>
 <p>The cool thing about this double-gamma basis set is that the derivatives can (to a certain extent) correct for slight deviations in the lag and shape of the HRF based on the data! Specifically, the first (temporal) derivative can correct for slight differences in lag (compared to the canonical single-gamma HRF) and the second (dispersion) derivative can correct for slight difference in the width (or “dispersion”) of the HRF (compared to the canonical single-gamma HRF).</p>
@@ -2133,6 +2426,9 @@ We’ll show below that it suboptimally explains this voxel:</p>
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<img alt="../../_images/glm_part1_estimation_159_0.png" src="../../_images/glm_part1_estimation_159_0.png" />
+</div>
 </div>
 <p>As you can see, the predicted signal (orange line) misses the peak of the BOLD-response. Now, let’s see what happens if we add the temporal derivative to the model:</p>
 <div class="cell docutils container">
@@ -2159,6 +2455,9 @@ We’ll show below that it suboptimally explains this voxel:</p>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/glm_part1_estimation_161_0.png" src="../../_images/glm_part1_estimation_161_0.png" />
 </div>
 </div>
 <p>As you can see, the prediction improves quite a bit when including the temporal derivative! But how should we interpret the beta-parameters? Well, usually people don’t really interpret the temporal (and dispersion derivative) HRFs (unless they’re interested in lag/width of the HRF), because most researchers are interesting in the activation/deactivation (the amplitude) of voxels in response to a stimulus, which corresponds to the beta-parameters associated with the canonical HRF. So, basically, the temporal (and dispersion) derivative(s) are only used to “correct” for deviations in terms of lag/shape from the canonical HRF!</p>

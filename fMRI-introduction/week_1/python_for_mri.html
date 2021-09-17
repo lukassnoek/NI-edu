@@ -42,6 +42,8 @@
     <script src="../../_static/copybutton.js"></script>
     <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
     <script src="../../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.0/dist/embed-amd.js"></script>
     <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
     <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
@@ -523,11 +525,21 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;class &#39;nibabel.nifti1.Nifti1Image&#39;&gt;
+</pre></div>
+</div>
+</div>
 </div>
 <p>For example, one attribute of <code class="docutils literal notranslate"><span class="pre">Nifti1Image</span></code> objects is the <code class="docutils literal notranslate"><span class="pre">shape</span></code> (which is similar to the numpy array attribute with the same name):</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">img</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(240, 240, 220)
 </pre></div>
 </div>
 </div>
@@ -561,11 +573,21 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(1.0, 1.0, 1.0)
+</pre></div>
+</div>
+</div>
 </div>
 <p>Another useful method is the <code class="docutils literal notranslate"><span class="pre">get_xyzt_units</span></code> which returns the units of the measurements (here: voxel size in millimeter and time in seconds):</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">hdr</span><span class="o">.</span><span class="n">get_xyzt_units</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(&#39;mm&#39;, &#39;sec&#39;)
 </pre></div>
 </div>
 </div>
@@ -578,6 +600,13 @@
 <span class="nb">print</span><span class="p">(</span><span class="n">f_img</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">f_img</span><span class="o">.</span><span class="n">header</span><span class="o">.</span><span class="n">get_zooms</span><span class="p">())</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">f_img</span><span class="o">.</span><span class="n">header</span><span class="o">.</span><span class="n">get_xyzt_units</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(80, 80, 44, 50)
+(2.7, 2.7, 2.97, 0.7)
+(&#39;mm&#39;, &#39;sec&#39;)
 </pre></div>
 </div>
 </div>
@@ -598,11 +627,70 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;class &#39;numpy.ndarray&#39;&gt;
+(240, 240, 220)
+</pre></div>
+</div>
+</div>
 </div>
 <p>Okay, so <code class="docutils literal notranslate"><span class="pre">img_data</span></code> is a 3D numpy array with … what exactly? Let’s check it out:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">img_data</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[[[0. 0. 0. ... 0. 0. 0.]
+  [0. 0. 0. ... 0. 0. 0.]
+  [0. 0. 0. ... 0. 0. 0.]
+  ...
+  [0. 0. 0. ... 0. 0. 0.]
+  [0. 0. 0. ... 0. 0. 0.]
+  [0. 0. 0. ... 0. 0. 0.]]
+
+ [[0. 0. 0. ... 0. 0. 0.]
+  [0. 0. 0. ... 0. 0. 0.]
+  [0. 0. 0. ... 0. 0. 0.]
+  ...
+  [0. 0. 0. ... 0. 0. 0.]
+  [0. 0. 0. ... 0. 0. 0.]
+  [0. 0. 0. ... 0. 0. 0.]]
+
+ [[0. 0. 0. ... 0. 0. 0.]
+  [0. 0. 0. ... 0. 0. 0.]
+  [0. 0. 0. ... 0. 0. 0.]
+  ...
+  [0. 0. 0. ... 0. 0. 0.]
+  [0. 0. 0. ... 0. 0. 0.]
+  [0. 0. 0. ... 0. 0. 0.]]
+
+ ...
+
+ [[0. 0. 0. ... 0. 0. 0.]
+  [0. 0. 0. ... 0. 0. 0.]
+  [0. 0. 0. ... 0. 0. 0.]
+  ...
+  [0. 0. 0. ... 0. 0. 0.]
+  [0. 0. 0. ... 0. 0. 0.]
+  [0. 0. 0. ... 0. 0. 0.]]
+
+ [[0. 0. 0. ... 0. 0. 0.]
+  [0. 0. 0. ... 0. 0. 0.]
+  [0. 0. 0. ... 0. 0. 0.]
+  ...
+  [0. 0. 0. ... 0. 0. 0.]
+  [0. 0. 0. ... 0. 0. 0.]
+  [0. 0. 0. ... 0. 0. 0.]]
+
+ [[0. 0. 0. ... 0. 0. 0.]
+  [0. 0. 0. ... 0. 0. 0.]
+  [0. 0. 0. ... 0. 0. 0.]
+  ...
+  [0. 0. 0. ... 0. 0. 0.]
+  [0. 0. 0. ... 0. 0. 0.]
+  [0. 0. 0. ... 0. 0. 0.]]]
 </pre></div>
 </div>
 </div>
@@ -618,6 +706,21 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[[[61978.4609375  49358.4140625  60996.90234375]
+  [67727.59375    49498.63671875 55808.66015625]
+  [72775.6171875  49077.96875    51041.0859375 ]]
+
+ [[65484.03125    50199.75       54827.1015625 ]
+  [71653.828125   50199.75       55107.546875  ]
+  [75299.625      50760.640625   55387.9921875 ]]
+
+ [[78524.75       51882.421875   51321.53125   ]
+  [82310.765625   56229.328125   47815.9609375 ]
+  [84694.546875   59594.67578125 41646.16015625]]]
+</pre></div>
+</div>
+</div>
 </div>
 <p>That’s better! The exact values are not necessarily directly interpretable, i.e., you cannot say that the value 61978.46 is good (or bad), because the exact <em>scale</em> of the signal intensities (whether it goes from 0-100 or from 0-100,000) depends on the specific scanner hardware and specific nifti conversion software.</p>
 <p>Like any image, (f)MRI scans can be visualized by plotting the numbers and assigning colors to the numbers. Often we visualize brain images in brain and white, with higher signal intensities being brighter and lower signal intensities being darker. Importantly, remember that our data here cannot directly be plotted as a (2D) image, because our data (an anatomical scan) is 3D! However, we <em>can</em> just plot a single <em>slice</em> of the 3D volume, for example, the middle slice of our first voxel axis:</p>
@@ -625,6 +728,11 @@
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mid_slice_x</span> <span class="o">=</span> <span class="n">img_data</span><span class="p">[</span><span class="mi">119</span><span class="p">,</span> <span class="p">:,</span> <span class="p">:]</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">mid_slice_x</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(240, 220)
 </pre></div>
 </div>
 </div>
@@ -644,6 +752,9 @@
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/python_for_mri_29_0.png" src="../../_images/python_for_mri_29_0.png" />
 </div>
 </div>
 <p>Alright, time to practice.</p>
@@ -674,6 +785,11 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(80, 80, 44, 50)
+</pre></div>
+</div>
+</div>
 </div>
 <p>Now, you can think about this 4D array as a series of 3D arrays (volumes), in which the fourth dimension represents time (as shown in the image below).
 <br><br></p>
@@ -685,6 +801,21 @@
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># printing a small 3x3x3 volume of voxels from the first timepoint</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">f_img_data</span><span class="p">[</span><span class="mi">38</span><span class="p">:</span><span class="mi">41</span><span class="p">,</span> <span class="mi">38</span><span class="p">:</span><span class="mi">41</span><span class="p">,</span> <span class="mi">20</span><span class="p">:</span><span class="mi">23</span><span class="p">,</span> <span class="mi">0</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[[[52805.65625    60819.890625   20578.92578125]
+  [57084.4453125  55794.015625   17047.22851562]
+  [55318.59375    54130.04296875  7301.10351562]]
+
+ [[53111.28515625 43500.99609375 28661.07617188]
+  [55488.38671875 49715.421875   20477.04882812]
+  [53281.078125   50224.80078125  9304.66210938]]
+
+ [[56846.734375   53756.5        52567.9453125 ]
+  [55114.84375    55182.76171875 48798.5390625 ]
+  [50055.0078125  56201.51953125 45334.76171875]]]
 </pre></div>
 </div>
 </div>
@@ -703,12 +834,23 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Shape of slice: (80, 44)
+</pre></div>
+</div>
+<img alt="../../_images/python_for_mri_39_1.png" src="../../_images/python_for_mri_39_1.png" />
+</div>
 </div>
 <p>However, we can also look at fMRI data from a different perspective, that is, from the time dimension! For example, we could extract a single voxel’s <em>time series</em> (i.e., how the signal intensity varies across time) and plot the signal intensity values of that voxel across time. First, let’s extract the time series of one particular voxel (e.g., the middle one across all spatial dimensions):</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mid_vox_ts</span> <span class="o">=</span> <span class="n">f_img_data</span><span class="p">[</span><span class="mi">39</span><span class="p">,</span> <span class="mi">39</span><span class="p">,</span> <span class="mi">21</span><span class="p">,</span> <span class="p">:]</span>  <span class="c1"># note the &quot;:&quot;, saying: give me ALL the timepoints</span>
 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Voxel timeseries shape: </span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">mid_vox_ts</span><span class="o">.</span><span class="n">shape</span><span class="p">,))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Voxel timeseries shape: (50,)
 </pre></div>
 </div>
 </div>
@@ -730,6 +872,9 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<img alt="../../_images/python_for_mri_43_0.png" src="../../_images/python_for_mri_43_0.png" />
+</div>
 </div>
 <p>Note that it is <em>really</em> hard to spot whether the image of the slice is actually different between different time points! To the naked eye, it just seems like the same image. This is because activity fluctations (over time) in fMRI are <strong>very</strong> small - most of the time just 1-3% compared to baseline (average) activity. That’s why it’s hard to spot activity differences by looking at the pictures alone (without any scaling).</p>
 <p>It’s actually easier to see these time-by-time fluctuations in signal intensity by plotting the time series directly:</p>
@@ -744,6 +889,9 @@
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/python_for_mri_45_0.png" src="../../_images/python_for_mri_45_0.png" />
 </div>
 </div>
 <p>In the plot above, the blue dots are the signal intensity values (y-axis), plotted across time (x-axis). The blue lines interconnecting the blue dots are just interpolated values in between the different datapoints (the dots) and serve mostly for visualization purposes (it just looks prettier).</p>
@@ -798,6 +946,9 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<img alt="../../_images/python_for_mri_51_0.png" src="../../_images/python_for_mri_51_0.png" />
+</div>
 </div>
 <p>Alright, so, you figured out it’s definitely a (structural) MRI scan.You can clearly see that the first voxel axis represents the sagittal dimension (left ←→ right), the second voxel axis represents the coronal dimension (anterior ←→ posterior), and the third voxel axis represents the axial dimension (inferior ←→ superior).</p>
 <p>So far, so good!</p>
@@ -820,6 +971,14 @@ k \
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">set_printoptions</span><span class="p">(</span><span class="n">suppress</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">precision</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>  <span class="c1"># suppresses scientific notation</span>
 <span class="n">A</span> <span class="o">=</span> <span class="n">img</span><span class="o">.</span><span class="n">affine</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">A</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[[  -0.999   -0.035   -0.006  122.245]
+ [  -0.035    0.997    0.066 -117.457]
+ [  -0.004   -0.066    0.998  -51.112]
+ [   0.       0.       0.       1.   ]]
 </pre></div>
 </div>
 </div>
@@ -855,6 +1014,9 @@ k \
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<img alt="../../_images/python_for_mri_55_0.png" src="../../_images/python_for_mri_55_0.png" />
+</div>
 </div>
 <p>To get the real world coordinate, we need to evaluate the following:
 \begin{align}
@@ -870,6 +1032,11 @@ x, y, z, 1 = A\begin{bmatrix}
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">xyz1</span> <span class="o">=</span> <span class="n">A</span> <span class="o">@</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">69</span><span class="p">,</span> <span class="mi">119</span><span class="p">,</span> <span class="mi">109</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">xyz1</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[48.472  5.972 49.516  1.   ]
 </pre></div>
 </div>
 </div>

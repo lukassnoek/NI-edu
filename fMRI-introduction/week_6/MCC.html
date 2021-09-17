@@ -42,6 +42,8 @@
     <script src="../../_static/copybutton.js"></script>
     <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
     <script src="../../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.0/dist/embed-amd.js"></script>
     <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
     <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
@@ -566,6 +568,11 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Shape of statistic map: (200, 200)
+</pre></div>
+</div>
+</div>
 </div>
 <p>Alright, now let’s plot the true effect as a 2D image. We’ll define a custom function for this, <code class="docutils literal notranslate"><span class="pre">plot_sim_brain</span></code>, to save us some work later.</p>
 <div class="cell docutils container">
@@ -611,6 +618,9 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<img alt="../../_images/MCC_8_0.png" src="../../_images/MCC_8_0.png" />
+</div>
 </div>
 <p>Now, due to the inherent spatial smoothness of fMRI, this particular manifestation of the effect is not very realistic. In particular, the sharp “edges” of the effect are unlikely to occur in real fMRI data. Therefore, to make it a little more realistic, we can spatially smooth the “true effect map”! We will use the <code class="docutils literal notranslate"><span class="pre">gaussian_filter</span></code> function (from <code class="docutils literal notranslate"><span class="pre">scipy.ndimage</span></code>) with a FWHM of 12 “voxels”.</p>
 <div class="cell docutils container">
@@ -624,6 +634,9 @@
 <span class="n">plot_sim_brain</span><span class="p">(</span><span class="n">signal_smooth</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s2">&quot;True effect (smooth)&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/MCC_10_0.png" src="../../_images/MCC_10_0.png" />
 </div>
 </div>
 <p>As you’ve learned in the past weeks, the chances are very slim that you’ll find such a “crisp” (true) effect as shown above; often, you might observe significant voxels that are not driven by a true effect, but by (spurious) noise, reflecting false positives.</p>
@@ -639,6 +652,9 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<img alt="../../_images/MCC_12_0.png" src="../../_images/MCC_12_0.png" />
+</div>
 </div>
 <p>Now, to complete our simulation, we’ll simply add the signal and the noise together (we’ll call this variable <code class="docutils literal notranslate"><span class="pre">data</span></code>).</p>
 <div class="cell docutils container">
@@ -647,6 +663,9 @@
 <span class="n">plot_sim_brain</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;The data!&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/MCC_14_0.png" src="../../_images/MCC_14_0.png" />
 </div>
 </div>
 <p>The plot above now represents our simulated data, which contains both a true signal (the “blob” in the middle) and some (spatially correlated) noise. As a researcher, you aim to threshold your data in such a way that you maximize the chance of finding your true signal (true positive effects) and minimize the chance of erroneously treating noise as significant effects (false positive effects).</p>
@@ -704,6 +723,9 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<img alt="../../_images/MCC_24_0.png" src="../../_images/MCC_24_0.png" />
+</div>
 </div>
 <div class='alert alert-warning'>
     <b>ToDo/ToThink</b> (1 point): Change the value of $\alpha$ (i.e., the variable <tt>alpha</tt>) from before to 0.01. Does the resulting thresholded map look "better"? And what about 0.001? And 0.0001? Theoretically, you could try different values to see what gives the "best" results. This practice of trying out different parameters or strategies leads to another problem: can you think of what this could be? Write down your answer below.
@@ -757,6 +779,9 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<img alt="../../_images/MCC_34_0.png" src="../../_images/MCC_34_0.png" />
+</div>
 </div>
 <p>As you can see, the FDR-correction is way more sensitive than the Bonferroni correction (it “recovers” more of the true signal), but it still results in many false positives (but not as many as uncorrected data).</p>
 </div>
@@ -801,6 +826,11 @@ EC = N_{resel}\ (4\ \log_{e}2)\ (2\pi)^{-\frac{2}{3}}\ z\cdot e^{-\frac{1}{2} z}
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>For a z-threshold of 3, we expect 27.14 blobs in random 2D data with 100 resels.
+</pre></div>
+</div>
+</div>
 </div>
 <p>We can also evaluate the expected EC for a range of potential <span class="math notranslate nohighlight">\(z\)</span>-value thresholds (e.g., from 0-5) and plot it:</p>
 <div class="cell docutils container">
@@ -820,6 +850,9 @@ EC = N_{resel}\ (4\ \log_{e}2)\ (2\pi)^{-\frac{2}{3}}\ z\cdot e^{-\frac{1}{2} z}
 <span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">()</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/MCC_42_0.png" src="../../_images/MCC_42_0.png" />
 </div>
 </div>
 <p>To compute the Euler characteristic, we first need to know how to estimate the number of “resels” for our data. You can think of the number of resels as the number of truly independent elements in your data (“resel” is short for “RESolution ELement”). The number of resels is usually estimated by dividing the number of voxels by the estimated size of the resel. For our simulated 2D data, the number of resels is defined as follows:</p>
@@ -866,6 +899,11 @@ N_{resel} = \frac{N_{X}\cdot N_{Y}}{\mathrm{size}_{resel}}
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The z-value threshold corresponding to p = 0.05: 4.444
+</pre></div>
+</div>
+</div>
 </div>
 <div class='alert alert-info'>
 <b>ToThink</b> (1 point): As you (should) see in the plot above, the RTF-based correction is still quite strict/conservative (i.e. misses quite some of the true effect), although arguably not as strict as Bonferroni correction. Given the way how to calculate the number of RESELS, can you think of two ways on how to improve the sensitivity of RFT-based MCC?
@@ -888,6 +926,9 @@ N_{resel} = \frac{N_{X}\cdot N_{Y}}{\mathrm{size}_{resel}}
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<img alt="../../_images/MCC_52_0.png" src="../../_images/MCC_52_0.png" />
+</div>
 </div>
 <p>Now, we can use cluster-based RFT to calculate the <span class="math notranslate nohighlight">\(p\)</span>-value for each cluster in the above thresholded data plot. This <span class="math notranslate nohighlight">\(p\)</span>-value reflects the probably of this cluster-size (or larger) under the null-hypothesis. We can then threshold this map with clusters, using a ‘cluster-wise’ <span class="math notranslate nohighlight">\(p\)</span>-value cutoff of 0.01 for example, and plot it again to see how this method affects type 1 and type 2 errors. The function below (<code class="docutils literal notranslate"><span class="pre">threshold_RFT_cluster</span></code>) takes three arguments: the statistics-map (our <code class="docutils literal notranslate"><span class="pre">data</span></code> variable), a minimum <span class="math notranslate nohighlight">\(z\)</span>-value, and a <span class="math notranslate nohighlight">\(p\)</span>-value cutoff which is used to threshold the clusters.</p>
 <p>Below, we do this for a <span class="math notranslate nohighlight">\(z\)</span>-threshold of 3.1 (corresponding to a <span class="math notranslate nohighlight">\(p\)</span>-value of approx. 0.001) and a cluster <span class="math notranslate nohighlight">\(p\)</span>-value threshold of 0.05.</p>
@@ -899,6 +940,9 @@ N_{resel} = \frac{N_{X}\cdot N_{Y}}{\mathrm{size}_{resel}}
 <span class="n">plot_sim_brain</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">mask</span><span class="o">=</span><span class="n">rft_cl_mask</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;RFT thresholding (cluster-based)&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/MCC_54_1.png" src="../../_images/MCC_54_1.png" />
 </div>
 </div>
 <p>From the above plots, you should see that cluster-thresholding can be a very sensitive way to threshold your data if you expect your effects to occur in relatively large clusters (and given that you’re able to estimate the smoothness of the data appropriately, something that is a topic of debate). As such, it is by far the most used MCC method in univariate fMRI research today (but this does not necessarily mean it’s the <em>best</em> way).</p>
@@ -926,6 +970,9 @@ N_{resel} = \frac{N_{X}\cdot N_{Y}}{\mathrm{size}_{resel}}
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/MCC_57_0.png" src="../../_images/MCC_57_0.png" />
 </div>
 </div>
 <p>With that information, we can calculate the non-parametric <span class="math notranslate nohighlight">\(p\)</span>-value of each of our <em>observed</em> clusters using the same type of formula as we used earlier:</p>
@@ -966,6 +1013,9 @@ p_{\mathrm{cluster}} = \frac{\sum_{i=1}^{P}\mathbf{I}(\mathbf{\mathrm{max.\ clus
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<img alt="../../_images/MCC_64_0.png" src="../../_images/MCC_64_0.png" />
+</div>
 </div>
 <div class='alert alert-warning'>
 <b>ToDo/ToThink</b> (1 point): Given that cluster-based RFT correction worked really well in our last example, should we use this technique again on this dataset, given our expectations of the true effect?  Why (not)? Hint: actually apply the cluster-based RFT correction to the new data (you may assume that the new data has the same smoothness as the previous data).
@@ -992,6 +1042,14 @@ p_{\mathrm{cluster}} = \frac{\sum_{i=1}^{P}\mathbf{I}(\mathbf{\mathrm{max.\ clus
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Downloading group-level FSL FEAT results (+- 133MB) ...
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Done!
+</pre></div>
+</div>
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -999,6 +1057,11 @@ p_{\mathrm{cluster}} = \frac{\sum_{i=1}^{P}\mathbf{I}(\mathbf{\mathrm{max.\ clus
 <span class="n">fsl_deriv_dir</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">data_dir</span><span class="p">,</span> <span class="s1">&#39;derivatives&#39;</span><span class="p">,</span> <span class="s1">&#39;fsl&#39;</span><span class="p">)</span>
 <span class="n">gl_paths</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">glob</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">fsl_deriv_dir</span><span class="p">,</span> <span class="s1">&#39;grouplevel_task-flocBLOCKED&#39;</span><span class="p">,</span> <span class="s1">&#39;*&#39;</span><span class="p">)))</span>
 <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">gl_paths</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
 </pre></div>
 </div>
 </div>

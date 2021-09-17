@@ -42,6 +42,8 @@
     <script src="../../_static/copybutton.js"></script>
     <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
     <script src="../../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.0/dist/embed-amd.js"></script>
     <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
     <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
@@ -562,6 +564,9 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<img alt="../../_images/spatial_preprocessing_5_0.png" src="../../_images/spatial_preprocessing_5_0.png" />
+</div>
 </div>
 <div class='alert alert-warning'>
 <b>ToDo</b> (2 points): Now, in the above example we only smoothed a single volume, but in your analyses you would of course smooth all volumes in your fMRI run! (Just like with temporal filtering you need to filter the timeseries of all voxels separately.) In this ToDo, you need to loop through all (50) volumes from the <tt>data_4d</tt> variable and smooth them separately. Store the smoothed data in the already pre-allocated variable <tt>data_4d_smoothed</tt>. Use a sigma of 0.7 for the gaussian filter.
@@ -610,6 +615,9 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<img alt="../../_images/spatial_preprocessing_14_0.png" src="../../_images/spatial_preprocessing_14_0.png" />
+</div>
 </div>
 <div class="section" id="rigid-body-registration">
 <h3>Rigid body registration<a class="headerlink" href="#rigid-body-registration" title="Permalink to this headline">¶</a></h3>
@@ -646,6 +654,11 @@ k \
 <span class="n">coord</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span>  <span class="c1"># the middle of the image!</span>
 <span class="n">corr_coord</span> <span class="o">=</span> <span class="n">A_example</span> <span class="o">@</span> <span class="n">coord</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">corr_coord</span><span class="p">[:</span><span class="mi">3</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[0 0 3]
 </pre></div>
 </div>
 </div>
@@ -746,6 +759,14 @@ k \
     
 <span class="n">A_rot</span> <span class="o">=</span> <span class="n">get_rotation_matrix</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="mi">45</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="mi">45</span><span class="p">,</span> <span class="n">z</span><span class="o">=</span><span class="mi">45</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">A_rot</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[[ 0.5        -0.5         0.70710678  0.        ]
+ [ 0.85355339  0.14644661 -0.5         0.        ]
+ [ 0.14644661  0.85355339  0.5         0.        ]
+ [ 0.          0.          0.          1.        ]]
 </pre></div>
 </div>
 </div>
@@ -864,6 +885,9 @@ A = TR
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<img alt="../../_images/spatial_preprocessing_28_0.png" src="../../_images/spatial_preprocessing_28_0.png" />
+</div>
 </div>
 <p>Now, suppose that we want to align two volumes with each other. How would we go about it? Visually, it’s quite hard to assess whether a particular affine matrix works well. In practice, most neuroimaging software packages use automatic algorithms that try to find a affine matrix that <em>minimizes some cost function</em>. In other words, it defines a function to evaluate the mismatch (or cost) of the alignment of two volumes given an affine matrix, and then it tries to minimize this function by (in a smart way) trying out different rotation and translation parameters.</p>
 <p>One cost function that is often used for rigid body registration is “least squares”, which is defined as the sum over the squared (voxel-wise, <span class="math notranslate nohighlight">\(v\)</span>) differences between the reference image (sometimes called the “fixed” image) and the realigned image (sometimes called the “moving” image):</p>
@@ -976,6 +1000,9 @@ Hint 2: rotation is counter clockwise (if you define negative rotation, e.g. -20
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<img alt="../../_images/spatial_preprocessing_39_0.png" src="../../_images/spatial_preprocessing_39_0.png" />
+</div>
 </div>
 <p>So, is this good data or not? In general, you could say that higher values (in either translation or rotation) are worse. That said, from the translation and rotation parameters alone it is hard to judge whether the participant moved <em>too</em> much, partly because we’re dealing with 6 parameter traces here. One way to make this decision process a little easier is to convert these parameters to a single “framewise displacement” (FD) trace. FD aims to represent “bulk motion” and is a summary statistic of motion that combines all motion parameters into a single metric. It is calculated as follows:</p>
 <p>\begin{align}
@@ -1041,6 +1068,12 @@ and the design-matrix extended with the six motion parameters (which thus has 8 
 
 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Shape of original X: </span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">X</span><span class="o">.</span><span class="n">shape</span><span class="p">,))</span>
 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Shape of signal: </span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">sig</span><span class="o">.</span><span class="n">shape</span><span class="p">,))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Shape of original X: (341, 2)
+Shape of signal: (341,)
 </pre></div>
 </div>
 </div>

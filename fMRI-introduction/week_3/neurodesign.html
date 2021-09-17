@@ -42,6 +42,8 @@
     <script src="../../_static/copybutton.js"></script>
     <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
     <script src="../../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.0/dist/embed-amd.js"></script>
     <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
     <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
@@ -543,6 +545,8 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+</div>
 </div>
 <p>Alright, now we need to create the <code class="docutils literal notranslate"><span class="pre">optimisation</span></code> object! This object defines how the experiment will be optimised. Neurodesign uses a <a class="reference external" href="https://en.wikipedia.org/wiki/Genetic_algorithm">“genetic algorithm”</a> to efficiently look for the most efficient designs within the vast set of all possible designs, inspired by the way biological evolution works. We won’t go into the specifics of the algorithm.</p>
 <p>The <code class="docutils literal notranslate"><span class="pre">weights</span></code> parameter of the <code class="docutils literal notranslate"><span class="pre">optimisation</span></code> class is very important: this allows you to balance different statistical and psychological aspects of your design. There are four aspects that can be optimized:</p>
@@ -577,11 +581,21 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;neurodesign.classes.optimisation at 0x7f6345be1fa0&gt;
+</pre></div>
+</div>
+</div>
 </div>
 <p>Lastly, call the <code class="docutils literal notranslate"><span class="pre">evaluate</span></code> method to finalize the optimization run:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">opt</span><span class="o">.</span><span class="n">evaluate</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;neurodesign.classes.optimisation at 0x7f6345be1fa0&gt;
 </pre></div>
 </div>
 </div>
@@ -591,6 +605,18 @@
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Onsets: </span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">opt</span><span class="o">.</span><span class="n">bestdesign</span><span class="o">.</span><span class="n">onsets</span><span class="p">,),</span> <span class="n">end</span><span class="o">=</span><span class="s1">&#39;</span><span class="se">\n\n</span><span class="s1">&#39;</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Order: </span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">opt</span><span class="o">.</span><span class="n">bestdesign</span><span class="o">.</span><span class="n">order</span><span class="p">,))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Onsets: [  0.    3.9   7.4  11.6  16.3  19.9  23.8  27.2  31.3  34.7  38.3  41.6
+  46.1  49.4  53.1  57.   61.7  65.2  69.6  74.5  78.7  83.9  87.5  92.4
+  96.4  99.8 103.5 106.8 110.2 114.4 119.6 123.7 127.7 132.8 136.7 140.5
+ 145.5 149.1 152.4 155.7 160.3 164.6 169.3 173.9 178.7 182.  185.6 190.
+ 193.8 197.5 201.3 206.3 209.9 214.1 219.2 222.5 225.9 230.4 235.2 240.
+ 244.9 249.1 253.3 256.8 261.2 266.  269.5 273.1 277.9 282.3 286. ]
+
+Order: [1, 1, 0, 0, 1, 1, 0, 0, 0, 1, 1, 1, 0, 0, 1, 1, 1, 1, 0, 0, 1, 1, 1, 1, 0, 0, 0, 1, 1, 0, 0, 1, 0, 0, 1, 1, 0, 0, 1, 1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 0, 0, 1, 1, 1, 0, 1, 0, 0, 1, 1, 1, 0, 1, 1, 0, 0, 0, 0, 1, 1]
 </pre></div>
 </div>
 </div>
@@ -616,12 +642,20 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<img alt="../../_images/neurodesign_21_0.png" src="../../_images/neurodesign_21_0.png" />
+</div>
 </div>
 <div class='alert alert-warning'>
     <b>ToDo</b> (0 points): Try changing the weights for the <tt>optimisation</tt> object and rerun the optimisation procedure. Plot the <tt>Xconv</tt> attribute of the resulting <tt>bestdesign</tt>. How does it differ from just optimizing detection efficiency?
 </div><div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="sd">&quot;&quot;&quot; Try the ToDo here. &quot;&quot;&quot;</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39; Try the ToDo here. &#39;
 </pre></div>
 </div>
 </div>

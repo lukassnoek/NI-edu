@@ -42,6 +42,8 @@
     <script src="../../_static/copybutton.js"></script>
     <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
     <script src="../../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.0/dist/embed-amd.js"></script>
     <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
     <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
@@ -593,6 +595,8 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+</div>
 </div>
 <div class="section" id="types-of-designs-factorial-and-parametric-designs">
 <h2>Types of designs: factorial and parametric designs<a class="headerlink" href="#types-of-designs-factorial-and-parametric-designs" title="Permalink to this headline">¶</a></h2>
@@ -643,6 +647,9 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<img alt="../../_images/design_of_experiments_4_0.png" src="../../_images/design_of_experiments_4_0.png" />
+</div>
 </div>
 <p>We have also the time series of a (hypothetical) fMRI voxel, loaded and plotted below:</p>
 <div class="cell docutils container">
@@ -657,6 +664,9 @@
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/design_of_experiments_6_0.png" src="../../_images/design_of_experiments_6_0.png" />
 </div>
 </div>
 <div class='alert alert-warning'>
@@ -797,6 +807,12 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Number of trials: 30
+</pre></div>
+</div>
+<img alt="../../_images/design_of_experiments_26_1.png" src="../../_images/design_of_experiments_26_1.png" />
+</div>
 </div>
 <p>Now, in non-parametric designs, we would create regressors with zeros everywhere and ones at the onset of stimuli (or whatever we think will impact the fMRI data). However, in parametric designs, we create two regressors for every parametric modulation: one for the unmodulated response and one for the modulated response.</p>
 <p>Let’s start with the unmodulated response. This predictor is created like we did before: convolving a stick predictor with an HRF:</p>
@@ -818,6 +834,9 @@
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/design_of_experiments_28_0.png" src="../../_images/design_of_experiments_28_0.png" />
 </div>
 </div>
 <p>Now, the parametrically modulated regressor is created as follows: instead of created an initial array with zeros and <em>ones</em> at indices corresponding to the reward onset, we use the (mean-subtracted) <em>reward magnitude</em>. It is important to subtract the mean from the parametric modulation values, because this will “decorrelate” the modulated regressor from the unmodulated regressor (such that the modulated regressor explains only variance that is due to modulation of the response, not the common response towards the stimulus/task). In other words, subtracting the mean from the parametric regressor <em>orthogonalises</em> the parametric regressor with respect to the unmodulated regressor.</p>
@@ -989,6 +1008,12 @@ t_{\mathbf{c}\hat{\beta}} = \frac{\mathbf{c}\hat{\beta}}{\sqrt{\hat{\sigma}^{2}\
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Effect (&#39;t-value&#39;): 8.929
+Efficiency: 50.000
+</pre></div>
+</div>
+</div>
 </div>
 <div class='alert alert-info'>
 <b>ToThink</b> (1 point): Researchers do not need to acquire (fMRI) data ($\mathbf{y}$) to calculate the efficiency of their design ($\mathbf{X}$). Why? 
@@ -1058,6 +1083,13 @@ t_{\mathbf{c}\hat{\beta}} = \frac{\mathbf{c}\hat{\beta}}{\sqrt{\hat{\sigma}^{2}\
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Shape X: (100, 2)
+Shape y: (100,)
+</pre></div>
+</div>
+<img alt="../../_images/design_of_experiments_51_1.png" src="../../_images/design_of_experiments_51_1.png" />
+</div>
 </div>
 <p>This is pretty awesome data! On average, our prediction is on average less than 1 point off (i.e., <span class="math notranslate nohighlight">\(\mathrm{MSE} &lt; 1\)</span>)! But you might also have noticed that the <em>range</em> of values for <span class="math notranslate nohighlight">\(X\)</span> (i.e., IQ) is quite limited: we only measured people with IQs between about 118 and 127. This is quite a narrow range — in other words: little variance — knowing that IQ varies according to a normal distribution with mean 100 and standard deviation 15. In other words, we have a pretty good model, but it is only based on a specific range of the IQ-variable.</p>
 <p>Think about it this way: this model captures the relationship between IQ and income, but only for relatively high-intelligence people. Sure, you can extrapolate to IQ-values like 80 and 90, but this extrapolation is quite uncertain because you’ve never even measured someone with that IQ-value!</p>
@@ -1101,6 +1133,9 @@ t_{\mathbf{c}\hat{\beta}} = \frac{\mathbf{c}\hat{\beta}}{\sqrt{\hat{\sigma}^{2}\
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<img alt="../../_images/design_of_experiments_53_0.png" src="../../_images/design_of_experiments_53_0.png" />
+</div>
 </div>
 <p>As you can see from the plots of the two datasets side-by-side, both the low-variance (left) and the high-variance plot (right) capture approximately the model: for each increase in an IQ-point, people earn about 1000 (low-variance model) / 959 (high-variance model) euro extra (these are reflected by the beta-parameters!).</p>
 <p>But, you also see that the MSE for the high-variance model is <em>much</em> higher, which is also evident from the residuals (distance of the red points from the blue line).</p>
@@ -1111,6 +1146,11 @@ t_{\mathbf{c}\hat{\beta}} = \frac{\mathbf{c}\hat{\beta}}{\sqrt{\hat{\sigma}^{2}\
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The MSE of the high-variance data is 23.279 times larger than the low-variance data!
+</pre></div>
+</div>
+</div>
 </div>
 <p>Given these statistics, you might guess that the t-value of the IQ-parameter in the high-variance model would be way lower than the same parameter in the low-variance model, right? Well, let’s check it out:</p>
 <div class="cell docutils container">
@@ -1118,6 +1158,12 @@ t_{\mathbf{c}\hat{\beta}} = \frac{\mathbf{c}\hat{\beta}}{\sqrt{\hat{\sigma}^{2}\
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># We calcalated the t-values earlier with the calculate_stats_for_iq_income_dataset function</span>
 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;T-value low-variance model: </span><span class="si">%.3f</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">tval_lv</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;T-value high-variance model: </span><span class="si">%.3f</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">tval_hv</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>T-value low-variance model: 21.189
+T-value high-variance model: 31.156
 </pre></div>
 </div>
 </div>
@@ -1233,6 +1279,13 @@ t_{\mathbf{c}\hat{\beta}} = \frac{\mathbf{c}\hat{\beta}}{\sqrt{\hat{\sigma}^{2}\
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<img alt="../../_images/design_of_experiments_68_0.png" src="../../_images/design_of_experiments_68_0.png" />
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Variance predictor 1: 0.055
+Variance predictor 2: 0.055
+</pre></div>
+</div>
+</div>
 </div>
 <p>As you can see, the predictors are almost perfectly uncorrelated - <span class="math notranslate nohighlight">\(\mathrm{corr}(\mathbf{X}_{1}, \mathbf{X}_{2}) \approx 0\)</span> - which corresponds to a design efficiency of 4.539. Remember, the absolute value of efficiency is not interpretable, but we can interpret it <em>relative to other designs</em>. As such, we can investigate how a design with more correlated predictors will change in terms of efficiency.</p>
 <p>To do so, we can simply “shift” the second predictor (blue line) to the left (i.e., the stimuli of predictor 2 follow the stimuli of predictor 1 more quickly). Let’s check out what happens to the efficiency if we induce corelation this way:</p>
@@ -1260,12 +1313,24 @@ t_{\mathbf{c}\hat{\beta}} = \frac{\mathbf{c}\hat{\beta}}{\sqrt{\hat{\sigma}^{2}\
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<img alt="../../_images/design_of_experiments_70_0.png" src="../../_images/design_of_experiments_70_0.png" />
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Variance predictor 1: 0.055
+Variance predictor 2: 0.055
+</pre></div>
+</div>
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Let&#39;s calculate the reduction in efficiency</span>
 <span class="n">reduction_eff</span> <span class="o">=</span> <span class="p">((</span><span class="n">eff</span> <span class="o">-</span> <span class="n">eff2</span><span class="p">)</span> <span class="o">/</span> <span class="n">eff</span><span class="p">)</span> <span class="o">*</span> <span class="mi">100</span>
 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Efficiency is reduced with </span><span class="si">%.1f%%</span><span class="s2"> when increasing the correlation to </span><span class="si">%.3f</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">reduction_eff</span><span class="p">,</span> <span class="n">corr2</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Efficiency is reduced with 76.4% when increasing the correlation to 0.750
 </pre></div>
 </div>
 </div>
@@ -1293,12 +1358,20 @@ t_{\mathbf{c}\hat{\beta}} = \frac{\mathbf{c}\hat{\beta}}{\sqrt{\hat{\sigma}^{2}\
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<img alt="../../_images/design_of_experiments_73_0.png" src="../../_images/design_of_experiments_73_0.png" />
+</div>
 </div>
 <p>Now, if we calculate the beta-parameters of both predictors, we see that they both are given approximately equal “importance” (i.e., their beta-parameters are about equally high):</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">betas</span> <span class="o">=</span> <span class="n">inv</span><span class="p">(</span><span class="n">X2</span><span class="o">.</span><span class="n">T</span> <span class="o">@</span> <span class="n">X2</span><span class="p">)</span> <span class="o">@</span> <span class="n">X2</span><span class="o">.</span><span class="n">T</span> <span class="o">@</span> <span class="n">sim_signal</span>
 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Betas (w/o intercept): </span><span class="si">%r</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">betas</span><span class="p">[</span><span class="mi">1</span><span class="p">:])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Betas (w/o intercept): array([1.83906143, 1.96990025])
 </pre></div>
 </div>
 </div>
@@ -1453,6 +1526,9 @@ With the data from the correlation-simulation (i.e., the variable `X`), calculat
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<img alt="../../_images/design_of_experiments_86_1.png" src="../../_images/design_of_experiments_86_1.png" />
+</div>
 </div>
 <p>As you can see in the plot above, a blocked design groups trials of the same condition together in blocks, while the event-related design is completely random in the sequence of trials. Note that designs can of course also be a “mixture” between blocked and event-related (e.g., largely random with some “blocks” in between).</p>
 <p>So, if we’re interested in detection (i.e., the amplitude of the response), what should we choose?
@@ -1468,6 +1544,11 @@ Well, the answer is simple: <strong>blocked designs</strong>.</p>
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">corr_blocked</span> <span class="o">=</span> <span class="n">pearsonr</span><span class="p">(</span><span class="n">X_blocked</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">X_blocked</span><span class="p">[:,</span> <span class="mi">2</span><span class="p">])</span>
 <span class="n">corr_er</span> <span class="o">=</span> <span class="n">pearsonr</span><span class="p">(</span><span class="n">X_er</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">X_er</span><span class="p">[:,</span> <span class="mi">2</span><span class="p">])</span>
 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Correlation blocked: </span><span class="si">%.3f</span><span class="s2">. Correlation event-related: </span><span class="si">%.3f</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">corr_blocked</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">corr_er</span><span class="p">[</span><span class="mi">0</span><span class="p">]))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Correlation blocked: -0.234. Correlation event-related: -0.284
 </pre></div>
 </div>
 </div>
@@ -1549,6 +1630,9 @@ Well, the answer is simple: <strong>blocked designs</strong>.</p>
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<img alt="../../_images/design_of_experiments_95_0.png" src="../../_images/design_of_experiments_95_0.png" />
+</div>
 </div>
 <p>YOUR ANSWER HERE</p>
 </div>
@@ -1611,6 +1695,9 @@ Well, the answer is simple: <strong>blocked designs</strong>.</p>
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<img alt="../../_images/design_of_experiments_100_0.png" src="../../_images/design_of_experiments_100_0.png" />
+</div>
 </div>
 <p>Often, though, researchers do not use a <em>fixed</em> ISI, but they vary the ISI from trial to trial. This process is called “jittering”. Usually, the ISIs are drawn randomly from a known distribution (e.g., truncated exponential or normal distribution). Compared to using fixed ISIs, jittering may yield more efficient designs by reducing covariance and increasing predictor variance. Let’s simulate another dataset, but this time with a variable ISI between 2-6 seconds (which is on average 4 seconds, but variable across trials):</p>
 <div class="cell docutils container">
@@ -1661,6 +1748,9 @@ Well, the answer is simple: <strong>blocked designs</strong>.</p>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/design_of_experiments_102_0.png" src="../../_images/design_of_experiments_102_0.png" />
 </div>
 </div>
 <p>As you can see in the plot above, jittering improved design efficiency quite a bit! It is important to realize that jittering does not <em>always</em> improve design efficiency, but by “injecting” randomness (by selecting semi-random ISIs) it allows for <em>a larger variety</em> of designs, which also include designs that happen to be more efficient than the fixed-ISI designs.</p>

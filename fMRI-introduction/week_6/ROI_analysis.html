@@ -42,6 +42,8 @@
     <script src="../../_static/copybutton.js"></script>
     <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
     <script src="../../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.0/dist/embed-amd.js"></script>
     <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
     <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
@@ -509,6 +511,11 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Shape of data: (91, 109, 91, 12)
+</pre></div>
+</div>
+</div>
 </div>
 <p>Let’s visualize this data. We’ll plot (using <code class="docutils literal notranslate"><span class="pre">plt.imshow</span></code>) a single (right-hemisphere) sagittal slice of each subjects’ COPE-image, with red indicating positive contrast-values (i.e., <span class="math notranslate nohighlight">\(4\cdot \beta_{face} - \beta_{place} - \beta_{body} - \beta_{character} - \beta_{object} &gt; 0\)</span>) and blue indicating negative contrast-values (i.e., <span class="math notranslate nohighlight">\(4\cdot \beta_{face} - \beta_{place} - \beta_{body} - \beta_{character} - \beta_{object} &lt; 0\)</span>).</p>
 <div class="cell docutils container">
@@ -533,6 +540,9 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<img alt="../../_images/ROI_analysis_5_1.png" src="../../_images/ROI_analysis_5_1.png" />
+</div>
 </div>
 <p>Now, conventional (exploratory) whole-brain analysis would fit a GLM on each voxel separately, but for our ROI-analysis, we’re going to do it differently: we’re only going to analyze the across-voxel average lower-level <span class="math notranslate nohighlight">\(c\hat{\beta}^{*}\)</span> values within the right amygdala.</p>
 <p>We’ll load in the right amygdala mask first. This is a region from the probabilistic Harvard-Oxford subcortical atlas.</p>
@@ -541,6 +551,11 @@
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">amygdala_probmask_img</span> <span class="o">=</span> <span class="n">nib</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="s1">&#39;amygdala_lat-right_atlas-harvardoxford_thresh-0.nii.gz&#39;</span><span class="p">)</span>
 <span class="n">amygdala_probmask</span> <span class="o">=</span> <span class="n">amygdala_probmask_img</span><span class="o">.</span><span class="n">get_fdata</span><span class="p">()</span>
 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Shape of probabilistic amygdala mask: </span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">amygdala_probmask</span><span class="o">.</span><span class="n">shape</span><span class="p">,))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Shape of probabilistic amygdala mask: (91, 109, 91)
 </pre></div>
 </div>
 </div>
@@ -672,6 +687,11 @@
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Well done!&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Well done!
 </pre></div>
 </div>
 </div>

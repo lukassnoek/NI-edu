@@ -42,6 +42,8 @@
     <script src="../../_static/copybutton.js"></script>
     <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
     <script src="../../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.0/dist/embed-amd.js"></script>
     <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
     <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
@@ -598,6 +600,11 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;logs&#39;, &#39;dataset_description.json&#39;, &#39;sub-03.html&#39;, &#39;desc-aseg_dseg.tsv&#39;, &#39;sub-03&#39;, &#39;desc-aparcaseg_dseg.tsv&#39;]
+</pre></div>
+</div>
+</div>
 </div>
 <p>As said, Fmriprep outputs a directory with results (<code class="docutils literal notranslate"><span class="pre">sub-03</span></code>) and an associated HTML-file with a summary of the (intermediate and final) results. Let’s check the directory with results first:</p>
 <div class="cell docutils container">
@@ -609,12 +616,41 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;anat&#39;, &#39;figures&#39;, &#39;func&#39;, &#39;log&#39;]
+</pre></div>
+</div>
+</div>
 </div>
 <p>The <code class="docutils literal notranslate"><span class="pre">figures</span></code> directory contains several figures with the result of different preprocessing stages (like functional → high-res anatomical registration), but these figures are also included in the HTML-file, so we’ll leave that for now. The other two directories, <code class="docutils literal notranslate"><span class="pre">anat</span></code> and <code class="docutils literal notranslate"><span class="pre">func</span></code>, contain the preprocessed anatomical and functional files, respectively. Let’s inspect the <code class="docutils literal notranslate"><span class="pre">anat</span></code> directory:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">anat_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">sub_path</span><span class="p">,</span> <span class="s1">&#39;anat&#39;</span><span class="p">)</span>
 <span class="n">pprint</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">(</span><span class="n">anat_path</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;sub-03_space-MNI152NLin2009cAsym_desc-brain_mask.json&#39;,
+ &#39;sub-03_desc-brain_mask.nii.gz&#39;,
+ &#39;sub-03_desc-aseg_dseg.nii.gz&#39;,
+ &#39;sub-03_dseg.nii.gz&#39;,
+ &#39;sub-03_desc-preproc_T1w.nii.gz&#39;,
+ &#39;sub-03_label-CSF_probseg.nii.gz&#39;,
+ &#39;sub-03_label-GM_probseg.nii.gz&#39;,
+ &#39;sub-03_space-MNI152NLin2009cAsym_label-GM_probseg.nii.gz&#39;,
+ &#39;sub-03_from-MNI152NLin2009cAsym_to-T1w_mode-image_xfm.h5&#39;,
+ &#39;sub-03_desc-aparcaseg_dseg.nii.gz&#39;,
+ &#39;sub-03_label-WM_probseg.nii.gz&#39;,
+ &#39;sub-03_space-MNI152NLin2009cAsym_desc-preproc_T1w.nii.gz&#39;,
+ &#39;sub-03_desc-preproc_T1w.json&#39;,
+ &#39;sub-03_space-MNI152NLin2009cAsym_label-WM_probseg.nii.gz&#39;,
+ &#39;sub-03_space-MNI152NLin2009cAsym_desc-preproc_T1w.json&#39;,
+ &#39;sub-03_space-MNI152NLin2009cAsym_label-CSF_probseg.nii.gz&#39;,
+ &#39;sub-03_desc-brain_mask.json&#39;,
+ &#39;sub-03_from-T1w_to-MNI152NLin2009cAsym_mode-image_xfm.h5&#39;,
+ &#39;sub-03_space-MNI152NLin2009cAsym_desc-brain_mask.nii.gz&#39;,
+ &#39;sub-03_space-MNI152NLin2009cAsym_dseg.nii.gz&#39;]
 </pre></div>
 </div>
 </div>
@@ -630,6 +666,26 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;sub-03_task-flocBLOCKED_space-MNI152NLin2009cAsym_desc-brain_mask.nii.gz&#39;,
+ &#39;sub-03_task-flocBLOCKED_space-MNI152NLin2009cAsym_boldref.nii.gz&#39;,
+ &#39;sub-03_task-flocBLOCKED_space-T1w_desc-brain_mask.json&#39;,
+ &#39;sub-03_task-flocBLOCKED_space-MNI152NLin2009cAsym_desc-preproc_bold.nii.gz&#39;,
+ &#39;sub-03_task-flocBLOCKED_space-MNI152NLin2009cAsym_desc-aseg_dseg.nii.gz&#39;,
+ &#39;sub-03_task-flocBLOCKED_desc-confounds_regressors.tsv&#39;,
+ &#39;sub-03_task-flocBLOCKED_space-MNI152NLin2009cAsym_desc-preproc_bold.json&#39;,
+ &#39;sub-03_task-flocBLOCKED_space-T1w_desc-preproc_bold.nii.gz&#39;,
+ &#39;sub-03_task-flocBLOCKED_space-MNI152NLin2009cAsym_desc-brain_mask.json&#39;,
+ &#39;sub-03_task-flocBLOCKED_space-MNI152NLin2009cAsym_desc-aparcaseg_dseg.nii.gz&#39;,
+ &#39;sub-03_task-flocBLOCKED_space-T1w_desc-aseg_dseg.nii.gz&#39;,
+ &#39;sub-03_task-flocBLOCKED_space-T1w_desc-brain_mask.nii.gz&#39;,
+ &#39;sub-03_task-flocBLOCKED_space-T1w_desc-preproc_bold.json&#39;,
+ &#39;sub-03_task-flocBLOCKED_space-T1w_desc-aparcaseg_dseg.nii.gz&#39;,
+ &#39;sub-03_task-flocBLOCKED_desc-confounds_regressors.json&#39;,
+ &#39;sub-03_task-flocBLOCKED_space-T1w_boldref.nii.gz&#39;]
+</pre></div>
+</div>
+</div>
 </div>
 <p>Again, like the files in the <code class="docutils literal notranslate"><span class="pre">anat</span></code> folder, the functional outputs are available in two spaces: <code class="docutils literal notranslate"><span class="pre">T1w</span></code> and <code class="docutils literal notranslate"><span class="pre">MNI152NLin2009cAsym</span></code>. In terms of actual images, there are preprocessed BOLD files (ending in <code class="docutils literal notranslate"><span class="pre">preproc_bold.nii.gz</span></code>), the functional volume used for “functional → anatomical” registration (ending in <code class="docutils literal notranslate"><span class="pre">boldref.nii.gz</span></code>), brain parcellations in functional space (ending in <code class="docutils literal notranslate"><span class="pre">dseg.nii.gz</span></code>), and brain masks (ending in <code class="docutils literal notranslate"><span class="pre">brain_mask.nii.gz</span></code>). In addition, there are files with “confounds” (ending in <code class="docutils literal notranslate"><span class="pre">confounds_regressors.tsv</span></code>) which contain variables that you might want to include as nuisance regressors in your first-level analysis. These confound files are speadsheet-like files (like <code class="docutils literal notranslate"><span class="pre">csv</span></code> files, but instead of being comma-delimited, they are tab-delimited) and can be easily loaded in Python using the <a class="reference external" href="https://pandas.pydata.org/">pandas</a> package:</p>
 <div class="cell docutils container">
@@ -641,6 +697,173 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>csf</th>
+      <th>csf_derivative1</th>
+      <th>csf_derivative1_power2</th>
+      <th>csf_power2</th>
+      <th>white_matter</th>
+      <th>white_matter_derivative1</th>
+      <th>white_matter_derivative1_power2</th>
+      <th>white_matter_power2</th>
+      <th>global_signal</th>
+      <th>global_signal_derivative1</th>
+      <th>...</th>
+      <th>rot_x_derivative1_power2</th>
+      <th>rot_x_power2</th>
+      <th>rot_y</th>
+      <th>rot_y_derivative1</th>
+      <th>rot_y_power2</th>
+      <th>rot_y_derivative1_power2</th>
+      <th>rot_z</th>
+      <th>rot_z_derivative1</th>
+      <th>rot_z_power2</th>
+      <th>rot_z_derivative1_power2</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>47509.215863</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>2.257126e+09</td>
+      <td>33060.738398</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>1.093012e+09</td>
+      <td>30699.602599</td>
+      <td>NaN</td>
+      <td>...</td>
+      <td>NaN</td>
+      <td>0.000000e+00</td>
+      <td>-0.000149</td>
+      <td>NaN</td>
+      <td>2.208969e-08</td>
+      <td>NaN</td>
+      <td>0.000000</td>
+      <td>NaN</td>
+      <td>0.000000e+00</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>47183.542928</td>
+      <td>-325.672935</td>
+      <td>106062.860766</td>
+      <td>2.226287e+09</td>
+      <td>33021.566030</td>
+      <td>-39.172367</td>
+      <td>1534.474371</td>
+      <td>1.090424e+09</td>
+      <td>30659.901226</td>
+      <td>-39.701373</td>
+      <td>...</td>
+      <td>3.384482e-09</td>
+      <td>3.384482e-09</td>
+      <td>-0.000000</td>
+      <td>0.000149</td>
+      <td>0.000000e+00</td>
+      <td>2.208969e-08</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000e+00</td>
+      <td>0.000000e+00</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>47116.085111</td>
+      <td>-67.457818</td>
+      <td>4550.557152</td>
+      <td>2.219925e+09</td>
+      <td>33110.393546</td>
+      <td>88.827516</td>
+      <td>7890.327596</td>
+      <td>1.096298e+09</td>
+      <td>30679.787487</td>
+      <td>19.886260</td>
+      <td>...</td>
+      <td>1.956213e-08</td>
+      <td>3.922024e-08</td>
+      <td>-0.000158</td>
+      <td>-0.000158</td>
+      <td>2.510704e-08</td>
+      <td>2.510704e-08</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000e+00</td>
+      <td>0.000000e+00</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>46920.666512</td>
+      <td>-195.418599</td>
+      <td>38188.428865</td>
+      <td>2.201549e+09</td>
+      <td>33027.273113</td>
+      <td>-83.120433</td>
+      <td>6909.006414</td>
+      <td>1.090801e+09</td>
+      <td>30670.787218</td>
+      <td>-9.000269</td>
+      <td>...</td>
+      <td>7.606564e-12</td>
+      <td>4.032024e-08</td>
+      <td>-0.000202</td>
+      <td>-0.000043</td>
+      <td>4.074342e-08</td>
+      <td>1.883386e-09</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000e+00</td>
+      <td>0.000000e+00</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>46876.911781</td>
+      <td>-43.754731</td>
+      <td>1914.476452</td>
+      <td>2.197445e+09</td>
+      <td>33013.589153</td>
+      <td>-13.683960</td>
+      <td>187.250764</td>
+      <td>1.089897e+09</td>
+      <td>30636.632976</td>
+      <td>-34.154242</td>
+      <td>...</td>
+      <td>4.032024e-08</td>
+      <td>4.379051e-47</td>
+      <td>-0.000187</td>
+      <td>0.000015</td>
+      <td>3.485764e-08</td>
+      <td>2.294619e-10</td>
+      <td>-0.000219</td>
+      <td>-0.000219</td>
+      <td>4.783144e-08</td>
+      <td>4.783144e-08</td>
+    </tr>
+  </tbody>
+</table>
+<p>5 rows × 263 columns</p>
+</div></div></div>
 </div>
 <p>Confound files from Fmriprep contain a large set of confounds, ranging from motion parameters (<code class="docutils literal notranslate"><span class="pre">rot_x</span></code>, <code class="docutils literal notranslate"><span class="pre">rot_y</span></code>, <code class="docutils literal notranslate"><span class="pre">rot_z</span></code>, <code class="docutils literal notranslate"><span class="pre">trans_x</span></code>, <code class="docutils literal notranslate"><span class="pre">trans_y</span></code>, and <code class="docutils literal notranslate"><span class="pre">trans_z</span></code>) and their derivatives (<code class="docutils literal notranslate"><span class="pre">*derivative1</span></code>) and squares (<code class="docutils literal notranslate"><span class="pre">*_power2</span></code>) to the average signal from the brain’s white matter and cerebrospinal fluid (CSF), which should contain sources of noise such as respiratory, cardiac, or motion related signals (but not signal from neural sources, which should be largely constrained to gray matter). For a full list and explanation of Fmriprep’s estimated confounds, check their website. Also, check <a class="reference external" href="https://neurostars.org/t/confounds-from-fmriprep-which-one-would-you-use-for-glm/326">this thread</a> on Neurostars for a discussion on which confounds to include in your analyses.</p>
 <p>In addition to the actual preprocessed outputs, Fmriprep also provides you with a nice (visual) summary of the different (major) preprocessing steps in an HTML-file, which you’d normally open in any standard browser to view. Here. we load this file for our example participants (<code class="docutils literal notranslate"><span class="pre">sub-03</span></code>) inside the notebook below. Scroll through it to see which preprocessing steps are highlighted. Note that the images from the HTML-file are not properly rendered in Jupyter notebooks, but you can right-click the image links (e.g., <code class="docutils literal notranslate"><span class="pre">sub-03/figures/sub-03_dseg.svg</span></code>) and click “Open link in new tab” to view the image.</p>
@@ -651,6 +874,16 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_html">
+<iframe
+    width="700"
+    height="600"
+    src="./bids/derivatives/fmriprep/sub-03.html"
+    frameborder="0"
+    allowfullscreen
+></iframe>
+</div></div>
 </div>
 </div>
 </div>

@@ -42,6 +42,8 @@
     <script src="../../_static/copybutton.js"></script>
     <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
     <script src="../../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.0/dist/embed-amd.js"></script>
     <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
     <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
@@ -568,6 +570,9 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<img alt="../../_images/glm_part2_inference_3_0.png" src="../../_images/glm_part2_inference_3_0.png" />
+</div>
 </div>
 <p>Well, quite a modest beta-parameter on the one hand, but on the other hand the Mean Squared Error is also quite low.
 Now, to illustrate the problem of interpretating ‘raw’ beta-weights, let’s rephrase our objective of predicting height based on weight: we’ll try to predict <em>height in centimeters</em> based on weight (still in kilos). So, what we’ll do is just rescale the data points of <span class="math notranslate nohighlight">\(\mathbf{y}\)</span> (height in meters) so that they reflect height in centimeters. We can simply do this by multipling our <span class="math notranslate nohighlight">\(\mathbf{y}\)</span> by 100.</p>
@@ -692,6 +697,11 @@ t_{\hat{\beta}} = \frac{\hat{\beta}}{\sqrt{\frac{\sum_{i=1}^{N}(\hat{y_{i}} - y_
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Design variance of weight predictor is: 0.000334 
+</pre></div>
+</div>
+</div>
 </div>
 <p>Alright, now we only need to calculate our noise-term (<span class="math notranslate nohighlight">\(\hat{\sigma}^2\)</span>):</p>
 <div class="cell docutils container">
@@ -710,12 +720,23 @@ t_{\hat{\beta}} = \frac{\hat{\beta}}{\sqrt{\frac{\sum_{i=1}^{N}(\hat{y_{i}} - y_
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Degrees of freedom: 98
+Sigma-hat (noise) is: 0.005
+</pre></div>
+</div>
+</div>
 </div>
 <p>Now we can calculate the <em>t</em>-value:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">t_meter</span> <span class="o">=</span> <span class="n">beta_meter</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">sigma_hat</span> <span class="o">*</span> <span class="n">design_variance_weight</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;The t-value for the weight-parameter (beta = </span><span class="si">%.3f</span><span class="s2">) is: </span><span class="si">%.3f</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">beta_meter</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">t_meter</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The t-value for the weight-parameter (beta = 0.013) is: 10.431
 </pre></div>
 </div>
 </div>
@@ -766,6 +787,11 @@ t_{\hat{\beta}} = \frac{\hat{\beta}}{\sqrt{\frac{\sum_{i=1}^{N}(\hat{y_{i}} - y_
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The p-value corresponding to t(98) = 10.431 is: 0.00000000
+</pre></div>
+</div>
+</div>
 </div>
 </div>
 </div>
@@ -808,6 +834,12 @@ t_{\hat{\beta}} = \frac{\hat{\beta}}{\sqrt{\frac{\sum_{i=1}^{N}(\hat{y_{i}} - y_
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Shape of X: (100, 7)
+Shape of y: (100,)
+</pre></div>
+</div>
+</div>
 </div>
 <p>After performing linear regression with these 6 predictors (after convolving the stimulus-onset times with an HRF, etc. etc.), you end up with 7 beta values:</p>
 <div class="cell docutils container">
@@ -818,6 +850,13 @@ t_{\hat{\beta}} = \frac{\hat{\beta}}{\sqrt{\frac{\sum_{i=1}^{N}(\hat{y_{i}} - y_
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Betas corresonding to our 6 conditions (and intercept):
+array([ 0.08208567, -0.21982422, -0.16284892,  0.53208935,  0.26214462,
+        0.38945094,  0.21565532])
+</pre></div>
+</div>
+</div>
 </div>
 <p>The first beta corresponds to the intercept, the second beta to the male/happy predictor, the third beta to the male/sad predictor, etc. etc. Now, suppose that we’d like to test whether images of male faces with a sad expression have an influence on voxel activity (our dependent variable).</p>
 <p>The first thing you need to do is extract this particular beta value from the array with beta values (I know this sounds really trivial, but bear with me):</p>
@@ -825,6 +864,11 @@ t_{\hat{\beta}} = \frac{\hat{\beta}}{\sqrt{\frac{\sum_{i=1}^{N}(\hat{y_{i}} - y_
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">beta_male_sad</span> <span class="o">=</span> <span class="n">betas</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span>
 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;The &#39;extracted&#39; beta is </span><span class="si">%.3f</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">beta_male_sad</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The &#39;extracted&#39; beta is -0.163
 </pre></div>
 </div>
 </div>
@@ -839,12 +883,22 @@ t_{\hat{\beta}} = \frac{\hat{\beta}}{\sqrt{\frac{\sum_{i=1}^{N}(\hat{y_{i}} - y_
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The beta-contrast is: -0.163
+</pre></div>
+</div>
+</div>
 </div>
 <p>“Wow, what a tedious way to just select the third value of the beta-array”, you might think. And, in a way, this is indeed somewhat tedious for a contrast against baseline. But let’s look at a case where you would want to investigate whether two betas are different - let’s say whether male sad faces have a larger effect on our voxel than male happy faces. Again, you <em>could</em> do this:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">beta_difference</span> <span class="o">=</span> <span class="n">betas</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">-</span> <span class="n">betas</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Difference between betas: </span><span class="si">%.3f</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">beta_difference</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Difference between betas: 0.057
 </pre></div>
 </div>
 </div>
@@ -856,6 +910,12 @@ t_{\hat{\beta}} = \frac{\hat{\beta}}{\sqrt{\frac{\sum_{i=1}^{N}(\hat{y_{i}} - y_
 <span class="n">contrast</span> <span class="o">=</span> <span class="p">(</span><span class="n">betas</span> <span class="o">*</span> <span class="n">contrast_vector</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
 <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;The contrast between beta 2 and beta 1 is: </span><span class="si">%.3f</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="n">contrast</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;This is exactly the same as beta[2] - beta[1]: </span><span class="si">%.3f</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">betas</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">-</span><span class="n">betas</span><span class="p">[</span><span class="mi">1</span><span class="p">]))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The contrast between beta 2 and beta 1 is: 0.057
+This is exactly the same as beta[2] - beta[1]: 0.057
 </pre></div>
 </div>
 </div>
@@ -871,6 +931,11 @@ t_{\hat{\beta}} = \frac{\hat{\beta}}{\sqrt{\frac{\sum_{i=1}^{N}(\hat{y_{i}} - y_
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Male - female contrast (regardless of expression): -0.72
+</pre></div>
+</div>
+</div>
 </div>
 <p>… or whether emotional faces (regardless of <em>which</em> exact emotion) lead to higher activity than neutral faces:</p>
 <div class="cell docutils container">
@@ -879,6 +944,11 @@ t_{\hat{\beta}} = \frac{\hat{\beta}}{\sqrt{\frac{\sum_{i=1}^{N}(\hat{y_{i}} - y_
 <span class="n">contrast_vector</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">2</span><span class="p">])</span>
 <span class="n">emo_neutral_contrast</span> <span class="o">=</span> <span class="p">(</span><span class="n">contrast_vector</span> <span class="o">*</span> <span class="n">betas</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Emotion - neutral contrast (regardless of which emotion): </span><span class="si">%.2f</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">emo_neutral_contrast</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Emotion - neutral contrast (regardless of which emotion): -1.23
 </pre></div>
 </div>
 </div>
@@ -945,6 +1015,11 @@ t_{\mathbf{c}\hat{\beta}} = \frac{\mathbf{c}\hat{\beta}}{\mathrm{SE}_{\mathbf{c}
 <span class="n">c_vec</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">])</span>  <span class="c1"># our contrast vector!</span>
 <span class="n">dvar</span> <span class="o">=</span> <span class="n">design_variance</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">which_predictor</span><span class="o">=</span><span class="n">c_vec</span><span class="p">)</span>  <span class="c1"># pass c_vec to which_predictor</span>
 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Design variance of happy/male - sad/male: </span><span class="si">%.3f</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">dvar</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Design variance of happy/male - sad/male: 0.024
 </pre></div>
 </div>
 </div>

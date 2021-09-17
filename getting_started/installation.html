@@ -42,6 +42,8 @@
     <script src="../_static/copybutton.js"></script>
     <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
     <script src="../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.0/dist/embed-amd.js"></script>
     <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
     <script >
         const thebe_selector = ".thebe"
@@ -477,7 +479,7 @@
 <p>We <em>highly</em> recommend installing Python through Anaconda. To do so, go to the <a class="reference external" href="https://www.anaconda.com/products/individual">Anaconda website</a> and download the latest <em>Anaconda installer</em> for your OS (Windows, MacOS, or Linux). Both the graphical and command-line installers are fine. After downloading the installer, run the installer. The default options suggested during installation are all fine (but no need to install the Pycharm IDE).</p>
 <p>After installation, you need to create a new <em>environment</em> to make sure you’re using the correct Python version. This is because the exercises (an important feature of the tutorials) only work when you have Python version 3.8.5 installed specifically. Fortunately, it’s easy to create a new environment with Conda, the open-source package manager shipped with any Anaconda Python distribution. Creating a new environment is easiest through a command-line interface (CLI) in a <em>terminal</em>. Mac and Linux computers are shipped with a terminal, but we recommend that Windows users use the <em>Anaconda prompt</em> (which is shipped with Anaconda) as their terminal.</p>
 <p>To create a new environment called <code class="docutils literal notranslate"><span class="pre">ni-edu</span></code> with the proper Python version after installing Anaconda, open a terminal and run the following command:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">conda</span> <span class="n">create</span> <span class="o">-</span><span class="n">n</span> <span class="n">niedu</span> <span class="n">anaconda</span> <span class="n">python</span><span class="o">=</span><span class="mf">3.8</span><span class="o">.</span><span class="mi">5</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">conda</span> <span class="n">create</span> <span class="o">-</span><span class="n">n</span> <span class="n">niedu</span> <span class="n">anaconda</span> <span class="n">python</span><span class="o">=</span><span class="mf">3.8.5</span>
 </pre></div>
 </div>
 <p>Note that you specifically need Python version 3.8.5, because the code that tests the answers to the exercises was compiled with this specific version. After running this command, you’ll be promped to install a long list of packages (<code class="docutils literal notranslate"><span class="pre">Proceed</span> <span class="pre">([y]/n)?</span></code>), type “y” and press enter. This will install a bunch of Python packages contained in the Anaconda distribution into the new environment. This may take a while. After the creation of the new environment (named “ni-edu”) is done, you can activate the environment as follows:</p>

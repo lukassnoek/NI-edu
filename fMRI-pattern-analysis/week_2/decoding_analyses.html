@@ -42,6 +42,8 @@
     <script src="../../_static/copybutton.js"></script>
     <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
     <script src="../../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.0/dist/embed-amd.js"></script>
     <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
     <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
@@ -612,6 +614,27 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Example of patterns for run 1:
+ [[-1.06513967 -0.67486096 -0.35884676 ...  0.89296511  1.25758308
+  -0.0439223 ]
+ [-0.34188599 -0.78439587 -0.41871767 ...  0.47886566  1.9601241
+  -0.15314161]
+ [-0.08109248 -0.65604335 -0.66218577 ...  0.50399797  1.81501736
+  -0.10883813]
+ ...
+ [-1.90003868  0.49174483 -0.56631676 ...  1.56975597  0.6244953
+  -0.6660346 ]
+ [-1.08704994 -0.19888354 -1.13002833 ...  0.50986446 -0.5129366
+  -0.88477879]
+ [-0.06222612 -0.69609252 -0.15220402 ...  0.87458513 -0.12572813
+  -0.76786938]]
+
+Example of target for run 1:
+ [&#39;F&#39;, &#39;F&#39;, &#39;F&#39;, &#39;F&#39;, &#39;M&#39;, &#39;M&#39;, &#39;F&#39;, &#39;F&#39;, &#39;F&#39;, &#39;F&#39;, &#39;F&#39;, &#39;M&#39;, &#39;M&#39;, &#39;F&#39;, &#39;M&#39;, &#39;M&#39;, &#39;M&#39;, &#39;M&#39;, &#39;M&#39;, &#39;F&#39;, &#39;F&#39;, &#39;F&#39;, &#39;F&#39;, &#39;F&#39;, &#39;M&#39;, &#39;M&#39;, &#39;M&#39;, &#39;M&#39;, &#39;M&#39;, &#39;M&#39;, &#39;M&#39;, &#39;M&#39;, &#39;M&#39;, &#39;M&#39;, &#39;M&#39;, &#39;F&#39;, &#39;F&#39;, &#39;F&#39;, &#39;F&#39;, &#39;F&#39;]
+</pre></div>
+</div>
+</div>
 </div>
 <p>Alright, technically, we have everything we need for a decoding analysis. However, machine learning (ML) and statistical models often require all data to be represented numerically, so we need to convert our target (containing the values “M” and “F”) into a numeric format.</p>
 <div class='alert alert-warning'>
@@ -660,11 +683,21 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>LabelEncoder()
+</pre></div>
+</div>
+</div>
 </div>
 <p>Notice that the <code class="docutils literal notranslate"><span class="pre">fit</span></code> function doesn’t <em>return</em> anything useful (well, technically, it returns it<em>self</em>). Instead, when calling <code class="docutils literal notranslate"><span class="pre">fit</span></code>, it stores some parameters in the object itself as <em>attributes</em> which are used when calling the transform. For the <code class="docutils literal notranslate"><span class="pre">LabelEncoder</span></code> specifically, it stores the unique conditions (often called <em>classes</em> in machine learning) in an attribute called <code class="docutils literal notranslate"><span class="pre">classes_</span></code>:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">lab_enc</span><span class="o">.</span><span class="n">classes_</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;F&#39; &#39;M&#39;]
 </pre></div>
 </div>
 </div>
@@ -678,6 +711,12 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[0 0 0 0 1 1 0 0 0 0 0 1 1 0 1 1 1 1 1 0 0 0 0 0 1 1 1 1 1 1 1 1 1 1 1 0 0
+ 0 0 0]
+</pre></div>
+</div>
+</div>
 </div>
 <p>Note that, unlike the <code class="docutils literal notranslate"><span class="pre">fit</span></code> method, the <code class="docutils literal notranslate"><span class="pre">transform</span></code> method actually returns something, i.e., the transformed labels. Also note that the numeric labels are assigned alphabetically (i.e., “F” gets assigned 0, “M” gets assigned 1).</p>
 <p>Like you’ve seen in the Nilearn notebook, we can often call <code class="docutils literal notranslate"><span class="pre">fit</span></code> and <code class="docutils literal notranslate"><span class="pre">transform</span></code> at once using the <code class="docutils literal notranslate"><span class="pre">fit_transform</span></code> method:</p>
@@ -685,6 +724,12 @@
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">S_run1_num</span> <span class="o">=</span> <span class="n">lab_enc</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">S_runs</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">S_run1_num</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[0 0 0 0 1 1 0 0 0 0 0 1 1 0 1 1 1 1 1 0 0 0 0 0 1 1 1 1 1 1 1 1 1 1 1 0 0
+ 0 0 0]
 </pre></div>
 </div>
 </div>
@@ -763,6 +808,12 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(1000,)
+(1000,)
+</pre></div>
+</div>
+</div>
 </div>
 <p>For the initial run-wise standardization, we usually don’t want to cross-validate our standardization process (i.e., to for example fit the <code class="docutils literal notranslate"><span class="pre">StandardScaler</span></code> on run 1 and subsequently transform the other runs) for reasons discussed before. As such, we need to call fit and transform on each run separately:</p>
 <div class="cell docutils container">
@@ -785,6 +836,12 @@
 
 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Shape R_all:&quot;</span><span class="p">,</span> <span class="n">R_all</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Shape S_all:&quot;</span><span class="p">,</span> <span class="n">S_all</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Shape R_all: (160, 1000)
+Shape S_all: (160,)
 </pre></div>
 </div>
 </div>
@@ -823,11 +880,21 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>LogisticRegression()
+</pre></div>
+</div>
+</div>
 </div>
 <p>After fitting, the model stores the estimated parameters (<span class="math notranslate nohighlight">\(\beta\)</span>) as an araay in the <code class="docutils literal notranslate"><span class="pre">coef_</span></code> (“coefficients”, another term for parameters) attribute:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Shape of coef_:&quot;</span><span class="p">,</span> <span class="n">clf</span><span class="o">.</span><span class="n">coef_</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Shape of coef_: (1, 1000)
 </pre></div>
 </div>
 </div>
@@ -839,6 +906,16 @@
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">preds</span> <span class="o">=</span> <span class="n">clf</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">R_all</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Predictions for samples in R_all:</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">preds</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Predictions for samples in R_all:
+ [0 0 0 0 1 1 0 0 1 1 1 1 1 1 1 1 1 1 0 1 1 1 1 0 1 0 1 1 1 0 0 0 0 0 0 0 0
+ 0 0 0 1 1 0 0 1 1 0 0 1 1 1 1 1 0 1 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 1 1 1
+ 1 1 1 1 1 1 0 1 0 0 0 0 1 1 1 0 0 0 1 0 0 0 1 1 1 1 1 1 1 1 1 1 0 0 0 1 1
+ 1 0 0 1 0 1 0 0 0 1 1 0 0 1 1 1 0 0 0 1 1 1 1 0 1 1 1 1 1 1 1 1 1 1 1 0 0
+ 0 0 0 0 0 0 0 0 0 0 0 0]
 </pre></div>
 </div>
 </div>
@@ -884,6 +961,15 @@
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">probas</span> <span class="o">=</span> <span class="n">clf</span><span class="o">.</span><span class="n">predict_proba</span><span class="p">(</span><span class="n">R_all</span><span class="p">)</span>
 <span class="c1"># let&#39;s print the first five trials</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">probas</span><span class="p">[:</span><span class="mi">5</span><span class="p">,</span> <span class="p">:],</span> <span class="mi">3</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[[0.995 0.005]
+ [0.999 0.001]
+ [0.998 0.002]
+ [0.986 0.014]
+ [0.018 0.982]]
 </pre></div>
 </div>
 </div>
@@ -976,6 +1062,11 @@ S = \begin{bmatrix}
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(160, 2)
+</pre></div>
+</div>
+</div>
 </div>
 <p>Finally, we can use the <code class="docutils literal notranslate"><span class="pre">roc_auc_score</span></code> function to compute our model performance. Like any metric implementation in scikit-learn, it is called as follows:</p>
 <div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="n">score</span> <span class="o">=</span> <span class="n">metric</span><span class="p">(</span><span class="n">true_labels</span><span class="p">,</span> <span class="n">predicted_labels</span><span class="p">)</span>
@@ -987,6 +1078,11 @@ S = \begin{bmatrix}
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Omit average=None to get a single (average) score</span>
 <span class="n">scores</span> <span class="o">=</span> <span class="n">roc_auc_score</span><span class="p">(</span><span class="n">S_all_ohe</span><span class="p">,</span> <span class="n">probas</span><span class="p">,</span> <span class="n">average</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">scores</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[1. 1.]
 </pre></div>
 </div>
 </div>
@@ -1078,6 +1174,11 @@ R^2_{m} = \frac{1}{N}\sum_{i=1}^{N}p(\hat{s}^{m}<em>{i}) - \frac{1}{N}\sum</em>{
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>LogisticRegression()
+</pre></div>
+</div>
+</div>
 </div>
 <p>Before predicting the test set, however, we need to decide whether we want to independently standardize the test set or whether to <em>cross-validate</em> our previously estimated standardized parameters (the feature-wise mean and standard deviation). Although opinions differ on this topic (see e.g. <a class="reference external" href="https://jamanetwork.com/journals/jamapsychiatry/article-abstract/2756204">this excellent article</a>), if we want a truly unbiased estimate of generalization, we should also cross-validate our standardization procedure in addition to cross-validation of our model. So, to cross-validate our standardization procedure, we do the following for each feature <span class="math notranslate nohighlight">\(j\)</span> of our test set:</p>
 <p>\begin{align}
@@ -1100,6 +1201,14 @@ R^2_{m} = \frac{1}{N}\sum_{i=1}^{N}p(\hat{s}^{m}<em>{i}) - \frac{1}{N}\sum</em>{
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Predictions for our test set samples:
+ [0 0 0 1 1 1 1 1 1 1 1 1 1 1 0 0 0 0 0 0 0 1 0 1 1 1 1 1 0 0 0 0 0 0 0 1 1
+ 1 1 1 0 0 0 1 1 0 0 0 1 1 1 1 0 0 0 0 0 1 0 0 0 1 1 1 1 1 1 1 1 1 1 1 1 0
+ 0 0 0 0 0 0]
+</pre></div>
+</div>
+</div>
 </div>
 <p>These predictions (<code class="docutils literal notranslate"><span class="pre">preds</span></code>) are made independently from the fitting process. Now, let’s evaluate the model performance on these predictions, this time we’re going to be lazy and use the <code class="docutils literal notranslate"><span class="pre">accuracy_score</span></code> from the <code class="docutils literal notranslate"><span class="pre">metrics</span></code> module in scikit-learn:</p>
 <div class="cell docutils container">
@@ -1107,6 +1216,11 @@ R^2_{m} = \frac{1}{N}\sum_{i=1}^{N}p(\hat{s}^{m}<em>{i}) - \frac{1}{N}\sum</em>{
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">accuracy_score</span>
 <span class="n">acc_cv</span> <span class="o">=</span> <span class="n">accuracy_score</span><span class="p">(</span><span class="n">S_test</span><span class="p">,</span> <span class="n">preds</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Cross-validated accuracy:&quot;</span><span class="p">,</span> <span class="n">acc_cv</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Cross-validated accuracy: 0.7375
 </pre></div>
 </div>
 </div>
@@ -1151,6 +1265,71 @@ Can you think of a (practical) reason to prefer hold-out cross-validation over K
     
     <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Train indices:&quot;</span><span class="p">,</span> <span class="n">train_idx</span><span class="p">)</span>
     <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Test indices:&quot;</span><span class="p">,</span> <span class="n">test_idx</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="s1">&#39;</span><span class="se">\n\n</span><span class="s1">&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Processing fold 1
+Train indices: [ 24  26  27  28  36  37  38  39  40  41  42  43  44  45  46  47  48  49
+  50  51  52  53  54  55  56  57  58  59  60  61  62  63  64  65  66  67
+  68  69  70  71  72  73  74  75  76  77  78  79  80  81  82  83  84  85
+  86  87  88  89  90  91  92  93  94  95  96  97  98  99 100 101 102 103
+ 104 105 106 107 108 109 110 111 112 113 114 115 116 117 118 119 120 121
+ 122 123 124 125 126 127 128 129 130 131 132 133 134 135 136 137 138 139
+ 140 141 142 143 144 145 146 147 148 149 150 151 152 153 154 155 156 157
+ 158 159]
+Test indices: [ 0  1  2  3  4  5  6  7  8  9 10 11 12 13 14 15 16 17 18 19 20 21 22 23
+ 25 29 30 31 32 33 34 35]
+
+Processing fold 2
+Train indices: [  0   1   2   3   4   5   6   7   8   9  10  11  12  13  14  15  16  17
+  18  19  20  21  22  23  25  29  30  31  32  33  34  35  62  64  65  66
+  67  68  69  70  72  73  74  75  76  77  78  79  80  81  82  83  84  85
+  86  87  88  89  90  91  92  93  94  95  96  97  98  99 100 101 102 103
+ 104 105 106 107 108 109 110 111 112 113 114 115 116 117 118 119 120 121
+ 122 123 124 125 126 127 128 129 130 131 132 133 134 135 136 137 138 139
+ 140 141 142 143 144 145 146 147 148 149 150 151 152 153 154 155 156 157
+ 158 159]
+Test indices: [24 26 27 28 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54 55
+ 56 57 58 59 60 61 63 71]
+
+Processing fold 3
+Train indices: [  0   1   2   3   4   5   6   7   8   9  10  11  12  13  14  15  16  17
+  18  19  20  21  22  23  24  25  26  27  28  29  30  31  32  33  34  35
+  36  37  38  39  40  41  42  43  44  45  46  47  48  49  50  51  52  53
+  54  55  56  57  58  59  60  61  63  71  93  94  95  99 100 101 102 103
+ 104 105 106 107 108 109 110 111 112 113 114 115 116 117 118 119 120 121
+ 122 123 124 125 126 127 128 129 130 131 132 133 134 135 136 137 138 139
+ 140 141 142 143 144 145 146 147 148 149 150 151 152 153 154 155 156 157
+ 158 159]
+Test indices: [62 64 65 66 67 68 69 70 72 73 74 75 76 77 78 79 80 81 82 83 84 85 86 87
+ 88 89 90 91 92 96 97 98]
+
+Processing fold 4
+Train indices: [  0   1   2   3   4   5   6   7   8   9  10  11  12  13  14  15  16  17
+  18  19  20  21  22  23  24  25  26  27  28  29  30  31  32  33  34  35
+  36  37  38  39  40  41  42  43  44  45  46  47  48  49  50  51  52  53
+  54  55  56  57  58  59  60  61  62  63  64  65  66  67  68  69  70  71
+  72  73  74  75  76  77  78  79  80  81  82  83  84  85  86  87  88  89
+  90  91  92  96  97  98 126 129 130 131 132 133 134 135 136 137 138 139
+ 140 141 142 143 144 145 146 147 148 149 150 151 152 153 154 155 156 157
+ 158 159]
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Test indices: [ 93  94  95  99 100 101 102 103 104 105 106 107 108 109 110 111 112 113
+ 114 115 116 117 118 119 120 121 122 123 124 125 127 128]
+
+Processing fold 5
+Train indices: [  0   1   2   3   4   5   6   7   8   9  10  11  12  13  14  15  16  17
+  18  19  20  21  22  23  24  25  26  27  28  29  30  31  32  33  34  35
+  36  37  38  39  40  41  42  43  44  45  46  47  48  49  50  51  52  53
+  54  55  56  57  58  59  60  61  62  63  64  65  66  67  68  69  70  71
+  72  73  74  75  76  77  78  79  80  81  82  83  84  85  86  87  88  89
+  90  91  92  93  94  95  96  97  98  99 100 101 102 103 104 105 106 107
+ 108 109 110 111 112 113 114 115 116 117 118 119 120 121 122 123 124 125
+ 127 128]
+Test indices: [126 129 130 131 132 133 134 135 136 137 138 139 140 141 142 143 144 145
+ 146 147 148 149 150 151 152 153 154 155 156 157 158 159]
 </pre></div>
 </div>
 </div>
@@ -1207,6 +1386,12 @@ Can you think of a (practical) reason to prefer hold-out cross-validation over K
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Pipeline(steps=[(&#39;standardscaler&#39;, StandardScaler()),
+                (&#39;logisticregression&#39;, LogisticRegression())])
+</pre></div>
+</div>
+</div>
 </div>
 <p>Now, let’s use the data from the simple hold-out split from before to demonstrate the fiting and cross-validation of our complete pipeline. Just like a normal model, we can call the <code class="docutils literal notranslate"><span class="pre">fit</span></code> and <code class="docutils literal notranslate"><span class="pre">predict</span></code> methods to do so:</p>
 <div class="cell docutils container">
@@ -1246,6 +1431,15 @@ Can you think of a (practical) reason to prefer hold-out cross-validation over K
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">groups</span> <span class="o">=</span>  <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">([[</span><span class="n">i</span><span class="p">]</span> <span class="o">*</span> <span class="n">N_per_run</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">M</span><span class="p">)])</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">groups</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+ 0 0 0 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1
+ 1 1 1 1 1 1 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2
+ 2 2 2 2 2 2 2 2 2 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3
+ 3 3 3 3 3 3 3 3 3 3 3 3]
 </pre></div>
 </div>
 </div>
@@ -1315,6 +1509,24 @@ Can you think of a (practical) reason to prefer hold-out cross-validation over K
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Accuracy: 0.72
+Accuracy: 0.76
+Accuracy: 0.80
+Accuracy: 0.74
+Accuracy: 0.74
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Accuracy: 0.80
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Accuracy: 0.80
+Accuracy: 0.80
+Accuracy: 0.80
+Accuracy: 0.80
+</pre></div>
+</div>
+</div>
 </div>
 <p>When running the cell above, you should find that the models is able to consistently yield strong above-chance performance, which shouldn’t happen because the data that we simulated is just random noise!</p>
 <div class='alert alert-warning'>
@@ -1350,6 +1562,22 @@ Can you think of a (practical) reason to prefer hold-out cross-validation over K
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Accuracy: 0.50
+Accuracy: 0.50
+Accuracy: 0.50
+Accuracy: 0.47
+Accuracy: 0.49
+Accuracy: 0.51
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Accuracy: 0.50
+Accuracy: 0.50
+Accuracy: 0.54
+Accuracy: 0.50
+</pre></div>
+</div>
+</div>
 </div>
 <p>Much better! In addition to <code class="docutils literal notranslate"><span class="pre">roc_auc_score</span></code>, there are other metrics (such as <code class="docutils literal notranslate"><span class="pre">balanced_accuracy</span></code> and <code class="docutils literal notranslate"><span class="pre">f1_score</span></code>) that deal appropriately with class imbalance.</p>
 <p>However, using class-imbalance-aware metrics only makes sure that the model performance estimate is unbiased (i.e., is not affected by class imbalance), but it doesn’t prevent the model from actually “learning” the useless “information” related to class imbalance (instead of learning the true/useful signal in the data)! In our previous examples which used completely random (null) data, this is not a problem, but it <em>is</em> a problem when the data actually contains some effect. One way to counter this is by using the <code class="docutils literal notranslate"><span class="pre">class_weight</span></code> parameter that is available in mode scikit-learn models. Setting the parameter to “balanced” will weigh samples from the minority class more strongly than samples from the majority class, forcing the model to learn information that is independent from class frequency. Below, we initialize a logistic regression model with this setting enabled and show that it effectively reduces the influence of class imbalance:</p>
@@ -1374,6 +1602,22 @@ Can you think of a (practical) reason to prefer hold-out cross-validation over K
     <span class="n">S_pred</span> <span class="o">=</span> <span class="n">clf</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">R_test</span><span class="p">)</span>
     <span class="n">this_acc</span> <span class="o">=</span> <span class="n">accuracy_score</span><span class="p">(</span><span class="n">S_test</span><span class="p">,</span> <span class="n">S_pred</span><span class="p">)</span>
     <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Accuracy: </span><span class="si">%.2f</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">this_acc</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Accuracy: 0.64
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Accuracy: 0.52
+Accuracy: 0.58
+Accuracy: 0.60
+Accuracy: 0.50
+Accuracy: 0.50
+Accuracy: 0.48
+Accuracy: 0.48
+Accuracy: 0.52
+Accuracy: 0.52
 </pre></div>
 </div>
 </div>
@@ -1413,6 +1657,1241 @@ Can you think of a (practical) reason to prefer hold-out cross-validation over K
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Downloading patterns from sub-03, ses-1, run 1 (+- ... MB) ...
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Completed 7.2 KiB/286.0 MiB (25.4 KiB/s) with 8 file(s) remaining
+download: s3://openneuro.org/ds003477/derivatives/pattern_estimation/sub-03/ses-1/patterns/sub-03_ses-1_task-face_run-1_events.tsv to ../../../../../../NI-edu-data/derivatives/pattern_estimation/sub-03/ses-1/patterns/sub-03_ses-1_task-face_run-1_events.tsv
+Completed 7.2 KiB/286.0 MiB (25.4 KiB/s) with 7 file(s) remaining
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Completed 115.9 KiB/286.0 MiB (343.2 KiB/s) with 7 file(s) remaining
+download: s3://openneuro.org/ds003477/derivatives/pattern_estimation/sub-03/ses-1/figures/sub-03_ses-1_task-face_run-1_space-MNI152NLin2009cAsym_desc-design_matrix.png to ../../../../../../NI-edu-data/derivatives/pattern_estimation/sub-03/ses-1/figures/sub-03_ses-1_task-face_run-1_space-MNI152NLin2009cAsym_desc-design_matrix.png
+Completed 115.9 KiB/286.0 MiB (343.2 KiB/s) with 6 file(s) remaining
+Completed 252.8 KiB/286.0 MiB (688.4 KiB/s) with 6 file(s) remaining
+download: s3://openneuro.org/ds003477/derivatives/pattern_estimation/sub-03/ses-1/figures/sub-03_ses-1_task-face_run-1_space-MNI152NLin2009cAsym_desc-design_corr.png to ../../../../../../NI-edu-data/derivatives/pattern_estimation/sub-03/ses-1/figures/sub-03_ses-1_task-face_run-1_space-MNI152NLin2009cAsym_desc-design_corr.png
+Completed 252.8 KiB/286.0 MiB (688.4 KiB/s) with 5 file(s) remaining
+Completed 411.7 KiB/286.0 MiB (1.1 MiB/s) with 5 file(s) remaining  
+download: s3://openneuro.org/ds003477/derivatives/pattern_estimation/sub-03/ses-1/model/sub-03_ses-1_task-face_run-1_space-MNI152NLin2009cAsym_desc-design_matrix.tsv to ../../../../../../NI-edu-data/derivatives/pattern_estimation/sub-03/ses-1/model/sub-03_ses-1_task-face_run-1_space-MNI152NLin2009cAsym_desc-design_matrix.tsv
+Completed 411.7 KiB/286.0 MiB (1.1 MiB/s) with 4 file(s) remaining
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Completed 667.7 KiB/286.0 MiB (1.6 MiB/s) with 4 file(s) remaining
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Completed 923.7 KiB/286.0 MiB (2.0 MiB/s) with 4 file(s) remaining
+Completed 1.2 MiB/286.0 MiB (2.6 MiB/s) with 4 file(s) remaining  
+Completed 1.4 MiB/286.0 MiB (3.1 MiB/s) with 4 file(s) remaining  
+Completed 1.7 MiB/286.0 MiB (3.6 MiB/s) with 4 file(s) remaining  
+Completed 1.9 MiB/286.0 MiB (4.1 MiB/s) with 4 file(s) remaining  
+Completed 2.2 MiB/286.0 MiB (4.5 MiB/s) with 4 file(s) remaining  
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Completed 2.4 MiB/286.0 MiB (5.0 MiB/s) with 4 file(s) remaining  
+Completed 2.7 MiB/286.0 MiB (5.5 MiB/s) with 4 file(s) remaining  
+Completed 2.9 MiB/286.0 MiB (6.0 MiB/s) with 4 file(s) remaining  
+Completed 3.2 MiB/286.0 MiB (6.5 MiB/s) with 4 file(s) remaining  
+Completed 3.4 MiB/286.0 MiB (7.0 MiB/s) with 4 file(s) remaining  
+Completed 3.7 MiB/286.0 MiB (7.4 MiB/s) with 4 file(s) remaining  
+Completed 3.9 MiB/286.0 MiB (7.9 MiB/s) with 4 file(s) remaining  
+Completed 4.2 MiB/286.0 MiB (8.3 MiB/s) with 4 file(s) remaining  
+Completed 4.4 MiB/286.0 MiB (8.8 MiB/s) with 4 file(s) remaining  
+Completed 4.7 MiB/286.0 MiB (9.3 MiB/s) with 4 file(s) remaining  
+Completed 4.9 MiB/286.0 MiB (9.6 MiB/s) with 4 file(s) remaining  
+Completed 5.2 MiB/286.0 MiB (10.1 MiB/s) with 4 file(s) remaining 
+Completed 5.4 MiB/286.0 MiB (10.5 MiB/s) with 4 file(s) remaining 
+Completed 5.7 MiB/286.0 MiB (11.0 MiB/s) with 4 file(s) remaining 
+Completed 5.9 MiB/286.0 MiB (11.4 MiB/s) with 4 file(s) remaining 
+Completed 6.2 MiB/286.0 MiB (11.9 MiB/s) with 4 file(s) remaining 
+Completed 6.4 MiB/286.0 MiB (12.3 MiB/s) with 4 file(s) remaining 
+Completed 6.7 MiB/286.0 MiB (12.8 MiB/s) with 4 file(s) remaining 
+Completed 6.9 MiB/286.0 MiB (13.3 MiB/s) with 4 file(s) remaining 
+Completed 7.2 MiB/286.0 MiB (13.7 MiB/s) with 4 file(s) remaining 
+Completed 7.4 MiB/286.0 MiB (14.2 MiB/s) with 4 file(s) remaining 
+Completed 7.7 MiB/286.0 MiB (14.6 MiB/s) with 4 file(s) remaining 
+Completed 7.9 MiB/286.0 MiB (15.0 MiB/s) with 4 file(s) remaining 
+Completed 8.2 MiB/286.0 MiB (15.5 MiB/s) with 4 file(s) remaining 
+Completed 8.4 MiB/286.0 MiB (15.8 MiB/s) with 4 file(s) remaining 
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Completed 8.7 MiB/286.0 MiB (16.2 MiB/s) with 4 file(s) remaining 
+Completed 8.9 MiB/286.0 MiB (16.6 MiB/s) with 4 file(s) remaining 
+Completed 9.2 MiB/286.0 MiB (17.0 MiB/s) with 4 file(s) remaining 
+Completed 9.4 MiB/286.0 MiB (17.5 MiB/s) with 4 file(s) remaining 
+Completed 9.7 MiB/286.0 MiB (17.9 MiB/s) with 4 file(s) remaining 
+Completed 9.9 MiB/286.0 MiB (18.3 MiB/s) with 4 file(s) remaining 
+download: s3://openneuro.org/ds003477/derivatives/pattern_estimation/sub-03/ses-1/model/sub-03_ses-1_task-face_run-1_space-MNI152NLin2009cAsym_desc-model_r2.nii.gz to ../../../../../../NI-edu-data/derivatives/pattern_estimation/sub-03/ses-1/model/sub-03_ses-1_task-face_run-1_space-MNI152NLin2009cAsym_desc-model_r2.nii.gz
+Completed 9.9 MiB/286.0 MiB (18.3 MiB/s) with 3 file(s) remaining
+Completed 10.1 MiB/286.0 MiB (18.5 MiB/s) with 3 file(s) remaining
+Completed 10.4 MiB/286.0 MiB (18.9 MiB/s) with 3 file(s) remaining
+Completed 10.6 MiB/286.0 MiB (19.4 MiB/s) with 3 file(s) remaining
+Completed 10.9 MiB/286.0 MiB (19.8 MiB/s) with 3 file(s) remaining
+Completed 11.1 MiB/286.0 MiB (20.2 MiB/s) with 3 file(s) remaining
+Completed 11.4 MiB/286.0 MiB (20.6 MiB/s) with 3 file(s) remaining
+Completed 11.6 MiB/286.0 MiB (20.9 MiB/s) with 3 file(s) remaining
+Completed 11.9 MiB/286.0 MiB (21.3 MiB/s) with 3 file(s) remaining
+Completed 12.1 MiB/286.0 MiB (21.8 MiB/s) with 3 file(s) remaining
+Completed 12.4 MiB/286.0 MiB (22.2 MiB/s) with 3 file(s) remaining
+Completed 12.6 MiB/286.0 MiB (22.6 MiB/s) with 3 file(s) remaining
+Completed 12.9 MiB/286.0 MiB (23.0 MiB/s) with 3 file(s) remaining
+Completed 13.1 MiB/286.0 MiB (23.4 MiB/s) with 3 file(s) remaining
+Completed 13.4 MiB/286.0 MiB (23.8 MiB/s) with 3 file(s) remaining
+Completed 13.6 MiB/286.0 MiB (24.2 MiB/s) with 3 file(s) remaining
+Completed 13.9 MiB/286.0 MiB (24.6 MiB/s) with 3 file(s) remaining
+Completed 14.1 MiB/286.0 MiB (25.0 MiB/s) with 3 file(s) remaining
+Completed 14.4 MiB/286.0 MiB (25.4 MiB/s) with 3 file(s) remaining
+Completed 14.6 MiB/286.0 MiB (25.8 MiB/s) with 3 file(s) remaining
+Completed 14.9 MiB/286.0 MiB (26.2 MiB/s) with 3 file(s) remaining
+Completed 15.1 MiB/286.0 MiB (26.6 MiB/s) with 3 file(s) remaining
+Completed 15.4 MiB/286.0 MiB (26.9 MiB/s) with 3 file(s) remaining
+Completed 15.6 MiB/286.0 MiB (27.3 MiB/s) with 3 file(s) remaining
+Completed 15.9 MiB/286.0 MiB (27.7 MiB/s) with 3 file(s) remaining
+Completed 16.1 MiB/286.0 MiB (28.1 MiB/s) with 3 file(s) remaining
+Completed 16.4 MiB/286.0 MiB (28.5 MiB/s) with 3 file(s) remaining
+Completed 16.6 MiB/286.0 MiB (28.9 MiB/s) with 3 file(s) remaining
+Completed 16.9 MiB/286.0 MiB (29.3 MiB/s) with 3 file(s) remaining
+Completed 17.1 MiB/286.0 MiB (29.6 MiB/s) with 3 file(s) remaining
+Completed 17.4 MiB/286.0 MiB (30.0 MiB/s) with 3 file(s) remaining
+Completed 17.6 MiB/286.0 MiB (30.4 MiB/s) with 3 file(s) remaining
+Completed 17.9 MiB/286.0 MiB (30.9 MiB/s) with 3 file(s) remaining
+Completed 18.1 MiB/286.0 MiB (31.2 MiB/s) with 3 file(s) remaining
+Completed 18.4 MiB/286.0 MiB (31.6 MiB/s) with 3 file(s) remaining
+Completed 18.6 MiB/286.0 MiB (32.0 MiB/s) with 3 file(s) remaining
+Completed 18.9 MiB/286.0 MiB (32.4 MiB/s) with 3 file(s) remaining
+Completed 19.1 MiB/286.0 MiB (32.8 MiB/s) with 3 file(s) remaining
+Completed 19.4 MiB/286.0 MiB (33.2 MiB/s) with 3 file(s) remaining
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Completed 19.6 MiB/286.0 MiB (33.6 MiB/s) with 3 file(s) remaining
+Completed 19.9 MiB/286.0 MiB (34.0 MiB/s) with 3 file(s) remaining
+Completed 20.1 MiB/286.0 MiB (34.3 MiB/s) with 3 file(s) remaining
+Completed 20.4 MiB/286.0 MiB (34.7 MiB/s) with 3 file(s) remaining
+Completed 20.6 MiB/286.0 MiB (35.1 MiB/s) with 3 file(s) remaining
+Completed 20.9 MiB/286.0 MiB (35.5 MiB/s) with 3 file(s) remaining
+Completed 21.1 MiB/286.0 MiB (35.8 MiB/s) with 3 file(s) remaining
+Completed 21.4 MiB/286.0 MiB (36.2 MiB/s) with 3 file(s) remaining
+Completed 21.6 MiB/286.0 MiB (36.5 MiB/s) with 3 file(s) remaining
+Completed 21.9 MiB/286.0 MiB (36.8 MiB/s) with 3 file(s) remaining
+Completed 22.1 MiB/286.0 MiB (37.2 MiB/s) with 3 file(s) remaining
+Completed 22.4 MiB/286.0 MiB (37.5 MiB/s) with 3 file(s) remaining
+Completed 22.6 MiB/286.0 MiB (37.9 MiB/s) with 3 file(s) remaining
+Completed 22.9 MiB/286.0 MiB (38.3 MiB/s) with 3 file(s) remaining
+Completed 23.1 MiB/286.0 MiB (38.7 MiB/s) with 3 file(s) remaining
+Completed 23.4 MiB/286.0 MiB (39.0 MiB/s) with 3 file(s) remaining
+Completed 23.6 MiB/286.0 MiB (39.3 MiB/s) with 3 file(s) remaining
+Completed 23.9 MiB/286.0 MiB (39.7 MiB/s) with 3 file(s) remaining
+Completed 24.1 MiB/286.0 MiB (40.0 MiB/s) with 3 file(s) remaining
+Completed 24.4 MiB/286.0 MiB (40.4 MiB/s) with 3 file(s) remaining
+Completed 24.6 MiB/286.0 MiB (40.7 MiB/s) with 3 file(s) remaining
+Completed 24.9 MiB/286.0 MiB (41.1 MiB/s) with 3 file(s) remaining
+Completed 25.1 MiB/286.0 MiB (41.5 MiB/s) with 3 file(s) remaining
+Completed 25.4 MiB/286.0 MiB (41.8 MiB/s) with 3 file(s) remaining
+Completed 25.6 MiB/286.0 MiB (42.2 MiB/s) with 3 file(s) remaining
+Completed 25.9 MiB/286.0 MiB (42.4 MiB/s) with 3 file(s) remaining
+Completed 26.1 MiB/286.0 MiB (42.8 MiB/s) with 3 file(s) remaining
+Completed 26.4 MiB/286.0 MiB (43.1 MiB/s) with 3 file(s) remaining
+Completed 26.6 MiB/286.0 MiB (43.4 MiB/s) with 3 file(s) remaining
+Completed 26.9 MiB/286.0 MiB (43.7 MiB/s) with 3 file(s) remaining
+Completed 27.1 MiB/286.0 MiB (44.1 MiB/s) with 3 file(s) remaining
+Completed 27.4 MiB/286.0 MiB (44.5 MiB/s) with 3 file(s) remaining
+Completed 27.6 MiB/286.0 MiB (44.8 MiB/s) with 3 file(s) remaining
+Completed 27.9 MiB/286.0 MiB (45.1 MiB/s) with 3 file(s) remaining
+Completed 28.1 MiB/286.0 MiB (45.5 MiB/s) with 3 file(s) remaining
+Completed 28.4 MiB/286.0 MiB (45.9 MiB/s) with 3 file(s) remaining
+Completed 28.6 MiB/286.0 MiB (46.2 MiB/s) with 3 file(s) remaining
+Completed 28.9 MiB/286.0 MiB (46.5 MiB/s) with 3 file(s) remaining
+Completed 29.1 MiB/286.0 MiB (46.9 MiB/s) with 3 file(s) remaining
+Completed 29.4 MiB/286.0 MiB (47.2 MiB/s) with 3 file(s) remaining
+Completed 29.6 MiB/286.0 MiB (47.6 MiB/s) with 3 file(s) remaining
+Completed 29.9 MiB/286.0 MiB (47.9 MiB/s) with 3 file(s) remaining
+Completed 30.1 MiB/286.0 MiB (48.3 MiB/s) with 3 file(s) remaining
+Completed 30.4 MiB/286.0 MiB (48.6 MiB/s) with 3 file(s) remaining
+Completed 30.6 MiB/286.0 MiB (48.9 MiB/s) with 3 file(s) remaining
+Completed 30.9 MiB/286.0 MiB (49.2 MiB/s) with 3 file(s) remaining
+Completed 31.1 MiB/286.0 MiB (49.6 MiB/s) with 3 file(s) remaining
+Completed 31.4 MiB/286.0 MiB (49.9 MiB/s) with 3 file(s) remaining
+Completed 31.6 MiB/286.0 MiB (50.3 MiB/s) with 3 file(s) remaining
+Completed 31.9 MiB/286.0 MiB (50.6 MiB/s) with 3 file(s) remaining
+Completed 32.1 MiB/286.0 MiB (50.9 MiB/s) with 3 file(s) remaining
+Completed 32.4 MiB/286.0 MiB (51.2 MiB/s) with 3 file(s) remaining
+Completed 32.6 MiB/286.0 MiB (51.5 MiB/s) with 3 file(s) remaining
+Completed 32.9 MiB/286.0 MiB (51.8 MiB/s) with 3 file(s) remaining
+Completed 33.1 MiB/286.0 MiB (52.1 MiB/s) with 3 file(s) remaining
+Completed 33.4 MiB/286.0 MiB (52.5 MiB/s) with 3 file(s) remaining
+Completed 33.6 MiB/286.0 MiB (52.8 MiB/s) with 3 file(s) remaining
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Completed 33.9 MiB/286.0 MiB (53.1 MiB/s) with 3 file(s) remaining
+Completed 34.1 MiB/286.0 MiB (53.2 MiB/s) with 3 file(s) remaining
+Completed 34.4 MiB/286.0 MiB (53.5 MiB/s) with 3 file(s) remaining
+Completed 34.6 MiB/286.0 MiB (53.9 MiB/s) with 3 file(s) remaining
+Completed 34.9 MiB/286.0 MiB (54.2 MiB/s) with 3 file(s) remaining
+Completed 35.1 MiB/286.0 MiB (54.4 MiB/s) with 3 file(s) remaining
+Completed 35.4 MiB/286.0 MiB (54.7 MiB/s) with 3 file(s) remaining
+Completed 35.6 MiB/286.0 MiB (55.0 MiB/s) with 3 file(s) remaining
+Completed 35.9 MiB/286.0 MiB (55.4 MiB/s) with 3 file(s) remaining
+Completed 36.1 MiB/286.0 MiB (55.7 MiB/s) with 3 file(s) remaining
+Completed 36.4 MiB/286.0 MiB (56.1 MiB/s) with 3 file(s) remaining
+Completed 36.6 MiB/286.0 MiB (56.4 MiB/s) with 3 file(s) remaining
+Completed 36.9 MiB/286.0 MiB (56.8 MiB/s) with 3 file(s) remaining
+Completed 37.1 MiB/286.0 MiB (56.9 MiB/s) with 3 file(s) remaining
+Completed 37.4 MiB/286.0 MiB (57.3 MiB/s) with 3 file(s) remaining
+Completed 37.6 MiB/286.0 MiB (57.6 MiB/s) with 3 file(s) remaining
+Completed 37.9 MiB/286.0 MiB (57.8 MiB/s) with 3 file(s) remaining
+Completed 38.1 MiB/286.0 MiB (58.2 MiB/s) with 3 file(s) remaining
+Completed 38.4 MiB/286.0 MiB (58.4 MiB/s) with 3 file(s) remaining
+Completed 38.6 MiB/286.0 MiB (58.8 MiB/s) with 3 file(s) remaining
+Completed 38.9 MiB/286.0 MiB (59.0 MiB/s) with 3 file(s) remaining
+Completed 39.1 MiB/286.0 MiB (59.3 MiB/s) with 3 file(s) remaining
+Completed 39.4 MiB/286.0 MiB (59.7 MiB/s) with 3 file(s) remaining
+Completed 39.6 MiB/286.0 MiB (59.9 MiB/s) with 3 file(s) remaining
+Completed 39.9 MiB/286.0 MiB (60.2 MiB/s) with 3 file(s) remaining
+Completed 40.1 MiB/286.0 MiB (60.4 MiB/s) with 3 file(s) remaining
+Completed 40.4 MiB/286.0 MiB (60.7 MiB/s) with 3 file(s) remaining
+Completed 40.6 MiB/286.0 MiB (61.1 MiB/s) with 3 file(s) remaining
+Completed 40.9 MiB/286.0 MiB (61.4 MiB/s) with 3 file(s) remaining
+Completed 41.1 MiB/286.0 MiB (61.8 MiB/s) with 3 file(s) remaining
+Completed 41.4 MiB/286.0 MiB (62.1 MiB/s) with 3 file(s) remaining
+Completed 41.6 MiB/286.0 MiB (62.4 MiB/s) with 3 file(s) remaining
+Completed 41.9 MiB/286.0 MiB (62.7 MiB/s) with 3 file(s) remaining
+Completed 42.1 MiB/286.0 MiB (63.0 MiB/s) with 3 file(s) remaining
+Completed 42.4 MiB/286.0 MiB (63.4 MiB/s) with 3 file(s) remaining
+Completed 42.6 MiB/286.0 MiB (63.7 MiB/s) with 3 file(s) remaining
+Completed 42.9 MiB/286.0 MiB (64.0 MiB/s) with 3 file(s) remaining
+Completed 43.1 MiB/286.0 MiB (64.2 MiB/s) with 3 file(s) remaining
+Completed 43.4 MiB/286.0 MiB (64.5 MiB/s) with 3 file(s) remaining
+Completed 43.6 MiB/286.0 MiB (64.7 MiB/s) with 3 file(s) remaining
+Completed 43.9 MiB/286.0 MiB (65.0 MiB/s) with 3 file(s) remaining
+Completed 44.1 MiB/286.0 MiB (65.3 MiB/s) with 3 file(s) remaining
+Completed 44.4 MiB/286.0 MiB (65.5 MiB/s) with 3 file(s) remaining
+Completed 44.6 MiB/286.0 MiB (65.8 MiB/s) with 3 file(s) remaining
+Completed 44.9 MiB/286.0 MiB (66.2 MiB/s) with 3 file(s) remaining
+Completed 45.1 MiB/286.0 MiB (66.5 MiB/s) with 3 file(s) remaining
+Completed 45.4 MiB/286.0 MiB (66.8 MiB/s) with 3 file(s) remaining
+Completed 45.6 MiB/286.0 MiB (67.1 MiB/s) with 3 file(s) remaining
+Completed 45.9 MiB/286.0 MiB (67.3 MiB/s) with 3 file(s) remaining
+Completed 46.1 MiB/286.0 MiB (67.6 MiB/s) with 3 file(s) remaining
+Completed 46.4 MiB/286.0 MiB (67.9 MiB/s) with 3 file(s) remaining
+Completed 46.6 MiB/286.0 MiB (68.2 MiB/s) with 3 file(s) remaining
+Completed 46.9 MiB/286.0 MiB (68.5 MiB/s) with 3 file(s) remaining
+Completed 47.1 MiB/286.0 MiB (68.7 MiB/s) with 3 file(s) remaining
+Completed 47.4 MiB/286.0 MiB (68.9 MiB/s) with 3 file(s) remaining
+Completed 47.6 MiB/286.0 MiB (69.2 MiB/s) with 3 file(s) remaining
+Completed 47.9 MiB/286.0 MiB (69.5 MiB/s) with 3 file(s) remaining
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Completed 48.1 MiB/286.0 MiB (69.8 MiB/s) with 3 file(s) remaining
+Completed 48.4 MiB/286.0 MiB (70.1 MiB/s) with 3 file(s) remaining
+Completed 48.6 MiB/286.0 MiB (70.1 MiB/s) with 3 file(s) remaining
+Completed 48.9 MiB/286.0 MiB (70.5 MiB/s) with 3 file(s) remaining
+Completed 49.1 MiB/286.0 MiB (70.8 MiB/s) with 3 file(s) remaining
+Completed 49.4 MiB/286.0 MiB (71.1 MiB/s) with 3 file(s) remaining
+Completed 49.6 MiB/286.0 MiB (71.4 MiB/s) with 3 file(s) remaining
+Completed 49.9 MiB/286.0 MiB (71.7 MiB/s) with 3 file(s) remaining
+Completed 50.1 MiB/286.0 MiB (72.0 MiB/s) with 3 file(s) remaining
+Completed 50.4 MiB/286.0 MiB (72.3 MiB/s) with 3 file(s) remaining
+Completed 50.6 MiB/286.0 MiB (72.6 MiB/s) with 3 file(s) remaining
+Completed 50.9 MiB/286.0 MiB (72.8 MiB/s) with 3 file(s) remaining
+Completed 51.1 MiB/286.0 MiB (73.1 MiB/s) with 3 file(s) remaining
+Completed 51.4 MiB/286.0 MiB (73.2 MiB/s) with 3 file(s) remaining
+Completed 51.6 MiB/286.0 MiB (73.4 MiB/s) with 3 file(s) remaining
+Completed 51.9 MiB/286.0 MiB (73.7 MiB/s) with 3 file(s) remaining
+Completed 52.1 MiB/286.0 MiB (74.0 MiB/s) with 3 file(s) remaining
+Completed 52.4 MiB/286.0 MiB (74.3 MiB/s) with 3 file(s) remaining
+Completed 52.6 MiB/286.0 MiB (74.4 MiB/s) with 3 file(s) remaining
+Completed 52.9 MiB/286.0 MiB (74.7 MiB/s) with 3 file(s) remaining
+Completed 53.1 MiB/286.0 MiB (75.0 MiB/s) with 3 file(s) remaining
+Completed 53.4 MiB/286.0 MiB (75.2 MiB/s) with 3 file(s) remaining
+Completed 53.6 MiB/286.0 MiB (75.5 MiB/s) with 3 file(s) remaining
+Completed 53.9 MiB/286.0 MiB (75.8 MiB/s) with 3 file(s) remaining
+Completed 54.1 MiB/286.0 MiB (75.9 MiB/s) with 3 file(s) remaining
+Completed 54.4 MiB/286.0 MiB (76.2 MiB/s) with 3 file(s) remaining
+Completed 54.6 MiB/286.0 MiB (76.5 MiB/s) with 3 file(s) remaining
+Completed 54.9 MiB/286.0 MiB (76.8 MiB/s) with 3 file(s) remaining
+Completed 55.1 MiB/286.0 MiB (77.1 MiB/s) with 3 file(s) remaining
+Completed 55.4 MiB/286.0 MiB (77.3 MiB/s) with 3 file(s) remaining
+Completed 55.6 MiB/286.0 MiB (77.5 MiB/s) with 3 file(s) remaining
+Completed 55.8 MiB/286.0 MiB (77.7 MiB/s) with 3 file(s) remaining
+Completed 56.1 MiB/286.0 MiB (77.9 MiB/s) with 3 file(s) remaining
+Completed 56.3 MiB/286.0 MiB (78.2 MiB/s) with 3 file(s) remaining
+Completed 56.6 MiB/286.0 MiB (78.5 MiB/s) with 3 file(s) remaining
+Completed 56.8 MiB/286.0 MiB (78.8 MiB/s) with 3 file(s) remaining
+Completed 57.1 MiB/286.0 MiB (79.1 MiB/s) with 3 file(s) remaining
+Completed 57.3 MiB/286.0 MiB (79.4 MiB/s) with 3 file(s) remaining
+Completed 57.6 MiB/286.0 MiB (79.7 MiB/s) with 3 file(s) remaining
+Completed 57.8 MiB/286.0 MiB (80.0 MiB/s) with 3 file(s) remaining
+Completed 58.1 MiB/286.0 MiB (80.2 MiB/s) with 3 file(s) remaining
+Completed 58.3 MiB/286.0 MiB (80.5 MiB/s) with 3 file(s) remaining
+Completed 58.6 MiB/286.0 MiB (80.8 MiB/s) with 3 file(s) remaining
+Completed 58.8 MiB/286.0 MiB (81.1 MiB/s) with 3 file(s) remaining
+Completed 59.1 MiB/286.0 MiB (81.2 MiB/s) with 3 file(s) remaining
+Completed 59.3 MiB/286.0 MiB (81.4 MiB/s) with 3 file(s) remaining
+Completed 59.6 MiB/286.0 MiB (81.7 MiB/s) with 3 file(s) remaining
+Completed 59.8 MiB/286.0 MiB (82.0 MiB/s) with 3 file(s) remaining
+Completed 60.1 MiB/286.0 MiB (82.2 MiB/s) with 3 file(s) remaining
+Completed 60.3 MiB/286.0 MiB (82.5 MiB/s) with 3 file(s) remaining
+Completed 60.6 MiB/286.0 MiB (82.6 MiB/s) with 3 file(s) remaining
+Completed 60.8 MiB/286.0 MiB (82.9 MiB/s) with 3 file(s) remaining
+Completed 61.1 MiB/286.0 MiB (83.2 MiB/s) with 3 file(s) remaining
+Completed 61.3 MiB/286.0 MiB (83.3 MiB/s) with 3 file(s) remaining
+Completed 61.6 MiB/286.0 MiB (83.6 MiB/s) with 3 file(s) remaining
+Completed 61.8 MiB/286.0 MiB (83.9 MiB/s) with 3 file(s) remaining
+Completed 62.1 MiB/286.0 MiB (84.1 MiB/s) with 3 file(s) remaining
+Completed 62.3 MiB/286.0 MiB (84.3 MiB/s) with 3 file(s) remaining
+Completed 62.6 MiB/286.0 MiB (84.6 MiB/s) with 3 file(s) remaining
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Completed 62.8 MiB/286.0 MiB (84.9 MiB/s) with 3 file(s) remaining
+Completed 63.1 MiB/286.0 MiB (85.1 MiB/s) with 3 file(s) remaining
+Completed 63.3 MiB/286.0 MiB (85.3 MiB/s) with 3 file(s) remaining
+Completed 63.6 MiB/286.0 MiB (85.6 MiB/s) with 3 file(s) remaining
+Completed 63.8 MiB/286.0 MiB (85.9 MiB/s) with 3 file(s) remaining
+Completed 64.1 MiB/286.0 MiB (86.1 MiB/s) with 3 file(s) remaining
+Completed 64.3 MiB/286.0 MiB (86.4 MiB/s) with 3 file(s) remaining
+Completed 64.6 MiB/286.0 MiB (86.6 MiB/s) with 3 file(s) remaining
+Completed 64.8 MiB/286.0 MiB (86.9 MiB/s) with 3 file(s) remaining
+Completed 65.1 MiB/286.0 MiB (87.2 MiB/s) with 3 file(s) remaining
+Completed 65.3 MiB/286.0 MiB (87.5 MiB/s) with 3 file(s) remaining
+Completed 65.6 MiB/286.0 MiB (87.7 MiB/s) with 3 file(s) remaining
+Completed 65.8 MiB/286.0 MiB (88.0 MiB/s) with 3 file(s) remaining
+Completed 66.1 MiB/286.0 MiB (88.2 MiB/s) with 3 file(s) remaining
+Completed 66.3 MiB/286.0 MiB (88.4 MiB/s) with 3 file(s) remaining
+Completed 66.6 MiB/286.0 MiB (88.5 MiB/s) with 3 file(s) remaining
+Completed 66.8 MiB/286.0 MiB (88.7 MiB/s) with 3 file(s) remaining
+Completed 67.1 MiB/286.0 MiB (88.9 MiB/s) with 3 file(s) remaining
+Completed 67.3 MiB/286.0 MiB (89.2 MiB/s) with 3 file(s) remaining
+Completed 67.6 MiB/286.0 MiB (89.2 MiB/s) with 3 file(s) remaining
+Completed 67.8 MiB/286.0 MiB (89.5 MiB/s) with 3 file(s) remaining
+Completed 68.1 MiB/286.0 MiB (89.7 MiB/s) with 3 file(s) remaining
+Completed 68.3 MiB/286.0 MiB (90.0 MiB/s) with 3 file(s) remaining
+Completed 68.6 MiB/286.0 MiB (90.2 MiB/s) with 3 file(s) remaining
+Completed 68.8 MiB/286.0 MiB (90.5 MiB/s) with 3 file(s) remaining
+Completed 69.1 MiB/286.0 MiB (90.8 MiB/s) with 3 file(s) remaining
+Completed 69.3 MiB/286.0 MiB (91.0 MiB/s) with 3 file(s) remaining
+Completed 69.6 MiB/286.0 MiB (91.2 MiB/s) with 3 file(s) remaining
+Completed 69.8 MiB/286.0 MiB (91.4 MiB/s) with 3 file(s) remaining
+Completed 70.1 MiB/286.0 MiB (91.7 MiB/s) with 3 file(s) remaining
+Completed 70.3 MiB/286.0 MiB (91.9 MiB/s) with 3 file(s) remaining
+Completed 70.6 MiB/286.0 MiB (92.2 MiB/s) with 3 file(s) remaining
+Completed 70.8 MiB/286.0 MiB (92.5 MiB/s) with 3 file(s) remaining
+Completed 71.1 MiB/286.0 MiB (92.8 MiB/s) with 3 file(s) remaining
+Completed 71.3 MiB/286.0 MiB (93.0 MiB/s) with 3 file(s) remaining
+Completed 71.6 MiB/286.0 MiB (93.3 MiB/s) with 3 file(s) remaining
+Completed 71.6 MiB/286.0 MiB (93.2 MiB/s) with 3 file(s) remaining
+Completed 71.9 MiB/286.0 MiB (93.3 MiB/s) with 3 file(s) remaining
+Completed 72.1 MiB/286.0 MiB (93.4 MiB/s) with 3 file(s) remaining
+Completed 72.4 MiB/286.0 MiB (93.5 MiB/s) with 3 file(s) remaining
+Completed 72.6 MiB/286.0 MiB (93.8 MiB/s) with 3 file(s) remaining
+Completed 72.9 MiB/286.0 MiB (93.9 MiB/s) with 3 file(s) remaining
+Completed 73.1 MiB/286.0 MiB (94.0 MiB/s) with 3 file(s) remaining
+Completed 73.4 MiB/286.0 MiB (94.3 MiB/s) with 3 file(s) remaining
+Completed 73.6 MiB/286.0 MiB (94.6 MiB/s) with 3 file(s) remaining
+Completed 73.9 MiB/286.0 MiB (94.6 MiB/s) with 3 file(s) remaining
+Completed 74.1 MiB/286.0 MiB (94.9 MiB/s) with 3 file(s) remaining
+Completed 74.4 MiB/286.0 MiB (94.9 MiB/s) with 3 file(s) remaining
+Completed 74.6 MiB/286.0 MiB (95.1 MiB/s) with 3 file(s) remaining
+Completed 74.9 MiB/286.0 MiB (95.3 MiB/s) with 3 file(s) remaining
+Completed 75.1 MiB/286.0 MiB (95.4 MiB/s) with 3 file(s) remaining
+Completed 75.4 MiB/286.0 MiB (95.7 MiB/s) with 3 file(s) remaining
+Completed 75.6 MiB/286.0 MiB (95.9 MiB/s) with 3 file(s) remaining
+Completed 75.9 MiB/286.0 MiB (96.2 MiB/s) with 3 file(s) remaining
+Completed 76.1 MiB/286.0 MiB (96.4 MiB/s) with 3 file(s) remaining
+Completed 76.4 MiB/286.0 MiB (96.6 MiB/s) with 3 file(s) remaining
+Completed 76.6 MiB/286.0 MiB (96.8 MiB/s) with 3 file(s) remaining
+Completed 76.9 MiB/286.0 MiB (97.0 MiB/s) with 3 file(s) remaining
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Completed 77.1 MiB/286.0 MiB (97.2 MiB/s) with 3 file(s) remaining
+Completed 77.4 MiB/286.0 MiB (97.3 MiB/s) with 3 file(s) remaining
+Completed 77.6 MiB/286.0 MiB (97.1 MiB/s) with 3 file(s) remaining
+Completed 77.9 MiB/286.0 MiB (97.3 MiB/s) with 3 file(s) remaining
+Completed 78.1 MiB/286.0 MiB (97.6 MiB/s) with 3 file(s) remaining
+Completed 78.4 MiB/286.0 MiB (97.7 MiB/s) with 3 file(s) remaining
+Completed 78.6 MiB/286.0 MiB (97.9 MiB/s) with 3 file(s) remaining
+Completed 78.9 MiB/286.0 MiB (98.1 MiB/s) with 3 file(s) remaining
+Completed 79.1 MiB/286.0 MiB (98.2 MiB/s) with 3 file(s) remaining
+download: s3://openneuro.org/ds003477/derivatives/pattern_estimation/sub-03/ses-1/patterns/sub-03_ses-1_task-face_run-1_space-MNI152NLin2009cAsym_desc-trial_varbeta.nii.gz to ../../../../../../NI-edu-data/derivatives/pattern_estimation/sub-03/ses-1/patterns/sub-03_ses-1_task-face_run-1_space-MNI152NLin2009cAsym_desc-trial_varbeta.nii.gz
+Completed 79.1 MiB/286.0 MiB (98.2 MiB/s) with 2 file(s) remaining
+download: s3://openneuro.org/ds003477/derivatives/pattern_estimation/sub-03/ses-1/patterns/sub-03_ses-1_task-face_run-1_space-MNI152NLin2009cAsym_desc-trial_beta.nii.gz to ../../../../../../NI-edu-data/derivatives/pattern_estimation/sub-03/ses-1/patterns/sub-03_ses-1_task-face_run-1_space-MNI152NLin2009cAsym_desc-trial_beta.nii.gz
+Completed 79.1 MiB/286.0 MiB (98.2 MiB/s) with 1 file(s) remaining
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Completed 79.4 MiB/286.0 MiB (94.0 MiB/s) with 1 file(s) remaining
+Completed 79.6 MiB/286.0 MiB (94.1 MiB/s) with 1 file(s) remaining
+Completed 79.9 MiB/286.0 MiB (94.2 MiB/s) with 1 file(s) remaining
+Completed 80.1 MiB/286.0 MiB (94.4 MiB/s) with 1 file(s) remaining
+Completed 80.4 MiB/286.0 MiB (94.6 MiB/s) with 1 file(s) remaining
+Completed 80.6 MiB/286.0 MiB (94.8 MiB/s) with 1 file(s) remaining
+Completed 80.9 MiB/286.0 MiB (95.0 MiB/s) with 1 file(s) remaining
+Completed 81.1 MiB/286.0 MiB (95.2 MiB/s) with 1 file(s) remaining
+Completed 81.4 MiB/286.0 MiB (94.6 MiB/s) with 1 file(s) remaining
+Completed 81.6 MiB/286.0 MiB (94.7 MiB/s) with 1 file(s) remaining
+Completed 81.9 MiB/286.0 MiB (94.8 MiB/s) with 1 file(s) remaining
+Completed 82.1 MiB/286.0 MiB (94.9 MiB/s) with 1 file(s) remaining
+Completed 82.4 MiB/286.0 MiB (95.0 MiB/s) with 1 file(s) remaining
+Completed 82.6 MiB/286.0 MiB (95.2 MiB/s) with 1 file(s) remaining
+Completed 82.9 MiB/286.0 MiB (95.3 MiB/s) with 1 file(s) remaining
+Completed 83.1 MiB/286.0 MiB (95.5 MiB/s) with 1 file(s) remaining
+Completed 83.4 MiB/286.0 MiB (95.6 MiB/s) with 1 file(s) remaining
+Completed 83.6 MiB/286.0 MiB (95.8 MiB/s) with 1 file(s) remaining
+Completed 83.9 MiB/286.0 MiB (96.0 MiB/s) with 1 file(s) remaining
+Completed 84.1 MiB/286.0 MiB (96.1 MiB/s) with 1 file(s) remaining
+Completed 84.4 MiB/286.0 MiB (96.3 MiB/s) with 1 file(s) remaining
+Completed 84.6 MiB/286.0 MiB (96.5 MiB/s) with 1 file(s) remaining
+Completed 84.9 MiB/286.0 MiB (96.7 MiB/s) with 1 file(s) remaining
+Completed 85.1 MiB/286.0 MiB (96.9 MiB/s) with 1 file(s) remaining
+Completed 85.4 MiB/286.0 MiB (97.2 MiB/s) with 1 file(s) remaining
+Completed 85.6 MiB/286.0 MiB (97.3 MiB/s) with 1 file(s) remaining
+Completed 85.9 MiB/286.0 MiB (97.5 MiB/s) with 1 file(s) remaining
+Completed 86.1 MiB/286.0 MiB (97.7 MiB/s) with 1 file(s) remaining
+Completed 86.4 MiB/286.0 MiB (97.9 MiB/s) with 1 file(s) remaining
+Completed 86.6 MiB/286.0 MiB (98.0 MiB/s) with 1 file(s) remaining
+Completed 86.9 MiB/286.0 MiB (98.2 MiB/s) with 1 file(s) remaining
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Completed 87.1 MiB/286.0 MiB (98.3 MiB/s) with 1 file(s) remaining
+Completed 87.4 MiB/286.0 MiB (95.5 MiB/s) with 1 file(s) remaining
+Completed 87.6 MiB/286.0 MiB (95.3 MiB/s) with 1 file(s) remaining
+Completed 87.9 MiB/286.0 MiB (95.3 MiB/s) with 1 file(s) remaining
+Completed 88.1 MiB/286.0 MiB (95.3 MiB/s) with 1 file(s) remaining
+Completed 88.4 MiB/286.0 MiB (95.5 MiB/s) with 1 file(s) remaining
+Completed 88.6 MiB/286.0 MiB (95.6 MiB/s) with 1 file(s) remaining
+Completed 88.9 MiB/286.0 MiB (95.6 MiB/s) with 1 file(s) remaining
+Completed 89.1 MiB/286.0 MiB (95.8 MiB/s) with 1 file(s) remaining
+Completed 89.4 MiB/286.0 MiB (96.0 MiB/s) with 1 file(s) remaining
+Completed 89.6 MiB/286.0 MiB (96.0 MiB/s) with 1 file(s) remaining
+Completed 89.9 MiB/286.0 MiB (96.1 MiB/s) with 1 file(s) remaining
+Completed 90.1 MiB/286.0 MiB (96.1 MiB/s) with 1 file(s) remaining
+Completed 90.4 MiB/286.0 MiB (96.1 MiB/s) with 1 file(s) remaining
+Completed 90.6 MiB/286.0 MiB (96.3 MiB/s) with 1 file(s) remaining
+Completed 90.9 MiB/286.0 MiB (96.5 MiB/s) with 1 file(s) remaining
+Completed 91.1 MiB/286.0 MiB (96.6 MiB/s) with 1 file(s) remaining
+Completed 91.4 MiB/286.0 MiB (96.7 MiB/s) with 1 file(s) remaining
+Completed 91.6 MiB/286.0 MiB (96.9 MiB/s) with 1 file(s) remaining
+Completed 91.9 MiB/286.0 MiB (97.0 MiB/s) with 1 file(s) remaining
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Completed 92.1 MiB/286.0 MiB (97.2 MiB/s) with 1 file(s) remaining
+Completed 92.4 MiB/286.0 MiB (97.3 MiB/s) with 1 file(s) remaining
+Completed 92.6 MiB/286.0 MiB (97.4 MiB/s) with 1 file(s) remaining
+Completed 92.9 MiB/286.0 MiB (97.6 MiB/s) with 1 file(s) remaining
+Completed 93.1 MiB/286.0 MiB (97.7 MiB/s) with 1 file(s) remaining
+Completed 93.4 MiB/286.0 MiB (97.9 MiB/s) with 1 file(s) remaining
+Completed 93.6 MiB/286.0 MiB (98.1 MiB/s) with 1 file(s) remaining
+Completed 93.9 MiB/286.0 MiB (98.2 MiB/s) with 1 file(s) remaining
+Completed 94.1 MiB/286.0 MiB (98.3 MiB/s) with 1 file(s) remaining
+Completed 94.4 MiB/286.0 MiB (98.5 MiB/s) with 1 file(s) remaining
+Completed 94.6 MiB/286.0 MiB (98.5 MiB/s) with 1 file(s) remaining
+Completed 94.9 MiB/286.0 MiB (98.6 MiB/s) with 1 file(s) remaining
+Completed 95.1 MiB/286.0 MiB (98.7 MiB/s) with 1 file(s) remaining
+Completed 95.4 MiB/286.0 MiB (98.8 MiB/s) with 1 file(s) remaining
+Completed 95.6 MiB/286.0 MiB (98.9 MiB/s) with 1 file(s) remaining
+Completed 95.9 MiB/286.0 MiB (98.9 MiB/s) with 1 file(s) remaining
+Completed 96.1 MiB/286.0 MiB (99.0 MiB/s) with 1 file(s) remaining
+Completed 96.4 MiB/286.0 MiB (99.3 MiB/s) with 1 file(s) remaining
+Completed 96.6 MiB/286.0 MiB (99.4 MiB/s) with 1 file(s) remaining
+Completed 96.9 MiB/286.0 MiB (99.6 MiB/s) with 1 file(s) remaining
+Completed 97.1 MiB/286.0 MiB (99.7 MiB/s) with 1 file(s) remaining
+Completed 97.4 MiB/286.0 MiB (99.9 MiB/s) with 1 file(s) remaining
+Completed 97.6 MiB/286.0 MiB (100.1 MiB/s) with 1 file(s) remaining
+Completed 97.9 MiB/286.0 MiB (100.2 MiB/s) with 1 file(s) remaining
+Completed 98.1 MiB/286.0 MiB (100.4 MiB/s) with 1 file(s) remaining
+Completed 98.4 MiB/286.0 MiB (100.6 MiB/s) with 1 file(s) remaining
+Completed 98.6 MiB/286.0 MiB (100.8 MiB/s) with 1 file(s) remaining
+Completed 98.9 MiB/286.0 MiB (100.6 MiB/s) with 1 file(s) remaining
+Completed 99.1 MiB/286.0 MiB (100.8 MiB/s) with 1 file(s) remaining
+Completed 99.4 MiB/286.0 MiB (101.0 MiB/s) with 1 file(s) remaining
+Completed 99.6 MiB/286.0 MiB (101.2 MiB/s) with 1 file(s) remaining
+Completed 99.9 MiB/286.0 MiB (101.4 MiB/s) with 1 file(s) remaining
+Completed 100.1 MiB/286.0 MiB (101.1 MiB/s) with 1 file(s) remaining
+Completed 100.4 MiB/286.0 MiB (101.3 MiB/s) with 1 file(s) remaining
+Completed 100.6 MiB/286.0 MiB (101.5 MiB/s) with 1 file(s) remaining
+Completed 100.9 MiB/286.0 MiB (101.7 MiB/s) with 1 file(s) remaining
+Completed 101.1 MiB/286.0 MiB (101.9 MiB/s) with 1 file(s) remaining
+Completed 101.4 MiB/286.0 MiB (101.9 MiB/s) with 1 file(s) remaining
+Completed 101.6 MiB/286.0 MiB (102.1 MiB/s) with 1 file(s) remaining
+Completed 101.9 MiB/286.0 MiB (102.3 MiB/s) with 1 file(s) remaining
+Completed 102.1 MiB/286.0 MiB (102.5 MiB/s) with 1 file(s) remaining
+Completed 102.4 MiB/286.0 MiB (102.6 MiB/s) with 1 file(s) remaining
+Completed 102.6 MiB/286.0 MiB (102.8 MiB/s) with 1 file(s) remaining
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Completed 102.9 MiB/286.0 MiB (103.0 MiB/s) with 1 file(s) remaining
+Completed 103.1 MiB/286.0 MiB (103.2 MiB/s) with 1 file(s) remaining
+Completed 103.4 MiB/286.0 MiB (103.3 MiB/s) with 1 file(s) remaining
+Completed 103.6 MiB/286.0 MiB (103.5 MiB/s) with 1 file(s) remaining
+Completed 103.9 MiB/286.0 MiB (103.7 MiB/s) with 1 file(s) remaining
+Completed 104.1 MiB/286.0 MiB (103.8 MiB/s) with 1 file(s) remaining
+Completed 104.4 MiB/286.0 MiB (103.9 MiB/s) with 1 file(s) remaining
+Completed 104.6 MiB/286.0 MiB (104.1 MiB/s) with 1 file(s) remaining
+Completed 104.9 MiB/286.0 MiB (104.2 MiB/s) with 1 file(s) remaining
+Completed 105.1 MiB/286.0 MiB (104.4 MiB/s) with 1 file(s) remaining
+Completed 105.4 MiB/286.0 MiB (104.6 MiB/s) with 1 file(s) remaining
+Completed 105.6 MiB/286.0 MiB (104.7 MiB/s) with 1 file(s) remaining
+Completed 105.9 MiB/286.0 MiB (104.9 MiB/s) with 1 file(s) remaining
+Completed 106.1 MiB/286.0 MiB (105.0 MiB/s) with 1 file(s) remaining
+Completed 106.4 MiB/286.0 MiB (105.1 MiB/s) with 1 file(s) remaining
+Completed 106.6 MiB/286.0 MiB (105.3 MiB/s) with 1 file(s) remaining
+Completed 106.9 MiB/286.0 MiB (105.4 MiB/s) with 1 file(s) remaining
+Completed 107.1 MiB/286.0 MiB (105.6 MiB/s) with 1 file(s) remaining
+Completed 107.4 MiB/286.0 MiB (105.7 MiB/s) with 1 file(s) remaining
+Completed 107.6 MiB/286.0 MiB (105.9 MiB/s) with 1 file(s) remaining
+Completed 107.9 MiB/286.0 MiB (106.0 MiB/s) with 1 file(s) remaining
+Completed 108.1 MiB/286.0 MiB (106.2 MiB/s) with 1 file(s) remaining
+Completed 108.4 MiB/286.0 MiB (106.4 MiB/s) with 1 file(s) remaining
+Completed 108.6 MiB/286.0 MiB (106.5 MiB/s) with 1 file(s) remaining
+Completed 108.9 MiB/286.0 MiB (106.7 MiB/s) with 1 file(s) remaining
+Completed 109.1 MiB/286.0 MiB (106.9 MiB/s) with 1 file(s) remaining
+Completed 109.4 MiB/286.0 MiB (107.1 MiB/s) with 1 file(s) remaining
+Completed 109.6 MiB/286.0 MiB (107.2 MiB/s) with 1 file(s) remaining
+Completed 109.9 MiB/286.0 MiB (107.4 MiB/s) with 1 file(s) remaining
+Completed 110.1 MiB/286.0 MiB (107.5 MiB/s) with 1 file(s) remaining
+Completed 110.4 MiB/286.0 MiB (107.7 MiB/s) with 1 file(s) remaining
+Completed 110.6 MiB/286.0 MiB (107.9 MiB/s) with 1 file(s) remaining
+Completed 110.9 MiB/286.0 MiB (108.0 MiB/s) with 1 file(s) remaining
+Completed 111.1 MiB/286.0 MiB (108.3 MiB/s) with 1 file(s) remaining
+Completed 111.4 MiB/286.0 MiB (108.4 MiB/s) with 1 file(s) remaining
+Completed 111.6 MiB/286.0 MiB (108.5 MiB/s) with 1 file(s) remaining
+Completed 111.9 MiB/286.0 MiB (108.7 MiB/s) with 1 file(s) remaining
+Completed 112.1 MiB/286.0 MiB (108.8 MiB/s) with 1 file(s) remaining
+Completed 112.4 MiB/286.0 MiB (109.0 MiB/s) with 1 file(s) remaining
+Completed 112.6 MiB/286.0 MiB (109.1 MiB/s) with 1 file(s) remaining
+Completed 112.9 MiB/286.0 MiB (109.3 MiB/s) with 1 file(s) remaining
+Completed 113.1 MiB/286.0 MiB (109.4 MiB/s) with 1 file(s) remaining
+Completed 113.4 MiB/286.0 MiB (109.5 MiB/s) with 1 file(s) remaining
+Completed 113.6 MiB/286.0 MiB (109.7 MiB/s) with 1 file(s) remaining
+Completed 113.9 MiB/286.0 MiB (109.9 MiB/s) with 1 file(s) remaining
+Completed 114.1 MiB/286.0 MiB (110.0 MiB/s) with 1 file(s) remaining
+Completed 114.4 MiB/286.0 MiB (110.1 MiB/s) with 1 file(s) remaining
+Completed 114.6 MiB/286.0 MiB (110.3 MiB/s) with 1 file(s) remaining
+Completed 114.9 MiB/286.0 MiB (110.5 MiB/s) with 1 file(s) remaining
+Completed 115.1 MiB/286.0 MiB (110.5 MiB/s) with 1 file(s) remaining
+Completed 115.4 MiB/286.0 MiB (110.6 MiB/s) with 1 file(s) remaining
+Completed 115.6 MiB/286.0 MiB (110.7 MiB/s) with 1 file(s) remaining
+Completed 115.9 MiB/286.0 MiB (110.9 MiB/s) with 1 file(s) remaining
+Completed 116.1 MiB/286.0 MiB (111.1 MiB/s) with 1 file(s) remaining
+Completed 116.4 MiB/286.0 MiB (111.2 MiB/s) with 1 file(s) remaining
+Completed 116.6 MiB/286.0 MiB (111.3 MiB/s) with 1 file(s) remaining
+Completed 116.9 MiB/286.0 MiB (111.4 MiB/s) with 1 file(s) remaining
+Completed 117.1 MiB/286.0 MiB (111.5 MiB/s) with 1 file(s) remaining
+Completed 117.4 MiB/286.0 MiB (111.7 MiB/s) with 1 file(s) remaining
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Completed 117.6 MiB/286.0 MiB (111.8 MiB/s) with 1 file(s) remaining
+Completed 117.9 MiB/286.0 MiB (112.0 MiB/s) with 1 file(s) remaining
+Completed 118.1 MiB/286.0 MiB (112.2 MiB/s) with 1 file(s) remaining
+Completed 118.4 MiB/286.0 MiB (112.4 MiB/s) with 1 file(s) remaining
+Completed 118.6 MiB/286.0 MiB (112.5 MiB/s) with 1 file(s) remaining
+Completed 118.9 MiB/286.0 MiB (112.7 MiB/s) with 1 file(s) remaining
+Completed 119.1 MiB/286.0 MiB (112.9 MiB/s) with 1 file(s) remaining
+Completed 119.4 MiB/286.0 MiB (113.0 MiB/s) with 1 file(s) remaining
+Completed 119.6 MiB/286.0 MiB (113.2 MiB/s) with 1 file(s) remaining
+Completed 119.9 MiB/286.0 MiB (113.3 MiB/s) with 1 file(s) remaining
+Completed 120.1 MiB/286.0 MiB (113.5 MiB/s) with 1 file(s) remaining
+Completed 120.4 MiB/286.0 MiB (113.6 MiB/s) with 1 file(s) remaining
+Completed 120.6 MiB/286.0 MiB (113.7 MiB/s) with 1 file(s) remaining
+Completed 120.9 MiB/286.0 MiB (113.9 MiB/s) with 1 file(s) remaining
+Completed 121.1 MiB/286.0 MiB (114.1 MiB/s) with 1 file(s) remaining
+Completed 121.4 MiB/286.0 MiB (114.2 MiB/s) with 1 file(s) remaining
+Completed 121.6 MiB/286.0 MiB (114.3 MiB/s) with 1 file(s) remaining
+Completed 121.9 MiB/286.0 MiB (114.5 MiB/s) with 1 file(s) remaining
+Completed 122.1 MiB/286.0 MiB (114.7 MiB/s) with 1 file(s) remaining
+Completed 122.4 MiB/286.0 MiB (114.8 MiB/s) with 1 file(s) remaining
+Completed 122.6 MiB/286.0 MiB (115.0 MiB/s) with 1 file(s) remaining
+Completed 122.9 MiB/286.0 MiB (115.1 MiB/s) with 1 file(s) remaining
+Completed 123.1 MiB/286.0 MiB (115.2 MiB/s) with 1 file(s) remaining
+Completed 123.4 MiB/286.0 MiB (115.2 MiB/s) with 1 file(s) remaining
+Completed 123.6 MiB/286.0 MiB (115.3 MiB/s) with 1 file(s) remaining
+Completed 123.9 MiB/286.0 MiB (115.5 MiB/s) with 1 file(s) remaining
+Completed 124.1 MiB/286.0 MiB (115.7 MiB/s) with 1 file(s) remaining
+Completed 124.4 MiB/286.0 MiB (115.8 MiB/s) with 1 file(s) remaining
+Completed 124.6 MiB/286.0 MiB (116.0 MiB/s) with 1 file(s) remaining
+Completed 124.9 MiB/286.0 MiB (116.2 MiB/s) with 1 file(s) remaining
+Completed 125.1 MiB/286.0 MiB (116.4 MiB/s) with 1 file(s) remaining
+Completed 125.4 MiB/286.0 MiB (116.5 MiB/s) with 1 file(s) remaining
+Completed 125.6 MiB/286.0 MiB (116.6 MiB/s) with 1 file(s) remaining
+Completed 125.9 MiB/286.0 MiB (116.8 MiB/s) with 1 file(s) remaining
+Completed 126.1 MiB/286.0 MiB (116.8 MiB/s) with 1 file(s) remaining
+Completed 126.4 MiB/286.0 MiB (116.9 MiB/s) with 1 file(s) remaining
+Completed 126.6 MiB/286.0 MiB (117.0 MiB/s) with 1 file(s) remaining
+Completed 126.9 MiB/286.0 MiB (117.2 MiB/s) with 1 file(s) remaining
+Completed 127.1 MiB/286.0 MiB (117.3 MiB/s) with 1 file(s) remaining
+Completed 127.4 MiB/286.0 MiB (117.4 MiB/s) with 1 file(s) remaining
+Completed 127.6 MiB/286.0 MiB (117.6 MiB/s) with 1 file(s) remaining
+Completed 127.9 MiB/286.0 MiB (117.8 MiB/s) with 1 file(s) remaining
+Completed 128.1 MiB/286.0 MiB (117.8 MiB/s) with 1 file(s) remaining
+Completed 128.4 MiB/286.0 MiB (118.0 MiB/s) with 1 file(s) remaining
+Completed 128.6 MiB/286.0 MiB (118.2 MiB/s) with 1 file(s) remaining
+Completed 128.9 MiB/286.0 MiB (118.4 MiB/s) with 1 file(s) remaining
+Completed 129.1 MiB/286.0 MiB (118.6 MiB/s) with 1 file(s) remaining
+Completed 129.4 MiB/286.0 MiB (118.6 MiB/s) with 1 file(s) remaining
+Completed 129.6 MiB/286.0 MiB (118.8 MiB/s) with 1 file(s) remaining
+Completed 129.9 MiB/286.0 MiB (118.9 MiB/s) with 1 file(s) remaining
+Completed 130.1 MiB/286.0 MiB (119.1 MiB/s) with 1 file(s) remaining
+Completed 130.4 MiB/286.0 MiB (119.2 MiB/s) with 1 file(s) remaining
+Completed 130.6 MiB/286.0 MiB (119.4 MiB/s) with 1 file(s) remaining
+Completed 130.9 MiB/286.0 MiB (119.5 MiB/s) with 1 file(s) remaining
+Completed 131.1 MiB/286.0 MiB (119.7 MiB/s) with 1 file(s) remaining
+Completed 131.4 MiB/286.0 MiB (119.7 MiB/s) with 1 file(s) remaining
+Completed 131.6 MiB/286.0 MiB (119.8 MiB/s) with 1 file(s) remaining
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Completed 131.9 MiB/286.0 MiB (120.0 MiB/s) with 1 file(s) remaining
+Completed 132.1 MiB/286.0 MiB (120.2 MiB/s) with 1 file(s) remaining
+Completed 132.4 MiB/286.0 MiB (120.3 MiB/s) with 1 file(s) remaining
+Completed 132.6 MiB/286.0 MiB (120.4 MiB/s) with 1 file(s) remaining
+Completed 132.9 MiB/286.0 MiB (120.6 MiB/s) with 1 file(s) remaining
+Completed 133.1 MiB/286.0 MiB (120.8 MiB/s) with 1 file(s) remaining
+Completed 133.4 MiB/286.0 MiB (120.9 MiB/s) with 1 file(s) remaining
+Completed 133.6 MiB/286.0 MiB (121.1 MiB/s) with 1 file(s) remaining
+Completed 133.9 MiB/286.0 MiB (121.3 MiB/s) with 1 file(s) remaining
+Completed 134.1 MiB/286.0 MiB (121.4 MiB/s) with 1 file(s) remaining
+Completed 134.4 MiB/286.0 MiB (121.6 MiB/s) with 1 file(s) remaining
+Completed 134.6 MiB/286.0 MiB (121.8 MiB/s) with 1 file(s) remaining
+Completed 134.9 MiB/286.0 MiB (122.0 MiB/s) with 1 file(s) remaining
+Completed 135.1 MiB/286.0 MiB (122.1 MiB/s) with 1 file(s) remaining
+Completed 135.4 MiB/286.0 MiB (122.3 MiB/s) with 1 file(s) remaining
+Completed 135.6 MiB/286.0 MiB (122.5 MiB/s) with 1 file(s) remaining
+Completed 135.9 MiB/286.0 MiB (122.7 MiB/s) with 1 file(s) remaining
+Completed 136.1 MiB/286.0 MiB (122.8 MiB/s) with 1 file(s) remaining
+Completed 136.4 MiB/286.0 MiB (123.0 MiB/s) with 1 file(s) remaining
+Completed 136.6 MiB/286.0 MiB (123.1 MiB/s) with 1 file(s) remaining
+Completed 136.9 MiB/286.0 MiB (123.3 MiB/s) with 1 file(s) remaining
+Completed 137.1 MiB/286.0 MiB (123.5 MiB/s) with 1 file(s) remaining
+Completed 137.4 MiB/286.0 MiB (123.7 MiB/s) with 1 file(s) remaining
+Completed 137.6 MiB/286.0 MiB (123.8 MiB/s) with 1 file(s) remaining
+Completed 137.9 MiB/286.0 MiB (124.0 MiB/s) with 1 file(s) remaining
+Completed 138.1 MiB/286.0 MiB (124.0 MiB/s) with 1 file(s) remaining
+Completed 138.4 MiB/286.0 MiB (124.2 MiB/s) with 1 file(s) remaining
+Completed 138.6 MiB/286.0 MiB (124.4 MiB/s) with 1 file(s) remaining
+Completed 138.9 MiB/286.0 MiB (124.5 MiB/s) with 1 file(s) remaining
+Completed 139.1 MiB/286.0 MiB (124.6 MiB/s) with 1 file(s) remaining
+Completed 139.4 MiB/286.0 MiB (124.7 MiB/s) with 1 file(s) remaining
+Completed 139.6 MiB/286.0 MiB (124.9 MiB/s) with 1 file(s) remaining
+Completed 139.9 MiB/286.0 MiB (124.9 MiB/s) with 1 file(s) remaining
+Completed 140.1 MiB/286.0 MiB (125.1 MiB/s) with 1 file(s) remaining
+Completed 140.4 MiB/286.0 MiB (125.3 MiB/s) with 1 file(s) remaining
+Completed 140.6 MiB/286.0 MiB (125.4 MiB/s) with 1 file(s) remaining
+Completed 140.9 MiB/286.0 MiB (125.5 MiB/s) with 1 file(s) remaining
+Completed 141.1 MiB/286.0 MiB (125.7 MiB/s) with 1 file(s) remaining
+Completed 141.4 MiB/286.0 MiB (125.8 MiB/s) with 1 file(s) remaining
+Completed 141.6 MiB/286.0 MiB (125.9 MiB/s) with 1 file(s) remaining
+Completed 141.9 MiB/286.0 MiB (126.0 MiB/s) with 1 file(s) remaining
+Completed 142.1 MiB/286.0 MiB (126.2 MiB/s) with 1 file(s) remaining
+Completed 142.4 MiB/286.0 MiB (126.4 MiB/s) with 1 file(s) remaining
+Completed 142.6 MiB/286.0 MiB (126.5 MiB/s) with 1 file(s) remaining
+Completed 142.9 MiB/286.0 MiB (126.6 MiB/s) with 1 file(s) remaining
+Completed 143.1 MiB/286.0 MiB (126.8 MiB/s) with 1 file(s) remaining
+Completed 143.4 MiB/286.0 MiB (127.0 MiB/s) with 1 file(s) remaining
+Completed 143.6 MiB/286.0 MiB (127.1 MiB/s) with 1 file(s) remaining
+Completed 143.9 MiB/286.0 MiB (127.2 MiB/s) with 1 file(s) remaining
+Completed 144.1 MiB/286.0 MiB (127.4 MiB/s) with 1 file(s) remaining
+Completed 144.4 MiB/286.0 MiB (127.5 MiB/s) with 1 file(s) remaining
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Completed 144.6 MiB/286.0 MiB (127.7 MiB/s) with 1 file(s) remaining
+Completed 144.9 MiB/286.0 MiB (127.9 MiB/s) with 1 file(s) remaining
+Completed 145.1 MiB/286.0 MiB (128.0 MiB/s) with 1 file(s) remaining
+Completed 145.4 MiB/286.0 MiB (128.2 MiB/s) with 1 file(s) remaining
+Completed 145.6 MiB/286.0 MiB (128.3 MiB/s) with 1 file(s) remaining
+Completed 145.9 MiB/286.0 MiB (128.5 MiB/s) with 1 file(s) remaining
+Completed 146.1 MiB/286.0 MiB (128.5 MiB/s) with 1 file(s) remaining
+Completed 146.4 MiB/286.0 MiB (128.6 MiB/s) with 1 file(s) remaining
+Completed 146.6 MiB/286.0 MiB (128.8 MiB/s) with 1 file(s) remaining
+Completed 146.9 MiB/286.0 MiB (128.9 MiB/s) with 1 file(s) remaining
+Completed 147.1 MiB/286.0 MiB (129.1 MiB/s) with 1 file(s) remaining
+Completed 147.4 MiB/286.0 MiB (129.2 MiB/s) with 1 file(s) remaining
+Completed 147.6 MiB/286.0 MiB (129.4 MiB/s) with 1 file(s) remaining
+Completed 147.9 MiB/286.0 MiB (129.1 MiB/s) with 1 file(s) remaining
+Completed 148.1 MiB/286.0 MiB (129.2 MiB/s) with 1 file(s) remaining
+Completed 148.4 MiB/286.0 MiB (129.3 MiB/s) with 1 file(s) remaining
+Completed 148.6 MiB/286.0 MiB (129.4 MiB/s) with 1 file(s) remaining
+Completed 148.9 MiB/286.0 MiB (129.6 MiB/s) with 1 file(s) remaining
+Completed 149.1 MiB/286.0 MiB (129.4 MiB/s) with 1 file(s) remaining
+Completed 149.4 MiB/286.0 MiB (129.6 MiB/s) with 1 file(s) remaining
+Completed 149.6 MiB/286.0 MiB (129.7 MiB/s) with 1 file(s) remaining
+Completed 149.9 MiB/286.0 MiB (129.8 MiB/s) with 1 file(s) remaining
+Completed 150.1 MiB/286.0 MiB (130.0 MiB/s) with 1 file(s) remaining
+Completed 150.4 MiB/286.0 MiB (130.1 MiB/s) with 1 file(s) remaining
+Completed 150.6 MiB/286.0 MiB (130.2 MiB/s) with 1 file(s) remaining
+Completed 150.9 MiB/286.0 MiB (130.4 MiB/s) with 1 file(s) remaining
+Completed 151.1 MiB/286.0 MiB (130.5 MiB/s) with 1 file(s) remaining
+Completed 151.4 MiB/286.0 MiB (130.7 MiB/s) with 1 file(s) remaining
+Completed 151.6 MiB/286.0 MiB (130.8 MiB/s) with 1 file(s) remaining
+Completed 151.9 MiB/286.0 MiB (131.0 MiB/s) with 1 file(s) remaining
+Completed 152.1 MiB/286.0 MiB (131.1 MiB/s) with 1 file(s) remaining
+Completed 152.4 MiB/286.0 MiB (131.1 MiB/s) with 1 file(s) remaining
+Completed 152.6 MiB/286.0 MiB (131.2 MiB/s) with 1 file(s) remaining
+Completed 152.9 MiB/286.0 MiB (131.3 MiB/s) with 1 file(s) remaining
+Completed 153.1 MiB/286.0 MiB (131.4 MiB/s) with 1 file(s) remaining
+Completed 153.4 MiB/286.0 MiB (131.5 MiB/s) with 1 file(s) remaining
+Completed 153.6 MiB/286.0 MiB (131.7 MiB/s) with 1 file(s) remaining
+Completed 153.9 MiB/286.0 MiB (131.8 MiB/s) with 1 file(s) remaining
+Completed 154.1 MiB/286.0 MiB (131.9 MiB/s) with 1 file(s) remaining
+Completed 154.4 MiB/286.0 MiB (132.0 MiB/s) with 1 file(s) remaining
+Completed 154.6 MiB/286.0 MiB (132.0 MiB/s) with 1 file(s) remaining
+Completed 154.9 MiB/286.0 MiB (132.0 MiB/s) with 1 file(s) remaining
+Completed 155.1 MiB/286.0 MiB (132.2 MiB/s) with 1 file(s) remaining
+Completed 155.4 MiB/286.0 MiB (132.3 MiB/s) with 1 file(s) remaining
+Completed 155.6 MiB/286.0 MiB (132.5 MiB/s) with 1 file(s) remaining
+Completed 155.9 MiB/286.0 MiB (132.6 MiB/s) with 1 file(s) remaining
+Completed 156.1 MiB/286.0 MiB (132.7 MiB/s) with 1 file(s) remaining
+Completed 156.4 MiB/286.0 MiB (132.9 MiB/s) with 1 file(s) remaining
+Completed 156.6 MiB/286.0 MiB (133.0 MiB/s) with 1 file(s) remaining
+Completed 156.9 MiB/286.0 MiB (133.1 MiB/s) with 1 file(s) remaining
+Completed 157.1 MiB/286.0 MiB (132.4 MiB/s) with 1 file(s) remaining
+Completed 157.4 MiB/286.0 MiB (132.1 MiB/s) with 1 file(s) remaining
+Completed 157.6 MiB/286.0 MiB (132.2 MiB/s) with 1 file(s) remaining
+Completed 157.9 MiB/286.0 MiB (132.4 MiB/s) with 1 file(s) remaining
+Completed 158.1 MiB/286.0 MiB (131.8 MiB/s) with 1 file(s) remaining
+Completed 158.4 MiB/286.0 MiB (131.8 MiB/s) with 1 file(s) remaining
+Completed 158.6 MiB/286.0 MiB (131.8 MiB/s) with 1 file(s) remaining
+Completed 158.9 MiB/286.0 MiB (131.8 MiB/s) with 1 file(s) remaining
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Completed 159.1 MiB/286.0 MiB (131.5 MiB/s) with 1 file(s) remaining
+Completed 159.4 MiB/286.0 MiB (131.5 MiB/s) with 1 file(s) remaining
+Completed 159.6 MiB/286.0 MiB (131.5 MiB/s) with 1 file(s) remaining
+Completed 159.9 MiB/286.0 MiB (131.6 MiB/s) with 1 file(s) remaining
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Completed 160.1 MiB/286.0 MiB (126.2 MiB/s) with 1 file(s) remaining
+Completed 160.4 MiB/286.0 MiB (126.2 MiB/s) with 1 file(s) remaining
+Completed 160.6 MiB/286.0 MiB (126.3 MiB/s) with 1 file(s) remaining
+Completed 160.9 MiB/286.0 MiB (126.3 MiB/s) with 1 file(s) remaining
+Completed 161.1 MiB/286.0 MiB (126.4 MiB/s) with 1 file(s) remaining
+Completed 161.4 MiB/286.0 MiB (126.5 MiB/s) with 1 file(s) remaining
+Completed 161.6 MiB/286.0 MiB (126.6 MiB/s) with 1 file(s) remaining
+Completed 161.9 MiB/286.0 MiB (126.7 MiB/s) with 1 file(s) remaining
+Completed 162.1 MiB/286.0 MiB (126.8 MiB/s) with 1 file(s) remaining
+Completed 162.4 MiB/286.0 MiB (126.9 MiB/s) with 1 file(s) remaining
+Completed 162.6 MiB/286.0 MiB (126.0 MiB/s) with 1 file(s) remaining
+Completed 162.9 MiB/286.0 MiB (126.2 MiB/s) with 1 file(s) remaining
+Completed 163.1 MiB/286.0 MiB (125.9 MiB/s) with 1 file(s) remaining
+Completed 163.4 MiB/286.0 MiB (125.8 MiB/s) with 1 file(s) remaining
+Completed 163.6 MiB/286.0 MiB (126.0 MiB/s) with 1 file(s) remaining
+Completed 163.9 MiB/286.0 MiB (125.9 MiB/s) with 1 file(s) remaining
+Completed 164.1 MiB/286.0 MiB (126.0 MiB/s) with 1 file(s) remaining
+Completed 164.4 MiB/286.0 MiB (126.1 MiB/s) with 1 file(s) remaining
+Completed 164.6 MiB/286.0 MiB (126.2 MiB/s) with 1 file(s) remaining
+Completed 164.9 MiB/286.0 MiB (126.3 MiB/s) with 1 file(s) remaining
+Completed 165.1 MiB/286.0 MiB (126.4 MiB/s) with 1 file(s) remaining
+Completed 165.4 MiB/286.0 MiB (126.6 MiB/s) with 1 file(s) remaining
+Completed 165.6 MiB/286.0 MiB (126.7 MiB/s) with 1 file(s) remaining
+Completed 165.9 MiB/286.0 MiB (126.8 MiB/s) with 1 file(s) remaining
+Completed 166.1 MiB/286.0 MiB (126.8 MiB/s) with 1 file(s) remaining
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Completed 166.4 MiB/286.0 MiB (126.9 MiB/s) with 1 file(s) remaining
+Completed 166.6 MiB/286.0 MiB (127.0 MiB/s) with 1 file(s) remaining
+Completed 166.9 MiB/286.0 MiB (127.0 MiB/s) with 1 file(s) remaining
+Completed 167.1 MiB/286.0 MiB (126.7 MiB/s) with 1 file(s) remaining
+Completed 167.4 MiB/286.0 MiB (126.8 MiB/s) with 1 file(s) remaining
+Completed 167.6 MiB/286.0 MiB (127.0 MiB/s) with 1 file(s) remaining
+Completed 167.9 MiB/286.0 MiB (126.7 MiB/s) with 1 file(s) remaining
+Completed 168.1 MiB/286.0 MiB (126.8 MiB/s) with 1 file(s) remaining
+Completed 168.4 MiB/286.0 MiB (126.9 MiB/s) with 1 file(s) remaining
+Completed 168.6 MiB/286.0 MiB (127.0 MiB/s) with 1 file(s) remaining
+Completed 168.9 MiB/286.0 MiB (127.1 MiB/s) with 1 file(s) remaining
+Completed 169.1 MiB/286.0 MiB (127.3 MiB/s) with 1 file(s) remaining
+Completed 169.4 MiB/286.0 MiB (127.3 MiB/s) with 1 file(s) remaining
+Completed 169.6 MiB/286.0 MiB (127.4 MiB/s) with 1 file(s) remaining
+Completed 169.9 MiB/286.0 MiB (127.5 MiB/s) with 1 file(s) remaining
+Completed 170.1 MiB/286.0 MiB (127.7 MiB/s) with 1 file(s) remaining
+Completed 170.4 MiB/286.0 MiB (127.8 MiB/s) with 1 file(s) remaining
+Completed 170.6 MiB/286.0 MiB (127.9 MiB/s) with 1 file(s) remaining
+Completed 170.9 MiB/286.0 MiB (128.1 MiB/s) with 1 file(s) remaining
+Completed 171.1 MiB/286.0 MiB (128.2 MiB/s) with 1 file(s) remaining
+Completed 171.4 MiB/286.0 MiB (128.3 MiB/s) with 1 file(s) remaining
+Completed 171.6 MiB/286.0 MiB (128.3 MiB/s) with 1 file(s) remaining
+Completed 171.9 MiB/286.0 MiB (128.3 MiB/s) with 1 file(s) remaining
+Completed 172.1 MiB/286.0 MiB (128.5 MiB/s) with 1 file(s) remaining
+Completed 172.4 MiB/286.0 MiB (128.4 MiB/s) with 1 file(s) remaining
+Completed 172.6 MiB/286.0 MiB (128.4 MiB/s) with 1 file(s) remaining
+Completed 172.9 MiB/286.0 MiB (128.4 MiB/s) with 1 file(s) remaining
+Completed 173.1 MiB/286.0 MiB (128.5 MiB/s) with 1 file(s) remaining
+Completed 173.4 MiB/286.0 MiB (128.4 MiB/s) with 1 file(s) remaining
+Completed 173.6 MiB/286.0 MiB (128.5 MiB/s) with 1 file(s) remaining
+Completed 173.9 MiB/286.0 MiB (128.6 MiB/s) with 1 file(s) remaining
+Completed 174.1 MiB/286.0 MiB (128.7 MiB/s) with 1 file(s) remaining
+Completed 174.4 MiB/286.0 MiB (128.8 MiB/s) with 1 file(s) remaining
+Completed 174.6 MiB/286.0 MiB (128.7 MiB/s) with 1 file(s) remaining
+Completed 174.9 MiB/286.0 MiB (128.9 MiB/s) with 1 file(s) remaining
+Completed 175.1 MiB/286.0 MiB (128.9 MiB/s) with 1 file(s) remaining
+Completed 175.4 MiB/286.0 MiB (129.1 MiB/s) with 1 file(s) remaining
+Completed 175.6 MiB/286.0 MiB (129.2 MiB/s) with 1 file(s) remaining
+Completed 175.9 MiB/286.0 MiB (129.3 MiB/s) with 1 file(s) remaining
+Completed 176.1 MiB/286.0 MiB (129.4 MiB/s) with 1 file(s) remaining
+Completed 176.4 MiB/286.0 MiB (129.5 MiB/s) with 1 file(s) remaining
+Completed 176.6 MiB/286.0 MiB (129.6 MiB/s) with 1 file(s) remaining
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Completed 176.9 MiB/286.0 MiB (129.6 MiB/s) with 1 file(s) remaining
+Completed 177.1 MiB/286.0 MiB (129.8 MiB/s) with 1 file(s) remaining
+Completed 177.4 MiB/286.0 MiB (129.9 MiB/s) with 1 file(s) remaining
+Completed 177.6 MiB/286.0 MiB (130.0 MiB/s) with 1 file(s) remaining
+Completed 177.9 MiB/286.0 MiB (130.0 MiB/s) with 1 file(s) remaining
+Completed 178.1 MiB/286.0 MiB (130.1 MiB/s) with 1 file(s) remaining
+Completed 178.4 MiB/286.0 MiB (130.2 MiB/s) with 1 file(s) remaining
+Completed 178.6 MiB/286.0 MiB (130.4 MiB/s) with 1 file(s) remaining
+Completed 178.9 MiB/286.0 MiB (130.4 MiB/s) with 1 file(s) remaining
+Completed 179.1 MiB/286.0 MiB (130.5 MiB/s) with 1 file(s) remaining
+Completed 179.4 MiB/286.0 MiB (130.6 MiB/s) with 1 file(s) remaining
+Completed 179.6 MiB/286.0 MiB (130.7 MiB/s) with 1 file(s) remaining
+Completed 179.9 MiB/286.0 MiB (130.8 MiB/s) with 1 file(s) remaining
+Completed 180.1 MiB/286.0 MiB (130.9 MiB/s) with 1 file(s) remaining
+Completed 180.4 MiB/286.0 MiB (131.0 MiB/s) with 1 file(s) remaining
+Completed 180.6 MiB/286.0 MiB (131.1 MiB/s) with 1 file(s) remaining
+Completed 180.9 MiB/286.0 MiB (131.2 MiB/s) with 1 file(s) remaining
+Completed 181.1 MiB/286.0 MiB (131.3 MiB/s) with 1 file(s) remaining
+Completed 181.4 MiB/286.0 MiB (131.4 MiB/s) with 1 file(s) remaining
+Completed 181.6 MiB/286.0 MiB (131.6 MiB/s) with 1 file(s) remaining
+Completed 181.9 MiB/286.0 MiB (131.5 MiB/s) with 1 file(s) remaining
+Completed 182.1 MiB/286.0 MiB (131.6 MiB/s) with 1 file(s) remaining
+Completed 182.4 MiB/286.0 MiB (131.7 MiB/s) with 1 file(s) remaining
+Completed 182.6 MiB/286.0 MiB (131.7 MiB/s) with 1 file(s) remaining
+Completed 182.9 MiB/286.0 MiB (131.8 MiB/s) with 1 file(s) remaining
+Completed 183.1 MiB/286.0 MiB (131.9 MiB/s) with 1 file(s) remaining
+Completed 183.4 MiB/286.0 MiB (132.0 MiB/s) with 1 file(s) remaining
+Completed 183.6 MiB/286.0 MiB (132.1 MiB/s) with 1 file(s) remaining
+Completed 183.9 MiB/286.0 MiB (132.2 MiB/s) with 1 file(s) remaining
+Completed 184.1 MiB/286.0 MiB (132.3 MiB/s) with 1 file(s) remaining
+Completed 184.4 MiB/286.0 MiB (132.3 MiB/s) with 1 file(s) remaining
+Completed 184.6 MiB/286.0 MiB (132.4 MiB/s) with 1 file(s) remaining
+Completed 184.9 MiB/286.0 MiB (132.6 MiB/s) with 1 file(s) remaining
+Completed 185.1 MiB/286.0 MiB (132.7 MiB/s) with 1 file(s) remaining
+Completed 185.4 MiB/286.0 MiB (132.7 MiB/s) with 1 file(s) remaining
+Completed 185.6 MiB/286.0 MiB (132.8 MiB/s) with 1 file(s) remaining
+Completed 185.9 MiB/286.0 MiB (132.9 MiB/s) with 1 file(s) remaining
+Completed 186.1 MiB/286.0 MiB (132.9 MiB/s) with 1 file(s) remaining
+Completed 186.4 MiB/286.0 MiB (133.0 MiB/s) with 1 file(s) remaining
+Completed 186.6 MiB/286.0 MiB (133.1 MiB/s) with 1 file(s) remaining
+Completed 186.9 MiB/286.0 MiB (133.2 MiB/s) with 1 file(s) remaining
+Completed 187.1 MiB/286.0 MiB (133.3 MiB/s) with 1 file(s) remaining
+Completed 187.4 MiB/286.0 MiB (133.4 MiB/s) with 1 file(s) remaining
+Completed 187.6 MiB/286.0 MiB (133.5 MiB/s) with 1 file(s) remaining
+Completed 187.9 MiB/286.0 MiB (133.6 MiB/s) with 1 file(s) remaining
+Completed 188.1 MiB/286.0 MiB (133.7 MiB/s) with 1 file(s) remaining
+Completed 188.4 MiB/286.0 MiB (133.8 MiB/s) with 1 file(s) remaining
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Completed 188.6 MiB/286.0 MiB (133.8 MiB/s) with 1 file(s) remaining
+Completed 188.9 MiB/286.0 MiB (133.9 MiB/s) with 1 file(s) remaining
+Completed 189.1 MiB/286.0 MiB (134.0 MiB/s) with 1 file(s) remaining
+Completed 189.4 MiB/286.0 MiB (134.1 MiB/s) with 1 file(s) remaining
+Completed 189.6 MiB/286.0 MiB (134.1 MiB/s) with 1 file(s) remaining
+Completed 189.9 MiB/286.0 MiB (134.3 MiB/s) with 1 file(s) remaining
+Completed 190.1 MiB/286.0 MiB (134.4 MiB/s) with 1 file(s) remaining
+Completed 190.4 MiB/286.0 MiB (134.5 MiB/s) with 1 file(s) remaining
+Completed 190.6 MiB/286.0 MiB (134.6 MiB/s) with 1 file(s) remaining
+Completed 190.9 MiB/286.0 MiB (134.8 MiB/s) with 1 file(s) remaining
+Completed 191.1 MiB/286.0 MiB (134.9 MiB/s) with 1 file(s) remaining
+Completed 191.4 MiB/286.0 MiB (135.0 MiB/s) with 1 file(s) remaining
+Completed 191.6 MiB/286.0 MiB (135.1 MiB/s) with 1 file(s) remaining
+Completed 191.9 MiB/286.0 MiB (135.3 MiB/s) with 1 file(s) remaining
+Completed 192.1 MiB/286.0 MiB (135.2 MiB/s) with 1 file(s) remaining
+Completed 192.4 MiB/286.0 MiB (135.3 MiB/s) with 1 file(s) remaining
+Completed 192.6 MiB/286.0 MiB (135.4 MiB/s) with 1 file(s) remaining
+Completed 192.9 MiB/286.0 MiB (135.5 MiB/s) with 1 file(s) remaining
+Completed 193.1 MiB/286.0 MiB (135.5 MiB/s) with 1 file(s) remaining
+Completed 193.4 MiB/286.0 MiB (135.7 MiB/s) with 1 file(s) remaining
+Completed 193.6 MiB/286.0 MiB (135.7 MiB/s) with 1 file(s) remaining
+Completed 193.9 MiB/286.0 MiB (135.8 MiB/s) with 1 file(s) remaining
+Completed 194.1 MiB/286.0 MiB (135.9 MiB/s) with 1 file(s) remaining
+Completed 194.4 MiB/286.0 MiB (136.0 MiB/s) with 1 file(s) remaining
+Completed 194.6 MiB/286.0 MiB (136.2 MiB/s) with 1 file(s) remaining
+Completed 194.9 MiB/286.0 MiB (136.3 MiB/s) with 1 file(s) remaining
+Completed 195.1 MiB/286.0 MiB (136.4 MiB/s) with 1 file(s) remaining
+Completed 195.4 MiB/286.0 MiB (136.6 MiB/s) with 1 file(s) remaining
+Completed 195.6 MiB/286.0 MiB (136.7 MiB/s) with 1 file(s) remaining
+Completed 195.9 MiB/286.0 MiB (136.7 MiB/s) with 1 file(s) remaining
+Completed 196.1 MiB/286.0 MiB (136.9 MiB/s) with 1 file(s) remaining
+Completed 196.4 MiB/286.0 MiB (136.9 MiB/s) with 1 file(s) remaining
+Completed 196.6 MiB/286.0 MiB (137.0 MiB/s) with 1 file(s) remaining
+Completed 196.9 MiB/286.0 MiB (137.1 MiB/s) with 1 file(s) remaining
+Completed 197.1 MiB/286.0 MiB (137.2 MiB/s) with 1 file(s) remaining
+Completed 197.4 MiB/286.0 MiB (137.4 MiB/s) with 1 file(s) remaining
+Completed 197.6 MiB/286.0 MiB (137.4 MiB/s) with 1 file(s) remaining
+Completed 197.9 MiB/286.0 MiB (137.5 MiB/s) with 1 file(s) remaining
+Completed 198.1 MiB/286.0 MiB (137.6 MiB/s) with 1 file(s) remaining
+Completed 198.4 MiB/286.0 MiB (137.6 MiB/s) with 1 file(s) remaining
+Completed 198.6 MiB/286.0 MiB (137.8 MiB/s) with 1 file(s) remaining
+Completed 198.9 MiB/286.0 MiB (137.9 MiB/s) with 1 file(s) remaining
+Completed 199.1 MiB/286.0 MiB (138.0 MiB/s) with 1 file(s) remaining
+Completed 199.4 MiB/286.0 MiB (138.1 MiB/s) with 1 file(s) remaining
+Completed 199.6 MiB/286.0 MiB (138.2 MiB/s) with 1 file(s) remaining
+Completed 199.9 MiB/286.0 MiB (138.3 MiB/s) with 1 file(s) remaining
+Completed 200.1 MiB/286.0 MiB (138.4 MiB/s) with 1 file(s) remaining
+Completed 200.4 MiB/286.0 MiB (138.3 MiB/s) with 1 file(s) remaining
+Completed 200.6 MiB/286.0 MiB (138.5 MiB/s) with 1 file(s) remaining
+Completed 200.9 MiB/286.0 MiB (138.5 MiB/s) with 1 file(s) remaining
+Completed 201.1 MiB/286.0 MiB (138.6 MiB/s) with 1 file(s) remaining
+Completed 201.4 MiB/286.0 MiB (138.8 MiB/s) with 1 file(s) remaining
+Completed 201.6 MiB/286.0 MiB (138.9 MiB/s) with 1 file(s) remaining
+Completed 201.9 MiB/286.0 MiB (139.0 MiB/s) with 1 file(s) remaining
+Completed 202.1 MiB/286.0 MiB (139.1 MiB/s) with 1 file(s) remaining
+Completed 202.4 MiB/286.0 MiB (139.3 MiB/s) with 1 file(s) remaining
+Completed 202.6 MiB/286.0 MiB (139.4 MiB/s) with 1 file(s) remaining
+Completed 202.9 MiB/286.0 MiB (139.3 MiB/s) with 1 file(s) remaining
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Completed 203.1 MiB/286.0 MiB (139.3 MiB/s) with 1 file(s) remaining
+Completed 203.4 MiB/286.0 MiB (139.4 MiB/s) with 1 file(s) remaining
+Completed 203.6 MiB/286.0 MiB (139.5 MiB/s) with 1 file(s) remaining
+Completed 203.9 MiB/286.0 MiB (139.7 MiB/s) with 1 file(s) remaining
+Completed 204.1 MiB/286.0 MiB (139.8 MiB/s) with 1 file(s) remaining
+Completed 204.4 MiB/286.0 MiB (139.9 MiB/s) with 1 file(s) remaining
+Completed 204.6 MiB/286.0 MiB (139.9 MiB/s) with 1 file(s) remaining
+Completed 204.9 MiB/286.0 MiB (140.1 MiB/s) with 1 file(s) remaining
+Completed 205.1 MiB/286.0 MiB (140.2 MiB/s) with 1 file(s) remaining
+Completed 205.4 MiB/286.0 MiB (140.3 MiB/s) with 1 file(s) remaining
+Completed 205.6 MiB/286.0 MiB (140.4 MiB/s) with 1 file(s) remaining
+Completed 205.9 MiB/286.0 MiB (140.5 MiB/s) with 1 file(s) remaining
+Completed 206.1 MiB/286.0 MiB (140.5 MiB/s) with 1 file(s) remaining
+Completed 206.4 MiB/286.0 MiB (140.6 MiB/s) with 1 file(s) remaining
+Completed 206.6 MiB/286.0 MiB (140.7 MiB/s) with 1 file(s) remaining
+Completed 206.9 MiB/286.0 MiB (140.8 MiB/s) with 1 file(s) remaining
+Completed 207.1 MiB/286.0 MiB (140.9 MiB/s) with 1 file(s) remaining
+Completed 207.4 MiB/286.0 MiB (141.0 MiB/s) with 1 file(s) remaining
+Completed 207.6 MiB/286.0 MiB (141.0 MiB/s) with 1 file(s) remaining
+Completed 207.9 MiB/286.0 MiB (141.1 MiB/s) with 1 file(s) remaining
+Completed 208.1 MiB/286.0 MiB (141.2 MiB/s) with 1 file(s) remaining
+Completed 208.4 MiB/286.0 MiB (141.4 MiB/s) with 1 file(s) remaining
+Completed 208.6 MiB/286.0 MiB (141.4 MiB/s) with 1 file(s) remaining
+Completed 208.9 MiB/286.0 MiB (141.5 MiB/s) with 1 file(s) remaining
+Completed 209.1 MiB/286.0 MiB (141.5 MiB/s) with 1 file(s) remaining
+Completed 209.4 MiB/286.0 MiB (141.6 MiB/s) with 1 file(s) remaining
+Completed 209.6 MiB/286.0 MiB (141.7 MiB/s) with 1 file(s) remaining
+Completed 209.9 MiB/286.0 MiB (141.7 MiB/s) with 1 file(s) remaining
+Completed 210.1 MiB/286.0 MiB (141.8 MiB/s) with 1 file(s) remaining
+Completed 210.4 MiB/286.0 MiB (142.0 MiB/s) with 1 file(s) remaining
+Completed 210.6 MiB/286.0 MiB (142.0 MiB/s) with 1 file(s) remaining
+Completed 210.9 MiB/286.0 MiB (142.1 MiB/s) with 1 file(s) remaining
+Completed 211.1 MiB/286.0 MiB (142.1 MiB/s) with 1 file(s) remaining
+Completed 211.4 MiB/286.0 MiB (142.2 MiB/s) with 1 file(s) remaining
+Completed 211.6 MiB/286.0 MiB (142.3 MiB/s) with 1 file(s) remaining
+Completed 211.9 MiB/286.0 MiB (142.4 MiB/s) with 1 file(s) remaining
+Completed 212.1 MiB/286.0 MiB (142.6 MiB/s) with 1 file(s) remaining
+Completed 212.4 MiB/286.0 MiB (142.6 MiB/s) with 1 file(s) remaining
+Completed 212.6 MiB/286.0 MiB (142.7 MiB/s) with 1 file(s) remaining
+Completed 212.9 MiB/286.0 MiB (142.8 MiB/s) with 1 file(s) remaining
+Completed 213.1 MiB/286.0 MiB (142.9 MiB/s) with 1 file(s) remaining
+Completed 213.4 MiB/286.0 MiB (142.9 MiB/s) with 1 file(s) remaining
+Completed 213.6 MiB/286.0 MiB (143.0 MiB/s) with 1 file(s) remaining
+Completed 213.9 MiB/286.0 MiB (143.1 MiB/s) with 1 file(s) remaining
+Completed 214.1 MiB/286.0 MiB (143.1 MiB/s) with 1 file(s) remaining
+Completed 214.4 MiB/286.0 MiB (143.2 MiB/s) with 1 file(s) remaining
+Completed 214.6 MiB/286.0 MiB (143.3 MiB/s) with 1 file(s) remaining
+Completed 214.9 MiB/286.0 MiB (143.3 MiB/s) with 1 file(s) remaining
+Completed 215.1 MiB/286.0 MiB (143.4 MiB/s) with 1 file(s) remaining
+Completed 215.4 MiB/286.0 MiB (143.5 MiB/s) with 1 file(s) remaining
+Completed 215.6 MiB/286.0 MiB (143.5 MiB/s) with 1 file(s) remaining
+Completed 215.9 MiB/286.0 MiB (143.6 MiB/s) with 1 file(s) remaining
+Completed 216.1 MiB/286.0 MiB (143.8 MiB/s) with 1 file(s) remaining
+Completed 216.4 MiB/286.0 MiB (143.8 MiB/s) with 1 file(s) remaining
+Completed 216.6 MiB/286.0 MiB (144.0 MiB/s) with 1 file(s) remaining
+Completed 216.9 MiB/286.0 MiB (144.1 MiB/s) with 1 file(s) remaining
+Completed 217.1 MiB/286.0 MiB (144.0 MiB/s) with 1 file(s) remaining
+Completed 217.4 MiB/286.0 MiB (144.1 MiB/s) with 1 file(s) remaining
+Completed 217.6 MiB/286.0 MiB (144.2 MiB/s) with 1 file(s) remaining
+Completed 217.9 MiB/286.0 MiB (144.4 MiB/s) with 1 file(s) remaining
+Completed 218.1 MiB/286.0 MiB (144.5 MiB/s) with 1 file(s) remaining
+Completed 218.4 MiB/286.0 MiB (144.6 MiB/s) with 1 file(s) remaining
+Completed 218.6 MiB/286.0 MiB (144.7 MiB/s) with 1 file(s) remaining
+Completed 218.9 MiB/286.0 MiB (144.7 MiB/s) with 1 file(s) remaining
+Completed 219.1 MiB/286.0 MiB (144.9 MiB/s) with 1 file(s) remaining
+Completed 219.4 MiB/286.0 MiB (145.0 MiB/s) with 1 file(s) remaining
+Completed 219.6 MiB/286.0 MiB (145.1 MiB/s) with 1 file(s) remaining
+Completed 219.9 MiB/286.0 MiB (145.2 MiB/s) with 1 file(s) remaining
+Completed 220.1 MiB/286.0 MiB (145.3 MiB/s) with 1 file(s) remaining
+Completed 220.4 MiB/286.0 MiB (145.4 MiB/s) with 1 file(s) remaining
+Completed 220.6 MiB/286.0 MiB (145.6 MiB/s) with 1 file(s) remaining
+Completed 220.9 MiB/286.0 MiB (145.7 MiB/s) with 1 file(s) remaining
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Completed 221.1 MiB/286.0 MiB (145.7 MiB/s) with 1 file(s) remaining
+Completed 221.4 MiB/286.0 MiB (145.7 MiB/s) with 1 file(s) remaining
+Completed 221.6 MiB/286.0 MiB (145.8 MiB/s) with 1 file(s) remaining
+Completed 221.9 MiB/286.0 MiB (145.9 MiB/s) with 1 file(s) remaining
+Completed 222.1 MiB/286.0 MiB (146.0 MiB/s) with 1 file(s) remaining
+Completed 222.4 MiB/286.0 MiB (146.1 MiB/s) with 1 file(s) remaining
+Completed 222.6 MiB/286.0 MiB (146.2 MiB/s) with 1 file(s) remaining
+Completed 222.9 MiB/286.0 MiB (146.3 MiB/s) with 1 file(s) remaining
+Completed 223.1 MiB/286.0 MiB (146.4 MiB/s) with 1 file(s) remaining
+Completed 223.4 MiB/286.0 MiB (146.5 MiB/s) with 1 file(s) remaining
+Completed 223.6 MiB/286.0 MiB (146.6 MiB/s) with 1 file(s) remaining
+Completed 223.9 MiB/286.0 MiB (146.7 MiB/s) with 1 file(s) remaining
+Completed 224.1 MiB/286.0 MiB (146.8 MiB/s) with 1 file(s) remaining
+Completed 224.4 MiB/286.0 MiB (146.9 MiB/s) with 1 file(s) remaining
+Completed 224.6 MiB/286.0 MiB (146.9 MiB/s) with 1 file(s) remaining
+Completed 224.9 MiB/286.0 MiB (146.9 MiB/s) with 1 file(s) remaining
+Completed 225.1 MiB/286.0 MiB (147.0 MiB/s) with 1 file(s) remaining
+Completed 225.4 MiB/286.0 MiB (147.1 MiB/s) with 1 file(s) remaining
+Completed 225.6 MiB/286.0 MiB (147.2 MiB/s) with 1 file(s) remaining
+Completed 225.9 MiB/286.0 MiB (147.3 MiB/s) with 1 file(s) remaining
+Completed 226.1 MiB/286.0 MiB (147.4 MiB/s) with 1 file(s) remaining
+Completed 226.4 MiB/286.0 MiB (147.5 MiB/s) with 1 file(s) remaining
+Completed 226.6 MiB/286.0 MiB (147.6 MiB/s) with 1 file(s) remaining
+Completed 226.9 MiB/286.0 MiB (147.7 MiB/s) with 1 file(s) remaining
+Completed 227.1 MiB/286.0 MiB (147.7 MiB/s) with 1 file(s) remaining
+Completed 227.4 MiB/286.0 MiB (147.7 MiB/s) with 1 file(s) remaining
+Completed 227.6 MiB/286.0 MiB (147.8 MiB/s) with 1 file(s) remaining
+Completed 227.9 MiB/286.0 MiB (148.0 MiB/s) with 1 file(s) remaining
+Completed 228.1 MiB/286.0 MiB (148.1 MiB/s) with 1 file(s) remaining
+Completed 228.4 MiB/286.0 MiB (148.0 MiB/s) with 1 file(s) remaining
+Completed 228.6 MiB/286.0 MiB (148.1 MiB/s) with 1 file(s) remaining
+Completed 228.9 MiB/286.0 MiB (148.2 MiB/s) with 1 file(s) remaining
+Completed 229.1 MiB/286.0 MiB (148.3 MiB/s) with 1 file(s) remaining
+Completed 229.4 MiB/286.0 MiB (148.5 MiB/s) with 1 file(s) remaining
+Completed 229.6 MiB/286.0 MiB (148.5 MiB/s) with 1 file(s) remaining
+Completed 229.9 MiB/286.0 MiB (148.5 MiB/s) with 1 file(s) remaining
+Completed 230.1 MiB/286.0 MiB (148.6 MiB/s) with 1 file(s) remaining
+Completed 230.4 MiB/286.0 MiB (148.7 MiB/s) with 1 file(s) remaining
+Completed 230.6 MiB/286.0 MiB (148.7 MiB/s) with 1 file(s) remaining
+Completed 230.9 MiB/286.0 MiB (148.8 MiB/s) with 1 file(s) remaining
+Completed 231.1 MiB/286.0 MiB (148.7 MiB/s) with 1 file(s) remaining
+Completed 231.4 MiB/286.0 MiB (148.8 MiB/s) with 1 file(s) remaining
+Completed 231.6 MiB/286.0 MiB (148.9 MiB/s) with 1 file(s) remaining
+Completed 231.9 MiB/286.0 MiB (149.0 MiB/s) with 1 file(s) remaining
+Completed 232.1 MiB/286.0 MiB (149.2 MiB/s) with 1 file(s) remaining
+Completed 232.4 MiB/286.0 MiB (149.3 MiB/s) with 1 file(s) remaining
+Completed 232.6 MiB/286.0 MiB (149.4 MiB/s) with 1 file(s) remaining
+Completed 232.9 MiB/286.0 MiB (149.5 MiB/s) with 1 file(s) remaining
+Completed 233.1 MiB/286.0 MiB (149.6 MiB/s) with 1 file(s) remaining
+Completed 233.4 MiB/286.0 MiB (149.6 MiB/s) with 1 file(s) remaining
+Completed 233.6 MiB/286.0 MiB (149.7 MiB/s) with 1 file(s) remaining
+Completed 233.9 MiB/286.0 MiB (149.9 MiB/s) with 1 file(s) remaining
+Completed 234.1 MiB/286.0 MiB (149.9 MiB/s) with 1 file(s) remaining
+Completed 234.4 MiB/286.0 MiB (150.1 MiB/s) with 1 file(s) remaining
+Completed 234.6 MiB/286.0 MiB (150.1 MiB/s) with 1 file(s) remaining
+Completed 234.9 MiB/286.0 MiB (150.2 MiB/s) with 1 file(s) remaining
+Completed 235.1 MiB/286.0 MiB (150.2 MiB/s) with 1 file(s) remaining
+Completed 235.4 MiB/286.0 MiB (150.2 MiB/s) with 1 file(s) remaining
+Completed 235.6 MiB/286.0 MiB (150.2 MiB/s) with 1 file(s) remaining
+Completed 235.9 MiB/286.0 MiB (150.3 MiB/s) with 1 file(s) remaining
+Completed 236.1 MiB/286.0 MiB (150.4 MiB/s) with 1 file(s) remaining
+Completed 236.4 MiB/286.0 MiB (150.5 MiB/s) with 1 file(s) remaining
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Completed 236.6 MiB/286.0 MiB (150.6 MiB/s) with 1 file(s) remaining
+Completed 236.9 MiB/286.0 MiB (150.6 MiB/s) with 1 file(s) remaining
+Completed 237.1 MiB/286.0 MiB (150.7 MiB/s) with 1 file(s) remaining
+Completed 237.4 MiB/286.0 MiB (150.8 MiB/s) with 1 file(s) remaining
+Completed 237.6 MiB/286.0 MiB (151.0 MiB/s) with 1 file(s) remaining
+Completed 237.9 MiB/286.0 MiB (151.1 MiB/s) with 1 file(s) remaining
+Completed 238.1 MiB/286.0 MiB (151.1 MiB/s) with 1 file(s) remaining
+Completed 238.4 MiB/286.0 MiB (151.1 MiB/s) with 1 file(s) remaining
+Completed 238.6 MiB/286.0 MiB (151.2 MiB/s) with 1 file(s) remaining
+Completed 238.9 MiB/286.0 MiB (151.3 MiB/s) with 1 file(s) remaining
+Completed 239.1 MiB/286.0 MiB (149.3 MiB/s) with 1 file(s) remaining
+Completed 239.4 MiB/286.0 MiB (149.3 MiB/s) with 1 file(s) remaining
+Completed 239.6 MiB/286.0 MiB (149.1 MiB/s) with 1 file(s) remaining
+Completed 239.9 MiB/286.0 MiB (149.1 MiB/s) with 1 file(s) remaining
+Completed 240.1 MiB/286.0 MiB (149.0 MiB/s) with 1 file(s) remaining
+Completed 240.4 MiB/286.0 MiB (148.9 MiB/s) with 1 file(s) remaining
+Completed 240.6 MiB/286.0 MiB (148.9 MiB/s) with 1 file(s) remaining
+Completed 240.9 MiB/286.0 MiB (148.8 MiB/s) with 1 file(s) remaining
+Completed 241.1 MiB/286.0 MiB (148.8 MiB/s) with 1 file(s) remaining
+Completed 241.4 MiB/286.0 MiB (148.9 MiB/s) with 1 file(s) remaining
+Completed 241.6 MiB/286.0 MiB (148.9 MiB/s) with 1 file(s) remaining
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Completed 241.9 MiB/286.0 MiB (147.6 MiB/s) with 1 file(s) remaining
+Completed 242.1 MiB/286.0 MiB (147.4 MiB/s) with 1 file(s) remaining
+Completed 242.4 MiB/286.0 MiB (147.4 MiB/s) with 1 file(s) remaining
+Completed 242.6 MiB/286.0 MiB (147.2 MiB/s) with 1 file(s) remaining
+Completed 242.9 MiB/286.0 MiB (147.2 MiB/s) with 1 file(s) remaining
+Completed 243.1 MiB/286.0 MiB (147.2 MiB/s) with 1 file(s) remaining
+Completed 243.4 MiB/286.0 MiB (147.3 MiB/s) with 1 file(s) remaining
+Completed 243.6 MiB/286.0 MiB (147.4 MiB/s) with 1 file(s) remaining
+Completed 243.9 MiB/286.0 MiB (147.3 MiB/s) with 1 file(s) remaining
+Completed 244.1 MiB/286.0 MiB (147.4 MiB/s) with 1 file(s) remaining
+Completed 244.4 MiB/286.0 MiB (147.5 MiB/s) with 1 file(s) remaining
+Completed 244.6 MiB/286.0 MiB (147.5 MiB/s) with 1 file(s) remaining
+Completed 244.9 MiB/286.0 MiB (147.6 MiB/s) with 1 file(s) remaining
+Completed 245.1 MiB/286.0 MiB (147.6 MiB/s) with 1 file(s) remaining
+Completed 245.4 MiB/286.0 MiB (147.7 MiB/s) with 1 file(s) remaining
+Completed 245.6 MiB/286.0 MiB (147.6 MiB/s) with 1 file(s) remaining
+Completed 245.9 MiB/286.0 MiB (147.6 MiB/s) with 1 file(s) remaining
+Completed 246.1 MiB/286.0 MiB (147.7 MiB/s) with 1 file(s) remaining
+Completed 246.4 MiB/286.0 MiB (147.7 MiB/s) with 1 file(s) remaining
+Completed 246.6 MiB/286.0 MiB (147.8 MiB/s) with 1 file(s) remaining
+Completed 246.9 MiB/286.0 MiB (147.9 MiB/s) with 1 file(s) remaining
+Completed 247.1 MiB/286.0 MiB (147.9 MiB/s) with 1 file(s) remaining
+Completed 247.4 MiB/286.0 MiB (148.0 MiB/s) with 1 file(s) remaining
+Completed 247.6 MiB/286.0 MiB (148.1 MiB/s) with 1 file(s) remaining
+Completed 247.9 MiB/286.0 MiB (148.2 MiB/s) with 1 file(s) remaining
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Completed 248.1 MiB/286.0 MiB (148.2 MiB/s) with 1 file(s) remaining
+Completed 248.4 MiB/286.0 MiB (148.2 MiB/s) with 1 file(s) remaining
+Completed 248.6 MiB/286.0 MiB (148.2 MiB/s) with 1 file(s) remaining
+Completed 248.9 MiB/286.0 MiB (148.2 MiB/s) with 1 file(s) remaining
+Completed 249.1 MiB/286.0 MiB (148.2 MiB/s) with 1 file(s) remaining
+Completed 249.4 MiB/286.0 MiB (148.2 MiB/s) with 1 file(s) remaining
+Completed 249.6 MiB/286.0 MiB (148.2 MiB/s) with 1 file(s) remaining
+Completed 249.9 MiB/286.0 MiB (148.3 MiB/s) with 1 file(s) remaining
+Completed 250.1 MiB/286.0 MiB (148.3 MiB/s) with 1 file(s) remaining
+Completed 250.4 MiB/286.0 MiB (148.4 MiB/s) with 1 file(s) remaining
+Completed 250.6 MiB/286.0 MiB (148.4 MiB/s) with 1 file(s) remaining
+Completed 250.9 MiB/286.0 MiB (148.5 MiB/s) with 1 file(s) remaining
+Completed 251.1 MiB/286.0 MiB (148.6 MiB/s) with 1 file(s) remaining
+Completed 251.4 MiB/286.0 MiB (148.7 MiB/s) with 1 file(s) remaining
+Completed 251.6 MiB/286.0 MiB (148.7 MiB/s) with 1 file(s) remaining
+Completed 251.9 MiB/286.0 MiB (148.8 MiB/s) with 1 file(s) remaining
+Completed 252.1 MiB/286.0 MiB (148.8 MiB/s) with 1 file(s) remaining
+Completed 252.4 MiB/286.0 MiB (148.9 MiB/s) with 1 file(s) remaining
+Completed 252.6 MiB/286.0 MiB (149.0 MiB/s) with 1 file(s) remaining
+Completed 252.9 MiB/286.0 MiB (149.1 MiB/s) with 1 file(s) remaining
+Completed 253.1 MiB/286.0 MiB (149.2 MiB/s) with 1 file(s) remaining
+Completed 253.4 MiB/286.0 MiB (149.1 MiB/s) with 1 file(s) remaining
+Completed 253.6 MiB/286.0 MiB (149.2 MiB/s) with 1 file(s) remaining
+Completed 253.9 MiB/286.0 MiB (149.2 MiB/s) with 1 file(s) remaining
+Completed 254.1 MiB/286.0 MiB (149.0 MiB/s) with 1 file(s) remaining
+Completed 254.4 MiB/286.0 MiB (149.1 MiB/s) with 1 file(s) remaining
+Completed 254.6 MiB/286.0 MiB (149.2 MiB/s) with 1 file(s) remaining
+Completed 254.9 MiB/286.0 MiB (149.3 MiB/s) with 1 file(s) remaining
+Completed 255.1 MiB/286.0 MiB (149.3 MiB/s) with 1 file(s) remaining
+Completed 255.4 MiB/286.0 MiB (149.3 MiB/s) with 1 file(s) remaining
+Completed 255.6 MiB/286.0 MiB (149.4 MiB/s) with 1 file(s) remaining
+Completed 255.9 MiB/286.0 MiB (149.4 MiB/s) with 1 file(s) remaining
+Completed 256.1 MiB/286.0 MiB (149.5 MiB/s) with 1 file(s) remaining
+Completed 256.4 MiB/286.0 MiB (149.6 MiB/s) with 1 file(s) remaining
+Completed 256.6 MiB/286.0 MiB (149.7 MiB/s) with 1 file(s) remaining
+Completed 256.9 MiB/286.0 MiB (149.7 MiB/s) with 1 file(s) remaining
+Completed 257.1 MiB/286.0 MiB (149.8 MiB/s) with 1 file(s) remaining
+Completed 257.4 MiB/286.0 MiB (149.8 MiB/s) with 1 file(s) remaining
+Completed 257.6 MiB/286.0 MiB (149.9 MiB/s) with 1 file(s) remaining
+Completed 257.9 MiB/286.0 MiB (149.9 MiB/s) with 1 file(s) remaining
+Completed 258.1 MiB/286.0 MiB (150.0 MiB/s) with 1 file(s) remaining
+Completed 258.4 MiB/286.0 MiB (150.1 MiB/s) with 1 file(s) remaining
+Completed 258.6 MiB/286.0 MiB (150.2 MiB/s) with 1 file(s) remaining
+Completed 258.9 MiB/286.0 MiB (150.3 MiB/s) with 1 file(s) remaining
+Completed 259.1 MiB/286.0 MiB (150.3 MiB/s) with 1 file(s) remaining
+Completed 259.4 MiB/286.0 MiB (150.4 MiB/s) with 1 file(s) remaining
+Completed 259.6 MiB/286.0 MiB (150.5 MiB/s) with 1 file(s) remaining
+Completed 259.9 MiB/286.0 MiB (150.6 MiB/s) with 1 file(s) remaining
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Completed 260.1 MiB/286.0 MiB (150.6 MiB/s) with 1 file(s) remaining
+Completed 260.4 MiB/286.0 MiB (150.7 MiB/s) with 1 file(s) remaining
+Completed 260.6 MiB/286.0 MiB (150.8 MiB/s) with 1 file(s) remaining
+Completed 260.9 MiB/286.0 MiB (150.8 MiB/s) with 1 file(s) remaining
+Completed 261.1 MiB/286.0 MiB (150.8 MiB/s) with 1 file(s) remaining
+Completed 261.4 MiB/286.0 MiB (150.9 MiB/s) with 1 file(s) remaining
+Completed 261.6 MiB/286.0 MiB (151.0 MiB/s) with 1 file(s) remaining
+Completed 261.9 MiB/286.0 MiB (151.1 MiB/s) with 1 file(s) remaining
+Completed 262.1 MiB/286.0 MiB (151.1 MiB/s) with 1 file(s) remaining
+Completed 262.4 MiB/286.0 MiB (151.1 MiB/s) with 1 file(s) remaining
+Completed 262.6 MiB/286.0 MiB (151.2 MiB/s) with 1 file(s) remaining
+Completed 262.9 MiB/286.0 MiB (151.3 MiB/s) with 1 file(s) remaining
+Completed 263.1 MiB/286.0 MiB (151.4 MiB/s) with 1 file(s) remaining
+Completed 263.4 MiB/286.0 MiB (151.5 MiB/s) with 1 file(s) remaining
+Completed 263.6 MiB/286.0 MiB (151.5 MiB/s) with 1 file(s) remaining
+Completed 263.9 MiB/286.0 MiB (151.7 MiB/s) with 1 file(s) remaining
+Completed 264.1 MiB/286.0 MiB (151.7 MiB/s) with 1 file(s) remaining
+Completed 264.4 MiB/286.0 MiB (151.8 MiB/s) with 1 file(s) remaining
+Completed 264.6 MiB/286.0 MiB (151.9 MiB/s) with 1 file(s) remaining
+Completed 264.9 MiB/286.0 MiB (152.0 MiB/s) with 1 file(s) remaining
+Completed 265.1 MiB/286.0 MiB (152.1 MiB/s) with 1 file(s) remaining
+Completed 265.4 MiB/286.0 MiB (152.1 MiB/s) with 1 file(s) remaining
+Completed 265.6 MiB/286.0 MiB (152.1 MiB/s) with 1 file(s) remaining
+Completed 265.9 MiB/286.0 MiB (152.2 MiB/s) with 1 file(s) remaining
+Completed 266.1 MiB/286.0 MiB (152.3 MiB/s) with 1 file(s) remaining
+Completed 266.4 MiB/286.0 MiB (152.2 MiB/s) with 1 file(s) remaining
+Completed 266.6 MiB/286.0 MiB (152.3 MiB/s) with 1 file(s) remaining
+Completed 266.9 MiB/286.0 MiB (152.4 MiB/s) with 1 file(s) remaining
+Completed 267.1 MiB/286.0 MiB (152.5 MiB/s) with 1 file(s) remaining
+Completed 267.4 MiB/286.0 MiB (152.6 MiB/s) with 1 file(s) remaining
+Completed 267.6 MiB/286.0 MiB (152.7 MiB/s) with 1 file(s) remaining
+Completed 267.9 MiB/286.0 MiB (152.7 MiB/s) with 1 file(s) remaining
+Completed 268.1 MiB/286.0 MiB (152.8 MiB/s) with 1 file(s) remaining
+Completed 268.4 MiB/286.0 MiB (152.8 MiB/s) with 1 file(s) remaining
+Completed 268.6 MiB/286.0 MiB (152.9 MiB/s) with 1 file(s) remaining
+Completed 268.9 MiB/286.0 MiB (152.9 MiB/s) with 1 file(s) remaining
+Completed 269.1 MiB/286.0 MiB (152.9 MiB/s) with 1 file(s) remaining
+Completed 269.4 MiB/286.0 MiB (153.0 MiB/s) with 1 file(s) remaining
+Completed 269.6 MiB/286.0 MiB (153.1 MiB/s) with 1 file(s) remaining
+Completed 269.9 MiB/286.0 MiB (153.2 MiB/s) with 1 file(s) remaining
+Completed 270.1 MiB/286.0 MiB (153.3 MiB/s) with 1 file(s) remaining
+Completed 270.4 MiB/286.0 MiB (153.4 MiB/s) with 1 file(s) remaining
+Completed 270.6 MiB/286.0 MiB (153.4 MiB/s) with 1 file(s) remaining
+Completed 270.9 MiB/286.0 MiB (153.5 MiB/s) with 1 file(s) remaining
+Completed 271.1 MiB/286.0 MiB (153.6 MiB/s) with 1 file(s) remaining
+Completed 271.4 MiB/286.0 MiB (153.6 MiB/s) with 1 file(s) remaining
+Completed 271.6 MiB/286.0 MiB (153.7 MiB/s) with 1 file(s) remaining
+Completed 271.9 MiB/286.0 MiB (153.8 MiB/s) with 1 file(s) remaining
+Completed 272.1 MiB/286.0 MiB (153.9 MiB/s) with 1 file(s) remaining
+Completed 272.4 MiB/286.0 MiB (153.9 MiB/s) with 1 file(s) remaining
+Completed 272.6 MiB/286.0 MiB (154.0 MiB/s) with 1 file(s) remaining
+Completed 272.9 MiB/286.0 MiB (154.1 MiB/s) with 1 file(s) remaining
+Completed 273.1 MiB/286.0 MiB (154.2 MiB/s) with 1 file(s) remaining
+Completed 273.4 MiB/286.0 MiB (154.2 MiB/s) with 1 file(s) remaining
+Completed 273.6 MiB/286.0 MiB (154.3 MiB/s) with 1 file(s) remaining
+Completed 273.9 MiB/286.0 MiB (154.4 MiB/s) with 1 file(s) remaining
+Completed 274.1 MiB/286.0 MiB (154.5 MiB/s) with 1 file(s) remaining
+Completed 274.4 MiB/286.0 MiB (154.6 MiB/s) with 1 file(s) remaining
+Completed 274.6 MiB/286.0 MiB (154.7 MiB/s) with 1 file(s) remaining
+Completed 274.9 MiB/286.0 MiB (154.8 MiB/s) with 1 file(s) remaining
+Completed 275.1 MiB/286.0 MiB (154.8 MiB/s) with 1 file(s) remaining
+Completed 275.4 MiB/286.0 MiB (154.9 MiB/s) with 1 file(s) remaining
+Completed 275.6 MiB/286.0 MiB (155.0 MiB/s) with 1 file(s) remaining
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Completed 275.9 MiB/286.0 MiB (155.0 MiB/s) with 1 file(s) remaining
+Completed 276.1 MiB/286.0 MiB (155.1 MiB/s) with 1 file(s) remaining
+Completed 276.4 MiB/286.0 MiB (155.2 MiB/s) with 1 file(s) remaining
+Completed 276.6 MiB/286.0 MiB (155.2 MiB/s) with 1 file(s) remaining
+Completed 276.9 MiB/286.0 MiB (155.3 MiB/s) with 1 file(s) remaining
+Completed 277.1 MiB/286.0 MiB (155.3 MiB/s) with 1 file(s) remaining
+Completed 277.4 MiB/286.0 MiB (155.4 MiB/s) with 1 file(s) remaining
+Completed 277.6 MiB/286.0 MiB (155.5 MiB/s) with 1 file(s) remaining
+Completed 277.9 MiB/286.0 MiB (155.6 MiB/s) with 1 file(s) remaining
+Completed 278.1 MiB/286.0 MiB (155.6 MiB/s) with 1 file(s) remaining
+Completed 278.4 MiB/286.0 MiB (155.7 MiB/s) with 1 file(s) remaining
+Completed 278.6 MiB/286.0 MiB (155.8 MiB/s) with 1 file(s) remaining
+Completed 278.9 MiB/286.0 MiB (155.8 MiB/s) with 1 file(s) remaining
+Completed 279.1 MiB/286.0 MiB (155.9 MiB/s) with 1 file(s) remaining
+Completed 279.4 MiB/286.0 MiB (156.0 MiB/s) with 1 file(s) remaining
+Completed 279.6 MiB/286.0 MiB (156.1 MiB/s) with 1 file(s) remaining
+Completed 279.9 MiB/286.0 MiB (156.1 MiB/s) with 1 file(s) remaining
+Completed 280.1 MiB/286.0 MiB (156.2 MiB/s) with 1 file(s) remaining
+Completed 280.4 MiB/286.0 MiB (156.3 MiB/s) with 1 file(s) remaining
+Completed 280.6 MiB/286.0 MiB (156.3 MiB/s) with 1 file(s) remaining
+Completed 280.9 MiB/286.0 MiB (156.4 MiB/s) with 1 file(s) remaining
+Completed 281.1 MiB/286.0 MiB (156.5 MiB/s) with 1 file(s) remaining
+Completed 281.4 MiB/286.0 MiB (156.5 MiB/s) with 1 file(s) remaining
+Completed 281.6 MiB/286.0 MiB (156.6 MiB/s) with 1 file(s) remaining
+Completed 281.9 MiB/286.0 MiB (156.7 MiB/s) with 1 file(s) remaining
+Completed 282.1 MiB/286.0 MiB (156.8 MiB/s) with 1 file(s) remaining
+Completed 282.4 MiB/286.0 MiB (156.8 MiB/s) with 1 file(s) remaining
+Completed 282.6 MiB/286.0 MiB (156.9 MiB/s) with 1 file(s) remaining
+Completed 282.9 MiB/286.0 MiB (155.9 MiB/s) with 1 file(s) remaining
+Completed 283.1 MiB/286.0 MiB (155.9 MiB/s) with 1 file(s) remaining
+Completed 283.4 MiB/286.0 MiB (155.8 MiB/s) with 1 file(s) remaining
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Completed 283.6 MiB/286.0 MiB (151.3 MiB/s) with 1 file(s) remaining
+Completed 283.9 MiB/286.0 MiB (151.3 MiB/s) with 1 file(s) remaining
+Completed 284.1 MiB/286.0 MiB (151.3 MiB/s) with 1 file(s) remaining
+Completed 284.4 MiB/286.0 MiB (151.3 MiB/s) with 1 file(s) remaining
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Completed 284.6 MiB/286.0 MiB (151.3 MiB/s) with 1 file(s) remaining
+Completed 284.9 MiB/286.0 MiB (151.4 MiB/s) with 1 file(s) remaining
+Completed 285.1 MiB/286.0 MiB (151.4 MiB/s) with 1 file(s) remaining
+Completed 285.3 MiB/286.0 MiB (151.3 MiB/s) with 1 file(s) remaining
+Completed 285.5 MiB/286.0 MiB (151.4 MiB/s) with 1 file(s) remaining
+Completed 285.8 MiB/286.0 MiB (151.5 MiB/s) with 1 file(s) remaining
+Completed 286.0 MiB/286.0 MiB (151.6 MiB/s) with 1 file(s) remaining
+download: s3://openneuro.org/ds003477/derivatives/pattern_estimation/sub-03/ses-1/model/sub-03_ses-1_task-face_run-1_space-MNI152NLin2009cAsym_desc-model_residuals.nii.gz to ../../../../../../NI-edu-data/derivatives/pattern_estimation/sub-03/ses-1/model/sub-03_ses-1_task-face_run-1_space-MNI152NLin2009cAsym_desc-model_residuals.nii.gz
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Done!
+</pre></div>
+</div>
+</div>
 </div>
 <p>We just downloaded two nifti files: one ending in <code class="docutils literal notranslate"><span class="pre">_beta.nii.gz</span></code> and one ending in <code class="docutils literal notranslate"><span class="pre">_varbeta.nii.gz</span></code>, which represent the parameter estimates (<span class="math notranslate nohighlight">\(\hat{\beta}\)</span>) of the single-trial model and the <em>variance</em> of the parameter estimates (<span class="math notranslate nohighlight">\(\mathrm{var}[\hat{\beta}]\)</span>) respectively:</p>
 <div class="cell docutils container">
@@ -1425,6 +2904,13 @@ Can you think of a (practical) reason to prefer hold-out cross-validation over K
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>sub-03_ses-1_task-face_run-1_events.tsv
+sub-03_ses-1_task-face_run-1_space-MNI152NLin2009cAsym_desc-trial_beta.nii.gz
+sub-03_ses-1_task-face_run-1_space-MNI152NLin2009cAsym_desc-trial_varbeta.nii.gz
+</pre></div>
+</div>
+</div>
 </div>
 <p>These two files are both 4D nifti files, in which the fourth dimension does not represent time (as you may be used to), but trials! Below, we load them in and print its shape:</p>
 <div class="cell docutils container">
@@ -1434,6 +2920,11 @@ Can you think of a (practical) reason to prefer hold-out cross-validation over K
 <span class="n">R_4D</span> <span class="o">=</span> <span class="n">image</span><span class="o">.</span><span class="n">load_img</span><span class="p">(</span><span class="n">betas_path</span><span class="p">)</span>
 
 <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Shape of betas: </span><span class="si">{</span><span class="n">R_4D</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Shape of betas: (73, 86, 66, 40)
 </pre></div>
 </div>
 </div>
@@ -1457,6 +2948,12 @@ Can you think of a (practical) reason to prefer hold-out cross-validation over K
 <span class="c1"># Encode the string labels into integers</span>
 <span class="n">S_expr</span> <span class="o">=</span> <span class="n">lab_enc</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">S_expr</span><span class="p">)</span>
 <span class="n">S_expr</span>  <span class="c1"># smiling = 1, neutral = 0</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([1, 1, 0, 1, 0, 0, 1, 0, 1, 0, 1, 0, 0, 0, 1, 1, 0, 1, 1, 0, 0, 1,
+       1, 0, 0, 1, 1, 0, 1, 0, 0, 0, 1, 1, 0, 1, 1, 0, 1, 0])
 </pre></div>
 </div>
 </div>
@@ -1485,12 +2982,43 @@ Can you think of a (practical) reason to prefer hold-out cross-validation over K
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;Background&#39;,
+ &#39;Left Cerebral White Matter&#39;,
+ &#39;Left Cerebral Cortex &#39;,
+ &#39;Left Lateral Ventrical&#39;,
+ &#39;Left Thalamus&#39;,
+ &#39;Left Caudate&#39;,
+ &#39;Left Putamen&#39;,
+ &#39;Left Pallidum&#39;,
+ &#39;Brain-Stem&#39;,
+ &#39;Left Hippocampus&#39;,
+ &#39;Left Amygdala&#39;,
+ &#39;Left Accumbens&#39;,
+ &#39;Right Cerebral White Matter&#39;,
+ &#39;Right Cerebral Cortex &#39;,
+ &#39;Right Lateral Ventricle&#39;,
+ &#39;Right Thalamus&#39;,
+ &#39;Right Caudate&#39;,
+ &#39;Right Putamen&#39;,
+ &#39;Right Pallidum&#39;,
+ &#39;Right Hippocampus&#39;,
+ &#39;Right Amygdala&#39;,
+ &#39;Right Accumbens&#39;]
+</pre></div>
+</div>
+</div>
 </div>
 <p>To demonstrate ROI selection, let’s focus on the right amygdala. To get the index of the right amygdala, we can do the following:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">r_amygd_idx</span> <span class="o">=</span> <span class="n">ho_atlas</span><span class="p">[</span><span class="s1">&#39;labels&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="s1">&#39;Right Amygdala&#39;</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Index of right amygdala:&quot;</span><span class="p">,</span> <span class="n">r_amygd_idx</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Index of right amygdala: 20
 </pre></div>
 </div>
 </div>
@@ -1504,11 +3032,21 @@ Can you think of a (practical) reason to prefer hold-out cross-validation over K
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Shape of map: (91, 109, 91)
+</pre></div>
+</div>
+</div>
 </div>
 <p>But there seems to be a problem! The map has more voxels than our data (<span class="math notranslate nohighlight">\(73 \times 86 \times 66\)</span>):</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Shape of our data:&quot;</span><span class="p">,</span> <span class="n">R_4D</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Shape of our data: (73, 86, 66, 40)
 </pre></div>
 </div>
 </div>
@@ -1519,6 +3057,11 @@ Can you think of a (practical) reason to prefer hold-out cross-validation over K
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">nilearn</span> <span class="kn">import</span> <span class="n">image</span>
 <span class="n">ho_map_resamp</span> <span class="o">=</span> <span class="n">image</span><span class="o">.</span><span class="n">resample_to_img</span><span class="p">(</span><span class="n">ho_map</span><span class="p">,</span> <span class="n">R_4D</span><span class="p">,</span> <span class="n">interpolation</span><span class="o">=</span><span class="s1">&#39;nearest&#39;</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Shape of resampled map:&quot;</span><span class="p">,</span> <span class="n">ho_map_resamp</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Shape of resampled map: (73, 86, 66)
 </pre></div>
 </div>
 </div>
@@ -1542,6 +3085,11 @@ Can you think of a (practical) reason to prefer hold-out cross-validation over K
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Shape of amygdala ROI: (73, 86, 66)
+</pre></div>
+</div>
+</div>
 </div>
 <p>And let’s plot it using Nilearn to check if everything worked as expected:</p>
 <div class="cell docutils container">
@@ -1551,6 +3099,9 @@ Can you think of a (practical) reason to prefer hold-out cross-validation over K
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<img alt="../../_images/decoding_analyses_150_1.png" src="../../_images/decoding_analyses_150_1.png" />
+</div>
 </div>
 <p>Looks good! Now, <em>finally</em>, we can apply the ROI to our data in the same way we’d apply a mask: using the <code class="docutils literal notranslate"><span class="pre">apply_mask</span></code> function from Nilearn:</p>
 <div class="cell docutils container">
@@ -1558,6 +3109,11 @@ Can you think of a (practical) reason to prefer hold-out cross-validation over K
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">nilearn</span> <span class="kn">import</span> <span class="n">masking</span>
 <span class="n">R_ramyg</span> <span class="o">=</span> <span class="n">masking</span><span class="o">.</span><span class="n">apply_mask</span><span class="p">(</span><span class="n">R_4D</span><span class="p">,</span> <span class="n">r_amygd_roi</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Shape of indexed data:&quot;</span><span class="p">,</span> <span class="n">R_ramyg</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Shape of indexed data: (40, 136)
 </pre></div>
 </div>
 </div>
@@ -1596,6 +3152,11 @@ Can you think of a (practical) reason to prefer hold-out cross-validation over K
 <span class="n">pca</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">R_ramyg</span><span class="p">)</span>
 <span class="n">R_ramyg_pca10</span> <span class="o">=</span> <span class="n">pca</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">R_ramyg</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Shape after PCA:&quot;</span><span class="p">,</span> <span class="n">R_ramyg_pca10</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Shape after PCA: (40, 10)
 </pre></div>
 </div>
 </div>
@@ -1645,6 +3206,9 @@ Can you think of a (practical) reason to prefer hold-out cross-validation over K
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<img alt="../../_images/decoding_analyses_165_0.png" src="../../_images/decoding_analyses_165_0.png" />
+</div>
 </div>
 <p>Note that, unlike the probabilistic ROIs that we used, the Schaefer parcellation is discrete: every voxel belongs to only a single region. As such, the ‘maps’ map in the <code class="docutils literal notranslate"><span class="pre">schaef_parc</span></code> object is a single volume with integers:</p>
 <div class="cell docutils container">
@@ -1653,6 +3217,20 @@ Can you think of a (practical) reason to prefer hold-out cross-validation over K
 
 <span class="c1"># Let&#39;s check out the unique values in the volume</span>
 <span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">(</span><span class="n">roi_ints</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([  0.,   1.,   2.,   3.,   4.,   5.,   6.,   7.,   8.,   9.,  10.,
+        11.,  12.,  13.,  14.,  15.,  16.,  17.,  18.,  19.,  20.,  21.,
+        22.,  23.,  24.,  25.,  26.,  27.,  28.,  29.,  30.,  31.,  32.,
+        33.,  34.,  35.,  36.,  37.,  38.,  39.,  40.,  41.,  42.,  43.,
+        44.,  45.,  46.,  47.,  48.,  49.,  50.,  51.,  52.,  53.,  54.,
+        55.,  56.,  57.,  58.,  59.,  60.,  61.,  62.,  63.,  64.,  65.,
+        66.,  67.,  68.,  69.,  70.,  71.,  72.,  73.,  74.,  75.,  76.,
+        77.,  78.,  79.,  80.,  81.,  82.,  83.,  84.,  85.,  86.,  87.,
+        88.,  89.,  90.,  91.,  92.,  93.,  94.,  95.,  96.,  97.,  98.,
+        99., 100.])
 </pre></div>
 </div>
 </div>
@@ -1713,6 +3291,9 @@ Can you think of a (practical) reason to prefer hold-out cross-validation over K
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<img alt="../../_images/decoding_analyses_176_0.png" src="../../_images/decoding_analyses_176_0.png" />
+</div>
 </div>
 <div class='alert alert-info'>
     <b>ToThink</b> (1 point): Why don't the inferior temporal lobes and the orbitofrontal cortex include any signal? Write your explanation in the text box below. Hint: think about the preprocessing tutorials from the previous course! 
@@ -1738,6 +3319,9 @@ Can you think of a (practical) reason to prefer hold-out cross-validation over K
 <span class="n">plotting</span><span class="o">.</span><span class="n">plot_roi</span><span class="p">(</span><span class="n">sl_mask</span><span class="p">);</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/decoding_analyses_180_0.png" src="../../_images/decoding_analyses_180_0.png" />
 </div>
 </div>
 <p>Lastly, we need to create an “estimator” and a cross-validation object. Let’s go for a simple pipeline with scaling and a <code class="docutils literal notranslate"><span class="pre">LogisticRegression</span></code> classifier and a <code class="docutils literal notranslate"><span class="pre">StratifiedKFold</span></code> CV scheme:</p>
@@ -1773,11 +3357,18 @@ Can you think of a (practical) reason to prefer hold-out cross-validation over K
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+</div>
 </div>
 <p>After fitting, the <code class="docutils literal notranslate"><span class="pre">Searchlight</span></code> object’s <code class="docutils literal notranslate"><span class="pre">scores_</span></code> attribute contains the voxelwise decoding scores (here: average AUROC scores across the five folds) as a 3D numpy array (with the same shape as our brain mask):</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Shape scores_:&quot;</span><span class="p">,</span> <span class="n">sl</span><span class="o">.</span><span class="n">scores_</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Shape scores_: (73, 86, 66)
 </pre></div>
 </div>
 </div>
@@ -1789,6 +3380,9 @@ Can you think of a (practical) reason to prefer hold-out cross-validation over K
 <span class="n">plotting</span><span class="o">.</span><span class="n">plot_stat_map</span><span class="p">(</span><span class="n">score_img</span><span class="p">,</span> <span class="n">threshold</span><span class="o">=</span><span class="mf">0.65</span><span class="p">);</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/decoding_analyses_190_0.png" src="../../_images/decoding_analyses_190_0.png" />
 </div>
 </div>
 <p>If you want to know more about searchlight analyses, we recommend <a class="reference external" href="https://www.sciencedirect.com/science/article/pii/S1053811913002917?casa_token=R268PUFghLUAAAAA:-BQTf_rGHdG-0HrGdfb23nwzUzyt65oO9cZhwNGfH7DSOAx7ZQGqRwqfhTrzKO7BZWHI-lWEW5I">this article</a>. That said, let’s continue with the last part of this tutorial: permutation testing!</p>
@@ -1815,6 +3409,11 @@ Can you think of a (practical) reason to prefer hold-out cross-validation over K
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>T-value: 2.717, p-value: 0.024
+</pre></div>
+</div>
+</div>
 </div>
 <p>If we’d use a significance level (<span class="math notranslate nohighlight">\(\alpha\)</span>) of 0.05, this would mean that our result is statistically significant — yay! This simple approach is, however, technically not a completely valid (random effects) analysis as shown by <a class="reference external" href="https://www.sciencedirect.com/science/article/pii/S1053811916303470?casa_token=XqSuI7NmrQMAAAAA:AKGyrgT-Z12RwzyRSzE7L5cTsezjtSu3VRSKddahRSNDsz4XltgsMp7kjnxlz5avIqsltySRQbw">Allefeld and colleagues (2016)</a>, because a one-sample t-test assumes a symmetric distribution centered at chance-level, but below chance-level model performance <em>in the population</em> is impossible. This is like testing commute time of people against a null-hypothesis of 0, which doesn’t make sense, because you cannot have a negative commute time! Allefeld and colleagues propose a solution, which they call “prevalence inference”, which involves intricate permutation testing procedures and is a bit too complicated for this course. If you ever need to evaluate decoding performance at the group-level, though, we highly recommend trying to implement this method.</p>
 <div class='alert alert-success'>
@@ -1830,6 +3429,12 @@ Can you think of a (practical) reason to prefer hold-out cross-validation over K
 
 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;R shape:&quot;</span><span class="p">,</span> <span class="n">R</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;S shape:&quot;</span><span class="p">,</span> <span class="n">S</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>R shape: (47, 901)
+S shape: (47,)
 </pre></div>
 </div>
 </div>
@@ -1858,6 +3463,11 @@ Can you think of a (practical) reason to prefer hold-out cross-validation over K
     
 <span class="n">observed_acc</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">performance</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Mean accuracy across folds = </span><span class="si">%.3f</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">observed_acc</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Mean accuracy across folds = 0.636
 </pre></div>
 </div>
 </div>
@@ -1899,6 +3509,10 @@ Can you think of a (practical) reason to prefer hold-out cross-validation over K
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<script type="application/vnd.jupyter.widget-view+json">
+{"version_major": 2, "version_minor": 0, "model_id": "a7fc6578814d43b4916d328a36151ea0"}
+</script></div>
 </div>
 <p>Okay, we now got our simulated null-distribution values stored in the variable <code class="docutils literal notranslate"><span class="pre">permuted_accuracies</span></code>. Let’s look at how the distribution actually looks like (and how the observed accuracy relates to the permuted scores):</p>
 <div class="cell docutils container">
@@ -1915,6 +3529,9 @@ Can you think of a (practical) reason to prefer hold-out cross-validation over K
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/decoding_analyses_207_0.png" src="../../_images/decoding_analyses_207_0.png" />
 </div>
 </div>
 <p>Now, the ‘formula’ for the <span class="math notranslate nohighlight">\(p\)</span>-value in a permutation test is as follows: given <span class="math notranslate nohighlight">\(P\)</span> permutations, it’s the following (in pseudo-notation):</p>
@@ -1979,6 +3596,12 @@ Calculate the $p$-value corresponding to the observed accuracy given our permute
 </div>
 </div>
 </div>
+
+
+<script type="application/vnd.jupyter.widget-state+json">
+{"state": {"3ecc7524a4ab42a8bffe4baa472600bb": {"model_name": "LayoutModel", "model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "state": {"_model_module": "@jupyter-widgets/base", "_model_module_version": "1.2.0", "_model_name": "LayoutModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "LayoutView", "align_content": null, "align_items": null, "align_self": null, "border": null, "bottom": null, "display": null, "flex": null, "flex_flow": null, "grid_area": null, "grid_auto_columns": null, "grid_auto_flow": null, "grid_auto_rows": null, "grid_column": null, "grid_gap": null, "grid_row": null, "grid_template_areas": null, "grid_template_columns": null, "grid_template_rows": null, "height": null, "justify_content": null, "justify_items": null, "left": null, "margin": null, "max_height": null, "max_width": null, "min_height": null, "min_width": null, "object_fit": null, "object_position": null, "order": null, "overflow": null, "overflow_x": null, "overflow_y": null, "padding": null, "right": null, "top": null, "visibility": null, "width": null}}, "4b66a0b3de7b4419a5dd790f41c7c3e5": {"model_name": "ProgressStyleModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "ProgressStyleModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "StyleView", "bar_color": null, "description_width": ""}}, "6873e897ef184946a9be7eedca653676": {"model_name": "FloatProgressModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_dom_classes": [], "_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "FloatProgressModel", "_view_count": null, "_view_module": "@jupyter-widgets/controls", "_view_module_version": "1.5.0", "_view_name": "ProgressView", "bar_style": "success", "description": "", "description_tooltip": null, "layout": "IPY_MODEL_3ecc7524a4ab42a8bffe4baa472600bb", "max": 100.0, "min": 0.0, "orientation": "horizontal", "style": "IPY_MODEL_4b66a0b3de7b4419a5dd790f41c7c3e5", "value": 100.0}}, "86f643fb55a544d9b76db2d059650fe6": {"model_name": "LayoutModel", "model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "state": {"_model_module": "@jupyter-widgets/base", "_model_module_version": "1.2.0", "_model_name": "LayoutModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "LayoutView", "align_content": null, "align_items": null, "align_self": null, "border": null, "bottom": null, "display": null, "flex": null, "flex_flow": null, "grid_area": null, "grid_auto_columns": null, "grid_auto_flow": null, "grid_auto_rows": null, "grid_column": null, "grid_gap": null, "grid_row": null, "grid_template_areas": null, "grid_template_columns": null, "grid_template_rows": null, "height": null, "justify_content": null, "justify_items": null, "left": null, "margin": null, "max_height": null, "max_width": null, "min_height": null, "min_width": null, "object_fit": null, "object_position": null, "order": null, "overflow": null, "overflow_x": null, "overflow_y": null, "padding": null, "right": null, "top": null, "visibility": null, "width": null}}, "306b15826b1c41069f890ec302a6c918": {"model_name": "DescriptionStyleModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "DescriptionStyleModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "StyleView", "description_width": ""}}, "1a505b53017e4edeb86048763748abbd": {"model_name": "HTMLModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_dom_classes": [], "_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "HTMLModel", "_view_count": null, "_view_module": "@jupyter-widgets/controls", "_view_module_version": "1.5.0", "_view_name": "HTMLView", "description": "", "description_tooltip": null, "layout": "IPY_MODEL_86f643fb55a544d9b76db2d059650fe6", "placeholder": "\u200b", "style": "IPY_MODEL_306b15826b1c41069f890ec302a6c918", "value": "100%"}}, "5e100c4ef7ed4de3b71fcc6ea6158b0f": {"model_name": "LayoutModel", "model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "state": {"_model_module": "@jupyter-widgets/base", "_model_module_version": "1.2.0", "_model_name": "LayoutModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "LayoutView", "align_content": null, "align_items": null, "align_self": null, "border": null, "bottom": null, "display": null, "flex": null, "flex_flow": null, "grid_area": null, "grid_auto_columns": null, "grid_auto_flow": null, "grid_auto_rows": null, "grid_column": null, "grid_gap": null, "grid_row": null, "grid_template_areas": null, "grid_template_columns": null, "grid_template_rows": null, "height": null, "justify_content": null, "justify_items": null, "left": null, "margin": null, "max_height": null, "max_width": null, "min_height": null, "min_width": null, "object_fit": null, "object_position": null, "order": null, "overflow": null, "overflow_x": null, "overflow_y": null, "padding": null, "right": null, "top": null, "visibility": null, "width": null}}, "f84bba526443430d9a6046684b3e5ecf": {"model_name": "DescriptionStyleModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "DescriptionStyleModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "StyleView", "description_width": ""}}, "0a8659a3acdc47c2a056b85c4fd255ef": {"model_name": "HTMLModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_dom_classes": [], "_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "HTMLModel", "_view_count": null, "_view_module": "@jupyter-widgets/controls", "_view_module_version": "1.5.0", "_view_name": "HTMLView", "description": "", "description_tooltip": null, "layout": "IPY_MODEL_5e100c4ef7ed4de3b71fcc6ea6158b0f", "placeholder": "\u200b", "style": "IPY_MODEL_f84bba526443430d9a6046684b3e5ecf", "value": " 100/100 [00:05&lt;00:00, 18.98it/s]"}}, "eb1f490e8b73437480e4615e9210592e": {"model_name": "LayoutModel", "model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "state": {"_model_module": "@jupyter-widgets/base", "_model_module_version": "1.2.0", "_model_name": "LayoutModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "LayoutView", "align_content": null, "align_items": null, "align_self": null, "border": null, "bottom": null, "display": null, "flex": null, "flex_flow": null, "grid_area": null, "grid_auto_columns": null, "grid_auto_flow": null, "grid_auto_rows": null, "grid_column": null, "grid_gap": null, "grid_row": null, "grid_template_areas": null, "grid_template_columns": null, "grid_template_rows": null, "height": null, "justify_content": null, "justify_items": null, "left": null, "margin": null, "max_height": null, "max_width": null, "min_height": null, "min_width": null, "object_fit": null, "object_position": null, "order": null, "overflow": null, "overflow_x": null, "overflow_y": null, "padding": null, "right": null, "top": null, "visibility": null, "width": null}}, "a7fc6578814d43b4916d328a36151ea0": {"model_name": "HBoxModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_dom_classes": [], "_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "HBoxModel", "_view_count": null, "_view_module": "@jupyter-widgets/controls", "_view_module_version": "1.5.0", "_view_name": "HBoxView", "box_style": "", "children": ["IPY_MODEL_1a505b53017e4edeb86048763748abbd", "IPY_MODEL_6873e897ef184946a9be7eedca653676", "IPY_MODEL_0a8659a3acdc47c2a056b85c4fd255ef"], "layout": "IPY_MODEL_eb1f490e8b73437480e4615e9210592e"}}}, "version_major": 2, "version_minor": 0}
+</script>
+
 
     <script type="text/x-thebe-config">
     {

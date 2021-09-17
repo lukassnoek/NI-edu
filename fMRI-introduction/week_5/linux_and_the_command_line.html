@@ -42,6 +42,8 @@
     <script src="../../_static/copybutton.js"></script>
     <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
     <script src="../../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.0/dist/embed-amd.js"></script>
     <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
     <script >
         const thebe_selector = ".thebe"
@@ -587,6 +589,9 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<img alt="../../_images/linux_and_the_command_line_23_0.png" src="../../_images/linux_and_the_command_line_23_0.png" />
+</div>
 </div>
 <p>Technically, it doesn’t <em>really</em> matter whether the file is upside down or not (as long as the corresponding affine is correct), but most software programs (like FSL) assume that they are in a standard RAS+ orientation. Fortunately, FSL has a tool to fix the orientation issue we have with our T1-weighted file: the <code class="docutils literal notranslate"><span class="pre">fslreorient2std</span></code> command. The format for this command is as follows:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">fslreorient2std</span> <span class="n">input_file</span> <span class="n">output_file</span>
@@ -627,6 +632,9 @@
 <span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/linux_and_the_command_line_28_0.png" src="../../_images/linux_and_the_command_line_28_0.png" />
 </div>
 </div>
 <p>As you can see, something went wrong for the last two slices (slice 10 and slice 11, counting from zero), which only seem to contain some noise. This may be caused by, for example, reconstruction errors (converting data from K-space to image space). In the last ToDo of this notebook, you are going to use <code class="docutils literal notranslate"><span class="pre">fslroi</span></code> to cut off these two “corrupted” volumes. The format for <code class="docutils literal notranslate"><span class="pre">fslroi</span></code> is as follows:</p>

@@ -42,6 +42,8 @@
     <script src="../../_static/copybutton.js"></script>
     <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
     <script src="../../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.0/dist/embed-amd.js"></script>
     <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
     <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
@@ -599,6 +601,8 @@ t\mathrm{-value} = \frac{\mathrm{effect}}{\mathrm{uncertainty}} = \frac{\mathrm{
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+</div>
 </div>
 </div>
 </div>
@@ -619,6 +623,18 @@ t\mathrm{-value} = \frac{\mathrm{effect}}{\mathrm{uncertainty}} = \frac{\mathrm{
 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Onsets of slices for first volume: </span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">slice_onsets_within_volume</span><span class="p">,),</span> <span class="n">end</span><span class="o">=</span><span class="s1">&#39;</span><span class="se">\n\n</span><span class="s1">&#39;</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Acquisition of first slice (of first volume) started at </span><span class="si">%.2f</span><span class="s2"> sec.&quot;</span> <span class="o">%</span> <span class="n">slice_onsets_within_volume</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Acquisition of last slice (of first volume) started at </span><span class="si">%.2f</span><span class="s2"> sec.&quot;</span> <span class="o">%</span> <span class="n">slice_onsets_within_volume</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Length of slice onsets: 40
+
+Onsets of slices for first volume: [0.   0.05 0.1  0.15 0.2  0.25 0.3  0.35 0.4  0.45 0.5  0.55 0.6  0.65
+ 0.7  0.75 0.8  0.85 0.9  0.95 1.   1.05 1.1  1.15 1.2  1.25 1.3  1.35
+ 1.4  1.45 1.5  1.55 1.6  1.65 1.7  1.75 1.8  1.85 1.9  1.95]
+
+Acquisition of first slice (of first volume) started at 0.00 sec.
+Acquisition of last slice (of first volume) started at 1.95 sec.
 </pre></div>
 </div>
 </div>
@@ -644,6 +660,9 @@ t\mathrm{-value} = \frac{\mathrm{effect}}{\mathrm{uncertainty}} = \frac{\mathrm{
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<img alt="../../_images/temporal_preprocessing_8_0.png" src="../../_images/temporal_preprocessing_8_0.png" />
+</div>
 </div>
 <p>We must, however, take into accout that, even when our data would represent an idealized response, it would be sampled at different timepoints due to a difference in onsets for different slices. The first slice would for example be sampled at <span class="math notranslate nohighlight">\([0, 2, 4, 6, ..., 30]\)</span> seconds, while, for example, the middle slice would be sampled at <span class="math notranslate nohighlight">\([1, 3, 5, ... 31]\)</span> seconds. We can calculate the onset per slice <strong>across volumes</strong> using <code class="docutils literal notranslate"><span class="pre">np.linspace</span></code> again:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Note: this is the onset of slice number &quot;slice_num&quot; **across volumes**</span>
@@ -661,6 +680,12 @@ t\mathrm{-value} = \frac{\mathrm{effect}}{\mathrm{uncertainty}} = \frac{\mathrm{
 <span class="n">end</span> <span class="o">=</span> <span class="n">exp_length</span> <span class="o">+</span> <span class="n">dt</span> <span class="o">*</span> <span class="p">(</span><span class="n">slice_num</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span>
 <span class="n">onsets_slice23_across_volumes</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="n">start</span><span class="p">,</span> <span class="n">end</span><span class="p">,</span> <span class="n">n_vols</span><span class="p">,</span> <span class="n">endpoint</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">onsets_slice23_across_volumes</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[ 1.1  3.1  5.1  7.1  9.1 11.1 13.1 15.1 17.1 19.1 21.1 23.1 25.1 27.1
+ 29.1 31.1]
 </pre></div>
 </div>
 </div>
@@ -696,6 +721,13 @@ t\mathrm{-value} = \frac{\mathrm{effect}}{\mathrm{uncertainty}} = \frac{\mathrm{
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Onset acquisition of slice 0 (first 10 volumes): [ 0.  2.  4.  6.  8. 10. 12. 14. 16. 18.]
+Onset acquisition of slice 20 (first 10 volumes): [ 0.95  2.95  4.95  6.95  8.95 10.95 12.95 14.95 16.95 18.95]
+</pre></div>
+</div>
+<img alt="../../_images/temporal_preprocessing_12_1.png" src="../../_images/temporal_preprocessing_12_1.png" />
+</div>
 </div>
 <p>Now, if we would ignore the fact that these signals were acquired at different times (by assuming they were all acquired at <span class="math notranslate nohighlight">\(t=0, t=2, t=4\)</span> etc.), our model will be suboptimal for all slices (except for slice 0). We’ll show this below by plotting the resampled data from  slice 0, 20, and 39 on top of the idealized response (which represents our predictor):</p>
 <div class="cell docutils container">
@@ -726,6 +758,9 @@ t\mathrm{-value} = \frac{\mathrm{effect}}{\mathrm{uncertainty}} = \frac{\mathrm{
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/temporal_preprocessing_14_0.png" src="../../_images/temporal_preprocessing_14_0.png" />
 </div>
 </div>
 <p>As you can see, “later” slices are quite misaligned relative to the idealized response/model (which assume that each slice is acquired at the start of the volume). We can fix this by <em>resampling the data from different slices to the onset times of a reference slice</em>. Basically, this amounts to saying: “what would the signal from slice x look like if it was acquired at the onsets of a reference slice”. This process is called <em>slice-time correction</em>.</p>
@@ -768,6 +803,9 @@ t\mathrm{-value} = \frac{\mathrm{effect}}{\mathrm{uncertainty}} = \frac{\mathrm{
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/temporal_preprocessing_16_0.png" src="../../_images/temporal_preprocessing_16_0.png" />
 </div>
 </div>
 <p>As you can see, the resampled time series resemble each other much more after slice-time correction! It’s showing some “edge artifacts” which are caused by extrapolation of the time series. In actual neuroimaging software packages, higher-order resampling (such as “cubic” or “spline” resampling) are used to somewhat mitigate this. Moreover, instead of the first slice, usually the middle slice is chosen as the reference slice, which reduces the amount of resampling (and extrapolation) that has to be done, further mitigating artifacts.</p>
@@ -854,6 +892,9 @@ Tip 5: plot your data before and after slice-time correction to see whether it w
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<img alt="../../_images/temporal_preprocessing_24_0.png" src="../../_images/temporal_preprocessing_24_0.png" />
+</div>
 </div>
 <p>As you can see, the signals vary in their amplitude (from 1 to 3) and their frequency (from 1 - 3). Make sure you understand these characteristics! Now, we are going to use the fast fourier transform to plot the same signals in the <em>frequency domain</em>. We’re not going to use a function to compute the FFT-transformation, but we’re going to use a function that computes the “power spectrum density” directly (which makes life a little bit easier): the <code class="docutils literal notranslate"><span class="pre">periodogram</span></code> function from <code class="docutils literal notranslate"><span class="pre">scipy.signal</span></code>:</p>
 <div class="cell docutils container">
@@ -895,6 +936,9 @@ Tip 5: plot your data before and after slice-time correction to see whether it w
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<img alt="../../_images/temporal_preprocessing_28_0.png" src="../../_images/temporal_preprocessing_28_0.png" />
+</div>
 </div>
 <p>As you can see, the frequency domain correctly ‘identifies’ the amplitudes and frequencies from the signals. But the real ‘power’ from fourier transforms is that they can reconstruct a signal in <em>multiple underlying oscillatory sources</em>. Let’s see how that works. We’re going to load in a time-series recorded for 5 seconds of which we don’t know the underlying oscillatory sources. First, we’ll plot the signal in the time-domain:</p>
 <div class="cell docutils container">
@@ -910,6 +954,9 @@ Tip 5: plot your data before and after slice-time correction to see whether it w
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/temporal_preprocessing_30_0.png" src="../../_images/temporal_preprocessing_30_0.png" />
 </div>
 </div>
 <div class='alert alert-warning'>
@@ -972,6 +1019,13 @@ Tip 5: plot your data before and after slice-time correction to see whether it w
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Shape of X: (300, 2)
+Shape of y (sig): (300,)
+</pre></div>
+</div>
+<img alt="../../_images/temporal_preprocessing_35_1.png" src="../../_images/temporal_preprocessing_35_1.png" />
 </div>
 </div>
 <div class='alert alert-warning'>
@@ -1056,6 +1110,9 @@ Tip 5: plot your data before and after slice-time correction to see whether it w
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<img alt="../../_images/temporal_preprocessing_44_0.png" src="../../_images/temporal_preprocessing_44_0.png" />
+</div>
 </div>
 <p>In the frequency-domain plot above, you can clearly see a low-frequency drift component at frequencies approximately below 0.01 Hz (i.e., left of the dashed red line).</p>
 <div class='alert alert-info'>
@@ -1135,6 +1192,9 @@ Tip 5: plot your data before and after slice-time correction to see whether it w
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<img alt="../../_images/temporal_preprocessing_55_0.png" src="../../_images/temporal_preprocessing_55_0.png" />
+</div>
 </div>
 <p>The signal looks much better, i.e., it doesn’t display much drift anymore. But let’s check this by plotting the original and filtered signal in the frequency domain:</p>
 <div class="cell docutils container">
@@ -1157,6 +1217,9 @@ Tip 5: plot your data before and after slice-time correction to see whether it w
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/temporal_preprocessing_57_0.png" src="../../_images/temporal_preprocessing_57_0.png" />
 </div>
 </div>
 <p>Sweet! It seems that the high-pass filtering worked as expected! But does it really improve our model fit?</p>
@@ -1257,6 +1320,12 @@ y = \mathbf{X}<em>{\mathrm{interest}}\beta</em>{\mathrm{interest}} + \mathbf{X}<
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(300,)
+(300, 12)
+</pre></div>
+</div>
+</div>
 </div>
 <p>As you can see, the function returns a numpy array with the same number of timepoints as our signal (300) and 12 predictors (we removed the last one, because that’s an intercept). Note that it’s not super important to know how, mathematically, a discrete cosine set is created; it’s more important to understand the idea of adding these low-frequency cosine predictors to your design matrix in order to account for (“explain”) the low-frequency parts of your data.</p>
 <p>Let’s plot the discrete cosine set that we created (note: we only plot the first 6 for clarity):</p>
@@ -1272,6 +1341,9 @@ y = \mathbf{X}<em>{\mathrm{interest}}\beta</em>{\mathrm{interest}} + \mathbf{X}<
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/temporal_preprocessing_74_0.png" src="../../_images/temporal_preprocessing_74_0.png" />
 </div>
 </div>
 <div class='alert alert-warning'>
@@ -1314,6 +1386,11 @@ y = \mathbf{X}<em>{\mathrm{interest}}\beta</em>{\mathrm{interest}} + \mathbf{X}<
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Mean of residuals:   0
+</pre></div>
+</div>
+</div>
 </div>
 <div class='alert alert-info'>
 <b>ToThink</b> (1 point): What component of the design-matrix ($\mathbf{X}$) ensures that the mean of the residuals is zero? Explain (concisely) why.
@@ -1335,6 +1412,18 @@ identity-matrix (<span class="math notranslate nohighlight">\(\mathbf{I}\)</span
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[[1. 0. 0. 0. 0. 0. 0. 0.]
+ [0. 1. 0. 0. 0. 0. 0. 0.]
+ [0. 0. 1. 0. 0. 0. 0. 0.]
+ [0. 0. 0. 1. 0. 0. 0. 0.]
+ [0. 0. 0. 0. 1. 0. 0. 0.]
+ [0. 0. 0. 0. 0. 1. 0. 0.]
+ [0. 0. 0. 0. 0. 0. 1. 0.]
+ [0. 0. 0. 0. 0. 0. 0. 1.]]
+</pre></div>
+</div>
+</div>
 </div>
 <p>We can also represent this visually:</p>
 <div class="cell docutils container">
@@ -1347,6 +1436,12 @@ identity-matrix (<span class="math notranslate nohighlight">\(\mathbf{I}\)</span
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0.5, 1.0, &#39;Assumed covariance matrix of residuals&#39;)
+</pre></div>
+</div>
+<img alt="../../_images/temporal_preprocessing_86_1.png" src="../../_images/temporal_preprocessing_86_1.png" />
+</div>
 </div>
 <p>Now, suppose we calculated that the noise-term of a model explaining this hypothetical signal of length <span class="math notranslate nohighlight">\(8\)</span> equals 2.58 (<span class="math notranslate nohighlight">\(\hat{\sigma}^{2} = 2.58\)</span>). Then, OLS <em>assumes</em> that the noise stems from a covariance matrix estimated from the residuals:</p>
 <div class="cell docutils container">
@@ -1354,6 +1449,18 @@ identity-matrix (<span class="math notranslate nohighlight">\(\mathbf{I}\)</span
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">noise_term</span> <span class="o">=</span> <span class="mf">2.58</span>
 <span class="n">assumed_cov_resid</span> <span class="o">=</span> <span class="n">noise_term</span> <span class="o">*</span> <span class="n">identity_mat</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">assumed_cov_resid</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[[2.58 0.   0.   0.   0.   0.   0.   0.  ]
+ [0.   2.58 0.   0.   0.   0.   0.   0.  ]
+ [0.   0.   2.58 0.   0.   0.   0.   0.  ]
+ [0.   0.   0.   2.58 0.   0.   0.   0.  ]
+ [0.   0.   0.   0.   2.58 0.   0.   0.  ]
+ [0.   0.   0.   0.   0.   2.58 0.   0.  ]
+ [0.   0.   0.   0.   0.   0.   2.58 0.  ]
+ [0.   0.   0.   0.   0.   0.   0.   2.58]]
 </pre></div>
 </div>
 </div>
@@ -1376,6 +1483,9 @@ identity-matrix (<span class="math notranslate nohighlight">\(\mathbf{I}\)</span
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<img alt="../../_images/temporal_preprocessing_90_0.png" src="../../_images/temporal_preprocessing_90_0.png" />
+</div>
 </div>
 <p>Looks quite alright! Sure, there is some variation here and there, but given that our estimates (including the residuals and their variance!) are imperfect, this suffices.</p>
 <p>Just to give you some intuition about serious issues with homoskedasticity, check out the (hypothetical) timeseries residuals below:</p>
@@ -1395,6 +1505,9 @@ identity-matrix (<span class="math notranslate nohighlight">\(\mathbf{I}\)</span
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/temporal_preprocessing_92_0.png" src="../../_images/temporal_preprocessing_92_0.png" />
 </div>
 </div>
 <div class='alert alert-info'> 
@@ -1422,6 +1535,9 @@ identity-matrix (<span class="math notranslate nohighlight">\(\mathbf{I}\)</span
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/temporal_preprocessing_96_0.png" src="../../_images/temporal_preprocessing_96_0.png" />
 </div>
 </div>
 <p>In the above plot, there is clear and strong autocorrelation in the residuals. For example, the residuals are overall getting larger across time (“drift”) and it contains other low-frequency (oscillatory) patterns. As such, we <em>do know something about the residual at timepoint <span class="math notranslate nohighlight">\(i+1\)</span> (and other lags) given the residual at timepoint <span class="math notranslate nohighlight">\(i\)</span>, namely that it is likely that the residual at timpoint <span class="math notranslate nohighlight">\(i+1\)</span> is likely <strong>lower</strong> than the residual at timepoint <span class="math notranslate nohighlight">\(i\)</span></em>! Therefore, drift is a perfect example of something that (if not modelled) causes autocorrelation in the residuals (i.e. covariance between residuals)! In other words, autocorrelation (e.g. caused by drift) will cause the values of the covariance matrix of the residuals at the indices <span class="math notranslate nohighlight">\([i, i+1]\)</span> to be non-zero, violating the third assumption of Gauss-Markov’s theorem!</p>
@@ -1520,6 +1636,9 @@ identity-matrix (<span class="math notranslate nohighlight">\(\mathbf{I}\)</span
 <span class="n">fig</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/temporal_preprocessing_106_0.png" src="../../_images/temporal_preprocessing_106_0.png" />
 </div>
 </div>
 <div class='alert alert-info'> 
@@ -1625,6 +1744,12 @@ SE_{\mathbf{c}\hat{\beta}} = \sqrt{\hat{\sigma}^{2} \cdot \mathbf{c}(\mathbf{X}^
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Shape of all_sig: (10, 10, 10, 500)
+Shape of pred: (500, 1)
+</pre></div>
+</div>
+</div>
 </div>
 <p>The example data <code class="docutils literal notranslate"><span class="pre">all_sig</span></code> is a (simulated) 4D fMRI scan with <span class="math notranslate nohighlight">\(10 \times 10 \times 10\)</span> voxels and 500 timepoints (assuming a TR of 2, this amounts to a duration of 1000 seconds). The predictor reflects a design in which the participants was shown a stimulus every 100 seconds (50 TRs). Let’s plot the predictor:</p>
 <div class="cell docutils container">
@@ -1637,6 +1762,9 @@ SE_{\mathbf{c}\hat{\beta}} = \sqrt{\hat{\sigma}^{2} \cdot \mathbf{c}(\mathbf{X}^
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/temporal_preprocessing_118_0.png" src="../../_images/temporal_preprocessing_118_0.png" />
 </div>
 </div>
 <p>Alright, now let’s take a look at how you would calculate the “root mean square successive differences” (RMSSD). This quantity reflects the difference between every timepoint <span class="math notranslate nohighlight">\(t\)</span> of your signal and the signal at timepoints <span class="math notranslate nohighlight">\(t-1\)</span>, which is then squared, averaged (across all voxels, <span class="math notranslate nohighlight">\(1 \dots K\)</span>), after which the square root is taken:</p>
@@ -1656,6 +1784,11 @@ SE_{\mathbf{c}\hat{\beta}} = \sqrt{\hat{\sigma}^{2} \cdot \mathbf{c}(\mathbf{X}^
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">succ_diff</span> <span class="o">=</span> <span class="n">ex_sig</span><span class="p">[</span><span class="mi">1</span><span class="p">:]</span> <span class="o">-</span> <span class="n">ex_sig</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">succ_diff</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[ 2 -5  2  5]
 </pre></div>
 </div>
 </div>
@@ -1758,6 +1891,13 @@ z(s) = \frac{(s - \bar{s})}{\mathrm{std}(s)}
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Creating spike predictor for t = 100
+Creating spike predictor for t = 300
+</pre></div>
+</div>
+<img alt="../../_images/temporal_preprocessing_135_1.png" src="../../_images/temporal_preprocessing_135_1.png" />
 </div>
 </div>
 <div class='alert alert-info'>
