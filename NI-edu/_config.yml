@@ -19,16 +19,17 @@ exclude_patterns            : [_build, Thumbs.db, .DS_Store, "**.ipynb_checkpoin
 
 execute:
   timeout                   : 300    # The maximum time (in seconds) each notebook cell is allowed to run.
-  execute_notebooks         : "off"
+  execute_notebooks         : "auto"
   allow_errors              : true
   stderr_output             : "remove"
 
-parse:
-  myst_extended_syntax: true
-  myst_enable_extensions:
-    - colon_fence
-    - amsmath
-    
+bibtex_bibfiles:
+    - references.bib
+
+#parse:
+#  myst_enable_extensions:
+#    - colon_fence
+#    - amsmath
 
 # Online stuff
 repository:
