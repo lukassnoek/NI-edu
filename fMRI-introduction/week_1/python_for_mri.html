@@ -23,7 +23,7 @@
 
     
     <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="../../_static/sphinx-book-theme.e8f53015daec13862f6db5e763c41738.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/sphinx-book-theme.e2363ea40746bee74734a24ffefccd78.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/mystnb.css" />
@@ -74,6 +74,10 @@
     
         <div class="navbar-brand-box">
     <a class="navbar-brand text-wrap" href="../../index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
       
       <img src="../../_static/fmri.gif" class="logo" alt="logo">
       
@@ -494,7 +498,7 @@
 <p><strong>Estimated time to complete</strong>: 1-2 hours</p>
 <div class="section" id="what-is-nifti">
 <h2>What is “nifti”?<a class="headerlink" href="#what-is-nifti" title="Permalink to this headline">¶</a></h2>
-<p>Usually, every scanner manufacturer (Philips, Siemens, GE, etc.) have their own proprietary data format. For example, here at the University of Amsterdam, we have a Philips scanner and we often export our data as PAR/REC files. However, to streamline the development and use of neuroimaging software packages, the Neuroimaging InFormatics Technology Initiative came up with a new, standardized format, <em>nifti</em>, that most neuroimaging packages should support. As such, usually the first step in any (f)MRI preprocessing pipeline is to convert the scanner-specific files (e.g., PAR/RECs) to nifti. This is beyond the scope of this course, but if at one point you need to do this yourself, we highly recommed the <a class="reference external" href="https://github.com/rordenlab/dcm2niix">dcm2niix</a> package!</p>
+<p>Every scanner manufacturer (Philips, Siemens, GE, etc.) has their own proprietary data format. For example, here at the University of Amsterdam, we have a Philips scanner and we often export our data as PAR/REC files. However, to streamline the development and use of neuroimaging software packages, the Neuroimaging InFormatics Technology Initiative came up with a new, standardized format, <em>nifti</em>, that most neuroimaging packages should support. As such, usually the first step in any (f)MRI preprocessing pipeline is to convert the scanner-specific files (e.g., PAR/RECs) to nifti. This is beyond the scope of this course, but if at one point you need to do this yourself, we highly recommed the <a class="reference external" href="https://github.com/rordenlab/dcm2niix">dcm2niix</a> package!</p>
 <p>Throughout these tutorials you’ll work with these nifti-files (also called nifti images), which you can recognize by their extension of <em>.nii</em> or its compressed version <em>.nii.gz</em>. This file-format is supported by most neuroimaging software packages (such as FSL, which you’ll use later in this course!).</p>
 <p>However, we’d like to inspect and analyze nifti images in Python as well! <em>Nibabel</em> is an awesome Python package that allows us to read and load nifti images, and convert them to numpy arrays in a straightforward manner.</p>
 <div class="cell docutils container">
@@ -1147,7 +1151,7 @@ x, y, z, 1 = A\begin{bmatrix}
         
         </div>
     </div>
-    <footer class="footer mt-5 mt-md-0">
+    <footer class="footer">
     <div class="container">
       <p>
         
