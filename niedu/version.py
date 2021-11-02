@@ -78,7 +78,7 @@ REQUIRES = [
     "click",
     "jupyter",
     "pyyaml",
-    "tqdm",
+    "tqdm>=4.62",
     "jupyter_contrib_nbextensions",
     "awscli",
     "nbgrader",
