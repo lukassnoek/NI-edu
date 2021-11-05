@@ -22,8 +22,8 @@
       
 
     
-    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="../../_static/sphinx-book-theme.e2363ea40746bee74734a24ffefccd78.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
     <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/mystnb.css" />
@@ -33,21 +33,21 @@
     
   <link rel="preload" as="script" href="../../_static/js/index.1c5a1a01449ed65a7b51.js">
 
-    <script id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
     <script src="../../_static/jquery.js"></script>
     <script src="../../_static/underscore.js"></script>
     <script src="../../_static/doctools.js"></script>
     <script src="../../_static/togglebutton.js"></script>
     <script src="../../_static/clipboard.min.js"></script>
     <script src="../../_static/copybutton.js"></script>
-    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
     <script src="../../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.0/dist/embed-amd.js"></script>
-    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
-    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
+    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
-    <script >
+    <script>
         const thebe_selector = ".thebe"
         const thebe_selector_input = "pre"
         const thebe_selector_output = ".output"
@@ -97,7 +97,7 @@
   </a>
  </li>
 </ul>
-<p class="caption">
+<p class="caption" role="heading">
  <span class="caption-text">
   Getting started
  </span>
@@ -114,7 +114,7 @@
   </a>
  </li>
 </ul>
-<p class="caption">
+<p class="caption" role="heading">
  <span class="caption-text">
   fMRI-introduction
  </span>
@@ -290,7 +290,7 @@
   </ul>
  </li>
 </ul>
-<p class="caption">
+<p class="caption" role="heading">
  <span class="caption-text">
   fMRI-pattern-analysis
  </span>
@@ -312,7 +312,7 @@
   </a>
  </li>
 </ul>
-<p class="caption">
+<p class="caption" role="heading">
  <span class="caption-text">
   Misc
  </span>
@@ -513,7 +513,7 @@
         
               <div>
                 
-  <div class="section" id="fmriprep">
+  <div class="tex2jax_ignore mathjax_ignore section" id="fmriprep">
 <h1>Fmriprep<a class="headerlink" href="#fmriprep" title="Permalink to this headline">¶</a></h1>
 <p>Today, many excellent general-purpose, open-source neuroimaging software packages exist: <a class="reference external" href="https://www.fil.ion.ucl.ac.uk/spm/">SPM</a> (Matlab-based), <a class="reference external" href="https://fsl.fmrib.ox.ac.uk/fsl/fslwiki">FSL</a>, <a class="reference external" href="https://afni.nimh.nih.gov/">AFNI</a>, and <a class="reference external" href="https://surfer.nmr.mgh.harvard.edu/">Freesurfer</a> (with a shell interface). We argue that there is not one single package that is always the best choice for every step in your preprocessing pipeline. Fortunately, people from the <a class="reference external" href="https://poldracklab.stanford.edu/">Poldrack lab</a> created <a class="reference external" href="https://fmriprep.readthedocs.io/en/stable/">fmriprep</a>, a software package that offers a preprocessing pipeline which “glues together” functionality from different neuroimaging software packages (such as Freesurfer and FSL), such that each step in the pipeline is executed by the software package that (arguably) does it best.</p>
 <p>We have been using <em>Fmriprep</em> for preprocessing of our own data and we strongly recommend it. It is relatively simple to use, requires minimal user intervention, and creates extensive visual reports for users to do visual quality control (to check whether each step in the pipeline worked as expected). The <em>only</em> requirement to use Fmriprep is that your data is formatted as specified in the Brain Imaging Data Structure (BIDS).</p>
@@ -605,7 +605,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;logs&#39;, &#39;dataset_description.json&#39;, &#39;sub-03.html&#39;, &#39;desc-aseg_dseg.tsv&#39;, &#39;sub-03&#39;, &#39;desc-aparcaseg_dseg.tsv&#39;]
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;dataset_description.json&#39;, &#39;desc-aparcaseg_dseg.tsv&#39;, &#39;sub-03&#39;, &#39;sub-03.html&#39;, &#39;desc-aseg_dseg.tsv&#39;, &#39;logs&#39;]
 </pre></div>
 </div>
 </div>
@@ -635,26 +635,26 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;sub-03_space-MNI152NLin2009cAsym_desc-brain_mask.json&#39;,
- &#39;sub-03_desc-brain_mask.nii.gz&#39;,
- &#39;sub-03_desc-aseg_dseg.nii.gz&#39;,
- &#39;sub-03_dseg.nii.gz&#39;,
- &#39;sub-03_desc-preproc_T1w.nii.gz&#39;,
- &#39;sub-03_label-CSF_probseg.nii.gz&#39;,
- &#39;sub-03_label-GM_probseg.nii.gz&#39;,
- &#39;sub-03_space-MNI152NLin2009cAsym_label-GM_probseg.nii.gz&#39;,
- &#39;sub-03_from-MNI152NLin2009cAsym_to-T1w_mode-image_xfm.h5&#39;,
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;sub-03_dseg.nii.gz&#39;,
+ &#39;sub-03_space-MNI152NLin2009cAsym_desc-brain_mask.nii.gz&#39;,
  &#39;sub-03_desc-aparcaseg_dseg.nii.gz&#39;,
  &#39;sub-03_label-WM_probseg.nii.gz&#39;,
- &#39;sub-03_space-MNI152NLin2009cAsym_desc-preproc_T1w.nii.gz&#39;,
- &#39;sub-03_desc-preproc_T1w.json&#39;,
  &#39;sub-03_space-MNI152NLin2009cAsym_label-WM_probseg.nii.gz&#39;,
- &#39;sub-03_space-MNI152NLin2009cAsym_desc-preproc_T1w.json&#39;,
- &#39;sub-03_space-MNI152NLin2009cAsym_label-CSF_probseg.nii.gz&#39;,
  &#39;sub-03_desc-brain_mask.json&#39;,
+ &#39;sub-03_label-GM_probseg.nii.gz&#39;,
  &#39;sub-03_from-T1w_to-MNI152NLin2009cAsym_mode-image_xfm.h5&#39;,
- &#39;sub-03_space-MNI152NLin2009cAsym_desc-brain_mask.nii.gz&#39;,
- &#39;sub-03_space-MNI152NLin2009cAsym_dseg.nii.gz&#39;]
+ &#39;sub-03_desc-preproc_T1w.json&#39;,
+ &#39;sub-03_space-MNI152NLin2009cAsym_label-CSF_probseg.nii.gz&#39;,
+ &#39;sub-03_space-MNI152NLin2009cAsym_desc-brain_mask.json&#39;,
+ &#39;sub-03_space-MNI152NLin2009cAsym_desc-preproc_T1w.json&#39;,
+ &#39;sub-03_desc-brain_mask.nii.gz&#39;,
+ &#39;sub-03_desc-preproc_T1w.nii.gz&#39;,
+ &#39;sub-03_space-MNI152NLin2009cAsym_dseg.nii.gz&#39;,
+ &#39;sub-03_label-CSF_probseg.nii.gz&#39;,
+ &#39;sub-03_space-MNI152NLin2009cAsym_desc-preproc_T1w.nii.gz&#39;,
+ &#39;sub-03_from-MNI152NLin2009cAsym_to-T1w_mode-image_xfm.h5&#39;,
+ &#39;sub-03_space-MNI152NLin2009cAsym_label-GM_probseg.nii.gz&#39;,
+ &#39;sub-03_desc-aseg_dseg.nii.gz&#39;]
 </pre></div>
 </div>
 </div>
@@ -671,22 +671,22 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;sub-03_task-flocBLOCKED_space-MNI152NLin2009cAsym_desc-brain_mask.nii.gz&#39;,
- &#39;sub-03_task-flocBLOCKED_space-MNI152NLin2009cAsym_boldref.nii.gz&#39;,
- &#39;sub-03_task-flocBLOCKED_space-T1w_desc-brain_mask.json&#39;,
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;sub-03_task-flocBLOCKED_desc-confounds_regressors.tsv&#39;,
  &#39;sub-03_task-flocBLOCKED_space-MNI152NLin2009cAsym_desc-preproc_bold.nii.gz&#39;,
- &#39;sub-03_task-flocBLOCKED_space-MNI152NLin2009cAsym_desc-aseg_dseg.nii.gz&#39;,
- &#39;sub-03_task-flocBLOCKED_desc-confounds_regressors.tsv&#39;,
- &#39;sub-03_task-flocBLOCKED_space-MNI152NLin2009cAsym_desc-preproc_bold.json&#39;,
- &#39;sub-03_task-flocBLOCKED_space-T1w_desc-preproc_bold.nii.gz&#39;,
  &#39;sub-03_task-flocBLOCKED_space-MNI152NLin2009cAsym_desc-brain_mask.json&#39;,
- &#39;sub-03_task-flocBLOCKED_space-MNI152NLin2009cAsym_desc-aparcaseg_dseg.nii.gz&#39;,
- &#39;sub-03_task-flocBLOCKED_space-T1w_desc-aseg_dseg.nii.gz&#39;,
- &#39;sub-03_task-flocBLOCKED_space-T1w_desc-brain_mask.nii.gz&#39;,
- &#39;sub-03_task-flocBLOCKED_space-T1w_desc-preproc_bold.json&#39;,
- &#39;sub-03_task-flocBLOCKED_space-T1w_desc-aparcaseg_dseg.nii.gz&#39;,
+ &#39;sub-03_task-flocBLOCKED_space-T1w_boldref.nii.gz&#39;,
+ &#39;sub-03_task-flocBLOCKED_space-MNI152NLin2009cAsym_boldref.nii.gz&#39;,
  &#39;sub-03_task-flocBLOCKED_desc-confounds_regressors.json&#39;,
- &#39;sub-03_task-flocBLOCKED_space-T1w_boldref.nii.gz&#39;]
+ &#39;sub-03_task-flocBLOCKED_space-MNI152NLin2009cAsym_desc-preproc_bold.json&#39;,
+ &#39;sub-03_task-flocBLOCKED_space-MNI152NLin2009cAsym_desc-aparcaseg_dseg.nii.gz&#39;,
+ &#39;sub-03_task-flocBLOCKED_space-T1w_desc-preproc_bold.json&#39;,
+ &#39;sub-03_task-flocBLOCKED_space-T1w_desc-brain_mask.json&#39;,
+ &#39;sub-03_task-flocBLOCKED_space-MNI152NLin2009cAsym_desc-brain_mask.nii.gz&#39;,
+ &#39;sub-03_task-flocBLOCKED_space-T1w_desc-aseg_dseg.nii.gz&#39;,
+ &#39;sub-03_task-flocBLOCKED_space-MNI152NLin2009cAsym_desc-aseg_dseg.nii.gz&#39;,
+ &#39;sub-03_task-flocBLOCKED_space-T1w_desc-aparcaseg_dseg.nii.gz&#39;,
+ &#39;sub-03_task-flocBLOCKED_space-T1w_desc-preproc_bold.nii.gz&#39;,
+ &#39;sub-03_task-flocBLOCKED_space-T1w_desc-brain_mask.nii.gz&#39;]
 </pre></div>
 </div>
 </div>
@@ -886,6 +886,7 @@
     src="./bids/derivatives/fmriprep/sub-03.html"
     frameborder="0"
     allowfullscreen
+
 ></iframe>
 </div></div>
 </div>
