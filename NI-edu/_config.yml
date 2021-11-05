@@ -26,10 +26,14 @@ execute:
 bibtex_bibfiles:
     - references.bib
 
-#parse:
-#  myst_enable_extensions:
-#    - colon_fence
-#    - amsmath
+parse:
+  myst_enable_extensions:
+    - colon_fence
+    - amsmath
+    - dollarmath
+    - linkify
+    - substitution
+    - tasklist
 
 # Online stuff
 repository:
