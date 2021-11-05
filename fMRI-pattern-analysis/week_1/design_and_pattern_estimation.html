@@ -644,16 +644,17 @@ Suppose a researcher wants to implement a decoding analysis in which he/she aims
 <p>However, you are definitely not limited to using <em>activity estimates</em> for your patterns. For example, you could apply pattern analyses to structural data (e.g., patterns of voxelwise gray-matter volume values, like in <a class="reference external" href="https://en.wikipedia.org/wiki/Voxel-based_morphometry">voxel-based morphometry</a>) or to functional connectivity data (e.g., patterns of time series correlations between voxels, or even topological properties of brain networks). (In fact, the connectivity examples from the Nilearn tutorial represents a way to estimate these connectivity features, which can be used in pattern analyses.) In short, pattern analyses can be applied to patterns composed of <em>any</em> type of measurement or metric!</p>
 <p>Now, let’s get a little more technical. Usually, as mentioned in the beginning, pattern analyses represent the data as a 2D array of brain patterns. Let’s call this <span class="math notranslate nohighlight">\(\mathbf{R}\)</span>. The rows of <span class="math notranslate nohighlight">\(\mathbf{R}\)</span> represent different instances of patterns (sometimes called “samples” or “observations”) and the columns represent different brain features (e.g., voxels; sometimes simply called “features”). Note that we thus lose all spatial information by “flattening” our patterns into 1D rows!</p>
 <p>Let’s call the number of samples <span class="math notranslate nohighlight">\(N\)</span> and the number of brain features <span class="math notranslate nohighlight">\(K\)</span>. We can thus represent <span class="math notranslate nohighlight">\(\mathbf{R}\)</span> as a <span class="math notranslate nohighlight">\(N\times K\)</span> matrix (2D array):</p>
-<p>\begin{align}
-\mathbf{R} =
+<div class="amsmath math notranslate nohighlight" id="equation-1326e1f3-aa6b-4974-888e-67f89632aa8b">
+<span class="eqno">(88)<a class="headerlink" href="#equation-1326e1f3-aa6b-4974-888e-67f89632aa8b" title="Permalink to this equation">¶</a></span>\[\begin{align}
+\mathbf{R} = 
 \begin{bmatrix}
-R_{1,1} &amp; R_{1,2} &amp; R_{1,3} &amp; \dots &amp; R_{1,K}\
-R_{2,1} &amp; R_{1,2} &amp; R_{1,3} &amp; \dots &amp; R_{2,K}\
-R_{3,1} &amp; R_{1,2} &amp; R_{1,3} &amp; \dots &amp; R_{3,K}\
-\vdots &amp; \vdots &amp; \vdots &amp; \ddots &amp; \vdots\
-R_{N,1} &amp; R_{1,2} &amp; R_{1,3} &amp; \dots &amp; R_{N,K}\
+ R_{1,1} &amp; R_{1,2} &amp; R_{1,3} &amp; \dots &amp; R_{1,K}\\
+ R_{2,1} &amp; R_{1,2} &amp; R_{1,3} &amp; \dots &amp; R_{2,K}\\
+ R_{3,1} &amp; R_{1,2} &amp; R_{1,3} &amp; \dots &amp; R_{3,K}\\
+ \vdots &amp; \vdots &amp; \vdots &amp; \ddots &amp; \vdots\\ 
+ R_{N,1} &amp; R_{1,2} &amp; R_{1,3} &amp; \dots &amp; R_{N,K}\\
 \end{bmatrix}
-\end{align}</p>
+\end{align}\]</div>
 <p>As discussed before, the values themselves (e.g., <span class="math notranslate nohighlight">\(R_{1,1}\)</span>, <span class="math notranslate nohighlight">\(R_{1,2}\)</span>, <span class="math notranslate nohighlight">\(R_{3,6}\)</span>) represent whatever you chose for your patterns (fMRI activity, connectivity estimates, VBM, etc.). What is represented by the rows (samples/observations) of <span class="math notranslate nohighlight">\(\mathbf{R}\)</span> depends on your study design: in between-subject studies, these are usually participants, while in within-subject studies, these samples represent trials (or averages of trials or sometimes runs). The columns of <span class="math notranslate nohighlight">\(\mathbf{R}\)</span> represent the different (brain) features in your pattern; for example, these may be different voxels (or sensors/magnetometers in EEG/MEG), vertices (when working with cortical surfaces), edges in functional brain networks, etc. etc.</p>
 <p>Let’s make it a little bit more concrete. We’ll make up some random data below that represents a typical data array in pattern analyses:</p>
 <div class="cell docutils container">
@@ -668,19 +669,19 @@ R_{N,1} &amp; R_{1,2} &amp; R_{1,3} &amp; \dots &amp; R_{N,K}\
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[-0.56754541,  2.30248715, -0.32288269, ..., -0.26061524,
-        -2.59451277,  1.7941718 ],
-       [ 0.20426579,  0.18989003,  0.41143109, ...,  0.22641862,
-        -1.31156424,  0.75511085],
-       [-1.50487601, -0.32662218,  1.77868663, ..., -0.03061878,
-         0.76728644,  2.25855278],
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[-1.0728459 , -0.2174763 ,  0.05451243, ...,  0.21422423,
+         0.00827138, -0.52102969],
+       [-0.40470391, -0.31045571,  0.36735459, ..., -1.34848142,
+         0.58399357,  0.52131477],
+       [ 1.98698873,  2.30570901, -0.06464444, ..., -0.40746883,
+         0.3304477 ,  0.71005609],
        ...,
-       [ 0.22674644, -0.55346626,  1.35425955, ...,  0.923653  ,
-         1.26742502,  1.33361337],
-       [-0.0183902 , -0.00425116,  0.43830552, ...,  1.19237803,
-        -2.52116156, -2.32347755],
-       [ 0.14527794, -1.04613559,  0.97654734, ..., -0.41133075,
-         0.13875357, -1.27321563]])
+       [ 1.34525125, -0.67371064,  0.08482647, ..., -0.32693348,
+         0.09120825,  0.77731191],
+       [-0.55540046,  1.55196555, -0.98793102, ...,  1.04269735,
+        -0.45316281, -0.38552058],
+       [-0.60893266,  0.46177878, -1.21481865, ..., -2.8122969 ,
+         0.52033002, -0.04291689]])
 </pre></div>
 </div>
 </div>
@@ -930,7 +931,7 @@ R_{N,1} &amp; R_{1,2} &amp; R_{1,3} &amp; \dots &amp; R_{N,K}\
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[-0.17880296 -1.05186748]
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[-0.53908875  0.90587463]
 </pre></div>
 </div>
 </div>
@@ -1830,13 +1831,15 @@ Shape beta_hat (intercept removed): (20, 4)
 <div class="section" id="noise-normalization">
 <h4>Noise normalization<a class="headerlink" href="#noise-normalization" title="Permalink to this headline">¶</a></h4>
 <p>One often used preprocessing step for pattern analyses (using GLM-estimation methods) is to use “noise normalization” on the estimated patterns. There are two flavours: “univariate” and “multivariate” noise normalization. In univariate noise normalization, the estimated parameters (<span class="math notranslate nohighlight">\(\hat{\beta}\)</span>) are divided (normalized) by the standard deviation of the estimated parameters — which you might recognize as the formula for <span class="math notranslate nohighlight">\(t\)</span>-values (for a contrast against baseline)!</p>
-<p>\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-b35ef5cc-9acc-49a8-92d1-44e3107c41a8">
+<span class="eqno">(89)<a class="headerlink" href="#equation-b35ef5cc-9acc-49a8-92d1-44e3107c41a8" title="Permalink to this equation">¶</a></span>\[\begin{align}
 t_{c\hat{\beta}} = \frac{c\hat{\beta}}{\sqrt{\hat{\sigma}^{2}c(X^{T}X)^{-1}c^{T}}}
-\end{align}</p>
+\end{align}\]</div>
 <p>where <span class="math notranslate nohighlight">\(\hat{\sigma}^{2}\)</span> is the estimate of the error variance (sum of squared errors divided by the degrees of freedom) and <span class="math notranslate nohighlight">\(c(X^{T}X)^{-1}c^{T}\)</span> is the “design variance”. Sometimes people disregard the design variance and the degrees of freedom (DF) and instead only use the standard deviation of the noise:</p>
-<p>\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-eecf66bb-f12a-4405-b2a4-85fe4200526f">
+<span class="eqno">(90)<a class="headerlink" href="#equation-eecf66bb-f12a-4405-b2a4-85fe4200526f" title="Permalink to this equation">¶</a></span>\[\begin{align}
 t_{c\hat{\beta}} \approx \frac{c\hat{\beta}}{\sqrt{\sum (y_{i} - X_{i}\hat{\beta})^{2}}}
-\end{align}</p>
+\end{align}\]</div>
 <div class='alert alert-info'>
     <b>ToThink</b> (1 point): When experiments use a fixed ISI (in the context of single-trial GLMs), the omission of the design variance in univariate noise normalization is warranted. Explain why.
 </div><p>YOUR ANSWER HERE</p>
@@ -3476,9 +3479,10 @@ sub-03_ses-1_task-flocBLOCKED_space-T1w_desc-preproc_bold.nii.gz
 <h3>Temporal uncorrelation<a class="headerlink" href="#temporal-uncorrelation" title="Permalink to this headline">¶</a></h3>
 <p>Another method to deal with trial-by-trial correlations is the “uncorrelation” method by <a class="reference external" href="https://www.sciencedirect.com/science/article/pii/S1053811919310407">Soch and colleagues (2020)</a>. As opposed to the LSS method, the uncorrelation approach takes care of the correlation structure in the data in a post-hoc manner. It does so, in essence, by “removing” the correlations in the data that are due to the correlations in the design in a way that is similar to what prewhitening does in generalized least squares.</p>
 <p>Formally, the “uncorrelated” patterns (<span class="math notranslate nohighlight">\(R_{\mathrm{unc}}\)</span>) are estimated by (matrix) multiplying the square root (<span class="math notranslate nohighlight">\(^{\frac{1}{2}}\)</span>) of covariance matrix of the LSA design matrix (<span class="math notranslate nohighlight">\(X^{T}X\)</span>) with the patterns (<span class="math notranslate nohighlight">\(R\)</span>):</p>
-<p>\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-a9c4e025-9821-4f7b-a661-74b7872b0bd5">
+<span class="eqno">(91)<a class="headerlink" href="#equation-a9c4e025-9821-4f7b-a661-74b7872b0bd5" title="Permalink to this equation">¶</a></span>\[\begin{align}
 R_{\mathrm{unc}} = (X^{T}X)^{\frac{1}{2}}R
-\end{align}</p>
+\end{align}\]</div>
 <p>Here, <span class="math notranslate nohighlight">\((X^{T}X)^{\frac{1}{2}}\)</span> represents the “whitening” matrix which uncorrelates the patterns. Let’s implement this in code. Note that we can use the <code class="docutils literal notranslate"><span class="pre">sqrtm</span></code> function from the <code class="docutils literal notranslate"><span class="pre">scipy.linalg</span></code> package to take the square root of a matrix:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">

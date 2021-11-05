@@ -699,17 +699,20 @@ Shape of design matrix per run: (200, 3)
 <p><img alt="" src="https://docs.google.com/drawings/d/e/2PACX-1vQxCH3WU3nTqFlHUZb49rf9zioivGQ-flVfRpwmXQx7OF5Wm_1T6gFMYQqpqt-NPITNHUaRoVYEREgT/pub?w=1442&amp;h=1168" /></p>
 <p>To put it another way, to aggregate first-level results across runs, we are going to construct another GLM at the “run-level”. To distinguish components of run-level GLMs from first-level GLMs, we will add a superscript asterisk (<span class="math notranslate nohighlight">\(^{*}\)</span>) to the run-level GLM components.</p>
 <p>So, in our run-level GLM, the first-level results (<span class="math notranslate nohighlight">\(c\hat{\beta}\)</span>) become our new dependent variable (<span class="math notranslate nohighlight">\(y^{*}\)</span>):</p>
-<p>\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-3acb9f7a-9ee9-4aea-8656-623e1ba7dab9">
+<span class="eqno">(68)<a class="headerlink" href="#equation-3acb9f7a-9ee9-4aea-8656-623e1ba7dab9" title="Permalink to this equation">¶</a></span>\[\begin{align}
 \mathbf{y}^{*} = c\hat{\beta}
-\end{align}</p>
+\end{align}\]</div>
 <p>which is, similar to first-level GLMs, modeled using a (run-level) GLM with a specific run-level design matrix, <span class="math notranslate nohighlight">\(\mathbf{X}^{*}\)</span>, and associated run-level parameters, <span class="math notranslate nohighlight">\(\hat{\beta}^{*}\)</span>:</p>
-<p>\begin{align}
-\mathbf{y}^{<em>} = \mathbf{X}^{</em>}\beta^{<em>} + \epsilon^{</em>}
-\end{align}</p>
+<div class="amsmath math notranslate nohighlight" id="equation-863f0402-dd42-4806-8b3a-b3b698c98289">
+<span class="eqno">(69)<a class="headerlink" href="#equation-863f0402-dd42-4806-8b3a-b3b698c98289" title="Permalink to this equation">¶</a></span>\[\begin{align}
+\mathbf{y}^{*} = \mathbf{X}^{*}\beta^{*} + \epsilon^{*}
+\end{align}\]</div>
 <p>These run-level parameters are usually estimated using OLS:</p>
-<p>\begin{align}
-\hat{\beta}^{*} = (\mathbf{X}^{<em>T}\mathbf{X}^{</em>})^{-1}\mathbf{X}^{<em>T}\mathbf{y}^{</em>}
-\end{align}</p>
+<div class="amsmath math notranslate nohighlight" id="equation-acc16ce0-1747-4234-9585-58305a3c7fae">
+<span class="eqno">(70)<a class="headerlink" href="#equation-acc16ce0-1747-4234-9585-58305a3c7fae" title="Permalink to this equation">¶</a></span>\[\begin{align}
+\hat{\beta}^{*} = (\mathbf{X}^{*T}\mathbf{X}^{*})^{-1}\mathbf{X}^{*T}\mathbf{y}^{*}
+\end{align}\]</div>
 <p>Importantly, the way you specify the run-level design matrix, <span class="math notranslate nohighlight">\(\mathbf{X}^{*}\)</span>, dictates the way the data is aggregated, which we’ll come back to later. For now, it is important to understand that the summary statistics approach entails using the results from the previous level (<span class="math notranslate nohighlight">\(c\hat{\beta}\)</span>) as the target/dependent variable (<span class="math notranslate nohighlight">\(\mathbf{y}^{*}\)</span>) in the current level.</p>
 <p>In what follows, we’ll explain the process using the previously simulated dataset (with two conditions, “A” and “B”). First of all, we need to run our “first-level” models for the four runs separately.</p>
 <div class='alert alert-warning'>
@@ -756,18 +759,20 @@ Shape of design matrix per run: (200, 3)
 </div>
 <p>We have defined our dependent variable, but what should our run-level design matrix (<span class="math notranslate nohighlight">\(\mathbf{X}^{*}\)</span>) be? This, of course, depends on what you are interested in. Often, people simply want to aggregate the results across different runs into a single “average” estimate.</p>
 <p>It turns out that using a vector of ones as your design matrix (<span class="math notranslate nohighlight">\(\mathbf{X}^{*}\)</span>) will yield run-level parameter estimates (<span class="math notranslate nohighlight">\(\hat{\beta}^{*}\)</span>) that correspond to the average of your first-level results. So, when you use a vector of ones as your run-level design matrix, <span class="math notranslate nohighlight">\(\mathbf{X}^{*}\)</span> …</p>
-<p>\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-e775af5f-3bcc-4afa-9cd4-bee6a7bd3a58">
+<span class="eqno">(71)<a class="headerlink" href="#equation-e775af5f-3bcc-4afa-9cd4-bee6a7bd3a58" title="Permalink to this equation">¶</a></span>\[\begin{align}
 \mathbf{X}^{*} = \begin{bmatrix}
-1 \
-1 \
-\vdots \
-1
-\end{bmatrix}
-\end{align}</p>
+             1 \\
+             1 \\
+             \vdots \\
+             1
+         \end{bmatrix}
+\end{align}\]</div>
 <p>then the parameter of this run-level GLM will correspond to the average of the first-level results (<span class="math notranslate nohighlight">\(c\hat{\beta}\)</span>):</p>
-<p>\begin{align}
-\mathrm{average}(c\hat{\beta}) = \hat{\beta}^{*} = (\mathbf{X}^{<em>T}\mathbf{X}^{</em>})^{-1}\mathbf{X}^{<em>T}y^{</em>}
-\end{align}</p>
+<div class="amsmath math notranslate nohighlight" id="equation-3f1e3f4c-c3aa-433b-8b11-98218a39a1b6">
+<span class="eqno">(72)<a class="headerlink" href="#equation-3f1e3f4c-c3aa-433b-8b11-98218a39a1b6" title="Permalink to this equation">¶</a></span>\[\begin{align}
+\mathrm{average}(c\hat{\beta}) = \hat{\beta}^{*} = (\mathbf{X}^{*T}\mathbf{X}^{*})^{-1}\mathbf{X}^{*T}y^{*}
+\end{align}\]</div>
 <p>So, why is this design — in which the average is just a vector of ones for each run — modelling the average of the first-level results? Well, let’s investigate this using our previously simulated data. Now, we know that our GLM (with a vector of ones) should give us the mean. Let’s calculate the mean ‘manually’ so that we can check later whether the GLM gives us the same answer.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -990,15 +995,16 @@ The run 2 results are here: /home/jupyter-niadmin/NI-edu-data/derivatives/fsl/su
 <div class='alert alert-warning'>
 <b>ToDo</b> (not graded): 
 <p>Change the setting “Inputs are lower-level FEAT directories” to “Inputs are 3D cope images from FEAT directories”. Set the “Number of inputs” to 4. Then, press the “Select cope images” button and add the different first-level contrast estimate files. The order should be: “face &gt; other” (session 1), “face &gt; other” (session 2), “place &gt; other” (session 1), and “place &gt; other” (session 2):</p>
-<p>\begin{align}
-y^{*} =
+<div class="amsmath math notranslate nohighlight" id="equation-3e4825e5-71f2-4ff2-b53f-f1b572f17e3f">
+<span class="eqno">(73)<a class="headerlink" href="#equation-3e4825e5-71f2-4ff2-b53f-f1b572f17e3f" title="Permalink to this equation">¶</a></span>\[\begin{align}
+y^{*} = 
 \begin{bmatrix}
-c\hat{\beta}<em>{\mathrm{face&gt;other,\ session\ 1}} \
-c\hat{\beta}</em>{\mathrm{face&gt;other,\ session\ 2}} \
-c\hat{\beta}<em>{\mathrm{place&gt;other,\ session\ 1}} \
-c\hat{\beta}</em>{\mathrm{place&gt;other,\ session\ 2}} \
+c\hat{\beta}_{\mathrm{face&gt;other,\ session\ 1}} \\
+c\hat{\beta}_{\mathrm{face&gt;other,\ session\ 2}} \\
+c\hat{\beta}_{\mathrm{place&gt;other,\ session\ 1}} \\
+c\hat{\beta}_{\mathrm{place&gt;other,\ session\ 2}} \\
 \end{bmatrix}
-\end{align}</p>
+\end{align}\]</div>
 <p>Check the ToDo in section 4.1.4. to see which contrast (“COPE”) numbers these first-level contrasts refer to.
 Set the “Output directory” to the “week 5” folder. And, under the “Post-stats” tab, set the thresholding to “Uncorrected” at a threshold at <span class="math notranslate nohighlight">\(p &lt; 0.005\)</span>.</p>
 </div><p>Note that, instead of assuming that “Inputs are 3D cope images from FEAT directions”, you could use the other option “Inputs are lower-level FEAT directories”. This option allows you to apply a particular higher-level design (<span class="math notranslate nohighlight">\(\mathbf{X}^{*}\)</span>) and higher-level contrasts (<span class="math notranslate nohighlight">\(\mathbf{c}^{*}\)</span>) for <em>all first-level contrasts</em> at the same time. Here, we don’t use this option as it is less clear what is happening “under the hood”.</p>

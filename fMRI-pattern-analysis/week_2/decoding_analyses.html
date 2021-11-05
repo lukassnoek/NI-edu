@@ -620,22 +620,22 @@
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Example of patterns for run 1:
- [[ 0.2447125   0.99431027 -0.46932186 ... -0.24079276 -0.75396341
-   1.81905418]
- [ 0.13049176  0.91448506  0.01479026 ... -0.96374128 -0.59050643
-   1.3758913 ]
- [ 0.06202822  0.98770045  0.1711328  ... -1.13771245 -0.34566141
-  -0.07617262]
+ [[-0.55329709 -0.4327814  -2.04681509 ... -0.7609846  -0.81830253
+   1.73502018]
+ [-0.57485927 -0.80800674 -1.23889912 ... -0.63631087 -0.25964726
+   0.79920199]
+ [-0.4161931  -0.29884805 -1.81679397 ... -0.48078656  0.50166971
+   0.61483032]
  ...
- [-0.22636117 -0.0600893   0.77279625 ... -0.1151756  -0.86635182
-  -0.78095693]
- [ 0.28381101 -0.64107182  0.23110997 ... -0.73811955 -1.03237391
-   0.50554029]
- [-0.62538594 -1.08543638  0.24688345 ...  0.80464881 -1.13465042
-   0.43490857]]
+ [ 0.40632851  0.14782688 -0.58471447 ...  1.17680281 -0.36172772
+  -0.85764227]
+ [ 0.49098558 -0.20986671 -0.38048374 ...  1.23699383 -0.89165314
+  -0.30552053]
+ [ 0.66562567 -0.03347453 -1.39182093 ...  1.19359279 -0.21818337
+   0.54695346]]
 
 Example of target for run 1:
- [&#39;F&#39;, &#39;F&#39;, &#39;F&#39;, &#39;F&#39;, &#39;M&#39;, &#39;M&#39;, &#39;M&#39;, &#39;M&#39;, &#39;F&#39;, &#39;F&#39;, &#39;F&#39;, &#39;M&#39;, &#39;M&#39;, &#39;M&#39;, &#39;M&#39;, &#39;M&#39;, &#39;F&#39;, &#39;F&#39;, &#39;F&#39;, &#39;M&#39;, &#39;F&#39;, &#39;F&#39;, &#39;F&#39;, &#39;F&#39;, &#39;F&#39;, &#39;F&#39;, &#39;F&#39;, &#39;F&#39;, &#39;M&#39;, &#39;F&#39;, &#39;F&#39;, &#39;M&#39;, &#39;M&#39;, &#39;M&#39;, &#39;M&#39;, &#39;M&#39;, &#39;M&#39;, &#39;M&#39;, &#39;M&#39;, &#39;M&#39;]
+ [&#39;M&#39;, &#39;F&#39;, &#39;F&#39;, &#39;F&#39;, &#39;F&#39;, &#39;F&#39;, &#39;F&#39;, &#39;F&#39;, &#39;M&#39;, &#39;M&#39;, &#39;M&#39;, &#39;M&#39;, &#39;M&#39;, &#39;M&#39;, &#39;M&#39;, &#39;M&#39;, &#39;M&#39;, &#39;M&#39;, &#39;M&#39;, &#39;M&#39;, &#39;M&#39;, &#39;M&#39;, &#39;M&#39;, &#39;M&#39;, &#39;M&#39;, &#39;M&#39;, &#39;M&#39;, &#39;F&#39;, &#39;F&#39;, &#39;F&#39;, &#39;F&#39;, &#39;F&#39;, &#39;F&#39;, &#39;F&#39;, &#39;F&#39;, &#39;F&#39;, &#39;F&#39;, &#39;F&#39;, &#39;F&#39;, &#39;F&#39;]
 </pre></div>
 </div>
 </div>
@@ -716,8 +716,8 @@ Example of target for run 1:
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[0 0 0 0 1 1 1 1 0 0 0 1 1 1 1 1 0 0 0 1 0 0 0 0 0 0 0 0 1 0 0 1 1 1 1 1 1
- 1 1 1]
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[1 0 0 0 0 0 0 0 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 0 0 0 0 0 0 0 0 0 0
+ 0 0 0]
 </pre></div>
 </div>
 </div>
@@ -732,8 +732,8 @@ Example of target for run 1:
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[0 0 0 0 1 1 1 1 0 0 0 1 1 1 1 1 0 0 0 1 0 0 0 0 0 0 0 0 1 0 0 1 1 1 1 1 1
- 1 1 1]
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[1 0 0 0 0 0 0 0 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 0 0 0 0 0 0 0 0 0 0
+ 0 0 0]
 </pre></div>
 </div>
 </div>
@@ -764,9 +764,10 @@ Example of target for run 1:
 <div class="section" id="standardization">
 <h2>Standardization<a class="headerlink" href="#standardization" title="Permalink to this headline">¶</a></h2>
 <p>In addition to the “preprocessing” steps for pattern analyses discussed in last week’s lab, when doing decoding, you additionally need to standardize your brain features (i.e., the columns in your pattern matrix) on which you fit your model. With “standardization”, we mean making sure each feature (<span class="math notranslate nohighlight">\(\mathbf{R}_{j}\)</span> for column <span class="math notranslate nohighlight">\(j\)</span>) in your pattern matrix has 0 zero mean and unit (1) standard deviation, which can be achieved as follows for each feature <span class="math notranslate nohighlight">\(j\)</span>:</p>
-<p>\begin{align}
-\mathbf{R}<em>{j, norm} = \frac{\mathbf{R}</em>{j} - \bar{\mathbf{R}}<em>{j}}{\hat{\sigma}(\mathbf{R}</em>{j})}
-\end{align}</p>
+<div class="amsmath math notranslate nohighlight" id="equation-ff9b761c-39bf-4e2a-ba0c-531bd6ae5bf1">
+<span class="eqno">(92)<a class="headerlink" href="#equation-ff9b761c-39bf-4e2a-ba0c-531bd6ae5bf1" title="Permalink to this equation">¶</a></span>\[\begin{align}
+\mathbf{R}_{j, norm} = \frac{\mathbf{R}_{j} - \bar{\mathbf{R}}_{j}}{\hat{\sigma}(\mathbf{R}_{j})}
+\end{align}\]</div>
 <p>where <span class="math notranslate nohighlight">\(\bar{\mathbf{R}_{j}}\)</span> represents the <em>mean</em> of <span class="math notranslate nohighlight">\(\mathbf{R}_{j}\)</span> and <span class="math notranslate nohighlight">\(\hat{\sigma}(\mathbf{R}_{j})\)</span> represents the standard deviation of <span class="math notranslate nohighlight">\(\mathbf{R}_{j}\)</span>. In other words, for each value in <span class="math notranslate nohighlight">\(\mathbf{R}\)</span>, you subtract the mean from the column it belongs to and subsequently you divide the result by the standard deviation of the column it belongs to. This process is also known as <em>z-scoring</em>.</p>
 <p>This standardization process is done for each brain feature (column) separately. Standardization is important for most ML/statistical models because it makes sure that each brain feature has the same <em>scale</em>, which often helps in efficiently estimating model parameters.</p>
 <p>Importantly, when you have patterns from multiple runs (as is often the case in fMRI decoding), these patterns should also be independently standardized, even if you want to pool these patterns later on (see <a class="reference external" href="https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0207083">Lee &amp; Kable, 2018</a>). This is because some runs may yield patterns with a relatively higher mean or standard deviation across samples (for example, because participants start moving more towards the end of the experiment, leading to more noisy pattern estimates).</p>
@@ -854,9 +855,10 @@ Shape S_all: (160,)
 <div class="section" id="fitting-models">
 <h2>Fitting models<a class="headerlink" href="#fitting-models" title="Permalink to this headline">¶</a></h2>
 <p>When fitting decoding models, we assume that we can approximate our target variable (<span class="math notranslate nohighlight">\(\mathbf{S}\)</span>) as a function of the input data (<span class="math notranslate nohighlight">\(\mathbf{R}\)</span>):</p>
-<p>\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-faf4a403-e0c4-4be3-99fc-d86604a17102">
+<span class="eqno">(93)<a class="headerlink" href="#equation-faf4a403-e0c4-4be3-99fc-d86604a17102" title="Permalink to this equation">¶</a></span>\[\begin{align}
 \hat{\mathbf{S}} \approx f(\mathbf{R})
-\end{align}</p>
+\end{align}\]</div>
 <p>Usually, the models used in pattern analyses assume linear functions (especially with relatively little data), i.e., functions that approximate the target using a linear combination of input variables (<span class="math notranslate nohighlight">\(\mathbf{R}_{j}\)</span>) weighted by parameters (<span class="math notranslate nohighlight">\(\beta\)</span>). Note that the univariate GLM often used in encoding models is such a linear model. The process of model fitting is estimating parameters that minize the discrepancy (error) between the predicted values (<span class="math notranslate nohighlight">\(\hat{\mathbf{S}}\)</span>) and the actual values (<span class="math notranslate nohighlight">\(\mathbf{S}\)</span>) of the target variable, both for regression (<span class="math notranslate nohighlight">\(\mathbf{S}\)</span> is continuous) and classification (<span class="math notranslate nohighlight">\(\mathbf{S}\)</span> is categorical) models. Different models differ in how they exactly estimate their parameters, but the general process is the same (minimizing error between predictions and target). In this course, we won’t go much into the differences across models (partly because in practice, we found that performance doesn’t differ that much between models).</p>
 <p>Alright, let’s get to it. Below, we import the <a class="reference external" href="https://scikit-learn.org/stable/modules/generated/sklearn.linear_model.LogisticRegression.html">LogisticRegression</a> class, a particular linear <em>classification</em> model (unlike the name suggests).</p>
 <div class="cell docutils container">
@@ -931,9 +933,10 @@ Shape S_all: (160,)
 <div class="section" id="metrics-for-discrete-predictions">
 <h3>Metrics for discrete predictions<a class="headerlink" href="#metrics-for-discrete-predictions" title="Permalink to this headline">¶</a></h3>
 <p>There are many different metrics to evaluate the predictions of classification models. The most well known (but not necessarily always appropriate) metric for <em>discrete</em> predictions is <em>accuracy</em>, which is defined as follows:</p>
-<p>\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-c9a081ec-ef0a-4417-9210-92d1517f23c8">
+<span class="eqno">(94)<a class="headerlink" href="#equation-c9a081ec-ef0a-4417-9210-92d1517f23c8" title="Permalink to this equation">¶</a></span>\[\begin{align}
 \mathrm{accuracy} = \frac{\mathrm{number\ of\ correct\ predictions}}{\mathrm{total\ number\ of\ predictions}}
-\end{align}</p>
+\end{align}\]</div>
 <p>For accuracy, the best possible score is 1 (predict all samples correctly) and “chance level” performance (i.e., the expected score when randomly guessing) is, in general, <span class="math notranslate nohighlight">\(\frac{1}{\mathrm{Number\ of\ classes}}\)</span>, so for our example with two classes (“M” and “F”), it is 0.5.</p>
 <div class='alert alert-warning'>
     <b>ToDo</b> (1 point): Using the predictions (the <tt>preds</tt> variable) and the true labels (the <tt>S_all</tt> variable), compute the associated accuracy and store this in a variable <tt>acc</tt>. Note: there is no need for a for-loop! You can use the fact that boolean values, <tt>True</tt> and <tt>False</tt>, evaluate to 1 and 0, respectively, in Python... 
@@ -969,11 +972,11 @@ Shape S_all: (160,)
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[[1.    0.   ]
- [0.996 0.004]
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[[0.998 0.002]
+ [0.999 0.001]
  [0.998 0.002]
- [0.99  0.01 ]
- [0.016 0.984]]
+ [0.985 0.015]
+ [0.014 0.986]]
 </pre></div>
 </div>
 </div>
@@ -987,24 +990,25 @@ Shape S_all: (160,)
 </div>
 </div>
 <p>AUROC is an excellent metric to use for probabilistic predictions, but there’s one caveat: when evaluating probabilistic predictions (formatted as a <span class="math notranslate nohighlight">\(N \times M\)</span> matrxi), it needs the <em>true</em> target values (dependent variable) in a <em>one-hot-encoded</em> format. One-hot-encoding (OHE) is a technique that transforms a <span class="math notranslate nohighlight">\(N \times 1\)</span> vector with <span class="math notranslate nohighlight">\(M\)</span> classes into a <span class="math notranslate nohighlight">\(N \times M\)</span> binary matrix:</p>
-<p>\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-f8784a06-f687-482d-8244-0954b866098e">
+<span class="eqno">(95)<a class="headerlink" href="#equation-f8784a06-f687-482d-8244-0954b866098e" title="Permalink to this equation">¶</a></span>\[\begin{align}
 S = \begin{bmatrix}
-1 \
-2 \
-1 \
-3 \
-2 \
+1 \\
+2 \\
+1 \\
+3 \\
+2 \\
 4
 \end{bmatrix}
 \underset{\Longrightarrow}{\mathrm{OHE}} \begin{bmatrix}
-1 &amp; 0 &amp; 0 &amp; 0 \
-0 &amp; 1 &amp; 0 &amp; 0 \
-1 &amp; 0 &amp; 0 &amp; 0 \
-0 &amp; 0 &amp; 1 &amp; 0 \
-0 &amp; 1 &amp; 0 &amp; 0 \
+1 &amp; 0 &amp; 0 &amp; 0 \\
+0 &amp; 1 &amp; 0 &amp; 0 \\
+1 &amp; 0 &amp; 0 &amp; 0 \\
+0 &amp; 0 &amp; 1 &amp; 0 \\
+0 &amp; 1 &amp; 0 &amp; 0 \\
 0 &amp; 0 &amp; 0 &amp; 1
 \end{bmatrix}
-\end{align}</p>
+\end{align}\]</div>
 <p>You might know this technique under the name “dummy (en)coding”.</p>
 <div class='alert alert-warning'>
     <b>ToDo</b> (optional): Complete the <tt>one_hot_encode</tt> function below that takes in a 1D vector representing a target variable with any number of classes and observations and outputs a one-hot-encoded version of that target variable.  
@@ -1094,9 +1098,10 @@ S = \begin{bmatrix}
 <div class='alert alert-warning'>
     <b>ToDo</b> (optional, quite difficult!): Another class of classification metrics are "pseudo $R^2$" scores. These metrics are similar to $R^2$ in regression models in the sense that they are bounded between 0 (chance performance) and 1 (perfect performance). They often assume probabilistic predictions. 
 <p>One of these pseudo <span class="math notranslate nohighlight">\(R^2\)</span> metrics is “Tjur’s pseudo <span class="math notranslate nohighlight">\(R^2\)</span>” which is defined as the difference between the average (across observations) probability of a particular class and the average probability of the other class(es) for a given label. So, suppose we’re dealing with a two-class classification problem (with class 0 and class 1), and the average probability for class 1 of trials belonging to class 1 is 0.9, while the average probability for class 1 of trials belonging to class 0 is 0.3, then the Tjur’s pseudo <span class="math notranslate nohighlight">\(R^2\)</span> score for class 1 is <span class="math notranslate nohighlight">\(0.9-0.3=0.6\)</span>. Formally, the Tjur’s pseudo <span class="math notranslate nohighlight">\(R^2\)</span> score for class <span class="math notranslate nohighlight">\(m\)</span> is defined as:</p>
-<p>\begin{align}
-R^2_{m} = \frac{1}{N}\sum_{i=1}^{N}p(\hat{s}^{m}<em>{i}) - \frac{1}{N}\sum</em>{i=1}^{N}p(\hat{s}^{\neg m}_{i})
-\end{align}</p>
+<div class="amsmath math notranslate nohighlight" id="equation-04a74b49-bfa1-4d38-ac76-52fc958f0fd4">
+<span class="eqno">(96)<a class="headerlink" href="#equation-04a74b49-bfa1-4d38-ac76-52fc958f0fd4" title="Permalink to this equation">¶</a></span>\[\begin{align}
+R^2_{m} = \frac{1}{N}\sum_{i=1}^{N}p(\hat{s}^{m}_{i}) - \frac{1}{N}\sum_{i=1}^{N}p(\hat{s}^{\neg m}_{i})
+\end{align}\]</div>
 <p>for any set of trials belonging to class 1 (<span class="math notranslate nohighlight">\(p^{m}_{i}\)</span>) and complementary set of trials <em>not</em> beloning to class 1 (<span class="math notranslate nohighlight">\(p^{\neg m}_{i}\)</span>).</p>
 <p>Complete the function <tt>tjur_r2</tt> below that takes two arguments — <tt>target</tt> (a 1D array with target labels) and <tt>probas</tt> (a 2D array with probabilities) — and should output an array of length <span class="math notranslate nohighlight">\(M\)</span> with Tjur’s pseudo <span class="math notranslate nohighlight">\(R^2\)</span> scores for the <span class="math notranslate nohighlight">\(M\)</span> classes in the target array.</p>
 </div><div class="cell tag_raises-exception tag_remove-output docutils container">
@@ -1185,9 +1190,10 @@ R^2_{m} = \frac{1}{N}\sum_{i=1}^{N}p(\hat{s}^{m}<em>{i}) - \frac{1}{N}\sum</em>{
 </div>
 </div>
 <p>Before predicting the test set, however, we need to decide whether we want to independently standardize the test set or whether to <em>cross-validate</em> our previously estimated standardized parameters (the feature-wise mean and standard deviation). Although opinions differ on this topic (see e.g. <a class="reference external" href="https://jamanetwork.com/journals/jamapsychiatry/article-abstract/2756204">this excellent article</a>), if we want a truly unbiased estimate of generalization, we should also cross-validate our standardization procedure in addition to cross-validation of our model. So, to cross-validate our standardization procedure, we do the following for each feature <span class="math notranslate nohighlight">\(j\)</span> of our test set:</p>
-<p>\begin{align}
-\mathbf{R}<em>{j, norm}^{\mathrm{test}} = \frac{\mathbf{R}</em>{j}^{\mathrm{test}} - \bar{\mathbf{R}}<em>{j}^{\mathrm{train}}}{\hat{\sigma}(\mathbf{R}</em>{j}^{\mathrm{train}})}
-\end{align}</p>
+<div class="amsmath math notranslate nohighlight" id="equation-605f7f0c-56ee-4593-8476-e3ae626ac5de">
+<span class="eqno">(97)<a class="headerlink" href="#equation-605f7f0c-56ee-4593-8476-e3ae626ac5de" title="Permalink to this equation">¶</a></span>\[\begin{align}
+\mathbf{R}_{j, norm}^{\mathrm{test}} = \frac{\mathbf{R}_{j}^{\mathrm{test}} - \bar{\mathbf{R}}_{j}^{\mathrm{train}}}{\hat{\sigma}(\mathbf{R}_{j}^{\mathrm{train}})}
+\end{align}\]</div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Note that we&#39;re *not* calling fit on the test set, i.e.,</span>
@@ -1207,8 +1213,8 @@ R^2_{m} = \frac{1}{N}\sum_{i=1}^{N}p(\hat{s}^{m}<em>{i}) - \frac{1}{N}\sum</em>{
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Predictions for our test set samples:
- [0 0 1 1 1 1 1 1 0 1 1 1 1 1 1 0 0 0 0 0 1 0 0 0 1 1 1 0 0 0 0 0 0 0 0 0 1
- 1 1 1 0 0 1 1 1 0 0 0 1 1 1 1 0 0 0 1 0 1 0 0 1 1 1 1 1 1 1 1 1 1 1 1 1 0
+ [0 0 0 1 1 1 1 1 1 1 1 1 1 1 0 0 0 0 0 0 1 1 0 1 1 1 1 1 0 0 0 0 0 0 0 1 1
+ 1 1 1 0 0 0 1 1 0 0 0 1 1 1 1 1 0 0 0 0 1 0 0 1 0 1 0 0 1 1 1 1 1 1 1 1 0
  0 0 0 0 0 0]
 </pre></div>
 </div>
@@ -1224,7 +1230,7 @@ R^2_{m} = \frac{1}{N}\sum_{i=1}^{N}p(\hat{s}^{m}<em>{i}) - \frac{1}{N}\sum</em>{
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Cross-validated accuracy: 0.775
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Cross-validated accuracy: 0.8125
 </pre></div>
 </div>
 </div>
@@ -1520,7 +1526,9 @@ Accuracy: 0.74
 Accuracy: 0.80
 Accuracy: 0.80
 Accuracy: 0.80
-Accuracy: 0.80
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Accuracy: 0.80
 Accuracy: 0.80
 </pre></div>
 </div>
@@ -1611,7 +1619,9 @@ Accuracy: 0.50
 Accuracy: 0.48
 Accuracy: 0.48
 Accuracy: 0.52
-Accuracy: 0.52
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Accuracy: 0.52
 </pre></div>
 </div>
 </div>
@@ -2288,7 +2298,7 @@ S shape: (47,)
 </div>
 <div class="cell_output docutils container">
 <script type="application/vnd.jupyter.widget-view+json">
-{"version_major": 2, "version_minor": 0, "model_id": "5cd9bffebbb64914b34bb94d08d3700d"}
+{"version_major": 2, "version_minor": 0, "model_id": "66c605c93a0c47859b3f4692a1e52ce6"}
 </script></div>
 </div>
 <p>Okay, we now got our simulated null-distribution values stored in the variable <code class="docutils literal notranslate"><span class="pre">permuted_accuracies</span></code>. Let’s look at how the distribution actually looks like (and how the observed accuracy relates to the permuted scores):</p>
@@ -2312,9 +2322,10 @@ S shape: (47,)
 </div>
 </div>
 <p>Now, the ‘formula’ for the <span class="math notranslate nohighlight">\(p\)</span>-value in a permutation test is as follows: given <span class="math notranslate nohighlight">\(P\)</span> permutations, it’s the following (in pseudo-notation):</p>
-<p>\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-65cb6b38-9de9-473b-ab6d-6ce3183519b3">
+<span class="eqno">(98)<a class="headerlink" href="#equation-65cb6b38-9de9-473b-ab6d-6ce3183519b3" title="Permalink to this equation">¶</a></span>\[\begin{align}
 p = \frac{\sum_{i=1}^{P}{(\mathrm{permuted}_{i} \geq \mathrm{observed})} + 1}{P+1}
-\end{align}</p>
+\end{align}\]</div>
 <p>where <span class="math notranslate nohighlight">\((\mathrm{permuted}_{i} \geq \mathrm{observed})\)</span> evaluates to 1 if true, otherwise 0. Put differently: the <span class="math notranslate nohighlight">\(p\)</span>-value, here, expresses the proportion of permutation-values that is equal to or higher than the observed value. Graphically, we can visualize the <span class="math notranslate nohighlight">\(p\)</span>-value as the area of the (simulated!) null-distribution right of the dotted red line in the figure above.</p>
 <div class='alert alert-warning'>
 <b>ToDo</b> (1 point): 
@@ -2376,7 +2387,7 @@ Calculate the $p$-value corresponding to the observed accuracy given our permute
 
 
 <script type="application/vnd.jupyter.widget-state+json">
-{"state": {"c503c5b89cda40eda49d74a1e1311af9": {"model_name": "LayoutModel", "model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "state": {"_model_module": "@jupyter-widgets/base", "_model_module_version": "1.2.0", "_model_name": "LayoutModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "LayoutView", "align_content": null, "align_items": null, "align_self": null, "border": null, "bottom": null, "display": null, "flex": null, "flex_flow": null, "grid_area": null, "grid_auto_columns": null, "grid_auto_flow": null, "grid_auto_rows": null, "grid_column": null, "grid_gap": null, "grid_row": null, "grid_template_areas": null, "grid_template_columns": null, "grid_template_rows": null, "height": null, "justify_content": null, "justify_items": null, "left": null, "margin": null, "max_height": null, "max_width": null, "min_height": null, "min_width": null, "object_fit": null, "object_position": null, "order": null, "overflow": null, "overflow_x": null, "overflow_y": null, "padding": null, "right": null, "top": null, "visibility": null, "width": null}}, "37fbe6542a5f4117aeb26be3b71e3225": {"model_name": "ProgressStyleModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "ProgressStyleModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "StyleView", "bar_color": null, "description_width": ""}}, "1d3c501c3a3b421e85ca4a9045c39706": {"model_name": "FloatProgressModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_dom_classes": [], "_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "FloatProgressModel", "_view_count": null, "_view_module": "@jupyter-widgets/controls", "_view_module_version": "1.5.0", "_view_name": "ProgressView", "bar_style": "success", "description": "", "description_tooltip": null, "layout": "IPY_MODEL_c503c5b89cda40eda49d74a1e1311af9", "max": 100.0, "min": 0.0, "orientation": "horizontal", "style": "IPY_MODEL_37fbe6542a5f4117aeb26be3b71e3225", "value": 100.0}}, "d0004a623a164abdac1b33df77dbdca2": {"model_name": "LayoutModel", "model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "state": {"_model_module": "@jupyter-widgets/base", "_model_module_version": "1.2.0", "_model_name": "LayoutModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "LayoutView", "align_content": null, "align_items": null, "align_self": null, "border": null, "bottom": null, "display": null, "flex": null, "flex_flow": null, "grid_area": null, "grid_auto_columns": null, "grid_auto_flow": null, "grid_auto_rows": null, "grid_column": null, "grid_gap": null, "grid_row": null, "grid_template_areas": null, "grid_template_columns": null, "grid_template_rows": null, "height": null, "justify_content": null, "justify_items": null, "left": null, "margin": null, "max_height": null, "max_width": null, "min_height": null, "min_width": null, "object_fit": null, "object_position": null, "order": null, "overflow": null, "overflow_x": null, "overflow_y": null, "padding": null, "right": null, "top": null, "visibility": null, "width": null}}, "535c887c34ea4b49a0313104b5ad68f4": {"model_name": "DescriptionStyleModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "DescriptionStyleModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "StyleView", "description_width": ""}}, "228f28a8c65443f5b3af8c849e6f1ed8": {"model_name": "HTMLModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_dom_classes": [], "_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "HTMLModel", "_view_count": null, "_view_module": "@jupyter-widgets/controls", "_view_module_version": "1.5.0", "_view_name": "HTMLView", "description": "", "description_tooltip": null, "layout": "IPY_MODEL_d0004a623a164abdac1b33df77dbdca2", "placeholder": "\u200b", "style": "IPY_MODEL_535c887c34ea4b49a0313104b5ad68f4", "value": "100%"}}, "ebe87db71700442880b5df864e490a29": {"model_name": "LayoutModel", "model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "state": {"_model_module": "@jupyter-widgets/base", "_model_module_version": "1.2.0", "_model_name": "LayoutModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "LayoutView", "align_content": null, "align_items": null, "align_self": null, "border": null, "bottom": null, "display": null, "flex": null, "flex_flow": null, "grid_area": null, "grid_auto_columns": null, "grid_auto_flow": null, "grid_auto_rows": null, "grid_column": null, "grid_gap": null, "grid_row": null, "grid_template_areas": null, "grid_template_columns": null, "grid_template_rows": null, "height": null, "justify_content": null, "justify_items": null, "left": null, "margin": null, "max_height": null, "max_width": null, "min_height": null, "min_width": null, "object_fit": null, "object_position": null, "order": null, "overflow": null, "overflow_x": null, "overflow_y": null, "padding": null, "right": null, "top": null, "visibility": null, "width": null}}, "ef9e162f9e3941b2a3eb89baf9bd34f2": {"model_name": "DescriptionStyleModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "DescriptionStyleModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "StyleView", "description_width": ""}}, "dd39180e4207476ab113fefe8dfb3a46": {"model_name": "HTMLModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_dom_classes": [], "_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "HTMLModel", "_view_count": null, "_view_module": "@jupyter-widgets/controls", "_view_module_version": "1.5.0", "_view_name": "HTMLView", "description": "", "description_tooltip": null, "layout": "IPY_MODEL_ebe87db71700442880b5df864e490a29", "placeholder": "\u200b", "style": "IPY_MODEL_ef9e162f9e3941b2a3eb89baf9bd34f2", "value": " 100/100 [00:17&lt;00:00,  5.63it/s]"}}, "6ca56f389e024ea0b107f622dc0c87a9": {"model_name": "LayoutModel", "model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "state": {"_model_module": "@jupyter-widgets/base", "_model_module_version": "1.2.0", "_model_name": "LayoutModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "LayoutView", "align_content": null, "align_items": null, "align_self": null, "border": null, "bottom": null, "display": null, "flex": null, "flex_flow": null, "grid_area": null, "grid_auto_columns": null, "grid_auto_flow": null, "grid_auto_rows": null, "grid_column": null, "grid_gap": null, "grid_row": null, "grid_template_areas": null, "grid_template_columns": null, "grid_template_rows": null, "height": null, "justify_content": null, "justify_items": null, "left": null, "margin": null, "max_height": null, "max_width": null, "min_height": null, "min_width": null, "object_fit": null, "object_position": null, "order": null, "overflow": null, "overflow_x": null, "overflow_y": null, "padding": null, "right": null, "top": null, "visibility": null, "width": null}}, "5cd9bffebbb64914b34bb94d08d3700d": {"model_name": "HBoxModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_dom_classes": [], "_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "HBoxModel", "_view_count": null, "_view_module": "@jupyter-widgets/controls", "_view_module_version": "1.5.0", "_view_name": "HBoxView", "box_style": "", "children": ["IPY_MODEL_228f28a8c65443f5b3af8c849e6f1ed8", "IPY_MODEL_1d3c501c3a3b421e85ca4a9045c39706", "IPY_MODEL_dd39180e4207476ab113fefe8dfb3a46"], "layout": "IPY_MODEL_6ca56f389e024ea0b107f622dc0c87a9"}}}, "version_major": 2, "version_minor": 0}
+{"state": {"582435b4670e43a496b9a88578092eb5": {"model_name": "LayoutModel", "model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "state": {"_model_module": "@jupyter-widgets/base", "_model_module_version": "1.2.0", "_model_name": "LayoutModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "LayoutView", "align_content": null, "align_items": null, "align_self": null, "border": null, "bottom": null, "display": null, "flex": null, "flex_flow": null, "grid_area": null, "grid_auto_columns": null, "grid_auto_flow": null, "grid_auto_rows": null, "grid_column": null, "grid_gap": null, "grid_row": null, "grid_template_areas": null, "grid_template_columns": null, "grid_template_rows": null, "height": null, "justify_content": null, "justify_items": null, "left": null, "margin": null, "max_height": null, "max_width": null, "min_height": null, "min_width": null, "object_fit": null, "object_position": null, "order": null, "overflow": null, "overflow_x": null, "overflow_y": null, "padding": null, "right": null, "top": null, "visibility": null, "width": null}}, "cece23f2788344eab5f42ff0c3da9f09": {"model_name": "ProgressStyleModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "ProgressStyleModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "StyleView", "bar_color": null, "description_width": ""}}, "86ac61ad672841ba9de3d7fce39f3126": {"model_name": "FloatProgressModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_dom_classes": [], "_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "FloatProgressModel", "_view_count": null, "_view_module": "@jupyter-widgets/controls", "_view_module_version": "1.5.0", "_view_name": "ProgressView", "bar_style": "success", "description": "", "description_tooltip": null, "layout": "IPY_MODEL_582435b4670e43a496b9a88578092eb5", "max": 100.0, "min": 0.0, "orientation": "horizontal", "style": "IPY_MODEL_cece23f2788344eab5f42ff0c3da9f09", "value": 100.0}}, "b275552c0777422c8f80e1ed8e53114d": {"model_name": "LayoutModel", "model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "state": {"_model_module": "@jupyter-widgets/base", "_model_module_version": "1.2.0", "_model_name": "LayoutModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "LayoutView", "align_content": null, "align_items": null, "align_self": null, "border": null, "bottom": null, "display": null, "flex": null, "flex_flow": null, "grid_area": null, "grid_auto_columns": null, "grid_auto_flow": null, "grid_auto_rows": null, "grid_column": null, "grid_gap": null, "grid_row": null, "grid_template_areas": null, "grid_template_columns": null, "grid_template_rows": null, "height": null, "justify_content": null, "justify_items": null, "left": null, "margin": null, "max_height": null, "max_width": null, "min_height": null, "min_width": null, "object_fit": null, "object_position": null, "order": null, "overflow": null, "overflow_x": null, "overflow_y": null, "padding": null, "right": null, "top": null, "visibility": null, "width": null}}, "617fe76f3ce64069829b68a9e3986518": {"model_name": "DescriptionStyleModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "DescriptionStyleModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "StyleView", "description_width": ""}}, "110e3aa8bfa148109cddecea82247a98": {"model_name": "HTMLModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_dom_classes": [], "_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "HTMLModel", "_view_count": null, "_view_module": "@jupyter-widgets/controls", "_view_module_version": "1.5.0", "_view_name": "HTMLView", "description": "", "description_tooltip": null, "layout": "IPY_MODEL_b275552c0777422c8f80e1ed8e53114d", "placeholder": "\u200b", "style": "IPY_MODEL_617fe76f3ce64069829b68a9e3986518", "value": "100%"}}, "fd61e68834a040e88793a75577bfb8ad": {"model_name": "LayoutModel", "model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "state": {"_model_module": "@jupyter-widgets/base", "_model_module_version": "1.2.0", "_model_name": "LayoutModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "LayoutView", "align_content": null, "align_items": null, "align_self": null, "border": null, "bottom": null, "display": null, "flex": null, "flex_flow": null, "grid_area": null, "grid_auto_columns": null, "grid_auto_flow": null, "grid_auto_rows": null, "grid_column": null, "grid_gap": null, "grid_row": null, "grid_template_areas": null, "grid_template_columns": null, "grid_template_rows": null, "height": null, "justify_content": null, "justify_items": null, "left": null, "margin": null, "max_height": null, "max_width": null, "min_height": null, "min_width": null, "object_fit": null, "object_position": null, "order": null, "overflow": null, "overflow_x": null, "overflow_y": null, "padding": null, "right": null, "top": null, "visibility": null, "width": null}}, "ebc6c0c02f7b4256b7628d0bc46a89f3": {"model_name": "DescriptionStyleModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "DescriptionStyleModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "StyleView", "description_width": ""}}, "5318eb9d59244768bcf5a7a921f05560": {"model_name": "HTMLModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_dom_classes": [], "_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "HTMLModel", "_view_count": null, "_view_module": "@jupyter-widgets/controls", "_view_module_version": "1.5.0", "_view_name": "HTMLView", "description": "", "description_tooltip": null, "layout": "IPY_MODEL_fd61e68834a040e88793a75577bfb8ad", "placeholder": "\u200b", "style": "IPY_MODEL_ebc6c0c02f7b4256b7628d0bc46a89f3", "value": " 100/100 [00:18&lt;00:00,  6.40it/s]"}}, "808d99882ed84c1caadc86504e66db03": {"model_name": "LayoutModel", "model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "state": {"_model_module": "@jupyter-widgets/base", "_model_module_version": "1.2.0", "_model_name": "LayoutModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "LayoutView", "align_content": null, "align_items": null, "align_self": null, "border": null, "bottom": null, "display": null, "flex": null, "flex_flow": null, "grid_area": null, "grid_auto_columns": null, "grid_auto_flow": null, "grid_auto_rows": null, "grid_column": null, "grid_gap": null, "grid_row": null, "grid_template_areas": null, "grid_template_columns": null, "grid_template_rows": null, "height": null, "justify_content": null, "justify_items": null, "left": null, "margin": null, "max_height": null, "max_width": null, "min_height": null, "min_width": null, "object_fit": null, "object_position": null, "order": null, "overflow": null, "overflow_x": null, "overflow_y": null, "padding": null, "right": null, "top": null, "visibility": null, "width": null}}, "66c605c93a0c47859b3f4692a1e52ce6": {"model_name": "HBoxModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_dom_classes": [], "_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "HBoxModel", "_view_count": null, "_view_module": "@jupyter-widgets/controls", "_view_module_version": "1.5.0", "_view_name": "HBoxView", "box_style": "", "children": ["IPY_MODEL_110e3aa8bfa148109cddecea82247a98", "IPY_MODEL_86ac61ad672841ba9de3d7fce39f3126", "IPY_MODEL_5318eb9d59244768bcf5a7a921f05560"], "layout": "IPY_MODEL_808d99882ed84c1caadc86504e66db03"}}}, "version_major": 2, "version_minor": 0}
 </script>
 
 

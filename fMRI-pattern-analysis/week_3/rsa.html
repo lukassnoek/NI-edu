@@ -603,7 +603,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;nilearn.plotting.displays.OrthoSlicer at 0x7f3463fb22e0&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;nilearn.plotting.displays.OrthoSlicer at 0x7faf020553a0&gt;
 </pre></div>
 </div>
 <img alt="../../_images/rsa_6_2.png" src="../../_images/rsa_6_2.png" />
@@ -1608,13 +1608,15 @@
 </div>
 </div>
 <p>The reason we need the variance-covariance matrix is that for <em>multivariate</em> noise normalization, we use the <em>full</em> matrix, i.e., including the off-diagonal elements (the covariance between voxels). To do so, we first need to compute the <em>whitening</em> matrix, which is often denoted by <span class="math notranslate nohighlight">\(D\)</span> and is computed by taking the square root of the inverse of the estimated variance-covariance matrix (<span class="math notranslate nohighlight">\(\hat{\Sigma}\)</span>):</p>
-<p>\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-a78a347d-5d7b-4bda-9e2e-03e23112d0f8">
+<span class="eqno">(99)<a class="headerlink" href="#equation-a78a347d-5d7b-4bda-9e2e-03e23112d0f8" title="Permalink to this equation">¶</a></span>\[\begin{align}
 D = \hat{\Sigma}^{-\frac{1}{2}}
-\end{align}</p>
+\end{align}\]</div>
 <p>Whitening using this particular whitening matrix (<span class="math notranslate nohighlight">\(\hat{\Sigma}^{-\frac{1}{2}}\)</span>) is also called <a class="reference external" href="https://en.wikipedia.org/wiki/Whitening_transformation">ZCA or Mahalanobis whitening</a>. To apply this whitening matrix to our patterns (<span class="math notranslate nohighlight">\(\mathbf{R}\)</span>), we simply take the dot product between the patterns and the whitening matrix:</p>
-<p>\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-2028f2da-5381-4577-8dc8-1d0b30dfe357">
+<span class="eqno">(100)<a class="headerlink" href="#equation-2028f2da-5381-4577-8dc8-1d0b30dfe357" title="Permalink to this equation">¶</a></span>\[\begin{align}
 R_{\mathrm{mnn}} = RD
-\end{align}</p>
+\end{align}\]</div>
 <p>where <span class="math notranslate nohighlight">\(R_{\mathrm{mnn}}\)</span> is the multivariate noise normalized pattern matrix. Note that this operation is <em>very</em> similar to the temporal uncorrelation method, but instead of uncorrelating the trials (i.e., the rows of the pattern matrix), it uncorrelates the brain features (i.e., the columns of the pattern matrix).</p>
 <p>Let’s first compute the whitening matrix. We can use the matrix square root function <code class="docutils literal notranslate"><span class="pre">sqrtm</span></code> from the <code class="docutils literal notranslate"><span class="pre">scipy.linalg</span></code> package:</p>
 <div class="cell docutils container">
@@ -1746,9 +1748,10 @@ R_{\mathrm{mnn}} = RD
 </div>
 </div>
 <p>Another often-used distance metric used for RDMs, and perhaps the most intuitive one, is the Euclidean distance. This distance is computed as the square root of the sum of squared distances between two patterns (e.g., <span class="math notranslate nohighlight">\(p\)</span> and <span class="math notranslate nohighlight">\(q\)</span>) consisting of <span class="math notranslate nohighlight">\(K\)</span> elements:</p>
-<p>\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-d6aece8b-7c29-4626-b29e-af21558e8878">
+<span class="eqno">(101)<a class="headerlink" href="#equation-d6aece8b-7c29-4626-b29e-af21558e8878" title="Permalink to this equation">¶</a></span>\[\begin{align}
 \delta_{euclidean} = \sqrt{\sum_{j=1}^{K}{(p_{j} - q_{j})^{2}}}
-\end{align}</p>
+\end{align}\]</div>
 <p>Below, we define two example patterns with four features and compute the Euclidean distance between them:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -2097,9 +2100,10 @@ R_{\mathrm{mnn}} = RD
 <div class="section" id="reweighting-rdvs">
 <h3>Reweighting RDVs<a class="headerlink" href="#reweighting-rdvs" title="Permalink to this headline">¶</a></h3>
 <p>One more advanced RSA technique is “reweighting”. This technique allows you to use multiple feature RDVs to explain your neural RDV. Essentially, you assume that the neural RDV can be approximated as a linear weighted sum of different feature RDVs. For example, for two feature RDVs (<span class="math notranslate nohighlight">\(\mathrm{RDV}_{S_{1}}\)</span> and <span class="math notranslate nohighlight">\(\mathrm{RDV}_{S_{2}}\)</span>):</p>
-<p>\begin{align}
-\mathrm{RDV}<em>{R} = \beta</em>{0} + \mathrm{RDV}<em>{S</em>{1}}\beta_{1} + \mathrm{RDV}<em>{S</em>{2}}\beta_{2} + \epsilon
-\end{align}</p>
+<div class="amsmath math notranslate nohighlight" id="equation-c506ab02-4da2-4099-89a7-e32eada019ca">
+<span class="eqno">(102)<a class="headerlink" href="#equation-c506ab02-4da2-4099-89a7-e32eada019ca" title="Permalink to this equation">¶</a></span>\[\begin{align}
+\mathrm{RDV}_{R} = \beta_{0} + \mathrm{RDV}_{S_{1}}\beta_{1} + \mathrm{RDV}_{S_{2}}\beta_{2} + \epsilon
+\end{align}\]</div>
 <p>You might recognize this formulation as a linear model (GLM) with the neural RDV as dependent variable and the feature RDVs as independent variables. Here, the parameters (<span class="math notranslate nohighlight">\(\beta\)</span>) represent the “reweighting” factors. This technique is very useful to disentangle the contributions of different (possibly correlated) feature spaces. Note that, often, a variant of ordinary least squares (OLS) is used to determine the parameters: non-negative least squares (NNLS), which forces the parameters to be positive (for details about why NNLS should be used, see <a class="reference external" href="https://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1003915">this article</a>, and more information about reweighting in general, see <a class="reference external" href="https://www.sciencedirect.com/science/article/pii/S0028393215301998#bib5">this article</a>).</p>
 <p>After the reweighted RDV (<span class="math notranslate nohighlight">\(\mathrm{RDV}_{S}\hat{\beta}\)</span>) is computed, it can again be evaluated using a (rank-based) correlation: <span class="math notranslate nohighlight">\(r(\mathrm{RDV}_{S}\hat{\beta}, \mathrm{RDV}_{R})\)</span>.</p>
 <div class='alert alert-warning'>
