@@ -80,8 +80,6 @@ sudo passwd $username
 
 The last command will trigger user input, which you can use to enter a password. Yes, you need to do this manually. Yes, there are ways to automate this, but this comes with security risks, so I'd advise against this. I'd recommend using the same, secure (long, combination of letters, digits, and symbols) password for all users.
 
-For a script version that does this for all users in a loop, check the `enable_ssh.sh` file in the `sysadmin` directory in the `NI-edu-admin` repository.
-
 ## Troubleshooting
 See the short troubleshooting guide when encountering issues.
 
