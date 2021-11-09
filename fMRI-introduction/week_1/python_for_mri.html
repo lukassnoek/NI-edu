@@ -498,7 +498,7 @@
 <p><strong>Estimated time to complete</strong>: 1-2 hours</p>
 <div class="section" id="what-is-nifti">
 <h2>What is “nifti”?<a class="headerlink" href="#what-is-nifti" title="Permalink to this headline">¶</a></h2>
-<p>Every scanner manufacturer (Philips, Siemens, GE, etc.) has their own proprietary data format. For example, here at the University of Amsterdam, we have a Philips scanner and we often export our data as PAR/REC files. However, to streamline the development and use of neuroimaging software packages, the Neuroimaging InFormatics Technology Initiative came up with a new, standardized format, <em>nifti</em>, that most neuroimaging packages should support. As such, usually the first step in any (f)MRI preprocessing pipeline is to convert the scanner-specific files (e.g., PAR/RECs) to nifti. This is beyond the scope of this course, but if at one point you need to do this yourself, we highly recommed the <a class="reference external" href="https://github.com/rordenlab/dcm2niix">dcm2niix</a> package!</p>
+<p>Usually, every scanner manufacturer (Philips, Siemens, GE, etc.) have their own proprietary data format. For example, here at the University of Amsterdam, we have a Philips scanner and we often export our data as PAR/REC files. However, to streamline the development and use of neuroimaging software packages, the Neuroimaging InFormatics Technology Initiative came up with a new, standardized format, <em>nifti</em>, that most neuroimaging packages should support. As such, usually the first step in any (f)MRI preprocessing pipeline is to convert the scanner-specific files (e.g., PAR/RECs) to nifti. This is beyond the scope of this course, but if at one point you need to do this yourself, we highly recommed the <a class="reference external" href="https://github.com/rordenlab/dcm2niix">dcm2niix</a> package!</p>
 <p>Throughout these tutorials you’ll work with these nifti-files (also called nifti images), which you can recognize by their extension of <em>.nii</em> or its compressed version <em>.nii.gz</em>. This file-format is supported by most neuroimaging software packages (such as FSL, which you’ll use later in this course!).</p>
 <p>However, we’d like to inspect and analyze nifti images in Python as well! <em>Nibabel</em> is an awesome Python package that allows us to read and load nifti images, and convert them to numpy arrays in a straightforward manner.</p>
 <div class="cell docutils container">
@@ -797,8 +797,8 @@
 </div>
 <p>Now, you can think about this 4D array as a series of 3D arrays (volumes), in which the fourth dimension represents time (as shown in the image below).
 <br><br></p>
-<p><img alt="img" src="https://nilearn.github.io/_images/niimgs.jpg" />
-<em>Source: <a class="reference external" href="https://nilearn.github.io/_images/niimgs.jpg">nilearn website</a></em></p>
+<p><img alt="img" src="https://nilearn.github.io/_images/niimgs.jpg" /></p>
+<p><em>Source: <a class="reference external" href="https://nilearn.github.io/_images/niimgs.jpg">nilearn website</a></em></p>
 <p>These separate 3D arrays (from the first three dimensions) in fMRI files are often called “volumes” or “dynamics”. So, for example, the first volume refers to the first 3D array that was recorded.</p>
 <p>Just like the anatomical MRI data, the values in the fMRI data just represent numbers:</p>
 <div class="cell docutils container">
@@ -961,8 +961,8 @@
 <p><img alt="img" src="http://www.grahamwideman.com/gw/brain/fs/coords/FSCoords_RAS01.gif" />
 (Source: Graham Wideman, <a class="reference external" href="http://www.grahamwideman.com/gw/brain/fs/coords/fscoords.htm">link</a>)</p>
 <p>Alright, but how does the affine help us recover the real word coordinates of our voxels? It turns out you only need a simple matrix operation: for a set of voxel coordinates <span class="math notranslate nohighlight">\((i, j, k)\)</span>, appended with a single 1, and an <span class="math notranslate nohighlight">\(4 \times 4\)</span> affine matrix <span class="math notranslate nohighlight">\(A\)</span>, you can get the real word coordinates (in RAS+) by the dot product (matrix multiplication) of <span class="math notranslate nohighlight">\(A\)</span> and <span class="math notranslate nohighlight">\((i, j, k, 1)\)</span>:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-8bfbed00-5da6-4000-8563-f1bbd37de549">
-<span class="eqno">(1)<a class="headerlink" href="#equation-8bfbed00-5da6-4000-8563-f1bbd37de549" title="Permalink to this equation">¶</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-5b280896-d51c-47d2-b838-e42633368f29">
+<span class="eqno">(1)<a class="headerlink" href="#equation-5b280896-d51c-47d2-b838-e42633368f29" title="Permalink to this equation">¶</a></span>\[\begin{align}
 \begin{bmatrix} x &amp; y &amp; z &amp; 1 \end{bmatrix} = A\begin{bmatrix}
            i \\
            j \\
@@ -1024,8 +1024,8 @@
 </div>
 </div>
 <p>To get the real world coordinate, we need to evaluate the following:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-a0aceac3-704f-4fdd-b960-8db1c85bf627">
-<span class="eqno">(2)<a class="headerlink" href="#equation-a0aceac3-704f-4fdd-b960-8db1c85bf627" title="Permalink to this equation">¶</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-eadd08d3-c7d4-439a-8b45-ce4374dc24e3">
+<span class="eqno">(2)<a class="headerlink" href="#equation-eadd08d3-c7d4-439a-8b45-ce4374dc24e3" title="Permalink to this equation">¶</a></span>\[\begin{align}
 x, y, z, 1 = A\begin{bmatrix}
            69 \\
            119 \\
