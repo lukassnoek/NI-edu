@@ -42,8 +42,6 @@
     <script src="../_static/copybutton.js"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
     <script src="../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
-    <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.0/dist/embed-amd.js"></script>
     <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
     <script>
         const thebe_selector = ".thebe"
@@ -516,6 +514,19 @@ laptops is a nightmare.)</p>
 <h2>Installing Jupyterhub<a class="headerlink" href="#installing-jupyterhub" title="Permalink to this headline">¶</a></h2>
 <p>At the University of Amsterdam, we use Jupyterhub in combination with <em>nbgrader</em> on a shared server for our “labs” (i.e., the notebooks).
 If you have access to a Linux server <em>and</em> you have root access, we highly recommend to use Jupyterhub (and <em>nbgrader</em>). By far the easiest way to install Jupyterhub (for relatively small classes) is through “<a class="reference external" href="https://tljh.jupyter.org/en/latest/index.html">The Littlest Jupyterhub</a>” (TLJH). Read through the <a class="reference external" href="https://tljh.jupyter.org/en/latest/install/index.html">installation</a> manual on the site. Again, this is only possible if you have root access (i.e., you have <em>sudo</em> rights).</p>
+<p>After installing TLJH, there are a few things I’d recommend you do. The first, and most important thing, is to enable HTTPS. To do so, check the <a class="reference external" href="https://tljh.jupyter.org/en/latest/howto/admin/https.html#howto-admin-https">TLJH guide</a>.</p>
+<p>As an example, for the UvA Linux server, you’d do this by running the following commands:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">tljh</span><span class="o">-</span><span class="n">config</span> <span class="nb">set</span> <span class="n">https</span><span class="o">.</span><span class="n">enabled</span> <span class="n">true</span>
+<span class="n">sudo</span> <span class="n">tljh</span><span class="o">-</span><span class="n">config</span> <span class="nb">set</span> <span class="n">https</span><span class="o">.</span><span class="n">letsencrypt</span><span class="o">.</span><span class="n">email</span> <span class="p">{</span><span class="n">Lukas</span><span class="s1">&#39; email}</span>
+<span class="n">sudo</span> <span class="n">tljh</span><span class="o">-</span><span class="n">config</span> <span class="n">add</span><span class="o">-</span><span class="n">item</span> <span class="n">https</span><span class="o">.</span><span class="n">letsencrypt</span><span class="o">.</span><span class="n">domains</span> <span class="n">neuroimaging</span><span class="o">.</span><span class="n">lukas</span><span class="o">-</span><span class="n">snoek</span><span class="o">.</span><span class="n">com</span>
+<span class="n">sudo</span> <span class="n">tljh</span><span class="o">-</span><span class="n">config</span> <span class="n">reload</span> <span class="n">proxy</span>
+</pre></div>
+</div>
+<p>Second, I’d recommend increasing the idle timeout (i.e., maximum time in seconds that a server can be inactive before it will be shutdown). By default, each notebook server is shut down after 10 minutes of inactivity, which is a bit short. To increase this, run the following (to increase it to 24hrs):</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">tljh</span><span class="o">-</span><span class="n">config</span> <span class="nb">set</span> <span class="n">services</span><span class="o">.</span><span class="n">cull</span><span class="o">.</span><span class="n">timeout</span> <span class="mi">86400</span>
+<span class="n">sudo</span> <span class="n">tljh</span><span class="o">-</span><span class="n">config</span> <span class="n">reload</span>
+</pre></div>
+</div>
 </div>
 <div class="section" id="installing-nbgrader">
 <h2>Installing <em>nbgrader</em><a class="headerlink" href="#installing-nbgrader" title="Permalink to this headline">¶</a></h2>
