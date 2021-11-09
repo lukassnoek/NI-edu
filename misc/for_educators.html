@@ -449,9 +449,46 @@
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#enable-ssh">
+   Enable SSH
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#troubleshooting">
    Troubleshooting
   </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#letsencrypt-cannot-renew-the-certificates">
+     Letsencrypt cannot renew the certificates
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#a-student-cannot-login-even-though-it-s-their-first-time-logging-in">
+     A student cannot login even though it’s their first time logging in!
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#a-student-forgot-their-password-and-cannot-log-in">
+     A student forgot their password and cannot log in!
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#a-student-cannot-access-the-jupyterhub-interface">
+     A student cannot access the Jupyterhub interface
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#i-can-not-generate-an-assignment">
+     I can not generate an assignment!
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#students-cannot-see-an-assignment">
+     Students cannot see an assignment!
+    </a>
+   </li>
+  </ul>
  </li>
 </ul>
 
@@ -502,7 +539,7 @@ If you have access to a Linux server <em>and</em> you have root access, we highl
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">tljh</span><span class="o">-</span><span class="n">config</span> <span class="n">reload</span> <span class="n">hub</span>
 </pre></div>
 </div>
-<p>Lastly, you need to add students to the database. Personally, I do that programatically using the command line interface of the <em>nbgrader</em> package but you can also do this manually in the Formgrader.</p>
+<p>Lastly, you need to add students to the database. Personally, I do that programatically using the command line interface of the <em>nbgrader</em> package but you can also do this manually in the Formgrader. Note: <strong>you don’t have to create the Linux accounts yourself!</strong> This is handles by the Jupyterhub interface.</p>
 </div>
 <div class="section" id="install-niedu">
 <h2>Install <code class="docutils literal notranslate"><span class="pre">niedu</span></code><a class="headerlink" href="#install-niedu" title="Permalink to this headline">¶</a></h2>
@@ -521,21 +558,49 @@ sudo PATH=${PATH} conda install python=3.8.5
 </pre></div>
 </div>
 </div>
+<div class="section" id="enable-ssh">
+<h2>Enable SSH<a class="headerlink" href="#enable-ssh" title="Permalink to this headline">¶</a></h2>
+<p>For some of the tutorials, students need to access the server through SSH (via X2Go). When Jupyterhub creates the student accounts, SSH is <em>not</em> enabled by default.  To do so, do the following <em>for every student account</em>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span># Add user to group `users`
+sudo usermod -a -G users ${username}
+
+# Change default shell to `bash`
+sudo chsh -s /bin/bash $username
+
+# Change password
+sudo passwd $username
+</pre></div>
+</div>
+<p>The last command will trigger user input, which you can use to enter a password. Yes, you need to do this manually. Yes, there are ways to automate this, but this comes with security risks, so I’d advise against this. I’d recommend using the same, secure (long, combination of letters, digits, and symbols) password for all users.</p>
+<p>For a script version that does this for all users in a loop, check the <code class="docutils literal notranslate"><span class="pre">enable_ssh.sh</span></code> file in the <code class="docutils literal notranslate"><span class="pre">sysadmin</span></code> directory in the <code class="docutils literal notranslate"><span class="pre">NI-edu-admin</span></code> repository.</p>
+</div>
 <div class="section" id="troubleshooting">
 <h2>Troubleshooting<a class="headerlink" href="#troubleshooting" title="Permalink to this headline">¶</a></h2>
 <p>See the short troubleshooting guide when encountering issues.</p>
-<p><strong>Letsencrypt cannot renew the certificates</strong></p>
+<div class="section" id="letsencrypt-cannot-renew-the-certificates">
+<h3>Letsencrypt cannot renew the certificates<a class="headerlink" href="#letsencrypt-cannot-renew-the-certificates" title="Permalink to this headline">¶</a></h3>
 <p>Letsencrypt renews certificates using a test that uses port 443. At the UvA, we only allow connections with port 443 from the UvA network (so you need to be connected to VPN), so the renewal will fail. To renew the certificates, temporarily open up port 443 (<code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">ufw</span> <span class="pre">allow</span> <span class="pre">443</span></code>), run the renew command (<code class="docutils literal notranslate"><span class="pre">certbot</span> <span class="pre">renew</span></code>), and close the port again (run <code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">ufw</span> <span class="pre">status</span> <span class="pre">numbered</span></code>, check the number of the rule for port 443, and then run <code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">ufw</span> <span class="pre">delete</span> <span class="pre">{nr</span> <span class="pre">of</span> <span class="pre">rule}</span></code>).</p>
-<p><strong>A student cannot login even though it’s their first time logging in!</strong></p>
+</div>
+<div class="section" id="a-student-cannot-login-even-though-it-s-their-first-time-logging-in">
+<h3>A student cannot login even though it’s their first time logging in!<a class="headerlink" href="#a-student-cannot-login-even-though-it-s-their-first-time-logging-in" title="Permalink to this headline">¶</a></h3>
 <p>The first time a student logs in, it sets their password. If this doesn’t work, check whether you added the student to the “whitelist”. Using an admin account, go to “Control panel”, “Admin”, and check if the student (e.g., “nim_01”) is included in the list of Users. If not, click “Add user” and add the user (e.g., “nim_01”, <strong>not</strong> “jupyter-nim_01”).</p>
-<p><strong>A student forgot their password and cannot log in!</strong></p>
+</div>
+<div class="section" id="a-student-forgot-their-password-and-cannot-log-in">
+<h3>A student forgot their password and cannot log in!<a class="headerlink" href="#a-student-forgot-their-password-and-cannot-log-in" title="Permalink to this headline">¶</a></h3>
 <p>Check the <a class="reference external" href="https://tljh.jupyter.org/en/latest/howto/auth/firstuse.html">TLJH</a> website under “Resetting user password”.</p>
-<p><strong>A student cannot access the Jupyterhub interface</strong></p>
+</div>
+<div class="section" id="a-student-cannot-access-the-jupyterhub-interface">
+<h3>A student cannot access the Jupyterhub interface<a class="headerlink" href="#a-student-cannot-access-the-jupyterhub-interface" title="Permalink to this headline">¶</a></h3>
 <p>At the UvA, our Jupyterhub is behind a firewall that only accepts requests from the UvA network. Make sure students are connected to VPN!</p>
-<p><strong>I can not generate an assignment!</strong></p>
+</div>
+<div class="section" id="i-can-not-generate-an-assignment">
+<h3>I can not generate an assignment!<a class="headerlink" href="#i-can-not-generate-an-assignment" title="Permalink to this headline">¶</a></h3>
 <p>When you get an error when you generate an assignment, you most likely forgot a ### BEGIN SOLUTION or ### END SOLUTION marker or you added these to a non-test cell.</p>
-<p><strong>Students cannot see an assignment!</strong></p>
+</div>
+<div class="section" id="students-cannot-see-an-assignment">
+<h3>Students cannot see an assignment!<a class="headerlink" href="#students-cannot-see-an-assignment" title="Permalink to this headline">¶</a></h3>
 <p>Make sure that you, in the formgrader, generated <em>and</em> released the assignment!</p>
+</div>
 </div>
 </div>
 

@@ -578,13 +578,13 @@
 <div class="section" id="the-t-value-formula-yet-again">
 <h3>The <em>t</em>-value formula — yet again<a class="headerlink" href="#the-t-value-formula-yet-again" title="Permalink to this headline">¶</a></h3>
 <p>The previous two weeks, you have learned that, essentially, we want to find large effects (calculated as <em>t</em>-values) of our contrasts by optimizing various parts of the <em>t</em>-value formula. Conceptually, the <em>t</em>-value formula for a particular contrast (<span class="math notranslate nohighlight">\(\mathbf{c}\)</span>) can be written as:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-0e16f61d-7abd-47d9-a357-603033930ac8">
-<span class="eqno">(47)<a class="headerlink" href="#equation-0e16f61d-7abd-47d9-a357-603033930ac8" title="Permalink to this equation">¶</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-7348d2a0-77a1-4312-8939-d251f7a86d54">
+<span class="eqno">(47)<a class="headerlink" href="#equation-7348d2a0-77a1-4312-8939-d251f7a86d54" title="Permalink to this equation">¶</a></span>\[\begin{align}
 t\mathrm{-value} = \frac{\mathrm{effect}}{\mathrm{uncertainty}} = \frac{\mathrm{effect}}{\sqrt{\mathrm{noise} \cdot \mathrm{design\ variance}}} = \frac{\mathbf{c}\hat{\beta}}{\sqrt{\hat{\sigma}^{2}\mathbf{c}(\mathbf{X}^{T}\mathbf{X})^{-1}\mathbf{c}^{T}}}
 \end{align}\]</div>
 <p>Last week you’ve learned that by ensuring low design variance (through <em>high</em> predictor variance and <em>low</em> predictor correlations) leads to larger normalized effects (higher <em>t</em>-values). This week, we will discuss the other term of the denominator of this formula: the noise (also called the residual variance or unexplained variance), which is defined in the <em>t</em>-value formula as follows:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-16be446f-df69-40ba-a8b7-e865f8309893">
-<span class="eqno">(48)<a class="headerlink" href="#equation-16be446f-df69-40ba-a8b7-e865f8309893" title="Permalink to this equation">¶</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-082fd0ad-c58a-4543-89be-eca6acf4d0f6">
+<span class="eqno">(48)<a class="headerlink" href="#equation-082fd0ad-c58a-4543-89be-eca6acf4d0f6" title="Permalink to this equation">¶</a></span>\[\begin{align}
 \mathrm{noise} = \frac{\mathrm{SSE}}{\mathrm{DF}} = \frac{\sum_{i=1}^{N}(y_{i} - \hat{y}_{i})^{2}}{N - P}
 \end{align}\]</div>
 <p>Through preprocessing, we aim to reduce the difference between our prediction (<span class="math notranslate nohighlight">\(\hat{\mathbf{y}}\)</span>) and our true signal (<span class="math notranslate nohighlight">\(\mathbf{y}\)</span>), thus reducing the noise-term of the formula and thereby optimizing our (“normalized”) effects.</p>
@@ -1138,8 +1138,8 @@ Shape of y (sig): (300,)
 </div>
 </div>
 <p>The <code class="docutils literal notranslate"><span class="pre">gaussian_filter</span></code> function takes two mandatory input: some kind of (n-dimensional) signal and a cutoff, “sigma”, that refers to the width of the gaussian filter in standard deviations. “What? We decided to define our cutoff in seconds (or, equivalently, Hz), right?”, you might think. For some reason neuroimaging packages seem to define cutoff for their temporal filters in <strong>seconds</strong> while more ‘low-level’ filter implementations (such as in scipy) define cutoffs (of gaussian filters) in <strong>the width of the gaussial filter</strong>, i.e., <strong>sigma</strong>. Fortunately, there is an easy way to convert a cutoff in seconds to a cutoff in sigma, given a particular TR (in seconds):</p>
-<div class="amsmath math notranslate nohighlight" id="equation-bf93555c-084d-4bf6-a2fe-642ab76a1a74">
-<span class="eqno">(49)<a class="headerlink" href="#equation-bf93555c-084d-4bf6-a2fe-642ab76a1a74" title="Permalink to this equation">¶</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-09bafdcf-e8d1-438c-a191-cb6f15c90d9a">
+<span class="eqno">(49)<a class="headerlink" href="#equation-09bafdcf-e8d1-438c-a191-cb6f15c90d9a" title="Permalink to this equation">¶</a></span>\[\begin{align}
 \sigma = \frac{\mathrm{cutoff}_{sec}}{\sqrt{8\ln{2}} \cdot \mathrm{TR}_{sec}}
 \end{align}\]</div>
 <p>where <span class="math notranslate nohighlight">\(\ln{2}\)</span> refers to the natural logarithm (i.e., log with base <span class="math notranslate nohighlight">\(e\)</span>).</p>
@@ -1294,8 +1294,8 @@ Shape of y (sig): (300,)
 <div class="section" id="high-pass-filtering-of-fmri-data-option-2">
 <h3>High-pass filtering of fMRI data (option 2)<a class="headerlink" href="#high-pass-filtering-of-fmri-data-option-2" title="Permalink to this headline">¶</a></h3>
 <p>As we’ve seen, high-pass filtering using a “running line smoother” is an operation that is applied to the signal directly (before model fitting) to reduce the noise term. Another way to reduce the noise term is to include <em>noise regressors</em> (also called ‘nuisance variables/regressors’) in the design matrix. As such, we can subdivide our design matrix into “predictors of interest” (which are included to model the task/stimuli) and “noise predictors” (which aim to model the thus-far unmodelled variance). These “noise predictors” are also sometimes called “nuisance” predictors/regressors/covariates. We can now slightly reformulate our linear regression equation by dividing our design into two components, <span class="math notranslate nohighlight">\(\mathbf{X}_{\mathrm{interest}}\)</span> and <span class="math notranslate nohighlight">\(\mathbf{X}_{\mathrm{noise}}\)</span>:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-81404e66-9004-4feb-95fe-502b6c8ce1b7">
-<span class="eqno">(50)<a class="headerlink" href="#equation-81404e66-9004-4feb-95fe-502b6c8ce1b7" title="Permalink to this equation">¶</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-27e99b1a-c578-45ca-b218-e41db94ab695">
+<span class="eqno">(50)<a class="headerlink" href="#equation-27e99b1a-c578-45ca-b218-e41db94ab695" title="Permalink to this equation">¶</a></span>\[\begin{align}
 y = \mathbf{X}_{\mathrm{interest}}\beta_{\mathrm{interest}} + \mathbf{X}_{\mathrm{noise}}\beta_{\mathrm{noise}} + \epsilon
 \end{align}\]</div>
 <p>Importantly, the difference between <span class="math notranslate nohighlight">\(\mathbf{X}_{\mathrm{noise}}\)</span> and <span class="math notranslate nohighlight">\(\epsilon\)</span> is that the <span class="math notranslate nohighlight">\(\mathbf{X}_{\mathrm{noise}}\)</span> term refers to noise-related activity that you <em>are able to model</em> while the <span class="math notranslate nohighlight">\(\epsilon\)</span> term refers to the noise that you <em>can’t model</em> (this is often called the “irreducible noise/error” term).</p>
@@ -1407,8 +1407,8 @@ y = \mathbf{X}_{\mathrm{interest}}\beta_{\mathrm{interest}} + \mathbf{X}_{\mathr
 <div class="section" id="equal-variance-of-the-residuals">
 <h3>Equal variance of the residuals<a class="headerlink" href="#equal-variance-of-the-residuals" title="Permalink to this headline">¶</a></h3>
 <p>Alright, sweet — the first assumption seems valid for our data. Now, the next two assumptions — about equal variance of the residuals and no covariance between residuals — are trickier to understand and deal with. In the book (and videos), these assumptions are summarized in a single mathemtical statement: the covariance-matrix of the residuals not differ substantially from the identity-matrix (<span class="math notranslate nohighlight">\(\mathbf{I}\)</span>) scaled by the noise-term (<span class="math notranslate nohighlight">\(\hat{\sigma}^{2}\)</span>). Or, put in a formula:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-843e9db1-ebc1-45cd-b935-501b9c254b90">
-<span class="eqno">(51)<a class="headerlink" href="#equation-843e9db1-ebc1-45cd-b935-501b9c254b90" title="Permalink to this equation">¶</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-4054658f-80e4-419f-9cca-26851849e12e">
+<span class="eqno">(51)<a class="headerlink" href="#equation-4054658f-80e4-419f-9cca-26851849e12e" title="Permalink to this equation">¶</a></span>\[\begin{align}
 \mathrm{cov}[\epsilon] = \hat{\sigma}^{2}\mathbf{I}
 \end{align}\]</div>
 <p>This sounds difficult, so let’s break it down. First off all, the covariance matrix of the residuals is always a symmetric matrix of shape <span class="math notranslate nohighlight">\(N \times N\)</span>, in which the <em>diagonal represents the variances</em> and the <em>off-diagonal represents the covariances</em>. For example, at index <span class="math notranslate nohighlight">\([i, i]\)</span>, the value represents the variance of the residual at timepoint <span class="math notranslate nohighlight">\(i\)</span>. At index <span class="math notranslate nohighlight">\([i, j]\)</span>, the value represents the covariance between the residuals at timepoints <span class="math notranslate nohighlight">\(i\)</span> and <span class="math notranslate nohighlight">\(j\)</span>.</p>
@@ -1553,8 +1553,8 @@ identity-matrix (<span class="math notranslate nohighlight">\(\mathbf{I}\)</span
 <div class='alert alert-warning'>
 <b>ToDo</b> (1  point)
 <p>We stated that autocorrelation captures the information that you have of the residual at timepoint <span class="math notranslate nohighlight">\(i+\tau\)</span> given that you know the residual at timepoint <span class="math notranslate nohighlight">\(i\)</span>. Practically, you can compute the autocorrelation (or actually, autocovariance) for a particular lag <span class="math notranslate nohighlight">\(\tau\)</span> by computing the covariance of the residuals with the lag-<span class="math notranslate nohighlight">\(\tau\)</span> shifted version of itself. In general, the autocovariance for the residuals <span class="math notranslate nohighlight">\(\epsilon\)</span> with lag <span class="math notranslate nohighlight">\(\tau\)</span> is calculated as:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-f4628088-8f7d-4186-ba4c-e1b557186d43">
-<span class="eqno">(52)<a class="headerlink" href="#equation-f4628088-8f7d-4186-ba4c-e1b557186d43" title="Permalink to this equation">¶</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-b015ead4-02d4-4a0c-b332-747555159bcb">
+<span class="eqno">(52)<a class="headerlink" href="#equation-b015ead4-02d4-4a0c-b332-747555159bcb" title="Permalink to this equation">¶</a></span>\[\begin{align}
 \mathrm{cov}[\epsilon_{i}, \epsilon_{i+\tau}] = \frac{1}{N-\tau-1}\sum_{i=1}^{N-\tau}(\epsilon_{i}\cdot\epsilon_{i+\tau})
 \end{align}\]</div>
 <p>Jeanette Mumford explains how to do this quite clearly in her <a class="reference external" href="https://www.youtube.com/watch?v=4VSzZKO0k_w">video on prewhitening</a> (around minute 10). For this ToDo, calculate the covariance (with <span class="math notranslate nohighlight">\(\tau = 1\)</span>) between the residuals (i.e., using the variable <tt>resids_new</tt>) and store this in a variable named <tt>lag1_cov</tt>.</p>
@@ -1586,13 +1586,13 @@ identity-matrix (<span class="math notranslate nohighlight">\(\mathbf{I}\)</span
 <div class='alert alert-warning'>
     <b>ToDo</b> (optional, ungraded)
 <p>The “AR(1)” method is a relatively “easy” way to estimate <span class="math notranslate nohighlight">\(\mathbf{V}\)</span>. It computes only a single parameter, the lag-1 correlation (not covariance!). Then, it assumes that the correlation decreases exponentially as a function of lag:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-5e862a5d-6c71-4d4d-8cb7-94a20f06a614">
-<span class="eqno">(53)<a class="headerlink" href="#equation-5e862a5d-6c71-4d4d-8cb7-94a20f06a614" title="Permalink to this equation">¶</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-0de61ed0-ab4b-48a0-91d8-5b98ca773d5f">
+<span class="eqno">(53)<a class="headerlink" href="#equation-0de61ed0-ab4b-48a0-91d8-5b98ca773d5f" title="Permalink to this equation">¶</a></span>\[\begin{align}
 \mathrm{autocor}_{\tau} = \phi^{\tau + 1}
 \end{align}\]</div>
 <p>where <span class="math notranslate nohighlight">\(\phi\)</span> is the estimated lag-1 correlation. For example, for <span class="math notranslate nohighlight">\(\phi = 0.9\)</span>, <span class="math notranslate nohighlight">\(\mathbf{V}\)</span> would look like:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-0257c064-71c5-4ac8-99e3-3608c6e67cf1">
-<span class="eqno">(54)<a class="headerlink" href="#equation-0257c064-71c5-4ac8-99e3-3608c6e67cf1" title="Permalink to this equation">¶</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-6d929b3c-d4c9-4440-9d3c-dd2d2c6dbe1f">
+<span class="eqno">(54)<a class="headerlink" href="#equation-6d929b3c-d4c9-4440-9d3c-dd2d2c6dbe1f" title="Permalink to this equation">¶</a></span>\[\begin{align}
 \mathbf{V} = \begin{bmatrix}
                  1.0 &amp; 0.9 &amp; 0.9^{2} &amp; 0.9^{3} &amp; \dots &amp; 0.9^{N-1} \\
                  0.9 &amp; 1.0 &amp; 0.9 &amp; 0.9^{2} &amp; \dots &amp; 0.9^{N-2} \\
@@ -1656,18 +1656,18 @@ identity-matrix (<span class="math notranslate nohighlight">\(\mathbf{I}\)</span
 <div class='alert alert-info'> 
     <b>ToThink</b> (0 points): In the above cell, the <tt>phi</tt> variable controls the amount of autcorrelation (technically, it is the $\phi$ parameter of an AR(1) autocorrelation model). Try changing the value of this variable. Do you understand the way the plotted $V$ matrix is changing as a function of $\phi$? 
 </div><p>Well, shit. We have both unequal variance (different values on the diagonal) <em>and</em> non-zero covariance (some non-zero values on the off-diagonal). So, what to do now? Well, we can use the technique of prewhitening to make sure our observed covariance matrix (<span class="math notranslate nohighlight">\(\mathbf{V}\)</span>) will be “converted” to the identity matrix! Basically, this amounts to plugging in some extra terms to formula for ordinary least squares. As you might have seen in the book/videos, the <em>original</em> OLS solution (i.e., how OLS finds the beta-parameters is as follows):</p>
-<div class="amsmath math notranslate nohighlight" id="equation-6ad15cc2-099b-4612-9204-54747f34ffd1">
-<span class="eqno">(55)<a class="headerlink" href="#equation-6ad15cc2-099b-4612-9204-54747f34ffd1" title="Permalink to this equation">¶</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-e12462ab-592c-4b90-8c53-ad57ba75330b">
+<span class="eqno">(55)<a class="headerlink" href="#equation-e12462ab-592c-4b90-8c53-ad57ba75330b" title="Permalink to this equation">¶</a></span>\[\begin{align}
 \hat{\beta} = (\mathbf{X}^{T}\mathbf{X})^{-1}\mathbf{X}^{T}y
 \end{align}\]</div>
 <p>Now, given that we’ve estimated our covariance matrix of the residuals, <span class="math notranslate nohighlight">\(\mathbf{V}\)</span>, we can rewrite the OLS solution such that it prewhitens the data (and thus the covariance matrix of the residuals will approximate <span class="math notranslate nohighlight">\(\hat{\sigma}^{2}\mathbf{I}\)</span>) as follows:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-2f75a181-4f85-4a40-b5c7-2d1df889f1ef">
-<span class="eqno">(56)<a class="headerlink" href="#equation-2f75a181-4f85-4a40-b5c7-2d1df889f1ef" title="Permalink to this equation">¶</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-a57cce9a-f2a3-4cbb-9c6e-7f798d7af22f">
+<span class="eqno">(56)<a class="headerlink" href="#equation-a57cce9a-f2a3-4cbb-9c6e-7f798d7af22f" title="Permalink to this equation">¶</a></span>\[\begin{align}
 \hat{\beta} = (\mathbf{X}^{T}\mathbf{V}^{-1}\mathbf{X})^{-1}\mathbf{X}^{T}\mathbf{V}^{-1}y
 \end{align}\]</div>
 <p>Then, accordingly, the standard-error of any contrast of the estimated beta-parameters becomes:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-21e1d158-15de-48ab-b6ff-95e69b539342">
-<span class="eqno">(57)<a class="headerlink" href="#equation-21e1d158-15de-48ab-b6ff-95e69b539342" title="Permalink to this equation">¶</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-8a8db4d5-941a-4559-a0c7-487627a83291">
+<span class="eqno">(57)<a class="headerlink" href="#equation-8a8db4d5-941a-4559-a0c7-487627a83291" title="Permalink to this equation">¶</a></span>\[\begin{align}
 SE_{\mathbf{c}\hat{\beta}} = \sqrt{\hat{\sigma}^{2} \cdot \mathbf{c}(\mathbf{X}^{T}\mathbf{V}^{-1}\mathbf{X})^{-1}\mathbf{c}^{T}}
 \end{align}\]</div>
 <p>This “modification” of OLS is also called “generalized least squares” (GLS) and is central to most univariate fMRI analyses! You <em>don’t</em> have to understand how this works mathematically; again, you should only understand <em>why</em> prewhitening makes sure that our data behaves according to the assumptions of the Gauss-Markov theorem.</p>
@@ -1783,8 +1783,8 @@ Shape of pred: (500, 1)
 </div>
 </div>
 <p>Alright, now let’s take a look at how you would calculate the “root mean square successive differences” (RMSSD). This quantity reflects the difference between every timepoint <span class="math notranslate nohighlight">\(t\)</span> of your signal and the signal at timepoints <span class="math notranslate nohighlight">\(t-1\)</span>, which is then squared, averaged (across all voxels, <span class="math notranslate nohighlight">\(1 \dots K\)</span>), after which the square root is taken:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-906049c9-8dfc-49bc-87ba-bcc0099b3042">
-<span class="eqno">(58)<a class="headerlink" href="#equation-906049c9-8dfc-49bc-87ba-bcc0099b3042" title="Permalink to this equation">¶</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-385b7ba6-22e2-4c7f-9921-3d165ef05b3e">
+<span class="eqno">(58)<a class="headerlink" href="#equation-385b7ba6-22e2-4c7f-9921-3d165ef05b3e" title="Permalink to this equation">¶</a></span>\[\begin{align}
 \mathrm{RMSSD}_{t} = \sqrt{\frac{1}{K}\sum_{K}(s_{t, k} - s_{t-1, k})^2}
 \end{align}\]</div>
 <p>First, let’s focus on the “successive differences”. Suppose we have only one “signal” of length 5:</p>
@@ -1840,8 +1840,8 @@ Shape of pred: (500, 1)
 <div class='alert alert-warning'>
 <b>ToDo</b> (optional; 0 points)
 <p>Now, in order to identify spikes, we need to identify timepoints that have a RMSSD-values that differ more than (let’s say) 7 standard deviations from the mean RMSSD value. As such, you need to ‘z-score’ the RMSSD values: subtract the mean value from each individual value and divide each of the resulting ‘demeaned’ values by the standard deviation (<span class="math notranslate nohighlight">\(\mathrm{std}\)</span>) of the values. In other words, the z-transform of any signal <span class="math notranslate nohighlight">\(s\)</span> with mean <span class="math notranslate nohighlight">\(\bar{s}\)</span> is defined as:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-41fe86b7-3fb6-448e-9051-9229ae5c94a9">
-<span class="eqno">(59)<a class="headerlink" href="#equation-41fe86b7-3fb6-448e-9051-9229ae5c94a9" title="Permalink to this equation">¶</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-b3f1b8b8-752a-4342-91a8-d8c9290644d0">
+<span class="eqno">(59)<a class="headerlink" href="#equation-b3f1b8b8-752a-4342-91a8-d8c9290644d0" title="Permalink to this equation">¶</a></span>\[\begin{align}
 z(s) = \frac{(s - \bar{s})}{\mathrm{std}(s)}
 \end{align}\]</div>
 <p>Implement this z-score transform for the variable <tt>all_sig_rmssd</tt> and store it in the variable <tt>z_rmssd</tt> (1 point). Then, plot the z-scored RMSSD signal (with appropriate axis labels; 1 point).</p>
