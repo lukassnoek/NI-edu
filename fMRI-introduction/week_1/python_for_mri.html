@@ -961,8 +961,8 @@
 <p><img alt="img" src="http://www.grahamwideman.com/gw/brain/fs/coords/FSCoords_RAS01.gif" />
 (Source: Graham Wideman, <a class="reference external" href="http://www.grahamwideman.com/gw/brain/fs/coords/fscoords.htm">link</a>)</p>
 <p>Alright, but how does the affine help us recover the real word coordinates of our voxels? It turns out you only need a simple matrix operation: for a set of voxel coordinates <span class="math notranslate nohighlight">\((i, j, k)\)</span>, appended with a single 1, and an <span class="math notranslate nohighlight">\(4 \times 4\)</span> affine matrix <span class="math notranslate nohighlight">\(A\)</span>, you can get the real word coordinates (in RAS+) by the dot product (matrix multiplication) of <span class="math notranslate nohighlight">\(A\)</span> and <span class="math notranslate nohighlight">\((i, j, k, 1)\)</span>:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-b17ec4e0-efd1-4fc5-92b7-a535fa7b9c48">
-<span class="eqno">(1)<a class="headerlink" href="#equation-b17ec4e0-efd1-4fc5-92b7-a535fa7b9c48" title="Permalink to this equation">¶</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-8bfbed00-5da6-4000-8563-f1bbd37de549">
+<span class="eqno">(1)<a class="headerlink" href="#equation-8bfbed00-5da6-4000-8563-f1bbd37de549" title="Permalink to this equation">¶</a></span>\[\begin{align}
 \begin{bmatrix} x &amp; y &amp; z &amp; 1 \end{bmatrix} = A\begin{bmatrix}
            i \\
            j \\
@@ -1024,8 +1024,8 @@
 </div>
 </div>
 <p>To get the real world coordinate, we need to evaluate the following:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-e5a35336-bc92-4a99-bdc1-be505470d59c">
-<span class="eqno">(2)<a class="headerlink" href="#equation-e5a35336-bc92-4a99-bdc1-be505470d59c" title="Permalink to this equation">¶</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-a0aceac3-704f-4fdd-b960-8db1c85bf627">
+<span class="eqno">(2)<a class="headerlink" href="#equation-a0aceac3-704f-4fdd-b960-8db1c85bf627" title="Permalink to this equation">¶</a></span>\[\begin{align}
 x, y, z, 1 = A\begin{bmatrix}
            69 \\
            119 \\
