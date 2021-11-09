@@ -439,6 +439,16 @@
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#install-niedu">
+   Install
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     niedu
+    </span>
+   </code>
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#troubleshooting">
    Troubleshooting
   </a>
@@ -493,6 +503,23 @@ If you have access to a Linux server <em>and</em> you have root access, we highl
 </pre></div>
 </div>
 <p>Lastly, you need to add students to the database. Personally, I do that programatically using the command line interface of the <em>nbgrader</em> package but you can also do this manually in the Formgrader.</p>
+</div>
+<div class="section" id="install-niedu">
+<h2>Install <code class="docutils literal notranslate"><span class="pre">niedu</span></code><a class="headerlink" href="#install-niedu" title="Permalink to this headline">¶</a></h2>
+<p>Finally, you need to install the <code class="docutils literal notranslate"><span class="pre">niedu</span></code> package for utilities and tests for the tutorials. Importantly, the compiled test functions only work with Python version 3.8.5, which is not the default version installed by TLJH. To update the version to 3.8.5, run the following command from the user account you used to install TLJH:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>export PATH=/opt/tljh/user/bin:${PATH}
+source /opt/tljh/user/bin/activate
+sudo PATH=${PATH} conda install python=3.8.5
+</pre></div>
+</div>
+<p>Now, you can install the <code class="docutils literal notranslate"><span class="pre">niedu</span></code> package as follows (note the period at the end, which is part of the command):</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="o">-</span><span class="n">E</span> <span class="n">pip</span> <span class="n">install</span> <span class="o">.</span>
+</pre></div>
+</div>
+<p>To check your installation at this point, you can run the following command in the root of the repository:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">python</span> <span class="n">test_course_enviroment</span><span class="o">.</span><span class="n">py</span>
+</pre></div>
+</div>
 </div>
 <div class="section" id="troubleshooting">
 <h2>Troubleshooting<a class="headerlink" href="#troubleshooting" title="Permalink to this headline">¶</a></h2>

@@ -735,8 +735,8 @@
 </div>
 <p>Alright, these (directional) main effects should be familiar as they don’t differ very much from those that you saw last week. However, factorial designs are unique in that they, additionally, can test for <em>interactions</em> between conditions. Again, technically, (undirectional) F-tests should be used, but again, these are rarely used in cognitive neuroscience.</p>
 <p>So, let’s define a directional interaction effect. Suppose that, for some reason, I believe that red stimuli evoke more activity than green stimuli, but more so for circles than for squares. In other words:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-e98b7fd2-21da-4b27-ae20-8b33355966ed">
-<span class="eqno">(33)<a class="headerlink" href="#equation-e98b7fd2-21da-4b27-ae20-8b33355966ed" title="Permalink to this equation">¶</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-05f0fb48-354c-4a0f-93b4-391cc5897793">
+<span class="eqno">(33)<a class="headerlink" href="#equation-05f0fb48-354c-4a0f-93b4-391cc5897793" title="Permalink to this equation">¶</a></span>\[\begin{align}
 (\hat{\beta}_{\mathrm{red, circle}} - \hat{\beta}_{\mathrm{green,circle}}) &gt; (\hat{\beta}_{\mathrm{red, square}} - \hat{\beta}_{\mathrm{green,square}})
 \end{align}\]</div>
 <p>It turns out, there is a very nice trick to figure out the corresponding contrast for this interaction: you can simply (elementwise) multiply the contrast vector for “red &gt; green” and the contrast vector for “circle &gt; squares”!</p>
@@ -900,8 +900,8 @@
 <h2>Design variance/efficiency<a class="headerlink" href="#design-variance-efficiency" title="Permalink to this headline">¶</a></h2>
 <p>Alright, hopefully you now know how to design contrasts for factorial and parameteric designs! This section has a slightly different focus, namely the mathematics behind design variance and efficiency! Remember that we wouldn’t tell you what “design variance” was last week? Well, this week we’re going to discuss and explain it <em>extensively</em>! Before we delve into this topic, let’s first recap the (conceptual) formula for the <em>t</em>-value from last week (the relevance of this will become clear shortly).</p>
 <p>Last week, you learned about the GLM and how to apply it to fMRI data to find out how much influence each predictor in your design has on the signal of a voxel. Crucially, you learned that you shouldn’t look at raw beta-parameters to infer the effect of predictors, but that you should look at <em>normalized beta-parameters</em> — the <strong><em>t</em>-value</strong>. Remember the formula for the <em>t</em>-value for a given contrast (<span class="math notranslate nohighlight">\(c\)</span>)?</p>
-<div class="amsmath math notranslate nohighlight" id="equation-ccbd9034-8f6b-462d-aba4-08092517011e">
-<span class="eqno">(34)<a class="headerlink" href="#equation-ccbd9034-8f6b-462d-aba4-08092517011e" title="Permalink to this equation">¶</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-0e9b094a-1420-4367-9176-94c7b6256dab">
+<span class="eqno">(34)<a class="headerlink" href="#equation-0e9b094a-1420-4367-9176-94c7b6256dab" title="Permalink to this equation">¶</a></span>\[\begin{align}
 t_{\mathbf{c}\hat{\beta}} = \frac{\mathrm{effect}}{\sqrt{\mathrm{noise \cdot design\ variance}}} = \frac{\mathbf{c}\hat{\beta}}{\sqrt{\frac{SSE}{\mathrm{DF}} \cdot \mathrm{design\ variance}}}
 \end{align}\]</div>
 <p>The formula for the <em>t</em>-value embodies the concept that the statistics you (should) care about, <em>t</em>-values, depend both on the <strong>effect</strong> (sometimes confusingly called the “signal”; <span class="math notranslate nohighlight">\(\hat{\beta}\)</span>), the <strong>noise</strong> (<span class="math notranslate nohighlight">\(\hat{\sigma}^{2} = \frac{SSE}{\mathrm{DF}}\)</span>), and the <strong>“design variance”</strong>.</p>
@@ -923,8 +923,8 @@ t_{\mathbf{c}\hat{\beta}} = \frac{\mathrm{effect}}{\sqrt{\mathrm{noise \cdot des
 <div class="section" id="optimizing-design-variance">
 <h3>Optimizing design variance<a class="headerlink" href="#optimizing-design-variance" title="Permalink to this headline">¶</a></h3>
 <p>So, last week we talked quite a bit about this mysterious term “design variance” and we promised to discuss it the next week. That’s exactly what we’re going to do now. As we shortly explained last week, <em>design variance is the part of the standard error caused by the design-matrix (<span class="math notranslate nohighlight">\(X\)</span>)</em>. Importantly, design variance is closely related to the <em>efficiency</em> of the design matrix (<span class="math notranslate nohighlight">\(X\)</span>), i.e., efficiency is the inverse of design variance:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-bc74fd4b-2408-462d-9a16-9dbc07549002">
-<span class="eqno">(35)<a class="headerlink" href="#equation-bc74fd4b-2408-462d-9a16-9dbc07549002" title="Permalink to this equation">¶</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-b16713cc-9752-4842-bcef-b94baa9e947c">
+<span class="eqno">(35)<a class="headerlink" href="#equation-b16713cc-9752-4842-bcef-b94baa9e947c" title="Permalink to this equation">¶</a></span>\[\begin{align}
 \mathrm{efficiency} = \frac{1}{\mathrm{design\ variance}}
 \end{align}\]</div>
 <p>This term, efficiency, will be important in the rest of this notebook.</p>
@@ -935,34 +935,34 @@ t_{\mathbf{c}\hat{\beta}} = \frac{\mathrm{effect}}{\sqrt{\mathrm{noise \cdot des
 <li><p>The predictors should <strong>not</strong> have <strong>high covariance</strong> (i.e. they should not correlate between each other a lot)</p></li>
 </ol>
 <p>In general, for any <strong>contrast between two <span class="math notranslate nohighlight">\(\beta\)</span>-parameters corresponding to predictor <span class="math notranslate nohighlight">\(j\)</span> and <span class="math notranslate nohighlight">\(k\)</span></strong>, we can define their design variance as follows*:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-9fdeddb0-5da3-40e2-a107-0eeab5d64a3f">
-<span class="eqno">(36)<a class="headerlink" href="#equation-9fdeddb0-5da3-40e2-a107-0eeab5d64a3f" title="Permalink to this equation">¶</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-939c4978-8390-4077-95c2-8ec2b255a5e0">
+<span class="eqno">(36)<a class="headerlink" href="#equation-939c4978-8390-4077-95c2-8ec2b255a5e0" title="Permalink to this equation">¶</a></span>\[\begin{align}
 \mathrm{design\ variance}_{j,k} = \frac{1}{\mathrm{var}[X_{j}] + \mathrm{var}[X_{k}] - 2\cdot \mathrm{cov}[X_{j}, X_{k}]}
 \end{align}\]</div>
 <p>As such, efficiency for this contrast would the inverse:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-913b791d-fd44-4332-bcf9-dded1a331ef8">
-<span class="eqno">(37)<a class="headerlink" href="#equation-913b791d-fd44-4332-bcf9-dded1a331ef8" title="Permalink to this equation">¶</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-57bc2dc4-6a00-4e96-933c-ae247ba8a58a">
+<span class="eqno">(37)<a class="headerlink" href="#equation-57bc2dc4-6a00-4e96-933c-ae247ba8a58a" title="Permalink to this equation">¶</a></span>\[\begin{align}
 \mathrm{efficiency}_{j,k} = \mathrm{var}[X_{j}] + \mathrm{var}[X_{k}] - 2\cdot \mathrm{cov}[X_{j}, X_{k}]
 \end{align}\]</div>
 <p>As you can see, design variance thus depends on the variance of the predictors <em>and</em> the covariance between predictors. Note that this formulation only applies to contrasts involving more than one parameter. For <strong>contrasts against baseline, in which only one parameter is tested (e.g. predictor <span class="math notranslate nohighlight">\(j\)</span>)</strong>, there is only one variance term (the other variance term and the covariance term are dropped out):</p>
-<div class="amsmath math notranslate nohighlight" id="equation-00c056da-d310-4437-bf36-17bf219b9baf">
-<span class="eqno">(38)<a class="headerlink" href="#equation-00c056da-d310-4437-bf36-17bf219b9baf" title="Permalink to this equation">¶</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-59aacc81-ec2e-494a-96f5-1e268a9057fc">
+<span class="eqno">(38)<a class="headerlink" href="#equation-59aacc81-ec2e-494a-96f5-1e268a9057fc" title="Permalink to this equation">¶</a></span>\[\begin{align}
 \mathrm{design\ variance}_{j} = \frac{1}{\mathrm{var}[X_{j}]}
 \end{align}\]</div>
 <p>It is of course kind of annoying to have two different definitions (and computations) of design variance, which depend on whether you want to test a parameter against baseline or against another parameter. Therefore, people usually use the vectorized computation (i.e. using matrix multiplication), which allows you to define the formula for design variance <em>for any contrast-vector <span class="math notranslate nohighlight">\(\mathbf{c}\)</span></em>:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-e028939c-9c69-43db-9199-036ef4ed9056">
-<span class="eqno">(39)<a class="headerlink" href="#equation-e028939c-9c69-43db-9199-036ef4ed9056" title="Permalink to this equation">¶</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-58ae32c7-2183-4ccc-b2bf-e3d5c5912f49">
+<span class="eqno">(39)<a class="headerlink" href="#equation-58ae32c7-2183-4ccc-b2bf-e3d5c5912f49" title="Permalink to this equation">¶</a></span>\[\begin{align}
 \mathrm{design\ variance} = \frac{1}{\mathrm{var}[X_{j}] + \mathrm{var}[X_{k}] - 2\cdot \mathrm{cov}[X_{j}, X_{k}]} = \mathbf{c}(\mathbf{X}^T\mathbf{X})^{-1}\mathbf{c}^{T}
 \end{align}\]</div>
 <p>While this notation, <span class="math notranslate nohighlight">\(\mathbf{c}(\mathbf{X}^{T}\mathbf{X})^{-1}\mathbf{c}\)</span>, may seem quite different than the above definitions using the <span class="math notranslate nohighlight">\(\mathrm{var}\)</span> and <span class="math notranslate nohighlight">\(\mathrm{cov}\)</span> terms, it is mathematically doing the same thing. The term <span class="math notranslate nohighlight">\((X^{T}X)^{-1}\)</span> represents (the inverse of) the variance-covariance matrix of the design (<span class="math notranslate nohighlight">\(X\)</span>) and <strong>c</strong> (contrast vector) is used only to “extract” the relevant variances and covariance for the particular contrast out of the entire covariance matrix of <span class="math notranslate nohighlight">\(X\)</span>.</p>
 <p>While appearing more complex, the advantage of the vectorized definition, however, is that it works for both contrasts against baseline (e.g. <code class="docutils literal notranslate"><span class="pre">[0,</span> <span class="pre">0,</span> <span class="pre">1]</span></code>) and contrasts between parameters (e.g. <code class="docutils literal notranslate"><span class="pre">[0,</span> <span class="pre">1,</span> <span class="pre">-1]</span></code>). Now, if we plug in this mathematical definition of design variance in the formula of the standard error of a given contrast, we get:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-60907ea5-5448-4ada-888f-3f1dfe03a43b">
-<span class="eqno">(40)<a class="headerlink" href="#equation-60907ea5-5448-4ada-888f-3f1dfe03a43b" title="Permalink to this equation">¶</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-edfd8e83-f93f-485e-ad7a-f98c517f9777">
+<span class="eqno">(40)<a class="headerlink" href="#equation-edfd8e83-f93f-485e-ad7a-f98c517f9777" title="Permalink to this equation">¶</a></span>\[\begin{align}
 \mathrm{SE}_{\mathbf{c}\hat{\beta}} = \sqrt{\mathrm{noise} \cdot \mathrm{design\ variance}} = \sqrt{\hat{\sigma}^{2}\mathbf{c}(\mathbf{X}^{T}\mathbf{X})^{-1}\mathbf{c}^{T}}
 \end{align}\]</div>
 <p>Now, we can write out the entire formula for the <em>t</em>-statistic:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-02da6303-f94f-4378-8b79-4b6a86430d77">
-<span class="eqno">(41)<a class="headerlink" href="#equation-02da6303-f94f-4378-8b79-4b6a86430d77" title="Permalink to this equation">¶</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-3b590e35-0a62-4010-879a-486471673a09">
+<span class="eqno">(41)<a class="headerlink" href="#equation-3b590e35-0a62-4010-879a-486471673a09" title="Permalink to this equation">¶</a></span>\[\begin{align}
 t_{\mathbf{c}\hat{\beta}} = \frac{\mathbf{c}\hat{\beta}}{\sqrt{\hat{\sigma}^{2}\mathbf{c}(X'X)^{-1}\mathbf{c}'}} = \frac{\mathrm{effect}}{\sqrt{\mathrm{noise} \cdot \mathrm{design\ variance}}}
 \end{align}\]</div>
 <hr class="docutils" />
@@ -1035,8 +1035,8 @@ Efficiency: 50.000
 <div class="section" id="how-to-calculate-design-variance-and-efficiency-in-python">
 <h3>How to calculate design variance and efficiency in Python<a class="headerlink" href="#how-to-calculate-design-variance-and-efficiency-in-python" title="Permalink to this headline">¶</a></h3>
 <p>As discussed in the previous section, the formula for design variance (and efficiency) is often expressed using linear algebra notation:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-99d64986-22d6-4389-9a32-d9202528dcc0">
-<span class="eqno">(42)<a class="headerlink" href="#equation-99d64986-22d6-4389-9a32-d9202528dcc0" title="Permalink to this equation">¶</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-5eb0f325-bd0b-4761-af53-71d455fea512">
+<span class="eqno">(42)<a class="headerlink" href="#equation-5eb0f325-bd0b-4761-af53-71d455fea512" title="Permalink to this equation">¶</a></span>\[\begin{align}
 \mathrm{design\ variance} = \mathbf{c}(\mathbf{X}^{T}\mathbf{X})^{-1}\mathbf{c}^{T}
 \end{align}\]</div>
 <p>You have seen the <span class="math notranslate nohighlight">\((\mathbf{X}^{T}\mathbf{X})\)</span> earlier when we discussed the solution for finding the least squares solution. Now, design variance is calculated by pre and postmultiplying this term with the (transpose of the) contrast vector (denoted with <code class="docutils literal notranslate"><span class="pre">c</span></code> and <code class="docutils literal notranslate"><span class="pre">c.T</span></code>). As such, so the full design variance calculation can be implemented in python as follows:</p>
@@ -1044,8 +1044,8 @@ Efficiency: 50.000
 </pre></div>
 </div>
 <p>Given that efficiency is the inverse of design variance:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-80254c4f-dc8b-4660-8dac-f8a729e32d65">
-<span class="eqno">(43)<a class="headerlink" href="#equation-80254c4f-dc8b-4660-8dac-f8a729e32d65" title="Permalink to this equation">¶</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-eeb720f4-a74a-4cf9-9b92-1dc0a307d03a">
+<span class="eqno">(43)<a class="headerlink" href="#equation-eeb720f4-a74a-4cf9-9b92-1dc0a307d03a" title="Permalink to this equation">¶</a></span>\[\begin{align}
 \mathrm{efficiency} = \frac{1}{\mathbf{c}(\mathbf{X}^{T}\mathbf{X})^{-1}\mathbf{c}^{T}}
 \end{align}\]</div>
 <p>… we can calculate efficiency as:</p>
@@ -1059,8 +1059,8 @@ Efficiency: 50.000
 <h2>The effect of predictor variance on design variance/efficiency<a class="headerlink" href="#the-effect-of-predictor-variance-on-design-variance-efficiency" title="Permalink to this headline">¶</a></h2>
 <p>As explained in the previous section, design variance depends on (1) predictor variance and (2) predictor covariance. In this section, we’ll focus on predictor variance. In the next section, we’ll focus on predictor covariance.</p>
 <p>As you probably know, <em>variance</em> is a statistical property of a random variable that describes the average squared deviation from the variable’s mean. Formally, for any variable <span class="math notranslate nohighlight">\(x\)</span> with mean <span class="math notranslate nohighlight">\(\bar{x}\)</span> and length <span class="math notranslate nohighlight">\(N\)</span>, its sample variance is defined as:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-12f85cdf-31aa-4969-a42b-37cad1bba089">
-<span class="eqno">(44)<a class="headerlink" href="#equation-12f85cdf-31aa-4969-a42b-37cad1bba089" title="Permalink to this equation">¶</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-d01de507-ab33-49ef-9a59-15287f636565">
+<span class="eqno">(44)<a class="headerlink" href="#equation-d01de507-ab33-49ef-9a59-15287f636565" title="Permalink to this equation">¶</a></span>\[\begin{align}
 \mathbf{var}[x] = \frac{1}{N - 1}\sum_{i=1}^{N}(x - \bar{x})^{2}
 \end{align}\]</div>
 <p>So, the more values of a variable deviate from its mean on average, the more variance it has.</p>
@@ -1400,8 +1400,8 @@ Variance predictor 2: 0.055
 <div class="section" id="evaluating-multiple-contrasts">
 <h3>Evaluating multiple contrasts<a class="headerlink" href="#evaluating-multiple-contrasts" title="Permalink to this headline">¶</a></h3>
 <p>Thus far, we only evaluated the efficiency for a <em>single</em> contrast, like one particular predictor against baseline, e.g. <code class="docutils literal notranslate"><span class="pre">contrast_vec</span> <span class="pre">=</span> <span class="pre">np.array([0,</span> <span class="pre">1,</span> <span class="pre">0])</span></code>. Often, though, you might be interested in <em>more than one contrast</em>. For example, you might be interested in the contrast of predictor “A” against baseline, predictor “B” against baseline, and the difference between predictor “A” and “B”*. We can simply extend our formula for efficiency to allow more than one contrast. For <span class="math notranslate nohighlight">\(K\)</span> contrasts, efficiency is defined as:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-efa65ae5-5567-4523-98e8-87f5f6724f28">
-<span class="eqno">(45)<a class="headerlink" href="#equation-efa65ae5-5567-4523-98e8-87f5f6724f28" title="Permalink to this equation">¶</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-be41f723-392c-43fe-be0e-e3de633480a8">
+<span class="eqno">(45)<a class="headerlink" href="#equation-be41f723-392c-43fe-be0e-e3de633480a8" title="Permalink to this equation">¶</a></span>\[\begin{align}
 \mathrm{efficiency} = \frac{K}{\sum_{k=1}^{K} \mathbf{c}_{k}(\mathbf{X}^{T}\mathbf{X})^{-1}\mathbf{c}_{k}^{T}}
 \end{align}\]</div>
 <p>This specific calculation of efficiency is also referred to as “A optimality”. From the formula, you can see that the overall efficiency for multiple contrasts is basically (but not precisely) the “average” of the efficiencies for the individual contrasts.</p>
@@ -1574,8 +1574,8 @@ Well, the answer is simple: <strong>blocked designs</strong>.</p>
 <b>ToDo</b> (1 point):
 <p>We’ve seen that predictor correlation is lower in blocked designs than in event-related designs. But what about predictor variance? Calculate predictor variance for predictor 1 (column 2) and predictor 2 (column 3) for both the blocked design (<tt>X_blocked</tt>) and the event-related design (<tt>X_er</tt>).</p>
 <p>Remember: (sample) variance is the summed squared deviation of values from a variable’s mean divided by the number of observations minus 1, or formally:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-080d0fa2-c746-47c1-b015-b2f6264746a8">
-<span class="eqno">(46)<a class="headerlink" href="#equation-080d0fa2-c746-47c1-b015-b2f6264746a8" title="Permalink to this equation">¶</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-47db4c0c-dccd-4b1b-a34a-412a391be344">
+<span class="eqno">(46)<a class="headerlink" href="#equation-47db4c0c-dccd-4b1b-a34a-412a391be344" title="Permalink to this equation">¶</a></span>\[\begin{align}
 \mathbf{var}[x] = \frac{1}{N - 1}\sum_{i=1}^{N}(x - \bar{x})^{2}
 \end{align}\]</div>
 <p>Store the variance of the four predictors (2 predictions <span class="math notranslate nohighlight">\(\times\)</span> 2 designs) in the following variables:</p>
