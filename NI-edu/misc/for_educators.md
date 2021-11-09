@@ -14,6 +14,24 @@ How to get access to NI-edu-admin? Email Lukas (his email address can be found o
 At the University of Amsterdam, we use Jupyterhub in combination with *nbgrader* on a shared server for our "labs" (i.e., the notebooks).
 If you have access to a Linux server *and* you have root access, we highly recommend to use Jupyterhub (and *nbgrader*). By far the easiest way to install Jupyterhub (for relatively small classes) is through "[The Littlest Jupyterhub](https://tljh.jupyter.org/en/latest/index.html)" (TLJH). Read through the [installation](https://tljh.jupyter.org/en/latest/install/index.html) manual on the site. Again, this is only possible if you have root access (i.e., you have *sudo* rights).
 
+After installing TLJH, there are a few things I'd recommend you do. The first, and most important thing, is to enable HTTPS. To do so, check the [TLJH guide](https://tljh.jupyter.org/en/latest/howto/admin/https.html#howto-admin-https). 
+
+As an example, for the UvA Linux server, you'd do this by running the following commands:
+
+```
+sudo tljh-config set https.enabled true
+sudo tljh-config set https.letsencrypt.email {Lukas' email}
+sudo tljh-config add-item https.letsencrypt.domains neuroimaging.lukas-snoek.com
+sudo tljh-config reload proxy
+```
+
+Second, I'd recommend increasing the idle timeout (i.e., maximum time in seconds that a server can be inactive before it will be shutdown). By default, each notebook server is shut down after 10 minutes of inactivity, which is a bit short. To increase this, run the following (to increase it to 24hrs):
+
+```
+sudo tljh-config set services.cull.timeout 86400
+sudo tljh-config reload
+```
+
 ## Installing *nbgrader*
 Using the admin account, install *nbgrader* as follows:
 
