@@ -5,7 +5,7 @@ authors:
   given-names: "Lukas"
   orcid: "https://orcid.org/0000-0001-8972-204X"
 title: "NI-edu"
-version: 1.0.0
-doi: 10.5281/zenodo.1234
+version: 0.1.0
+doi: 10.5281/zenodo.5658183
 date-released: 2021-11-09
 url: "https://github.com/lukassnoek/NI-edu"
