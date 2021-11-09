@@ -46,6 +46,10 @@ Lastly, you need to add students to the database. Personally, I do that programa
 ## Troubleshooting
 See the short troubleshooting guide when encountering issues.
 
+**Letsencrypt cannot renew the certificates**
+
+Letsencrypt renews certificates using a test that uses port 443. At the UvA, we only allow connections with port 443 from the UvA network (so you need to be connected to VPN), so the renewal will fail. To renew the certificates, temporarily open up port 443 (`sudo ufw allow 443`), run the renew command (`certbot renew`), and close the port again (run `sudo ufw status numbered`, check the number of the rule for port 443, and then run `sudo ufw delete {nr of rule}`). 
+
 **A student cannot login even though it's their first time logging in!**
 
 The first time a student logs in, it sets their password. If this doesn't work, check whether you added the student to the "whitelist". Using an admin account, go to "Control panel", "Admin", and check if the student (e.g., "nim_01") is included in the list of Users. If not, click "Add user" and add the user (e.g., "nim_01", **not** "jupyter-nim_01").
@@ -61,3 +65,7 @@ At the UvA, our Jupyterhub is behind a firewall that only accepts requests from 
 **I can not generate an assignment!**
 
 When you get an error when you generate an assignment, you most likely forgot a ### BEGIN SOLUTION or ### END SOLUTION marker or you added these to a non-test cell. 
+
+**Students cannot see an assignment!**
+
+Make sure that you, in the formgrader, generated *and* released the assignment!
