@@ -30,4 +30,4 @@ The course material was developed by Lukas Snoek with help from Noor Seijdel, Je
 The exercises in Jupyter notebook tutorials were created using the [nbgrader](https://nbgrader.readthedocs.io/en/stable/) package {cite:p}`hamrick2016creating`. This website was created using the awesome [Jupyter book](https://jupyterbook.org/) package.
 
 ## Attribution
-To be added.
+Snoek, L. (2021). NI-edu (Version 0.1.0) [Computer software]. https://doi.org/10.5281/zenodo.5658183
