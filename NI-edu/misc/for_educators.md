@@ -41,7 +41,7 @@ Note: your Formgrader tab may not yet "find" your `nbgrader_config.py` file, so 
 sudo tljh-config reload hub
 ```
 
-Lastly, you need to add students to the database. Personally, I do that programatically using the command line interface of the *nbgrader* package but you can also do this manually in the Formgrader.
+Lastly, you need to add students to the database. Personally, I do that programatically using the command line interface of the *nbgrader* package but you can also do this manually in the Formgrader. Note: **you don't have to create the Linux accounts yourself!** This is handles by the Jupyterhub interface.
 
 ## Install `niedu`
 Finally, you need to install the `niedu` package for utilities and tests for the tutorials. Importantly, the compiled test functions only work with Python version 3.8.5, which is not the default version installed by TLJH. To update the version to 3.8.5, run the following command from the user account you used to install TLJH:
@@ -64,29 +64,45 @@ To check your installation at this point, you can run the following command in t
 python test_course_enviroment.py
 ```
 
+## Enable SSH
+For some of the tutorials, students need to access the server through SSH (via X2Go). When Jupyterhub creates the student accounts, SSH is *not* enabled by default.  To do so, do the following *for every student account*:
+
+```
+# Add user to group `users`
+sudo usermod -a -G users ${username}
+
+# Change default shell to `bash`
+sudo chsh -s /bin/bash $username
+
+# Change password
+sudo passwd $username
+```
+
+The last command will trigger user input, which you can use to enter a password. Yes, you need to do this manually. Yes, there are ways to automate this, but this comes with security risks, so I'd advise against this. I'd recommend using the same, secure (long, combination of letters, digits, and symbols) password for all users.
+
 ## Troubleshooting
 See the short troubleshooting guide when encountering issues.
 
-**Letsencrypt cannot renew the certificates**
+### Letsencrypt cannot renew the certificates
 
 Letsencrypt renews certificates using a test that uses port 443. At the UvA, we only allow connections with port 443 from the UvA network (so you need to be connected to VPN), so the renewal will fail. To renew the certificates, temporarily open up port 443 (`sudo ufw allow 443`), run the renew command (`certbot renew`), and close the port again (run `sudo ufw status numbered`, check the number of the rule for port 443, and then run `sudo ufw delete {nr of rule}`). 
 
-**A student cannot login even though it's their first time logging in!**
+### A student cannot login even though it's their first time logging in!
 
 The first time a student logs in, it sets their password. If this doesn't work, check whether you added the student to the "whitelist". Using an admin account, go to "Control panel", "Admin", and check if the student (e.g., "nim_01") is included in the list of Users. If not, click "Add user" and add the user (e.g., "nim_01", **not** "jupyter-nim_01").
 
-**A student forgot their password and cannot log in!**
+### A student forgot their password and cannot log in!
 
 Check the [TLJH](https://tljh.jupyter.org/en/latest/howto/auth/firstuse.html) website under "Resetting user password".
 
-**A student cannot access the Jupyterhub interface**
+### A student cannot access the Jupyterhub interface
 
 At the UvA, our Jupyterhub is behind a firewall that only accepts requests from the UvA network. Make sure students are connected to VPN!
 
-**I can not generate an assignment!**
+### I can not generate an assignment!
 
 When you get an error when you generate an assignment, you most likely forgot a ### BEGIN SOLUTION or ### END SOLUTION marker or you added these to a non-test cell. 
 
-**Students cannot see an assignment!**
+### Students cannot see an assignment!
 
 Make sure that you, in the formgrader, generated *and* released the assignment!
