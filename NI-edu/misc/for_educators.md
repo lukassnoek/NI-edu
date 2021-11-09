@@ -43,6 +43,27 @@ sudo tljh-config reload hub
 
 Lastly, you need to add students to the database. Personally, I do that programatically using the command line interface of the *nbgrader* package but you can also do this manually in the Formgrader.
 
+## Install `niedu`
+Finally, you need to install the `niedu` package for utilities and tests for the tutorials. Importantly, the compiled test functions only work with Python version 3.8.5, which is not the default version installed by TLJH. To update the version to 3.8.5, run the following command from the user account you used to install TLJH:
+
+```
+export PATH=/opt/tljh/user/bin:${PATH}
+source /opt/tljh/user/bin/activate
+sudo PATH=${PATH} conda install python=3.8.5
+```
+
+Now, you can install the `niedu` package as follows (note the period at the end, which is part of the command):
+
+```
+sudo -E pip install .
+```
+
+To check your installation at this point, you can run the following command in the root of the repository:
+
+```
+python test_course_enviroment.py
+```
+
 ## Troubleshooting
 See the short troubleshooting guide when encountering issues.
 
