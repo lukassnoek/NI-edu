@@ -20,7 +20,14 @@ else:
 print("Checking anaconda installation ... \t\t", end='')
 if 'conda' not in sys.executable:
     has_anaconda = False
-    print("WARNING!")
+    for p in sys.path:
+        if '/tljh/' in p:
+            # TLJH actually uses miniconda!
+            has_anaconda = True
+    if not has_anaconda:
+        print("WARNING!")
+    else:
+        print("OK!")
 else:
     has_anaconda = True
     print("OK!")
@@ -55,5 +62,7 @@ else:
 
 if not has_niedu:
     print("\nYou MUST install the 'niedu' package to follow this course.\n"
-          "Please run the following to do so:\n"
-          "'pip install .'")
+          "Please run the following in the root directory:\n"
+          "'pip install .'\n\n"
+          "Note that you need to install this as root when working from\n"
+          "a TLJH-based Jupyterhub setup!")
