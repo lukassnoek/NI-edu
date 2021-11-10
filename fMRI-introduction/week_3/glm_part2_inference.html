@@ -625,8 +625,8 @@ Now, to illustrate the problem of interpretating ‘raw’ beta-weights, let’s
 <div class="section" id="t-values">
 <h3><em>t</em>-values<a class="headerlink" href="#t-values" title="Permalink to this headline">¶</a></h3>
 <p>In fact, the key to getting interpretable effects of our predictors is to divide (“normalize”) our beta-parameter(s) by some quantity that summarizes how well our model describes the data. This quantity is the <strong>standard error of the beta-parameter</strong>, usually denoted by <span class="math notranslate nohighlight">\(\mathrm{SE}_{\beta}\)</span>. The standard error of the beta-parameter can be computed by taking the square root of the <strong>variance of the beta-parameter</strong>. If we’d divide our beta-estimate with it’s standard error, we compute a statistic you are all familiar with: the <em>t</em>-statistic! Formally:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-5135aa2f-1727-4e1b-9a18-814479b6701e">
-<span class="eqno">(23)<a class="headerlink" href="#equation-5135aa2f-1727-4e1b-9a18-814479b6701e" title="Permalink to this equation">¶</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-94c3534b-3fe7-4c69-94c3-a093d0a7f0f9">
+<span class="eqno">(23)<a class="headerlink" href="#equation-94c3534b-3fe7-4c69-94c3-a093d0a7f0f9" title="Permalink to this equation">¶</a></span>\[\begin{align}
 t_{\hat{\beta}} = \frac{\hat{\beta}}{\mathrm{SE}_{\hat{\beta}}} = \frac{\hat{\beta}}{\sqrt{\mathrm{var}(\hat{\beta})}}
 \end{align}\]</div>
 <div class='alert alert-info'>
@@ -634,31 +634,31 @@ t_{\hat{\beta}} = \frac{\hat{\beta}}{\mathrm{SE}_{\hat{\beta}}} = \frac{\hat{\be
 </div><p>Another way to think about it is that the t-value is the “effect” (<span class="math notranslate nohighlight">\(\hat{\beta}\)</span>) divided by your (un)certainty or confidence in the effect (<span class="math notranslate nohighlight">\(\mathrm{SE}_{\hat{\beta}}\)</span>). In a way, you can think of t-values as “uncertainty-normalized” effects.</p>
 <p>So, what drives (statistical) uncertainty about “effects” (here: <span class="math notranslate nohighlight">\(\hat{\beta}\)</span> parameters)? To find out, let’s dissect the uncertainty term, <span class="math notranslate nohighlight">\(\mathrm{SE}_{\hat{\beta}}\)</span>, a little more. The standard error of a parameter can interpreted conceptually as the “unexplained variance of the model” (or <em>noise</em>) multiplied with the “design variance” (or: <em>the variance of the parameter due to the design</em>). In this lab, we won’t explain what <em>design variance</em> means or how to compute this, as this is the topic of the second notebook of this week (<code class="docutils literal notranslate"><span class="pre">design_of_experiments</span></code>).</p>
 <p>For now, we treat “design variance”, here, as some known (constant) value given the design matrix (<span class="math notranslate nohighlight">\(\mathbf{X}\)</span>). So, with this information, we can construct a conceptual formula for the standard error of our parameter(s):</p>
-<div class="amsmath math notranslate nohighlight" id="equation-7a0d17fe-295d-43ae-8f66-710f42a441f8">
-<span class="eqno">(24)<a class="headerlink" href="#equation-7a0d17fe-295d-43ae-8f66-710f42a441f8" title="Permalink to this equation">¶</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-69411336-51f0-4d05-842e-fca234776b74">
+<span class="eqno">(24)<a class="headerlink" href="#equation-69411336-51f0-4d05-842e-fca234776b74" title="Permalink to this equation">¶</a></span>\[\begin{align}
 \mathbf{SE}_{\hat{\beta}} = \sqrt{\mathrm{noise} \cdot \mathrm{design\ variance}}
 \end{align}\]</div>
 <p>Now we also create a “conceptual formula” for the <em>t</em>-statistic:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-ca61ac4b-f287-4b00-b01e-c5af2408eb11">
-<span class="eqno">(25)<a class="headerlink" href="#equation-ca61ac4b-f287-4b00-b01e-c5af2408eb11" title="Permalink to this equation">¶</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-25a4a92f-83eb-48f5-856c-0626c2e462f4">
+<span class="eqno">(25)<a class="headerlink" href="#equation-25a4a92f-83eb-48f5-856c-0626c2e462f4" title="Permalink to this equation">¶</a></span>\[\begin{align}
 t_{\hat{\beta}} = \frac{\hat{\beta}}{\mathrm{SE}_{\hat{\beta}}} = \frac{\mathrm{effect}}{\sqrt{\mathrm{noise} \cdot \mathrm{design\ variance}}}
 \end{align}\]</div>
 <p><strong>This (conceptual) formula involving effects, noise, and design variance is probably the most important concept of this course</strong>. The effects (<em>t</em>-values) we measure in GLM analyses of fMRI data depend on two things: the effect measured (<span class="math notranslate nohighlight">\(\hat{\beta}\)</span>) and the (un)certainty of the effect (<span class="math notranslate nohighlight">\(SE_{\hat{\beta}}\)</span>), of which the latter term can be divided into the unexplained variance (“noise”) and the design variance (uncertainty of the parameter due to the design).</p>
 <p>These two terms (noise and design variance) will be central to the next couple of weeks of this course. In this week’s second notebook (topic: design of experiments), we’ll focus on how to optimize our <em>t</em>-values by minimizing the “design variance” term. Next week (topic: preprocessing), we’ll focus on how to (further) optimize our <em>t</em>-values by minimizing the error/noise.</p>
 <p>While we’re going to ignore the design variance for now, we are, however, going to learn how to calculate the “noise” term.</p>
 <p>In fact, the noise term is <em>very</em> similar to the MSE, but instead of taking the <em>mean</em> of the squared residuals, we sum the squared residuals (“sums of squared erros”, SSE) and divide it by the model’s degrees of freedom (DF). People usually use the <span class="math notranslate nohighlight">\(\hat{\sigma}^{2}\)</span> symbol for this noise term:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-56ec9c6e-3d6d-4ea2-8b7d-f7e8b5b63a17">
-<span class="eqno">(26)<a class="headerlink" href="#equation-56ec9c6e-3d6d-4ea2-8b7d-f7e8b5b63a17" title="Permalink to this equation">¶</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-df11dba2-2501-4a02-ad0c-2ca31419a7e9">
+<span class="eqno">(26)<a class="headerlink" href="#equation-df11dba2-2501-4a02-ad0c-2ca31419a7e9" title="Permalink to this equation">¶</a></span>\[\begin{align}
 \mathrm{noise} = \hat{\sigma}^{2} = \frac{\sum_{i=1}^{N}(\hat{y_{i}} - y_{i})^2}{\mathrm{df}} 
 \end{align}\]</div>
 <p>where the degrees of freedom (df) are defined as the number of samples (<span class="math notranslate nohighlight">\(N\)</span>) minus the number of predictors <em>including the intercept</em> (<span class="math notranslate nohighlight">\(P\)</span>):</p>
-<div class="amsmath math notranslate nohighlight" id="equation-a2dcd08e-03a5-43ae-827c-3c484441f293">
-<span class="eqno">(27)<a class="headerlink" href="#equation-a2dcd08e-03a5-43ae-827c-3c484441f293" title="Permalink to this equation">¶</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-a7fe79e8-0a57-49af-9f47-72b98b5acd48">
+<span class="eqno">(27)<a class="headerlink" href="#equation-a7fe79e8-0a57-49af-9f47-72b98b5acd48" title="Permalink to this equation">¶</a></span>\[\begin{align}
 \mathrm{df} = N - P
 \end{align}\]</div>
 <p>So, the formula of the <em>t</em>-statistic becomes:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-c2fe738c-1c0c-45dc-96dc-0226ac7ecf5c">
-<span class="eqno">(28)<a class="headerlink" href="#equation-c2fe738c-1c0c-45dc-96dc-0226ac7ecf5c" title="Permalink to this equation">¶</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-e5ca5a06-6a6b-416d-9c8f-228de570c020">
+<span class="eqno">(28)<a class="headerlink" href="#equation-e5ca5a06-6a6b-416d-9c8f-228de570c020" title="Permalink to this equation">¶</a></span>\[\begin{align}
 t_{\hat{\beta}} = \frac{\hat{\beta}}{\sqrt{\frac{\sum_{i=1}^{N}(\hat{y_{i}} - y_{i})^2}{N - P} \cdot \mathrm{design\ variance}}}
 \end{align}\]</div>
 <p>Alright, enough formulas. Let’s see how we can compute these terms in Python. We’re going to calculate the <em>t</em>-statistic of the weight-predictor for both models (the meter and the centimeter model) to see whether we can show that essentially the (normalized) effect of weight on height in meters is the same as the effect on heigh in centimeters; in other words, we are going to investigate whether the conversion to <em>t</em>-values “normalizes” the beta-parameters.</p>
@@ -992,19 +992,19 @@ specify a contrast-vector, multiply it with your betas, and sum them. That’s i
 <p>We’re not only telling you about contrasts because we think it’s an elegant way of computing beta-comparisons, but also because virtually every major neuroimaging software package uses them, so that you can specify what hypotheses you exactly want to test! You’ll also see this when we’re going to work with FSL (in week 5) to perform automated whole-brain linear regression analyses.</p>
 <p>Knowing how contrast-vectors work, we now can extend our formula for <em>t</em>-tests of beta-parameters such that they can describe <strong>every possible test</strong> (not only <em>t</em>-tests, but also ANOVAs, <em>F</em>-tests, etc.) of betas “against baseline” or between betas that you can think of:</p>
 <p>Our “old” formula of the <em>t</em>-test of a beta-parameter:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-698fe062-16d7-4d39-bf7b-21b9749bcb52">
-<span class="eqno">(29)<a class="headerlink" href="#equation-698fe062-16d7-4d39-bf7b-21b9749bcb52" title="Permalink to this equation">¶</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-bb42a42b-3a8f-4d5e-b432-d3514c566285">
+<span class="eqno">(29)<a class="headerlink" href="#equation-bb42a42b-3a8f-4d5e-b432-d3514c566285" title="Permalink to this equation">¶</a></span>\[\begin{align}
 t_{\hat{\beta}} = \frac{\hat{\beta}_{j}}{\mathrm{SE}_{\hat{\beta}}}
 \end{align}\]</div>
 <p>And now our “generalized” version of the <em>t</em>-test of <em>any</em> contrast/hypothesis:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-49e04177-4188-44b7-8c95-eaf5749fd466">
-<span class="eqno">(30)<a class="headerlink" href="#equation-49e04177-4188-44b7-8c95-eaf5749fd466" title="Permalink to this equation">¶</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-7d7e7693-b2c8-4f50-bf5c-dc04066fc6d8">
+<span class="eqno">(30)<a class="headerlink" href="#equation-7d7e7693-b2c8-4f50-bf5c-dc04066fc6d8" title="Permalink to this equation">¶</a></span>\[\begin{align}
 t_{\mathbf{c}\hat{\beta}} = \frac{\sum_{j=1}^{P}{c_{j}\hat{\beta}_{j}}}{\mathrm{SE}_{\mathbf{c}\hat{\beta}}} 
 \end{align}\]</div>
 <p>in which <span class="math notranslate nohighlight">\(\mathbf{c}\)</span> represents the entire contrast-vector, and <span class="math notranslate nohighlight">\(c_{j}\)</span> represents the <span class="math notranslate nohighlight">\(j^{\mathrm{th}}\)</span> value in our contrast vector. By the way, we can simplify the (notation of the) numerator a little bit using some matrix algebra. Remember that multiplying two (equal length) vectors with each other and then summing the values together is the same thing as the (inner) “dot product” between the two vectors?</p>
 <p>This means that you can also evaluate this elementwise multiplication and sum of the contrast-vector and the betas using the dot-product:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-5d687d9a-241b-4bbd-a2fb-958b673eed7e">
-<span class="eqno">(31)<a class="headerlink" href="#equation-5d687d9a-241b-4bbd-a2fb-958b673eed7e" title="Permalink to this equation">¶</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-5f2399bd-5aed-4717-b66b-a267b11d9b6b">
+<span class="eqno">(31)<a class="headerlink" href="#equation-5f2399bd-5aed-4717-b66b-a267b11d9b6b" title="Permalink to this equation">¶</a></span>\[\begin{align}
 t_{\mathbf{c}\hat{\beta}} = \frac{\mathbf{c}\hat{\beta}}{\mathrm{SE}_{\mathbf{c}\hat{\beta}}} 
 \end{align}\]</div>
 <div class='alert alert-warning'>
@@ -1096,8 +1096,8 @@ t_{\mathbf{c}\hat{\beta}} = \frac{\mathbf{c}\hat{\beta}}{\mathrm{SE}_{\mathbf{c}
 </ul>
 <p>Thus, a <em>F</em>-test basically tests this contrast-<em>matrix</em> all at once! Therefore, the <em>F</em>-tests is a type of “omnibus test”!</p>
 <p>Now, let’s look at the math behind the <em>F</em>-statistic. The <em>F</em>-statistic for set of <span class="math notranslate nohighlight">\(K\)</span> contrasts (i.e., the number of rows in the contrast-matrix) is defined as follows:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-205cbccb-cbad-41e7-80b4-d38f5dc0fa4e">
-<span class="eqno">(32)<a class="headerlink" href="#equation-205cbccb-cbad-41e7-80b4-d38f5dc0fa4e" title="Permalink to this equation">¶</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-a0010b6a-ef5d-4a74-8117-08930388deb5">
+<span class="eqno">(32)<a class="headerlink" href="#equation-a0010b6a-ef5d-4a74-8117-08930388deb5" title="Permalink to this equation">¶</a></span>\[\begin{align}
 F = (\mathbf{c}\hat{\beta})^{T}[K\mathbf{c}((X^{T}X)^{-1}\hat{\sigma}^{2})\mathbf{c}^{T}]^{-1}(\mathbf{c}\hat{\beta})
 \end{align}\]</div>
 <p>With a little imagination, you can see how the <em>F</em>-test is an extension of the <em>t</em>-test of a single contrast to accomodate testing a set of contrasts together. Don’t worry, you don’t have to understand how the formula for the <em>F</em>-statistic works mathematically and you don’t have to implement this in Python. But you <em>do</em> need to understand what type of hypothesis an <em>F</em>-test tests!</p>
