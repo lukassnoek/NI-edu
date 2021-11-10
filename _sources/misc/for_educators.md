@@ -66,7 +66,7 @@ sudo tljh-config reload hub
 Lastly, you need to add students to the database. Personally, I do that programatically using the command line interface of the *nbgrader* package but you can also do this manually in the Formgrader. Note: **you don't have to create the Linux accounts yourself!** This is handles by the Jupyterhub interface.
 
 :::{warning}
-Important: when adding users to the database, make sure you 
+Important: when adding users to the database, make sure you enter their Linux account name in the "Student ID" field (e.g., `jupyter-nim_01`), _not_ their Jupyterhub ID (e.g., `nim_01`). This is important because `nbgrader` only "knows" about the Linux accounts, not the Jupyterhub users. 
 :::
 
 
