@@ -1,7 +1,7 @@
 # Using the GLM to model fMRI data
 In this section (corresponding to week 2 of the course), we will discuss the general linear model (GLM) and how to use it to analyze functional MRI data. The presentation slides for this week can be found below:
 
-<iframe src="https://docs.google.com/presentation/d/e/2PACX-1vTU30s_-iEyqWr4F00boEE5PE57GuxW_oxRVT3CHB-xyPcZR_mL550BY5sszrqy5OI0ppWwxmG9JtZL/embed?start=true&loop=false&delayms=60000" frameborder="0" width="960" height="569" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>
+<iframe src="https://docs.google.com/presentation/d/e/2PACX-1vRSvFibX6SY68wP7Mf6SWsqJOD7CF_rQ-IK6ZyNJL7quUuEaZlzYlF17CeOZKc8DAfNUtSFTQZIj4A9/embed?start=true&loop=false&delayms=60000" frameborder="0" width="960" height="569" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>
 
 This section contains two notebooks:
 
