@@ -459,6 +459,11 @@
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#the-formgrader-is-not-loading">
+     The formgrader is not loading
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#letsencrypt-cannot-renew-the-certificates">
      Letsencrypt cannot renew the certificates
     </a>
@@ -532,14 +537,17 @@ If you have access to a Linux server <em>and</em> you have root access, we highl
 </div>
 <div class="section" id="installing-nbgrader">
 <h2>Installing <em>nbgrader</em><a class="headerlink" href="#installing-nbgrader" title="Permalink to this headline">¶</a></h2>
-<p>Using the admin account, install <em>nbgrader</em> as follows:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="o">-</span><span class="n">E</span> <span class="n">pip</span> <span class="n">install</span> <span class="n">nbgrader</span>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Currently, the latest version of <code class="docutils literal notranslate"><span class="pre">nbgrader</span></code> (0.6.2) has a bug that breaks the formgrader interface, which is fixed in the master branch on Github. So, <em>don’t</em> install <code class="docutils literal notranslate"><span class="pre">nbgrader</span></code> from PyPI (using <code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">nbgrader</span></code>), but install <code class="docutils literal notranslate"><span class="pre">nbgrader</span></code> from source as follow:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="o">-</span><span class="n">E</span> <span class="n">pip</span> <span class="n">install</span> <span class="n">git</span><span class="o">+</span><span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">jupyter</span><span class="o">/</span><span class="n">nbgrader</span><span class="o">.</span><span class="n">git</span><span class="nd">@master</span>
 </pre></div>
 </div>
+</div>
 <p>Then, install the webinterface of the <em>nbgrader</em> package (including the Formgrader):</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">jupyter</span> <span class="n">nbextension</span> <span class="n">install</span> <span class="o">--</span><span class="n">sys</span><span class="o">-</span><span class="n">prefix</span> <span class="o">--</span><span class="n">py</span> <span class="n">nbgrader</span> <span class="o">--</span><span class="n">overwrite</span>
-<span class="n">jupyter</span> <span class="n">nbextension</span> <span class="n">enable</span> <span class="o">--</span><span class="n">sys</span><span class="o">-</span><span class="n">prefix</span> <span class="o">--</span><span class="n">py</span> <span class="n">nbgrader</span>
-<span class="n">jupyter</span> <span class="n">serverextension</span> <span class="n">enable</span> <span class="o">--</span><span class="n">sys</span><span class="o">-</span><span class="n">prefix</span> <span class="o">--</span><span class="n">py</span> <span class="n">nbgrader</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">jupyter</span> <span class="n">nbextension</span> <span class="n">install</span> <span class="o">--</span><span class="n">sys</span><span class="o">-</span><span class="n">prefix</span> <span class="o">--</span><span class="n">py</span> <span class="n">nbgrader</span> <span class="o">--</span><span class="n">overwrite</span>
+<span class="n">sudo</span> <span class="n">jupyter</span> <span class="n">nbextension</span> <span class="n">enable</span> <span class="o">--</span><span class="n">sys</span><span class="o">-</span><span class="n">prefix</span> <span class="o">--</span><span class="n">py</span> <span class="n">nbgrader</span>
+<span class="n">sudo</span> <span class="n">jupyter</span> <span class="n">serverextension</span> <span class="n">enable</span> <span class="o">--</span><span class="n">sys</span><span class="o">-</span><span class="n">prefix</span> <span class="o">--</span><span class="n">py</span> <span class="n">nbgrader</span>
 </pre></div>
 </div>
 <p>Then, make sure there is a <code class="docutils literal notranslate"><span class="pre">nbgrader_config.py</span></code> file in the <code class="docutils literal notranslate"><span class="pre">~/.jupyter</span></code> folder. In this config file, the following variables should be set:</p>
@@ -590,6 +598,10 @@ sudo passwd $username
 <div class="section" id="troubleshooting">
 <h2>Troubleshooting<a class="headerlink" href="#troubleshooting" title="Permalink to this headline">¶</a></h2>
 <p>See the short troubleshooting guide when encountering issues.</p>
+<div class="section" id="the-formgrader-is-not-loading">
+<h3>The formgrader is not loading<a class="headerlink" href="#the-formgrader-is-not-loading" title="Permalink to this headline">¶</a></h3>
+<p>Did you install <code class="docutils literal notranslate"><span class="pre">nbgrader</span></code> from PyPI (using <code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">nbgrader</span></code>) and is it version 0.6.2? Then reinstall nbgrader from source (<code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">-E</span> <span class="pre">pip</span> <span class="pre">install</span> <span class="pre">git+https://github.com/jupyter/nbgrader.git&#64;master</span></code>), reinstall the nbextension and serverextension, and reload the hub (<code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">tljh-config</span> <span class="pre">reload</span> <span class="pre">hub</span></code>).</p>
+</div>
 <div class="section" id="letsencrypt-cannot-renew-the-certificates">
 <h3>Letsencrypt cannot renew the certificates<a class="headerlink" href="#letsencrypt-cannot-renew-the-certificates" title="Permalink to this headline">¶</a></h3>
 <p>Letsencrypt renews certificates using a test that uses port 443. At the UvA, we only allow connections with port 443 from the UvA network (so you need to be connected to VPN), so the renewal will fail. To renew the certificates, temporarily open up port 443 (<code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">ufw</span> <span class="pre">allow</span> <span class="pre">443</span></code>), run the renew command (<code class="docutils literal notranslate"><span class="pre">certbot</span> <span class="pre">renew</span></code>), and close the port again (run <code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">ufw</span> <span class="pre">status</span> <span class="pre">numbered</span></code>, check the number of the rule for port 443, and then run <code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">ufw</span> <span class="pre">delete</span> <span class="pre">{nr</span> <span class="pre">of</span> <span class="pre">rule}</span></code>).</p>
