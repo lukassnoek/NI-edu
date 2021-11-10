@@ -33,18 +33,22 @@ sudo tljh-config reload
 ```
 
 ## Installing *nbgrader*
-Using the admin account, install *nbgrader* as follows:
+
+:::{warning}
+Currently, the latest version of `nbgrader` (0.6.2) has a bug that breaks the formgrader interface, which is fixed in the master branch on Github. So, _don't_ install `nbgrader` from PyPI (using `pip install nbgrader`), but install `nbgrader` from source as follow:
 
 ```
-sudo -E pip install nbgrader
+sudo -E pip install git+https://github.com/jupyter/nbgrader.git@master
 ```
+
+:::
 
 Then, install the webinterface of the *nbgrader* package (including the Formgrader):
 
 ```
-jupyter nbextension install --sys-prefix --py nbgrader --overwrite
-jupyter nbextension enable --sys-prefix --py nbgrader
-jupyter serverextension enable --sys-prefix --py nbgrader
+sudo jupyter nbextension install --sys-prefix --py nbgrader --overwrite
+sudo jupyter nbextension enable --sys-prefix --py nbgrader
+sudo jupyter serverextension enable --sys-prefix --py nbgrader
 ```
 
 Then, make sure there is a `nbgrader_config.py` file in the `~/.jupyter` folder. In this config file, the following variables should be set:
@@ -60,6 +64,11 @@ sudo tljh-config reload hub
 ```
 
 Lastly, you need to add students to the database. Personally, I do that programatically using the command line interface of the *nbgrader* package but you can also do this manually in the Formgrader. Note: **you don't have to create the Linux accounts yourself!** This is handles by the Jupyterhub interface.
+
+:::{warning}
+Important: when adding users to the database, make sure you enter their Linux account name in the "Student ID" field (e.g., `jupyter-nim_01`), _not_ their Jupyterhub ID (e.g., `nim_01`). This is important because `nbgrader` only "knows" about the Linux accounts, not the Jupyterhub users. 
+:::
+
 
 ## Install `niedu`
 Finally, you need to install the `niedu` package for utilities and tests for the tutorials. Importantly, the compiled test functions only work with Python version 3.8.5, which is not the default version installed by TLJH. To update the version to 3.8.5, run the following command from the user account you used to install TLJH:
@@ -102,6 +111,10 @@ For a script version that does this for all users in a loop, check the `enable_s
 
 ## Troubleshooting
 See the short troubleshooting guide when encountering issues.
+
+### The formgrader is not loading
+
+Did you install `nbgrader` from PyPI (using `pip install nbgrader`) and is it version 0.6.2? Then reinstall nbgrader from source (`sudo -E pip install git+https://github.com/jupyter/nbgrader.git@master`), reinstall the nbextension and serverextension, and reload the hub (`sudo tljh-config reload hub`).
 
 ### Letsencrypt cannot renew the certificates
 
