@@ -1,5 +1,9 @@
 # First & run-level analyses
-In this section (corresponding to week 5 of the course), we discuss two things: first- and run-level analyses and how to run them using the software package [FSL](https://fsl.fmrib.ox.ac.uk/fsl/fslwiki). This section contains three notebooks:
+In this section (corresponding to week 5 of the course), we discuss two things: first- and run-level analyses and how to run them using the software package [FSL](https://fsl.fmrib.ox.ac.uk/fsl/fslwiki). The presentation slides for this topic can be found below:
+
+<iframe src="https://docs.google.com/presentation/d/e/2PACX-1vSnvn6siACev2fPkhzjFVtqGpL3u1vxvFg61IzVHGw3DSzWpMfBsCI-yRHkjQw3rT890R_EvtsAAhNR/embed?start=true&loop=false&delayms=60000" frameborder="0" width="960" height="569" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>
+
+This section contains three notebooks:
 
 * [Linux and the command line](../fMRI-introduction/week_5/linux_and_the_command_line.ipynb)
 * [First-level analyses](../fMRI-introduction/week_5/first_level_analyses.ipynb)
