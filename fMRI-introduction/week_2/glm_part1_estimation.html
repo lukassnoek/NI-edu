@@ -601,13 +601,13 @@ We are going to work through a simple example.</p>
 <div class="section" id="notation">
 <h3>Notation<a class="headerlink" href="#notation" title="Permalink to this headline">¶</a></h3>
 <p>Next, let’s define some more conventions in notation. We will denote the total number of observations with <strong><span class="math notranslate nohighlight">\(N\)</span></strong>. Moreover, we’ll denote <strong><span class="math notranslate nohighlight">\(i\)</span></strong> as the index of samples. To give an example, the formula below gives you the sum of our target variable:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-2196bc69-8d35-4540-a4d2-6ff8c434be39">
-<span class="eqno">(3)<a class="headerlink" href="#equation-2196bc69-8d35-4540-a4d2-6ff8c434be39" title="Permalink to this equation">¶</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-3ac9849f-6543-4c3c-9660-43f0200d26f9">
+<span class="eqno">(3)<a class="headerlink" href="#equation-3ac9849f-6543-4c3c-9660-43f0200d26f9" title="Permalink to this equation">¶</a></span>\[\begin{align}
 \mathrm{sum}(\mathbf{y}) = \sum_{i=1}^{N} y_{i} 
 \end{align}\]</div>
 <p>Lastly, we denote the total number of predictors <strong><span class="math notranslate nohighlight">\(P\)</span></strong> and  <strong><span class="math notranslate nohighlight">\(j\)</span></strong> as the index of our predictors. So, for example, if we wanted to sum over our predictors for a given sample <strong><span class="math notranslate nohighlight">\(i\)</span></strong>, we’d write:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-592c100b-3d5d-4736-ae3c-fe44f35e26c8">
-<span class="eqno">(4)<a class="headerlink" href="#equation-592c100b-3d5d-4736-ae3c-fe44f35e26c8" title="Permalink to this equation">¶</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-092501f6-7c78-42e0-b4c8-b066ef70518a">
+<span class="eqno">(4)<a class="headerlink" href="#equation-092501f6-7c78-42e0-b4c8-b066ef70518a" title="Permalink to this equation">¶</a></span>\[\begin{align}
 \mathrm{sum}(\mathbf{X}_{i}) = \sum_{j=1}^{P} \mathbf{X}_{ij} 
 \end{align}\]</div>
 <p>To practice with this notation, let’s do a ToDo!</p>
@@ -777,26 +777,26 @@ The shape of y is: (30, 1)
 <h3>Parameters in linear regression<a class="headerlink" href="#parameters-in-linear-regression" title="Permalink to this headline">¶</a></h3>
 <p>As you can see, there seems to be some positive linear relationship between <span class="math notranslate nohighlight">\(X\)</span> (just the independent variable without the intercept) and <span class="math notranslate nohighlight">\(y\)</span>. In other words, an increase in <span class="math notranslate nohighlight">\(X\)</span> will lead to an increase in <span class="math notranslate nohighlight">\(y\)</span>. But, at this moment, <em>how much exactly</em> <span class="math notranslate nohighlight">\(y\)</span> changes for a increase in <span class="math notranslate nohighlight">\(X\)</span> is unknown. By doing a linear regression with <span class="math notranslate nohighlight">\(X\)</span> as our predictor of <span class="math notranslate nohighlight">\(y\)</span>, we can quantify this!</p>
 <p>The parameter, i.e. the “thing” that quantifies the influence of <span class="math notranslate nohighlight">\(X\)</span> on <span class="math notranslate nohighlight">\(y\)</span>, calculated by this model is often called the <strong>beta-parameter(s)</strong> (but sometimes they’re denoted as theta, or any other greek symbol/letter). The beta-parameter quantifies exactly how much <span class="math notranslate nohighlight">\(y\)</span> changes if you increase <span class="math notranslate nohighlight">\(X\)</span> by 1. Or, in other words, it quantifies how much influence <span class="math notranslate nohighlight">\(X\)</span> has on <span class="math notranslate nohighlight">\(y\)</span>. In a formula (<span class="math notranslate nohighlight">\(\delta\)</span> stands for “change in”)*:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-ce821d24-6d60-4a88-91c4-181e25912529">
-<span class="eqno">(5)<a class="headerlink" href="#equation-ce821d24-6d60-4a88-91c4-181e25912529" title="Permalink to this equation">¶</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-f1e94393-ddfc-4832-bbe1-22b2d2539ff9">
+<span class="eqno">(5)<a class="headerlink" href="#equation-f1e94393-ddfc-4832-bbe1-22b2d2539ff9" title="Permalink to this equation">¶</a></span>\[\begin{align}
 \beta_{j} = \frac{\delta y}{\delta X_{j}} 
 \end{align}\]</div>
 <p>As you probably realize, each predictor in <span class="math notranslate nohighlight">\(X\)</span> (i.e., <span class="math notranslate nohighlight">\(X_{j}\)</span>) has a parameter (<span class="math notranslate nohighlight">\(\beta_{j}\)</span>) that quantifies how much influence that predictor has on our target variable (<span class="math notranslate nohighlight">\(y\)</span>). This includes the intercept, our vector of ones (which is in textbooks often denoted by <span class="math notranslate nohighlight">\(\beta_{0}\)</span>; they often don’t write out <span class="math notranslate nohighlight">\(\beta_{0}X_{0}\)</span> because, if a vector of ones is used, <span class="math notranslate nohighlight">\(\beta_{0}\cdot 1\)</span> simplifies to <span class="math notranslate nohighlight">\(\beta_{0}\)</span>).</p>
 <p>Thus, linear regression describes a model in which a set of beta-parameters are calculated to characterize the influence of each predictor in <span class="math notranslate nohighlight">\(X\)</span> on <span class="math notranslate nohighlight">\(y\)</span>, that together explain <span class="math notranslate nohighlight">\(y\)</span> as well as possible (but the model is usually not perfect, so there will be some <em>error</em>, or “unexplained variance”, denoted by <span class="math notranslate nohighlight">\(\epsilon\)</span>). As such, we can formulate the linear regression model as follows:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-0dc77a0b-e35f-40db-91e4-5edbfdda51ad">
-<span class="eqno">(6)<a class="headerlink" href="#equation-0dc77a0b-e35f-40db-91e4-5edbfdda51ad" title="Permalink to this equation">¶</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-7df3d58b-5698-445c-b00f-5eda6b7b91de">
+<span class="eqno">(6)<a class="headerlink" href="#equation-7df3d58b-5698-445c-b00f-5eda6b7b91de" title="Permalink to this equation">¶</a></span>\[\begin{align}
 y = \beta_{0} + X_{1}\beta_{1} + X_{2}\beta_{2} ... + X_{P}\beta_{P} + \epsilon
 \end{align}\]</div>
 <p>which is often written out as (and is equivalent to the formula above):</p>
-<div class="amsmath math notranslate nohighlight" id="equation-01978438-5a54-4f14-a1d8-1626df89b9f9">
-<span class="eqno">(7)<a class="headerlink" href="#equation-01978438-5a54-4f14-a1d8-1626df89b9f9" title="Permalink to this equation">¶</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-03a04823-f29f-4134-9a1d-ad228bae960a">
+<span class="eqno">(7)<a class="headerlink" href="#equation-03a04823-f29f-4134-9a1d-ad228bae960a" title="Permalink to this equation">¶</a></span>\[\begin{align}
 y = \sum_{j=1}^{P}X_{j}\beta_{j} + \epsilon
 \end{align}\]</div>
 <p>Here, <span class="math notranslate nohighlight">\(\epsilon\)</span> is the variance of <span class="math notranslate nohighlight">\(y\)</span> that cannot be explained by our predictors (i.e, the <em>error</em>).</p>
 <p>But how does linear regression estimate the beta-parameters? The method most often used is called <strong>‘ordinary least squares’</strong> (OLS; or just ‘least squares’). This method tries to find a “weight(s)” for the independent variable(s) such that when you multiply the weight(s) with the independent variable(s), it produces an estimate of <span class="math notranslate nohighlight">\(y\)</span> (often denoted as <span class="math notranslate nohighlight">\(\hat{y}\)</span>, or “y-hat”) that is as ‘close’ to the true <span class="math notranslate nohighlight">\(y\)</span> as possible. In other words, least squares tries to ‘choose’ the beta-parameter(s) (<span class="math notranslate nohighlight">\(\hat{\beta}\)</span>) such that the difference between <span class="math notranslate nohighlight">\(X\)</span> multiplied with the beta(s) (i.e. our best guess of <span class="math notranslate nohighlight">\(y\)</span>, denoted as <span class="math notranslate nohighlight">\(\hat{y}\)</span>) and the true <span class="math notranslate nohighlight">\(y\)</span> is minimized*.</p>
 <p>Let’s just formalize this formula for the ‘best estimate of <span class="math notranslate nohighlight">\(y\)</span>’ (i.e. <span class="math notranslate nohighlight">\(\hat{y}\)</span>):</p>
-<div class="amsmath math notranslate nohighlight" id="equation-54c7cebd-e046-4f68-86e0-36e109f4e81d">
-<span class="eqno">(8)<a class="headerlink" href="#equation-54c7cebd-e046-4f68-86e0-36e109f4e81d" title="Permalink to this equation">¶</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-068e14a3-4ceb-4c34-a364-728f86146f34">
+<span class="eqno">(8)<a class="headerlink" href="#equation-068e14a3-4ceb-4c34-a364-728f86146f34" title="Permalink to this equation">¶</a></span>\[\begin{align}
 \hat{y}_{i} = \sum_{j=1}^{P}X_{ij}\hat{\beta}_{j} 
 \end{align}\]</div>
 <p>Before we’re going into the estimation of these beta-parameters, let’s practice with calculating <span class="math notranslate nohighlight">\(\hat{y}\)</span>!</p>
@@ -832,8 +832,8 @@ y = \sum_{j=1}^{P}X_{j}\beta_{j} + \epsilon
 <img alt="dot_prod" src="https://hadrienj.github.io/assets/images/2.2/dot-product.png" />
 <em>Image by Hadrien Jean (<a class="reference external" href="https://hadrienj.github.io/assets/images/2.2/dot-product.png">link</a>)</em></p>
 <p>If your understanding of matrix algebra, and especially matrix multiplication, is still somewhat rusty, check out <a class="reference external" href="https://www.youtube.com/watch?v=fkZj8QoYjq8">this video</a> by Jeanette Mumford. Now, suppose that the left matrix in the above figure represents our matrix <span class="math notranslate nohighlight">\(\mathbf{X}\)</span> and that the right vector represents our estimated parameters <span class="math notranslate nohighlight">\(\hat{\beta}\)</span>. Now, we can calculate <span class="math notranslate nohighlight">\(\hat{y}\)</span> as the matrix operator <span class="math notranslate nohighlight">\(X\hat{\beta}\)</span>:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-c768e463-0e17-492e-b73d-6df3b46a01fc">
-<span class="eqno">(9)<a class="headerlink" href="#equation-c768e463-0e17-492e-b73d-6df3b46a01fc" title="Permalink to this equation">¶</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-d3c41b17-a58a-4aff-91a8-66d5143807f4">
+<span class="eqno">(9)<a class="headerlink" href="#equation-d3c41b17-a58a-4aff-91a8-66d5143807f4" title="Permalink to this equation">¶</a></span>\[\begin{align}
 \hat{y} = 
   \begin{bmatrix}
     X_{1,1} &amp; X_{1,2} \\
@@ -880,13 +880,13 @@ y = \sum_{j=1}^{P}X_{j}\beta_{j} + \epsilon
 </div>
 </div>
 <p>In other words, the non-matrix algebra notation …</p>
-<div class="amsmath math notranslate nohighlight" id="equation-3ffdd276-a64a-4792-a0d6-b4bd1e753551">
-<span class="eqno">(10)<a class="headerlink" href="#equation-3ffdd276-a64a-4792-a0d6-b4bd1e753551" title="Permalink to this equation">¶</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-468043d9-f9ea-40db-8809-31ba1a642e65">
+<span class="eqno">(10)<a class="headerlink" href="#equation-468043d9-f9ea-40db-8809-31ba1a642e65" title="Permalink to this equation">¶</a></span>\[\begin{align}
 \hat{y}_{i} = \sum_{j=1}^{P}X_{ij}\hat{\beta}_{j} 
 \end{align}\]</div>
 <p>… is exactly the same as the the following matrix algebra notation:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-3b3c3321-5b32-4afb-99d7-3fd921285621">
-<span class="eqno">(11)<a class="headerlink" href="#equation-3b3c3321-5b32-4afb-99d7-3fd921285621" title="Permalink to this equation">¶</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-19eb2e27-a06b-4f4b-b3b2-01ce077853ce">
+<span class="eqno">(11)<a class="headerlink" href="#equation-19eb2e27-a06b-4f4b-b3b2-01ce077853ce" title="Permalink to this equation">¶</a></span>\[\begin{align}
 \hat{y}_{i} = \mathbf{X}_{i}\mathbf{\hat{\beta}} 
 \end{align}\]</div>
 <p>You can usually recognize the implementations in formulas using algebra by the use of bold variables (such as <span class="math notranslate nohighlight">\(\mathbf{X}\)</span>, which denote matrices) here above.</p>
@@ -902,13 +902,13 @@ y = \sum_{j=1}^{P}X_{j}\beta_{j} + \epsilon
 <div class="section" id="fitting-ols-models">
 <h3>Fitting OLS models<a class="headerlink" href="#fitting-ols-models" title="Permalink to this headline">¶</a></h3>
 <p>Thus far, we’ve ignored how OLS actually calculates (or “fits”) the unknown parameters <span class="math notranslate nohighlight">\(\beta\)</span>. Roughly speaking, OLS finds parameters that minimize the <em>sum of squared errors</em> (hence the name ‘[ordinary] least squares’!):</p>
-<div class="amsmath math notranslate nohighlight" id="equation-7db9a630-b1cc-4c49-936d-81ee92506141">
-<span class="eqno">(12)<a class="headerlink" href="#equation-7db9a630-b1cc-4c49-936d-81ee92506141" title="Permalink to this equation">¶</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-1aad3a4d-26b2-4ee5-b9e6-03c715f9f582">
+<span class="eqno">(12)<a class="headerlink" href="#equation-1aad3a4d-26b2-4ee5-b9e6-03c715f9f582" title="Permalink to this equation">¶</a></span>\[\begin{align}
 \min_{\beta} \sum_{i=1}^{N}(y_{i} - X_{i}\hat{\beta})^2 
 \end{align}\]</div>
 <p>This formula basically formalizes the approach of OLS “find the beta(s) that minimize the difference of my prediction of <span class="math notranslate nohighlight">\(y\)</span> (calculated as <span class="math notranslate nohighlight">\(X \cdot \beta\)</span>) and the true <span class="math notranslate nohighlight">\(y\)</span>”. Now, this still begs the question, <em>how does OLS estimate these parameters?</em> It turns out there is an “analytical solution” to this problem, i.e., there is a way to compute beta estimates that are guaranteed (given some assumptions) to give the parameters that minimize the summed squared error. This solution involves a little matrix algebra and is usually formulated as a series of matrix operations:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-f18ebb3a-034d-4399-a6d8-ea04f6f3a299">
-<span class="eqno">(13)<a class="headerlink" href="#equation-f18ebb3a-034d-4399-a6d8-ea04f6f3a299" title="Permalink to this equation">¶</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-b8e55b93-5850-426d-abba-6e71830512e6">
+<span class="eqno">(13)<a class="headerlink" href="#equation-b8e55b93-5850-426d-abba-6e71830512e6" title="Permalink to this equation">¶</a></span>\[\begin{align}
 \hat{\beta} = (\mathbf{X}^{T}\mathbf{X})^{-1}\mathbf{X}^{T}y
 \end{align}\]</div>
 <p>(For the mathematically inclined, see <a class="reference external" href="https://economictheoryblog.com/2015/02/19/ols_estimator/">this</a> or <a class="reference external" href="https://socialstatisticsfun.wordpress.com/2012/12/18/deriving-the-ols-estimator-continued/">this</a> blog for the derivation of the OLS solution.) In this formula, <span class="math notranslate nohighlight">\(\mathbf{X}^{T}\)</span> refers to the transpose of the design matrix <span class="math notranslate nohighlight">\(\mathbf{X}\)</span>.</p>
@@ -934,13 +934,13 @@ y = \sum_{j=1}^{P}X_{j}\beta_{j} + \epsilon
 </div>
 </div>
 <p>“What? Why are there two beta-parameters?”, you might think. This is of course because you also use the intercept as a predictor, which also has an associated beta-value (weighting factor). Here, the first beta refers to the intercept of the model (because it’s the first column in the design-matrix)! The second beta refers to our ‘original’ predictor. Thus, the model found by least squares for our generated data is (i.e. that leads to our best estimate of <span class="math notranslate nohighlight">\(y\)</span>, i.e. <span class="math notranslate nohighlight">\(\hat{y}\)</span>:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-c9890730-8697-4173-a79f-eb754354f5be">
-<span class="eqno">(14)<a class="headerlink" href="#equation-c9890730-8697-4173-a79f-eb754354f5be" title="Permalink to this equation">¶</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-bf9bd71f-c52f-4160-9928-bc5e72e28796">
+<span class="eqno">(14)<a class="headerlink" href="#equation-bf9bd71f-c52f-4160-9928-bc5e72e28796" title="Permalink to this equation">¶</a></span>\[\begin{align}
 \hat{y} = X_{1} \cdot 4.259 + X_{2} \cdot 0.882 
 \end{align}\]</div>
 <p>And since our intercept (here <span class="math notranslate nohighlight">\(X_{1}\)</span>) is a vector of ones, the formula simplifies to:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-7f03012a-fa89-4f6e-befb-0cafb08f9a11">
-<span class="eqno">(15)<a class="headerlink" href="#equation-7f03012a-fa89-4f6e-befb-0cafb08f9a11" title="Permalink to this equation">¶</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-b601ee08-86ef-4b90-8042-2906cb3a7d6a">
+<span class="eqno">(15)<a class="headerlink" href="#equation-b601ee08-86ef-4b90-8042-2906cb3a7d6a" title="Permalink to this equation">¶</a></span>\[\begin{align}
 \hat{y} = 4.259 + X_{2} \cdot 0.882
 \end{align}\]</div>
 <p>Now, let’s calculate our predicted value of <span class="math notranslate nohighlight">\(y\)</span> (<span class="math notranslate nohighlight">\(\hat{y}\)</span>) by implementing the above formula by multiplying our betas with the corresponding predictors (intercept and original predictor). Here, because we have two predictors, we simply add the two “<code class="docutils literal notranslate"><span class="pre">predictor</span> <span class="pre">*</span> <span class="pre">beta</span></code>” terms to get the final <span class="math notranslate nohighlight">\(\hat{y}\)</span>.</p>
@@ -1013,8 +1013,8 @@ array([5.7162258 , 7.64565627, 6.82238735, 5.65711982, 6.70719685,
 <div class="section" id="residuals-and-model-fit">
 <h3>Residuals and model fit<a class="headerlink" href="#residuals-and-model-fit" title="Permalink to this headline">¶</a></h3>
 <p>Alright, so now we have established the beta-values that lead to the best prediction of <span class="math notranslate nohighlight">\(y\)</span> - in other words, the best fit of our model. But how do we quantify the fit of our model? One way is to look at the difference between <span class="math notranslate nohighlight">\(\hat{y}\)</span> and y, which is often referred to as the model’s <strong>residuals</strong>. This difference between <span class="math notranslate nohighlight">\(\hat{y}\)</span> and <span class="math notranslate nohighlight">\(y\)</span> - the residuals - is the exact same thing as the <span class="math notranslate nohighlight">\(\epsilon\)</span> in the linear regression model, i.e. the <strong>error</strong> of the model. Thus, for a particular dependent variable <span class="math notranslate nohighlight">\(y\)</span>, the residuals (<span class="math notranslate nohighlight">\(\epsilon\)</span>) of a particular fitted model with parameters <span class="math notranslate nohighlight">\(\hat{\beta}\)</span> are computed as:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-b0814cd7-6027-4bc5-b200-f854b362818c">
-<span class="eqno">(16)<a class="headerlink" href="#equation-b0814cd7-6027-4bc5-b200-f854b362818c" title="Permalink to this equation">¶</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-383d5bee-2b69-4c1c-96a3-64ca31866e5c">
+<span class="eqno">(16)<a class="headerlink" href="#equation-383d5bee-2b69-4c1c-96a3-64ca31866e5c" title="Permalink to this equation">¶</a></span>\[\begin{align}
 \epsilon = y - \mathbf{X}\hat{\beta} 
 \end{align}\]</div>
 <p>To visualize the residuals (plotted as red dashed lines):</p>
@@ -1053,8 +1053,8 @@ array([5.7162258 , 7.64565627, 6.82238735, 5.65711982, 6.70719685,
 </div>
 </div>
 <p>In fact, the model fit is often summarized as the <strong>mean of the squared residuals</strong> (also called the ‘mean squared error’ or MSE), which is thus simply the (length of the) red lines squared and averaged. In other words, the MSE refers to the average squared difference between our predicted <span class="math notranslate nohighlight">\(y\)</span> and the true <span class="math notranslate nohighlight">\(y\)</span>*:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-271abf89-c43e-4308-970f-9ef0c385605a">
-<span class="eqno">(17)<a class="headerlink" href="#equation-271abf89-c43e-4308-970f-9ef0c385605a" title="Permalink to this equation">¶</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-153ef860-714f-4e90-90cb-945867334a23">
+<span class="eqno">(17)<a class="headerlink" href="#equation-153ef860-714f-4e90-90cb-945867334a23" title="Permalink to this equation">¶</a></span>\[\begin{align}
 \mathrm{MSE} = \frac{1}{N}\sum_{i=1}^{N} (y_{i} - \hat{y}_{i})^2
 \end{align}\]</div>
 <p>* The “<span class="math notranslate nohighlight">\(\frac{1}{N}\sum_{i=1}^{N}\)</span>” is just a different (but equally correct) way of writing “the average of all residuals from sample 1 to sample N”.</p>
@@ -1079,8 +1079,8 @@ array([5.7162258 , 7.64565627, 6.82238735, 5.65711982, 6.70719685,
 </div>
 </div>
 <p>Another metric for model fit in linear regression is “R-squared” (<span class="math notranslate nohighlight">\(R²\)</span>). R-squared is calculated as follows:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-53f4c62c-20d6-480f-91ee-93fc2aa6b52a">
-<span class="eqno">(18)<a class="headerlink" href="#equation-53f4c62c-20d6-480f-91ee-93fc2aa6b52a" title="Permalink to this equation">¶</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-79927fbd-f633-4cc1-be25-66c3c4570b66">
+<span class="eqno">(18)<a class="headerlink" href="#equation-79927fbd-f633-4cc1-be25-66c3c4570b66" title="Permalink to this equation">¶</a></span>\[\begin{align}
 R^2 = 1 - \frac{\sum_{i=1}^{N}(y_{i} - \hat{y}_{i})^2}{\sum_{i=1}^{N}(y_{i} - \bar{y})^2}
 \end{align}\]</div>
 <p>where <span class="math notranslate nohighlight">\(\bar{y}\)</span> represents the mean of <span class="math notranslate nohighlight">\(y\)</span>. As you can see, the formula for R-squared consists of two parts: the numerator (<span class="math notranslate nohighlight">\(\sum_{i=1}^{N}(y_{i} - \hat{y}_{i})^2\)</span>) and the denominator (<span class="math notranslate nohighlight">\(\sum_{i=1}^{N}(y_{i} - \bar{y}_{i})^2\)</span>). The denominator represents the <em>total</em> amount of squared error of the actual values (<span class="math notranslate nohighlight">\(y\)</span>) relative to the mean (<span class="math notranslate nohighlight">\(\bar{y}\)</span>). The numerator represents the <em>reduced</em> squared errors when incorporating knowledge from our (weighted) independent variables (<span class="math notranslate nohighlight">\(X_{i}\hat{\beta}\)</span>). So, in a way you can interpret R-squared as <em>how much better my model is including <code class="docutils literal notranslate"><span class="pre">X</span></code> versus a model that only uses the mean</em>. Another conventional interpretation of R-squared is the proportion of variance our predictors (<span class="math notranslate nohighlight">\(X\)</span>) together can explain of our target (<span class="math notranslate nohighlight">\(y\)</span>).</p>
@@ -1659,8 +1659,8 @@ Downsampled predictor has 400 datapoints (in volumes)
 </div>
 </div>
 <p>If you’ve done the ToDo correctly, you should have found the the following beta-parameters: 1000.657 for the intercept and 1.023 for our stimulus-predictor. This means that our linear regression model for that voxel is as follows:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-aec6df19-ad22-4c7b-8bb8-8de52f0a1b9b">
-<span class="eqno">(19)<a class="headerlink" href="#equation-aec6df19-ad22-4c7b-8bb8-8de52f0a1b9b" title="Permalink to this equation">¶</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-e1bee211-42b5-4b1d-b6d9-c27764add703">
+<span class="eqno">(19)<a class="headerlink" href="#equation-e1bee211-42b5-4b1d-b6d9-c27764add703" title="Permalink to this equation">¶</a></span>\[\begin{align}
 y_{voxel} = \beta_{intercept} + X_{stim}\beta_{stim} + \epsilon = 1000.647 + X_{stim}1.023 + \epsilon
 \end{align}\]</div>
 <p>This simply means that for a unit increase in <span class="math notranslate nohighlight">\(X\)</span> (i.e., <span class="math notranslate nohighlight">\(X = 0 \rightarrow X = 1\)</span>), <span class="math notranslate nohighlight">\(y\)</span> increases with 1.023. In other words, on average the signal is 1.023 higher when a stimulus is present compared to when a stimulus is absent!</p>
@@ -1756,8 +1756,8 @@ y_{voxel} = \beta_{intercept} + X_{stim}\beta_{stim} + \epsilon = 1000.647 + X_{
 <div class="section" id="convolution">
 <h4>Convolution<a class="headerlink" href="#convolution" title="Permalink to this headline">¶</a></h4>
 <p>The figure of the HRF shows how we’d expect that an idealized (noiseless) response to a single event would look like. But how should we incorporate this HRF into our model? Traditionally, this is done using a mathematical operation called <strong>convolution</strong>. Basically, it “slides” the HRF across our 0-1 coded stimulus-vector from left to right and elementwise multiplies the HRF with the stimulus-vector. This is often denoted as:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-0f8a2b47-9388-4cc3-8ffa-ef76a0e19c0b">
-<span class="eqno">(20)<a class="headerlink" href="#equation-0f8a2b47-9388-4cc3-8ffa-ef76a0e19c0b" title="Permalink to this equation">¶</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-690eb22e-b71c-466d-aeb7-4fda38d0b10a">
+<span class="eqno">(20)<a class="headerlink" href="#equation-690eb22e-b71c-466d-aeb7-4fda38d0b10a" title="Permalink to this equation">¶</a></span>\[\begin{align}
 X_{\mathrm{conv}} = \mathrm{HRF} * X_{\mathrm{original}}
 \end{align}\]</div>
 <p>in which <span class="math notranslate nohighlight">\(*\)</span> is the symbol for convolution, <span class="math notranslate nohighlight">\(X_{\mathrm{original}}\)</span> is the original stimulus-vector, and <span class="math notranslate nohighlight">\(X_{\mathrm{conv}}\)</span> the result of the convolution.</p>
@@ -2365,8 +2365,8 @@ R-squared of model with convolution is 0.30629 and without convolution it is 0.0
 <p>In practice, this amounts to convolving your predictor with not one, but multiple HRFs. This results in multiple predictors per stimulus-condition! Each HRF measures a “part” (or property) of the total HRF. Together, these predictors aim to estimate the complete HRF for a given stimulus-vector (condition).</p>
 <p>We’re going to use <em>double-gamma basis functions</em> as an example of a temporal basis set (but there are other sets, like the (<em>single-gamme basis set</em>, <em>sine basis set</em> and <em>finite impulse response</em> set). In this particular basis set, the original double-gamma HRF is used in combination with its first derivative (often called the ‘temporal derivative’). (Sometimes, the second derivative, also called the “dispersion derivative”, is also added. We leave this out for simplicity here.)</p>
 <p>Suppose we have only one stimulus condition. Then, the signal (<span class="math notranslate nohighlight">\(\mathbf{y}\)</span>) is not modelled by only one convolved predictor (<span class="math notranslate nohighlight">\(X_{\mathrm{stim}}\)</span>) but by two predictors: a predictor convolved with the original HRF (<span class="math notranslate nohighlight">\(X_{\mathrm{orig}}\)</span>) and a predictor convolved with the temporal derivative of the HRF (<span class="math notranslate nohighlight">\(X_{\mathrm{temp}}\)</span>). Formally:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-42517153-f36b-453d-83b9-bdf6c16af937">
-<span class="eqno">(21)<a class="headerlink" href="#equation-42517153-f36b-453d-83b9-bdf6c16af937" title="Permalink to this equation">¶</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-f3e4d1ba-b918-42b3-be2e-a7705e67a83a">
+<span class="eqno">(21)<a class="headerlink" href="#equation-f3e4d1ba-b918-42b3-be2e-a7705e67a83a" title="Permalink to this equation">¶</a></span>\[\begin{align}
 y = \beta_{0} + \mathbf{X}_{\mathrm{orig}}\beta_{1} + \mathbf{X}_{\mathrm{temp}}\beta_{2} + \epsilon
 \end{align}\]</div>
 <p>Alright, but how do we compute this temporal derivative and how does this look like? Again, we can use a function from the <a class="reference external" href="https://nilearn.github.io">nilearn</a> package: <code class="docutils literal notranslate"><span class="pre">glover_time_derivative</span></code>:</p>
@@ -2628,8 +2628,8 @@ We’ll show below that it suboptimally explains this voxel:</p>
 <div class='alert alert-warning'>
 <b>ToDo</b> (3 points)
 <p>For the last ToDo, let’s do a short “puzzle”. Below, we’ll load a function, called <tt>black_box</tt>, that implements a linear regression model with the following functional form:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-2ceb8a2e-ade5-4ad0-9da4-6cc15a6742dd">
-<span class="eqno">(22)<a class="headerlink" href="#equation-2ceb8a2e-ade5-4ad0-9da4-6cc15a6742dd" title="Permalink to this equation">¶</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-87b6c0ea-387f-4d6c-a719-f419b2b25790">
+<span class="eqno">(22)<a class="headerlink" href="#equation-87b6c0ea-387f-4d6c-a719-f419b2b25790" title="Permalink to this equation">¶</a></span>\[\begin{align}
 y = \beta_{0} + x_{1}\beta_{1} + x_{2}\beta_{2} + x_{3}\beta_{3}  
 \end{align}\]</div>
 <p>As you can see, it has four parameters (no error term!): <span class="math notranslate nohighlight">\(\beta_{0}\)</span> represents the intercept here and <span class="math notranslate nohighlight">\(\beta_{1}\)</span> up to <span class="math notranslate nohighlight">\(\beta_{4}\)</span> represent the parameters of the model’s single predictors (<span class="math notranslate nohighlight">\(x_{1}\)</span> up to <span class="math notranslate nohighlight">\(x_{3}\)</span>). The function <tt>black_box</tt> takes three inputs: <tt>x1</tt>, <tt>x2</tt>, and <tt>x3</tt>. The function outputs a (deterministic) value for <span class="math notranslate nohighlight">\(y\)</span>. So, you could use (“query”) the function like this:</p>

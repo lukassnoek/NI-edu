@@ -532,13 +532,13 @@
 <p>Before we go on and demonstrate smoothing on fMRI data, we need to determine the sigma of our (3D) gaussian kernel that we’ll use to smooth the data. Annoyingly, smoothing kernels in the fMRI literature (and software packages!) are usually not reported in terms of sigma, but as “full-width half maximum” (FWHM), which refers to the width of the gaussian at half the maximum height:</p>
 <p><img alt="fwhm" src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/cb/FWHM.svg/1200px-FWHM.svg.png" /></p>
 <p>For example, you might read in papers something like “We smoothed our data with a gaussian kernel with a FWHM of 3 millimeter”. So, we need to convert our desired FWHM (in millimeters) to sigma. In fact, this is the same conversion that we needed to do for our temporal Gaussian running line high-pass filter, but this time applied to the spatial domain (i.e., FWHM in mm) instead of the temporal domain (i.e., TR in seconds). We can use the same formula to convert FWHM (in mm.) to sigma:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-17efb341-0916-4d58-bf2e-b8289b924a96">
-<span class="eqno">(60)<a class="headerlink" href="#equation-17efb341-0916-4d58-bf2e-b8289b924a96" title="Permalink to this equation">¶</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-9c9c5045-b6b2-4125-858c-4feb7c840684">
+<span class="eqno">(60)<a class="headerlink" href="#equation-9c9c5045-b6b2-4125-858c-4feb7c840684" title="Permalink to this equation">¶</a></span>\[\begin{align}
 \sigma_{kernel} = \frac{\mathrm{FWHM}_{mm}}{\sqrt{8 \ln{2}} \cdot \mathrm{voxel\ size}_{mm}}
 \end{align}\]</div>
 <p>So, for example, if I want to smooth at FWHM = 6 mm and my voxels are 3 mm in size (assuming equal size in the three spatial dimensions, which is common), my sigma becomes:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-302da200-a969-489c-bf88-7eb55d48f09c">
-<span class="eqno">(61)<a class="headerlink" href="#equation-302da200-a969-489c-bf88-7eb55d48f09c" title="Permalink to this equation">¶</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-0fe738fc-b546-483c-8764-a9004805805a">
+<span class="eqno">(61)<a class="headerlink" href="#equation-0fe738fc-b546-483c-8764-a9004805805a" title="Permalink to this equation">¶</a></span>\[\begin{align}
 \sigma_{kernel} = \frac{6}{\sqrt{8 \ln{2}} \cdot 3} \approx 0.85
 \end{align}\]</div>
 <p>The entire conversion process is a bit annoying, but it’s simply necessary due to conventions in the fMRI literature/software packages.</p>
@@ -638,8 +638,8 @@
 <div class="section" id="affine-registrations">
 <h3>Affine registrations<a class="headerlink" href="#affine-registrations" title="Permalink to this headline">¶</a></h3>
 <p>For affine registrations, the way the image should be moved is defined in the affine matrix, a <span class="math notranslate nohighlight">\(4 \times 4\)</span> matrix. This matrix is similar to the one we discussed in week 1, but instead of describing how each image coordinate (<span class="math notranslate nohighlight">\(i, j, k\)</span>) relates to world coordinates (<span class="math notranslate nohighlight">\(x, y, z\)</span>), the affine matrix, here, describes how the coordinates from the original (non-corrected) image related to the corrected image:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-21561d4d-c4c3-41ff-9608-ee8f005be30b">
-<span class="eqno">(62)<a class="headerlink" href="#equation-21561d4d-c4c3-41ff-9608-ee8f005be30b" title="Permalink to this equation">¶</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-9e8bcc31-aaac-4d82-ac44-edbb4ea8b1be">
+<span class="eqno">(62)<a class="headerlink" href="#equation-9e8bcc31-aaac-4d82-ac44-edbb4ea8b1be" title="Permalink to this equation">¶</a></span>\[\begin{align}
 \begin{bmatrix} i_{corr}, j_{corr}, k_{corr}, 1 \end{bmatrix} = A\begin{bmatrix}
            i \\
            j \\
@@ -671,8 +671,8 @@
 </div>
 </div>
 <p>As expected, the affine transformation above shows us that the middle coordinate <span class="math notranslate nohighlight">\((0, 0, 0)\)</span> refers to the corrected coordinate <span class="math notranslate nohighlight">\((0, 0, 3)\)</span> after translating the image 3 voxels downwards. But how is this particular translation encoded in the affine? For translation, this is relatively straightforward. For any translation <span class="math notranslate nohighlight">\((x, y, z)\)</span>, the affine matrix looks like:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-e7e4f678-ad82-47af-af52-3ad58fb19981">
-<span class="eqno">(63)<a class="headerlink" href="#equation-e7e4f678-ad82-47af-af52-3ad58fb19981" title="Permalink to this equation">¶</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-786797d3-d608-420e-8b61-2d93cf6e1f60">
+<span class="eqno">(63)<a class="headerlink" href="#equation-786797d3-d608-420e-8b61-2d93cf6e1f60" title="Permalink to this equation">¶</a></span>\[\begin{align}
 \begin{bmatrix} i_{\mathrm{trans}} &amp; j_{\mathrm{trans}} &amp; k_{\mathrm{trans}} &amp; 1 \end{bmatrix} =
 \begin{bmatrix}
            1 &amp; 0 &amp; 0 &amp; x \\
@@ -688,8 +688,8 @@
          \end{bmatrix}
 \end{align}\]</div>
 <p>For rotation, however, it is slightly more complicated! For rotation transformations (with rotations <span class="math notranslate nohighlight">\(x, y, z\)</span> in radians), the affine is computed by the matrix</p>
-<div class="amsmath math notranslate nohighlight" id="equation-a0e62cce-e018-4720-896f-016a1ca13f99">
-<span class="eqno">(64)<a class="headerlink" href="#equation-a0e62cce-e018-4720-896f-016a1ca13f99" title="Permalink to this equation">¶</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-6c82a939-3f3e-4105-ad77-c0471d272aa6">
+<span class="eqno">(64)<a class="headerlink" href="#equation-6c82a939-3f3e-4105-ad77-c0471d272aa6" title="Permalink to this equation">¶</a></span>\[\begin{align}
 \begin{bmatrix} i_{\mathrm{rot}} &amp; j_{\mathrm{rot}} &amp; k_{\mathrm{rot}} &amp; 1 \end{bmatrix} =
     \begin{bmatrix}
            1 &amp; 0 &amp; 0 &amp; 0 \\
@@ -781,8 +781,8 @@
 </div>
 </div>
 <p>Now, if we want to combine both rotations and translations, we multiply the translation matrix (<span class="math notranslate nohighlight">\(T\)</span>) with our rotation matrix (<span class="math notranslate nohighlight">\(R = R_{x}R_{y}R_{z}\)</span>):</p>
-<div class="amsmath math notranslate nohighlight" id="equation-0ae02455-6ab1-46a6-9af0-6256cd5953b8">
-<span class="eqno">(65)<a class="headerlink" href="#equation-0ae02455-6ab1-46a6-9af0-6256cd5953b8" title="Permalink to this equation">¶</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-5106d199-5cc9-4d75-85e0-eab2df0826fc">
+<span class="eqno">(65)<a class="headerlink" href="#equation-5106d199-5cc9-4d75-85e0-eab2df0826fc" title="Permalink to this equation">¶</a></span>\[\begin{align}
 A = TR
 \end{align}\]</div>
 <div class='alert alert-warning'>
@@ -901,8 +901,8 @@ A = TR
 </div>
 <p>Now, suppose that we want to align two volumes with each other. How would we go about it? Visually, it’s quite hard to assess whether a particular affine matrix works well. In practice, most neuroimaging software packages use automatic algorithms that try to find a affine matrix that <em>minimizes some cost function</em>. In other words, it defines a function to evaluate the mismatch (or cost) of the alignment of two volumes given an affine matrix, and then it tries to minimize this function by (in a smart way) trying out different rotation and translation parameters.</p>
 <p>One cost function that is often used for rigid body registration is “least squares”, which is defined as the sum over the squared (voxel-wise, <span class="math notranslate nohighlight">\(v\)</span>) differences between the reference image (sometimes called the “fixed” image) and the realigned image (sometimes called the “moving” image):</p>
-<div class="amsmath math notranslate nohighlight" id="equation-b95c2526-56a7-407c-8d52-f63c3f5416af">
-<span class="eqno">(66)<a class="headerlink" href="#equation-b95c2526-56a7-407c-8d52-f63c3f5416af" title="Permalink to this equation">¶</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-f1b1c64d-6e74-475c-bffa-54a156f4e092">
+<span class="eqno">(66)<a class="headerlink" href="#equation-f1b1c64d-6e74-475c-bffa-54a156f4e092" title="Permalink to this equation">¶</a></span>\[\begin{align}
 \mathrm{cost}_{LS} = \sum_{v}(\mathrm{fixed}_{v} - \mathrm{moving}_{v})^2
 \end{align}\]</div>
 <div class='alert alert-warning'>
@@ -1016,8 +1016,8 @@ Hint 2: rotation is counter clockwise (if you define negative rotation, e.g. -20
 </div>
 </div>
 <p>So, is this good data or not? In general, you could say that higher values (in either translation or rotation) are worse. That said, from the translation and rotation parameters alone it is hard to judge whether the participant moved <em>too</em> much, partly because we’re dealing with 6 parameter traces here. One way to make this decision process a little easier is to convert these parameters to a single “framewise displacement” (FD) trace. FD aims to represent “bulk motion” and is a summary statistic of motion that combines all motion parameters into a single metric. It is calculated as follows:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-765de1f0-e708-43af-9deb-17395595e598">
-<span class="eqno">(67)<a class="headerlink" href="#equation-765de1f0-e708-43af-9deb-17395595e598" title="Permalink to this equation">¶</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-a09dd2b1-7f77-4689-82fa-f72d0b4146bb">
+<span class="eqno">(67)<a class="headerlink" href="#equation-a09dd2b1-7f77-4689-82fa-f72d0b4146bb" title="Permalink to this equation">¶</a></span>\[\begin{align}
 FD_{t} = |r(\mathrm{rot}_{tx} - \mathrm{rot}_{(t-1)x})| + |r(\mathrm{rot}_{ty} - \mathrm{rot}_{(t-1)y})| + |r(\mathrm{rot}_{tz} - \mathrm{rot}_{(t-1)z})| + |\mathrm{trans}_{xt} - \mathrm{trans}_{x(t-1)}| + |\mathrm{trans}_{yt} - \mathrm{trans}_{y(t-1)}| + |\mathrm{trans}_{zt} - \mathrm{trans}_{z(t-1)}|
 \end{align}\]</div>
 <p>where <span class="math notranslate nohighlight">\(|x|\)</span> means the absolute value of <span class="math notranslate nohighlight">\(x\)</span> and <span class="math notranslate nohighlight">\(r\)</span> stands for a predefined radius in millimeters (which is usually taken to be 50). So, basically it is a sum across the absolute successive differences (<span class="math notranslate nohighlight">\(x_{t} - x_{t-1}\)</span>) of parameter traces.</p>

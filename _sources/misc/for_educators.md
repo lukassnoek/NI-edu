@@ -65,6 +65,11 @@ sudo tljh-config reload hub
 
 Lastly, you need to add students to the database. Personally, I do that programatically using the command line interface of the *nbgrader* package but you can also do this manually in the Formgrader. Note: **you don't have to create the Linux accounts yourself!** This is handles by the Jupyterhub interface.
 
+:::{warning}
+Important: when adding users to the database, make sure you 
+:::
+
+
 ## Install `niedu`
 Finally, you need to install the `niedu` package for utilities and tests for the tutorials. Importantly, the compiled test functions only work with Python version 3.8.5, which is not the default version installed by TLJH. To update the version to 3.8.5, run the following command from the user account you used to install TLJH:
 
