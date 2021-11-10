@@ -798,8 +798,8 @@
 <div class="section" id="voxel-level-rft">
 <h3>Voxel-level RFT<a class="headerlink" href="#voxel-level-rft" title="Permalink to this headline">¶</a></h3>
 <p>Voxel-level RFT allows for “smoothness-adjusted” thresholding for individual voxels. It does so by assuming a particular distribution for the <em>number of clusters</em> (or “blobs”) one would observe given (1) a particular initial threshold and (2) the smoothness of the data, assuming there is no effect (i.e., the null hypothesis is true). This expected “number of blobs” after thresholding is known as the <em>Euler characteristic</em>. And for standard normal data (i.e., <span class="math notranslate nohighlight">\(z\)</span>-statistics), the expected Euler characteristic is computed as:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-f6a7c387-26b1-4428-a002-ca389466f0ad">
-<span class="eqno">(83)<a class="headerlink" href="#equation-f6a7c387-26b1-4428-a002-ca389466f0ad" title="Permalink to this equation">¶</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-1f195999-5dc9-49c5-8627-9b8092501727">
+<span class="eqno">(83)<a class="headerlink" href="#equation-1f195999-5dc9-49c5-8627-9b8092501727" title="Permalink to this equation">¶</a></span>\[\begin{align}
 EC = N_{resel}\ (4\ \log_{e}2)\ (2\pi)^{-\frac{2}{3}}\ z\cdot e^{-\frac{1}{2} z}
 \end{align}\]</div>
 <p>where <span class="math notranslate nohighlight">\(R\)</span> refers to the number of “resels” (a number that depends on the smoothness of your data, which we’ll discuss in a bit) and <span class="math notranslate nohighlight">\(z\)</span> refers to the <span class="math notranslate nohighlight">\(z\)</span>-value that you use as an initial threshold. In code, this is:</p>
@@ -861,13 +861,13 @@ EC = N_{resel}\ (4\ \log_{e}2)\ (2\pi)^{-\frac{2}{3}}\ z\cdot e^{-\frac{1}{2} z}
 </div>
 </div>
 <p>To compute the Euler characteristic, we first need to know how to estimate the number of “resels” for our data. You can think of the number of resels as the number of truly independent elements in your data (“resel” is short for “RESolution ELement”). The number of resels is usually estimated by dividing the number of voxels by the estimated size of the resel. For our simulated 2D data, the number of resels is defined as follows:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-c6cf868b-c8f3-4fb6-a53a-6fa70d71d36c">
-<span class="eqno">(84)<a class="headerlink" href="#equation-c6cf868b-c8f3-4fb6-a53a-6fa70d71d36c" title="Permalink to this equation">¶</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-01cf208f-b93d-437c-b208-59ae0f7eb542">
+<span class="eqno">(84)<a class="headerlink" href="#equation-01cf208f-b93d-437c-b208-59ae0f7eb542" title="Permalink to this equation">¶</a></span>\[\begin{align}
 N_{resel} = \frac{N_{X}\cdot N_{Y}}{\mathrm{size}_{resel}}
 \end{align}\]</div>
 <p>where <span class="math notranslate nohighlight">\(N_{X}\)</span> is the number of “voxels” in the first dimension and <span class="math notranslate nohighlight">\(N_{Y}\)</span> the number of “voxels” in the second dimension, and where the resel size (<span class="math notranslate nohighlight">\(\mathrm{size}_{resel}\)</span>) is estimated as the product of the smoothness of our data in all dimensions, measured in FWHM:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-33dcae75-d7ca-441e-aa9d-e9a4bd941ea5">
-<span class="eqno">(85)<a class="headerlink" href="#equation-33dcae75-d7ca-441e-aa9d-e9a4bd941ea5" title="Permalink to this equation">¶</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-d3d076b8-81f6-4fe1-bab0-48960ce6fc25">
+<span class="eqno">(85)<a class="headerlink" href="#equation-d3d076b8-81f6-4fe1-bab0-48960ce6fc25" title="Permalink to this equation">¶</a></span>\[\begin{align}
 \mathrm{size}_{resel} = \mathrm{FWHM}_{X} \cdot \mathrm{FWHM}_{Y}
 \end{align}\]</div>
 <p>So, given a particular size of our resel, <span class="math notranslate nohighlight">\(N_{resel}\)</span> represents how many resels there would “fit” in our data.</p>
@@ -983,8 +983,8 @@ N_{resel} = \frac{N_{X}\cdot N_{Y}}{\mathrm{size}_{resel}}
 </div>
 </div>
 <p>With that information, we can calculate the non-parametric <span class="math notranslate nohighlight">\(p\)</span>-value of each of our <em>observed</em> clusters using the same type of formula as we used earlier:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-625a1a9e-812d-475a-9b87-1f1ea62f8437">
-<span class="eqno">(86)<a class="headerlink" href="#equation-625a1a9e-812d-475a-9b87-1f1ea62f8437" title="Permalink to this equation">¶</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-f424bba3-7084-4d2d-a6ad-7d129b953713">
+<span class="eqno">(86)<a class="headerlink" href="#equation-f424bba3-7084-4d2d-a6ad-7d129b953713" title="Permalink to this equation">¶</a></span>\[\begin{align}
 p_{\mathrm{cluster}} = \frac{\sum_{i=1}^{P}\mathbf{I}(\mathbf{\mathrm{max.\ cluster\ size}}^{\mathrm{perm}}_{i} \geq \mathrm{cluster\ size}^{\mathrm{obs}}) + 1}{P + 1}
 \end{align}\]</div>
 <p>The same logic holds for voxel-based (TFCE-transformed) amplitude, where you wouldn’t keep track of the maximum cluster size, but the maximum amplitude across permutations.</p>
