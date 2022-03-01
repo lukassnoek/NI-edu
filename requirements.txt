@@ -2,3 +2,4 @@ jupyter-book
 pytest
 nbval
 nbgrader
+nbconvert==5.6.1  # otherwise jupyter-book crashes
