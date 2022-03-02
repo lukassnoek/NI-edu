@@ -750,8 +750,8 @@ Suppose a researcher wants to implement a decoding analysis in which he/she aims
 <p>However, you are definitely not limited to using <em>activity estimates</em> for your patterns. For example, you could apply pattern analyses to structural data (e.g., patterns of voxelwise gray-matter volume values, like in <a class="reference external" href="https://en.wikipedia.org/wiki/Voxel-based_morphometry">voxel-based morphometry</a>) or to functional connectivity data (e.g., patterns of time series correlations between voxels, or even topological properties of brain networks). (In fact, the connectivity examples from the Nilearn tutorial represents a way to estimate these connectivity features, which can be used in pattern analyses.) In short, pattern analyses can be applied to patterns composed of <em>any</em> type of measurement or metric!</p>
 <p>Now, let’s get a little more technical. Usually, as mentioned in the beginning, pattern analyses represent the data as a 2D array of brain patterns. Let’s call this <span class="math notranslate nohighlight">\(\mathbf{R}\)</span>. The rows of <span class="math notranslate nohighlight">\(\mathbf{R}\)</span> represent different instances of patterns (sometimes called “samples” or “observations”) and the columns represent different brain features (e.g., voxels; sometimes simply called “features”). Note that we thus lose all spatial information by “flattening” our patterns into 1D rows!</p>
 <p>Let’s call the number of samples <span class="math notranslate nohighlight">\(N\)</span> and the number of brain features <span class="math notranslate nohighlight">\(K\)</span>. We can thus represent <span class="math notranslate nohighlight">\(\mathbf{R}\)</span> as a <span class="math notranslate nohighlight">\(N\times K\)</span> matrix (2D array):</p>
-<div class="amsmath math notranslate nohighlight" id="equation-6f1bfaf7-8d45-4cc1-95ba-d4594e50df25">
-<span class="eqno">(88)<a class="headerlink" href="#equation-6f1bfaf7-8d45-4cc1-95ba-d4594e50df25" title="Permalink to this equation">¶</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-4739f1c2-5a72-40f7-8111-1d61ccbab0cd">
+<span class="eqno">(88)<a class="headerlink" href="#equation-4739f1c2-5a72-40f7-8111-1d61ccbab0cd" title="Permalink to this equation">¶</a></span>\[\begin{align}
 \mathbf{R} = 
 \begin{bmatrix}
  R_{1,1} &amp; R_{1,2} &amp; R_{1,3} &amp; \dots &amp; R_{1,K}\\
@@ -775,19 +775,19 @@ Suppose a researcher wants to implement a decoding analysis in which he/she aims
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[-0.37324838, -1.37988579,  0.96709601, ...,  0.78696048,
-        -0.37249205,  0.38919023],
-       [-0.99377902,  0.66532048,  0.50897971, ...,  0.79794816,
-        -0.06227621, -1.49500698],
-       [ 2.37223596, -0.17468218, -0.6161059 , ..., -0.42881161,
-        -0.82603034,  0.11386031],
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[-0.04962276, -0.75268885, -0.14156747, ..., -0.37815055,
+        -0.18680448, -0.6351141 ],
+       [ 1.48993196, -1.79030333,  0.67424138, ..., -1.24711724,
+         0.0870966 , -0.14322051],
+       [ 0.51811758, -0.75180754,  0.48208457, ...,  0.10374575,
+         0.01427958,  0.54122313],
        ...,
-       [ 1.22663235,  1.2035319 ,  0.42619137, ..., -0.61525035,
-         2.42928511,  0.14145323],
-       [ 1.53815142,  1.44177656, -0.12760844, ..., -1.30200772,
-         1.0944772 , -1.07458967],
-       [-1.33306495,  0.02579767, -1.18864947, ..., -1.51169262,
-        -2.26601183,  1.16390097]])
+       [ 0.2710953 ,  1.55539562,  0.1695233 , ..., -0.34173097,
+        -1.38991779, -0.51980866],
+       [ 0.4032454 ,  1.18597789,  0.68733652, ..., -0.84090915,
+         0.55581774, -0.47802304],
+       [ 0.0286715 ,  1.4717256 ,  0.49541475, ..., -1.07715763,
+         0.40619992,  1.25188578]])
 </pre></div>
 </div>
 </div>
@@ -1037,7 +1037,7 @@ Suppose a researcher wants to implement a decoding analysis in which he/she aims
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[1.45904455 0.80111991]
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[-0.40441096  0.02982271]
 </pre></div>
 </div>
 </div>
@@ -1937,13 +1937,13 @@ Shape beta_hat (intercept removed): (20, 4)
 <div class="section" id="noise-normalization">
 <h4>Noise normalization<a class="headerlink" href="#noise-normalization" title="Permalink to this headline">¶</a></h4>
 <p>One often used preprocessing step for pattern analyses (using GLM-estimation methods) is to use “noise normalization” on the estimated patterns. There are two flavours: “univariate” and “multivariate” noise normalization. In univariate noise normalization, the estimated parameters (<span class="math notranslate nohighlight">\(\hat{\beta}\)</span>) are divided (normalized) by the standard deviation of the estimated parameters — which you might recognize as the formula for <span class="math notranslate nohighlight">\(t\)</span>-values (for a contrast against baseline)!</p>
-<div class="amsmath math notranslate nohighlight" id="equation-e0c2af0d-6be3-449c-84fd-9dc28949ce00">
-<span class="eqno">(89)<a class="headerlink" href="#equation-e0c2af0d-6be3-449c-84fd-9dc28949ce00" title="Permalink to this equation">¶</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-efd173cb-99bf-499d-962c-455de3694551">
+<span class="eqno">(89)<a class="headerlink" href="#equation-efd173cb-99bf-499d-962c-455de3694551" title="Permalink to this equation">¶</a></span>\[\begin{align}
 t_{c\hat{\beta}} = \frac{c\hat{\beta}}{\sqrt{\hat{\sigma}^{2}c(X^{T}X)^{-1}c^{T}}}
 \end{align}\]</div>
 <p>where <span class="math notranslate nohighlight">\(\hat{\sigma}^{2}\)</span> is the estimate of the error variance (sum of squared errors divided by the degrees of freedom) and <span class="math notranslate nohighlight">\(c(X^{T}X)^{-1}c^{T}\)</span> is the “design variance”. Sometimes people disregard the design variance and the degrees of freedom (DF) and instead only use the standard deviation of the noise:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-88d3dc0c-a14d-41e3-9c96-f908a23b9b89">
-<span class="eqno">(90)<a class="headerlink" href="#equation-88d3dc0c-a14d-41e3-9c96-f908a23b9b89" title="Permalink to this equation">¶</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-e36ed98e-1580-4714-8073-d6ef3fc525ce">
+<span class="eqno">(90)<a class="headerlink" href="#equation-e36ed98e-1580-4714-8073-d6ef3fc525ce" title="Permalink to this equation">¶</a></span>\[\begin{align}
 t_{c\hat{\beta}} \approx \frac{c\hat{\beta}}{\sqrt{\sum (y_{i} - X_{i}\hat{\beta})^{2}}}
 \end{align}\]</div>
 <div class='alert alert-info'>
@@ -2035,16 +2035,798 @@ t_{c\hat{\beta}} \approx \frac{c\hat{\beta}}{\sqrt{\sum (y_{i} - X_{i}\hat{\beta
 <span class="n">data_dir</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">expanduser</span><span class="p">(</span><span class="s1">&#39;~&#39;</span><span class="p">),</span> <span class="s1">&#39;NI-edu-data&#39;</span><span class="p">)</span>
 
 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Downloading Fmriprep data (+- 175MB) ...</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
-<span class="o">!</span>aws s3 sync --no-sign-request s3://openneuro.org/ds003477 <span class="o">{</span>data_dir<span class="o">}</span> --exclude <span class="s2">&quot;*&quot;</span> --include <span class="s2">&quot;sub-03/ses-1/func/*task-face*run-1*events.tsv&quot;</span>
-<span class="o">!</span>aws s3 sync --no-sign-request s3://openneuro.org/ds003477 <span class="o">{</span>data_dir<span class="o">}</span> --exclude <span class="s2">&quot;*&quot;</span> --include <span class="s2">&quot;derivatives/fmriprep/sub-03/ses-1/func/*task-face*run-1*space-T1w*bold.nii.gz&quot;</span>
-<span class="o">!</span>aws s3 sync --no-sign-request s3://openneuro.org/ds003477 <span class="o">{</span>data_dir<span class="o">}</span> --exclude <span class="s2">&quot;*&quot;</span> --include <span class="s2">&quot;derivatives/fmriprep/sub-03/ses-1/func/*task-face*run-1*space-T1w*mask.nii.gz&quot;</span>
-<span class="o">!</span>aws s3 sync --no-sign-request s3://openneuro.org/ds003477 <span class="o">{</span>data_dir<span class="o">}</span> --exclude <span class="s2">&quot;*&quot;</span> --include <span class="s2">&quot;derivatives/fmriprep/sub-03/ses-1/func/*task-face*run-1*confounds_timeseries.tsv&quot;</span>
+<span class="o">!</span>aws s3 sync --no-sign-request s3://openneuro.org/ds003965 <span class="o">{</span>data_dir<span class="o">}</span> --exclude <span class="s2">&quot;*&quot;</span> --include <span class="s2">&quot;sub-03/ses-1/func/*task-face*run-1*events.tsv&quot;</span>
+<span class="o">!</span>aws s3 sync --no-sign-request s3://openneuro.org/ds003965 <span class="o">{</span>data_dir<span class="o">}</span> --exclude <span class="s2">&quot;*&quot;</span> --include <span class="s2">&quot;derivatives/fmriprep/sub-03/ses-1/func/*task-face*run-1*space-T1w*bold.nii.gz&quot;</span>
+<span class="o">!</span>aws s3 sync --no-sign-request s3://openneuro.org/ds003965 <span class="o">{</span>data_dir<span class="o">}</span> --exclude <span class="s2">&quot;*&quot;</span> --include <span class="s2">&quot;derivatives/fmriprep/sub-03/ses-1/func/*task-face*run-1*space-T1w*mask.nii.gz&quot;</span>
+<span class="o">!</span>aws s3 sync --no-sign-request s3://openneuro.org/ds003965 <span class="o">{</span>data_dir<span class="o">}</span> --exclude <span class="s2">&quot;*&quot;</span> --include <span class="s2">&quot;derivatives/fmriprep/sub-03/ses-1/func/*task-face*run-1*confounds_timeseries.tsv&quot;</span>
 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Done!&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Downloading Fmriprep data (+- 175MB) ...
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Completed 7.2 KiB/7.2 KiB (31.0 KiB/s) with 1 file(s) remaining
+download: s3://openneuro.org/ds003965/sub-03/ses-1/func/sub-03_ses-1_task-face_run-1_events.tsv to ../../../../../../NI-edu-data/sub-03/ses-1/func/sub-03_ses-1_task-face_run-1_events.tsv
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Completed 256.0 KiB/~172.7 MiB (511.9 KiB/s) with ~1 file(s) remaining (calculating...)
+Completed 512.0 KiB/~172.7 MiB (996.7 KiB/s) with ~1 file(s) remaining (calculating...)
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Completed 768.0 KiB/~172.7 MiB (1.4 MiB/s) with ~1 file(s) remaining (calculating...)  
+Completed 1.0 MiB/~172.7 MiB (1.9 MiB/s) with ~1 file(s) remaining (calculating...)    
+Completed 1.2 MiB/~172.7 MiB (2.4 MiB/s) with ~1 file(s) remaining (calculating...)    
+Completed 1.5 MiB/~172.7 MiB (2.8 MiB/s) with ~1 file(s) remaining (calculating...)    
+Completed 1.8 MiB/~172.7 MiB (3.3 MiB/s) with ~1 file(s) remaining (calculating...)    
+Completed 2.0 MiB/~172.7 MiB (3.7 MiB/s) with ~1 file(s) remaining (calculating...)    
+Completed 2.2 MiB/~172.7 MiB (4.2 MiB/s) with ~1 file(s) remaining (calculating...)    
+Completed 2.5 MiB/~172.7 MiB (4.6 MiB/s) with ~1 file(s) remaining (calculating...)    
+Completed 2.8 MiB/~172.7 MiB (5.1 MiB/s) with ~1 file(s) remaining (calculating...)    
+Completed 3.0 MiB/~172.7 MiB (5.5 MiB/s) with ~1 file(s) remaining (calculating...)    
+Completed 3.2 MiB/~172.7 MiB (5.9 MiB/s) with ~1 file(s) remaining (calculating...)    
+Completed 3.5 MiB/~172.7 MiB (6.3 MiB/s) with ~1 file(s) remaining (calculating...)    
+Completed 3.8 MiB/~172.7 MiB (6.7 MiB/s) with ~1 file(s) remaining (calculating...)    
+Completed 4.0 MiB/~172.7 MiB (7.1 MiB/s) with ~1 file(s) remaining (calculating...)    
+Completed 4.2 MiB/~172.7 MiB (7.5 MiB/s) with ~1 file(s) remaining (calculating...)    
+Completed 4.5 MiB/~172.7 MiB (7.9 MiB/s) with ~1 file(s) remaining (calculating...)    
+Completed 4.8 MiB/~172.7 MiB (8.3 MiB/s) with ~1 file(s) remaining (calculating...)    
+Completed 5.0 MiB/~172.7 MiB (8.8 MiB/s) with ~1 file(s) remaining (calculating...)    
+Completed 5.2 MiB/~172.7 MiB (9.2 MiB/s) with ~1 file(s) remaining (calculating...)    
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Completed 5.5 MiB/~172.7 MiB (9.1 MiB/s) with ~1 file(s) remaining (calculating...)    
+Completed 5.8 MiB/~172.7 MiB (9.6 MiB/s) with ~1 file(s) remaining (calculating...)    
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Completed 6.0 MiB/~172.7 MiB (9.6 MiB/s) with ~1 file(s) remaining (calculating...)    
+Completed 6.2 MiB/~172.7 MiB (10.0 MiB/s) with ~1 file(s) remaining (calculating...)   
+Completed 6.5 MiB/~172.7 MiB (10.4 MiB/s) with ~1 file(s) remaining (calculating...)   
+Completed 6.8 MiB/~172.7 MiB (10.6 MiB/s) with ~1 file(s) remaining (calculating...)   
+Completed 7.0 MiB/~172.7 MiB (10.6 MiB/s) with ~1 file(s) remaining (calculating...)   
+Completed 7.2 MiB/~172.7 MiB (11.0 MiB/s) with ~1 file(s) remaining (calculating...)   
+Completed 7.5 MiB/~172.7 MiB (11.2 MiB/s) with ~1 file(s) remaining (calculating...)   
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Completed 7.8 MiB/~172.7 MiB (11.5 MiB/s) with ~1 file(s) remaining (calculating...)   
+Completed 8.0 MiB/~172.7 MiB (11.9 MiB/s) with ~1 file(s) remaining (calculating...)   
+Completed 8.2 MiB/~172.7 MiB (12.1 MiB/s) with ~1 file(s) remaining (calculating...)   
+Completed 8.5 MiB/~172.7 MiB (12.3 MiB/s) with ~1 file(s) remaining (calculating...)   
+Completed 8.8 MiB/~172.7 MiB (12.7 MiB/s) with ~1 file(s) remaining (calculating...)   
+Completed 9.0 MiB/~172.7 MiB (13.0 MiB/s) with ~1 file(s) remaining (calculating...)   
+Completed 9.2 MiB/~172.7 MiB (13.4 MiB/s) with ~1 file(s) remaining (calculating...)   
+Completed 9.5 MiB/~172.7 MiB (13.7 MiB/s) with ~1 file(s) remaining (calculating...)   
+Completed 9.8 MiB/~172.7 MiB (14.1 MiB/s) with ~1 file(s) remaining (calculating...)   
+Completed 10.0 MiB/~172.7 MiB (14.2 MiB/s) with ~1 file(s) remaining (calculating...)  
+Completed 10.2 MiB/~172.7 MiB (14.3 MiB/s) with ~1 file(s) remaining (calculating...)  
+Completed 10.5 MiB/~172.7 MiB (14.6 MiB/s) with ~1 file(s) remaining (calculating...)  
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Completed 10.8 MiB/~172.7 MiB (14.9 MiB/s) with ~1 file(s) remaining (calculating...)  
+Completed 11.0 MiB/~172.7 MiB (15.3 MiB/s) with ~1 file(s) remaining (calculating...)  
+Completed 11.2 MiB/~172.7 MiB (15.5 MiB/s) with ~1 file(s) remaining (calculating...)  
+Completed 11.5 MiB/~172.7 MiB (15.8 MiB/s) with ~1 file(s) remaining (calculating...)  
+Completed 11.8 MiB/~172.7 MiB (16.0 MiB/s) with ~1 file(s) remaining (calculating...)  
+Completed 12.0 MiB/~172.7 MiB (16.4 MiB/s) with ~1 file(s) remaining (calculating...)  
+Completed 12.2 MiB/~172.7 MiB (16.4 MiB/s) with ~1 file(s) remaining (calculating...)  
+Completed 12.5 MiB/~172.7 MiB (16.4 MiB/s) with ~1 file(s) remaining (calculating...)  
+Completed 12.8 MiB/~172.7 MiB (16.7 MiB/s) with ~1 file(s) remaining (calculating...)  
+Completed 13.0 MiB/~172.7 MiB (16.9 MiB/s) with ~1 file(s) remaining (calculating...)  
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Completed 13.2 MiB/~172.7 MiB (17.2 MiB/s) with ~1 file(s) remaining (calculating...)  
+Completed 13.5 MiB/~172.7 MiB (17.4 MiB/s) with ~1 file(s) remaining (calculating...)  
+Completed 13.8 MiB/~172.7 MiB (17.7 MiB/s) with ~1 file(s) remaining (calculating...)  
+Completed 14.0 MiB/~172.7 MiB (17.9 MiB/s) with ~1 file(s) remaining (calculating...)  
+Completed 14.2 MiB/~172.7 MiB (17.8 MiB/s) with ~1 file(s) remaining (calculating...)  
+Completed 14.5 MiB/~172.7 MiB (18.1 MiB/s) with ~1 file(s) remaining (calculating...)  
+Completed 14.8 MiB/~172.7 MiB (18.3 MiB/s) with ~1 file(s) remaining (calculating...)  
+Completed 15.0 MiB/~172.7 MiB (18.6 MiB/s) with ~1 file(s) remaining (calculating...)  
+Completed 15.2 MiB/~172.7 MiB (18.9 MiB/s) with ~1 file(s) remaining (calculating...)  
+Completed 15.5 MiB/~172.7 MiB (19.2 MiB/s) with ~1 file(s) remaining (calculating...)  
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Completed 15.8 MiB/~172.7 MiB (19.5 MiB/s) with ~1 file(s) remaining (calculating...)  
+Completed 16.0 MiB/~172.7 MiB (19.7 MiB/s) with ~1 file(s) remaining (calculating...)  
+Completed 16.2 MiB/~172.7 MiB (20.0 MiB/s) with ~1 file(s) remaining (calculating...)  
+Completed 16.5 MiB/~172.7 MiB (20.3 MiB/s) with ~1 file(s) remaining (calculating...)  
+Completed 16.8 MiB/~172.7 MiB (20.6 MiB/s) with ~1 file(s) remaining (calculating...)  
+Completed 17.0 MiB/~172.7 MiB (20.9 MiB/s) with ~1 file(s) remaining (calculating...)  
+Completed 17.2 MiB/~172.7 MiB (21.1 MiB/s) with ~1 file(s) remaining (calculating...)  
+Completed 17.5 MiB/~172.7 MiB (21.4 MiB/s) with ~1 file(s) remaining (calculating...)  
+Completed 17.8 MiB/~172.7 MiB (21.7 MiB/s) with ~1 file(s) remaining (calculating...)  
+Completed 18.0 MiB/~172.7 MiB (22.0 MiB/s) with ~1 file(s) remaining (calculating...)  
+Completed 18.2 MiB/~172.7 MiB (22.3 MiB/s) with ~1 file(s) remaining (calculating...)  
+Completed 18.5 MiB/~172.7 MiB (22.6 MiB/s) with ~1 file(s) remaining (calculating...)  
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Completed 18.8 MiB/~172.7 MiB (22.9 MiB/s) with ~1 file(s) remaining (calculating...)  
+Completed 19.0 MiB/~172.7 MiB (23.1 MiB/s) with ~1 file(s) remaining (calculating...)  
+Completed 19.2 MiB/~172.7 MiB (23.4 MiB/s) with ~1 file(s) remaining (calculating...)  
+Completed 19.5 MiB/~172.7 MiB (23.7 MiB/s) with ~1 file(s) remaining (calculating...)  
+Completed 19.8 MiB/~172.7 MiB (24.0 MiB/s) with ~1 file(s) remaining (calculating...)  
+Completed 20.0 MiB/~172.7 MiB (24.3 MiB/s) with ~1 file(s) remaining (calculating...)  
+Completed 20.2 MiB/~172.7 MiB (24.6 MiB/s) with ~1 file(s) remaining (calculating...)  
+Completed 20.5 MiB/~172.7 MiB (24.9 MiB/s) with ~1 file(s) remaining (calculating...)  
+Completed 20.8 MiB/~172.7 MiB (24.8 MiB/s) with ~1 file(s) remaining (calculating...)  
+Completed 21.0 MiB/~172.7 MiB (24.6 MiB/s) with ~1 file(s) remaining (calculating...)  
+Completed 21.2 MiB/~172.7 MiB (24.9 MiB/s) with ~1 file(s) remaining (calculating...)  
+Completed 21.5 MiB/~172.7 MiB (25.0 MiB/s) with ~1 file(s) remaining (calculating...)  
+Completed 21.8 MiB/~172.7 MiB (24.9 MiB/s) with ~1 file(s) remaining (calculating...)  
+Completed 22.0 MiB/~172.7 MiB (25.2 MiB/s) with ~1 file(s) remaining (calculating...)  
+Completed 22.2 MiB/~172.7 MiB (25.4 MiB/s) with ~1 file(s) remaining (calculating...)  
+Completed 22.5 MiB/~172.7 MiB (25.7 MiB/s) with ~1 file(s) remaining (calculating...)  
+Completed 22.8 MiB/~172.7 MiB (26.0 MiB/s) with ~1 file(s) remaining (calculating...)  
+Completed 23.0 MiB/~172.7 MiB (26.3 MiB/s) with ~1 file(s) remaining (calculating...)  
+Completed 23.2 MiB/~172.7 MiB (26.5 MiB/s) with ~1 file(s) remaining (calculating...)  
+Completed 23.5 MiB/~172.7 MiB (26.8 MiB/s) with ~1 file(s) remaining (calculating...)  
+Completed 23.8 MiB/~172.7 MiB (27.1 MiB/s) with ~1 file(s) remaining (calculating...)  
+Completed 24.0 MiB/~172.7 MiB (27.3 MiB/s) with ~1 file(s) remaining (calculating...)  
+Completed 24.2 MiB/~172.7 MiB (27.6 MiB/s) with ~1 file(s) remaining (calculating...)  
+Completed 24.5 MiB/~172.7 MiB (27.9 MiB/s) with ~1 file(s) remaining (calculating...)  
+Completed 24.8 MiB/~172.7 MiB (28.1 MiB/s) with ~1 file(s) remaining (calculating...)  
+Completed 25.0 MiB/~172.7 MiB (28.4 MiB/s) with ~1 file(s) remaining (calculating...)  
+Completed 25.2 MiB/~172.7 MiB (28.7 MiB/s) with ~1 file(s) remaining (calculating...)  
+Completed 25.5 MiB/~172.7 MiB (28.9 MiB/s) with ~1 file(s) remaining (calculating...)  
+Completed 25.8 MiB/~172.7 MiB (29.2 MiB/s) with ~1 file(s) remaining (calculating...)  
+Completed 26.0 MiB/~172.7 MiB (29.5 MiB/s) with ~1 file(s) remaining (calculating...)  
+Completed 26.2 MiB/~172.7 MiB (29.7 MiB/s) with ~1 file(s) remaining (calculating...)  
+Completed 26.5 MiB/~172.7 MiB (30.0 MiB/s) with ~1 file(s) remaining (calculating...)  
+Completed 26.8 MiB/~172.7 MiB (30.3 MiB/s) with ~1 file(s) remaining (calculating...)  
+Completed 27.0 MiB/~172.7 MiB (30.6 MiB/s) with ~1 file(s) remaining (calculating...)  
+Completed 27.2 MiB/~172.7 MiB (30.8 MiB/s) with ~1 file(s) remaining (calculating...)  
+Completed 27.5 MiB/~172.7 MiB (31.1 MiB/s) with ~1 file(s) remaining (calculating...)  
+Completed 27.8 MiB/~172.7 MiB (31.3 MiB/s) with ~1 file(s) remaining (calculating...)  
+Completed 28.0 MiB/~172.7 MiB (31.6 MiB/s) with ~1 file(s) remaining (calculating...)  
+Completed 28.2 MiB/~172.7 MiB (31.8 MiB/s) with ~1 file(s) remaining (calculating...)  
+Completed 28.5 MiB/~172.7 MiB (32.1 MiB/s) with ~1 file(s) remaining (calculating...)  
+Completed 28.8 MiB/~172.7 MiB (32.3 MiB/s) with ~1 file(s) remaining (calculating...)  
+Completed 29.0 MiB/~172.7 MiB (32.6 MiB/s) with ~1 file(s) remaining (calculating...)  
+Completed 29.2 MiB/~172.7 MiB (32.8 MiB/s) with ~1 file(s) remaining (calculating...)  
+Completed 29.5 MiB/~172.7 MiB (33.1 MiB/s) with ~1 file(s) remaining (calculating...)  
+Completed 29.8 MiB/~172.7 MiB (33.3 MiB/s) with ~1 file(s) remaining (calculating...)  
+Completed 30.0 MiB/~172.7 MiB (33.6 MiB/s) with ~1 file(s) remaining (calculating...)  
+Completed 30.2 MiB/~172.7 MiB (33.8 MiB/s) with ~1 file(s) remaining (calculating...)  
+Completed 30.5 MiB/~172.7 MiB (34.1 MiB/s) with ~1 file(s) remaining (calculating...)  
+Completed 30.8 MiB/~172.7 MiB (34.3 MiB/s) with ~1 file(s) remaining (calculating...)  
+Completed 31.0 MiB/~172.7 MiB (34.6 MiB/s) with ~1 file(s) remaining (calculating...)  
+Completed 31.2 MiB/~172.7 MiB (34.8 MiB/s) with ~1 file(s) remaining (calculating...)  
+Completed 31.5 MiB/~172.7 MiB (35.1 MiB/s) with ~1 file(s) remaining (calculating...)  
+Completed 31.8 MiB/~172.7 MiB (35.4 MiB/s) with ~1 file(s) remaining (calculating...)  
+Completed 32.0 MiB/~172.7 MiB (35.6 MiB/s) with ~1 file(s) remaining (calculating...)  
+Completed 32.2 MiB/~172.7 MiB (35.9 MiB/s) with ~1 file(s) remaining (calculating...)  
+Completed 32.5 MiB/~172.7 MiB (36.1 MiB/s) with ~1 file(s) remaining (calculating...)  
+Completed 32.8 MiB/~172.7 MiB (36.4 MiB/s) with ~1 file(s) remaining (calculating...)  
+Completed 33.0 MiB/~172.7 MiB (36.6 MiB/s) with ~1 file(s) remaining (calculating...)  
+Completed 33.2 MiB/~172.7 MiB (36.9 MiB/s) with ~1 file(s) remaining (calculating...)  
+Completed 33.5 MiB/~172.7 MiB (37.1 MiB/s) with ~1 file(s) remaining (calculating...)  
+Completed 33.8 MiB/~172.7 MiB (37.4 MiB/s) with ~1 file(s) remaining (calculating...)  
+Completed 34.0 MiB/~172.7 MiB (37.7 MiB/s) with ~1 file(s) remaining (calculating...)  
+Completed 34.2 MiB/~172.7 MiB (37.9 MiB/s) with ~1 file(s) remaining (calculating...)  
+Completed 34.5 MiB/~172.7 MiB (38.2 MiB/s) with ~1 file(s) remaining (calculating...)  
+Completed 34.8 MiB/~172.7 MiB (38.4 MiB/s) with ~1 file(s) remaining (calculating...)  
+Completed 35.0 MiB/~172.7 MiB (38.6 MiB/s) with ~1 file(s) remaining (calculating...)  
+Completed 35.2 MiB/~172.7 MiB (38.9 MiB/s) with ~1 file(s) remaining (calculating...)  
+Completed 35.5 MiB/~172.7 MiB (39.1 MiB/s) with ~1 file(s) remaining (calculating...)  
+Completed 35.8 MiB/~172.7 MiB (39.4 MiB/s) with ~1 file(s) remaining (calculating...)  
+Completed 36.0 MiB/~172.7 MiB (39.6 MiB/s) with ~1 file(s) remaining (calculating...)  
+Completed 36.2 MiB/~172.7 MiB (39.9 MiB/s) with ~1 file(s) remaining (calculating...)  
+Completed 36.5 MiB/~172.7 MiB (40.2 MiB/s) with ~1 file(s) remaining (calculating...)  
+Completed 36.8 MiB/~172.7 MiB (40.4 MiB/s) with ~1 file(s) remaining (calculating...)  
+Completed 37.0 MiB/~172.7 MiB (40.7 MiB/s) with ~1 file(s) remaining (calculating...)  
+Completed 37.2 MiB/~172.7 MiB (40.9 MiB/s) with ~1 file(s) remaining (calculating...)  
+Completed 37.5 MiB/~172.7 MiB (41.1 MiB/s) with ~1 file(s) remaining (calculating...)  
+Completed 37.8 MiB/~172.7 MiB (41.4 MiB/s) with ~1 file(s) remaining (calculating...)  
+Completed 38.0 MiB/~172.7 MiB (41.7 MiB/s) with ~1 file(s) remaining (calculating...)  
+Completed 38.2 MiB/~172.7 MiB (41.9 MiB/s) with ~1 file(s) remaining (calculating...)  
+Completed 38.5 MiB/~172.7 MiB (42.2 MiB/s) with ~1 file(s) remaining (calculating...)  
+Completed 38.8 MiB/~172.7 MiB (42.4 MiB/s) with ~1 file(s) remaining (calculating...)  
+Completed 39.0 MiB/~172.7 MiB (42.7 MiB/s) with ~1 file(s) remaining (calculating...)  
+Completed 39.2 MiB/~172.7 MiB (42.9 MiB/s) with ~1 file(s) remaining (calculating...)  
+Completed 39.5 MiB/~172.7 MiB (43.2 MiB/s) with ~1 file(s) remaining (calculating...)  
+Completed 39.8 MiB/~172.7 MiB (43.5 MiB/s) with ~1 file(s) remaining (calculating...)  
+Completed 40.0 MiB/~172.7 MiB (43.7 MiB/s) with ~1 file(s) remaining (calculating...)  
+Completed 40.2 MiB/~172.7 MiB (43.9 MiB/s) with ~1 file(s) remaining (calculating...)  
+Completed 40.5 MiB/~172.7 MiB (44.2 MiB/s) with ~1 file(s) remaining (calculating...)  
+Completed 40.8 MiB/~172.7 MiB (44.4 MiB/s) with ~1 file(s) remaining (calculating...)  
+Completed 41.0 MiB/~172.7 MiB (44.7 MiB/s) with ~1 file(s) remaining (calculating...)  
+Completed 41.2 MiB/~172.7 MiB (44.9 MiB/s) with ~1 file(s) remaining (calculating...)  
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Completed 41.5 MiB/~172.7 MiB (45.1 MiB/s) with ~1 file(s) remaining (calculating...)  
+Completed 41.8 MiB/~172.7 MiB (45.4 MiB/s) with ~1 file(s) remaining (calculating...)  
+Completed 42.0 MiB/~172.7 MiB (45.6 MiB/s) with ~1 file(s) remaining (calculating...)  
+Completed 42.2 MiB/~172.7 MiB (45.9 MiB/s) with ~1 file(s) remaining (calculating...)  
+Completed 42.5 MiB/~172.7 MiB (46.1 MiB/s) with ~1 file(s) remaining (calculating...)  
+Completed 42.8 MiB/~172.7 MiB (46.3 MiB/s) with ~1 file(s) remaining (calculating...)  
+Completed 43.0 MiB/~172.7 MiB (46.5 MiB/s) with ~1 file(s) remaining (calculating...)  
+Completed 43.2 MiB/~172.7 MiB (46.7 MiB/s) with ~1 file(s) remaining (calculating...)  
+Completed 43.5 MiB/~172.7 MiB (46.9 MiB/s) with ~1 file(s) remaining (calculating...)  
+Completed 43.8 MiB/~172.7 MiB (47.2 MiB/s) with ~1 file(s) remaining (calculating...)  
+Completed 44.0 MiB/~172.7 MiB (47.4 MiB/s) with ~1 file(s) remaining (calculating...)  
+Completed 44.2 MiB/~172.7 MiB (47.6 MiB/s) with ~1 file(s) remaining (calculating...)  
+Completed 44.5 MiB/~172.7 MiB (47.9 MiB/s) with ~1 file(s) remaining (calculating...)  
+Completed 44.8 MiB/~172.7 MiB (48.1 MiB/s) with ~1 file(s) remaining (calculating...)  
+Completed 45.0 MiB/~172.7 MiB (48.4 MiB/s) with ~1 file(s) remaining (calculating...)  
+Completed 45.2 MiB/~172.7 MiB (48.6 MiB/s) with ~1 file(s) remaining (calculating...)  
+Completed 45.5 MiB/~172.7 MiB (48.8 MiB/s) with ~1 file(s) remaining (calculating...)  
+Completed 45.8 MiB/~172.7 MiB (49.1 MiB/s) with ~1 file(s) remaining (calculating...)  
+Completed 46.0 MiB/~172.7 MiB (49.3 MiB/s) with ~1 file(s) remaining (calculating...)  
+Completed 46.2 MiB/~172.7 MiB (49.5 MiB/s) with ~1 file(s) remaining (calculating...)  
+Completed 46.5 MiB/~172.7 MiB (49.8 MiB/s) with ~1 file(s) remaining (calculating...)  
+Completed 46.8 MiB/~172.7 MiB (50.0 MiB/s) with ~1 file(s) remaining (calculating...)  
+Completed 47.0 MiB/~172.7 MiB (50.3 MiB/s) with ~1 file(s) remaining (calculating...)  
+Completed 47.2 MiB/~172.7 MiB (50.5 MiB/s) with ~1 file(s) remaining (calculating...)  
+Completed 47.5 MiB/~172.7 MiB (50.7 MiB/s) with ~1 file(s) remaining (calculating...)  
+Completed 47.8 MiB/~172.7 MiB (51.0 MiB/s) with ~1 file(s) remaining (calculating...)  
+Completed 48.0 MiB/~172.7 MiB (51.1 MiB/s) with ~1 file(s) remaining (calculating...)  
+Completed 48.2 MiB/~172.7 MiB (51.4 MiB/s) with ~1 file(s) remaining (calculating...)  
+Completed 48.5 MiB/~172.7 MiB (51.6 MiB/s) with ~1 file(s) remaining (calculating...)  
+Completed 48.8 MiB/~172.7 MiB (51.9 MiB/s) with ~1 file(s) remaining (calculating...)  
+Completed 49.0 MiB/~172.7 MiB (52.1 MiB/s) with ~1 file(s) remaining (calculating...)  
+Completed 49.2 MiB/~172.7 MiB (52.4 MiB/s) with ~1 file(s) remaining (calculating...)  
+Completed 49.5 MiB/~172.7 MiB (52.6 MiB/s) with ~1 file(s) remaining (calculating...)  
+Completed 49.8 MiB/~172.7 MiB (52.8 MiB/s) with ~1 file(s) remaining (calculating...)  
+Completed 50.0 MiB/~172.7 MiB (53.1 MiB/s) with ~1 file(s) remaining (calculating...)  
+Completed 50.2 MiB/~172.7 MiB (53.3 MiB/s) with ~1 file(s) remaining (calculating...)  
+Completed 50.5 MiB/~172.7 MiB (53.5 MiB/s) with ~1 file(s) remaining (calculating...)  
+Completed 50.8 MiB/~172.7 MiB (53.7 MiB/s) with ~1 file(s) remaining (calculating...)  
+Completed 51.0 MiB/~172.7 MiB (53.9 MiB/s) with ~1 file(s) remaining (calculating...)  
+Completed 51.2 MiB/~172.7 MiB (54.2 MiB/s) with ~1 file(s) remaining (calculating...)  
+Completed 51.5 MiB/~172.7 MiB (54.4 MiB/s) with ~1 file(s) remaining (calculating...)  
+Completed 51.8 MiB/~172.7 MiB (54.6 MiB/s) with ~1 file(s) remaining (calculating...)  
+Completed 52.0 MiB/~172.7 MiB (54.9 MiB/s) with ~1 file(s) remaining (calculating...)  
+Completed 52.2 MiB/~172.7 MiB (55.1 MiB/s) with ~1 file(s) remaining (calculating...)  
+Completed 52.5 MiB/~172.7 MiB (55.3 MiB/s) with ~1 file(s) remaining (calculating...)  
+Completed 52.8 MiB/~172.7 MiB (55.5 MiB/s) with ~1 file(s) remaining (calculating...)  
+Completed 53.0 MiB/~172.7 MiB (55.8 MiB/s) with ~1 file(s) remaining (calculating...)  
+Completed 53.2 MiB/~172.7 MiB (56.0 MiB/s) with ~1 file(s) remaining (calculating...)  
+Completed 53.5 MiB/~172.7 MiB (56.2 MiB/s) with ~1 file(s) remaining (calculating...)  
+Completed 53.8 MiB/~172.7 MiB (56.5 MiB/s) with ~1 file(s) remaining (calculating...)  
+Completed 54.0 MiB/~172.7 MiB (56.6 MiB/s) with ~1 file(s) remaining (calculating...)  
+Completed 54.2 MiB/~172.7 MiB (56.8 MiB/s) with ~1 file(s) remaining (calculating...)  
+Completed 54.5 MiB/~172.7 MiB (57.1 MiB/s) with ~1 file(s) remaining (calculating...)  
+Completed 54.8 MiB/~172.7 MiB (57.3 MiB/s) with ~1 file(s) remaining (calculating...)  
+Completed 55.0 MiB/~172.7 MiB (57.5 MiB/s) with ~1 file(s) remaining (calculating...)  
+Completed 55.2 MiB/~172.7 MiB (57.7 MiB/s) with ~1 file(s) remaining (calculating...)  
+Completed 55.5 MiB/~172.7 MiB (57.9 MiB/s) with ~1 file(s) remaining (calculating...)  
+Completed 55.8 MiB/~172.7 MiB (58.2 MiB/s) with ~1 file(s) remaining (calculating...)  
+Completed 56.0 MiB/~172.7 MiB (58.4 MiB/s) with ~1 file(s) remaining (calculating...)  
+Completed 56.2 MiB/~172.7 MiB (58.6 MiB/s) with ~1 file(s) remaining (calculating...)  
+Completed 56.5 MiB/~172.7 MiB (58.8 MiB/s) with ~1 file(s) remaining (calculating...)  
+Completed 56.8 MiB/~172.7 MiB (59.0 MiB/s) with ~1 file(s) remaining (calculating...)  
+Completed 57.0 MiB/~172.7 MiB (59.2 MiB/s) with ~1 file(s) remaining (calculating...)  
+Completed 57.2 MiB/~172.7 MiB (59.5 MiB/s) with ~1 file(s) remaining (calculating...)  
+Completed 57.5 MiB/~172.7 MiB (59.7 MiB/s) with ~1 file(s) remaining (calculating...)  
+Completed 57.8 MiB/~172.7 MiB (60.0 MiB/s) with ~1 file(s) remaining (calculating...)  
+Completed 58.0 MiB/~172.7 MiB (60.2 MiB/s) with ~1 file(s) remaining (calculating...)  
+Completed 58.2 MiB/~172.7 MiB (60.4 MiB/s) with ~1 file(s) remaining (calculating...)  
+Completed 58.5 MiB/~172.7 MiB (60.6 MiB/s) with ~1 file(s) remaining (calculating...)  
+Completed 58.8 MiB/~172.7 MiB (60.9 MiB/s) with ~1 file(s) remaining (calculating...)  
+Completed 59.0 MiB/~172.7 MiB (61.1 MiB/s) with ~1 file(s) remaining (calculating...)  
+Completed 59.2 MiB/~172.7 MiB (61.3 MiB/s) with ~1 file(s) remaining (calculating...)  
+Completed 59.5 MiB/~172.7 MiB (61.6 MiB/s) with ~1 file(s) remaining (calculating...)  
+Completed 59.8 MiB/~172.7 MiB (61.8 MiB/s) with ~1 file(s) remaining (calculating...)  
+Completed 60.0 MiB/~172.7 MiB (62.0 MiB/s) with ~1 file(s) remaining (calculating...)  
+Completed 60.2 MiB/~172.7 MiB (62.3 MiB/s) with ~1 file(s) remaining (calculating...)  
+Completed 60.5 MiB/~172.7 MiB (62.5 MiB/s) with ~1 file(s) remaining (calculating...)  
+Completed 60.8 MiB/~172.7 MiB (62.7 MiB/s) with ~1 file(s) remaining (calculating...)  
+Completed 61.0 MiB/~172.7 MiB (62.9 MiB/s) with ~1 file(s) remaining (calculating...)  
+Completed 61.2 MiB/~172.7 MiB (63.1 MiB/s) with ~1 file(s) remaining (calculating...)  
+Completed 61.5 MiB/~172.7 MiB (63.3 MiB/s) with ~1 file(s) remaining (calculating...)  
+Completed 61.8 MiB/~172.7 MiB (63.6 MiB/s) with ~1 file(s) remaining (calculating...)  
+Completed 62.0 MiB/~172.7 MiB (63.8 MiB/s) with ~1 file(s) remaining (calculating...)  
+Completed 62.2 MiB/~172.7 MiB (64.0 MiB/s) with ~1 file(s) remaining (calculating...)  
+Completed 62.5 MiB/~172.7 MiB (64.2 MiB/s) with ~1 file(s) remaining (calculating...)  
+Completed 62.8 MiB/~172.7 MiB (64.4 MiB/s) with ~1 file(s) remaining (calculating...)  
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Completed 63.0 MiB/~172.7 MiB (64.6 MiB/s) with ~1 file(s) remaining (calculating...)  
+Completed 63.2 MiB/~172.7 MiB (64.8 MiB/s) with ~1 file(s) remaining (calculating...)  
+Completed 63.5 MiB/~172.7 MiB (65.0 MiB/s) with ~1 file(s) remaining (calculating...)  
+Completed 63.8 MiB/~172.7 MiB (65.3 MiB/s) with ~1 file(s) remaining (calculating...)  
+Completed 64.0 MiB/~172.7 MiB (65.5 MiB/s) with ~1 file(s) remaining (calculating...)  
+Completed 64.2 MiB/~172.7 MiB (65.6 MiB/s) with ~1 file(s) remaining (calculating...)  
+Completed 64.5 MiB/~172.7 MiB (65.8 MiB/s) with ~1 file(s) remaining (calculating...)  
+Completed 64.8 MiB/~172.7 MiB (66.0 MiB/s) with ~1 file(s) remaining (calculating...)  
+Completed 65.0 MiB/~172.7 MiB (66.2 MiB/s) with ~1 file(s) remaining (calculating...)  
+Completed 65.2 MiB/~172.7 MiB (66.5 MiB/s) with ~1 file(s) remaining (calculating...)  
+Completed 65.5 MiB/~172.7 MiB (66.7 MiB/s) with ~1 file(s) remaining (calculating...)  
+Completed 65.8 MiB/~172.7 MiB (66.9 MiB/s) with ~1 file(s) remaining (calculating...)  
+Completed 66.0 MiB/~172.7 MiB (67.1 MiB/s) with ~1 file(s) remaining (calculating...)  
+Completed 66.2 MiB/~172.7 MiB (67.3 MiB/s) with ~1 file(s) remaining (calculating...)  
+Completed 66.5 MiB/~172.7 MiB (67.6 MiB/s) with ~1 file(s) remaining (calculating...)  
+Completed 66.8 MiB/~172.7 MiB (67.8 MiB/s) with ~1 file(s) remaining (calculating...)  
+Completed 67.0 MiB/~172.7 MiB (67.9 MiB/s) with ~1 file(s) remaining (calculating...)  
+Completed 67.2 MiB/~172.7 MiB (68.1 MiB/s) with ~1 file(s) remaining (calculating...)  
+Completed 67.5 MiB/~172.7 MiB (68.3 MiB/s) with ~1 file(s) remaining (calculating...)  
+Completed 67.8 MiB/~172.7 MiB (68.6 MiB/s) with ~1 file(s) remaining (calculating...)  
+Completed 68.0 MiB/~172.7 MiB (68.8 MiB/s) with ~1 file(s) remaining (calculating...)  
+Completed 68.2 MiB/~172.7 MiB (69.0 MiB/s) with ~1 file(s) remaining (calculating...)  
+Completed 68.5 MiB/~172.7 MiB (69.3 MiB/s) with ~1 file(s) remaining (calculating...)  
+Completed 68.8 MiB/~172.7 MiB (69.4 MiB/s) with ~1 file(s) remaining (calculating...)  
+Completed 69.0 MiB/~172.7 MiB (69.6 MiB/s) with ~1 file(s) remaining (calculating...)  
+Completed 69.2 MiB/~172.7 MiB (69.7 MiB/s) with ~1 file(s) remaining (calculating...)  
+Completed 69.5 MiB/~172.7 MiB (70.0 MiB/s) with ~1 file(s) remaining (calculating...)  
+Completed 69.8 MiB/~172.7 MiB (70.2 MiB/s) with ~1 file(s) remaining (calculating...)  
+Completed 70.0 MiB/~172.7 MiB (70.4 MiB/s) with ~1 file(s) remaining (calculating...)  
+Completed 70.2 MiB/~172.7 MiB (70.7 MiB/s) with ~1 file(s) remaining (calculating...)  
+Completed 70.5 MiB/~172.7 MiB (70.9 MiB/s) with ~1 file(s) remaining (calculating...)  
+Completed 70.8 MiB/~172.7 MiB (71.1 MiB/s) with ~1 file(s) remaining (calculating...)  
+Completed 71.0 MiB/~172.7 MiB (71.3 MiB/s) with ~1 file(s) remaining (calculating...)  
+Completed 71.2 MiB/~172.7 MiB (71.4 MiB/s) with ~1 file(s) remaining (calculating...)  
+Completed 71.5 MiB/~172.7 MiB (71.5 MiB/s) with ~1 file(s) remaining (calculating...)  
+Completed 71.8 MiB/~172.7 MiB (71.7 MiB/s) with ~1 file(s) remaining (calculating...)  
+Completed 72.0 MiB/~172.7 MiB (71.9 MiB/s) with ~1 file(s) remaining (calculating...)  
+Completed 72.2 MiB/~172.7 MiB (72.1 MiB/s) with ~1 file(s) remaining (calculating...)  
+Completed 72.5 MiB/~172.7 MiB (72.4 MiB/s) with ~1 file(s) remaining (calculating...)  
+Completed 72.8 MiB/~172.7 MiB (72.6 MiB/s) with ~1 file(s) remaining (calculating...)  
+Completed 73.0 MiB/~172.7 MiB (72.8 MiB/s) with ~1 file(s) remaining (calculating...)  
+Completed 73.2 MiB/~172.7 MiB (73.0 MiB/s) with ~1 file(s) remaining (calculating...)  
+Completed 73.5 MiB/~172.7 MiB (73.2 MiB/s) with ~1 file(s) remaining (calculating...)  
+Completed 73.8 MiB/~172.7 MiB (73.5 MiB/s) with ~1 file(s) remaining (calculating...)  
+Completed 74.0 MiB/~172.7 MiB (73.7 MiB/s) with ~1 file(s) remaining (calculating...)  
+Completed 74.2 MiB/~172.7 MiB (73.9 MiB/s) with ~1 file(s) remaining (calculating...)  
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Completed 74.5 MiB/~172.7 MiB (74.0 MiB/s) with ~1 file(s) remaining (calculating...)  
+Completed 74.8 MiB/~172.7 MiB (74.2 MiB/s) with ~1 file(s) remaining (calculating...)  
+Completed 75.0 MiB/~172.7 MiB (74.4 MiB/s) with ~1 file(s) remaining (calculating...)  
+Completed 75.2 MiB/~172.7 MiB (74.6 MiB/s) with ~1 file(s) remaining (calculating...)  
+Completed 75.5 MiB/~172.7 MiB (74.7 MiB/s) with ~1 file(s) remaining (calculating...)  
+Completed 75.8 MiB/~172.7 MiB (74.9 MiB/s) with ~1 file(s) remaining (calculating...)  
+Completed 76.0 MiB/~172.7 MiB (75.2 MiB/s) with ~1 file(s) remaining (calculating...)  
+Completed 76.2 MiB/~172.7 MiB (75.3 MiB/s) with ~1 file(s) remaining (calculating...)  
+Completed 76.5 MiB/~172.7 MiB (75.5 MiB/s) with ~1 file(s) remaining (calculating...)  
+Completed 76.8 MiB/~172.7 MiB (75.6 MiB/s) with ~1 file(s) remaining (calculating...)  
+Completed 77.0 MiB/~172.7 MiB (75.4 MiB/s) with ~1 file(s) remaining (calculating...)  
+Completed 77.2 MiB/~172.7 MiB (74.1 MiB/s) with ~1 file(s) remaining (calculating...)  
+Completed 77.5 MiB/~172.7 MiB (73.6 MiB/s) with ~1 file(s) remaining (calculating...)  
+Completed 77.8 MiB/~172.7 MiB (72.3 MiB/s) with ~1 file(s) remaining (calculating...)  
+Completed 78.0 MiB/~172.7 MiB (72.1 MiB/s) with ~1 file(s) remaining (calculating...)  
+Completed 78.2 MiB/~172.7 MiB (72.3 MiB/s) with ~1 file(s) remaining (calculating...)  
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Completed 78.5 MiB/~172.7 MiB (71.8 MiB/s) with ~1 file(s) remaining (calculating...)  
+Completed 78.8 MiB/~172.7 MiB (71.6 MiB/s) with ~1 file(s) remaining (calculating...)  
+Completed 79.0 MiB/~172.7 MiB (71.1 MiB/s) with ~1 file(s) remaining (calculating...)  
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Completed 79.2 MiB/~172.7 MiB (69.8 MiB/s) with ~1 file(s) remaining (calculating...)  
+Completed 79.5 MiB/~172.7 MiB (69.4 MiB/s) with ~1 file(s) remaining (calculating...)  
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Completed 79.8 MiB/~172.7 MiB (67.4 MiB/s) with ~1 file(s) remaining (calculating...)  
+Completed 80.0 MiB/~172.7 MiB (67.2 MiB/s) with ~1 file(s) remaining (calculating...)  
+Completed 80.2 MiB/~172.7 MiB (67.4 MiB/s) with ~1 file(s) remaining (calculating...)  
+Completed 80.5 MiB/~172.7 MiB (67.5 MiB/s) with ~1 file(s) remaining (calculating...)  
+Completed 80.8 MiB/~172.7 MiB (67.3 MiB/s) with ~1 file(s) remaining (calculating...)  
+Completed 81.0 MiB/~172.7 MiB (67.2 MiB/s) with ~1 file(s) remaining (calculating...)  
+Completed 81.2 MiB/~172.7 MiB (67.3 MiB/s) with ~1 file(s) remaining (calculating...)  
+Completed 81.5 MiB/~172.7 MiB (67.2 MiB/s) with ~1 file(s) remaining (calculating...)  
+Completed 81.8 MiB/~172.7 MiB (67.0 MiB/s) with ~1 file(s) remaining (calculating...)  
+Completed 82.0 MiB/~172.7 MiB (67.2 MiB/s) with ~1 file(s) remaining (calculating...)  
+Completed 82.2 MiB/~172.7 MiB (67.4 MiB/s) with ~1 file(s) remaining (calculating...)  
+Completed 82.5 MiB/~172.7 MiB (67.3 MiB/s) with ~1 file(s) remaining (calculating...)  
+Completed 82.8 MiB/~172.7 MiB (67.4 MiB/s) with ~1 file(s) remaining (calculating...)  
+Completed 83.0 MiB/~172.7 MiB (67.6 MiB/s) with ~1 file(s) remaining (calculating...)  
+Completed 83.2 MiB/~172.7 MiB (67.5 MiB/s) with ~1 file(s) remaining (calculating...)  
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Completed 83.5 MiB/~172.7 MiB (67.4 MiB/s) with ~1 file(s) remaining (calculating...)  
+Completed 83.8 MiB/~172.7 MiB (67.5 MiB/s) with ~1 file(s) remaining (calculating...)  
+Completed 84.0 MiB/~172.7 MiB (67.0 MiB/s) with ~1 file(s) remaining (calculating...)  
+Completed 84.2 MiB/~172.7 MiB (67.2 MiB/s) with ~1 file(s) remaining (calculating...)  
+Completed 84.5 MiB/~172.7 MiB (66.7 MiB/s) with ~1 file(s) remaining (calculating...)  
+Completed 84.8 MiB/~172.7 MiB (65.8 MiB/s) with ~1 file(s) remaining (calculating...)  
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Completed 85.0 MiB/~172.7 MiB (65.7 MiB/s) with ~1 file(s) remaining (calculating...)  
+Completed 85.2 MiB/~172.7 MiB (65.8 MiB/s) with ~1 file(s) remaining (calculating...)  
+Completed 85.5 MiB/~172.7 MiB (66.0 MiB/s) with ~1 file(s) remaining (calculating...)  
+Completed 85.8 MiB/~172.7 MiB (65.9 MiB/s) with ~1 file(s) remaining (calculating...)  
+Completed 86.0 MiB/~172.7 MiB (65.5 MiB/s) with ~1 file(s) remaining (calculating...)  
+Completed 86.2 MiB/~172.7 MiB (65.6 MiB/s) with ~1 file(s) remaining (calculating...)  
+Completed 86.5 MiB/~172.7 MiB (65.8 MiB/s) with ~1 file(s) remaining (calculating...)  
+Completed 86.8 MiB/~172.7 MiB (65.9 MiB/s) with ~1 file(s) remaining (calculating...)  
+Completed 87.0 MiB/~172.7 MiB (66.1 MiB/s) with ~1 file(s) remaining (calculating...)  
+Completed 87.2 MiB/~172.7 MiB (66.2 MiB/s) with ~1 file(s) remaining (calculating...)  
+Completed 87.5 MiB/~172.7 MiB (66.4 MiB/s) with ~1 file(s) remaining (calculating...)  
+Completed 87.8 MiB/~172.7 MiB (66.5 MiB/s) with ~1 file(s) remaining (calculating...)  
+Completed 88.0 MiB/~172.7 MiB (66.7 MiB/s) with ~1 file(s) remaining (calculating...)  
+Completed 88.2 MiB/~172.7 MiB (66.9 MiB/s) with ~1 file(s) remaining (calculating...)  
+Completed 88.5 MiB/~172.7 MiB (67.0 MiB/s) with ~1 file(s) remaining (calculating...)  
+Completed 88.8 MiB/~172.7 MiB (67.2 MiB/s) with ~1 file(s) remaining (calculating...)  
+Completed 89.0 MiB/~172.7 MiB (67.4 MiB/s) with ~1 file(s) remaining (calculating...)  
+Completed 89.2 MiB/~172.7 MiB (67.5 MiB/s) with ~1 file(s) remaining (calculating...)  
+Completed 89.5 MiB/~172.7 MiB (67.7 MiB/s) with ~1 file(s) remaining (calculating...)  
+Completed 89.8 MiB/~172.7 MiB (67.8 MiB/s) with ~1 file(s) remaining (calculating...)  
+Completed 90.0 MiB/~172.7 MiB (68.0 MiB/s) with ~1 file(s) remaining (calculating...)  
+Completed 90.2 MiB/~172.7 MiB (68.1 MiB/s) with ~1 file(s) remaining (calculating...)  
+Completed 90.5 MiB/~172.7 MiB (68.3 MiB/s) with ~1 file(s) remaining (calculating...)  
+Completed 90.8 MiB/~172.7 MiB (68.5 MiB/s) with ~1 file(s) remaining (calculating...)  
+Completed 91.0 MiB/~172.7 MiB (68.6 MiB/s) with ~1 file(s) remaining (calculating...)  
+Completed 91.2 MiB/~172.7 MiB (68.8 MiB/s) with ~1 file(s) remaining (calculating...)  
+Completed 91.5 MiB/~172.7 MiB (68.9 MiB/s) with ~1 file(s) remaining (calculating...)  
+Completed 91.8 MiB/~172.7 MiB (69.1 MiB/s) with ~1 file(s) remaining (calculating...)  
+Completed 92.0 MiB/~172.7 MiB (69.1 MiB/s) with ~1 file(s) remaining (calculating...)  
+Completed 92.2 MiB/~172.7 MiB (69.2 MiB/s) with ~1 file(s) remaining (calculating...)  
+Completed 92.5 MiB/~172.7 MiB (69.4 MiB/s) with ~1 file(s) remaining (calculating...)  
+Completed 92.8 MiB/~172.7 MiB (69.5 MiB/s) with ~1 file(s) remaining (calculating...)  
+Completed 93.0 MiB/~172.7 MiB (69.7 MiB/s) with ~1 file(s) remaining (calculating...)  
+Completed 93.2 MiB/~172.7 MiB (69.9 MiB/s) with ~1 file(s) remaining (calculating...)  
+Completed 93.5 MiB/~172.7 MiB (70.0 MiB/s) with ~1 file(s) remaining (calculating...)  
+Completed 93.8 MiB/~172.7 MiB (70.1 MiB/s) with ~1 file(s) remaining (calculating...)  
+Completed 94.0 MiB/~172.7 MiB (70.3 MiB/s) with ~1 file(s) remaining (calculating...)  
+Completed 94.2 MiB/~172.7 MiB (70.5 MiB/s) with ~1 file(s) remaining (calculating...)  
+Completed 94.5 MiB/~172.7 MiB (70.6 MiB/s) with ~1 file(s) remaining (calculating...)  
+Completed 94.8 MiB/~172.7 MiB (70.8 MiB/s) with ~1 file(s) remaining (calculating...)  
+Completed 95.0 MiB/~172.7 MiB (71.0 MiB/s) with ~1 file(s) remaining (calculating...)  
+Completed 95.2 MiB/~172.7 MiB (71.1 MiB/s) with ~1 file(s) remaining (calculating...)  
+Completed 95.5 MiB/~172.7 MiB (71.3 MiB/s) with ~1 file(s) remaining (calculating...)  
+Completed 95.8 MiB/~172.7 MiB (71.5 MiB/s) with ~1 file(s) remaining (calculating...)  
+Completed 96.0 MiB/~172.7 MiB (71.6 MiB/s) with ~1 file(s) remaining (calculating...)  
+Completed 96.2 MiB/~172.7 MiB (71.8 MiB/s) with ~1 file(s) remaining (calculating...)  
+Completed 96.5 MiB/~172.7 MiB (71.9 MiB/s) with ~1 file(s) remaining (calculating...)  
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Completed 96.8 MiB/~172.7 MiB (72.0 MiB/s) with ~1 file(s) remaining (calculating...)  
+Completed 97.0 MiB/~172.7 MiB (72.2 MiB/s) with ~1 file(s) remaining (calculating...)  
+Completed 97.2 MiB/~172.7 MiB (72.4 MiB/s) with ~1 file(s) remaining (calculating...)  
+Completed 97.5 MiB/~172.7 MiB (72.5 MiB/s) with ~1 file(s) remaining (calculating...)  
+Completed 97.8 MiB/~172.7 MiB (72.7 MiB/s) with ~1 file(s) remaining (calculating...)  
+Completed 98.0 MiB/~172.7 MiB (72.8 MiB/s) with ~1 file(s) remaining (calculating...)  
+Completed 98.2 MiB/~172.7 MiB (73.0 MiB/s) with ~1 file(s) remaining (calculating...)  
+Completed 98.5 MiB/~172.7 MiB (73.1 MiB/s) with ~1 file(s) remaining (calculating...)  
+Completed 98.8 MiB/~172.7 MiB (73.2 MiB/s) with ~1 file(s) remaining (calculating...)  
+Completed 99.0 MiB/~172.7 MiB (73.4 MiB/s) with ~1 file(s) remaining (calculating...)  
+Completed 99.2 MiB/~172.7 MiB (73.5 MiB/s) with ~1 file(s) remaining (calculating...)  
+Completed 99.5 MiB/~172.7 MiB (73.7 MiB/s) with ~1 file(s) remaining (calculating...)  
+Completed 99.8 MiB/~172.7 MiB (73.8 MiB/s) with ~1 file(s) remaining (calculating...)  
+Completed 100.0 MiB/~172.7 MiB (74.0 MiB/s) with ~1 file(s) remaining (calculating...) 
+Completed 100.2 MiB/~172.7 MiB (74.2 MiB/s) with ~1 file(s) remaining (calculating...) 
+Completed 100.5 MiB/~172.7 MiB (74.3 MiB/s) with ~1 file(s) remaining (calculating...) 
+Completed 100.8 MiB/~172.7 MiB (74.5 MiB/s) with ~1 file(s) remaining (calculating...) 
+Completed 101.0 MiB/~172.7 MiB (74.6 MiB/s) with ~1 file(s) remaining (calculating...) 
+Completed 101.2 MiB/~172.7 MiB (74.7 MiB/s) with ~1 file(s) remaining (calculating...) 
+Completed 101.5 MiB/~172.7 MiB (74.9 MiB/s) with ~1 file(s) remaining (calculating...) 
+Completed 101.8 MiB/~172.7 MiB (75.0 MiB/s) with ~1 file(s) remaining (calculating...) 
+Completed 102.0 MiB/~172.7 MiB (75.2 MiB/s) with ~1 file(s) remaining (calculating...) 
+Completed 102.2 MiB/~172.7 MiB (75.3 MiB/s) with ~1 file(s) remaining (calculating...) 
+Completed 102.5 MiB/~172.7 MiB (75.4 MiB/s) with ~1 file(s) remaining (calculating...) 
+Completed 102.8 MiB/~172.7 MiB (75.6 MiB/s) with ~1 file(s) remaining (calculating...) 
+Completed 103.0 MiB/~172.7 MiB (75.7 MiB/s) with ~1 file(s) remaining (calculating...) 
+Completed 103.2 MiB/~172.7 MiB (75.8 MiB/s) with ~1 file(s) remaining (calculating...) 
+Completed 103.5 MiB/~172.7 MiB (76.0 MiB/s) with ~1 file(s) remaining (calculating...) 
+Completed 103.8 MiB/~172.7 MiB (76.1 MiB/s) with ~1 file(s) remaining (calculating...) 
+Completed 104.0 MiB/~172.7 MiB (76.3 MiB/s) with ~1 file(s) remaining (calculating...) 
+Completed 104.2 MiB/~172.7 MiB (76.4 MiB/s) with ~1 file(s) remaining (calculating...) 
+Completed 104.5 MiB/~172.7 MiB (76.6 MiB/s) with ~1 file(s) remaining (calculating...) 
+Completed 104.8 MiB/~172.7 MiB (76.7 MiB/s) with ~1 file(s) remaining (calculating...) 
+Completed 105.0 MiB/~172.7 MiB (76.9 MiB/s) with ~1 file(s) remaining (calculating...) 
+Completed 105.2 MiB/~172.7 MiB (77.0 MiB/s) with ~1 file(s) remaining (calculating...) 
+Completed 105.5 MiB/~172.7 MiB (77.1 MiB/s) with ~1 file(s) remaining (calculating...) 
+Completed 105.8 MiB/~172.7 MiB (77.2 MiB/s) with ~1 file(s) remaining (calculating...) 
+Completed 106.0 MiB/~172.7 MiB (77.3 MiB/s) with ~1 file(s) remaining (calculating...) 
+Completed 106.2 MiB/~172.7 MiB (77.5 MiB/s) with ~1 file(s) remaining (calculating...) 
+Completed 106.5 MiB/~172.7 MiB (77.6 MiB/s) with ~1 file(s) remaining (calculating...) 
+Completed 106.8 MiB/~172.7 MiB (77.8 MiB/s) with ~1 file(s) remaining (calculating...) 
+Completed 107.0 MiB/~172.7 MiB (77.9 MiB/s) with ~1 file(s) remaining (calculating...) 
+Completed 107.2 MiB/~172.7 MiB (78.0 MiB/s) with ~1 file(s) remaining (calculating...) 
+Completed 107.5 MiB/~172.7 MiB (78.2 MiB/s) with ~1 file(s) remaining (calculating...) 
+Completed 107.8 MiB/~172.7 MiB (78.3 MiB/s) with ~1 file(s) remaining (calculating...) 
+Completed 108.0 MiB/~172.7 MiB (78.4 MiB/s) with ~1 file(s) remaining (calculating...) 
+Completed 108.2 MiB/~172.7 MiB (78.5 MiB/s) with ~1 file(s) remaining (calculating...) 
+Completed 108.5 MiB/~172.7 MiB (78.7 MiB/s) with ~1 file(s) remaining (calculating...) 
+Completed 108.8 MiB/~172.7 MiB (78.8 MiB/s) with ~1 file(s) remaining (calculating...) 
+Completed 109.0 MiB/~172.7 MiB (78.9 MiB/s) with ~1 file(s) remaining (calculating...) 
+Completed 109.2 MiB/~172.7 MiB (79.0 MiB/s) with ~1 file(s) remaining (calculating...) 
+Completed 109.5 MiB/~172.7 MiB (79.1 MiB/s) with ~1 file(s) remaining (calculating...) 
+Completed 109.8 MiB/~172.7 MiB (79.3 MiB/s) with ~1 file(s) remaining (calculating...) 
+Completed 110.0 MiB/~172.7 MiB (79.4 MiB/s) with ~1 file(s) remaining (calculating...) 
+Completed 110.2 MiB/~172.7 MiB (79.6 MiB/s) with ~1 file(s) remaining (calculating...) 
+Completed 110.5 MiB/~172.7 MiB (79.7 MiB/s) with ~1 file(s) remaining (calculating...) 
+Completed 110.8 MiB/~172.7 MiB (79.9 MiB/s) with ~1 file(s) remaining (calculating...) 
+Completed 111.0 MiB/~172.7 MiB (80.0 MiB/s) with ~1 file(s) remaining (calculating...) 
+Completed 111.2 MiB/~172.7 MiB (80.2 MiB/s) with ~1 file(s) remaining (calculating...) 
+Completed 111.5 MiB/~172.7 MiB (80.3 MiB/s) with ~1 file(s) remaining (calculating...) 
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Completed 111.8 MiB/~172.7 MiB (80.4 MiB/s) with ~1 file(s) remaining (calculating...) 
+Completed 112.0 MiB/~172.7 MiB (80.5 MiB/s) with ~1 file(s) remaining (calculating...) 
+Completed 112.2 MiB/~172.7 MiB (80.6 MiB/s) with ~1 file(s) remaining (calculating...) 
+Completed 112.5 MiB/~172.7 MiB (80.8 MiB/s) with ~1 file(s) remaining (calculating...) 
+Completed 112.8 MiB/~172.7 MiB (80.9 MiB/s) with ~1 file(s) remaining (calculating...) 
+Completed 113.0 MiB/~172.7 MiB (81.0 MiB/s) with ~1 file(s) remaining (calculating...) 
+Completed 113.2 MiB/~172.7 MiB (81.1 MiB/s) with ~1 file(s) remaining (calculating...) 
+Completed 113.5 MiB/~172.7 MiB (81.2 MiB/s) with ~1 file(s) remaining (calculating...) 
+Completed 113.8 MiB/~172.7 MiB (81.4 MiB/s) with ~1 file(s) remaining (calculating...) 
+Completed 114.0 MiB/~172.7 MiB (81.5 MiB/s) with ~1 file(s) remaining (calculating...) 
+Completed 114.2 MiB/~172.7 MiB (81.7 MiB/s) with ~1 file(s) remaining (calculating...) 
+Completed 114.5 MiB/~172.7 MiB (81.8 MiB/s) with ~1 file(s) remaining (calculating...) 
+Completed 114.8 MiB/~172.7 MiB (81.9 MiB/s) with ~1 file(s) remaining (calculating...) 
+Completed 115.0 MiB/~172.7 MiB (82.0 MiB/s) with ~1 file(s) remaining (calculating...) 
+Completed 115.2 MiB/~172.7 MiB (82.2 MiB/s) with ~1 file(s) remaining (calculating...) 
+Completed 115.5 MiB/~172.7 MiB (82.3 MiB/s) with ~1 file(s) remaining (calculating...) 
+Completed 115.8 MiB/~172.7 MiB (82.4 MiB/s) with ~1 file(s) remaining (calculating...) 
+Completed 116.0 MiB/~172.7 MiB (82.5 MiB/s) with ~1 file(s) remaining (calculating...) 
+Completed 116.2 MiB/~172.7 MiB (82.7 MiB/s) with ~1 file(s) remaining (calculating...) 
+Completed 116.5 MiB/~172.7 MiB (82.8 MiB/s) with ~1 file(s) remaining (calculating...) 
+Completed 116.8 MiB/~172.7 MiB (82.9 MiB/s) with ~1 file(s) remaining (calculating...) 
+Completed 117.0 MiB/~172.7 MiB (83.1 MiB/s) with ~1 file(s) remaining (calculating...) 
+Completed 117.2 MiB/~172.7 MiB (83.2 MiB/s) with ~1 file(s) remaining (calculating...) 
+Completed 117.5 MiB/~172.7 MiB (83.4 MiB/s) with ~1 file(s) remaining (calculating...) 
+Completed 117.8 MiB/~172.7 MiB (83.5 MiB/s) with ~1 file(s) remaining (calculating...) 
+Completed 118.0 MiB/~172.7 MiB (83.7 MiB/s) with ~1 file(s) remaining (calculating...) 
+Completed 118.2 MiB/~172.7 MiB (83.8 MiB/s) with ~1 file(s) remaining (calculating...) 
+Completed 118.5 MiB/~172.7 MiB (83.9 MiB/s) with ~1 file(s) remaining (calculating...) 
+Completed 118.8 MiB/~172.7 MiB (84.1 MiB/s) with ~1 file(s) remaining (calculating...) 
+Completed 119.0 MiB/~172.7 MiB (84.1 MiB/s) with ~1 file(s) remaining (calculating...) 
+Completed 119.2 MiB/~172.7 MiB (84.2 MiB/s) with ~1 file(s) remaining (calculating...) 
+Completed 119.5 MiB/~172.7 MiB (84.4 MiB/s) with ~1 file(s) remaining (calculating...) 
+Completed 119.8 MiB/~172.7 MiB (84.5 MiB/s) with ~1 file(s) remaining (calculating...) 
+Completed 120.0 MiB/~172.7 MiB (84.6 MiB/s) with ~1 file(s) remaining (calculating...) 
+Completed 120.2 MiB/~172.7 MiB (84.7 MiB/s) with ~1 file(s) remaining (calculating...) 
+Completed 120.5 MiB/~172.7 MiB (84.8 MiB/s) with ~1 file(s) remaining (calculating...) 
+Completed 120.8 MiB/~172.7 MiB (84.9 MiB/s) with ~1 file(s) remaining (calculating...) 
+Completed 121.0 MiB/~172.7 MiB (84.8 MiB/s) with ~1 file(s) remaining (calculating...) 
+Completed 121.2 MiB/~172.7 MiB (84.9 MiB/s) with ~1 file(s) remaining (calculating...) 
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Completed 121.5 MiB/~172.7 MiB (85.0 MiB/s) with ~1 file(s) remaining (calculating...) 
+Completed 121.8 MiB/~172.7 MiB (84.7 MiB/s) with ~1 file(s) remaining (calculating...) 
+Completed 122.0 MiB/~172.7 MiB (84.6 MiB/s) with ~1 file(s) remaining (calculating...) 
+Completed 122.2 MiB/~172.7 MiB (84.7 MiB/s) with ~1 file(s) remaining (calculating...) 
+Completed 122.5 MiB/~172.7 MiB (84.9 MiB/s) with ~1 file(s) remaining (calculating...) 
+Completed 122.8 MiB/~172.7 MiB (84.1 MiB/s) with ~1 file(s) remaining (calculating...) 
+Completed 123.0 MiB/~172.7 MiB (84.2 MiB/s) with ~1 file(s) remaining (calculating...) 
+Completed 123.2 MiB/~172.7 MiB (83.5 MiB/s) with ~1 file(s) remaining (calculating...) 
+Completed 123.5 MiB/~172.7 MiB (83.6 MiB/s) with ~1 file(s) remaining (calculating...) 
+Completed 123.8 MiB/~172.7 MiB (83.7 MiB/s) with ~1 file(s) remaining (calculating...) 
+Completed 124.0 MiB/~172.7 MiB (83.9 MiB/s) with ~1 file(s) remaining (calculating...) 
+Completed 124.2 MiB/~172.7 MiB (84.0 MiB/s) with ~1 file(s) remaining (calculating...) 
+Completed 124.5 MiB/~172.7 MiB (84.2 MiB/s) with ~1 file(s) remaining (calculating...) 
+Completed 124.8 MiB/~172.7 MiB (84.3 MiB/s) with ~1 file(s) remaining (calculating...) 
+Completed 125.0 MiB/~172.7 MiB (84.2 MiB/s) with ~1 file(s) remaining (calculating...) 
+Completed 125.2 MiB/~172.7 MiB (84.3 MiB/s) with ~1 file(s) remaining (calculating...) 
+Completed 125.5 MiB/~172.7 MiB (83.9 MiB/s) with ~1 file(s) remaining (calculating...) 
+Completed 125.8 MiB/~172.7 MiB (84.0 MiB/s) with ~1 file(s) remaining (calculating...) 
+Completed 126.0 MiB/~172.7 MiB (84.1 MiB/s) with ~1 file(s) remaining (calculating...) 
+Completed 126.2 MiB/~172.7 MiB (84.3 MiB/s) with ~1 file(s) remaining (calculating...) 
+Completed 126.5 MiB/~172.7 MiB (84.4 MiB/s) with ~1 file(s) remaining (calculating...) 
+Completed 126.8 MiB/~172.7 MiB (83.9 MiB/s) with ~1 file(s) remaining (calculating...) 
+Completed 127.0 MiB/~172.7 MiB (84.1 MiB/s) with ~1 file(s) remaining (calculating...) 
+Completed 127.2 MiB/~172.7 MiB (83.9 MiB/s) with ~1 file(s) remaining (calculating...) 
+Completed 127.5 MiB/~172.7 MiB (83.8 MiB/s) with ~1 file(s) remaining (calculating...) 
+Completed 127.8 MiB/~172.7 MiB (84.0 MiB/s) with ~1 file(s) remaining (calculating...) 
+Completed 128.0 MiB/~172.7 MiB (84.1 MiB/s) with ~1 file(s) remaining (calculating...) 
+Completed 128.2 MiB/~172.7 MiB (83.9 MiB/s) with ~1 file(s) remaining (calculating...) 
+Completed 128.5 MiB/~172.7 MiB (83.5 MiB/s) with ~1 file(s) remaining (calculating...) 
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Completed 128.8 MiB/~172.7 MiB (83.3 MiB/s) with ~1 file(s) remaining (calculating...) 
+Completed 129.0 MiB/~172.7 MiB (83.4 MiB/s) with ~1 file(s) remaining (calculating...) 
+Completed 129.2 MiB/~172.7 MiB (83.2 MiB/s) with ~1 file(s) remaining (calculating...) 
+Completed 129.5 MiB/~172.7 MiB (81.7 MiB/s) with ~1 file(s) remaining (calculating...) 
+Completed 129.8 MiB/~172.7 MiB (81.5 MiB/s) with ~1 file(s) remaining (calculating...) 
+Completed 130.0 MiB/~172.7 MiB (81.6 MiB/s) with ~1 file(s) remaining (calculating...) 
+Completed 130.2 MiB/~172.7 MiB (81.8 MiB/s) with ~1 file(s) remaining (calculating...) 
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Completed 130.5 MiB/~172.7 MiB (81.9 MiB/s) with ~1 file(s) remaining (calculating...) 
+Completed 130.8 MiB/~172.7 MiB (82.0 MiB/s) with ~1 file(s) remaining (calculating...) 
+Completed 131.0 MiB/~172.7 MiB (82.2 MiB/s) with ~1 file(s) remaining (calculating...) 
+Completed 131.2 MiB/~172.7 MiB (82.3 MiB/s) with ~1 file(s) remaining (calculating...) 
+Completed 131.5 MiB/~172.7 MiB (82.4 MiB/s) with ~1 file(s) remaining (calculating...) 
+Completed 131.8 MiB/~172.7 MiB (82.5 MiB/s) with ~1 file(s) remaining (calculating...) 
+Completed 132.0 MiB/~172.7 MiB (82.7 MiB/s) with ~1 file(s) remaining (calculating...) 
+Completed 132.2 MiB/~172.7 MiB (80.9 MiB/s) with ~1 file(s) remaining (calculating...) 
+Completed 132.5 MiB/~172.7 MiB (81.0 MiB/s) with ~1 file(s) remaining (calculating...) 
+Completed 132.8 MiB/~172.7 MiB (81.2 MiB/s) with ~1 file(s) remaining (calculating...) 
+Completed 133.0 MiB/~172.7 MiB (81.0 MiB/s) with ~1 file(s) remaining (calculating...) 
+Completed 133.2 MiB/~172.7 MiB (81.1 MiB/s) with ~1 file(s) remaining (calculating...) 
+Completed 133.5 MiB/~172.7 MiB (81.0 MiB/s) with ~1 file(s) remaining (calculating...) 
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Completed 133.8 MiB/~172.7 MiB (81.1 MiB/s) with ~1 file(s) remaining (calculating...) 
+Completed 134.0 MiB/~172.7 MiB (80.8 MiB/s) with ~1 file(s) remaining (calculating...) 
+Completed 134.2 MiB/~172.7 MiB (80.9 MiB/s) with ~1 file(s) remaining (calculating...) 
+Completed 134.5 MiB/~172.7 MiB (81.0 MiB/s) with ~1 file(s) remaining (calculating...) 
+Completed 134.8 MiB/~172.7 MiB (80.2 MiB/s) with ~1 file(s) remaining (calculating...) 
+Completed 135.0 MiB/~172.7 MiB (80.2 MiB/s) with ~1 file(s) remaining (calculating...) 
+Completed 135.2 MiB/~172.7 MiB (80.4 MiB/s) with ~1 file(s) remaining (calculating...) 
+Completed 135.5 MiB/~172.7 MiB (80.5 MiB/s) with ~1 file(s) remaining (calculating...) 
+Completed 135.8 MiB/~172.7 MiB (80.1 MiB/s) with ~1 file(s) remaining (calculating...) 
+Completed 136.0 MiB/~172.7 MiB (80.2 MiB/s) with ~1 file(s) remaining (calculating...) 
+Completed 136.2 MiB/~172.7 MiB (80.3 MiB/s) with ~1 file(s) remaining (calculating...) 
+Completed 136.5 MiB/~172.7 MiB (80.4 MiB/s) with ~1 file(s) remaining (calculating...) 
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Completed 136.8 MiB/~172.7 MiB (80.5 MiB/s) with ~1 file(s) remaining (calculating...) 
+Completed 137.0 MiB/~172.7 MiB (80.6 MiB/s) with ~1 file(s) remaining (calculating...) 
+Completed 137.2 MiB/~172.7 MiB (80.8 MiB/s) with ~1 file(s) remaining (calculating...) 
+Completed 137.5 MiB/~172.7 MiB (80.9 MiB/s) with ~1 file(s) remaining (calculating...) 
+Completed 137.8 MiB/~172.7 MiB (81.0 MiB/s) with ~1 file(s) remaining (calculating...) 
+Completed 138.0 MiB/~172.7 MiB (81.1 MiB/s) with ~1 file(s) remaining (calculating...) 
+Completed 138.2 MiB/~172.7 MiB (81.2 MiB/s) with ~1 file(s) remaining (calculating...) 
+Completed 138.5 MiB/~172.7 MiB (81.4 MiB/s) with ~1 file(s) remaining (calculating...) 
+Completed 138.8 MiB/~172.7 MiB (81.5 MiB/s) with ~1 file(s) remaining (calculating...) 
+Completed 139.0 MiB/~172.7 MiB (81.6 MiB/s) with ~1 file(s) remaining (calculating...) 
+Completed 139.2 MiB/~172.7 MiB (81.7 MiB/s) with ~1 file(s) remaining (calculating...) 
+Completed 139.5 MiB/~172.7 MiB (81.8 MiB/s) with ~1 file(s) remaining (calculating...) 
+Completed 139.8 MiB/~172.7 MiB (82.0 MiB/s) with ~1 file(s) remaining (calculating...) 
+Completed 140.0 MiB/~172.7 MiB (82.1 MiB/s) with ~1 file(s) remaining (calculating...) 
+Completed 140.2 MiB/~172.7 MiB (82.2 MiB/s) with ~1 file(s) remaining (calculating...) 
+Completed 140.5 MiB/~172.7 MiB (82.3 MiB/s) with ~1 file(s) remaining (calculating...) 
+Completed 140.8 MiB/~172.7 MiB (82.5 MiB/s) with ~1 file(s) remaining (calculating...) 
+Completed 141.0 MiB/~172.7 MiB (82.6 MiB/s) with ~1 file(s) remaining (calculating...) 
+Completed 141.2 MiB/~172.7 MiB (82.7 MiB/s) with ~1 file(s) remaining (calculating...) 
+Completed 141.5 MiB/~172.7 MiB (82.8 MiB/s) with ~1 file(s) remaining (calculating...) 
+Completed 141.8 MiB/~172.7 MiB (82.9 MiB/s) with ~1 file(s) remaining (calculating...) 
+Completed 142.0 MiB/~172.7 MiB (83.0 MiB/s) with ~1 file(s) remaining (calculating...) 
+Completed 142.2 MiB/~172.7 MiB (83.2 MiB/s) with ~1 file(s) remaining (calculating...) 
+Completed 142.5 MiB/~172.7 MiB (83.3 MiB/s) with ~1 file(s) remaining (calculating...) 
+Completed 142.8 MiB/~172.7 MiB (83.4 MiB/s) with ~1 file(s) remaining (calculating...) 
+Completed 143.0 MiB/~172.7 MiB (83.5 MiB/s) with ~1 file(s) remaining (calculating...) 
+Completed 143.2 MiB/~172.7 MiB (83.6 MiB/s) with ~1 file(s) remaining (calculating...) 
+Completed 143.5 MiB/~172.7 MiB (83.7 MiB/s) with ~1 file(s) remaining (calculating...) 
+Completed 143.8 MiB/~172.7 MiB (83.8 MiB/s) with ~1 file(s) remaining (calculating...) 
+Completed 144.0 MiB/~172.7 MiB (83.9 MiB/s) with ~1 file(s) remaining (calculating...) 
+Completed 144.2 MiB/~172.7 MiB (84.1 MiB/s) with ~1 file(s) remaining (calculating...) 
+Completed 144.5 MiB/~172.7 MiB (84.2 MiB/s) with ~1 file(s) remaining (calculating...) 
+Completed 144.8 MiB/~172.7 MiB (84.3 MiB/s) with ~1 file(s) remaining (calculating...) 
+Completed 145.0 MiB/~172.7 MiB (84.4 MiB/s) with ~1 file(s) remaining (calculating...) 
+Completed 145.2 MiB/~172.7 MiB (84.5 MiB/s) with ~1 file(s) remaining (calculating...) 
+Completed 145.5 MiB/~172.7 MiB (84.6 MiB/s) with ~1 file(s) remaining (calculating...) 
+Completed 145.8 MiB/~172.7 MiB (84.8 MiB/s) with ~1 file(s) remaining (calculating...) 
+Completed 146.0 MiB/~172.7 MiB (84.9 MiB/s) with ~1 file(s) remaining (calculating...) 
+Completed 146.2 MiB/~172.7 MiB (85.0 MiB/s) with ~1 file(s) remaining (calculating...) 
+Completed 146.5 MiB/~172.7 MiB (85.1 MiB/s) with ~1 file(s) remaining (calculating...) 
+Completed 146.8 MiB/~172.7 MiB (85.2 MiB/s) with ~1 file(s) remaining (calculating...) 
+Completed 147.0 MiB/~172.7 MiB (85.3 MiB/s) with ~1 file(s) remaining (calculating...) 
+Completed 147.2 MiB/~172.7 MiB (85.4 MiB/s) with ~1 file(s) remaining (calculating...) 
+Completed 147.5 MiB/~172.7 MiB (85.5 MiB/s) with ~1 file(s) remaining (calculating...) 
+Completed 147.8 MiB/~172.7 MiB (85.6 MiB/s) with ~1 file(s) remaining (calculating...) 
+Completed 148.0 MiB/~172.7 MiB (85.8 MiB/s) with ~1 file(s) remaining (calculating...) 
+Completed 148.2 MiB/~172.7 MiB (85.9 MiB/s) with ~1 file(s) remaining (calculating...) 
+Completed 148.5 MiB/~172.7 MiB (85.9 MiB/s) with ~1 file(s) remaining (calculating...) 
+Completed 148.8 MiB/~172.7 MiB (86.0 MiB/s) with ~1 file(s) remaining (calculating...) 
+Completed 149.0 MiB/~172.7 MiB (86.1 MiB/s) with ~1 file(s) remaining (calculating...) 
+Completed 149.2 MiB/~172.7 MiB (86.2 MiB/s) with ~1 file(s) remaining (calculating...) 
+Completed 149.5 MiB/~172.7 MiB (86.4 MiB/s) with ~1 file(s) remaining (calculating...) 
+Completed 149.8 MiB/~172.7 MiB (86.5 MiB/s) with ~1 file(s) remaining (calculating...) 
+Completed 150.0 MiB/~172.7 MiB (86.6 MiB/s) with ~1 file(s) remaining (calculating...) 
+Completed 150.2 MiB/~172.7 MiB (86.7 MiB/s) with ~1 file(s) remaining (calculating...) 
+Completed 150.5 MiB/~172.7 MiB (86.8 MiB/s) with ~1 file(s) remaining (calculating...) 
+Completed 150.8 MiB/~172.7 MiB (86.9 MiB/s) with ~1 file(s) remaining (calculating...) 
+Completed 151.0 MiB/~172.7 MiB (87.0 MiB/s) with ~1 file(s) remaining (calculating...) 
+Completed 151.2 MiB/~172.7 MiB (87.1 MiB/s) with ~1 file(s) remaining (calculating...) 
+Completed 151.5 MiB/~172.7 MiB (87.2 MiB/s) with ~1 file(s) remaining (calculating...) 
+Completed 151.8 MiB/~172.7 MiB (87.3 MiB/s) with ~1 file(s) remaining (calculating...) 
+Completed 152.0 MiB/~172.7 MiB (87.4 MiB/s) with ~1 file(s) remaining (calculating...) 
+Completed 152.2 MiB/~172.7 MiB (87.6 MiB/s) with ~1 file(s) remaining (calculating...) 
+Completed 152.5 MiB/~172.7 MiB (87.6 MiB/s) with ~1 file(s) remaining (calculating...) 
+Completed 152.8 MiB/~172.7 MiB (87.8 MiB/s) with ~1 file(s) remaining (calculating...) 
+Completed 153.0 MiB/~172.7 MiB (87.9 MiB/s) with ~1 file(s) remaining (calculating...) 
+Completed 153.2 MiB/~172.7 MiB (88.0 MiB/s) with ~1 file(s) remaining (calculating...) 
+Completed 153.5 MiB/~172.7 MiB (88.1 MiB/s) with ~1 file(s) remaining (calculating...) 
+Completed 153.8 MiB/~172.7 MiB (88.2 MiB/s) with ~1 file(s) remaining (calculating...) 
+Completed 154.0 MiB/~172.7 MiB (88.3 MiB/s) with ~1 file(s) remaining (calculating...) 
+Completed 154.2 MiB/~172.7 MiB (88.4 MiB/s) with ~1 file(s) remaining (calculating...) 
+Completed 154.5 MiB/~172.7 MiB (88.5 MiB/s) with ~1 file(s) remaining (calculating...) 
+Completed 154.8 MiB/~172.7 MiB (88.6 MiB/s) with ~1 file(s) remaining (calculating...) 
+Completed 155.0 MiB/~172.7 MiB (88.7 MiB/s) with ~1 file(s) remaining (calculating...) 
+Completed 155.2 MiB/~172.7 MiB (88.8 MiB/s) with ~1 file(s) remaining (calculating...) 
+Completed 155.5 MiB/~172.7 MiB (89.0 MiB/s) with ~1 file(s) remaining (calculating...) 
+Completed 155.8 MiB/~172.7 MiB (89.1 MiB/s) with ~1 file(s) remaining (calculating...) 
+Completed 156.0 MiB/~172.7 MiB (89.2 MiB/s) with ~1 file(s) remaining (calculating...) 
+Completed 156.2 MiB/~172.7 MiB (89.3 MiB/s) with ~1 file(s) remaining (calculating...) 
+Completed 156.5 MiB/~172.7 MiB (89.4 MiB/s) with ~1 file(s) remaining (calculating...) 
+Completed 156.8 MiB/~172.7 MiB (89.5 MiB/s) with ~1 file(s) remaining (calculating...) 
+Completed 157.0 MiB/~172.7 MiB (89.6 MiB/s) with ~1 file(s) remaining (calculating...) 
+Completed 157.2 MiB/~172.7 MiB (89.7 MiB/s) with ~1 file(s) remaining (calculating...) 
+Completed 157.5 MiB/~172.7 MiB (89.9 MiB/s) with ~1 file(s) remaining (calculating...) 
+Completed 157.8 MiB/~172.7 MiB (90.0 MiB/s) with ~1 file(s) remaining (calculating...) 
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Completed 158.0 MiB/~172.7 MiB (90.1 MiB/s) with ~1 file(s) remaining (calculating...) 
+Completed 158.2 MiB/~172.7 MiB (90.2 MiB/s) with ~1 file(s) remaining (calculating...) 
+Completed 158.5 MiB/~172.7 MiB (90.3 MiB/s) with ~1 file(s) remaining (calculating...) 
+Completed 158.8 MiB/~172.7 MiB (90.4 MiB/s) with ~1 file(s) remaining (calculating...) 
+Completed 159.0 MiB/~172.7 MiB (90.5 MiB/s) with ~1 file(s) remaining (calculating...) 
+Completed 159.2 MiB/~172.7 MiB (90.6 MiB/s) with ~1 file(s) remaining (calculating...) 
+Completed 159.5 MiB/~172.7 MiB (90.7 MiB/s) with ~1 file(s) remaining (calculating...) 
+Completed 159.8 MiB/~172.7 MiB (90.9 MiB/s) with ~1 file(s) remaining (calculating...) 
+Completed 160.0 MiB/~172.7 MiB (91.0 MiB/s) with ~1 file(s) remaining (calculating...) 
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Completed 160.2 MiB/~172.7 MiB (85.9 MiB/s) with ~1 file(s) remaining (calculating...) 
+Completed 160.5 MiB/~172.7 MiB (85.7 MiB/s) with ~1 file(s) remaining (calculating...) 
+Completed 160.8 MiB/~172.7 MiB (85.8 MiB/s) with ~1 file(s) remaining (calculating...) 
+Completed 161.0 MiB/~172.7 MiB (85.9 MiB/s) with ~1 file(s) remaining (calculating...) 
+Completed 161.2 MiB/~172.7 MiB (85.5 MiB/s) with ~1 file(s) remaining (calculating...) 
+Completed 161.5 MiB/~172.7 MiB (85.6 MiB/s) with ~1 file(s) remaining (calculating...) 
+Completed 161.8 MiB/~172.7 MiB (85.3 MiB/s) with ~1 file(s) remaining (calculating...) 
+Completed 162.0 MiB/~172.7 MiB (85.4 MiB/s) with ~1 file(s) remaining (calculating...) 
+Completed 162.2 MiB/~172.7 MiB (85.4 MiB/s) with ~1 file(s) remaining (calculating...) 
+Completed 162.5 MiB/~172.7 MiB (85.5 MiB/s) with ~1 file(s) remaining (calculating...) 
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Completed 162.8 MiB/~172.7 MiB (84.7 MiB/s) with ~1 file(s) remaining (calculating...) 
+Completed 163.0 MiB/~172.7 MiB (83.9 MiB/s) with ~1 file(s) remaining (calculating...) 
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Completed 163.2 MiB/~172.7 MiB (84.0 MiB/s) with ~1 file(s) remaining (calculating...) 
+Completed 163.5 MiB/~172.7 MiB (83.4 MiB/s) with ~1 file(s) remaining (calculating...) 
+Completed 163.8 MiB/~172.7 MiB (83.5 MiB/s) with ~1 file(s) remaining (calculating...) 
+Completed 164.0 MiB/~172.7 MiB (83.2 MiB/s) with ~1 file(s) remaining (calculating...) 
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Completed 164.2 MiB/~172.7 MiB (81.7 MiB/s) with ~1 file(s) remaining (calculating...) 
+Completed 164.5 MiB/~172.7 MiB (81.8 MiB/s) with ~1 file(s) remaining (calculating...) 
+Completed 164.8 MiB/~172.7 MiB (80.2 MiB/s) with ~1 file(s) remaining (calculating...) 
+Completed 165.0 MiB/~172.7 MiB (80.3 MiB/s) with ~1 file(s) remaining (calculating...) 
+Completed 165.2 MiB/~172.7 MiB (80.4 MiB/s) with ~1 file(s) remaining (calculating...) 
+Completed 165.5 MiB/~172.7 MiB (80.5 MiB/s) with ~1 file(s) remaining (calculating...) 
+Completed 165.8 MiB/~172.7 MiB (80.5 MiB/s) with ~1 file(s) remaining (calculating...) 
+Completed 166.0 MiB/~172.7 MiB (80.7 MiB/s) with ~1 file(s) remaining (calculating...) 
+Completed 166.2 MiB/~172.7 MiB (80.8 MiB/s) with ~1 file(s) remaining (calculating...) 
+Completed 166.5 MiB/~172.7 MiB (80.9 MiB/s) with ~1 file(s) remaining (calculating...) 
+Completed 166.8 MiB/~172.7 MiB (81.0 MiB/s) with ~1 file(s) remaining (calculating...) 
+Completed 167.0 MiB/~172.7 MiB (81.1 MiB/s) with ~1 file(s) remaining (calculating...) 
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Completed 167.2 MiB/~172.7 MiB (81.2 MiB/s) with ~1 file(s) remaining (calculating...) 
+Completed 167.5 MiB/~172.7 MiB (81.2 MiB/s) with ~1 file(s) remaining (calculating...) 
+Completed 167.8 MiB/~172.7 MiB (81.3 MiB/s) with ~1 file(s) remaining (calculating...) 
+Completed 167.9 MiB/~172.7 MiB (81.4 MiB/s) with ~1 file(s) remaining (calculating...) 
+Completed 168.2 MiB/~172.7 MiB (81.5 MiB/s) with ~1 file(s) remaining (calculating...) 
+Completed 168.4 MiB/~172.7 MiB (81.6 MiB/s) with ~1 file(s) remaining (calculating...) 
+Completed 168.7 MiB/~172.7 MiB (81.4 MiB/s) with ~1 file(s) remaining (calculating...) 
+Completed 168.9 MiB/~172.7 MiB (81.5 MiB/s) with ~1 file(s) remaining (calculating...) 
+Completed 169.2 MiB/~172.7 MiB (81.6 MiB/s) with ~1 file(s) remaining (calculating...) 
+Completed 169.4 MiB/~172.7 MiB (81.7 MiB/s) with ~1 file(s) remaining (calculating...) 
+Completed 169.7 MiB/~172.7 MiB (81.8 MiB/s) with ~1 file(s) remaining (calculating...) 
+Completed 169.9 MiB/~172.7 MiB (81.9 MiB/s) with ~1 file(s) remaining (calculating...) 
+Completed 170.2 MiB/~172.7 MiB (82.0 MiB/s) with ~1 file(s) remaining (calculating...) 
+Completed 170.4 MiB/~172.7 MiB (82.1 MiB/s) with ~1 file(s) remaining (calculating...) 
+Completed 170.7 MiB/~172.7 MiB (81.5 MiB/s) with ~1 file(s) remaining (calculating...) 
+Completed 170.9 MiB/~172.7 MiB (81.4 MiB/s) with ~1 file(s) remaining (calculating...) 
+Completed 171.2 MiB/~172.7 MiB (81.5 MiB/s) with ~1 file(s) remaining (calculating...) 
+Completed 171.4 MiB/~172.7 MiB (81.6 MiB/s) with ~1 file(s) remaining (calculating...) 
+Completed 171.7 MiB/~172.7 MiB (81.3 MiB/s) with ~1 file(s) remaining (calculating...) 
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Completed 171.9 MiB/~172.7 MiB (81.4 MiB/s) with ~1 file(s) remaining (calculating...) 
+Completed 172.2 MiB/~172.7 MiB (81.5 MiB/s) with ~1 file(s) remaining (calculating...) 
+Completed 172.4 MiB/~172.7 MiB (81.6 MiB/s) with ~1 file(s) remaining (calculating...) 
+Completed 172.7 MiB/~172.7 MiB (81.0 MiB/s) with ~1 file(s) remaining (calculating...) 
+download: s3://openneuro.org/ds003965/derivatives/fmriprep/sub-03/ses-1/func/sub-03_ses-1_task-face_run-1_space-T1w_desc-preproc_bold.nii.gz to ../../../../../../NI-edu-data/derivatives/fmriprep/sub-03/ses-1/func/sub-03_ses-1_task-face_run-1_space-T1w_desc-preproc_bold.nii.gz
+Completed 172.7 MiB/~172.7 MiB (81.0 MiB/s) with ~0 file(s) remaining (calculating...)
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>                                                                                      
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Completed 8.1 KiB/~8.1 KiB (31.6 KiB/s) with ~1 file(s) remaining (calculating...)
+download: s3://openneuro.org/ds003965/derivatives/fmriprep/sub-03/ses-1/func/sub-03_ses-1_task-face_run-1_space-T1w_desc-brain_mask.nii.gz to ../../../../../../NI-edu-data/derivatives/fmriprep/sub-03/ses-1/func/sub-03_ses-1_task-face_run-1_space-T1w_desc-brain_mask.nii.gz
+Completed 8.1 KiB/~8.1 KiB (31.6 KiB/s) with ~0 file(s) remaining (calculating...)
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>                                                                                  
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Completed 256.0 KiB/~1.2 MiB (587.3 KiB/s) with ~1 file(s) remaining (calculating...)
+Completed 512.0 KiB/~1.2 MiB (1.1 MiB/s) with ~1 file(s) remaining (calculating...)  
+Completed 768.0 KiB/~1.2 MiB (1.6 MiB/s) with ~1 file(s) remaining (calculating...)  
+Completed 1.0 MiB/~1.2 MiB (2.2 MiB/s) with ~1 file(s) remaining (calculating...)    
+Completed 1.2 MiB/~1.2 MiB (2.6 MiB/s) with ~1 file(s) remaining (calculating...)    
+download: s3://openneuro.org/ds003965/derivatives/fmriprep/sub-03/ses-1/func/sub-03_ses-1_task-face_run-1_desc-confounds_timeseries.tsv to ../../../../../../NI-edu-data/derivatives/fmriprep/sub-03/ses-1/func/sub-03_ses-1_task-face_run-1_desc-confounds_timeseries.tsv
+Completed 1.2 MiB/~1.2 MiB (2.6 MiB/s) with ~0 file(s) remaining (calculating...)
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>                                                                                 
 </pre></div>
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Done!
@@ -2076,14 +2858,9 @@ t_{c\hat{\beta}} \approx \frac{c\hat{\beta}}{\sqrt{\sum (y_{i} - X_{i}\hat{\beta
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">FileNotFoundError</span><span class="g g-Whitespace">                         </span>Traceback (most recent call last)
-<span class="nn">Input In [51],</span> in <span class="ni">&lt;cell line: 2&gt;</span><span class="nt">()</span>
-<span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="n">fprep_sub03_ses1_func</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">fprep_sub03</span><span class="p">,</span> <span class="s1">&#39;ses-1&#39;</span><span class="p">,</span> <span class="s1">&#39;func&#39;</span><span class="p">)</span>
-<span class="ne">----&gt; </span><span class="mi">2</span> <span class="n">contents</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">(</span><span class="n">fprep_sub03_ses1_func</span><span class="p">))</span>
-<span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Contents ses-1/func:&quot;</span><span class="p">,</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">contents</span><span class="p">))</span>
-
-<span class="ne">FileNotFoundError</span>: [Errno 2] No such file or directory: &#39;/home/runner/NI-edu-data/derivatives/fmriprep/sub-03/ses-1/func&#39;
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Contents ses-1/func: sub-03_ses-1_task-face_run-1_desc-confounds_timeseries.tsv
+sub-03_ses-1_task-face_run-1_space-T1w_desc-brain_mask.nii.gz
+sub-03_ses-1_task-face_run-1_space-T1w_desc-preproc_bold.nii.gz
 </pre></div>
 </div>
 </div>
@@ -2104,84 +2881,316 @@ t_{c\hat{\beta}} \approx \frac{c\hat{\beta}}{\sqrt{\sum (y_{i} - X_{i}\hat{\beta
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">FileNotFoundError</span><span class="g g-Whitespace">                         </span>Traceback (most recent call last)
-<span class="nn">Input In [52],</span> in <span class="ni">&lt;cell line: 8&gt;</span><span class="nt">()</span>
-<span class="g g-Whitespace">      </span><span class="mi">5</span> <span class="n">func_mask</span> <span class="o">=</span> <span class="n">func</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;desc-preproc_bold&#39;</span><span class="p">,</span> <span class="s1">&#39;desc-brain_mask&#39;</span><span class="p">)</span>
-<span class="g g-Whitespace">      </span><span class="mi">7</span> <span class="n">confs</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">fprep_sub03_ses1_func</span><span class="p">,</span> <span class="s1">&#39;sub-03_ses-1_task-face_run-1_desc-confounds_timeseries.tsv&#39;</span><span class="p">)</span>
-<span class="ne">----&gt; </span><span class="mi">8</span> <span class="n">confs_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">confs</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s1">&#39;</span><span class="se">\t</span><span class="s1">&#39;</span><span class="p">)</span>
-<span class="g g-Whitespace">      </span><span class="mi">9</span> <span class="n">confs_df</span>
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
 
-<span class="nn">File /opt/hostedtoolcache/Python/3.8.5/x64/lib/python3.8/site-packages/pandas/util/_decorators.py:311,</span> in <span class="ni">deprecate_nonkeyword_arguments.&lt;locals&gt;.decorate.&lt;locals&gt;.wrapper</span><span class="nt">(*args, **kwargs)</span>
-<span class="g g-Whitespace">    </span><span class="mi">305</span> <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">args</span><span class="p">)</span> <span class="o">&gt;</span> <span class="n">num_allow_args</span><span class="p">:</span>
-<span class="g g-Whitespace">    </span><span class="mi">306</span>     <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span>
-<span class="g g-Whitespace">    </span><span class="mi">307</span>         <span class="n">msg</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">arguments</span><span class="o">=</span><span class="n">arguments</span><span class="p">),</span>
-<span class="g g-Whitespace">    </span><span class="mi">308</span>         <span class="ne">FutureWarning</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">309</span>         <span class="n">stacklevel</span><span class="o">=</span><span class="n">stacklevel</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">310</span>     <span class="p">)</span>
-<span class="ne">--&gt; </span><span class="mi">311</span> <span class="k">return</span> <span class="n">func</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
 
-<span class="nn">File /opt/hostedtoolcache/Python/3.8.5/x64/lib/python3.8/site-packages/pandas/io/parsers/readers.py:680,</span> in <span class="ni">read_csv</span><span class="nt">(filepath_or_buffer, sep, delimiter, header, names, index_col, usecols, squeeze, prefix, mangle_dupe_cols, dtype, engine, converters, true_values, false_values, skipinitialspace, skiprows, skipfooter, nrows, na_values, keep_default_na, na_filter, verbose, skip_blank_lines, parse_dates, infer_datetime_format, keep_date_col, date_parser, dayfirst, cache_dates, iterator, chunksize, compression, thousands, decimal, lineterminator, quotechar, quoting, doublequote, escapechar, comment, encoding, encoding_errors, dialect, error_bad_lines, warn_bad_lines, on_bad_lines, delim_whitespace, low_memory, memory_map, float_precision, storage_options)</span>
-<span class="g g-Whitespace">    </span><span class="mi">665</span> <span class="n">kwds_defaults</span> <span class="o">=</span> <span class="n">_refine_defaults_read</span><span class="p">(</span>
-<span class="g g-Whitespace">    </span><span class="mi">666</span>     <span class="n">dialect</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">667</span>     <span class="n">delimiter</span><span class="p">,</span>
-   <span class="p">(</span><span class="o">...</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">676</span>     <span class="n">defaults</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;delimiter&quot;</span><span class="p">:</span> <span class="s2">&quot;,&quot;</span><span class="p">},</span>
-<span class="g g-Whitespace">    </span><span class="mi">677</span> <span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">678</span> <span class="n">kwds</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">kwds_defaults</span><span class="p">)</span>
-<span class="ne">--&gt; </span><span class="mi">680</span> <span class="k">return</span> <span class="n">_read</span><span class="p">(</span><span class="n">filepath_or_buffer</span><span class="p">,</span> <span class="n">kwds</span><span class="p">)</span>
-
-<span class="nn">File /opt/hostedtoolcache/Python/3.8.5/x64/lib/python3.8/site-packages/pandas/io/parsers/readers.py:575,</span> in <span class="ni">_read</span><span class="nt">(filepath_or_buffer, kwds)</span>
-<span class="g g-Whitespace">    </span><span class="mi">572</span> <span class="n">_validate_names</span><span class="p">(</span><span class="n">kwds</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;names&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">))</span>
-<span class="g g-Whitespace">    </span><span class="mi">574</span> <span class="c1"># Create the parser.</span>
-<span class="ne">--&gt; </span><span class="mi">575</span> <span class="n">parser</span> <span class="o">=</span> <span class="n">TextFileReader</span><span class="p">(</span><span class="n">filepath_or_buffer</span><span class="p">,</span> <span class="o">**</span><span class="n">kwds</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">577</span> <span class="k">if</span> <span class="n">chunksize</span> <span class="ow">or</span> <span class="n">iterator</span><span class="p">:</span>
-<span class="g g-Whitespace">    </span><span class="mi">578</span>     <span class="k">return</span> <span class="n">parser</span>
-
-<span class="nn">File /opt/hostedtoolcache/Python/3.8.5/x64/lib/python3.8/site-packages/pandas/io/parsers/readers.py:933,</span> in <span class="ni">TextFileReader.__init__</span><span class="nt">(self, f, engine, **kwds)</span>
-<span class="g g-Whitespace">    </span><span class="mi">930</span>     <span class="bp">self</span><span class="o">.</span><span class="n">options</span><span class="p">[</span><span class="s2">&quot;has_index_names&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">kwds</span><span class="p">[</span><span class="s2">&quot;has_index_names&quot;</span><span class="p">]</span>
-<span class="g g-Whitespace">    </span><span class="mi">932</span> <span class="bp">self</span><span class="o">.</span><span class="n">handles</span><span class="p">:</span> <span class="n">IOHandles</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>
-<span class="ne">--&gt; </span><span class="mi">933</span> <span class="bp">self</span><span class="o">.</span><span class="n">_engine</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_make_engine</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">engine</span><span class="p">)</span>
-
-<span class="nn">File /opt/hostedtoolcache/Python/3.8.5/x64/lib/python3.8/site-packages/pandas/io/parsers/readers.py:1217,</span> in <span class="ni">TextFileReader._make_engine</span><span class="nt">(self, f, engine)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1213</span>     <span class="n">mode</span> <span class="o">=</span> <span class="s2">&quot;rb&quot;</span>
-<span class="g g-Whitespace">   </span><span class="mi">1214</span> <span class="c1"># error: No overload variant of &quot;get_handle&quot; matches argument types</span>
-<span class="g g-Whitespace">   </span><span class="mi">1215</span> <span class="c1"># &quot;Union[str, PathLike[str], ReadCsvBuffer[bytes], ReadCsvBuffer[str]]&quot;</span>
-<span class="g g-Whitespace">   </span><span class="mi">1216</span> <span class="c1"># , &quot;str&quot;, &quot;bool&quot;, &quot;Any&quot;, &quot;Any&quot;, &quot;Any&quot;, &quot;Any&quot;, &quot;Any&quot;</span>
-<span class="ne">-&gt; </span><span class="mi">1217</span> <span class="bp">self</span><span class="o">.</span><span class="n">handles</span> <span class="o">=</span> <span class="n">get_handle</span><span class="p">(</span>  <span class="c1"># type: ignore[call-overload]</span>
-<span class="g g-Whitespace">   </span><span class="mi">1218</span>     <span class="n">f</span><span class="p">,</span>
-<span class="g g-Whitespace">   </span><span class="mi">1219</span>     <span class="n">mode</span><span class="p">,</span>
-<span class="g g-Whitespace">   </span><span class="mi">1220</span>     <span class="n">encoding</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;encoding&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">),</span>
-<span class="g g-Whitespace">   </span><span class="mi">1221</span>     <span class="n">compression</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;compression&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">),</span>
-<span class="g g-Whitespace">   </span><span class="mi">1222</span>     <span class="n">memory_map</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;memory_map&quot;</span><span class="p">,</span> <span class="kc">False</span><span class="p">),</span>
-<span class="g g-Whitespace">   </span><span class="mi">1223</span>     <span class="n">is_text</span><span class="o">=</span><span class="n">is_text</span><span class="p">,</span>
-<span class="g g-Whitespace">   </span><span class="mi">1224</span>     <span class="n">errors</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;encoding_errors&quot;</span><span class="p">,</span> <span class="s2">&quot;strict&quot;</span><span class="p">),</span>
-<span class="g g-Whitespace">   </span><span class="mi">1225</span>     <span class="n">storage_options</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;storage_options&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">),</span>
-<span class="g g-Whitespace">   </span><span class="mi">1226</span> <span class="p">)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1227</span> <span class="k">assert</span> <span class="bp">self</span><span class="o">.</span><span class="n">handles</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
-<span class="g g-Whitespace">   </span><span class="mi">1228</span> <span class="n">f</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">handles</span><span class="o">.</span><span class="n">handle</span>
-
-<span class="nn">File /opt/hostedtoolcache/Python/3.8.5/x64/lib/python3.8/site-packages/pandas/io/common.py:789,</span> in <span class="ni">get_handle</span><span class="nt">(path_or_buf, mode, encoding, compression, memory_map, is_text, errors, storage_options)</span>
-<span class="g g-Whitespace">    </span><span class="mi">784</span> <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">handle</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
-<span class="g g-Whitespace">    </span><span class="mi">785</span>     <span class="c1"># Check whether the filename is to be opened in binary mode.</span>
-<span class="g g-Whitespace">    </span><span class="mi">786</span>     <span class="c1"># Binary mode does not support &#39;encoding&#39; and &#39;newline&#39;.</span>
-<span class="g g-Whitespace">    </span><span class="mi">787</span>     <span class="k">if</span> <span class="n">ioargs</span><span class="o">.</span><span class="n">encoding</span> <span class="ow">and</span> <span class="s2">&quot;b&quot;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">ioargs</span><span class="o">.</span><span class="n">mode</span><span class="p">:</span>
-<span class="g g-Whitespace">    </span><span class="mi">788</span>         <span class="c1"># Encoding</span>
-<span class="ne">--&gt; </span><span class="mi">789</span>         <span class="n">handle</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span>
-<span class="g g-Whitespace">    </span><span class="mi">790</span>             <span class="n">handle</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">791</span>             <span class="n">ioargs</span><span class="o">.</span><span class="n">mode</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">792</span>             <span class="n">encoding</span><span class="o">=</span><span class="n">ioargs</span><span class="o">.</span><span class="n">encoding</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">793</span>             <span class="n">errors</span><span class="o">=</span><span class="n">errors</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">794</span>             <span class="n">newline</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">795</span>         <span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">796</span>     <span class="k">else</span><span class="p">:</span>
-<span class="g g-Whitespace">    </span><span class="mi">797</span>         <span class="c1"># Binary mode</span>
-<span class="g g-Whitespace">    </span><span class="mi">798</span>         <span class="n">handle</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">handle</span><span class="p">,</span> <span class="n">ioargs</span><span class="o">.</span><span class="n">mode</span><span class="p">)</span>
-
-<span class="ne">FileNotFoundError</span>: [Errno 2] No such file or directory: &#39;/home/runner/NI-edu-data/derivatives/fmriprep/sub-03/ses-1/func/sub-03_ses-1_task-face_run-1_desc-confounds_timeseries.tsv&#39;
-</pre></div>
-</div>
-</div>
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>global_signal</th>
+      <th>global_signal_derivative1</th>
+      <th>global_signal_derivative1_power2</th>
+      <th>global_signal_power2</th>
+      <th>csf</th>
+      <th>csf_derivative1</th>
+      <th>csf_derivative1_power2</th>
+      <th>csf_power2</th>
+      <th>white_matter</th>
+      <th>white_matter_derivative1</th>
+      <th>...</th>
+      <th>rot_x_derivative1_power2</th>
+      <th>rot_y</th>
+      <th>rot_y_derivative1</th>
+      <th>rot_y_derivative1_power2</th>
+      <th>rot_y_power2</th>
+      <th>rot_z</th>
+      <th>rot_z_derivative1</th>
+      <th>rot_z_power2</th>
+      <th>rot_z_derivative1_power2</th>
+      <th>motion_outlier00</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>32452.228653</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>1.053147e+09</td>
+      <td>56448.645321</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>3.186450e+09</td>
+      <td>33477.742348</td>
+      <td>NaN</td>
+      <td>...</td>
+      <td>NaN</td>
+      <td>-0.000291</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>8.450358e-08</td>
+      <td>0.000421</td>
+      <td>NaN</td>
+      <td>1.770558e-07</td>
+      <td>NaN</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>32374.326829</td>
+      <td>-77.901823</td>
+      <td>6068.694064</td>
+      <td>1.048097e+09</td>
+      <td>55903.557212</td>
+      <td>-545.088109</td>
+      <td>297121.046798</td>
+      <td>3.125208e+09</td>
+      <td>33461.938656</td>
+      <td>-15.803692</td>
+      <td>...</td>
+      <td>5.203235e-46</td>
+      <td>0.000048</td>
+      <td>3.383386e-04</td>
+      <td>1.144730e-07</td>
+      <td>2.269913e-09</td>
+      <td>0.000000</td>
+      <td>-0.000421</td>
+      <td>0.000000e+00</td>
+      <td>1.770558e-07</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>32328.138891</td>
+      <td>-46.187938</td>
+      <td>2133.325610</td>
+      <td>1.045109e+09</td>
+      <td>55694.677005</td>
+      <td>-208.880207</td>
+      <td>43630.940942</td>
+      <td>3.101897e+09</td>
+      <td>33447.470231</td>
+      <td>-14.468426</td>
+      <td>...</td>
+      <td>1.588104e-08</td>
+      <td>0.000048</td>
+      <td>-4.410000e-08</td>
+      <td>1.944810e-15</td>
+      <td>2.265712e-09</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000e+00</td>
+      <td>0.000000e+00</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>32310.910024</td>
+      <td>-17.228868</td>
+      <td>296.833887</td>
+      <td>1.043995e+09</td>
+      <td>55575.853868</td>
+      <td>-118.823136</td>
+      <td>14118.937749</td>
+      <td>3.088676e+09</td>
+      <td>33432.562277</td>
+      <td>-14.907954</td>
+      <td>...</td>
+      <td>4.992468e-07</td>
+      <td>0.000490</td>
+      <td>4.422145e-04</td>
+      <td>1.955537e-07</td>
+      <td>2.399178e-07</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000e+00</td>
+      <td>0.000000e+00</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>32294.584213</td>
+      <td>-16.325811</td>
+      <td>266.532092</td>
+      <td>1.042940e+09</td>
+      <td>55408.908249</td>
+      <td>-166.945619</td>
+      <td>27870.839776</td>
+      <td>3.070147e+09</td>
+      <td>33414.449996</td>
+      <td>-18.112281</td>
+      <td>...</td>
+      <td>1.071489e-07</td>
+      <td>-0.000084</td>
+      <td>-5.736183e-04</td>
+      <td>3.290380e-07</td>
+      <td>7.023161e-09</td>
+      <td>0.000170</td>
+      <td>0.000170</td>
+      <td>2.889184e-08</td>
+      <td>2.889184e-08</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>337</th>
+      <td>31946.939473</td>
+      <td>-20.991637</td>
+      <td>440.648839</td>
+      <td>1.020607e+09</td>
+      <td>55087.811985</td>
+      <td>-49.086685</td>
+      <td>2409.502635</td>
+      <td>3.034667e+09</td>
+      <td>33105.711432</td>
+      <td>-29.471095</td>
+      <td>...</td>
+      <td>5.920900e-08</td>
+      <td>0.000089</td>
+      <td>-2.001220e-04</td>
+      <td>4.004881e-08</td>
+      <td>7.944692e-09</td>
+      <td>-0.000059</td>
+      <td>-0.000192</td>
+      <td>3.490033e-09</td>
+      <td>3.705336e-08</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>338</th>
+      <td>31950.066021</td>
+      <td>3.126548</td>
+      <td>9.775302</td>
+      <td>1.020807e+09</td>
+      <td>55027.153585</td>
+      <td>-60.658401</td>
+      <td>3679.441558</td>
+      <td>3.027988e+09</td>
+      <td>33103.520451</td>
+      <td>-2.190981</td>
+      <td>...</td>
+      <td>1.318576e-07</td>
+      <td>0.000089</td>
+      <td>0.000000e+00</td>
+      <td>0.000000e+00</td>
+      <td>7.944692e-09</td>
+      <td>0.000034</td>
+      <td>0.000093</td>
+      <td>1.148071e-09</td>
+      <td>8.641506e-09</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>339</th>
+      <td>31944.702633</td>
+      <td>-5.363388</td>
+      <td>28.765934</td>
+      <td>1.020464e+09</td>
+      <td>55133.790131</td>
+      <td>106.636546</td>
+      <td>11371.352943</td>
+      <td>3.039735e+09</td>
+      <td>33008.779629</td>
+      <td>-94.740822</td>
+      <td>...</td>
+      <td>4.723668e-08</td>
+      <td>0.000089</td>
+      <td>0.000000e+00</td>
+      <td>0.000000e+00</td>
+      <td>7.944692e-09</td>
+      <td>-0.000059</td>
+      <td>-0.000093</td>
+      <td>3.490033e-09</td>
+      <td>8.641506e-09</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>340</th>
+      <td>31947.495584</td>
+      <td>2.792952</td>
+      <td>7.800578</td>
+      <td>1.020642e+09</td>
+      <td>55189.106597</td>
+      <td>55.316466</td>
+      <td>3059.911431</td>
+      <td>3.045837e+09</td>
+      <td>33106.108555</td>
+      <td>97.328926</td>
+      <td>...</td>
+      <td>1.424617e-07</td>
+      <td>0.000280</td>
+      <td>1.908810e-04</td>
+      <td>3.643556e-08</td>
+      <td>7.840784e-08</td>
+      <td>0.000052</td>
+      <td>0.000112</td>
+      <td>2.749849e-09</td>
+      <td>1.243571e-08</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>341</th>
+      <td>31939.892753</td>
+      <td>-7.602831</td>
+      <td>57.803039</td>
+      <td>1.020157e+09</td>
+      <td>55111.799336</td>
+      <td>-77.307261</td>
+      <td>5976.412621</td>
+      <td>3.037310e+09</td>
+      <td>33035.758455</td>
+      <td>-70.350100</td>
+      <td>...</td>
+      <td>5.988788e-10</td>
+      <td>0.000400</td>
+      <td>1.198090e-04</td>
+      <td>1.435420e-08</td>
+      <td>1.598584e-07</td>
+      <td>0.000000</td>
+      <td>-0.000052</td>
+      <td>0.000000e+00</td>
+      <td>2.749849e-09</td>
+      <td>0.0</td>
+    </tr>
+  </tbody>
+</table>
+<p>342 rows × 231 columns</p>
+</div></div></div>
 </div>
 <p>Finally, we need the events-file with onsets, durations, and trial-types for this particular run:</p>
 <div class="cell docutils container">
@@ -2193,86 +3202,6 @@ t_{c\hat{\beta}} \approx \frac{c\hat{\beta}}{\sqrt{\sum (y_{i} - X_{i}\hat{\beta
 <span class="c1"># Oops, Nilearn doesn&#39;t accept trial_type values that start with a number, so</span>
 <span class="c1"># let&#39;s prepend &#39;tt_&#39; to it!</span>
 <span class="n">events_df</span><span class="p">[</span><span class="s1">&#39;trial_type&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;tt_&#39;</span> <span class="o">+</span> <span class="n">events_df</span><span class="p">[</span><span class="s1">&#39;trial_type&#39;</span><span class="p">]</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">FileNotFoundError</span><span class="g g-Whitespace">                         </span>Traceback (most recent call last)
-<span class="nn">Input In [53],</span> in <span class="ni">&lt;cell line: 2&gt;</span><span class="nt">()</span>
-<span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="n">events</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">data_dir</span><span class="p">,</span> <span class="s1">&#39;sub-03&#39;</span><span class="p">,</span> <span class="s1">&#39;ses-1&#39;</span><span class="p">,</span> <span class="s1">&#39;func&#39;</span><span class="p">,</span> <span class="s1">&#39;sub-03_ses-1_task-face_run-1_events.tsv&#39;</span><span class="p">)</span>
-<span class="ne">----&gt; </span><span class="mi">2</span> <span class="n">events_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">events</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s1">&#39;</span><span class="se">\t</span><span class="s1">&#39;</span><span class="p">)</span>
-<span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="n">events_df</span> <span class="o">=</span> <span class="n">events_df</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="s2">&quot;trial_type != &#39;rating&#39; and trial_type != &#39;response&#39;&quot;</span><span class="p">)</span>  <span class="c1"># don&#39;t need this</span>
-<span class="g g-Whitespace">      </span><span class="mi">5</span> <span class="c1"># Oops, Nilearn doesn&#39;t accept trial_type values that start with a number, so</span>
-<span class="g g-Whitespace">      </span><span class="mi">6</span> <span class="c1"># let&#39;s prepend &#39;tt_&#39; to it!</span>
-
-<span class="nn">File /opt/hostedtoolcache/Python/3.8.5/x64/lib/python3.8/site-packages/pandas/util/_decorators.py:311,</span> in <span class="ni">deprecate_nonkeyword_arguments.&lt;locals&gt;.decorate.&lt;locals&gt;.wrapper</span><span class="nt">(*args, **kwargs)</span>
-<span class="g g-Whitespace">    </span><span class="mi">305</span> <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">args</span><span class="p">)</span> <span class="o">&gt;</span> <span class="n">num_allow_args</span><span class="p">:</span>
-<span class="g g-Whitespace">    </span><span class="mi">306</span>     <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span>
-<span class="g g-Whitespace">    </span><span class="mi">307</span>         <span class="n">msg</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">arguments</span><span class="o">=</span><span class="n">arguments</span><span class="p">),</span>
-<span class="g g-Whitespace">    </span><span class="mi">308</span>         <span class="ne">FutureWarning</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">309</span>         <span class="n">stacklevel</span><span class="o">=</span><span class="n">stacklevel</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">310</span>     <span class="p">)</span>
-<span class="ne">--&gt; </span><span class="mi">311</span> <span class="k">return</span> <span class="n">func</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
-
-<span class="nn">File /opt/hostedtoolcache/Python/3.8.5/x64/lib/python3.8/site-packages/pandas/io/parsers/readers.py:680,</span> in <span class="ni">read_csv</span><span class="nt">(filepath_or_buffer, sep, delimiter, header, names, index_col, usecols, squeeze, prefix, mangle_dupe_cols, dtype, engine, converters, true_values, false_values, skipinitialspace, skiprows, skipfooter, nrows, na_values, keep_default_na, na_filter, verbose, skip_blank_lines, parse_dates, infer_datetime_format, keep_date_col, date_parser, dayfirst, cache_dates, iterator, chunksize, compression, thousands, decimal, lineterminator, quotechar, quoting, doublequote, escapechar, comment, encoding, encoding_errors, dialect, error_bad_lines, warn_bad_lines, on_bad_lines, delim_whitespace, low_memory, memory_map, float_precision, storage_options)</span>
-<span class="g g-Whitespace">    </span><span class="mi">665</span> <span class="n">kwds_defaults</span> <span class="o">=</span> <span class="n">_refine_defaults_read</span><span class="p">(</span>
-<span class="g g-Whitespace">    </span><span class="mi">666</span>     <span class="n">dialect</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">667</span>     <span class="n">delimiter</span><span class="p">,</span>
-   <span class="p">(</span><span class="o">...</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">676</span>     <span class="n">defaults</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;delimiter&quot;</span><span class="p">:</span> <span class="s2">&quot;,&quot;</span><span class="p">},</span>
-<span class="g g-Whitespace">    </span><span class="mi">677</span> <span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">678</span> <span class="n">kwds</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">kwds_defaults</span><span class="p">)</span>
-<span class="ne">--&gt; </span><span class="mi">680</span> <span class="k">return</span> <span class="n">_read</span><span class="p">(</span><span class="n">filepath_or_buffer</span><span class="p">,</span> <span class="n">kwds</span><span class="p">)</span>
-
-<span class="nn">File /opt/hostedtoolcache/Python/3.8.5/x64/lib/python3.8/site-packages/pandas/io/parsers/readers.py:575,</span> in <span class="ni">_read</span><span class="nt">(filepath_or_buffer, kwds)</span>
-<span class="g g-Whitespace">    </span><span class="mi">572</span> <span class="n">_validate_names</span><span class="p">(</span><span class="n">kwds</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;names&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">))</span>
-<span class="g g-Whitespace">    </span><span class="mi">574</span> <span class="c1"># Create the parser.</span>
-<span class="ne">--&gt; </span><span class="mi">575</span> <span class="n">parser</span> <span class="o">=</span> <span class="n">TextFileReader</span><span class="p">(</span><span class="n">filepath_or_buffer</span><span class="p">,</span> <span class="o">**</span><span class="n">kwds</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">577</span> <span class="k">if</span> <span class="n">chunksize</span> <span class="ow">or</span> <span class="n">iterator</span><span class="p">:</span>
-<span class="g g-Whitespace">    </span><span class="mi">578</span>     <span class="k">return</span> <span class="n">parser</span>
-
-<span class="nn">File /opt/hostedtoolcache/Python/3.8.5/x64/lib/python3.8/site-packages/pandas/io/parsers/readers.py:933,</span> in <span class="ni">TextFileReader.__init__</span><span class="nt">(self, f, engine, **kwds)</span>
-<span class="g g-Whitespace">    </span><span class="mi">930</span>     <span class="bp">self</span><span class="o">.</span><span class="n">options</span><span class="p">[</span><span class="s2">&quot;has_index_names&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">kwds</span><span class="p">[</span><span class="s2">&quot;has_index_names&quot;</span><span class="p">]</span>
-<span class="g g-Whitespace">    </span><span class="mi">932</span> <span class="bp">self</span><span class="o">.</span><span class="n">handles</span><span class="p">:</span> <span class="n">IOHandles</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>
-<span class="ne">--&gt; </span><span class="mi">933</span> <span class="bp">self</span><span class="o">.</span><span class="n">_engine</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_make_engine</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">engine</span><span class="p">)</span>
-
-<span class="nn">File /opt/hostedtoolcache/Python/3.8.5/x64/lib/python3.8/site-packages/pandas/io/parsers/readers.py:1217,</span> in <span class="ni">TextFileReader._make_engine</span><span class="nt">(self, f, engine)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1213</span>     <span class="n">mode</span> <span class="o">=</span> <span class="s2">&quot;rb&quot;</span>
-<span class="g g-Whitespace">   </span><span class="mi">1214</span> <span class="c1"># error: No overload variant of &quot;get_handle&quot; matches argument types</span>
-<span class="g g-Whitespace">   </span><span class="mi">1215</span> <span class="c1"># &quot;Union[str, PathLike[str], ReadCsvBuffer[bytes], ReadCsvBuffer[str]]&quot;</span>
-<span class="g g-Whitespace">   </span><span class="mi">1216</span> <span class="c1"># , &quot;str&quot;, &quot;bool&quot;, &quot;Any&quot;, &quot;Any&quot;, &quot;Any&quot;, &quot;Any&quot;, &quot;Any&quot;</span>
-<span class="ne">-&gt; </span><span class="mi">1217</span> <span class="bp">self</span><span class="o">.</span><span class="n">handles</span> <span class="o">=</span> <span class="n">get_handle</span><span class="p">(</span>  <span class="c1"># type: ignore[call-overload]</span>
-<span class="g g-Whitespace">   </span><span class="mi">1218</span>     <span class="n">f</span><span class="p">,</span>
-<span class="g g-Whitespace">   </span><span class="mi">1219</span>     <span class="n">mode</span><span class="p">,</span>
-<span class="g g-Whitespace">   </span><span class="mi">1220</span>     <span class="n">encoding</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;encoding&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">),</span>
-<span class="g g-Whitespace">   </span><span class="mi">1221</span>     <span class="n">compression</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;compression&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">),</span>
-<span class="g g-Whitespace">   </span><span class="mi">1222</span>     <span class="n">memory_map</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;memory_map&quot;</span><span class="p">,</span> <span class="kc">False</span><span class="p">),</span>
-<span class="g g-Whitespace">   </span><span class="mi">1223</span>     <span class="n">is_text</span><span class="o">=</span><span class="n">is_text</span><span class="p">,</span>
-<span class="g g-Whitespace">   </span><span class="mi">1224</span>     <span class="n">errors</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;encoding_errors&quot;</span><span class="p">,</span> <span class="s2">&quot;strict&quot;</span><span class="p">),</span>
-<span class="g g-Whitespace">   </span><span class="mi">1225</span>     <span class="n">storage_options</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;storage_options&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">),</span>
-<span class="g g-Whitespace">   </span><span class="mi">1226</span> <span class="p">)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1227</span> <span class="k">assert</span> <span class="bp">self</span><span class="o">.</span><span class="n">handles</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
-<span class="g g-Whitespace">   </span><span class="mi">1228</span> <span class="n">f</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">handles</span><span class="o">.</span><span class="n">handle</span>
-
-<span class="nn">File /opt/hostedtoolcache/Python/3.8.5/x64/lib/python3.8/site-packages/pandas/io/common.py:789,</span> in <span class="ni">get_handle</span><span class="nt">(path_or_buf, mode, encoding, compression, memory_map, is_text, errors, storage_options)</span>
-<span class="g g-Whitespace">    </span><span class="mi">784</span> <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">handle</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
-<span class="g g-Whitespace">    </span><span class="mi">785</span>     <span class="c1"># Check whether the filename is to be opened in binary mode.</span>
-<span class="g g-Whitespace">    </span><span class="mi">786</span>     <span class="c1"># Binary mode does not support &#39;encoding&#39; and &#39;newline&#39;.</span>
-<span class="g g-Whitespace">    </span><span class="mi">787</span>     <span class="k">if</span> <span class="n">ioargs</span><span class="o">.</span><span class="n">encoding</span> <span class="ow">and</span> <span class="s2">&quot;b&quot;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">ioargs</span><span class="o">.</span><span class="n">mode</span><span class="p">:</span>
-<span class="g g-Whitespace">    </span><span class="mi">788</span>         <span class="c1"># Encoding</span>
-<span class="ne">--&gt; </span><span class="mi">789</span>         <span class="n">handle</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span>
-<span class="g g-Whitespace">    </span><span class="mi">790</span>             <span class="n">handle</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">791</span>             <span class="n">ioargs</span><span class="o">.</span><span class="n">mode</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">792</span>             <span class="n">encoding</span><span class="o">=</span><span class="n">ioargs</span><span class="o">.</span><span class="n">encoding</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">793</span>             <span class="n">errors</span><span class="o">=</span><span class="n">errors</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">794</span>             <span class="n">newline</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">795</span>         <span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">796</span>     <span class="k">else</span><span class="p">:</span>
-<span class="g g-Whitespace">    </span><span class="mi">797</span>         <span class="c1"># Binary mode</span>
-<span class="g g-Whitespace">    </span><span class="mi">798</span>         <span class="n">handle</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">handle</span><span class="p">,</span> <span class="n">ioargs</span><span class="o">.</span><span class="n">mode</span><span class="p">)</span>
-
-<span class="ne">FileNotFoundError</span>: [Errno 2] No such file or directory: &#39;/home/runner/NI-edu-data/sub-03/ses-1/func/sub-03_ses-1_task-face_run-1_events.tsv&#39;
 </pre></div>
 </div>
 </div>
@@ -2559,8 +3488,8 @@ t_{c\hat{\beta}} \approx \frac{c\hat{\beta}}{\sqrt{\sum (y_{i} - X_{i}\hat{\beta
 <h3>Temporal uncorrelation<a class="headerlink" href="#temporal-uncorrelation" title="Permalink to this headline">¶</a></h3>
 <p>Another method to deal with trial-by-trial correlations is the “uncorrelation” method by <a class="reference external" href="https://www.sciencedirect.com/science/article/pii/S1053811919310407">Soch and colleagues (2020)</a>. As opposed to the LSS method, the uncorrelation approach takes care of the correlation structure in the data in a post-hoc manner. It does so, in essence, by “removing” the correlations in the data that are due to the correlations in the design in a way that is similar to what prewhitening does in generalized least squares.</p>
 <p>Formally, the “uncorrelated” patterns (<span class="math notranslate nohighlight">\(R_{\mathrm{unc}}\)</span>) are estimated by (matrix) multiplying the square root (<span class="math notranslate nohighlight">\(^{\frac{1}{2}}\)</span>) of covariance matrix of the LSA design matrix (<span class="math notranslate nohighlight">\(X^{T}X\)</span>) with the patterns (<span class="math notranslate nohighlight">\(R\)</span>):</p>
-<div class="amsmath math notranslate nohighlight" id="equation-2ef6825b-d4cb-4d25-901e-9b0dd1c33812">
-<span class="eqno">(91)<a class="headerlink" href="#equation-2ef6825b-d4cb-4d25-901e-9b0dd1c33812" title="Permalink to this equation">¶</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-6b2c179b-68f1-4896-94f4-b287b98e06fd">
+<span class="eqno">(91)<a class="headerlink" href="#equation-6b2c179b-68f1-4896-94f4-b287b98e06fd" title="Permalink to this equation">¶</a></span>\[\begin{align}
 R_{\mathrm{unc}} = (X^{T}X)^{\frac{1}{2}}R
 \end{align}\]</div>
 <p>Here, <span class="math notranslate nohighlight">\((X^{T}X)^{\frac{1}{2}}\)</span> represents the “whitening” matrix which uncorrelates the patterns. Let’s implement this in code. Note that we can use the <code class="docutils literal notranslate"><span class="pre">sqrtm</span></code> function from the <code class="docutils literal notranslate"><span class="pre">scipy.linalg</span></code> package to take the square root of a matrix:</p>
