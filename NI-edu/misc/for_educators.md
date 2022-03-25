@@ -14,16 +14,18 @@ How to get access to NI-edu-admin? Email Lukas (his email address can be found o
 At the University of Amsterdam, we use Jupyterhub in combination with *nbgrader* on a shared server for our "labs" (i.e., the notebooks).
 If you have access to a Linux server *and* you have root access, we highly recommend to use Jupyterhub (and *nbgrader*). By far the easiest way to install Jupyterhub (for relatively small classes) is through "[The Littlest Jupyterhub](https://tljh.jupyter.org/en/latest/index.html)" (TLJH). Read through the [installation](https://tljh.jupyter.org/en/latest/install/index.html) manual on the site. Again, this is only possible if you have root access (i.e., you have *sudo* rights).
 
-After installing TLJH, there are a few things I'd recommend you do. The first, and most important thing, is to enable HTTPS. To do so, check the [TLJH guide](https://tljh.jupyter.org/en/latest/howto/admin/https.html#howto-admin-https). 
+After installing TLJH, there are a few things I'd recommend you do. The first, and most important thing, is to enable SSL encryption. To do so, check the [TLJH guide](https://tljh.jupyter.org/en/latest/howto/admin/https.html#howto-admin-https). 
 
 As an example, for the UvA Linux server, you'd do this by running the following commands:
 
 ```
 sudo tljh-config set https.enabled true
-sudo tljh-config set https.letsencrypt.email {Lukas' email}
+sudo tljh-config set https.letsencrypt.email {your email}
 sudo tljh-config add-item https.letsencrypt.domains neuroimaging.lukas-snoek.com
 sudo tljh-config reload proxy
 ```
+
+Note that port 80 should be open whenever you enable SSL encryption!
 
 Second, I'd recommend increasing the idle timeout (i.e., maximum time in seconds that a server can be inactive before it will be shutdown). By default, each notebook server is shut down after 10 minutes of inactivity, which is a bit short. To increase this, run the following (to increase it to 24hrs):
 
@@ -118,7 +120,7 @@ Did you install `nbgrader` from PyPI (using `pip install nbgrader`) and is it ve
 
 ### Letsencrypt cannot renew the certificates
 
-Letsencrypt renews certificates using a test that uses port 443. At the UvA, we only allow connections with port 443 from the UvA network (so you need to be connected to VPN), so the renewal will fail. To renew the certificates, temporarily open up port 443 (`sudo ufw allow 443`), run the renew command (`certbot renew`), and close the port again (run `sudo ufw status numbered`, check the number of the rule for port 443, and then run `sudo ufw delete {nr of rule}`). 
+Letsencrypt renews certificates using a test that uses port 80. At the UvA, we don't allow connections to this port, so the renewal will fail. To renew the certificates, temporarily open up port 80 (`sudo ufw allow 80`), run the renew command (`certbot renew`), and close the port again (run `sudo ufw status numbered`, check the number of the rule for port 80, and then run `sudo ufw delete {nr of rule}`). 
 
 ### A student cannot login even though it's their first time logging in!
 
