@@ -1,5 +1,5 @@
 # For educators
-The publicly avaiable version of NI-edu is geared towards students. At the University of Amsterdam,
+The publicly available version of NI-edu is geared towards students At the University of Amsterdam, but
 we also have an "teacher" version available: NI-edu-admin. The source material (i.e., the notebooks)
 are identical, but they contain the solutions to the exercises (the "ToDos" and "ToThinks"). These
 excercises are implemented such that they can be easily (and for a large part automatically) graded using
