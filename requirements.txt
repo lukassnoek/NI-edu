@@ -4,4 +4,4 @@ nbval
 nbgrader
 nbconvert==5.6.1
 traitlets==5.1.0
-jinja2==2.11
+jinja2==2.11.3
