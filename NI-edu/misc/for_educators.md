@@ -33,19 +33,32 @@ sudo tljh-config add-item https.letsencrypt.domains neuroimaging.lukas-snoek.com
 
 Now, before you reload the proxy (`sudo tljh-config reload proxy`), you need to make sure that port 80 is actually accessible (which isn't the case for the TUX) because Letsencrypt will perform a "verification" necessary to enable SSL encryption. To do so, run `sudo ufw allow 80`. Then, run `sudo tljh-config reload proxy` and finally close port 80 again by running `sudo ufw delete allow 80`. 
 
-Finally, Jupyterhub communicates through port 443, so this needs to be open to the world! At the UvA, we restrict access to our servers (through any port) to the IP range of the UvA network, which means that you can only access the server if you're either at the UvA and connected to the UvA network or connected to the UvA VPN. To open up port 443 with restricted access to a particular IP address, run:
+Finally, Jupyterhub communicates through port 443, so this needs to be open to the world! At the UvA, we restrict access to our servers (through any port) to the IP range of the UvA network, which means that you can only access the server if you're either at the UvA and connected to the UvA network or connected to the UvA VPN. Assuming you have a firewall enabled (through `ufw`), you can open up port 443 with restricted access to a particular IP address by running:
 
 ```
 sudo ufw allow proto tcp from {your_ip_address} to any port 443
 ```
 
+After opening up port 443 (if it wasn't already), you should be able to access Jupyterhub through your own browser (e.g., at *https://neuroimaging.lukas-snoek.com* in the case of the TUX14 server). Make sure you actually access the HTTP**S** version (i.e., the SSL-encrypted website), and not the HTTP website.
+
 ### 3. Configure TLJH
-Second, I'd recommend increasing the idle timeout (i.e., maximum time in seconds that a server can be inactive before it will be shutdown). By default, each notebook server is shut down after 10 minutes of inactivity, which is a bit short. To increase this, run the following (to increase it to 24hrs):
+Next, I recommend increasing the idle timeout (i.e., maximum time in seconds that a user's notebook server can be inactive before it will be shut down). By default, each notebook server is shut down after 10 minutes of inactivity, which is a bit short. To increase this, run the following (to increase it to 24 hrs):
 
 ```
 sudo tljh-config set services.cull.timeout 86400
 sudo tljh-config reload
 ```
+
+### 4. Configure Python
+The Anaconda-based Python version installed with TLJH (located at `/opt/tljh/user/bin/python`) is not the same NI-edu except (which is 3.8.5). It is important that the right version of Python is used when running the notebooks, because the compiled test functions only work with Python version 3.8.5. To use Python version 3.8.5, run the following command from the user account you used to install TLJH (which needs to have sudo rights):
+
+```
+source /opt/tljh/user/bin/activate
+sudo /opt/tljh/user/bin/conda update --all
+sudo /opt/tljh/user/bin/conda install python=3.8.5
+```
+
+Note that this is slightly different than outlined by the [instructions of TLJH](https://tljh.jupyter.org/en/latest/howto/env/user-environment.html), but at least for me those instructions didn't work properly (and the above does).
 
 ## Installing *nbgrader*
 
@@ -86,14 +99,7 @@ Important: when adding users to the database, make sure you enter their Linux ac
 
 
 ## Install `niedu`
-Finally, you need to install the `niedu` package for utilities and tests for the tutorials. Importantly, the compiled test functions only work with Python version 3.8.5, which is not the default version installed by TLJH. To update the version to 3.8.5, run the following command from the user account you used to install TLJH:
-
-```
-export PATH=/opt/tljh/user/bin:${PATH}
-source /opt/tljh/user/bin/activate
-sudo PATH=${PATH} conda install python=3.8.5
-```
-
+Finally, you need to install the `niedu` package for utilities and tests for the tutorials. 
 Now, you can install the `niedu` package as follows (note the period at the end, which is part of the command):
 
 ```
