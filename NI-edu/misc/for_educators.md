@@ -54,8 +54,10 @@ The Anaconda-based Python version installed with TLJH (located at `/opt/tljh/use
 
 ```
 source /opt/tljh/user/bin/activate
+pip list --format=freeze > pip_pkgs.txt              # store currently installed pkgs
 sudo /opt/tljh/user/bin/conda update --all
 sudo /opt/tljh/user/bin/conda install python=3.8.5
+sudo /opt/tljh/user/bin/pip install -r pip_pkgs.txt  # reinstall previously installed pkgs
 ```
 
 Note that this is slightly different than outlined by the [instructions of TLJH](https://tljh.jupyter.org/en/latest/howto/env/user-environment.html), but at least for me those instructions didn't work properly (and the above does).
@@ -67,6 +69,8 @@ After installing a new Python version, you might need to restart the Jupyterhub 
 ```
 sudo tljh-config reload hub
 ```
+
+To check if everything worked, open a terminal in Jupyterhub (New &rarr Terminal) and run `Python -V`. It should print out "Python 3.8.5".
 
 ## Installing *nbgrader*
 
