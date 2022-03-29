@@ -60,6 +60,14 @@ sudo /opt/tljh/user/bin/conda install python=3.8.5
 
 Note that this is slightly different than outlined by the [instructions of TLJH](https://tljh.jupyter.org/en/latest/howto/env/user-environment.html), but at least for me those instructions didn't work properly (and the above does).
 
+**Important**: if you access the server through SSH (e.g., when you're administering/configuring the server), your default Python version will *not* be the TLJH Python version, but the one that's in your path (e.g., your own Anaconda Python, if you installed one, or the system Python version). So, whenever you want to use the TLJH Python outside of the Jupyterhub interface, you need to run `source /opt/tljh/user/bin/activate` first. Also, note that this Python installation cannot be modified by regular users (for good reasons), so whenever you &mdash; as an admin user &mdash; want to modify the installation (e.g., install packages), you need to do this with `sudo`. Make sure to specify the full path to the Python program you want to use, like `sudo /opt/tljh/user/bin/pip install nilearn`, and *not* `sudo pip install nilearn`. The latter should work, but doesn't (might be specific to the TUX server).
+
+After installing a new Python version, you might need to restart the Jupyterhub service by running:
+
+```
+sudo tljh-config reload hub
+```
+
 ## Installing *nbgrader*
 
 :::{warning}
