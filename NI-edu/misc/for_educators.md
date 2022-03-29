@@ -60,7 +60,7 @@ sudo /opt/tljh/user/bin/conda install python=3.8.5
 sudo /opt/tljh/user/bin/pip install -r pip_pkgs.txt  # reinstall previously installed pkgs
 ```
 
-Note that this is slightly different than outlined by the [instructions of TLJH](https://tljh.jupyter.org/en/latest/howto/env/user-environment.html), but at least for me those instructions didn't work properly (and the above does).
+Note that this is slightly different than outlined by the [instructions of TLJH](https://tljh.jupyter.org/en/latest/howto/env/user-environment.html), but at least for me those instructions didn't work properly (and the above does). Also, the reinstallation of the `pip_pkgs.txt` is important! Otherwise, the new Python version won't have all the required packages to make Jupyterhub work, and you'll get a "Cannot Spawn" error when trying to access Jupyterhub.
 
 **Important**: if you access the server through SSH (e.g., when you're administering/configuring the server), your default Python version will *not* be the TLJH Python version, but the one that's in your path (e.g., your own Anaconda Python, if you installed one, or the system Python version). So, whenever you want to use the TLJH Python outside of the Jupyterhub interface, you need to run `source /opt/tljh/user/bin/activate` first. Also, note that this Python installation cannot be modified by regular users (for good reasons), so whenever you &mdash; as an admin user &mdash; want to modify the installation (e.g., install packages), you need to do this with `sudo`. Make sure to specify the full path to the Python program you want to use, like `sudo /opt/tljh/user/bin/pip install nilearn`, and *not* `sudo pip install nilearn`. The latter should work, but doesn't (might be specific to the TUX server).
 
@@ -75,11 +75,13 @@ To check if everything worked, open a terminal in Jupyterhub (New &rarr Terminal
 ### 5. Install `niedu`
 The NI-edu course materials basically consist of two elements: the tutorial notebooks and the `niedu` Python package. The latter contains some utilities used in the notebooks and, importantly, the test that check the answers to the programming exercises. The course materials (so notebooks + `niedu`) are hosted on Github: [https://github.com/lukassnoek/NI-edu-admin](https://github.com/lukassnoek/NI-edu-admin). Importantly, you need the *admin* version of the materials, not the student version (which has the same URL, but without the `-admin` suffix). If you don't have access to this, you can contact Lukas. 
 
-In a terminal on the server (not Jupyterhub!), download the course materials using `git` (`git clone https://github.com/lukassnoek/NI-edu-admin`). Then, install the `niedu` package by running the following command:
+In a terminal on the server, download the course materials using `git` (`git clone https://github.com/lukassnoek/NI-edu-admin`). Then, install the `niedu` package by running the following command:
 
 ```
 sudo /opt/tljh/user/bin/pip install ./NI-edu-admin
 ```
+
+Note that installation of the `niedu` package by running the above command does *not* make the notebooks available to users! For this, we need to install the *nbgrader* package first (see next section).
 
 To check your installation at this point, you can run the following command in the root of the repository:
 
@@ -87,13 +89,16 @@ To check your installation at this point, you can run the following command in t
 python test_course_enviroment.py
 ```
 
+This should print out whether the Python and `niedu` installations are as expected ("OK" or "WARNING").
+
 ## Installing *nbgrader*
+Making the *nbgrader* package work is by far the trickiest part of teaching this course on Jupyterhub, but it's worth it, trust me. Grading becomes a whole lot easier and faster. The instructions below have worked for me in the past, but YMMV. 
 
 :::{warning}
 Currently, the latest version of `nbgrader` (0.6.2) has a bug that breaks the formgrader interface, which is fixed in the master branch on Github. So, _don't_ install `nbgrader` from PyPI (using `pip install nbgrader`), but install `nbgrader` from source as follow:
 
 ```
-sudo -E pip install git+https://github.com/jupyter/nbgrader.git@master
+sudo /opt/tljh/user/bin/pip install git+https://github.com/jupyter/nbgrader.git@master
 ```
 
 :::
@@ -110,7 +115,7 @@ Then, make sure there is a `nbgrader_config.py` file in the `~/.jupyter` folder.
 
 - `c.CourseDirectory.course_id` (e.g., "fMRI-introduction")
 - `c.CourseDirectory.root` (e.g., "/home/{your_admin_account}/NI-edu-admin/fMRI-introduction")
-- `c.ExecutePreprocessor.timeout` (I set it to `300`, because some exercises take a long time to run)
+- `c.ExecutePreprocessor.timeout` (I set it to `600`, because some exercises take a long time to run)
 
 Note: your Formgrader tab may not yet "find" your `nbgrader_config.py` file, so it'll complain about it. Restarting the Hub usually works:
 
@@ -121,7 +126,7 @@ sudo tljh-config reload hub
 Lastly, you need to add students to the database. Personally, I do that programatically using the command line interface of the *nbgrader* package but you can also do this manually in the Formgrader. Note: **you don't have to create the Linux accounts yourself!** This is handles by the Jupyterhub interface.
 
 :::{warning}
-Important: when adding users to the database, make sure you enter their Linux account name in the "Student ID" field (e.g., `jupyter-nim_01`), _not_ their Jupyterhub ID (e.g., `nim_01`). This is important because `nbgrader` only "knows" about the Linux accounts, not the Jupyterhub users. 
+Important: when adding users to the database, make sure you enter their Linux account name in the "Student ID" field (e.g., `jupyter-nim-01`), _not_ their Jupyterhub ID (e.g., `nim-01`). This is important because `nbgrader` only "knows" about the Linux accounts, not the Jupyterhub users. 
 :::
 
 ## Enable SSH
