@@ -33,6 +33,12 @@ sudo tljh-config add-item https.letsencrypt.domains neuroimaging.lukas-snoek.com
 
 Now, before you reload the proxy (`sudo tljh-config reload proxy`), you need to make sure that port 80 is actually accessible (which isn't the case for the TUX) because Letsencrypt will perform a "verification" necessary to enable SSL encryption. To do so, run `sudo ufw allow 80`. Then, run `sudo tljh-config reload proxy` and finally close port 80 again by running `sudo ufw delete allow 80`. 
 
+Finally, Jupyterhub communicates through port 443, so this needs to be open to the world! At the UvA, we restrict access to our servers (through any port) to the IP range of the UvA network, which means that you can only access the server if you're either at the UvA and connected to the UvA network or connected to the UvA VPN. To open up port 443 with restricted access to a particular IP address, run:
+
+```
+sudo ufw allow proto tcp from {your_ip_address} to any port 443
+```
+
 ### 3. Configure TLJH
 Second, I'd recommend increasing the idle timeout (i.e., maximum time in seconds that a server can be inactive before it will be shutdown). By default, each notebook server is shut down after 10 minutes of inactivity, which is a bit short. To increase this, run the following (to increase it to 24hrs):
 
