@@ -18,7 +18,7 @@ Read through the [TLJH installation manual](https://tljh.jupyter.org/en/latest/i
 
 Using the remote desktop, you can complete (sub)step 5-7 and step 2 of the manual ("Adding more users"). For example, you can add a co-teacher as "admin" to the course. For example, to add Lukas Snoek (Linux username: lukassnoek) as a co-teacher, go to the "Admin" tab in the Jupyterhub interface, click on "Add Users", and fill in his username (i.e., "lukassnoek", *not* "jupyter-lukassnoek") and check the "Admin" box.
 
-It is important to remember that no one will be able to access the Jupyterhub interface unless his/her username has been added ("whitelisted") using this interface (Admin tab; Add Users) &mdash; even if this person already has a Linux (or even Jupyterhub) account on the server!
+It is important to remember that no one will be able to access the Jupyterhub interface unless his/her username has been added ("whitelisted") using this interface (Admin tab &rarr Add Users) &mdash; even if this person already has a Linux (or even Jupyterhub) account on the server!
 
 You can skip step 3 ("Install conda / pip packages for all users") for now. We'll get to this later.
 
@@ -72,6 +72,21 @@ sudo tljh-config reload hub
 
 To check if everything worked, open a terminal in Jupyterhub (New &rarr Terminal) and run `Python -V`. It should print out "Python 3.8.5".
 
+### 5. Install `niedu`
+The NI-edu course materials basically consist of two elements: the tutorial notebooks and the `niedu` Python package. The latter contains some utilities used in the notebooks and, importantly, the test that check the answers to the programming exercises. The course materials (so notebooks + `niedu`) are hosted on Github: [https://github.com/lukassnoek/NI-edu-admin](https://github.com/lukassnoek/NI-edu-admin). Importantly, you need the *admin* version of the materials, not the student version (which has the same URL, but without the `-admin` suffix). If you don't have access to this, you can contact Lukas. 
+
+In a terminal on the server (not Jupyterhub!), download the course materials using `git` (`git clone https://github.com/lukassnoek/NI-edu-admin`). Then, install the `niedu` package by running the following command:
+
+```
+sudo /opt/tljh/user/bin/pip install ./NI-edu-admin
+```
+
+To check your installation at this point, you can run the following command in the root of the repository:
+
+```
+python test_course_enviroment.py
+```
+
 ## Installing *nbgrader*
 
 :::{warning}
@@ -108,21 +123,6 @@ Lastly, you need to add students to the database. Personally, I do that programa
 :::{warning}
 Important: when adding users to the database, make sure you enter their Linux account name in the "Student ID" field (e.g., `jupyter-nim_01`), _not_ their Jupyterhub ID (e.g., `nim_01`). This is important because `nbgrader` only "knows" about the Linux accounts, not the Jupyterhub users. 
 :::
-
-
-## Install `niedu`
-Finally, you need to install the `niedu` package for utilities and tests for the tutorials. 
-Now, you can install the `niedu` package as follows (note the period at the end, which is part of the command):
-
-```
-sudo -E pip install .
-```
-
-To check your installation at this point, you can run the following command in the root of the repository:
-
-```
-python test_course_enviroment.py
-```
 
 ## Enable SSH
 For some of the tutorials, students need to access the server through SSH (via X2Go). When Jupyterhub creates the student accounts, SSH is *not* enabled by default.  To do so, do the following *for every student account*:
