@@ -2,7 +2,7 @@ jupyter-book
 pytest
 nbval
 nbgrader
-nbconvert==5.6.1
+nbconvert==6.5.1
 traitlets==5.1.0
 jinja2==2.11.3
 markupsafe==2.0.1
