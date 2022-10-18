@@ -18,7 +18,7 @@ Read through the [TLJH installation manual](https://tljh.jupyter.org/en/latest/i
 
 Using the remote desktop, you can complete (sub)step 5-7 and step 2 of the manual ("Adding more users"). For example, you can add a co-teacher as "admin" to the course. For example, to add Lukas Snoek (Linux username: lukassnoek) as a co-teacher, go to the "Admin" tab in the Jupyterhub interface, click on "Add Users", and fill in his username (i.e., "lukassnoek", *not* "jupyter-lukassnoek") and check the "Admin" box.
 
-It is important to remember that no one will be able to access the Jupyterhub interface unless his/her username has been added ("whitelisted") using this interface (Admin tab &rarr Add Users) &mdash; even if this person already has a Linux (or even Jupyterhub) account on the server!
+It is important to remember that no one will be able to access the Jupyterhub interface unless his/her username has been added ("whitelisted") using this interface (Admin tab &rarr; Add Users) &mdash; even if this person already has a Linux (or even Jupyterhub) account on the server!
 
 You can skip step 3 ("Install conda / pip packages for all users") for now. We'll get to this later.
 
@@ -70,7 +70,7 @@ After installing a new Python version, you might need to restart the Jupyterhub 
 sudo tljh-config reload hub
 ```
 
-To check if everything worked, open a terminal in Jupyterhub (New &rarr Terminal) and run `Python -V`. It should print out "Python 3.8.5".
+To check if everything worked, open a terminal in Jupyterhub (New &rarr; Terminal) and run `Python -V`. It should print out "Python 3.8.5".
 
 ### 5. Install `niedu`
 The NI-edu course materials basically consist of two elements: the tutorial notebooks and the `niedu` Python package. The latter contains some utilities used in the notebooks and, importantly, the test that check the answers to the programming exercises. The course materials (so notebooks + `niedu`) are hosted on Github: [https://github.com/lukassnoek/NI-edu-admin](https://github.com/lukassnoek/NI-edu-admin). Importantly, you need the *admin* version of the materials, not the student version (which has the same URL, but without the `-admin` suffix). If you don't have access to this, you can contact Lukas. 
@@ -94,16 +94,7 @@ This should print out whether the Python and `niedu` installations are as expect
 ### 6. Installing/configuring *nbgrader*
 Making the *nbgrader* package work is by far the trickiest part of teaching this course on Jupyterhub, but it's worth it, trust me. Grading becomes a whole lot easier and faster. The instructions below have worked for me in the past, but YMMV. 
 
-:::{warning}
-Currently, the latest version of `nbgrader` (0.6.2) has a bug that breaks the formgrader interface, which is fixed in the master branch on Github. So, _don't_ install `nbgrader` from PyPI (using `pip install nbgrader`), but install `nbgrader` from source as follow:
-
-```
-sudo /opt/tljh/user/bin/pip install git+https://github.com/jupyter/nbgrader.git@master
-```
-
-:::
-
-Then, install the webinterface of the *nbgrader* package (including the Formgrader):
+Install the webinterface of the *nbgrader* package (including the Formgrader):
 
 ```
 sudo jupyter nbextension install --sys-prefix --py nbgrader --overwrite
@@ -119,7 +110,7 @@ Then, we need to make sure the `nbgrader_config.py` can be found by *nbgrader*. 
 
 Then, copy this file to the directory with the course materials (either `fMRI-introduction` or `fMRI-pattern-analysis`) *and* to the `~/.jupyter/` folder (e.g., `/home/{your_admin_account}/.jupyter/`). 
 
-Note: your Formgrader tab may not yet "find" your `nbgrader_config.py` file, so it'll complain about it. Restarting the Hub usually works (`sudo tljh-config reload hub`). 
+Note: your Formgrader tab may not yet "find" your `nbgrader_config.py` file, so it'll complain about it. Restarting the Hub usually works (`sudo tljh-config reload hub`). Alternatively, you can try restarting the hub from the Jupyterhub interface (Control Panel &rarr; Admin &rarr; Stop All &rarr; Shutdown Hub).
 
 Lastly, you need to add students to the database. Personally, I do that programatically using the command line interface of the *nbgrader* package but you can also do this manually in the Formgrader. Note: **you don't have to create the Linux accounts yourself!** This is handles by the Jupyterhub interface.
 
@@ -150,11 +141,11 @@ See the short troubleshooting guide when encountering issues.
 
 ### The formgrader is not loading
 
-Did you install `nbgrader` from PyPI (using `pip install nbgrader`) and is it version 0.6.2? Then reinstall nbgrader from source (`sudo /opt/tljh/user/bin/pip install git+https://github.com/jupyter/nbgrader.git@master`), reinstall the nbextension and serverextension, and reload the hub (`sudo tljh-config reload hub`).
+Try reinstalling nbgrader (`sudo /opt/tljh/user/bin/pip install -U nbgrader`), reinstall the nbextension and serverextension, and reload the hub (`sudo tljh-config reload hub`).
 
 ### Letsencrypt cannot renew the certificates
 
-Letsencrypt renews certificates using a test that uses port 80. At the UvA, we don't allow connections to this port, so the renewal will fail. To renew the certificates, temporarily open up port 80 (`sudo ufw allow 80`), run `sudo tljh-config reload proxy`, and close the port again (run `sudo ufw delete allow 80`).
+Letsencrypt renews certificates using a test that uses port 80. At the UvA, we don't allow connections to this port, so the automatic renewal after 3 months will fail. To renew the certificates, temporarily open up port 80 (`sudo ufw allow 80`), run `sudo tljh-config reload proxy`, and close the port again (run `sudo ufw delete allow 80`).
 
 ### A student cannot login even though it's their first time logging in!
 
