@@ -1,5 +1,13 @@
+# <h1>Table of Contents<span class="tocSkip"></span></h1>
+# <div class="toc"><ul class="toc-item"></ul></div>
+
 import os.path as op
 import numpy as np
+import matplotlib.pyplot as plt
+from scipy.stats import spearmanr
+import seaborn as sns
+from scipy.spatial.distance import squareform
+from scipy.stats import rankdata
 
 
 def generate_labels(con, N_per_con, p=[0.7, 0.3]):
@@ -55,3 +63,60 @@ def filter_pattern_drift(R, deg=8):
     # Remove estimated low frequencies from data (R)
     R_filt = R - low_freq
     return R_filt
+
+
+def show_rankRDM(rdm, ax = None, label=None):
+    sns.set_context('poster')
+    if ax == None:
+        plt.figure()
+        plt.imshow(squareform(rankdata(squareform(rdm))))
+        plt.title(label)
+        plt.axis('off')
+        plt.show()
+    else:
+        ax.imshow(squareform(rankdata(squareform(rdm))))
+        ax.set_title(label)
+        ax.axis('off')
+
+        return ax
+
+
+# Bootstrapping
+def corr_variability(mean_rdm_vec, feature_rdm_vec, iterations=100):
+
+    rdm_corr_boots = []
+    for i in range(iterations):
+        if i%10 == 0:
+            print('Iteration: ' + str(i) )
+        # Create a random index that respects the structure of an rdm.
+        sample = np.random.choice(mean_rdm_vec.shape[0],mean_rdm_vec.shape[0],replace=True) # note that now replace is True
+
+        # Subsample from both the reference and the feature RDM
+        mean_rdm_sample = mean_rdm_vec[sample] 
+        feature_rdm_sample = feature_rdm_vec[sample] 
+
+        # correlating with neural similarty matrix
+        rdm_corr_boots.append(spearmanr(mean_rdm_sample, feature_rdm_sample)[0])
+
+    return rdm_corr_boots
+
+
+
+# Statistical significance
+def corr_nullDist(mean_rdm, feature_rdm_vec, iterations=100):
+    rdm_corr_null = []
+    for i in range(iterations):
+        if i%10 == 0:
+            print('Iteration: ' + str(i) )
+        # Create a random index that respects the structure of an rdm.
+        shuffle = np.random.choice(mean_rdm.shape[0],mean_rdm.shape[0],replace=False)
+
+        # shuffle RDM consistently for both dims
+        mean_rdm_shuffle = mean_rdm[shuffle,:] # rows
+        mean_rdm_shuffle = mean_rdm_shuffle[:,shuffle] # columns
+
+        # correlating with neural similarty matrix
+        rdm_corr_null.append(spearmanr(squareform(mean_rdm_shuffle), feature_rdm_vec)[0])
+    return rdm_corr_null
+
+

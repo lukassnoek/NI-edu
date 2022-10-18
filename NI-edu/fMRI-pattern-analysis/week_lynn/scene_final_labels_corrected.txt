@@ -1,0 +1,251 @@
+,original category,corrected category
+0,readingroom,reading room
+1,office,office
+2,deck,deck
+3,promenadeDeck,promenade deck
+4,MRI,MRI
+5,factory,factory
+6,sushibar,sushi bar
+7,cornfield,corn field
+8,hardwarestore,hardware store
+9,greenhouse,greenhouse
+10,bedroom,bedroom
+11,labClass,lab class
+12,warehouseoutside,warehouse outside
+13,livingroom,living room
+14,tenniscourt,tennis court
+15,frontFoyer,front foyer
+16,hotellobby,hotel lobby
+17,courthouse,courthouse
+18,icecream,ice cream
+19,pier,pier
+20,citystreet,city street
+21,cemetery,cemetery
+22,lake,lake
+23,pharmacy,pharmacy
+24,churchInside,church inside
+25,trainStation,train station
+26,bowlingalley,bowling alley
+27,drymountains,dry mountains
+28,observatory,observatory
+29,garbagedump,garbage dump
+30,horsebarn,horse barn
+31,copyroom,copy room
+32,lookout,lookout
+33,gasstation,gas station
+34,sculpturegarden,sculpture garden
+35,bathroomSink,bathroom sink
+36,treehouse,tree house
+37,dock,dock
+38,frontLawn,front lawn
+39,homeoffice,home office
+40,courtroom,courtroom
+41,basement,basement
+42,fireplace,fireplace
+43,track,track
+44,mallindoor,mall indoor
+45,firestation,fire station
+46,bar,bar
+47,skatepark,skate park
+48,coralreef,coral reef
+49,gazebo,gazebo
+50,flowershop,flower shop
+51,fishmarket,fish market
+52,appleorchard,apple orchard
+53,fabricstore,fabric store
+54,dinosaur,dinosaur
+55,nursery,nursery
+56,campusquad,campus quad
+57,van_interior,van interior
+58,sandDunes_desert_outdoor,sand dunes desert outdoor
+59,sidewalk,sidewalk
+60,ShowJumping,show jumping
+61,hometheater,home theater
+62,windmill,windmill
+63,HorseRaceTrack,horse race track
+64,concert,concert
+65,baggageClaim,baggage claim
+66,artStudio,art studio
+67,hotelRoom,hotel room
+68,pantry,pantry
+69,driveway,driveway
+70,pasture,pasture
+71,glaciers_outdoor,glaciers outdoor
+72,golfcourse,golf course
+73,amusement,amusement
+74,airplanecabin,airplane cabin
+75,cargo,cargo
+76,publicrestroom,public restroom
+77,ticket_counter,ticket counter
+78,dancestudio,dance studio
+79,staircase,staircase
+80,closet,closet
+81,exerciseequipment,exercise equipment
+82,soccerfield,soccer field
+83,dining_car,dining car
+84,fireEscape,fire escape
+85,basketballcourt,basketball court
+86,dugout,dugout
+87,farm,farm
+88,clothingstore,clothing store
+89,wineVineyard,wine vineyard
+90,fountain,fountain
+91,playground,playground
+92,skislope,ski slope
+93,martialartsclass,martial arts class
+94,pizzeria,pizzeria
+95,frontDoor,front door
+96,brewery,brewery
+97,highway,highway
+98,carmechanic,car mechanic
+99,concerthall,concert hall
+100,nailsalon,nail salon
+101,baywindow,bay window
+102,bridalboutique,bridal boutique
+103,bikerack,bike rack
+104,cockpit,cockpit
+105,childsroom,child's room
+106,parkinggarage,parking garage
+107,baseball,baseball
+108,aquarium,aquarium
+109,rooftop,rooftop
+110,parkinglot,parking lot
+111,kitchen,kitchen
+112,homegarden,home garden
+113,diner,diner
+114,restaurant,restaurant
+115,metroInside,metro inside
+116,island,island
+117,casino,casino
+118,cabinIndoors,cabin indoors
+119,photographer_studio,photographer studio
+120,grocerystore,grocery store
+121,rainforest,rainforest
+122,carwash,carwash
+123,foodcourt,foodcourt
+124,castle,castle
+125,drycleaners,dry cleaners
+126,RVinside,RV inside
+127,bridge,bridge
+128,ISS,ISS
+129,lightingstore,lighting store
+130,ATM,ATM
+131,forestpath,forest path
+132,shoestore,shoe store
+133,eyeglassstore,eyeglass store
+134,canyon,canyon
+135,church,church
+136,cafeteria,cafeteria
+137,cubicle,cubicle
+138,conference,conference
+139,bakerykitchen,bakery kitchen
+140,tailor,tailor
+141,olympicswimmingpool,olympic swimming pool
+142,arcade,arcade
+143,greenmountains,green mountains
+144,museum,museum
+145,footballstadium,football stadium
+146,attic,attic
+147,postoffice,post office
+148,farmersmarket,farmers market
+149,musicStore,music store
+150,banquetHall,banquet hall
+151,chickenCoop,chicken coop
+152,volleyballcourt,volleyball court
+153,liquorstore,liquor store
+154,cabin,cabin
+155,winebarrel,wine barrel
+156,constructionSite,construction site
+157,porch,porch
+158,squashcourt,squash court
+159,park,park
+160,hut,hut
+161,dentist,dentist
+162,hospitalroom,hospital room
+163,diningroom,dining room
+164,sandbox,sandbox
+165,stripmall,strip mall
+166,snowmountains,snow mountains
+167,poolhall,pool hall
+168,tvstudio,tv studio
+169,balconyOUT,balcony out
+170,jewelrystore,jewelry store
+171,chemicalplant,chemical plant
+172,hayfield,hayfield
+173,pavilion,pavilion
+174,lockerroom,locker room
+175,runway,runway
+176,dollhouse,dollhouse
+177,kindergarten_classroom,kindergarten classroom
+178,ruralroad,rural road
+179,shower,shower
+180,tollbooth,tollbooth
+181,desertvegetation,desert vegetation
+182,barbershop,barbershop
+183,airportTerminal,airport terminal
+184,wrestlingring,wrestling ring
+185,shootingrange,shooting range
+186,swimmingpool,swimmingpool
+187,savanna,savanna
+188,breakroom,breakroom
+189,weightroom,weightroom
+190,balconyIN,balcony in
+191,campsite,campsite
+192,circus,circus
+193,alley,alley
+194,movie_theater,movie theater
+195,planetarium,planetarium
+196,boardwalk,boardwalk
+197,whitewaterrapids,whitewater rapids
+198,minigolf,minigolf
+199,hedgemaze,hedge maze
+200,pond,pond
+201,restaurantkitchen,restaurant kitchen
+202,stream_outdoor,stream outdoor
+203,waitingroom,waiting room
+204,bistrooutdoor,bistro outdoor
+205,hottub,hot tub
+206,doctor,doctor
+207,bleachers,bleachers
+208,cave,cave
+209,operatingroom,operating room
+210,cabana,cabana
+211,apartmentBuilding,apartment building
+212,applestore,apple store
+213,bambooforest,bamboo forest
+214,bus_shelter,bus shelter
+215,warehouse,warehouse
+216,recordingstudio,recording studio
+217,beach,beach
+218,library_aisle,library aisle
+219,pub,pub
+220,hallway,hallway
+221,waterfall_outdoor,waterfall outdoor
+222,ballroom,ballroom
+223,elevatorOutside,elevator outside
+224,botanicalGarden,botanical garden
+225,coffeeshop,coffee shop
+226,homegarage,home garage
+227,dormroom,dorm room
+228,lab,lab
+229,checkoutcounter,checkout counter
+230,yogastudio,yoga studio
+231,ice_rink,ice rink
+232,onboat,on boat
+233,backstage,backstage
+234,playroom,playroom
+235,backyard,backyard
+236,carFactory,car factory
+237,cliff,cliff
+238,classroom,classroom
+239,sparoom,spa room
+240,fittingroom,fitting room
+241,theater,theater
+242,newsstand,newsstand
+243,bakery,bakery
+244,harbor,harbor
+245,jail,jail
+246,auto_showroom,auto showroom
+247,racecarcourse,race car course
+248,laundromat,laundromat
+249,igloo,igloo
