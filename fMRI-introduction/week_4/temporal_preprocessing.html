@@ -7,8 +7,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Temporal preprocessing &#8212; NI-edu</title>
     
-  <link href="../../_static/css/theme.css" rel="stylesheet">
-  <link href="../../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
 
     
   <link rel="stylesheet"
@@ -18,20 +19,16 @@
   <link rel="preload" as="font" type="font/woff2" crossorigin
     href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
 
-    
-      
-
-    
     <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
+    <link rel="stylesheet" href="../../_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/mystnb.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
     
-  <link rel="preload" as="script" href="../../_static/js/index.be7d3bbb2ef33a8344ce.js">
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
 
     <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
     <script src="../../_static/jquery.js"></script>
@@ -39,12 +36,13 @@
     <script src="../../_static/doctools.js"></script>
     <script src="../../_static/clipboard.min.js"></script>
     <script src="../../_static/copybutton.js"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
     <script src="../../_static/togglebutton.js"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
-    <script src="../../_static/sphinx-book-theme.d59cb220de22ca1c485ebbdc042f0030.js"></script>
+    <script src="../../_static/design-tabs.js"></script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
 const thebe_selector = ".thebe,.cell"
 const thebe_selector_input = "pre"
@@ -66,7 +64,21 @@ const thebe_selector_output = ".output, .cell_output"
     <!-- Google Analytics -->
     
   </head>
-  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
+
     
     <div class="container-fluid" id="banner"></div>
 
@@ -75,9 +87,10 @@ const thebe_selector_output = ".output, .cell_output"
     <div class="container-xl">
       <div class="row">
           
-<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
-    
-        <div class="navbar-brand-box">
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
     <a class="navbar-brand text-wrap" href="../../index.html">
       
         <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
@@ -95,14 +108,15 @@ const thebe_selector_output = ".output, .cell_output"
   <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
 </form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item active">
-        <ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="../../index.html">
-   Welcome to NI-edu
-  </a>
- </li>
-</ul>
-<p aria-level="2" class="caption" role="heading">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../../index.html">
+                    Welcome to NI-edu
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading">
  <span class="caption-text">
   Getting started
  </span>
@@ -346,115 +360,244 @@ const thebe_selector_output = ".output, .cell_output"
 </ul>
 
     </div>
-</nav> <!-- To handle the deprecated key -->
-
-<div class="navbar_extra_footer">
-  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
-</div>
-
-</div>
-
-
-          
-
-
-          
-<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
-    
-    <div class="topbar container-xl fixed-top">
-    <div class="topbar-contents row">
-        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
-        <div class="col pl-md-4 topbar-main">
+</nav></div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
             
-            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
-                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
-                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
-                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
-                <i class="fas fa-bars"></i>
-                <i class="fas fa-arrow-left"></i>
-                <i class="fas fa-arrow-up"></i>
-            </button>
-            
-            
-<div class="dropdown-buttons-trigger">
-    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
-            class="fas fa-download"></i></button>
-
-    <div class="dropdown-buttons">
-        <!-- ipynb file if we had a myst markdown file -->
-        
-        <!-- Download raw file -->
-        <a class="dropdown-buttons" href="../../_sources/fMRI-introduction/week_4/temporal_preprocessing.ipynb"><button type="button"
-                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
-                data-placement="left">.ipynb</button></a>
-        <!-- Download PDF via print -->
-        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
-                onclick="printPdf(this)" data-toggle="tooltip" data-placement="left">.pdf</button>
-    </div>
-</div>
-
-            <!-- Source interaction buttons -->
-
-<div class="dropdown-buttons-trigger">
-    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
-        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
-    <div class="dropdown-buttons sourcebuttons">
-        <a class="repository-button"
-            href="https://github.com/lukassnoek/NI-edu"><button type="button" class="btn btn-secondary topbarbtn"
-                data-toggle="tooltip" data-placement="left" title="Source repository"><i
-                    class="fab fa-github"></i>repository</button></a>
-        <a class="issues-button"
-            href="https://github.com/lukassnoek/NI-edu/issues/new?title=Issue%20on%20page%20%2FfMRI-introduction/week_4/temporal_preprocessing.html&body=Your%20issue%20content%20here."><button
-                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
-                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
-        <a class="edit-button" href="https://github.com/lukassnoek/NI-edu/edit/master/NI-edu/fMRI-introduction/week_4/temporal_preprocessing.ipynb"><button
-                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
-                title="Edit this page"><i class="fas fa-pencil-alt"></i>suggest edit</button></a>
-    </div>
-</div>
-
-            <!-- Full screen (wrap in <a> to have style consistency -->
-
-<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
-        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
-        title="Fullscreen mode"><i
-            class="fas fa-expand"></i></button></a>
-
-            <!-- Launch buttons -->
-
-<div class="dropdown-buttons-trigger">
-    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
-        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
-    <div class="dropdown-buttons">
-        
-        <a class="binder-button" href="https://mybinder.org/v2/gh/lukassnoek/NI-edu/master?urlpath=tree/NI-edu/fMRI-introduction/week_4/temporal_preprocessing.ipynb"><button type="button"
-                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
-                data-placement="left"><img class="binder-button-logo"
-                    src="../../_static/images/logo_binder.svg"
-                    alt="Interact on binder">Binder</button></a>
-        
-        
-        <a class="jupyterhub-button" href="https://neuroimaging.lukas-snoek.com/hub/user-redirect/git-pull?repo=https://github.com/lukassnoek/NI-edu&urlpath=tree/NI-edu/NI-edu/fMRI-introduction/week_4/temporal_preprocessing.ipynb&branch=master"><button type="button"
-                class="btn btn-secondary topbarbtn" title="Launch JupyterHub" data-toggle="tooltip"
-                data-placement="left"><img class="jupyterhub-button-logo"
-                    src="../../_static/images/logo_jupyterhub.svg"
-                    alt="Interact on JupyterHub">JupyterHub</button></a>
-        
-        
-        
-    </div>
-</div>
-
-        </div>
-
-        <!-- Table of contents -->
-        <div class="d-none d-md-block col-md-2 bd-toc show noprint">
-            
-            <div class="tocsection onthispage pt-5 pb-3">
-                <i class="fas fa-list"></i> Contents
+            <div class="navbar_extra_footer">
+            Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
             </div>
-            <nav id="bd-toc-nav" aria-label="Page">
-                <ul class="visible nav section-nav flex-column">
+            
+        </div>
+    </div>
+    <div id="rtd-footer-container"></div>
+</div>
+
+
+          
+
+
+          
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
+    
+    <div class="header-article row sticky-top noprint">
+        
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+<div class="menu-dropdown menu-dropdown-launch-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Launch interactive content">
+      <i class="fas fa-rocket"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://mybinder.org/v2/gh/lukassnoek/NI-edu/master?urlpath=tree/NI-edu/fMRI-introduction/week_4/temporal_preprocessing.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Launch on Binder"
+>
+  
+
+<span class="headerbtn__icon-container">
+  
+    <img src="../../_static/images/logo_binder.svg">
+  </span>
+<span class="headerbtn__text-container">Binder</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="https://neuroimaging.lukas-snoek.com/hub/user-redirect/git-pull?repo=https%3A//github.com/lukassnoek/NI-edu&urlpath=tree/NI-edu/NI-edu/fMRI-introduction/week_4/temporal_preprocessing.ipynb&branch=master"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Launch on JupyterHub"
+>
+  
+
+<span class="headerbtn__icon-container">
+  
+    <img src="../../_static/images/logo_jupyterhub.svg">
+  </span>
+<span class="headerbtn__text-container">JupyterHub</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+<div class="menu-dropdown menu-dropdown-repository-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Source repositories">
+      <i class="fab fa-github"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://github.com/lukassnoek/NI-edu"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Source repository"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="headerbtn__text-container">repository</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="https://github.com/lukassnoek/NI-edu/issues/new?title=Issue%20on%20page%20%2FfMRI-introduction/week_4/temporal_preprocessing.html&body=Your%20issue%20content%20here."
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Open an issue"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="headerbtn__text-container">open issue</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="https://github.com/lukassnoek/NI-edu/edit/master/NI-edu/fMRI-introduction/week_4/temporal_preprocessing.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Edit this page"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-pencil-alt"></i>
+  </span>
+<span class="headerbtn__text-container">suggest edit</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<div class="menu-dropdown menu-dropdown-download-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Download this page">
+      <i class="fas fa-download"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="../../_sources/fMRI-introduction/week_4/temporal_preprocessing.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="headerbtn__text-container">.ipynb</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="printPdf(this)"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="headerbtn__text-container">.pdf</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
+
+    </div>
+</div>
+
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#introduction">
    Introduction
@@ -554,12 +697,11 @@ const thebe_selector_output = ".output, .cell_output"
  </li>
 </ul>
 
-            </nav>
-        </div>
-    </div>
+    </nav>
 </div>
-    <div id="main-content" class="row">
-        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
             <!-- Table of contents that is only displayed when printing the page -->
             <div id="jb-print-docs-body" class="onlyprint">
                 <h1>Temporal preprocessing</h1>
@@ -675,11 +817,12 @@ const thebe_selector_output = ".output, .cell_output"
                     </div>
                 </div>
             </div>
-            
+            <main id="main-content" role="main">
+                
               <div>
                 
   <div class="tex2jax_ignore mathjax_ignore section" id="temporal-preprocessing">
-<h1>Temporal preprocessing<a class="headerlink" href="#temporal-preprocessing" title="Permalink to this headline">¶</a></h1>
+<h1>Temporal preprocessing<a class="headerlink" href="#temporal-preprocessing" title="Permalink to this headline">#</a></h1>
 <p>Preprocessing of (f)MRI data is quite a complex topic, involving techniques from signal processing (filtering), linear algebra/statistics (prewhitening, autocorrelation correction), and numerical optimization (image registration). Additionally, there is ongoing discussion about which preprocessing steps are necessary/sufficient and what preprocessing parameters are optimal. As always, this depends on your specific research question, the type and quality of your data, and the intended analysis.</p>
 <p>In this week, we’ll discuss a couple (not all!) of preprocessing steps that are common in univariate fMRI analyses across two notebooks, one discussing temporal processing (the current notebook) and one discussing spatial preprocessing (the next notebook, <code class="docutils literal notranslate"><span class="pre">spatial_preprocessing.ipynb</span></code>).</p>
 <p><strong>What you’ll learn</strong>: after this lab, you’ll …</p>
@@ -693,24 +836,24 @@ const thebe_selector_output = ".output, .cell_output"
 </ul>
 <p><strong>Estimated time needed to complete</strong>: 8-12 hours</p>
 <div class="section" id="introduction">
-<h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h2>
+<h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">#</a></h2>
 <p>As we said before, preprocessing is a topic that almost warrants its own course. Nonetheless, we’ll try to show you (and let you practice with) some of the most common and important preprocessing operations. Additionally, we’ll introduce the concept of the fast fourier transform, which allows us to analyze our signal in the frequency domain, which helps to understand several preprocessing steps, such as temporal filtering.</p>
 <div class="section" id="the-t-value-formula-yet-again">
-<h3>The <em>t</em>-value formula — yet again<a class="headerlink" href="#the-t-value-formula-yet-again" title="Permalink to this headline">¶</a></h3>
+<h3>The <em>t</em>-value formula — yet again<a class="headerlink" href="#the-t-value-formula-yet-again" title="Permalink to this headline">#</a></h3>
 <p>The previous two weeks, you have learned that, essentially, we want to find large effects (calculated as <em>t</em>-values) of our contrasts by optimizing various parts of the <em>t</em>-value formula. Conceptually, the <em>t</em>-value formula for a particular contrast (<span class="math notranslate nohighlight">\(\mathbf{c}\)</span>) can be written as:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-5e0bab24-8bc1-4a9f-84cf-659dd1dce08f">
-<span class="eqno">(47)<a class="headerlink" href="#equation-5e0bab24-8bc1-4a9f-84cf-659dd1dce08f" title="Permalink to this equation">¶</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-14bed9d1-aad9-404a-b856-4ab685f24af3">
+<span class="eqno">(47)<a class="headerlink" href="#equation-14bed9d1-aad9-404a-b856-4ab685f24af3" title="Permalink to this equation">#</a></span>\[\begin{align}
 t\mathrm{-value} = \frac{\mathrm{effect}}{\mathrm{uncertainty}} = \frac{\mathrm{effect}}{\sqrt{\mathrm{noise} \cdot \mathrm{design\ variance}}} = \frac{\mathbf{c}\hat{\beta}}{\sqrt{\hat{\sigma}^{2}\mathbf{c}(\mathbf{X}^{T}\mathbf{X})^{-1}\mathbf{c}^{T}}}
 \end{align}\]</div>
 <p>Last week you’ve learned that by ensuring low design variance (through <em>high</em> predictor variance and <em>low</em> predictor correlations) leads to larger normalized effects (higher <em>t</em>-values). This week, we will discuss the other term of the denominator of this formula: the noise (also called the residual variance or unexplained variance), which is defined in the <em>t</em>-value formula as follows:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-dda9cb3d-1e3d-4803-9c8d-b82643cbee46">
-<span class="eqno">(48)<a class="headerlink" href="#equation-dda9cb3d-1e3d-4803-9c8d-b82643cbee46" title="Permalink to this equation">¶</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-bbebefe0-c108-4032-93f1-bedb6cf340f0">
+<span class="eqno">(48)<a class="headerlink" href="#equation-bbebefe0-c108-4032-93f1-bedb6cf340f0" title="Permalink to this equation">#</a></span>\[\begin{align}
 \mathrm{noise} = \frac{\mathrm{SSE}}{\mathrm{DF}} = \frac{\sum_{i=1}^{N}(y_{i} - \hat{y}_{i})^{2}}{N - P}
 \end{align}\]</div>
 <p>Through preprocessing, we aim to reduce the difference between our prediction (<span class="math notranslate nohighlight">\(\hat{\mathbf{y}}\)</span>) and our true signal (<span class="math notranslate nohighlight">\(\mathbf{y}\)</span>), thus reducing the noise-term of the formula and thereby optimizing our (“normalized”) effects.</p>
 </div>
 <div class="section" id="on-temporal-vs-spatial-preprocessing">
-<h3>On temporal vs. spatial preprocessing<a class="headerlink" href="#on-temporal-vs-spatial-preprocessing" title="Permalink to this headline">¶</a></h3>
+<h3>On temporal vs. spatial preprocessing<a class="headerlink" href="#on-temporal-vs-spatial-preprocessing" title="Permalink to this headline">#</a></h3>
 <p>Roughly speaking, you can divide fMRI preprocessing into two types of operations: temporal and spatial. Temporal preprocessing involves operations that filter or otherwise affect the properties of your data across the time dimension (i.e., the time series). This is, of course, only applicable to <em>functional</em> MRI data (not structural or diffusion MRI). Examples of temporal operations are high-pass filtering and slice-time correction. Spatial preprocessing involves operations that filter or otherwise affect the spatial properties of your data (such as spatial orienatation, resolution, and shape). Examples of these spatial operations are spatial filtering (“smoothing”), distortion correction, motion correction (realignment), and spatial normalization/resampling.</p>
 <p>In this lab, we’ll discuss these operations per theme: we’ll start with temporal operations and then move to spatial operations. Note that this <em>is not</em> the order in which data is usually preprocessed (see page 35 of the “Handbook of functional MRI Data Anslysis” textbook).</p>
 <p>Let’s start with temporal preprocessing.</p>
@@ -733,10 +876,10 @@ t\mathrm{-value} = \frac{\mathrm{effect}}{\mathrm{uncertainty}} = \frac{\mathrm{
 </div>
 </div>
 <div class="section" id="id1">
-<h2>Temporal preprocessing<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
+<h2>Temporal preprocessing<a class="headerlink" href="#id1" title="Permalink to this headline">#</a></h2>
 <p>In this section, we will discuss how temporal preprocessing may greatly reduce the error term of our statistics. We’ll also delve into a variant of the GLM that deals with autocorrelation in our signals appropriately (“generalized least squares”, or GLS).</p>
 <div class="section" id="slice-time-correction">
-<h3>Slice-time correction<a class="headerlink" href="#slice-time-correction" title="Permalink to this headline">¶</a></h3>
+<h3>Slice-time correction<a class="headerlink" href="#slice-time-correction" title="Permalink to this headline">#</a></h3>
 <p>Slice-time correction is a temporal resampling technique that corrects for the fact that, in (most) BOLD-MRI scan sequences, volumes are acquired slice by slice. This means that each slices is acquired at a slightly different time. For example, suppose that we are acquiring an fMRI run with a TR of 2 seconds and our volumes consist of 40 slices (acquired axially, inferior → superior). In this case, the acquisition of each slice takes <span class="math notranslate nohighlight">\(\frac{TR}{N_{slice}} = \frac{2}{40} = 0.05\)</span> seconds (let’s call this <code class="docutils literal notranslate"><span class="pre">dt</span></code>). This means that, for the very first volume, the “onset” of the first slice is at 0 seconds (and lasts until 0.05 seconds), while the onset of the last slice is at 1.95 (and lasts until 2.00 seconds). In code, we can calculate these slice onsets <strong>within a volume</strong> using the <code class="docutils literal notranslate"><span class="pre">np.linspace(start,</span> <span class="pre">stop,</span> <span class="pre">n_steps)</span></code> function:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -969,7 +1112,7 @@ Tip 5: plot your data before and after slice-time correction to see whether it w
 </div>
 </div>
 <div class="section" id="a-short-primer-on-the-frequency-domain-and-the-fourier-transform">
-<h3>A short primer on the frequency domain and the Fourier transform<a class="headerlink" href="#a-short-primer-on-the-frequency-domain-and-the-fourier-transform" title="Permalink to this headline">¶</a></h3>
+<h3>A short primer on the frequency domain and the Fourier transform<a class="headerlink" href="#a-short-primer-on-the-frequency-domain-and-the-fourier-transform" title="Permalink to this headline">#</a></h3>
 <p>Now, before we’ll delve into important temporal preprocessing operations, let’s discuss how we can represent time series in the frequency domain using the Fourier transform.</p>
 <p>Thus far, we’ve always looked at our fMRI-signal as activity that varies across <strong>time</strong>. In other words, we’re always looking at the signal in the <em>time domain</em>. However, there is also a way to look at a signal in the <em>frequency domain</em> (also called ‘spectral domain’) through transforming the signal using the <em>Fourier transform</em>.</p>
 <p>Basically, the fourier transform calculates to which degree sine waves of different frequencies are present in your signal. If a sine wave of a certain frequency (let’s say 2 hertz) is (relatively) strongly present in your signal, it will have a (relatively) high <em>power</em> in the frequency domain. Thus, looking at the frequency domain of a signal can tell you something about the frequencies of the (different) sources underlying your signal.</p>
@@ -1100,7 +1243,7 @@ Tip 5: plot your data before and after slice-time correction to see whether it w
 <p>Now you know that you can use visualization of the signal in the frequency domain to help you understand from which underlying frequencies your signal is built up. Unfortunately, real fMRI data is not so ‘clean’ as the simulated sine waves we have used here, but the frequency representation of the fMRI signal can still tell us a lot about the nature and contributions of different (noise- and signal-related) sources!</p>
 </div>
 <div class="section" id="frequency-characteristics-of-fmri-data">
-<h3>Frequency characteristics of fMRI data<a class="headerlink" href="#frequency-characteristics-of-fmri-data" title="Permalink to this headline">¶</a></h3>
+<h3>Frequency characteristics of fMRI data<a class="headerlink" href="#frequency-characteristics-of-fmri-data" title="Permalink to this headline">#</a></h3>
 <p>Now, we will load a (much noisier) voxel signal and the corresponding design-matrix (which has just one predictor apart from the intercept). The signal was measured with a TR of 2 seconds and contains 300 volumes (timepoints), so the duration was 600 seconds. The predictor reflects an experiment in which we showed 15 stimuli in intervals of 40 seconds (i.e., one stimulus every 40 seconds).</p>
 <p>We’ll plot both the signal (<span class="math notranslate nohighlight">\(y\)</span>) and the design-matrix (<span class="math notranslate nohighlight">\(X\)</span>; without intercept):</p>
 <div class="cell docutils container">
@@ -1208,7 +1351,7 @@ Shape of y (sig): (300,)
 </div><p>YOUR ANSWER HERE</p>
 </div>
 <div class="section" id="two-approaches-to-temporal-preprocessing">
-<h3>Two approaches to temporal preprocessing<a class="headerlink" href="#two-approaches-to-temporal-preprocessing" title="Permalink to this headline">¶</a></h3>
+<h3>Two approaches to temporal preprocessing<a class="headerlink" href="#two-approaches-to-temporal-preprocessing" title="Permalink to this headline">#</a></h3>
 <p>Basically, there are <em>two</em> ways to preprocess your data:</p>
 <ol class="simple">
 <li><p>Manipulating the signal (<span class="math notranslate nohighlight">\(\mathbf{y}\)</span>) <strong>directly</strong> <em>before</em> fitting your GLM-model;</p></li>
@@ -1218,7 +1361,7 @@ Shape of y (sig): (300,)
 <p>First, we will discuss how temporal and spatial filtering can <em>directly</em> filter the signal (method 1) to reduce error. Later in the tutorial, we will discuss including adding outlier-predictors and motion-predictors to the design to reduce noise (method 2).</p>
 </div>
 <div class="section" id="high-pass-filtering-of-fmri-data-option-1">
-<h3>High-pass filtering of fMRI data (option 1)<a class="headerlink" href="#high-pass-filtering-of-fmri-data-option-1" title="Permalink to this headline">¶</a></h3>
+<h3>High-pass filtering of fMRI data (option 1)<a class="headerlink" href="#high-pass-filtering-of-fmri-data-option-1" title="Permalink to this headline">#</a></h3>
 <p>From the previous ToDo, you probably noticed that the fit of the predictor to the model was not very good. The cause for this is the slow ‘drift’ — a low-frequency signal — that prevents the model from a good fit. Using a high-pass filter — meaning that you <em>remove</em> the low-frequency signals and thus <em>pass only the high frequencies</em> — can, for this reason, improve the model fit. But before we go on with actually high-pass filtering the signal, let’s take a look at the frequency domain representation of our voxel signal:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1258,8 +1401,8 @@ Shape of y (sig): (300,)
 </div>
 </div>
 <p>The <code class="docutils literal notranslate"><span class="pre">gaussian_filter</span></code> function takes two mandatory input: some kind of (n-dimensional) signal and a cutoff, “sigma”, that refers to the width of the gaussian filter in standard deviations. “What? We decided to define our cutoff in seconds (or, equivalently, Hz), right?”, you might think. For some reason neuroimaging packages seem to define cutoff for their temporal filters in <strong>seconds</strong> while more ‘low-level’ filter implementations (such as in scipy) define cutoffs (of gaussian filters) in <strong>the width of the gaussial filter</strong>, i.e., <strong>sigma</strong>. Fortunately, there is an easy way to convert a cutoff in seconds to a cutoff in sigma, given a particular TR (in seconds):</p>
-<div class="amsmath math notranslate nohighlight" id="equation-65929f92-a514-450a-bad8-5fa4a2626868">
-<span class="eqno">(49)<a class="headerlink" href="#equation-65929f92-a514-450a-bad8-5fa4a2626868" title="Permalink to this equation">¶</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-d3775616-b1e6-47e9-8a2b-f0b4af8dcc1d">
+<span class="eqno">(49)<a class="headerlink" href="#equation-d3775616-b1e6-47e9-8a2b-f0b4af8dcc1d" title="Permalink to this equation">#</a></span>\[\begin{align}
 \sigma = \frac{\mathrm{cutoff}_{sec}}{\sqrt{8\ln{2}} \cdot \mathrm{TR}_{sec}}
 \end{align}\]</div>
 <p>where <span class="math notranslate nohighlight">\(\ln{2}\)</span> refers to the natural logarithm (i.e., log with base <span class="math notranslate nohighlight">\(e\)</span>).</p>
@@ -1412,10 +1555,10 @@ Shape of y (sig): (300,)
 <p>Technically, by filtering each column (predictor) in your design matrix as well, you’re orthogonalizing your design matrix with respect to your temporal high-pass filter. If you want to know more about this, check out <a href="https://onlinelibrary.wiley.com/doi/full/10.1002/hbm.24528">this excellent paper</a>.</p>
 </div></div>
 <div class="section" id="high-pass-filtering-of-fmri-data-option-2">
-<h3>High-pass filtering of fMRI data (option 2)<a class="headerlink" href="#high-pass-filtering-of-fmri-data-option-2" title="Permalink to this headline">¶</a></h3>
+<h3>High-pass filtering of fMRI data (option 2)<a class="headerlink" href="#high-pass-filtering-of-fmri-data-option-2" title="Permalink to this headline">#</a></h3>
 <p>As we’ve seen, high-pass filtering using a “running line smoother” is an operation that is applied to the signal directly (before model fitting) to reduce the noise term. Another way to reduce the noise term is to include <em>noise regressors</em> (also called ‘nuisance variables/regressors’) in the design matrix. As such, we can subdivide our design matrix into “predictors of interest” (which are included to model the task/stimuli) and “noise predictors” (which aim to model the thus-far unmodelled variance). These “noise predictors” are also sometimes called “nuisance” predictors/regressors/covariates. We can now slightly reformulate our linear regression equation by dividing our design into two components, <span class="math notranslate nohighlight">\(\mathbf{X}_{\mathrm{interest}}\)</span> and <span class="math notranslate nohighlight">\(\mathbf{X}_{\mathrm{noise}}\)</span>:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-49583e0f-a152-426d-b4c1-514bf24c5fd9">
-<span class="eqno">(50)<a class="headerlink" href="#equation-49583e0f-a152-426d-b4c1-514bf24c5fd9" title="Permalink to this equation">¶</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-51d906ba-a1dd-408e-8a33-08c24ea61ea6">
+<span class="eqno">(50)<a class="headerlink" href="#equation-51d906ba-a1dd-408e-8a33-08c24ea61ea6" title="Permalink to this equation">#</a></span>\[\begin{align}
 y = \mathbf{X}_{\mathrm{interest}}\beta_{\mathrm{interest}} + \mathbf{X}_{\mathrm{noise}}\beta_{\mathrm{noise}} + \epsilon
 \end{align}\]</div>
 <p>Importantly, the difference between <span class="math notranslate nohighlight">\(\mathbf{X}_{\mathrm{noise}}\)</span> and <span class="math notranslate nohighlight">\(\epsilon\)</span> is that the <span class="math notranslate nohighlight">\(\mathbf{X}_{\mathrm{noise}}\)</span> term refers to noise-related activity that you <em>are able to model</em> while the <span class="math notranslate nohighlight">\(\epsilon\)</span> term refers to the noise that you <em>can’t model</em> (this is often called the “irreducible noise/error” term).</p>
@@ -1497,12 +1640,12 @@ y = \mathbf{X}_{\mathrm{interest}}\beta_{\mathrm{interest}} + \mathbf{X}_{\mathr
 </div>
 </div>
 <div class="section" id="autocorrelation-and-prewhitening">
-<h2>Autocorrelation and prewhitening<a class="headerlink" href="#autocorrelation-and-prewhitening" title="Permalink to this headline">¶</a></h2>
+<h2>Autocorrelation and prewhitening<a class="headerlink" href="#autocorrelation-and-prewhitening" title="Permalink to this headline">#</a></h2>
 <p>As you (should) have seen in the previous ToDos, the model fit increases tremendously after high-pass filtering! This surely is the most important reason why you should apply a high-pass filter. But there is another important reason: high-pass filters reduce the signal’s autocorrelation!</p>
 <p>“Sure, but why should we care about autocorrelation?”, you might think? Well this has to with the estimation of the standard error of our model, i.e., <span class="math notranslate nohighlight">\(\hat{\sigma}^{2}\mathbf{c}(\mathbf{X}^{T}\mathbf{X})^{-1}\mathbf{c}^{T}\)</span>. As you’ve seen in the videos, the Gauss-Markov theorem states that in order for OLS to yield valid estimates (including estimates of the parameters’ standard errors) <em>the errors (residuals) have a mean of 0, have 0 covariance (i.e., are uncorrelated), and have equal variance</em>.</p>
 <p>Let’s go through these three assumptions step by step. We’ll use the previously filtered signal for this.</p>
 <div class="section" id="assumption-of-zero-mean-of-the-residuals">
-<h3>Assumption of zero-mean of the residuals<a class="headerlink" href="#assumption-of-zero-mean-of-the-residuals" title="Permalink to this headline">¶</a></h3>
+<h3>Assumption of zero-mean of the residuals<a class="headerlink" href="#assumption-of-zero-mean-of-the-residuals" title="Permalink to this headline">#</a></h3>
 <p>First, let’s check whether the mean of the residuals is zero:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1525,10 +1668,10 @@ y = \mathbf{X}_{\mathrm{interest}}\beta_{\mathrm{interest}} + \mathbf{X}_{\mathr
 </div><p>YOUR ANSWER HERE</p>
 </div>
 <div class="section" id="equal-variance-of-the-residuals">
-<h3>Equal variance of the residuals<a class="headerlink" href="#equal-variance-of-the-residuals" title="Permalink to this headline">¶</a></h3>
+<h3>Equal variance of the residuals<a class="headerlink" href="#equal-variance-of-the-residuals" title="Permalink to this headline">#</a></h3>
 <p>Alright, sweet — the first assumption seems valid for our data. Now, the next two assumptions — about equal variance of the residuals and no covariance between residuals — are trickier to understand and deal with. In the book (and videos), these assumptions are summarized in a single mathemtical statement: the covariance-matrix of the residuals not differ substantially from the identity-matrix (<span class="math notranslate nohighlight">\(\mathbf{I}\)</span>) scaled by the noise-term (<span class="math notranslate nohighlight">\(\hat{\sigma}^{2}\)</span>). Or, put in a formula:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-22f80038-bde5-4908-ba42-6251d34a66b1">
-<span class="eqno">(51)<a class="headerlink" href="#equation-22f80038-bde5-4908-ba42-6251d34a66b1" title="Permalink to this equation">¶</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-6e972ee4-5bf4-418e-8772-c09a8f984acb">
+<span class="eqno">(51)<a class="headerlink" href="#equation-6e972ee4-5bf4-418e-8772-c09a8f984acb" title="Permalink to this equation">#</a></span>\[\begin{align}
 \mathrm{cov}[\epsilon] = \hat{\sigma}^{2}\mathbf{I}
 \end{align}\]</div>
 <p>This sounds difficult, so let’s break it down. First off all, the covariance matrix of the residuals is always a symmetric matrix of shape <span class="math notranslate nohighlight">\(N \times N\)</span>, in which the <em>diagonal represents the variances</em> and the <em>off-diagonal represents the covariances</em>. For example, at index <span class="math notranslate nohighlight">\([i, i]\)</span>, the value represents the variance of the residual at timepoint <span class="math notranslate nohighlight">\(i\)</span>. At index <span class="math notranslate nohighlight">\([i, j]\)</span>, the value represents the covariance between the residuals at timepoints <span class="math notranslate nohighlight">\(i\)</span> and <span class="math notranslate nohighlight">\(j\)</span>.</p>
@@ -1644,7 +1787,7 @@ identity-matrix (<span class="math notranslate nohighlight">\(\mathbf{I}\)</span
 </div><p>YOUR ANSWER HERE</p>
 </div>
 <div class="section" id="zero-covariance-between-residuals">
-<h3>Zero covariance between residuals<a class="headerlink" href="#zero-covariance-between-residuals" title="Permalink to this headline">¶</a></h3>
+<h3>Zero covariance between residuals<a class="headerlink" href="#zero-covariance-between-residuals" title="Permalink to this headline">#</a></h3>
 <p>The last assumption of zero covariance between residuals (corresponding to the assumption of all zeros on the off-diagonal elements of the covariance-matrix of the residuals) basically refers to the assumption that <em>there is no autocorrelation (correlation in time) in the residuals</em>. In other words, knowing the residual at timepoint <span class="math notranslate nohighlight">\(i\)</span> does not tell you anything about the residual at timepoint <span class="math notranslate nohighlight">\(i+\tau\)</span>, where <span class="math notranslate nohighlight">\(\tau\)</span> reflects a particular “lag” and can be any positive number (up to <span class="math notranslate nohighlight">\(N\)</span>). For example, the “lag 1” autocorrelation (<span class="math notranslate nohighlight">\(\tau = 1\)</span>) is the correlation between the data at timepoints <span class="math notranslate nohighlight">\(i\)</span> and <span class="math notranslate nohighlight">\(i+1\)</span>. In OLS, we assume that there is no autocorrelation across all possible lags.</p>
 <p>Take for example the residuals of our unfiltered signal from before, which looked like:</p>
 <div class="cell docutils container">
@@ -1673,8 +1816,8 @@ identity-matrix (<span class="math notranslate nohighlight">\(\mathbf{I}\)</span
 <div class='alert alert-warning'>
 <b>ToDo</b> (1  point)
 <p>We stated that autocorrelation captures the information that you have of the residual at timepoint <span class="math notranslate nohighlight">\(i+\tau\)</span> given that you know the residual at timepoint <span class="math notranslate nohighlight">\(i\)</span>. Practically, you can compute the autocorrelation (or actually, autocovariance) for a particular lag <span class="math notranslate nohighlight">\(\tau\)</span> by computing the covariance of the residuals with the lag-<span class="math notranslate nohighlight">\(\tau\)</span> shifted version of itself. In general, the autocovariance for the residuals <span class="math notranslate nohighlight">\(\epsilon\)</span> with lag <span class="math notranslate nohighlight">\(\tau\)</span> is calculated as:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-50b5092a-0ff4-4e2d-b42a-a9a7028495ff">
-<span class="eqno">(52)<a class="headerlink" href="#equation-50b5092a-0ff4-4e2d-b42a-a9a7028495ff" title="Permalink to this equation">¶</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-2ace7424-6444-45bf-a9e0-43a933caf964">
+<span class="eqno">(52)<a class="headerlink" href="#equation-2ace7424-6444-45bf-a9e0-43a933caf964" title="Permalink to this equation">#</a></span>\[\begin{align}
 \mathrm{cov}[\epsilon_{i}, \epsilon_{i+\tau}] = \frac{1}{N-\tau-1}\sum_{i=1}^{N-\tau}(\epsilon_{i}\cdot\epsilon_{i+\tau})
 \end{align}\]</div>
 <p>Jeanette Mumford explains how to do this quite clearly in her <a class="reference external" href="https://www.youtube.com/watch?v=4VSzZKO0k_w">video on prewhitening</a> (around minute 10). For this ToDo, calculate the covariance (with <span class="math notranslate nohighlight">\(\tau = 1\)</span>) between the residuals (i.e., using the variable <tt>resids_new</tt>) and store this in a variable named <tt>lag1_cov</tt>.</p>
@@ -1699,20 +1842,20 @@ identity-matrix (<span class="math notranslate nohighlight">\(\mathbf{I}\)</span
 </div>
 </div>
 <div class="section" id="accounting-for-unequal-variance-and-autocorrelation-prewhitening">
-<h3>Accounting for unequal variance and autocorrelation: prewhitening<a class="headerlink" href="#accounting-for-unequal-variance-and-autocorrelation-prewhitening" title="Permalink to this headline">¶</a></h3>
+<h3>Accounting for unequal variance and autocorrelation: prewhitening<a class="headerlink" href="#accounting-for-unequal-variance-and-autocorrelation-prewhitening" title="Permalink to this headline">#</a></h3>
 <p>So, in summary, if the covariance matrix of your residuals appear to significantly deviate from the identity-matrix scaled by the noise-term (<span class="math notranslate nohighlight">\(\mathrm{cov}[\epsilon] = \hat{\sigma}^{2}\mathbf{I}\)</span>) — either due to unequal variance or non-zero covariance — your estimate of the variance term of your effects (<span class="math notranslate nohighlight">\(\mathrm{var}[c\hat{\beta}]\)</span>) will be incorrect.</p>
 <p>Unfortunately, even after high-pass filtering (which corrects for <em>most</em> but not <em>all</em> autocovariance), the covariance matrix of the residuals of fMRI timeseries usually do no conform to the Markov-Gauss assumptions of equal variance and zero covariance. Fortunately, some methods have been developed by statisticians that transform the data such that the OLS assumptions hold again. One such technique is called <em>prewhitening</em>.</p>
 <p>Prewhitening uses an estimate of the error covariance matrix — usually denoted by <span class="math notranslate nohighlight">\(\mathbf{V}\)</span> — to account for possible unequal variance and/or autocovariance of the residuals. The matrix <span class="math notranslate nohighlight">\(\mathbf{V}\)</span> is an <span class="math notranslate nohighlight">\(N \times N\)</span> matrix (<span class="math notranslate nohighlight">\(N\)</span> referring to the number of timepoints of your signal), and  may be estimated using different techniques, with names such as “ARMA”, “AR(1)”, and “REML”. In this course, we won’t discuss these techniques and instead assume that your software of choice (FSL, AFNI, SPM) has computed an accurate estimate of <span class="math notranslate nohighlight">\(\mathbf{V}\)</span> for you already. But if you’re up for a (programming) challenge, you can do the <em>optional</em> ToDo below.</p>
 <div class='alert alert-warning'>
     <b>ToDo</b> (optional, ungraded)
 <p>The “AR(1)” method is a relatively “easy” way to estimate <span class="math notranslate nohighlight">\(\mathbf{V}\)</span>. It computes only a single parameter, the lag-1 correlation (not covariance!). Then, it assumes that the correlation decreases exponentially as a function of lag:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-6d5e7aa8-43da-4055-befb-9eb244f7022d">
-<span class="eqno">(53)<a class="headerlink" href="#equation-6d5e7aa8-43da-4055-befb-9eb244f7022d" title="Permalink to this equation">¶</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-a1b60b8f-3550-45bc-84e3-3106bac43594">
+<span class="eqno">(53)<a class="headerlink" href="#equation-a1b60b8f-3550-45bc-84e3-3106bac43594" title="Permalink to this equation">#</a></span>\[\begin{align}
 \mathrm{autocor}_{\tau} = \phi^{\tau + 1}
 \end{align}\]</div>
 <p>where <span class="math notranslate nohighlight">\(\phi\)</span> is the estimated lag-1 correlation. For example, for <span class="math notranslate nohighlight">\(\phi = 0.9\)</span>, <span class="math notranslate nohighlight">\(\mathbf{V}\)</span> would look like:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-6d150996-28fc-4a5f-b5f3-c4265ad8d973">
-<span class="eqno">(54)<a class="headerlink" href="#equation-6d150996-28fc-4a5f-b5f3-c4265ad8d973" title="Permalink to this equation">¶</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-72a4f76e-e518-4867-acb5-16e497ba2339">
+<span class="eqno">(54)<a class="headerlink" href="#equation-72a4f76e-e518-4867-acb5-16e497ba2339" title="Permalink to this equation">#</a></span>\[\begin{align}
 \mathbf{V} = \begin{bmatrix}
                  1.0 &amp; 0.9 &amp; 0.9^{2} &amp; 0.9^{3} &amp; \dots &amp; 0.9^{N-1} \\
                  0.9 &amp; 1.0 &amp; 0.9 &amp; 0.9^{2} &amp; \dots &amp; 0.9^{N-2} \\
@@ -1776,18 +1919,18 @@ identity-matrix (<span class="math notranslate nohighlight">\(\mathbf{I}\)</span
 <div class='alert alert-info'> 
     <b>ToThink</b> (0 points): In the above cell, the <tt>phi</tt> variable controls the amount of autcorrelation (technically, it is the $\phi$ parameter of an AR(1) autocorrelation model). Try changing the value of this variable. Do you understand the way the plotted $V$ matrix is changing as a function of $\phi$? 
 </div><p>Well, shit. We have both unequal variance (different values on the diagonal) <em>and</em> non-zero covariance (some non-zero values on the off-diagonal). So, what to do now? Well, we can use the technique of prewhitening to make sure our observed covariance matrix (<span class="math notranslate nohighlight">\(\mathbf{V}\)</span>) will be “converted” to the identity matrix! Basically, this amounts to plugging in some extra terms to formula for ordinary least squares. As you might have seen in the book/videos, the <em>original</em> OLS solution (i.e., how OLS finds the beta-parameters is as follows):</p>
-<div class="amsmath math notranslate nohighlight" id="equation-3311d131-ea9b-4806-aa8f-c50c3436beb4">
-<span class="eqno">(55)<a class="headerlink" href="#equation-3311d131-ea9b-4806-aa8f-c50c3436beb4" title="Permalink to this equation">¶</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-ab2c1bd6-42f3-4515-8f10-2feae12fa89b">
+<span class="eqno">(55)<a class="headerlink" href="#equation-ab2c1bd6-42f3-4515-8f10-2feae12fa89b" title="Permalink to this equation">#</a></span>\[\begin{align}
 \hat{\beta} = (\mathbf{X}^{T}\mathbf{X})^{-1}\mathbf{X}^{T}y
 \end{align}\]</div>
 <p>Now, given that we’ve estimated our covariance matrix of the residuals, <span class="math notranslate nohighlight">\(\mathbf{V}\)</span>, we can rewrite the OLS solution such that it prewhitens the data (and thus the covariance matrix of the residuals will approximate <span class="math notranslate nohighlight">\(\hat{\sigma}^{2}\mathbf{I}\)</span>) as follows:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-2575b017-c412-4ee1-b644-bebef66a6380">
-<span class="eqno">(56)<a class="headerlink" href="#equation-2575b017-c412-4ee1-b644-bebef66a6380" title="Permalink to this equation">¶</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-6a937d73-f498-4457-a5b8-4ac7b95bc0e1">
+<span class="eqno">(56)<a class="headerlink" href="#equation-6a937d73-f498-4457-a5b8-4ac7b95bc0e1" title="Permalink to this equation">#</a></span>\[\begin{align}
 \hat{\beta} = (\mathbf{X}^{T}\mathbf{V}^{-1}\mathbf{X})^{-1}\mathbf{X}^{T}\mathbf{V}^{-1}y
 \end{align}\]</div>
 <p>Then, accordingly, the standard-error of any contrast of the estimated beta-parameters becomes:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-81a1195a-874e-43b9-9db3-a73e270392ca">
-<span class="eqno">(57)<a class="headerlink" href="#equation-81a1195a-874e-43b9-9db3-a73e270392ca" title="Permalink to this equation">¶</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-f7f80e70-53cd-4d1e-9719-cba55c385aa6">
+<span class="eqno">(57)<a class="headerlink" href="#equation-f7f80e70-53cd-4d1e-9719-cba55c385aa6" title="Permalink to this equation">#</a></span>\[\begin{align}
 SE_{\mathbf{c}\hat{\beta}} = \sqrt{\hat{\sigma}^{2} \cdot \mathbf{c}(\mathbf{X}^{T}\mathbf{V}^{-1}\mathbf{X})^{-1}\mathbf{c}^{T}}
 \end{align}\]</div>
 <p>This “modification” of OLS is also called “generalized least squares” (GLS) and is central to most univariate fMRI analyses! You <em>don’t</em> have to understand how this works mathematically; again, you should only understand <em>why</em> prewhitening makes sure that our data behaves according to the assumptions of the Gauss-Markov theorem.</p>
@@ -1861,10 +2004,10 @@ SE_{\mathbf{c}\hat{\beta}} = \sqrt{\hat{\sigma}^{2} \cdot \mathbf{c}(\mathbf{X}^
 </div>
 </div>
 <div class="section" id="more-on-nuisance-regression">
-<h2>(More on) nuisance regression<a class="headerlink" href="#more-on-nuisance-regression" title="Permalink to this headline">¶</a></h2>
+<h2>(More on) nuisance regression<a class="headerlink" href="#more-on-nuisance-regression" title="Permalink to this headline">#</a></h2>
 <p>Let’s go back to the technique of nuisance regression. We have seen before that this technique can be used to model low-frequency components in our data (effectively functioning as a high-pass filter), but it can, in general, be used to model <em>any</em> thus-far unmodelled variance in the signal that would otherwise end up in the noise term. For example, people use this technique to model variance due to physiological processes (such cardiac and respiratory related signals; see e.g. <a class="reference external" href="https://www.ncbi.nlm.nih.gov/pubmed/10893535">Glover et al., 2000</a>), motion-related variance (which we’ll discuss later), and high-intensity “spikes”. To get a better feel for nuisance regression and its consequences, let’s look at this process of removing high-intensity spikes (which is sometimes called “despiking”).</p>
 <div class="section" id="using-nuisance-regression-for-despiking">
-<h3>Using nuisance regression for despiking<a class="headerlink" href="#using-nuisance-regression-for-despiking" title="Permalink to this headline">¶</a></h3>
+<h3>Using nuisance regression for despiking<a class="headerlink" href="#using-nuisance-regression-for-despiking" title="Permalink to this headline">#</a></h3>
 <p>This technique of adding noise-predictors to the design matrix is sometimes used to model ‘gradient artifacts’, which are also called ‘spikes’ (which you’ve heard about in one of the videos for this week). This technique is also sometimes called “despiking”. These spikes reflect sudden large intensity increases in the signal across the entire brain that likely reflect scanner instabilities. One way to deal with these artifacts is to “censor” bad timepoints (containing the spike) in your signal using a noise predictor.</p>
 <p>But what defines a ‘spike’/bad timepoint? One way is to compute the normalized “root mean square successive differences” (RMSSD), normalizing this, and imposing some threshold above which a timepoint is marked as a spike (technically, it’s a little bit more complex, but we’ll ignore that for now).</p>
 <p>We’ll delve into the details of this computation later. For now, let’s take a look at some example data that we’re going to use for this section:</p>
@@ -1903,8 +2046,8 @@ Shape of pred: (500, 1)
 </div>
 </div>
 <p>Alright, now let’s take a look at how you would calculate the “root mean square successive differences” (RMSSD). This quantity reflects the difference between every timepoint <span class="math notranslate nohighlight">\(t\)</span> of your signal and the signal at timepoints <span class="math notranslate nohighlight">\(t-1\)</span>, which is then squared, averaged (across all voxels, <span class="math notranslate nohighlight">\(1 \dots K\)</span>), after which the square root is taken:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-b02bef9e-381b-4c5f-a7d4-442566f8c672">
-<span class="eqno">(58)<a class="headerlink" href="#equation-b02bef9e-381b-4c5f-a7d4-442566f8c672" title="Permalink to this equation">¶</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-99724d02-8e06-4326-aaa0-bef9c4abe85a">
+<span class="eqno">(58)<a class="headerlink" href="#equation-99724d02-8e06-4326-aaa0-bef9c4abe85a" title="Permalink to this equation">#</a></span>\[\begin{align}
 \mathrm{RMSSD}_{t} = \sqrt{\frac{1}{K}\sum_{K}(s_{t, k} - s_{t-1, k})^2}
 \end{align}\]</div>
 <p>First, let’s focus on the “successive differences”. Suppose we have only one “signal” of length 5:</p>
@@ -1960,8 +2103,8 @@ Shape of pred: (500, 1)
 <div class='alert alert-warning'>
 <b>ToDo</b> (optional; 0 points)
 <p>Now, in order to identify spikes, we need to identify timepoints that have a RMSSD-values that differ more than (let’s say) 7 standard deviations from the mean RMSSD value. As such, you need to ‘z-score’ the RMSSD values: subtract the mean value from each individual value and divide each of the resulting ‘demeaned’ values by the standard deviation (<span class="math notranslate nohighlight">\(\mathrm{std}\)</span>) of the values. In other words, the z-transform of any signal <span class="math notranslate nohighlight">\(s\)</span> with mean <span class="math notranslate nohighlight">\(\bar{s}\)</span> is defined as:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-56ea0aa9-d902-4059-b1fd-bdd7e7d212ae">
-<span class="eqno">(59)<a class="headerlink" href="#equation-56ea0aa9-d902-4059-b1fd-bdd7e7d212ae" title="Permalink to this equation">¶</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-43beaa2f-4412-4a36-a9cb-a3389c35d76c">
+<span class="eqno">(59)<a class="headerlink" href="#equation-43beaa2f-4412-4a36-a9cb-a3389c35d76c" title="Permalink to this equation">#</a></span>\[\begin{align}
 z(s) = \frac{(s - \bar{s})}{\mathrm{std}(s)}
 \end{align}\]</div>
 <p>Implement this z-score transform for the variable <tt>all_sig_rmssd</tt> and store it in the variable <tt>z_rmssd</tt> (1 point). Then, plot the z-scored RMSSD signal (with appropriate axis labels; 1 point).</p>
@@ -2095,9 +2238,11 @@ Creating spike predictor for t = 300
 
               </div>
               
-            
-                <!-- Previous / next buttons -->
-<div class='prev-next-area'> 
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
     <a class='left-prev' id="prev-link" href="../../section_intros/4_preprocessing.html" title="previous page">
         <i class="fas fa-angle-left"></i>
         <div class="prev-next-info">
@@ -2113,24 +2258,28 @@ Creating spike predictor for t = 300
     <i class="fas fa-angle-right"></i>
     </a>
 </div>
-            
+            </footer>
         </div>
     </div>
-    <footer class="footer">
-  <p>
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    By Lukas Snoek<br/>
+  
+      &copy; Copyright 2021.<br/>
+</p>
+        </footer>
+    </div>
     
-      By Lukas Snoek<br/>
-    
-        &copy; Copyright 2021.<br/>
-  </p>
-</footer>
-</main>
+</div>
 
 
       </div>
     </div>
   
-  <script src="../../_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
 
   </body>
 </html>

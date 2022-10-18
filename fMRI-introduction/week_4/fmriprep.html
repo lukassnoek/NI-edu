@@ -7,8 +7,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Fmriprep &#8212; NI-edu</title>
     
-  <link href="../../_static/css/theme.css" rel="stylesheet">
-  <link href="../../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
 
     
   <link rel="stylesheet"
@@ -18,20 +19,16 @@
   <link rel="preload" as="font" type="font/woff2" crossorigin
     href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
 
-    
-      
-
-    
     <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
+    <link rel="stylesheet" href="../../_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/mystnb.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
     
-  <link rel="preload" as="script" href="../../_static/js/index.be7d3bbb2ef33a8344ce.js">
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
 
     <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
     <script src="../../_static/jquery.js"></script>
@@ -39,12 +36,13 @@
     <script src="../../_static/doctools.js"></script>
     <script src="../../_static/clipboard.min.js"></script>
     <script src="../../_static/copybutton.js"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
     <script src="../../_static/togglebutton.js"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
-    <script src="../../_static/sphinx-book-theme.d59cb220de22ca1c485ebbdc042f0030.js"></script>
+    <script src="../../_static/design-tabs.js"></script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
 const thebe_selector = ".thebe,.cell"
 const thebe_selector_input = "pre"
@@ -66,7 +64,21 @@ const thebe_selector_output = ".output, .cell_output"
     <!-- Google Analytics -->
     
   </head>
-  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
+
     
     <div class="container-fluid" id="banner"></div>
 
@@ -75,9 +87,10 @@ const thebe_selector_output = ".output, .cell_output"
     <div class="container-xl">
       <div class="row">
           
-<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
-    
-        <div class="navbar-brand-box">
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
     <a class="navbar-brand text-wrap" href="../../index.html">
       
         <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
@@ -95,14 +108,15 @@ const thebe_selector_output = ".output, .cell_output"
   <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
 </form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item active">
-        <ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="../../index.html">
-   Welcome to NI-edu
-  </a>
- </li>
-</ul>
-<p aria-level="2" class="caption" role="heading">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../../index.html">
+                    Welcome to NI-edu
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading">
  <span class="caption-text">
   Getting started
  </span>
@@ -346,115 +360,244 @@ const thebe_selector_output = ".output, .cell_output"
 </ul>
 
     </div>
-</nav> <!-- To handle the deprecated key -->
-
-<div class="navbar_extra_footer">
-  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
-</div>
-
-</div>
-
-
-          
-
-
-          
-<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
-    
-    <div class="topbar container-xl fixed-top">
-    <div class="topbar-contents row">
-        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
-        <div class="col pl-md-4 topbar-main">
+</nav></div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
             
-            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
-                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
-                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
-                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
-                <i class="fas fa-bars"></i>
-                <i class="fas fa-arrow-left"></i>
-                <i class="fas fa-arrow-up"></i>
-            </button>
-            
-            
-<div class="dropdown-buttons-trigger">
-    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
-            class="fas fa-download"></i></button>
-
-    <div class="dropdown-buttons">
-        <!-- ipynb file if we had a myst markdown file -->
-        
-        <!-- Download raw file -->
-        <a class="dropdown-buttons" href="../../_sources/fMRI-introduction/week_4/fmriprep.ipynb"><button type="button"
-                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
-                data-placement="left">.ipynb</button></a>
-        <!-- Download PDF via print -->
-        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
-                onclick="printPdf(this)" data-toggle="tooltip" data-placement="left">.pdf</button>
-    </div>
-</div>
-
-            <!-- Source interaction buttons -->
-
-<div class="dropdown-buttons-trigger">
-    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
-        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
-    <div class="dropdown-buttons sourcebuttons">
-        <a class="repository-button"
-            href="https://github.com/lukassnoek/NI-edu"><button type="button" class="btn btn-secondary topbarbtn"
-                data-toggle="tooltip" data-placement="left" title="Source repository"><i
-                    class="fab fa-github"></i>repository</button></a>
-        <a class="issues-button"
-            href="https://github.com/lukassnoek/NI-edu/issues/new?title=Issue%20on%20page%20%2FfMRI-introduction/week_4/fmriprep.html&body=Your%20issue%20content%20here."><button
-                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
-                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
-        <a class="edit-button" href="https://github.com/lukassnoek/NI-edu/edit/master/NI-edu/fMRI-introduction/week_4/fmriprep.ipynb"><button
-                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
-                title="Edit this page"><i class="fas fa-pencil-alt"></i>suggest edit</button></a>
-    </div>
-</div>
-
-            <!-- Full screen (wrap in <a> to have style consistency -->
-
-<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
-        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
-        title="Fullscreen mode"><i
-            class="fas fa-expand"></i></button></a>
-
-            <!-- Launch buttons -->
-
-<div class="dropdown-buttons-trigger">
-    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
-        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
-    <div class="dropdown-buttons">
-        
-        <a class="binder-button" href="https://mybinder.org/v2/gh/lukassnoek/NI-edu/master?urlpath=tree/NI-edu/fMRI-introduction/week_4/fmriprep.ipynb"><button type="button"
-                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
-                data-placement="left"><img class="binder-button-logo"
-                    src="../../_static/images/logo_binder.svg"
-                    alt="Interact on binder">Binder</button></a>
-        
-        
-        <a class="jupyterhub-button" href="https://neuroimaging.lukas-snoek.com/hub/user-redirect/git-pull?repo=https://github.com/lukassnoek/NI-edu&urlpath=tree/NI-edu/NI-edu/fMRI-introduction/week_4/fmriprep.ipynb&branch=master"><button type="button"
-                class="btn btn-secondary topbarbtn" title="Launch JupyterHub" data-toggle="tooltip"
-                data-placement="left"><img class="jupyterhub-button-logo"
-                    src="../../_static/images/logo_jupyterhub.svg"
-                    alt="Interact on JupyterHub">JupyterHub</button></a>
-        
-        
-        
-    </div>
-</div>
-
-        </div>
-
-        <!-- Table of contents -->
-        <div class="d-none d-md-block col-md-2 bd-toc show noprint">
-            
-            <div class="tocsection onthispage pt-5 pb-3">
-                <i class="fas fa-list"></i> Contents
+            <div class="navbar_extra_footer">
+            Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
             </div>
-            <nav id="bd-toc-nav" aria-label="Page">
-                <ul class="visible nav section-nav flex-column">
+            
+        </div>
+    </div>
+    <div id="rtd-footer-container"></div>
+</div>
+
+
+          
+
+
+          
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
+    
+    <div class="header-article row sticky-top noprint">
+        
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+<div class="menu-dropdown menu-dropdown-launch-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Launch interactive content">
+      <i class="fas fa-rocket"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://mybinder.org/v2/gh/lukassnoek/NI-edu/master?urlpath=tree/NI-edu/fMRI-introduction/week_4/fmriprep.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Launch on Binder"
+>
+  
+
+<span class="headerbtn__icon-container">
+  
+    <img src="../../_static/images/logo_binder.svg">
+  </span>
+<span class="headerbtn__text-container">Binder</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="https://neuroimaging.lukas-snoek.com/hub/user-redirect/git-pull?repo=https%3A//github.com/lukassnoek/NI-edu&urlpath=tree/NI-edu/NI-edu/fMRI-introduction/week_4/fmriprep.ipynb&branch=master"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Launch on JupyterHub"
+>
+  
+
+<span class="headerbtn__icon-container">
+  
+    <img src="../../_static/images/logo_jupyterhub.svg">
+  </span>
+<span class="headerbtn__text-container">JupyterHub</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+<div class="menu-dropdown menu-dropdown-repository-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Source repositories">
+      <i class="fab fa-github"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://github.com/lukassnoek/NI-edu"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Source repository"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="headerbtn__text-container">repository</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="https://github.com/lukassnoek/NI-edu/issues/new?title=Issue%20on%20page%20%2FfMRI-introduction/week_4/fmriprep.html&body=Your%20issue%20content%20here."
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Open an issue"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="headerbtn__text-container">open issue</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="https://github.com/lukassnoek/NI-edu/edit/master/NI-edu/fMRI-introduction/week_4/fmriprep.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Edit this page"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-pencil-alt"></i>
+  </span>
+<span class="headerbtn__text-container">suggest edit</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<div class="menu-dropdown menu-dropdown-download-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Download this page">
+      <i class="fas fa-download"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="../../_sources/fMRI-introduction/week_4/fmriprep.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="headerbtn__text-container">.ipynb</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="printPdf(this)"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="headerbtn__text-container">.pdf</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
+
+    </div>
+</div>
+
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#the-bids-format">
    The BIDS-format
@@ -509,12 +652,11 @@ const thebe_selector_output = ".output, .cell_output"
  </li>
 </ul>
 
-            </nav>
-        </div>
-    </div>
+    </nav>
 </div>
-    <div id="main-content" class="row">
-        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
             <!-- Table of contents that is only displayed when printing the page -->
             <div id="jb-print-docs-body" class="onlyprint">
                 <h1>Fmriprep</h1>
@@ -585,20 +727,21 @@ const thebe_selector_output = ".output, .cell_output"
                     </div>
                 </div>
             </div>
-            
+            <main id="main-content" role="main">
+                
               <div>
                 
   <div class="tex2jax_ignore mathjax_ignore section" id="fmriprep">
-<h1>Fmriprep<a class="headerlink" href="#fmriprep" title="Permalink to this headline">¶</a></h1>
+<h1>Fmriprep<a class="headerlink" href="#fmriprep" title="Permalink to this headline">#</a></h1>
 <p>Today, many excellent general-purpose, open-source neuroimaging software packages exist: <a class="reference external" href="https://www.fil.ion.ucl.ac.uk/spm/">SPM</a> (Matlab-based), <a class="reference external" href="https://fsl.fmrib.ox.ac.uk/fsl/fslwiki">FSL</a>, <a class="reference external" href="https://afni.nimh.nih.gov/">AFNI</a>, and <a class="reference external" href="https://surfer.nmr.mgh.harvard.edu/">Freesurfer</a> (with a shell interface). We argue that there is not one single package that is always the best choice for every step in your preprocessing pipeline. Fortunately, people from the <a class="reference external" href="https://poldracklab.stanford.edu/">Poldrack lab</a> created <a class="reference external" href="https://fmriprep.readthedocs.io/en/stable/">fmriprep</a>, a software package that offers a preprocessing pipeline which “glues together” functionality from different neuroimaging software packages (such as Freesurfer and FSL), such that each step in the pipeline is executed by the software package that (arguably) does it best.</p>
 <p>We have been using <em>Fmriprep</em> for preprocessing of our own data and we strongly recommend it. It is relatively simple to use, requires minimal user intervention, and creates extensive visual reports for users to do visual quality control (to check whether each step in the pipeline worked as expected). The <em>only</em> requirement to use Fmriprep is that your data is formatted as specified in the Brain Imaging Data Structure (BIDS).</p>
 <div class="section" id="the-bids-format">
-<h2>The BIDS-format<a class="headerlink" href="#the-bids-format" title="Permalink to this headline">¶</a></h2>
+<h2>The BIDS-format<a class="headerlink" href="#the-bids-format" title="Permalink to this headline">#</a></h2>
 <p><a class="reference external" href="https://bids.neuroimaging.io/">BIDS</a> is a specification on how to format, name, and organize your MRI dataset. It specifies the file format of MRI files (i.e., compressed Nifti: <code class="docutils literal notranslate"><span class="pre">.nii.gz</span></code> files), lays out rules for how you should name your files (i.e., with “key-value” pairs, such as: <code class="docutils literal notranslate"><span class="pre">sub-01_ses-1_task-1back_run-1_bold.nii.gz</span></code>), and outlines the file/folder structure of your dataset (where each subject has its own directory with separate subdirectories for different MRI modalities, including fieldmaps, functional, diffusion, and anatomical MRI). Additionally, it specifies a way to include “metadata” about the (MRI) files in your dataset with <a class="reference external" href="https://en.wikipedia.org/wiki/JSON">JSON</a> files: plain-text files with key-value pairs (in the form “parameter: value”). Given that your dataset is BIDS-formatted and contains the necessary metadata, you can use <code class="docutils literal notranslate"><span class="pre">fmriprep</span></code> on your dataset. (You can use the awesome <a class="reference external" href="https://bids-standard.github.io/bids-validator/">bids-validator</a> to see whether your dataset is completely valid according to BIDS.)</p>
 <p>There are different tools to convert your “raw” scanner data (e.g., in DICOM or PAR/REC format) to BIDS, including <a class="reference external" href="https://heudiconv.readthedocs.io/en/latest/">heudiconv</a>, <a class="reference external" href="https://github.com/Donders-Institute/bidscoin">bidscoin</a>, and <a class="reference external" href="https://github.com/NILAB-UvA/bidsify">bidsify</a> (created by Lukas). We’ll skip over this step and assume that you’ll be able to convert your data to BIDS.</p>
 </div>
 <div class="section" id="installing-fmriprep">
-<h2>Installing Fmriprep<a class="headerlink" href="#installing-fmriprep" title="Permalink to this headline">¶</a></h2>
+<h2>Installing Fmriprep<a class="headerlink" href="#installing-fmriprep" title="Permalink to this headline">#</a></h2>
 <p>Now, having your data in BIDS is an important step in getting started with Fmriprep. The next step is installing the package. Technically, Fmriprep is a Python package, so it can be installed as such (using <code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">fmriprep</span></code>), but we do not recommend this “bare metal” installation, because it depends on a host of neuroimaging software packages (including FSL, Freesurfer, AFNI, and ANTs). So if you’d want to directly install Fmriprep, you’d need to install those extra neuroimaging software packages as well (which is not worth your time, trust us).</p>
 <p>Fortunately, Fmriprep also offers a “Docker container” in which Fmriprep and all the associated dependencies are already installed. <a class="reference external" href="https://www.docker.com/">Docker</a> is software that allows you to create “containers”, which are like lightweight “virtual machines” (<a class="reference external" href="https://en.wikipedia.org/wiki/Virtual_machine">VM</a>) that are like a separate (Linux-based) operating system with a specific software configuration. You can download the Fmriprep-specific docker “image”, which is like a “recipe”, build the Fmriprep-specific “container” according to this “recipe” on your computer, and finally use this container to run Fmriprep on your computer as if all dependencies were actually installed on your computer! Docker is available on Linux, Mac, and Windows. To install Docker, google something like “install docker for {Windows,Mac,Linux}” to find a google walkthrough.</p>
 <p>Note that you need administrator (“root”) privilege on your computer (which is likely the case for your own computer, but not on shared analysis servers) to run Docker. If you don’t have root access on your computer/server, ask you administrator/sysadmin to install <a class="reference external" href="https://fmriprep.readthedocs.io/en/stable/installation.html#singularity-container">singularity</a>, which allows you to convert Docker images to Singularity images, which you can run without administrator privileges.</p>
@@ -610,7 +753,7 @@ const thebe_selector_output = ".output, .cell_output"
 <p>Now, you should have access to the <code class="docutils literal notranslate"><span class="pre">fmriprep-docker</span></code> command on your command line and you’re ready to start preprocessing your dataset. For more detailed information about installing Fmriprep, check out their <a class="reference external" href="https://fmriprep.readthedocs.io/en/stable/installation.html">website</a>.</p>
 </div>
 <div class="section" id="running-fmriprep">
-<h2>Running Fmriprep<a class="headerlink" href="#running-fmriprep" title="Permalink to this headline">¶</a></h2>
+<h2>Running Fmriprep<a class="headerlink" href="#running-fmriprep" title="Permalink to this headline">#</a></h2>
 <p>Assuming you have Docker and <code class="docutils literal notranslate"><span class="pre">fmriprep-docker</span></code> installed, you’re ready to run Fmriprep. The basic format of the <code class="docutils literal notranslate"><span class="pre">fmriprep-docker</span></code> command is as follows:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">fmriprep</span><span class="o">-</span><span class="n">docker</span> <span class="o">&lt;</span><span class="n">your</span> <span class="n">bids</span><span class="o">-</span><span class="n">folder</span><span class="o">&gt;</span> <span class="o">&lt;</span><span class="n">your</span> <span class="n">output</span><span class="o">-</span><span class="n">folder</span><span class="o">&gt;</span> 
 </pre></div>
@@ -618,14 +761,14 @@ const thebe_selector_output = ".output, .cell_output"
 <p>This means that <code class="docutils literal notranslate"><span class="pre">fmriprep-docker</span></code> has two mandatory positional arguments: the first one being your BIDS-folder (i.e., the path to your folder with BIDS-formattefd data), and the second one being the output-folder (i.e., where you want Fmriprep to output the preprocessed data). We recommend setting your output-folder to a subfolder of your BIDS-folder named “derivatives”: <code class="docutils literal notranslate"><span class="pre">&lt;your</span> <span class="pre">bids-folder&gt;/derivatives</span></code>.</p>
 <p>Then, you can add a bunch of extra “flags” (parameters) to the command to specify the preprocessing pipeline as you like it. We highlight a couple of important ones here, but for the full list of parameters, check out the <a class="reference external" href="https://fmriprep.readthedocs.io/en/stable/usage.html">Fmriprep</a> website.</p>
 <div class="section" id="freesurfer">
-<h3>Freesurfer<a class="headerlink" href="#freesurfer" title="Permalink to this headline">¶</a></h3>
+<h3>Freesurfer<a class="headerlink" href="#freesurfer" title="Permalink to this headline">#</a></h3>
 <p>When running Fmriprep from Docker, you don’t need to have Freesurfer installed, but you <em>do</em> need a Freesurfer license. You can download this here: <a class="reference external" href="https://surfer.nmr.mgh.harvard.edu/fswiki/License">https://surfer.nmr.mgh.harvard.edu/fswiki/License</a>. Then, you need to supply the <code class="docutils literal notranslate"><span class="pre">--fs-license-file</span> <span class="pre">&lt;path</span> <span class="pre">to</span> <span class="pre">license</span> <span class="pre">file&gt;</span></code> parameter to your <code class="docutils literal notranslate"><span class="pre">fmriprep-docker</span></code> command:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">fmriprep</span><span class="o">-</span><span class="n">docker</span> <span class="o">&lt;</span><span class="n">your</span> <span class="n">bids</span><span class="o">-</span><span class="n">folder</span><span class="o">&gt;</span> <span class="o">&lt;</span><span class="n">your</span> <span class="n">output</span><span class="o">-</span><span class="n">folder</span><span class="o">&gt;</span> <span class="o">--</span><span class="n">fs</span><span class="o">-</span><span class="n">license</span><span class="o">-</span><span class="n">file</span> <span class="o">/</span><span class="n">home</span><span class="o">/</span><span class="n">lukas</span><span class="o">/</span><span class="n">license</span><span class="o">.</span><span class="n">txt</span>
 </pre></div>
 </div>
 </div>
 <div class="section" id="configuring-what-is-preprocessed">
-<h3>Configuring what is preprocessed<a class="headerlink" href="#configuring-what-is-preprocessed" title="Permalink to this headline">¶</a></h3>
+<h3>Configuring what is preprocessed<a class="headerlink" href="#configuring-what-is-preprocessed" title="Permalink to this headline">#</a></h3>
 <p>If you just run Fmriprep with the mandatory BIDS-folder and output-folder arguments, it will preprocess everything it finds in the BIDS-folder. Sometimes, however, you may just want to run one (or several) specific participants, or one (or more) specific tasks (e.g., only the MRI files associated with the localizer runs, but not the working memory runs). You can do this by adding the <code class="docutils literal notranslate"><span class="pre">--participant</span></code> and <code class="docutils literal notranslate"><span class="pre">--task</span></code> flags to the command:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">fmriprep</span><span class="o">-</span><span class="n">docker</span> <span class="o">&lt;</span><span class="n">your</span> <span class="n">bids</span><span class="o">-</span><span class="n">folder</span><span class="o">&gt;</span> <span class="o">&lt;</span><span class="n">your</span> <span class="n">output</span><span class="o">-</span><span class="n">folder</span><span class="o">&gt;</span> <span class="o">--</span><span class="n">participant</span> <span class="n">sub</span><span class="o">-</span><span class="mi">01</span> <span class="o">--</span><span class="n">task</span> <span class="n">localizer</span>
 </pre></div>
@@ -636,7 +779,7 @@ const thebe_selector_output = ".output, .cell_output"
 </div>
 </div>
 <div class="section" id="handling-performance">
-<h3>Handling performance<a class="headerlink" href="#handling-performance" title="Permalink to this headline">¶</a></h3>
+<h3>Handling performance<a class="headerlink" href="#handling-performance" title="Permalink to this headline">#</a></h3>
 <p>It’s very easy to parallelize the preprocessing pipeline by setting the <code class="docutils literal notranslate"><span class="pre">--nthreads</span></code> and <code class="docutils literal notranslate"><span class="pre">--omp-nthreads</span></code> parameters, which refer to the number of threads that should be used to run Fmriprep on. Note that laptops usually have 4 threads available (but analysis servers usually have more!). You can also specify the maximum of RAM that Fmriprep is allowed to use by the <code class="docutils literal notranslate"><span class="pre">--mem_mb</span></code> parameters. So, if you for example want to run Fmriprep with 3 threads and a maximum of 3GB of RAM, you can run:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">fmriprep</span><span class="o">-</span><span class="n">docker</span> <span class="o">&lt;</span><span class="n">your</span> <span class="n">bids</span><span class="o">-</span><span class="n">folder</span><span class="o">&gt;</span> <span class="o">&lt;</span><span class="n">your</span> <span class="n">output</span><span class="o">-</span><span class="n">folder</span><span class="o">&gt;</span> <span class="o">--</span><span class="n">nthreads</span> <span class="mi">3</span> <span class="o">--</span><span class="n">omp</span><span class="o">-</span><span class="n">nthreads</span> <span class="mi">3</span> <span class="o">--</span><span class="n">mem_mb</span> <span class="mi">3000</span>
 </pre></div>
@@ -644,7 +787,7 @@ const thebe_selector_output = ".output, .cell_output"
 <p>In our experience, however, specifying the <code class="docutils literal notranslate"><span class="pre">--mem_mb</span></code> parameter is rarely necessary if you don’t parallelize too much.</p>
 </div>
 <div class="section" id="output-spaces">
-<h3>Output spaces<a class="headerlink" href="#output-spaces" title="Permalink to this headline">¶</a></h3>
+<h3>Output spaces<a class="headerlink" href="#output-spaces" title="Permalink to this headline">#</a></h3>
 <p>Specifying your “output spaces” (with the <code class="docutils literal notranslate"><span class="pre">--output-spaces</span></code> flag) tells Fmriprep to what “space(s)” you want your preprocessed data registered to. For example, you can specify <code class="docutils literal notranslate"><span class="pre">T1w</span></code> to have your functional data registered to the participant’s T1 scan. You can, instead or in addition to, also specify some standard template, like the MNI template (<code class="docutils literal notranslate"><span class="pre">MNI152NLin2009cAsym</span></code> or <code class="docutils literal notranslate"><span class="pre">MNI152NLin6Asym</span></code>). You can even specify surface templates if you want (like <code class="docutils literal notranslate"><span class="pre">fsaverage</span></code>), which will sample your volumetric functional data onto the surface (as computed by freesurfer). In addition to the specific output space(s), you can add a resolution “modifier” to the parameter to specify in what spatial resolution you want your resampled data to be. Without any resolution modifier, the native resolution of your functional files (e.g., <span class="math notranslate nohighlight">\(3\times3\times3\)</span> mm.) will be kept intact. But if you want to upsample your resampled files to 2mm, you can add <code class="docutils literal notranslate"><span class="pre">YourTemplate:2mm</span></code>. For example, if you want to use the FSL-style MNI template (<code class="docutils literal notranslate"><span class="pre">MNI152NLin6Asym</span></code>) resampled at 2 mm, you’d use:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">fmriprep</span><span class="o">-</span><span class="n">docker</span> <span class="o">&lt;</span><span class="n">your</span> <span class="n">bids</span><span class="o">-</span><span class="n">folder</span><span class="o">&gt;</span> <span class="o">&lt;</span><span class="n">your</span> <span class="n">output</span><span class="o">-</span><span class="n">folder</span><span class="o">&gt;</span> <span class="o">--</span><span class="n">output</span><span class="o">-</span><span class="n">spaces</span> <span class="n">MNI152NLin6Asym</span><span class="p">:</span><span class="mi">2</span><span class="n">mm</span>
 </pre></div>
@@ -655,17 +798,17 @@ const thebe_selector_output = ".output, .cell_output"
 </div>
 </div>
 <div class="section" id="other-parameters">
-<h3>Other parameters<a class="headerlink" href="#other-parameters" title="Permalink to this headline">¶</a></h3>
+<h3>Other parameters<a class="headerlink" href="#other-parameters" title="Permalink to this headline">#</a></h3>
 <p>There are many options that you can set when running Fmriprep. Check out the <a class="reference external" href="https://fmriprep.readthedocs.io/">Fmriprep website</a> (under “Usage”) for a list of all options!</p>
 </div>
 </div>
 <div class="section" id="issues-errors-and-troubleshooting">
-<h2>Issues, errors, and troubleshooting<a class="headerlink" href="#issues-errors-and-troubleshooting" title="Permalink to this headline">¶</a></h2>
+<h2>Issues, errors, and troubleshooting<a class="headerlink" href="#issues-errors-and-troubleshooting" title="Permalink to this headline">#</a></h2>
 <p>While Fmriprep often works out-of-the-box (assuming your data are properly BIDS-formatted), it may happen that it crashes or otherwise gives unexpected results. A great place to start looking for help is <a class="reference external" href="https://neurostars.org">neurostars.org</a>. This website is dedicated to helping neuroscientists with neuroimaging/neuroscience-related questions. Make sure to check whether your question has been asked here already and, if not, pose it here!</p>
 <p>If you encounter Fmriprep-specific bugs, you can also submit and issue at the <a class="reference external" href="https://github.com/poldracklab/fmriprep">Github repository</a> of Fmriprep.</p>
 </div>
 <div class="section" id="fmriprep-output-reports">
-<h2>Fmriprep output/reports<a class="headerlink" href="#fmriprep-output-reports" title="Permalink to this headline">¶</a></h2>
+<h2>Fmriprep output/reports<a class="headerlink" href="#fmriprep-output-reports" title="Permalink to this headline">#</a></h2>
 <p>After Fmriprep has run, it outputs, for each participants separately, a directory with results (i.e., preprocessed files) and an HTML-file with a summary and figures of the different steps in the preprocessing pipeline.</p>
 <p>We ran Fmriprep on a single run/task (<code class="docutils literal notranslate"><span class="pre">flocBLOCKED</span></code>) from a single subject (<code class="docutils literal notranslate"><span class="pre">sub-03</span></code>) some data with the following command:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">fmriprep</span><span class="o">-</span><span class="n">docker</span> <span class="o">/</span><span class="n">home</span><span class="o">/</span><span class="n">lsnoek1</span><span class="o">/</span><span class="n">ni</span><span class="o">-</span><span class="n">edu</span><span class="o">/</span><span class="n">bids</span> <span class="o">/</span><span class="n">home</span><span class="o">/</span><span class="n">lsnoek1</span><span class="o">/</span><span class="n">ni</span><span class="o">-</span><span class="n">edu</span><span class="o">/</span><span class="n">bids</span><span class="o">/</span><span class="n">derivatives</span> <span class="o">--</span><span class="n">participant</span><span class="o">-</span><span class="n">label</span> <span class="n">sub</span><span class="o">-</span><span class="mi">03</span> <span class="o">--</span><span class="n">output</span><span class="o">-</span><span class="n">spaces</span> <span class="n">T1w</span> <span class="n">MNI152NLin2009cAsym</span>
@@ -680,7 +823,7 @@ const thebe_selector_output = ".output, .cell_output"
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;desc-aseg_dseg.tsv&#39;, &#39;desc-aparcaseg_dseg.tsv&#39;, &#39;dataset_description.json&#39;, &#39;sub-03&#39;, &#39;logs&#39;, &#39;sub-03.html&#39;]
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;sub-03.html&#39;, &#39;sub-03&#39;, &#39;desc-aseg_dseg.tsv&#39;, &#39;dataset_description.json&#39;, &#39;logs&#39;, &#39;desc-aparcaseg_dseg.tsv&#39;]
 </pre></div>
 </div>
 </div>
@@ -710,26 +853,26 @@ const thebe_selector_output = ".output, .cell_output"
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;sub-03_desc-aseg_dseg.nii.gz&#39;,
- &#39;sub-03_label-GM_probseg.nii.gz&#39;,
- &#39;sub-03_desc-aparcaseg_dseg.nii.gz&#39;,
- &#39;sub-03_from-T1w_to-MNI152NLin2009cAsym_mode-image_xfm.h5&#39;,
- &#39;sub-03_space-MNI152NLin2009cAsym_dseg.nii.gz&#39;,
- &#39;sub-03_label-CSF_probseg.nii.gz&#39;,
- &#39;sub-03_desc-brain_mask.nii.gz&#39;,
- &#39;sub-03_space-MNI152NLin2009cAsym_desc-preproc_T1w.nii.gz&#39;,
- &#39;sub-03_space-MNI152NLin2009cAsym_label-WM_probseg.nii.gz&#39;,
- &#39;sub-03_desc-preproc_T1w.nii.gz&#39;,
- &#39;sub-03_from-MNI152NLin2009cAsym_to-T1w_mode-image_xfm.h5&#39;,
- &#39;sub-03_space-MNI152NLin2009cAsym_desc-preproc_T1w.json&#39;,
- &#39;sub-03_space-MNI152NLin2009cAsym_desc-brain_mask.json&#39;,
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;sub-03_label-CSF_probseg.nii.gz&#39;,
  &#39;sub-03_desc-preproc_T1w.json&#39;,
- &#39;sub-03_desc-brain_mask.json&#39;,
- &#39;sub-03_space-MNI152NLin2009cAsym_desc-brain_mask.nii.gz&#39;,
+ &#39;sub-03_desc-preproc_T1w.nii.gz&#39;,
+ &#39;sub-03_space-MNI152NLin2009cAsym_desc-preproc_T1w.nii.gz&#39;,
  &#39;sub-03_dseg.nii.gz&#39;,
- &#39;sub-03_label-WM_probseg.nii.gz&#39;,
+ &#39;sub-03_desc-brain_mask.json&#39;,
  &#39;sub-03_space-MNI152NLin2009cAsym_label-GM_probseg.nii.gz&#39;,
- &#39;sub-03_space-MNI152NLin2009cAsym_label-CSF_probseg.nii.gz&#39;]
+ &#39;sub-03_from-T1w_to-MNI152NLin2009cAsym_mode-image_xfm.h5&#39;,
+ &#39;sub-03_space-MNI152NLin2009cAsym_label-CSF_probseg.nii.gz&#39;,
+ &#39;sub-03_label-GM_probseg.nii.gz&#39;,
+ &#39;sub-03_from-MNI152NLin2009cAsym_to-T1w_mode-image_xfm.h5&#39;,
+ &#39;sub-03_desc-brain_mask.nii.gz&#39;,
+ &#39;sub-03_space-MNI152NLin2009cAsym_desc-brain_mask.nii.gz&#39;,
+ &#39;sub-03_desc-aparcaseg_dseg.nii.gz&#39;,
+ &#39;sub-03_space-MNI152NLin2009cAsym_desc-brain_mask.json&#39;,
+ &#39;sub-03_space-MNI152NLin2009cAsym_label-WM_probseg.nii.gz&#39;,
+ &#39;sub-03_desc-aseg_dseg.nii.gz&#39;,
+ &#39;sub-03_space-MNI152NLin2009cAsym_desc-preproc_T1w.json&#39;,
+ &#39;sub-03_label-WM_probseg.nii.gz&#39;,
+ &#39;sub-03_space-MNI152NLin2009cAsym_dseg.nii.gz&#39;]
 </pre></div>
 </div>
 </div>
@@ -746,22 +889,22 @@ const thebe_selector_output = ".output, .cell_output"
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;sub-03_task-flocBLOCKED_space-MNI152NLin2009cAsym_desc-aparcaseg_dseg.nii.gz&#39;,
- &#39;sub-03_task-flocBLOCKED_desc-confounds_regressors.tsv&#39;,
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;sub-03_task-flocBLOCKED_desc-confounds_regressors.tsv&#39;,
+ &#39;sub-03_task-flocBLOCKED_space-T1w_boldref.nii.gz&#39;,
+ &#39;sub-03_task-flocBLOCKED_space-MNI152NLin2009cAsym_desc-aseg_dseg.nii.gz&#39;,
+ &#39;sub-03_task-flocBLOCKED_space-MNI152NLin2009cAsym_desc-brain_mask.json&#39;,
+ &#39;sub-03_task-flocBLOCKED_space-MNI152NLin2009cAsym_desc-preproc_bold.nii.gz&#39;,
+ &#39;sub-03_task-flocBLOCKED_space-MNI152NLin2009cAsym_desc-aparcaseg_dseg.nii.gz&#39;,
  &#39;sub-03_task-flocBLOCKED_space-T1w_desc-preproc_bold.json&#39;,
  &#39;sub-03_task-flocBLOCKED_space-T1w_desc-aparcaseg_dseg.nii.gz&#39;,
+ &#39;sub-03_task-flocBLOCKED_desc-confounds_regressors.json&#39;,
  &#39;sub-03_task-flocBLOCKED_space-MNI152NLin2009cAsym_desc-brain_mask.nii.gz&#39;,
- &#39;sub-03_task-flocBLOCKED_space-T1w_desc-preproc_bold.nii.gz&#39;,
- &#39;sub-03_task-flocBLOCKED_space-T1w_boldref.nii.gz&#39;,
- &#39;sub-03_task-flocBLOCKED_space-T1w_desc-aseg_dseg.nii.gz&#39;,
- &#39;sub-03_task-flocBLOCKED_space-MNI152NLin2009cAsym_boldref.nii.gz&#39;,
- &#39;sub-03_task-flocBLOCKED_space-MNI152NLin2009cAsym_desc-preproc_bold.nii.gz&#39;,
- &#39;sub-03_task-flocBLOCKED_space-MNI152NLin2009cAsym_desc-brain_mask.json&#39;,
- &#39;sub-03_task-flocBLOCKED_space-MNI152NLin2009cAsym_desc-preproc_bold.json&#39;,
  &#39;sub-03_task-flocBLOCKED_space-T1w_desc-brain_mask.json&#39;,
- &#39;sub-03_task-flocBLOCKED_space-MNI152NLin2009cAsym_desc-aseg_dseg.nii.gz&#39;,
+ &#39;sub-03_task-flocBLOCKED_space-MNI152NLin2009cAsym_desc-preproc_bold.json&#39;,
+ &#39;sub-03_task-flocBLOCKED_space-MNI152NLin2009cAsym_boldref.nii.gz&#39;,
  &#39;sub-03_task-flocBLOCKED_space-T1w_desc-brain_mask.nii.gz&#39;,
- &#39;sub-03_task-flocBLOCKED_desc-confounds_regressors.json&#39;]
+ &#39;sub-03_task-flocBLOCKED_space-T1w_desc-preproc_bold.nii.gz&#39;,
+ &#39;sub-03_task-flocBLOCKED_space-T1w_desc-aseg_dseg.nii.gz&#39;]
 </pre></div>
 </div>
 </div>
@@ -990,9 +1133,11 @@ const thebe_selector_output = ".output, .cell_output"
 
               </div>
               
-            
-                <!-- Previous / next buttons -->
-<div class='prev-next-area'> 
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
     <a class='left-prev' id="prev-link" href="spatial_preprocessing.html" title="previous page">
         <i class="fas fa-angle-left"></i>
         <div class="prev-next-info">
@@ -1008,24 +1153,28 @@ const thebe_selector_output = ".output, .cell_output"
     <i class="fas fa-angle-right"></i>
     </a>
 </div>
-            
+            </footer>
         </div>
     </div>
-    <footer class="footer">
-  <p>
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    By Lukas Snoek<br/>
+  
+      &copy; Copyright 2021.<br/>
+</p>
+        </footer>
+    </div>
     
-      By Lukas Snoek<br/>
-    
-        &copy; Copyright 2021.<br/>
-  </p>
-</footer>
-</main>
+</div>
 
 
       </div>
     </div>
   
-  <script src="../../_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
 
   </body>
 </html>

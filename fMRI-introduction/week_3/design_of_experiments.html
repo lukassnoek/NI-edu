@@ -7,8 +7,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Design of experiments &#8212; NI-edu</title>
     
-  <link href="../../_static/css/theme.css" rel="stylesheet">
-  <link href="../../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
 
     
   <link rel="stylesheet"
@@ -18,20 +19,16 @@
   <link rel="preload" as="font" type="font/woff2" crossorigin
     href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
 
-    
-      
-
-    
     <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
+    <link rel="stylesheet" href="../../_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/mystnb.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
     
-  <link rel="preload" as="script" href="../../_static/js/index.be7d3bbb2ef33a8344ce.js">
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
 
     <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
     <script src="../../_static/jquery.js"></script>
@@ -39,12 +36,13 @@
     <script src="../../_static/doctools.js"></script>
     <script src="../../_static/clipboard.min.js"></script>
     <script src="../../_static/copybutton.js"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
     <script src="../../_static/togglebutton.js"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
-    <script src="../../_static/sphinx-book-theme.d59cb220de22ca1c485ebbdc042f0030.js"></script>
+    <script src="../../_static/design-tabs.js"></script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
 const thebe_selector = ".thebe,.cell"
 const thebe_selector_input = "pre"
@@ -66,7 +64,21 @@ const thebe_selector_output = ".output, .cell_output"
     <!-- Google Analytics -->
     
   </head>
-  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
+
     
     <div class="container-fluid" id="banner"></div>
 
@@ -75,9 +87,10 @@ const thebe_selector_output = ".output, .cell_output"
     <div class="container-xl">
       <div class="row">
           
-<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
-    
-        <div class="navbar-brand-box">
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
     <a class="navbar-brand text-wrap" href="../../index.html">
       
         <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
@@ -95,14 +108,15 @@ const thebe_selector_output = ".output, .cell_output"
   <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
 </form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item active">
-        <ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="../../index.html">
-   Welcome to NI-edu
-  </a>
- </li>
-</ul>
-<p aria-level="2" class="caption" role="heading">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../../index.html">
+                    Welcome to NI-edu
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading">
  <span class="caption-text">
   Getting started
  </span>
@@ -346,115 +360,244 @@ const thebe_selector_output = ".output, .cell_output"
 </ul>
 
     </div>
-</nav> <!-- To handle the deprecated key -->
-
-<div class="navbar_extra_footer">
-  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
-</div>
-
-</div>
-
-
-          
-
-
-          
-<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
-    
-    <div class="topbar container-xl fixed-top">
-    <div class="topbar-contents row">
-        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
-        <div class="col pl-md-4 topbar-main">
+</nav></div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
             
-            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
-                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
-                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
-                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
-                <i class="fas fa-bars"></i>
-                <i class="fas fa-arrow-left"></i>
-                <i class="fas fa-arrow-up"></i>
-            </button>
-            
-            
-<div class="dropdown-buttons-trigger">
-    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
-            class="fas fa-download"></i></button>
-
-    <div class="dropdown-buttons">
-        <!-- ipynb file if we had a myst markdown file -->
-        
-        <!-- Download raw file -->
-        <a class="dropdown-buttons" href="../../_sources/fMRI-introduction/week_3/design_of_experiments.ipynb"><button type="button"
-                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
-                data-placement="left">.ipynb</button></a>
-        <!-- Download PDF via print -->
-        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
-                onclick="printPdf(this)" data-toggle="tooltip" data-placement="left">.pdf</button>
-    </div>
-</div>
-
-            <!-- Source interaction buttons -->
-
-<div class="dropdown-buttons-trigger">
-    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
-        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
-    <div class="dropdown-buttons sourcebuttons">
-        <a class="repository-button"
-            href="https://github.com/lukassnoek/NI-edu"><button type="button" class="btn btn-secondary topbarbtn"
-                data-toggle="tooltip" data-placement="left" title="Source repository"><i
-                    class="fab fa-github"></i>repository</button></a>
-        <a class="issues-button"
-            href="https://github.com/lukassnoek/NI-edu/issues/new?title=Issue%20on%20page%20%2FfMRI-introduction/week_3/design_of_experiments.html&body=Your%20issue%20content%20here."><button
-                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
-                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
-        <a class="edit-button" href="https://github.com/lukassnoek/NI-edu/edit/master/NI-edu/fMRI-introduction/week_3/design_of_experiments.ipynb"><button
-                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
-                title="Edit this page"><i class="fas fa-pencil-alt"></i>suggest edit</button></a>
-    </div>
-</div>
-
-            <!-- Full screen (wrap in <a> to have style consistency -->
-
-<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
-        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
-        title="Fullscreen mode"><i
-            class="fas fa-expand"></i></button></a>
-
-            <!-- Launch buttons -->
-
-<div class="dropdown-buttons-trigger">
-    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
-        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
-    <div class="dropdown-buttons">
-        
-        <a class="binder-button" href="https://mybinder.org/v2/gh/lukassnoek/NI-edu/master?urlpath=tree/NI-edu/fMRI-introduction/week_3/design_of_experiments.ipynb"><button type="button"
-                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
-                data-placement="left"><img class="binder-button-logo"
-                    src="../../_static/images/logo_binder.svg"
-                    alt="Interact on binder">Binder</button></a>
-        
-        
-        <a class="jupyterhub-button" href="https://neuroimaging.lukas-snoek.com/hub/user-redirect/git-pull?repo=https://github.com/lukassnoek/NI-edu&urlpath=tree/NI-edu/NI-edu/fMRI-introduction/week_3/design_of_experiments.ipynb&branch=master"><button type="button"
-                class="btn btn-secondary topbarbtn" title="Launch JupyterHub" data-toggle="tooltip"
-                data-placement="left"><img class="jupyterhub-button-logo"
-                    src="../../_static/images/logo_jupyterhub.svg"
-                    alt="Interact on JupyterHub">JupyterHub</button></a>
-        
-        
-        
-    </div>
-</div>
-
-        </div>
-
-        <!-- Table of contents -->
-        <div class="d-none d-md-block col-md-2 bd-toc show noprint">
-            
-            <div class="tocsection onthispage pt-5 pb-3">
-                <i class="fas fa-list"></i> Contents
+            <div class="navbar_extra_footer">
+            Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
             </div>
-            <nav id="bd-toc-nav" aria-label="Page">
-                <ul class="visible nav section-nav flex-column">
+            
+        </div>
+    </div>
+    <div id="rtd-footer-container"></div>
+</div>
+
+
+          
+
+
+          
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
+    
+    <div class="header-article row sticky-top noprint">
+        
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+<div class="menu-dropdown menu-dropdown-launch-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Launch interactive content">
+      <i class="fas fa-rocket"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://mybinder.org/v2/gh/lukassnoek/NI-edu/master?urlpath=tree/NI-edu/fMRI-introduction/week_3/design_of_experiments.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Launch on Binder"
+>
+  
+
+<span class="headerbtn__icon-container">
+  
+    <img src="../../_static/images/logo_binder.svg">
+  </span>
+<span class="headerbtn__text-container">Binder</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="https://neuroimaging.lukas-snoek.com/hub/user-redirect/git-pull?repo=https%3A//github.com/lukassnoek/NI-edu&urlpath=tree/NI-edu/NI-edu/fMRI-introduction/week_3/design_of_experiments.ipynb&branch=master"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Launch on JupyterHub"
+>
+  
+
+<span class="headerbtn__icon-container">
+  
+    <img src="../../_static/images/logo_jupyterhub.svg">
+  </span>
+<span class="headerbtn__text-container">JupyterHub</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+<div class="menu-dropdown menu-dropdown-repository-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Source repositories">
+      <i class="fab fa-github"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://github.com/lukassnoek/NI-edu"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Source repository"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="headerbtn__text-container">repository</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="https://github.com/lukassnoek/NI-edu/issues/new?title=Issue%20on%20page%20%2FfMRI-introduction/week_3/design_of_experiments.html&body=Your%20issue%20content%20here."
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Open an issue"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="headerbtn__text-container">open issue</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="https://github.com/lukassnoek/NI-edu/edit/master/NI-edu/fMRI-introduction/week_3/design_of_experiments.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Edit this page"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-pencil-alt"></i>
+  </span>
+<span class="headerbtn__text-container">suggest edit</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<div class="menu-dropdown menu-dropdown-download-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Download this page">
+      <i class="fas fa-download"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="../../_sources/fMRI-introduction/week_3/design_of_experiments.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="headerbtn__text-container">.ipynb</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="printPdf(this)"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="headerbtn__text-container">.pdf</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
+
+    </div>
+</div>
+
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#types-of-designs-factorial-and-parametric-designs">
    Types of designs: factorial and parametric designs
@@ -574,12 +717,11 @@ const thebe_selector_output = ".output, .cell_output"
  </li>
 </ul>
 
-            </nav>
-        </div>
-    </div>
+    </nav>
 </div>
-    <div id="main-content" class="row">
-        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
             <!-- Table of contents that is only displayed when printing the page -->
             <div id="jb-print-docs-body" class="onlyprint">
                 <h1>Design of experiments</h1>
@@ -715,11 +857,12 @@ const thebe_selector_output = ".output, .cell_output"
                     </div>
                 </div>
             </div>
-            
+            <main id="main-content" role="main">
+                
               <div>
                 
   <div class="tex2jax_ignore mathjax_ignore section" id="design-of-experiments">
-<h1>Design of experiments<a class="headerlink" href="#design-of-experiments" title="Permalink to this headline">¶</a></h1>
+<h1>Design of experiments<a class="headerlink" href="#design-of-experiments" title="Permalink to this headline">#</a></h1>
 <p>This notebook is about the statistical considerations related to fMRI experimental design. Make sure you do the other lab (<code class="docutils literal notranslate"><span class="pre">glm_part2_inference.ipynb</span></code>) first!</p>
 <p>Experimental designs for fMRI studies come in different flavors, depending on what hypotheses you have about the phenomenon of interest and how you manipulate this. Apart from the different types of experimental designs (e.g., subtractive, factorial, parametric), there are a couple of general recommendations w.r.t. experimental design that can optimize the chance of finding positive results, which will be discussed in this notebook as well. These recommendations have to do with the specific ordering and timing of the events in your experiment. For example, suppose you show images of cats (condition: “C”) and dogs (condition: “D”) to subjects in the scanner, and you’re interested if the brain responds differently to images of dogs compared to images of cats. What ordering (“CCCCDDDD” or “CDCDCDCD” or “CCDCDDCD”?) and timing (how long should I wait to present another stimulus?) of the stimuli will yield the best (here: highest) effect possible, and why?</p>
 <p><strong>What you’ll learn</strong>: after this lab, you’ll …</p>
@@ -743,10 +886,10 @@ const thebe_selector_output = ".output, .cell_output"
 </div>
 </div>
 <div class="section" id="types-of-designs-factorial-and-parametric-designs">
-<h2>Types of designs: factorial and parametric designs<a class="headerlink" href="#types-of-designs-factorial-and-parametric-designs" title="Permalink to this headline">¶</a></h2>
+<h2>Types of designs: factorial and parametric designs<a class="headerlink" href="#types-of-designs-factorial-and-parametric-designs" title="Permalink to this headline">#</a></h2>
 <p>In the previous tutorial (‘the GLM: part 2’), we discussed contrasts at length and how to use contrast-vectors to specify simple hypotheses (e.g., happy faces &gt; sad faces). The contrast-vectors from last week’s lab were examples of either simple contrasts-against-baseline (<span class="math notranslate nohighlight">\(H_{0}: \beta = 0\)</span>) or examples of <em>subtractive designs</em> (also called categorical designs; e.g., <span class="math notranslate nohighlight">\(H_{0}: \beta_{1} - \beta_{2} = 0\)</span>). There are, however, more types of designs possible, like <em>factorial</em> and <em>parametric</em> designs. In this first section, we’ll discuss these two designs shortly and have you implement GLMs to test hypotheses forwarded by these designs.</p>
 <div class="section" id="factorial-designs">
-<h3>Factorial designs<a class="headerlink" href="#factorial-designs" title="Permalink to this headline">¶</a></h3>
+<h3>Factorial designs<a class="headerlink" href="#factorial-designs" title="Permalink to this headline">#</a></h3>
 <p>Factorial designs are designs in which each event (e.g., stimulus) may be represented by a combination of different conditions. For example, you could show images of squares and circles (condition 1: shape) which may be either green or red (condition 2: color). See the image below for a visualization of these conditions and the associated contrasts.</p>
 <p><img alt="" src="https://docs.google.com/drawings/d/e/2PACX-1vROtTEQm-rUlrDMJWlUwmbMVkjhDHrs9snSAPL4K86CtOKpd3EFZz-z4lWVEXeS6qnaZeFCqwCO9C90/pub?w=1120&amp;h=527" /></p>
 <p>Before we’ll explain this figure in more detail, let’s generate some data. We’ll assume that the TR is 1 second and that all onsets are always syncronized with the TR (so there won’t be onsets at, e.g., 10.295 seconds). This way, we can ignore the downsampling issue. We’ll convolve the data with an HRF already and plot the design matrix below:</p>
@@ -875,8 +1018,8 @@ const thebe_selector_output = ".output, .cell_output"
 </div>
 <p>Alright, these (directional) main effects should be familiar as they don’t differ very much from those that you saw last week. However, factorial designs are unique in that they, additionally, can test for <em>interactions</em> between conditions. Again, technically, (undirectional) F-tests should be used, but again, these are rarely used in cognitive neuroscience.</p>
 <p>So, let’s define a directional interaction effect. Suppose that, for some reason, I believe that red stimuli evoke more activity than green stimuli, but more so for circles than for squares. In other words:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-4d1294a9-991d-4f38-bda0-6f6ec76a8272">
-<span class="eqno">(33)<a class="headerlink" href="#equation-4d1294a9-991d-4f38-bda0-6f6ec76a8272" title="Permalink to this equation">¶</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-e46036bc-5015-4369-b20f-357573146378">
+<span class="eqno">(33)<a class="headerlink" href="#equation-e46036bc-5015-4369-b20f-357573146378" title="Permalink to this equation">#</a></span>\[\begin{align}
 (\hat{\beta}_{\mathrm{red, circle}} - \hat{\beta}_{\mathrm{green,circle}}) &gt; (\hat{\beta}_{\mathrm{red, square}} - \hat{\beta}_{\mathrm{green,square}})
 \end{align}\]</div>
 <p>It turns out, there is a very nice trick to figure out the corresponding contrast for this interaction: you can simply (elementwise) multiply the contrast vector for “red &gt; green” and the contrast vector for “circle &gt; squares”!</p>
@@ -921,7 +1064,7 @@ const thebe_selector_output = ".output, .cell_output"
 </div>
 </div>
 <div class="section" id="parametric-designs">
-<h3>Parametric designs<a class="headerlink" href="#parametric-designs" title="Permalink to this headline">¶</a></h3>
+<h3>Parametric designs<a class="headerlink" href="#parametric-designs" title="Permalink to this headline">#</a></h3>
 <p>So far, we have discussed only designs with conditions that are categorical, such as “male vs. female faces”  and “circles vs. squares”. The independent variables in your experimental design, however, do not <em>have</em> to be categorical! They can be continuous or ordinal, meaning that a particular variable might have different values (or “weights”) across trials. Designs involving continuously varying properties are often called <em>parametric designs</em> or <em>parametric modulation</em>.</p>
 <p>In parametric designs, we assume that our design affects the voxel response in two ways:</p>
 <ol class="simple">
@@ -1037,34 +1180,34 @@ const thebe_selector_output = ".output, .cell_output"
 </div>
 </div>
 <div class="section" id="design-variance-efficiency">
-<h2>Design variance/efficiency<a class="headerlink" href="#design-variance-efficiency" title="Permalink to this headline">¶</a></h2>
+<h2>Design variance/efficiency<a class="headerlink" href="#design-variance-efficiency" title="Permalink to this headline">#</a></h2>
 <p>Alright, hopefully you now know how to design contrasts for factorial and parameteric designs! This section has a slightly different focus, namely the mathematics behind design variance and efficiency! Remember that we wouldn’t tell you what “design variance” was in the previous two GLM tutorials? Well, this week we’re going to discuss and explain it <em>extensively</em>! Before we delve into this topic, let’s first recap the (conceptual) formula for the <em>t</em>-value from last week (the relevance of this will become clear shortly).</p>
 <p>Last week, you learned about the GLM and how to apply it to fMRI data to find out how much influence each predictor in your design has on the signal of a voxel. Crucially, you learned that you shouldn’t look at raw beta-parameters to infer the effect of predictors, but that you should look at <em>normalized beta-parameters</em> — the <strong><em>t</em>-value</strong>. Remember the formula for the <em>t</em>-value for a given contrast (<span class="math notranslate nohighlight">\(c\)</span>)?</p>
-<div class="amsmath math notranslate nohighlight" id="equation-7f3c6976-f5e0-4d13-9248-3ac3d5623a01">
-<span class="eqno">(34)<a class="headerlink" href="#equation-7f3c6976-f5e0-4d13-9248-3ac3d5623a01" title="Permalink to this equation">¶</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-f92e1be2-c8da-4e0e-bd6b-61611e7643e3">
+<span class="eqno">(34)<a class="headerlink" href="#equation-f92e1be2-c8da-4e0e-bd6b-61611e7643e3" title="Permalink to this equation">#</a></span>\[\begin{align}
 t_{\mathbf{c}\hat{\beta}} = \frac{\mathrm{effect}}{\sqrt{\mathrm{noise \cdot design\ variance}}} = \frac{\mathbf{c}\hat{\beta}}{\sqrt{\frac{SSE}{\mathrm{DF}} \cdot \mathrm{design\ variance}}}
 \end{align}\]</div>
 <p>The formula for the <em>t</em>-value embodies the concept that the statistics you (should) care about, <em>t</em>-values, depend both on the <strong>effect</strong> (sometimes confusingly called the “signal”; <span class="math notranslate nohighlight">\(\hat{\beta}\)</span>), the <strong>noise</strong> (<span class="math notranslate nohighlight">\(\hat{\sigma}^{2} = \frac{SSE}{\mathrm{DF}}\)</span>), and the <strong>“design variance”</strong>.</p>
 <p>So, to find optimal (i.e. largest) <em>t</em>-values, we should try to optimize both the effect of our predictors (i.e. the betas), try to minimize the errors (<span class="math notranslate nohighlight">\(\hat{\sigma}^2\)</span>), and try to minimize the design variance of our model. In this lab, we’ll shortly discuss the “effect” component (<span class="math notranslate nohighlight">\(\hat{\beta}\)</span>) and thereafter we’ll discuss in detail the “design variance” part. We won’t discuss the “noise” part, as this will be the topic of next week (preprocessing).</p>
 <div class="section" id="optimizing-effects">
-<h3>Optimizing “effects”<a class="headerlink" href="#optimizing-effects" title="Permalink to this headline">¶</a></h3>
+<h3>Optimizing “effects”<a class="headerlink" href="#optimizing-effects" title="Permalink to this headline">#</a></h3>
 <div class="section" id="psychological-factors">
-<h4>Psychological factors<a class="headerlink" href="#psychological-factors" title="Permalink to this headline">¶</a></h4>
+<h4>Psychological factors<a class="headerlink" href="#psychological-factors" title="Permalink to this headline">#</a></h4>
 <p>As discussed above, the “effect” part of the conceptual formula for the t-statistic refers to the <span class="math notranslate nohighlight">\(\beta\)</span>-parameter in the statistical formula. It may sound weird to try to “optimize” your effect, because there is no way to magically acquire a better/stronger effect from your data, right? (Well, apart from using a better/stronger MRI-scanner.) Actually, don’t forget that the effect you’re measuring is coming from the brain of a <em>human</em> beings (your subjects)! There are real and important psychological influences that affect the strength of your signal, and thus influence eventually the size of your <span class="math notranslate nohighlight">\(\beta\)</span>-parameter.</p>
 <p>So, what are these psychological influences? Well, think about inattention/boredom, anxiety, sleepiness (don’t underestimate how many subjects fall asleep in the scanner!), and subjects not understanding your task. As an extreme example: suppose you’re showing your subject some visual stimuli in order to measure the effect of some visual property (e.g., object color) in the visual cortex. Imagine that your subject finds the task so boring that he/she falls asleep; the <span class="math notranslate nohighlight">\(\beta\)</span>-parameters in this scenario are going to be <em>much</em> lower than when the subject wouldn’t have fallen asleep, of course! Sure, this is an extreme (but not uncommon!) example, but it shows the potential influence of psychological factors on the “effect” you’re measuring in your data!</p>
 <p>In short, when designing an experiment, you want to continually ask yourself: “Are subjects really doing/thinking the way I want them to?”, and consequently: “Am I really measuring what I think I’m measuring?”</p>
 <p>(The effect of psychological aspects on the measured effect is thoroughly explained in the video <a class="reference external" href="https://www.youtube.com/watch?v=lwy2k8YQ-cM">Psychological principles in experimental design</a> from Tor Wager, which you can also find on Canvas.)</p>
 </div>
 <div class="section" id="design-factors">
-<h4>Design factors<a class="headerlink" href="#design-factors" title="Permalink to this headline">¶</a></h4>
+<h4>Design factors<a class="headerlink" href="#design-factors" title="Permalink to this headline">#</a></h4>
 <p>Apart from taking psychological factors into account when designing your experiment, there are also design-technical factors that influence the (potential) strength of your signal: using blocked designs. We will, however, discuss this topic in a later section, because you need a better understanding of another part of the conceptual <em>t</em>-value formula first: design variance.</p>
 </div>
 </div>
 <div class="section" id="optimizing-design-variance">
-<h3>Optimizing design variance<a class="headerlink" href="#optimizing-design-variance" title="Permalink to this headline">¶</a></h3>
+<h3>Optimizing design variance<a class="headerlink" href="#optimizing-design-variance" title="Permalink to this headline">#</a></h3>
 <p>So, last week we talked quite a bit about this mysterious term “design variance” and we promised to discuss it the next week. That’s exactly what we’re going to do now. As we shortly explained last week, <em>design variance is the part of the standard error caused by the design-matrix (<span class="math notranslate nohighlight">\(X\)</span>)</em>. Importantly, design variance is closely related to the <em>efficiency</em> of the design matrix (<span class="math notranslate nohighlight">\(X\)</span>), i.e., efficiency is the inverse of design variance:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-790af04c-ce3b-4878-8746-80ecc7395641">
-<span class="eqno">(35)<a class="headerlink" href="#equation-790af04c-ce3b-4878-8746-80ecc7395641" title="Permalink to this equation">¶</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-39021fbd-ea8f-4312-9c86-191106435818">
+<span class="eqno">(35)<a class="headerlink" href="#equation-39021fbd-ea8f-4312-9c86-191106435818" title="Permalink to this equation">#</a></span>\[\begin{align}
 \mathrm{efficiency} = \frac{1}{\mathrm{design\ variance}}
 \end{align}\]</div>
 <p>This term, efficiency, will be important in the rest of this notebook.</p>
@@ -1075,41 +1218,41 @@ t_{\mathbf{c}\hat{\beta}} = \frac{\mathrm{effect}}{\sqrt{\mathrm{noise \cdot des
 <li><p>The predictors should <strong>not</strong> have <strong>high covariance</strong> (i.e. they should not correlate between each other a lot)</p></li>
 </ol>
 <p>In general, for any <strong>contrast between two <span class="math notranslate nohighlight">\(\beta\)</span>-parameters corresponding to predictor <span class="math notranslate nohighlight">\(j\)</span> and <span class="math notranslate nohighlight">\(k\)</span></strong>, we can define their design variance as follows*:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-33b24d92-a001-4859-9c50-93599f090504">
-<span class="eqno">(36)<a class="headerlink" href="#equation-33b24d92-a001-4859-9c50-93599f090504" title="Permalink to this equation">¶</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-039769c8-2154-47c4-b2b0-17c6098f2cc9">
+<span class="eqno">(36)<a class="headerlink" href="#equation-039769c8-2154-47c4-b2b0-17c6098f2cc9" title="Permalink to this equation">#</a></span>\[\begin{align}
 \mathrm{design\ variance}_{j,k} = \frac{1}{\mathrm{var}[X_{j}] + \mathrm{var}[X_{k}] - 2\cdot \mathrm{cov}[X_{j}, X_{k}]}
 \end{align}\]</div>
 <p>As such, efficiency for this contrast would the inverse:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-8af76393-4795-4210-82bc-504db415a266">
-<span class="eqno">(37)<a class="headerlink" href="#equation-8af76393-4795-4210-82bc-504db415a266" title="Permalink to this equation">¶</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-2a6aa279-73d1-42a1-a103-50a69ca0405a">
+<span class="eqno">(37)<a class="headerlink" href="#equation-2a6aa279-73d1-42a1-a103-50a69ca0405a" title="Permalink to this equation">#</a></span>\[\begin{align}
 \mathrm{efficiency}_{j,k} = \mathrm{var}[X_{j}] + \mathrm{var}[X_{k}] - 2\cdot \mathrm{cov}[X_{j}, X_{k}]
 \end{align}\]</div>
 <p>As you can see, design variance thus depends on the variance of the predictors <em>and</em> the covariance between predictors. Note that this formulation only applies to contrasts involving more than one parameter. For <strong>contrasts against baseline, in which only one parameter is tested (e.g. predictor <span class="math notranslate nohighlight">\(j\)</span>)</strong>, there is only one variance term (the other variance term and the covariance term are dropped out):</p>
-<div class="amsmath math notranslate nohighlight" id="equation-03982a17-0f74-4206-8020-5688e37d3c91">
-<span class="eqno">(38)<a class="headerlink" href="#equation-03982a17-0f74-4206-8020-5688e37d3c91" title="Permalink to this equation">¶</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-ba9300e2-be55-4283-83de-2e1673d723da">
+<span class="eqno">(38)<a class="headerlink" href="#equation-ba9300e2-be55-4283-83de-2e1673d723da" title="Permalink to this equation">#</a></span>\[\begin{align}
 \mathrm{design\ variance}_{j} = \frac{1}{\mathrm{var}[X_{j}]}
 \end{align}\]</div>
 <p>It is of course kind of annoying to have two different definitions (and computations) of design variance, which depend on whether you want to test a parameter against baseline or against another parameter. Therefore, people usually use the vectorized computation (i.e. using matrix multiplication), which allows you to define the formula for design variance <em>for any contrast-vector <span class="math notranslate nohighlight">\(\mathbf{c}\)</span></em>:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-dd842c72-1cd0-46f4-a8dc-77a2bbffda95">
-<span class="eqno">(39)<a class="headerlink" href="#equation-dd842c72-1cd0-46f4-a8dc-77a2bbffda95" title="Permalink to this equation">¶</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-c51bebcf-1249-49b3-b4ca-29212c2342eb">
+<span class="eqno">(39)<a class="headerlink" href="#equation-c51bebcf-1249-49b3-b4ca-29212c2342eb" title="Permalink to this equation">#</a></span>\[\begin{align}
 \mathrm{design\ variance} = \frac{1}{\mathrm{var}[X_{j}] + \mathrm{var}[X_{k}] - 2\cdot \mathrm{cov}[X_{j}, X_{k}]} = \mathbf{c}(\mathbf{X}^T\mathbf{X})^{-1}\mathbf{c}^{T}
 \end{align}\]</div>
 <p>While this notation, <span class="math notranslate nohighlight">\(\mathbf{c}(\mathbf{X}^{T}\mathbf{X})^{-1}\mathbf{c}\)</span>, may seem quite different than the above definitions using the <span class="math notranslate nohighlight">\(\mathrm{var}\)</span> and <span class="math notranslate nohighlight">\(\mathrm{cov}\)</span> terms, it is mathematically doing the same thing. The term <span class="math notranslate nohighlight">\((X^{T}X)^{-1}\)</span> represents (the inverse of) the variance-covariance matrix of the design (<span class="math notranslate nohighlight">\(X\)</span>) and <strong>c</strong> (contrast vector) is used only to “extract” the relevant variances and covariance for the particular contrast out of the entire covariance matrix of <span class="math notranslate nohighlight">\(X\)</span>.</p>
 <p>While appearing more complex, the advantage of the vectorized definition, however, is that it works for both contrasts against baseline (e.g. <code class="docutils literal notranslate"><span class="pre">[0,</span> <span class="pre">0,</span> <span class="pre">1]</span></code>) and contrasts between parameters (e.g. <code class="docutils literal notranslate"><span class="pre">[0,</span> <span class="pre">1,</span> <span class="pre">-1]</span></code>). Now, if we plug in this mathematical definition of design variance in the formula of the standard error of a given contrast, we get:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-d51121b6-8431-4380-ab8a-7a6d13db6ced">
-<span class="eqno">(40)<a class="headerlink" href="#equation-d51121b6-8431-4380-ab8a-7a6d13db6ced" title="Permalink to this equation">¶</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-88562da1-b15e-4fcb-bf0a-b25d28d843e7">
+<span class="eqno">(40)<a class="headerlink" href="#equation-88562da1-b15e-4fcb-bf0a-b25d28d843e7" title="Permalink to this equation">#</a></span>\[\begin{align}
 \mathrm{SE}_{\mathbf{c}\hat{\beta}} = \sqrt{\mathrm{noise} \cdot \mathrm{design\ variance}} = \sqrt{\hat{\sigma}^{2}\mathbf{c}(\mathbf{X}^{T}\mathbf{X})^{-1}\mathbf{c}^{T}}
 \end{align}\]</div>
 <p>Now, we can write out the entire formula for the <em>t</em>-statistic:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-4bffff5f-8f4a-4581-aae4-c9f286a2b64b">
-<span class="eqno">(41)<a class="headerlink" href="#equation-4bffff5f-8f4a-4581-aae4-c9f286a2b64b" title="Permalink to this equation">¶</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-30583785-d853-44df-b4e0-550d337b50c0">
+<span class="eqno">(41)<a class="headerlink" href="#equation-30583785-d853-44df-b4e0-550d337b50c0" title="Permalink to this equation">#</a></span>\[\begin{align}
 t_{\mathbf{c}\hat{\beta}} = \frac{\mathbf{c}\hat{\beta}}{\sqrt{\hat{\sigma}^{2}\mathbf{c}(X'X)^{-1}\mathbf{c}'}} = \frac{\mathrm{effect}}{\sqrt{\mathrm{noise} \cdot \mathrm{design\ variance}}}
 \end{align}\]</div>
 <hr class="docutils" />
 <p>* Actually, design variance does not depend on the “variance” and “covariance”, but on the sums-of-squares of each predictor <span class="math notranslate nohighlight">\(j\)</span> (<span class="math notranslate nohighlight">\(\mathrm{SS}_{X_{j}}\)</span>) and sums-of-squares cross-products (<span class="math notranslate nohighlight">\(\mathrm{SS}_{X_{j}, X_{k}}\)</span>), respectively. These are just the variance and covariance terms, but without dividing by <span class="math notranslate nohighlight">\(N - 1\)</span>! We used the terms variance and covariance here because they are more intuitive.</p>
 </div>
 <div class="section" id="summary-effects-noise-and-design-variance">
-<h3>Summary: effects, noise, and design variance<a class="headerlink" href="#summary-effects-noise-and-design-variance" title="Permalink to this headline">¶</a></h3>
+<h3>Summary: effects, noise, and design variance<a class="headerlink" href="#summary-effects-noise-and-design-variance" title="Permalink to this headline">#</a></h3>
 <p>Alright, that’s a lot of math. Sorry about that. But the above formula nicely illustrates that, to obtain large effects (i.e. <em>t</em>-values), you need three things:</p>
 <ol class="simple">
 <li><p>A large response/effect (i.e. <span class="math notranslate nohighlight">\(\beta\)</span>)</p></li>
@@ -1173,10 +1316,10 @@ Efficiency: 50.000
 </div><p>YOUR ANSWER HERE</p>
 </div>
 <div class="section" id="how-to-calculate-design-variance-and-efficiency-in-python">
-<h3>How to calculate design variance and efficiency in Python<a class="headerlink" href="#how-to-calculate-design-variance-and-efficiency-in-python" title="Permalink to this headline">¶</a></h3>
+<h3>How to calculate design variance and efficiency in Python<a class="headerlink" href="#how-to-calculate-design-variance-and-efficiency-in-python" title="Permalink to this headline">#</a></h3>
 <p>As discussed in the previous section, the formula for design variance (and efficiency) is often expressed using linear algebra notation:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-088f8408-c102-430d-a724-0637b82fb64d">
-<span class="eqno">(42)<a class="headerlink" href="#equation-088f8408-c102-430d-a724-0637b82fb64d" title="Permalink to this equation">¶</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-5ae7c7bf-60ba-4c4c-85c7-d8b8a5e0be53">
+<span class="eqno">(42)<a class="headerlink" href="#equation-5ae7c7bf-60ba-4c4c-85c7-d8b8a5e0be53" title="Permalink to this equation">#</a></span>\[\begin{align}
 \mathrm{design\ variance} = \mathbf{c}(\mathbf{X}^{T}\mathbf{X})^{-1}\mathbf{c}^{T}
 \end{align}\]</div>
 <p>You have seen the <span class="math notranslate nohighlight">\((\mathbf{X}^{T}\mathbf{X})\)</span> earlier when we discussed the solution for finding the least squares solution. Now, design variance is calculated by pre and postmultiplying this term with the (transpose of the) contrast vector (denoted with <code class="docutils literal notranslate"><span class="pre">c</span></code> and <code class="docutils literal notranslate"><span class="pre">c.T</span></code>). As such, so the full design variance calculation can be implemented in python as follows:</p>
@@ -1184,8 +1327,8 @@ Efficiency: 50.000
 </pre></div>
 </div>
 <p>Given that efficiency is the inverse of design variance:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-aa59a893-dc91-4d33-83c9-63cc856bcd66">
-<span class="eqno">(43)<a class="headerlink" href="#equation-aa59a893-dc91-4d33-83c9-63cc856bcd66" title="Permalink to this equation">¶</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-5f2ba9ce-fb7b-4442-be39-2c49af8bd8d9">
+<span class="eqno">(43)<a class="headerlink" href="#equation-5f2ba9ce-fb7b-4442-be39-2c49af8bd8d9" title="Permalink to this equation">#</a></span>\[\begin{align}
 \mathrm{efficiency} = \frac{1}{\mathbf{c}(\mathbf{X}^{T}\mathbf{X})^{-1}\mathbf{c}^{T}}
 \end{align}\]</div>
 <p>… we can calculate efficiency as:</p>
@@ -1196,17 +1339,17 @@ Efficiency: 50.000
 </div>
 </div>
 <div class="section" id="the-effect-of-predictor-variance-on-design-variance-efficiency">
-<h2>The effect of predictor variance on design variance/efficiency<a class="headerlink" href="#the-effect-of-predictor-variance-on-design-variance-efficiency" title="Permalink to this headline">¶</a></h2>
+<h2>The effect of predictor variance on design variance/efficiency<a class="headerlink" href="#the-effect-of-predictor-variance-on-design-variance-efficiency" title="Permalink to this headline">#</a></h2>
 <p>As explained in the previous section, design variance depends on (1) predictor variance and (2) predictor covariance. In this section, we’ll focus on predictor variance. In the next section, we’ll focus on predictor covariance.</p>
 <p>As you probably know, <em>variance</em> is a statistical property of a random variable that describes the average squared deviation from the variable’s mean. Formally, for any variable <span class="math notranslate nohighlight">\(x\)</span> with mean <span class="math notranslate nohighlight">\(\bar{x}\)</span> and length <span class="math notranslate nohighlight">\(N\)</span>, its sample variance is defined as:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-317d6ba8-1ce9-46ae-8f9a-dd0b7ad9c005">
-<span class="eqno">(44)<a class="headerlink" href="#equation-317d6ba8-1ce9-46ae-8f9a-dd0b7ad9c005" title="Permalink to this equation">¶</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-8e7d88b2-a496-4621-958e-c40fb4aec689">
+<span class="eqno">(44)<a class="headerlink" href="#equation-8e7d88b2-a496-4621-958e-c40fb4aec689" title="Permalink to this equation">#</a></span>\[\begin{align}
 \mathbf{var}[x] = \frac{1}{N - 1}\sum_{i=1}^{N}(x - \bar{x})^{2}
 \end{align}\]</div>
 <p>So, the more values of a variable deviate from its mean on average, the more variance it has.</p>
 <p>To demonstrate the effect of predictor variance on design variance/efficiency, we will focus (for simplicity) on non-time series designs that have just a single condition and thus a single predictor (apart from the intercept). In these examples, we’ll focus on why high variance is important.</p>
 <div class="section" id="an-example-of-the-effect-of-high-design-variance">
-<h3>An example of the effect of (high) design variance<a class="headerlink" href="#an-example-of-the-effect-of-high-design-variance" title="Permalink to this headline">¶</a></h3>
+<h3>An example of the effect of (high) design variance<a class="headerlink" href="#an-example-of-the-effect-of-high-design-variance" title="Permalink to this headline">#</a></h3>
 <p>To start, we want to show you — conceptually — why it is important to have a lot of variance in your predictors for a low standard error of your beta, and thus high t-values. We’re going to show you an example of ‘regular’ linear regression (so no time-series signal, but the example holds for MRI data).</p>
 <p>Suppose we want to investigate the effect of someone’s IQ on their income (<span class="math notranslate nohighlight">\(\mathbf{X} = IQ\)</span>, <span class="math notranslate nohighlight">\(\mathbf{y} = income\)</span>). We’ve gathered some data, which we’ll as usual represent as an independent variable (<span class="math notranslate nohighlight">\(\mathbf{X}\)</span>) and a dependent variable (<span class="math notranslate nohighlight">\(\mathbf{y}\)</span>). We’ll also run the regression analysis and calculate the beta-parameters, MSE and <em>t</em>-value (corresponding to the IQ-parameter “against baseline”).</p>
 <div class="cell docutils container">
@@ -1384,9 +1527,9 @@ T-value high-variance model: 31.156
 </div>
 </div>
 <div class="section" id="the-effect-of-predictor-covariance-on-design-variance-efficiency">
-<h2>The effect of predictor covariance on design variance/efficiency<a class="headerlink" href="#the-effect-of-predictor-covariance-on-design-variance-efficiency" title="Permalink to this headline">¶</a></h2>
+<h2>The effect of predictor covariance on design variance/efficiency<a class="headerlink" href="#the-effect-of-predictor-covariance-on-design-variance-efficiency" title="Permalink to this headline">#</a></h2>
 <div class="section" id="multicollinearity">
-<h3>Multicollinearity<a class="headerlink" href="#multicollinearity" title="Permalink to this headline">¶</a></h3>
+<h3>Multicollinearity<a class="headerlink" href="#multicollinearity" title="Permalink to this headline">#</a></h3>
 <p>In the previous section, we discussed the influence of predictor variance - <span class="math notranslate nohighlight">\(\mathrm{var}[\mathbf{X}_{j}]\)</span> - on the design-variance term, showing that high variance leads to (relatively) low design variance (and thus high efficiency).</p>
 <p>We know, however, that design variance <em>also</em> depends on the <em>covariance</em> between predictors - <span class="math notranslate nohighlight">\(\mathrm{cov}[\mathbf{X}_{j}, \mathbf{X}_{k}]\)</span>. This “covariance between predictors” is also known as <strong>multicollinearity</strong>.</p>
 <p>Specifically, the <strong>higher</strong> the covariance (multicollinearity), the <strong>lower</strong> the design efficiency (the worse our design is). Conceptually, you can think of high covariance between predictors as causing <em>uncertainty</em> of the estimation of your beta-estimates: if your predictors are correlated, the GLM “doesn’t know” what (de)activation it should assign to which predictor. This uncertainty due to correlated predictors is reflected in a (relatively) higher design variance term.</p>
@@ -1437,8 +1580,8 @@ T-value high-variance model: 31.156
 </div>
 <div class="cell_output docutils container">
 <img alt="../../_images/design_of_experiments_68_0.png" src="../../_images/design_of_experiments_68_0.png" />
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Variance predictor 1: 0.055
-Variance predictor 2: 0.055
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Variance predictor 1: 0.048
+Variance predictor 2: 0.048
 </pre></div>
 </div>
 </div>
@@ -1471,8 +1614,8 @@ Variance predictor 2: 0.055
 </div>
 <div class="cell_output docutils container">
 <img alt="../../_images/design_of_experiments_70_0.png" src="../../_images/design_of_experiments_70_0.png" />
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Variance predictor 1: 0.055
-Variance predictor 2: 0.055
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Variance predictor 1: 0.048
+Variance predictor 2: 0.048
 </pre></div>
 </div>
 </div>
@@ -1486,7 +1629,7 @@ Variance predictor 2: 0.055
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Efficiency is reduced with 76.4% when increasing the correlation to 0.750
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Efficiency is reduced with 71.8% when increasing the correlation to 0.703
 </pre></div>
 </div>
 </div>
@@ -1527,7 +1670,7 @@ Variance predictor 2: 0.055
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Betas (w/o intercept): array([1.83906143, 1.96990025])
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Betas (w/o intercept): array([1.92571203, 1.84414847])
 </pre></div>
 </div>
 </div>
@@ -1538,10 +1681,10 @@ Variance predictor 2: 0.055
 </div><p>YOUR ANSWER HERE</p>
 </div>
 <div class="section" id="evaluating-multiple-contrasts">
-<h3>Evaluating multiple contrasts<a class="headerlink" href="#evaluating-multiple-contrasts" title="Permalink to this headline">¶</a></h3>
+<h3>Evaluating multiple contrasts<a class="headerlink" href="#evaluating-multiple-contrasts" title="Permalink to this headline">#</a></h3>
 <p>Thus far, we only evaluated the efficiency for a <em>single</em> contrast, like one particular predictor against baseline, e.g. <code class="docutils literal notranslate"><span class="pre">contrast_vec</span> <span class="pre">=</span> <span class="pre">np.array([0,</span> <span class="pre">1,</span> <span class="pre">0])</span></code>. Often, though, you might be interested in <em>more than one contrast</em>. For example, you might be interested in the contrast of predictor “A” against baseline, predictor “B” against baseline, and the difference between predictor “A” and “B”*. We can simply extend our formula for efficiency to allow more than one contrast. For <span class="math notranslate nohighlight">\(K\)</span> contrasts, efficiency is defined as:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-74bb17fa-040b-4236-a136-a6120b1d2816">
-<span class="eqno">(45)<a class="headerlink" href="#equation-74bb17fa-040b-4236-a136-a6120b1d2816" title="Permalink to this equation">¶</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-a9924c8a-5a03-406a-9b22-40d971a5e7c9">
+<span class="eqno">(45)<a class="headerlink" href="#equation-a9924c8a-5a03-406a-9b22-40d971a5e7c9" title="Permalink to this equation">#</a></span>\[\begin{align}
 \mathrm{efficiency} = \frac{K}{\sum_{k=1}^{K} \mathbf{c}_{k}(\mathbf{X}^{T}\mathbf{X})^{-1}\mathbf{c}_{k}^{T}}
 \end{align}\]</div>
 <p>This specific calculation of efficiency is also referred to as “A optimality”. From the formula, you can see that the overall efficiency for multiple contrasts is basically (but not precisely) the “average” of the efficiencies for the individual contrasts.</p>
@@ -1581,11 +1724,11 @@ With the data from the correlation-simulation (i.e., the variable <tt>X</tt>), c
 </div>
 </div>
 <div class="section" id="how-should-we-design-our-experiment-to-maximize-efficiency">
-<h2>How should we design our experiment to maximize efficiency?<a class="headerlink" href="#how-should-we-design-our-experiment-to-maximize-efficiency" title="Permalink to this headline">¶</a></h2>
+<h2>How should we design our experiment to maximize efficiency?<a class="headerlink" href="#how-should-we-design-our-experiment-to-maximize-efficiency" title="Permalink to this headline">#</a></h2>
 <p>Alright, thus far we talked about <strong>why</strong> you want high predictor variance and low predictor covariance for optimal estimation of effects (i.e., t-values). But this leaves us with the question: <strong>how</strong> should we design our experiment such that it has high variance and low covariance?</p>
 <p>The answer is (as is often the case): it depends.</p>
 <div class="section" id="estimation-vs-detection">
-<h3>Estimation vs. detection<a class="headerlink" href="#estimation-vs-detection" title="Permalink to this headline">¶</a></h3>
+<h3>Estimation vs. detection<a class="headerlink" href="#estimation-vs-detection" title="Permalink to this headline">#</a></h3>
 <p>The specific design of your experiment (how the stimuli are ordered and their timing) mainly depends on the <em>type of question</em> you’re investigating with your fMRI experiment. These types of questions are usually divided into two categories within (univariate) fMRI studies:</p>
 <p><strong>1) You want to know whether different conditions activate voxel activity differently.</strong></p>
 <p>We’ve learned how to do this in week 2: essentially, you want to estimate just a beta-parameter (reflecting activation/deactivation) of your stimulus-regressors. This is a question about HRF-<em>amplitude</em> only. The far majority of fMRI research falls in this category (and it’s the type we’ll focus on in this course). It is often said that this type of research focuses on <strong>detection</strong> of a signal’s response. For this question, designs are often based on canonical HRF-based convolution (or based on a basis set).</p>
@@ -1595,7 +1738,7 @@ With the data from the correlation-simulation (i.e., the variable <tt>X</tt>), c
 <p>Now, given that we aim for detection, how should we design our experiment? Well, there are two “main” types of designs: event-related designs and blocked designs, which are discussed in the next section.</p>
 </div>
 <div class="section" id="event-related-vs-blocked-designs">
-<h3>Event-related vs. blocked designs<a class="headerlink" href="#event-related-vs-blocked-designs" title="Permalink to this headline">¶</a></h3>
+<h3>Event-related vs. blocked designs<a class="headerlink" href="#event-related-vs-blocked-designs" title="Permalink to this headline">#</a></h3>
 <p>As you’ve probably read in the book or seen in the videos, event-related and blocked designs differ in the <em>ordering</em> of the stimuli. Basically, event-related designs are designs in which the stimuli from different conditions are ordered randomly, while blocked designs are designs in which the stimuli of the same condition are grouped together in “blocks”. Below, we visualized an example of each design side-by-side:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1705,7 +1848,7 @@ Well, the answer is simple: <strong>blocked designs</strong>.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Correlation blocked: -0.234. Correlation event-related: -0.284
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Correlation blocked: -0.238. Correlation event-related: -0.268
 </pre></div>
 </div>
 </div>
@@ -1714,8 +1857,8 @@ Well, the answer is simple: <strong>blocked designs</strong>.</p>
 <b>ToDo</b> (1 point):
 <p>We’ve seen that predictor correlation is lower in blocked designs than in event-related designs. But what about predictor variance? Calculate predictor variance for predictor 1 (column 2) and predictor 2 (column 3) for both the blocked design (<tt>X_blocked</tt>) and the event-related design (<tt>X_er</tt>).</p>
 <p>Remember: (sample) variance is the summed squared deviation of values from a variable’s mean divided by the number of observations minus 1, or formally:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-b6d520b4-1c44-4dbe-8afe-4dafc130d74f">
-<span class="eqno">(46)<a class="headerlink" href="#equation-b6d520b4-1c44-4dbe-8afe-4dafc130d74f" title="Permalink to this equation">¶</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-bb14610e-5b06-4a49-85de-a785beda686e">
+<span class="eqno">(46)<a class="headerlink" href="#equation-bb14610e-5b06-4a49-85de-a785beda686e" title="Permalink to this equation">#</a></span>\[\begin{align}
 \mathbf{var}[x] = \frac{1}{N - 1}\sum_{i=1}^{N}(x - \bar{x})^{2}
 \end{align}\]</div>
 <p>Store the variance of the four predictors (2 predictions <span class="math notranslate nohighlight">\(\times\)</span> 2 designs) in the following variables:</p>
@@ -1795,7 +1938,7 @@ Well, the answer is simple: <strong>blocked designs</strong>.</p>
 <p>YOUR ANSWER HERE</p>
 </div>
 <div class="section" id="the-paradox-of-efficiency">
-<h3>The “paradox” of efficiency<a class="headerlink" href="#the-paradox-of-efficiency" title="Permalink to this headline">¶</a></h3>
+<h3>The “paradox” of efficiency<a class="headerlink" href="#the-paradox-of-efficiency" title="Permalink to this headline">#</a></h3>
 <p>So, we’ve discussed blocked and event-related designs and we’ve come to the conclusion that blocked designs are simply more efficient than event-related designs. “So, we should always use blocked designs?”, you may ask.</p>
 <p>Well, no.</p>
 <p>We’ve discussed the mathematics behind design variance, efficiency, and t-value in detail, but we shouldn’t forget that ultimately <strong>we’re measuring the data from a living human beings in the MRI-scanner</strong>, who tend to get bored, fall asleep, and otherwise not pay attention if the task they’re doing is monotonous, predictable or simply uninteresting!</p>
@@ -1805,7 +1948,7 @@ Well, the answer is simple: <strong>blocked designs</strong>.</p>
 <p>Given that we’re going to use some event-related (i.e., “random”) design, let’s investigate how we can optimize this type of design.</p>
 </div>
 <div class="section" id="improving-design-efficiency-for-event-related-designs-using-jittering">
-<h3>Improving design efficiency for event-related designs using jittering<a class="headerlink" href="#improving-design-efficiency-for-event-related-designs-using-jittering" title="Permalink to this headline">¶</a></h3>
+<h3>Improving design efficiency for event-related designs using jittering<a class="headerlink" href="#improving-design-efficiency-for-event-related-designs-using-jittering" title="Permalink to this headline">#</a></h3>
 <p>Usually, events in an experimental design are separated by short periods without any event; this is called the “inter-stimulus interval” (ISI; also called stimulus onset asynchrony, SOA) - the time between successive stimuli. For example, the experiment from the image below has an ISI of 8 seconds:</p>
 <p><img alt="img" src="https://docs.google.com/drawings/d/e/2PACX-1vQwC4chpnzsDEzKhrKH_WHhMX7vJswY4H0pkyIxdlxI_I2GG5e8i6lsiWUO0SUk7NBgdV-vXD5PIleJ/pub?w=950&amp;h=397" /></p>
 <p>Let’s simulate some event-onsets and predictors for this experiment. We have two predictors (circles and squares). The stimuli (‘events’) take 1 second and the ISI is 8 seconds (like the figure above). Suppose we’re interested in both contrasts against baseline (circles against baseline; squares against baseline).</p>
@@ -1939,7 +2082,7 @@ Well, the answer is simple: <strong>blocked designs</strong>.</p>
 </div>
 </div>
 <div class="section" id="summary-how-to-optimize-your-design-for-efficiency">
-<h3>Summary: how to optimize your design for efficiency<a class="headerlink" href="#summary-how-to-optimize-your-design-for-efficiency" title="Permalink to this headline">¶</a></h3>
+<h3>Summary: how to optimize your design for efficiency<a class="headerlink" href="#summary-how-to-optimize-your-design-for-efficiency" title="Permalink to this headline">#</a></h3>
 <p>So, in this section we discussed how to structure your experiment such that it yields a (relatively) high design efficiency, which will optimize our chance to find significant effects. How you do this depends on whether you aim for estimation (what is the shape of the HRF?) or for detection (what is the amplitude of the response?). Usually, we aim for detection; in that case, designs can be roughly grouped in two types: blocked designs an event-related designs. Purely statistically speaking, blocked designs are (almost always) more efficient, because they generally have lower covariance and higher variance than event-related designs. However, due to psychological factors and potential violations of the linear time-invariance of the BOLD-response, we often opt for event-related designs in the end. For event-related designs, we can increase our chance of finding a relatively efficient design by jittering our ISIs.</p>
 <div class='alert alert-success'>
     <b>Tip!</b>
@@ -1970,9 +2113,11 @@ Well, the answer is simple: <strong>blocked designs</strong>.</p>
 
               </div>
               
-            
-                <!-- Previous / next buttons -->
-<div class='prev-next-area'> 
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
     <a class='left-prev' id="prev-link" href="../../section_intros/3_design_of_experiments_T.html" title="previous page">
         <i class="fas fa-angle-left"></i>
         <div class="prev-next-info">
@@ -1988,24 +2133,28 @@ Well, the answer is simple: <strong>blocked designs</strong>.</p>
     <i class="fas fa-angle-right"></i>
     </a>
 </div>
-            
+            </footer>
         </div>
     </div>
-    <footer class="footer">
-  <p>
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    By Lukas Snoek<br/>
+  
+      &copy; Copyright 2021.<br/>
+</p>
+        </footer>
+    </div>
     
-      By Lukas Snoek<br/>
-    
-        &copy; Copyright 2021.<br/>
-  </p>
-</footer>
-</main>
+</div>
 
 
       </div>
     </div>
   
-  <script src="../../_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
 
   </body>
 </html>
