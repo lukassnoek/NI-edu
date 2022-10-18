@@ -166,3 +166,8 @@ When you get an error when you generate an assignment, you most likely forgot a 
 ### Students cannot see an assignment!
 
 Make sure that you, in the formgrader, generated *and* released the assignment!
+
+### Jupyterhub launches JupyterLab, but I want the classic interface
+
+Create a `*.py` file (e.g., `classic.py`) and save it in `/opt/tljh/config/jupyterhub_config.d/`. In this Python file, add a single line with:
+`c.Spawner.default_url = '/tree'`

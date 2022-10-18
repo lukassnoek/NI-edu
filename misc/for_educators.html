@@ -639,6 +639,11 @@ title="Print to PDF"
      Students cannot see an assignment!
     </a>
    </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#jupyterhub-launches-jupyterlab-but-i-want-the-classic-interface">
+     Jupyterhub launches JupyterLab, but I want the classic interface
+    </a>
+   </li>
   </ul>
  </li>
 </ul>
@@ -748,6 +753,11 @@ title="Print to PDF"
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#students-cannot-see-an-assignment">
      Students cannot see an assignment!
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#jupyterhub-launches-jupyterlab-but-i-want-the-classic-interface">
+     Jupyterhub launches JupyterLab, but I want the classic interface
     </a>
    </li>
   </ul>
@@ -908,6 +918,11 @@ sudo passwd $username
 <div class="section" id="students-cannot-see-an-assignment">
 <h3>Students cannot see an assignment!<a class="headerlink" href="#students-cannot-see-an-assignment" title="Permalink to this headline">#</a></h3>
 <p>Make sure that you, in the formgrader, generated <em>and</em> released the assignment!</p>
+</div>
+<div class="section" id="jupyterhub-launches-jupyterlab-but-i-want-the-classic-interface">
+<h3>Jupyterhub launches JupyterLab, but I want the classic interface<a class="headerlink" href="#jupyterhub-launches-jupyterlab-but-i-want-the-classic-interface" title="Permalink to this headline">#</a></h3>
+<p>Create a <code class="docutils literal notranslate"><span class="pre">*.py</span></code> file (e.g., <code class="docutils literal notranslate"><span class="pre">classic.py</span></code>) and save it in <code class="docutils literal notranslate"><span class="pre">/opt/tljh/config/jupyterhub_config.d/</span></code>. In this Python file, add a single line with:
+<code class="docutils literal notranslate"><span class="pre">c.Spawner.default_url</span> <span class="pre">=</span> <span class="pre">'/tree'</span></code></p>
 </div>
 </div>
 </div>
