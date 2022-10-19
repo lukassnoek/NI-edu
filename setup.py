@@ -6,12 +6,12 @@ from setuptools.command.install import install
 
 
 # This will enable the nbextensions utility
-class PostInstallCommand(install):
-    """Post-installation for installation mode."""
-    def run(self):
-        install.run(self)
-        os.system('jupyter contrib nbextension install')
-        os.system('jupyter nbextension enable toc2/main')
+# class PostInstallCommand(install):
+#     """Post-installation for installation mode."""
+#     def run(self):
+#         install.run(self)
+#         os.system('jupyter contrib nbextension install')
+#         os.system('jupyter nbextension enable toc2/main')
 
 PACKAGES = find_packages()
 
@@ -38,7 +38,7 @@ opts = dict(
     include_package_data=True,
     install_requires=["neurodesign@git+https://github.com/lukassnoek/neurodesign.git", REQUIRES],
     zip_safe=True,
-    cmdclass={'install': PostInstallCommand},
+    #cmdclass={'install': PostInstallCommand},
     ignore_package_data={'': [".git"]}
 )
 

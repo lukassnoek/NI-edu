@@ -72,16 +72,12 @@ REQUIRES = [
     "pandas",
     "sklearn",
     "seaborn",
-    "statsmodels",
     "nibabel",
     "nilearn",
     "click",
     "jupyter",
     "pyyaml",
-    "tqdm>=4.62",
-    "jupyter_contrib_nbextensions",
     "awscli",
-    "nbgrader",
     "tqdm",
     "imageio"
 ]
