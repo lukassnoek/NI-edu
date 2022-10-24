@@ -37,7 +37,7 @@ run on any system. It uses a publicly available MRI dataset acquired at our 3T s
 at the University of Amsterdam.
 
 To get started with one or both of these courses, go to the repository README_.
-.. _README: https://github.com/Neuroimaging-UvA/NI-edu/blob/master/README.md
+.. _README: https://github.com/lukassnoek/NI-edu/blob/master/README.md
 
 License
 =======
@@ -53,7 +53,7 @@ MAINTAINER = "Lukas Snoek"
 MAINTAINER_EMAIL = "lukassnoek@gmail.com"
 DESCRIPTION = description
 LONG_DESCRIPTION = long_description
-URL = "http://github.com/Neuroimaging-UvA/NI-edu"
+URL = "http://github.com/lukassnoek/NI-edu"
 DOWNLOAD_URL = ""
 LICENSE = "MIT"
 AUTHOR = "Lukas Snoek"
@@ -63,7 +63,6 @@ MAJOR = _version_major
 MINOR = _version_minor
 MICRO = _version_micro
 VERSION = __version__
-#PACKAGE_DATA = {'niedu': [pjoin('data', '*'), pjoin('tests', '*', '*.pyc')]}
 
 REQUIRES = [
     "numpy",
