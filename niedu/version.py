@@ -69,7 +69,7 @@ REQUIRES = [
     "scipy",
     "matplotlib",
     "pandas",
-    "sklearn",
+    "scikit-learn",
     "seaborn",
     "nibabel",
     "nilearn",
