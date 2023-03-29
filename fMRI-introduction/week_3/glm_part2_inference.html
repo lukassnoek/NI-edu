@@ -1,47 +1,58 @@
 
+
 <!DOCTYPE html>
 
-<html>
+
+<html lang="en" >
+
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>The GLM, part 2: inference &#8212; NI-edu</title>
-    
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
   <!-- Loaded before other Sphinx assets -->
-  <link href="../../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
-<link href="../../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+  <link href="../../_static/styles/theme.css?digest=12da95d707ffb74b382d" rel="stylesheet" />
+<link href="../../_static/styles/bootstrap.css?digest=12da95d707ffb74b382d" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=12da95d707ffb74b382d" rel="stylesheet" />
 
-    
-  <link rel="stylesheet"
-    href="../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
-  <link rel="preload" as="font" type="font/woff2" crossorigin
-    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
-  <link rel="preload" as="font" type="font/woff2" crossorigin
-    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+  
+  <link href="../../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=12da95d707ffb74b382d" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
 
     <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
-    <link rel="stylesheet" href="../../_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
+    <link rel="stylesheet" href="../../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
-    
+    <link rel="stylesheet" type="text/css" href="../../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=12da95d707ffb74b382d" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=12da95d707ffb74b382d" />
 
     <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
     <script src="../../_static/jquery.js"></script>
     <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="../../_static/doctools.js"></script>
     <script src="../../_static/clipboard.min.js"></script>
     <script src="../../_static/copybutton.js"></script>
-    <script src="../../_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
     <script src="../../_static/togglebutton.js"></script>
-    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script src="../../_static/design-tabs.js"></script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
 const thebe_selector = ".thebe,.cell"
@@ -49,65 +60,95 @@ const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
     <script async="async" src="../../_static/sphinx-thebe.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
-    <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.1/dist/embed-amd.js"></script>
     <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'fMRI-introduction/week_3/glm_part2_inference';</script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
     <link rel="next" title="Design of experiments" href="../../section_intros/3_design_of_experiments_T.html" />
     <link rel="prev" title="The GLM, part 1: estimation" href="../week_2/glm_part1_estimation.html" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="docsearch:language" content="None">
-    
-
-    <!-- Google Analytics -->
-    
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
   </head>
-  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
-<!-- Checkboxes to toggle the left sidebar -->
-<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
-<label class="overlay overlay-navbar" for="__navigation">
-    <div class="visually-hidden">Toggle navigation sidebar</div>
-</label>
-<!-- Checkboxes to toggle the in-page toc -->
-<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
-<label class="overlay overlay-pagetoc" for="__page-toc">
-    <div class="visually-hidden">Toggle in-page Table of Contents</div>
-</label>
-<!-- Headers at the top -->
-<div class="announcement header-item noprint"></div>
-<div class="header header-item noprint"></div>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
 
-    
-    <div class="container-fluid" id="banner"></div>
-
-    
-
-    <div class="container-xl">
-      <div class="row">
-          
-<!-- Sidebar -->
-<div class="bd-sidebar noprint" id="site-navigation">
-    <div class="bd-sidebar__content">
-        <div class="bd-sidebar__top"><div class="navbar-brand-box">
-    <a class="navbar-brand text-wrap" href="../../index.html">
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
       
-        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+      <div class="bd-sidebar-primary bd-sidebar">
         
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
+
+<a class="navbar-brand logo" href="../../index.html">
+  
+  
+  
+  
+    
+    
       
-      
-      <img src="../../_static/fmri.gif" class="logo" alt="logo">
-      
-      
-      <h1 class="site-logo" id="site-title">NI-edu</h1>
-      
-    </a>
-</div><form class="bd-search d-flex align-items-center" action="../../search.html" method="get">
-  <i class="icon fas fa-search"></i>
-  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
-</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
-    <div class="bd-toc-item active">
+    
+    
+    <img src="../../_static/fmri.gif" class="logo__image only-light" alt="Logo image"/>
+    <script>document.write(`<img src="../../_static/fmri.gif" class="logo__image only-dark" alt="Logo image"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
         
         <ul class="nav bd-sidenav bd-sidenav__home-link">
             <li class="toctree-l1">
@@ -116,641 +157,348 @@ const thebe_selector_output = ".output, .cell_output"
                 </a>
             </li>
         </ul>
-        <p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  Getting started
- </span>
-</p>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Getting started</span></p>
 <ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="../../getting_started/about.html">
-   About this course
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../../getting_started/installation.html">
-   Installation
-  </a>
- </li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/about.html">About this course</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/installation.html">Installation</a></li>
 </ul>
-<p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  fMRI-introduction
- </span>
-</p>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">fMRI-introduction</span></p>
 <ul class="current nav bd-sidenav">
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../../section_intros/1_python.html">
-   Python for (f)MRI analysis
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
-  <label for="toctree-checkbox-1">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../../other/python_recap.html">
-     Python recap
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../week_1/python_for_mri.html">
-     Working with MRI data in Python (T)
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toctree-l1 current active has-children">
-  <a class="reference internal" href="../../section_intros/2_glm.html">
-   Using the GLM to model fMRI data
-  </a>
-  <input checked="" class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
-  <label for="toctree-checkbox-2">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul class="current">
-   <li class="toctree-l2">
-    <a class="reference internal" href="../week_2/glm_part1_estimation.html">
-     The GLM: estimation (T)
-    </a>
-   </li>
-   <li class="toctree-l2 current active">
-    <a class="current reference internal" href="#">
-     The GLM: inference (T)
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../../section_intros/3_design_of_experiments_T.html">
-   Design of experiments
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
-  <label for="toctree-checkbox-3">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="design_of_experiments.html">
-     Design of experiments (T)
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="neurodesign.html">
-     Neurodesign (T)
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../../section_intros/4_preprocessing.html">
-   Preprocessing
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
-  <label for="toctree-checkbox-4">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../week_4/temporal_preprocessing.html">
-     Temporal preprocessing (T)
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../week_4/spatial_preprocessing.html">
-     Spatial preprocessing (T)
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../week_4/fmriprep.html">
-     Fmriprep (T)
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../../section_intros/5_multilevel.html">
-   First &amp; run-level analyses
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/>
-  <label for="toctree-checkbox-5">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../week_5/linux_and_the_command_line.html">
-     Linux and the CMD (T)
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../week_5/first_level_analyses.html">
-     First level analyses (T)
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../week_5/run_level_analyses.html">
-     Run-level analyses (T)
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../../section_intros/6_grouplevel.html">
-   Group-level analyses
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/>
-  <label for="toctree-checkbox-6">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../week_6/group_level_analyses.html">
-     Group-level analyses (T)
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../week_6/MCC.html">
-     Multiple comparison correction (T)
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../week_6/ROI_analysis.html">
-     ROI analysis (T)
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../../section_intros/7_nilearn.html">
-   Introduction to Nilearn
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/>
-  <label for="toctree-checkbox-7">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../week_7/nilearn.html">
-     Introduction to Nilearn (T)
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../week_7/nilearn_stats.html">
-     Statistics with Nilearn (T)
-    </a>
-   </li>
-  </ul>
- </li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../section_intros/1_python.html">Python for (f)MRI analysis</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../other/python_recap.html">Python recap</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../week_1/python_for_mri.html">Working with MRI data in Python (T)</a></li>
 </ul>
-<p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  fMRI-pattern-analysis
- </span>
-</p>
-<ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="../../fMRI-pattern-analysis/week_1/design_and_pattern_estimation.html">
-   Design and pattern estimation (T)
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../../fMRI-pattern-analysis/week_2/decoding_analyses.html">
-   Machine learning/decoding (T)
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../../fMRI-pattern-analysis/week_3/rsa.html">
-   Representational Similarity Analysis (T)
-  </a>
- </li>
+</li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="../../section_intros/2_glm.html">Using the GLM to model fMRI data</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../week_2/glm_part1_estimation.html">The GLM: estimation (T)</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">The GLM: inference (T)</a></li>
 </ul>
-<p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  Misc
- </span>
-</p>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../section_intros/3_design_of_experiments_T.html">Design of experiments</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="design_of_experiments.html">Design of experiments (T)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="neurodesign.html">Neurodesign (T)</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../section_intros/4_preprocessing.html">Preprocessing</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-4"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../week_4/temporal_preprocessing.html">Temporal preprocessing (T)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../week_4/spatial_preprocessing.html">Spatial preprocessing (T)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../week_4/fmriprep.html">Fmriprep (T)</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../section_intros/5_multilevel.html">First &amp; run-level analyses</a><input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-5"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../week_5/linux_and_the_command_line.html">Linux and the CMD (T)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../week_5/first_level_analyses.html">First level analyses (T)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../week_5/run_level_analyses.html">Run-level analyses (T)</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../section_intros/6_grouplevel.html">Group-level analyses</a><input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-6"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../week_6/group_level_analyses.html">Group-level analyses (T)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../week_6/MCC.html">Multiple comparison correction (T)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../week_6/ROI_analysis.html">ROI analysis (T)</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../section_intros/7_nilearn.html">Introduction to Nilearn</a><input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-7"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../week_7/nilearn.html">Introduction to Nilearn (T)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../week_7/nilearn_stats.html">Statistics with Nilearn (T)</a></li>
+</ul>
+</li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">fMRI-pattern-analysis</span></p>
 <ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="../../misc/bibliography.html">
-   Bibliography
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../../misc/for_educators.html">
-   For educators
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../../misc/CONTRIBUTING.html">
-   Contributing
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../../misc/CONDUCT.html">
-   Code of Conduct
-  </a>
- </li>
+<li class="toctree-l1"><a class="reference internal" href="../../fMRI-pattern-analysis/week_1/design_and_pattern_estimation.html">Design and pattern estimation (T)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../fMRI-pattern-analysis/week_2/decoding_analyses.html">Machine learning/decoding (T)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../fMRI-pattern-analysis/week_3/rsa.html">Representational Similarity Analysis (T)</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Misc</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../misc/bibliography.html">Bibliography</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../misc/for_educators.html">For educators</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../misc/CONTRIBUTING.html">Contributing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../misc/CONDUCT.html">Code of Conduct</a></li>
 </ul>
 
     </div>
 </nav></div>
-        <div class="bd-sidebar__bottom">
-             <!-- To handle the deprecated key -->
-            
-            <div class="navbar_extra_footer">
-            Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
-            </div>
-            
-        </div>
     </div>
-    <div id="rtd-footer-container"></div>
-</div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
 
 
-          
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
 
-
-          
-<!-- A tiny helper pixel to detect if we've scrolled -->
 <div class="sbt-scroll-pixel-helper"></div>
-<!-- Main content -->
-<div class="col py-0 content-container">
-    
-    <div class="header-article row sticky-top noprint">
-        
 
-
-
-<div class="col py-1 d-flex header-article-main">
-    <div class="header-article__left">
-        
-        <label for="__navigation"
-  class="headerbtn"
-  data-toggle="tooltip"
-data-placement="right"
-title="Toggle navigation"
->
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
   
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-bars"></i>
-  </span>
-
-</label>
-
-        
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
     </div>
-    <div class="header-article__right">
-<div class="menu-dropdown menu-dropdown-launch-buttons">
-  <button class="headerbtn menu-dropdown__trigger"
-      aria-label="Launch interactive content">
-      <i class="fas fa-rocket"></i>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-launch-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Launch interactive content">
+    <i class="fas fa-rocket"></i>
   </button>
-  <div class="menu-dropdown__content">
-    <ul>
-      <li>
-        <a href="https://mybinder.org/v2/gh/lukassnoek/NI-edu/master?urlpath=tree/NI-edu/fMRI-introduction/week_3/glm_part2_inference.ipynb"
-   class="headerbtn"
-   data-toggle="tooltip"
-data-placement="left"
-title="Launch on Binder"
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://mybinder.org/v2/gh/lukassnoek/NI-edu/master?urlpath=tree/NI-edu/fMRI-introduction/week_3/glm_part2_inference.ipynb" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch onBinder"
+   data-bs-placement="left" data-bs-toggle="tooltip"
 >
   
 
-<span class="headerbtn__icon-container">
+<span class="btn__icon-container">
   
     <img src="../../_static/images/logo_binder.svg">
   </span>
-<span class="headerbtn__text-container">Binder</span>
+<span class="btn__text-container">Binder</span>
 </a>
-
-      </li>
+</li>
       
-      <li>
-        <a href="https://neuroimaging.lukas-snoek.com/hub/user-redirect/git-pull?repo=https%3A//github.com/lukassnoek/NI-edu&urlpath=tree/NI-edu/NI-edu/fMRI-introduction/week_3/glm_part2_inference.ipynb&branch=master"
-   class="headerbtn"
-   data-toggle="tooltip"
-data-placement="left"
-title="Launch on JupyterHub"
+      
+      
+      
+      <li><a href="https://neuroimaging.lukas-snoek.com/hub/user-redirect/git-pull?repo=https%3A//github.com/lukassnoek/NI-edu&urlpath=tree/NI-edu/NI-edu/fMRI-introduction/week_3/glm_part2_inference.ipynb&branch=master" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch onJupyterHub"
+   data-bs-placement="left" data-bs-toggle="tooltip"
 >
   
 
-<span class="headerbtn__icon-container">
+<span class="btn__icon-container">
   
     <img src="../../_static/images/logo_jupyterhub.svg">
   </span>
-<span class="headerbtn__text-container">JupyterHub</span>
+<span class="btn__text-container">JupyterHub</span>
 </a>
-
-      </li>
+</li>
       
-    </ul>
-  </div>
+  </ul>
 </div>
 
-<button onclick="toggleFullScreen()"
-  class="headerbtn"
-  data-toggle="tooltip"
-data-placement="bottom"
-title="Fullscreen mode"
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/lukassnoek/NI-edu" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
 >
   
 
-<span class="headerbtn__icon-container">
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/lukassnoek/NI-edu/edit/master/NI-edu/fMRI-introduction/week_3/glm_part2_inference.ipynb" target="_blank"
+   class="btn btn-sm btn-source-edit-button dropdown-item"
+   title="Suggest edit"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-pencil-alt"></i>
+  </span>
+<span class="btn__text-container">Suggest edit</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/lukassnoek/NI-edu/issues/new?title=Issue%20on%20page%20%2FfMRI-introduction/week_3/glm_part2_inference.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../../_sources/fMRI-introduction/week_3/glm_part2_inference.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
   <i class="fas fa-expand"></i>
   </span>
 
 </button>
 
-<div class="menu-dropdown menu-dropdown-repository-buttons">
-  <button class="headerbtn menu-dropdown__trigger"
-      aria-label="Source repositories">
-      <i class="fab fa-github"></i>
+
+<script>
+document.write(`
+  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
   </button>
-  <div class="menu-dropdown__content">
-    <ul>
-      <li>
-        <a href="https://github.com/lukassnoek/NI-edu"
-   class="headerbtn"
-   data-toggle="tooltip"
-data-placement="left"
-title="Source repository"
->
-  
+`);
+</script>
 
-<span class="headerbtn__icon-container">
-  <i class="fab fa-github"></i>
-  </span>
-<span class="headerbtn__text-container">repository</span>
-</a>
-
-      </li>
-      
-      <li>
-        <a href="https://github.com/lukassnoek/NI-edu/issues/new?title=Issue%20on%20page%20%2FfMRI-introduction/week_3/glm_part2_inference.html&body=Your%20issue%20content%20here."
-   class="headerbtn"
-   data-toggle="tooltip"
-data-placement="left"
-title="Open an issue"
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-lightbulb"></i>
-  </span>
-<span class="headerbtn__text-container">open issue</span>
-</a>
-
-      </li>
-      
-      <li>
-        <a href="https://github.com/lukassnoek/NI-edu/edit/master/NI-edu/fMRI-introduction/week_3/glm_part2_inference.ipynb"
-   class="headerbtn"
-   data-toggle="tooltip"
-data-placement="left"
-title="Edit this page"
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-pencil-alt"></i>
-  </span>
-<span class="headerbtn__text-container">suggest edit</span>
-</a>
-
-      </li>
-      
-    </ul>
-  </div>
-</div>
-
-<div class="menu-dropdown menu-dropdown-download-buttons">
-  <button class="headerbtn menu-dropdown__trigger"
-      aria-label="Download this page">
-      <i class="fas fa-download"></i>
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
   </button>
-  <div class="menu-dropdown__content">
-    <ul>
-      <li>
-        <a href="../../_sources/fMRI-introduction/week_3/glm_part2_inference.ipynb"
-   class="headerbtn"
-   data-toggle="tooltip"
-data-placement="left"
-title="Download source file"
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-file"></i>
-  </span>
-<span class="headerbtn__text-container">.ipynb</span>
-</a>
-
-      </li>
-      
-      <li>
-        
-<button onclick="printPdf(this)"
-  class="headerbtn"
-  data-toggle="tooltip"
-data-placement="left"
-title="Print to PDF"
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-file-pdf"></i>
-  </span>
-<span class="headerbtn__text-container">.pdf</span>
-</button>
-
-      </li>
-      
-    </ul>
-  </div>
-</div>
-<label for="__page-toc"
-  class="headerbtn headerbtn-page-toc"
-  
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-list"></i>
-  </span>
-
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
 </label>
-
+</div></div>
+      
     </div>
+  
 </div>
-
-<!-- Table of contents -->
-<div class="col-md-3 bd-toc show noprint">
-    <div class="tocsection onthispage pt-5 pb-3">
-        <i class="fas fa-list"></i> Contents
-    </div>
-    <nav id="bd-toc-nav" aria-label="Page">
-        <ul class="visible nav section-nav flex-column">
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#introduction">
-   Introduction
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#how-to-compute-t-values-and-p-values">
-   How to compute
-   <em>
-    t
-   </em>
-   -values and
-   <em>
-    p
-   </em>
-   -values
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#t-values">
-     <em>
-      t
-     </em>
-     -values
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#p-values">
-     P-values
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#contrasts">
-   Contrasts
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#t-tests">
-     <em>
-      t
-     </em>
-     -tests
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#f-tests-on-contrasts">
-     <em>
-      F
-     </em>
-     -tests on contrasts
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#summary">
-     Summary
-    </a>
-   </li>
-  </ul>
- </li>
-</ul>
-
-    </nav>
 </div>
-    </div>
-    <div class="article row">
-        <div class="col pl-md-3 pl-lg-5 content-container">
-            <!-- Table of contents that is only displayed when printing the page -->
-            <div id="jb-print-docs-body" class="onlyprint">
-                <h1>The GLM, part 2: inference</h1>
-                <!-- Table of contents -->
-                <div id="print-main-content">
-                    <div id="jb-print-toc">
-                        
-                        <div>
-                            <h2> Contents </h2>
-                        </div>
-                        <nav aria-label="Page">
-                            <ul class="visible nav section-nav flex-column">
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#introduction">
-   Introduction
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#how-to-compute-t-values-and-p-values">
-   How to compute
-   <em>
-    t
-   </em>
-   -values and
-   <em>
-    p
-   </em>
-   -values
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#t-values">
-     <em>
-      t
-     </em>
-     -values
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#p-values">
-     P-values
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#contrasts">
-   Contrasts
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#t-tests">
-     <em>
-      t
-     </em>
-     -tests
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#f-tests-on-contrasts">
-     <em>
-      F
-     </em>
-     -tests on contrasts
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#summary">
-     Summary
-    </a>
-   </li>
-  </ul>
- </li>
-</ul>
+              
+              
 
-                        </nav>
-                    </div>
-                </div>
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>The GLM, part 2: inference</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
             </div>
-            <main id="main-content" role="main">
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction">Introduction</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#how-to-compute-t-values-and-p-values">How to compute <em>t</em>-values and <em>p</em>-values</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#t-values"><em>t</em>-values</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#p-values">P-values</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#contrasts">Contrasts</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#t-tests"><em>t</em>-tests</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#f-tests-on-contrasts"><em>F</em>-tests on contrasts</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#summary">Summary</a></li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
                 
-              <div>
-                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
   <div class="tex2jax_ignore mathjax_ignore section" id="the-glm-part-2-inference">
-<h1>The GLM, part 2: inference<a class="headerlink" href="#the-glm-part-2-inference" title="Permalink to this headline">#</a></h1>
+<h1>The GLM, part 2: inference<a class="headerlink" href="#the-glm-part-2-inference" title="Permalink to this heading">#</a></h1>
 <p>In this notebook, we’ll continue with the GLM, focusing on statistical tests (i.e., inference) of parameters. Note that there are two notebooks this week: this one, <code class="docutils literal notranslate"><span class="pre">glm_part2_inference.ipynb</span></code>, and <code class="docutils literal notranslate"><span class="pre">design_of_experiments.ipynb</span></code>. Please do this one first.</p>
 <p>Last week, you learned how to estimate parameters of the GLM and how to interpret them. This week, we’ll focus on statistical inference of those estimated parameters (and design of experiment, in another notebook). Importantly, we are going to introduce the most important formula in the context of univariate fMRI analyses: the formula for the <em>t-value</em>. Make sure you understand this formula, as we will continue to discuss it in the next weeks.</p>
 <p><strong>What you’ll learn</strong>: after this week’s lab …</p>
@@ -771,8 +519,8 @@ title="Print to PDF"
 </div>
 </div>
 <div class="section" id="introduction">
-<h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">#</a></h2>
-<p>From your statistics classes, you might remember that many software packages (e.g. SPSS, R, SAS) do not only return beta-parameters of linear regression models, but also <em>t</em>-values and <em>p</em>-values associated with those parameters. Like beta-parameters, these statistics evaluate whether a beta-parameter (or combination of beta-parameters) differs significantly from 0 (or in fMRI terms: whether a voxel activates/deactivates significantly in response to one or more experimental factors).</p>
+<h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this heading">#</a></h2>
+<p>From your statistics classes, you might remember that many software packages (e.g. SPSS, R, SAS) do not only return beta-parameters of linear regression models, but also <em>t</em>-values and <em>p</em>-values associated with those parameters. These statistics evaluate whether a beta-parameter (or combination of beta-parameters) differs significantly from 0 (or in fMRI terms: whether a voxel activates/deactivates significantly in response to one or more experimental factors).</p>
 <p>In univariate (activation-based) fMRI studies, we need statistics to evaluate the estimated parameters in context of the <em>uncertainty</em> of their estimation. As we’ll discuss later in more detail, interpreting (and performing inference about) the magnitude of GLM parameters without their associated uncertainty is rarely warranted in univariate fMRI studies. To illustrate the problem with this, let’s look at an example.</p>
 <p>In this example, we try to predict someone’s height (in meters; <span class="math notranslate nohighlight">\(\mathbf{y}\)</span>) using someone’s weight (in kilos; <span class="math notranslate nohighlight">\(\mathbf{X}\)</span>). (Note that the data is not necessarily representative of the true relationship between height and weight.)</p>
 <p>Anyway, let’s run a linear regression using weight (in kilos) as a predictor for height (in meters).</p>
@@ -802,7 +550,7 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/glm_part2_inference_3_0.png" src="../../_images/glm_part2_inference_3_0.png" />
+<img alt="../../_images/4a7f6023d7371dca28135697cf111dd8f9c310fa344f4302160735e85c0b0bce.png" src="../../_images/4a7f6023d7371dca28135697cf111dd8f9c310fa344f4302160735e85c0b0bce.png" />
 </div>
 </div>
 <p>Well, quite a modest beta-parameter on the one hand, but on the other hand the Mean Squared Error is also quite low.
@@ -847,13 +595,13 @@ Now, to illustrate the problem of interpretating ‘raw’ beta-weights, let’s
 </div><p>YOUR ANSWER HERE</p>
 </div>
 <div class="section" id="how-to-compute-t-values-and-p-values">
-<h2>How to compute <em>t</em>-values and <em>p</em>-values<a class="headerlink" href="#how-to-compute-t-values-and-p-values" title="Permalink to this headline">#</a></h2>
+<h2>How to compute <em>t</em>-values and <em>p</em>-values<a class="headerlink" href="#how-to-compute-t-values-and-p-values" title="Permalink to this heading">#</a></h2>
 <p>So, you’ve seen that interpreting beta-parameters by themselves is useless because their value depends very much on the scale of your variables. But how should we, then, interpret the effects of our predictors on our target-variable? From the plots above, you probably guessed already that it has something to do with the MSE of our model (or, more generally, the model fit). That is indeed the case. As you might have noticed, not only the beta-parameters depend on the scale of your data, the errors (residuals) depend on the scale as well. In other words, not only the <em>effect</em> (beta-values) but also the <em>noise</em> (errors, MSE) depend on the scale of the variables!</p>
 <div class="section" id="t-values">
-<h3><em>t</em>-values<a class="headerlink" href="#t-values" title="Permalink to this headline">#</a></h3>
+<h3><em>t</em>-values<a class="headerlink" href="#t-values" title="Permalink to this heading">#</a></h3>
 <p>In fact, the key to getting interpretable effects of our predictors is to divide (“normalize”) our beta-parameter(s) by some quantity that summarizes how well our model describes the data. This quantity is the <strong>standard error of the beta-parameter</strong>, usually denoted by <span class="math notranslate nohighlight">\(\mathrm{SE}_{\beta}\)</span>. The standard error of the beta-parameter can be computed by taking the square root of the <strong>variance of the beta-parameter</strong>. If we’d divide our beta-estimate with it’s standard error, we compute a statistic you are all familiar with: the <em>t</em>-statistic! Formally:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-1795fb18-18cc-4778-8944-efca675f3dc1">
-<span class="eqno">(23)<a class="headerlink" href="#equation-1795fb18-18cc-4778-8944-efca675f3dc1" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-f76d8879-5d60-4f40-85b9-75c52f824bb2">
+<span class="eqno">(23)<a class="headerlink" href="#equation-f76d8879-5d60-4f40-85b9-75c52f824bb2" title="Permalink to this equation">#</a></span>\[\begin{align}
 t_{\hat{\beta}} = \frac{\hat{\beta}}{\mathrm{SE}_{\hat{\beta}}} = \frac{\hat{\beta}}{\sqrt{\mathrm{var}(\hat{\beta})}}
 \end{align}\]</div>
 <div class='alert alert-info'>
@@ -861,31 +609,31 @@ t_{\hat{\beta}} = \frac{\hat{\beta}}{\mathrm{SE}_{\hat{\beta}}} = \frac{\hat{\be
 </div><p>Another way to think about it is that the t-value is the “effect” (<span class="math notranslate nohighlight">\(\hat{\beta}\)</span>) divided by your (un)certainty or confidence in the effect (<span class="math notranslate nohighlight">\(\mathrm{SE}_{\hat{\beta}}\)</span>). In a way, you can think of t-values as “uncertainty-normalized” effects.</p>
 <p>So, what drives (statistical) uncertainty about “effects” (here: <span class="math notranslate nohighlight">\(\hat{\beta}\)</span> parameters)? To find out, let’s dissect the uncertainty term, <span class="math notranslate nohighlight">\(\mathrm{SE}_{\hat{\beta}}\)</span>, a little more. The standard error of a parameter can interpreted conceptually as the “unexplained variance of the model” (or <em>noise</em>) multiplied with the “design variance” (or: <em>the variance of the parameter due to the design</em>). In this lab, we won’t explain what <em>design variance</em> means or how to compute this, as this is the topic of the second notebook of this week (<code class="docutils literal notranslate"><span class="pre">design_of_experiments</span></code>).</p>
 <p>For now, we treat “design variance”, here, as some known (constant) value given the design matrix (<span class="math notranslate nohighlight">\(\mathbf{X}\)</span>). So, with this information, we can construct a conceptual formula for the standard error of our parameter(s):</p>
-<div class="amsmath math notranslate nohighlight" id="equation-8a5a791a-6718-43ad-808b-b2b817a04b42">
-<span class="eqno">(24)<a class="headerlink" href="#equation-8a5a791a-6718-43ad-808b-b2b817a04b42" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-b9ea2f8a-b130-4e18-a1a2-c3065d891300">
+<span class="eqno">(24)<a class="headerlink" href="#equation-b9ea2f8a-b130-4e18-a1a2-c3065d891300" title="Permalink to this equation">#</a></span>\[\begin{align}
 \mathbf{SE}_{\hat{\beta}} = \sqrt{\mathrm{noise} \cdot \mathrm{design\ variance}}
 \end{align}\]</div>
 <p>Now we also create a “conceptual formula” for the <em>t</em>-statistic:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-fb07136e-1299-4bb9-aabb-91959ec52da4">
-<span class="eqno">(25)<a class="headerlink" href="#equation-fb07136e-1299-4bb9-aabb-91959ec52da4" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-6cb5808b-8570-4920-bccc-92196a8f030f">
+<span class="eqno">(25)<a class="headerlink" href="#equation-6cb5808b-8570-4920-bccc-92196a8f030f" title="Permalink to this equation">#</a></span>\[\begin{align}
 t_{\hat{\beta}} = \frac{\hat{\beta}}{\mathrm{SE}_{\hat{\beta}}} = \frac{\mathrm{effect}}{\sqrt{\mathrm{noise} \cdot \mathrm{design\ variance}}}
 \end{align}\]</div>
 <p><strong>This (conceptual) formula involving effects, noise, and design variance is probably the most important concept of this course</strong>. The effects (<em>t</em>-values) we measure in GLM analyses of fMRI data depend on two things: the effect measured (<span class="math notranslate nohighlight">\(\hat{\beta}\)</span>) and the (un)certainty of the effect (<span class="math notranslate nohighlight">\(SE_{\hat{\beta}}\)</span>), of which the latter term can be divided into the unexplained variance (“noise”) and the design variance (uncertainty of the parameter due to the design).</p>
 <p>These two terms (noise and design variance) will be central to the next couple of weeks of this course. In this week’s second notebook (topic: design of experiments), we’ll focus on how to optimize our <em>t</em>-values by minimizing the “design variance” term. Next week (topic: preprocessing), we’ll focus on how to (further) optimize our <em>t</em>-values by minimizing the error/noise.</p>
 <p>While we’re going to ignore the design variance for now, we are, however, going to learn how to calculate the “noise” term.</p>
 <p>In fact, the noise term is <em>very</em> similar to the MSE, but instead of taking the <em>mean</em> of the squared residuals, we sum the squared residuals (“sums of squared erros”, SSE) and divide it by the model’s degrees of freedom (DF). People usually use the <span class="math notranslate nohighlight">\(\hat{\sigma}^{2}\)</span> symbol for this noise term:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-0bc75802-c575-4ed2-81e5-d6d7515e11b4">
-<span class="eqno">(26)<a class="headerlink" href="#equation-0bc75802-c575-4ed2-81e5-d6d7515e11b4" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-c19eb3ab-c7eb-4505-836d-e64af72ddd00">
+<span class="eqno">(26)<a class="headerlink" href="#equation-c19eb3ab-c7eb-4505-836d-e64af72ddd00" title="Permalink to this equation">#</a></span>\[\begin{align}
 \mathrm{noise} = \hat{\sigma}^{2} = \frac{\sum_{i=1}^{N}(\hat{y_{i}} - y_{i})^2}{\mathrm{df}} 
 \end{align}\]</div>
 <p>where the degrees of freedom (df) are defined as the number of samples (<span class="math notranslate nohighlight">\(N\)</span>) minus the number of predictors <em>including the intercept</em> (<span class="math notranslate nohighlight">\(P\)</span>):</p>
-<div class="amsmath math notranslate nohighlight" id="equation-39033887-02d4-4a53-a5c3-e849debb9dcd">
-<span class="eqno">(27)<a class="headerlink" href="#equation-39033887-02d4-4a53-a5c3-e849debb9dcd" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-a074a660-a674-43a5-a1a4-28aff5c8d057">
+<span class="eqno">(27)<a class="headerlink" href="#equation-a074a660-a674-43a5-a1a4-28aff5c8d057" title="Permalink to this equation">#</a></span>\[\begin{align}
 \mathrm{df} = N - P
 \end{align}\]</div>
 <p>So, the formula of the <em>t</em>-statistic becomes:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-59b8e9ec-e3d8-479a-869f-b277664eb136">
-<span class="eqno">(28)<a class="headerlink" href="#equation-59b8e9ec-e3d8-479a-869f-b277664eb136" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-62df6334-d420-4bf8-9eff-5e1eb6786bd1">
+<span class="eqno">(28)<a class="headerlink" href="#equation-62df6334-d420-4bf8-9eff-5e1eb6786bd1" title="Permalink to this equation">#</a></span>\[\begin{align}
 t_{\hat{\beta}} = \frac{\hat{\beta}}{\sqrt{\frac{\sum_{i=1}^{N}(\hat{y_{i}} - y_{i})^2}{N - P} \cdot \mathrm{design\ variance}}}
 \end{align}\]</div>
 <p>Alright, enough formulas. Let’s see how we can compute these terms in Python. We’re going to calculate the <em>t</em>-statistic of the weight-predictor for both models (the meter and the centimeter model) to see whether we can show that essentially the (normalized) effect of weight on height in meters is the same as the effect on height in centimeters; in other words, we are going to investigate whether the conversion to <em>t</em>-values “normalizes” the beta-parameters.</p>
@@ -893,7 +641,7 @@ t_{\hat{\beta}} = \frac{\hat{\beta}}{\sqrt{\frac{\sum_{i=1}^{N}(\hat{y_{i}} - y_
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">design_variance</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">which_predictor</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
-    <span class="sd">&#39;&#39;&#39; Returns the design variance of a predictor (or contrast) in X.</span>
+<span class="w">    </span><span class="sd">&#39;&#39;&#39; Returns the design variance of a predictor (or contrast) in X.</span>
 <span class="sd">    </span>
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
@@ -1007,7 +755,7 @@ Sigma-hat (noise) is: 0.005
 </div>
 </div>
 <div class="section" id="p-values">
-<h3>P-values<a class="headerlink" href="#p-values" title="Permalink to this headline">#</a></h3>
+<h3>P-values<a class="headerlink" href="#p-values" title="Permalink to this heading">#</a></h3>
 <p>As you can see, calculating <em>t</em>-values solves the “problem” of uninterpretable beta-parameters!</p>
 <p>Now, the last thing you need to know is how to calculate the statistical significance of your <em>t</em>-value, or in other words, how you calculate the corresponding <em>p</em>-value. You probably remember that the <em>p</em>-value corresponds to the area under the curve of a <em>t</em>-distribution associated with your observed <em>t</em>-value <em>and more extreme values</em>:
 <img alt="test" src="http://www.nku.edu/~statistics/Test_o12.gif" />
@@ -1033,13 +781,13 @@ Sigma-hat (noise) is: 0.005
 </div>
 </div>
 <div class="section" id="contrasts">
-<h2>Contrasts<a class="headerlink" href="#contrasts" title="Permalink to this headline">#</a></h2>
+<h2>Contrasts<a class="headerlink" href="#contrasts" title="Permalink to this heading">#</a></h2>
 <p>We’re almost done! We’re really at 99% of what you should know about the GLM and fMRI analysis (except for some important caveats that have to do with GLM assumptions, that we’ll discuss next week). The only major concept that we need to discuss is <strong>contrasts</strong>. Contrasts are basically follow-up statistical tests of GLM parameters, with which you can implement any (linear) statistical test that you are familiar with. <em>t</em>-tests, <em>F</em>-tests, ANCOVAs — they can all be realized with the GLM and the right contrast(s). (Again, if you want to know more about this equivalence between the GLM and common statistical tests, check out this <a class="reference external" href="https://lindeloev.github.io/tests-as-linear/">blog post</a>.) Importantly, the choice of contrast should reflect the hypothesis that you want to test.</p>
 <div class="section" id="t-tests">
-<h3><em>t</em>-tests<a class="headerlink" href="#t-tests" title="Permalink to this headline">#</a></h3>
+<h3><em>t</em>-tests<a class="headerlink" href="#t-tests" title="Permalink to this heading">#</a></h3>
 <p>T-tests in the GLM can be implemented in two general ways:</p>
 <p><strong>1. Using a contrast of a parameters “against baseline”</strong></p>
-<p>This type of contrast basically tests the hypothesis: “Does my predictor(s) have <em>any</em> effect on my dependent variable?” In other words, it tests the following hypothesis:</p>
+<p>This type of contrast basically tests the hypothesis: “Does my predictor have <em>any</em> effect on my dependent variable?” In other words, it tests the following hypothesis:</p>
 <ul class="simple">
 <li><p><span class="math notranslate nohighlight">\(H_{0}: \beta = 0\)</span>        (our null-hypothesis, i.e. no effect)</p></li>
 <li><p><span class="math notranslate nohighlight">\(H_{a}: \beta \neq 0\)</span>     (our two-sided alternative hypothesis, i.e. <em>some</em> effect)</p></li>
@@ -1049,7 +797,7 @@ Sigma-hat (noise) is: 0.005
 <p>This type of contrast basically tests hypotheses such as “Does predictor 1 have a larger effect on my dependent variable than predictor 2?”. In other words, it tests the following hypothesis:</p>
 <ul class="simple">
 <li><p><span class="math notranslate nohighlight">\(H_{0}: \beta_{1} - \beta_{2} = 0\)</span> (our null-hypothesis, i.e. there is no difference)</p></li>
-<li><p><span class="math notranslate nohighlight">\(H_{a}: \beta_{1} - \beta_{2} \neq 0\)</span>     (our alternative hypotehsis, i.e. there is some difference)</p></li>
+<li><p><span class="math notranslate nohighlight">\(H_{a}: \beta_{1} - \beta_{2} \neq 0\)</span>     (our alternative hypothesis, i.e. there is some difference)</p></li>
 </ul>
 <p>Let’s look at an example of how we would evaluate a simple hypothesis that a beta has an <em>some</em> effect on the dependent variable. Say we’d have an experimental design with 6 conditions:</p>
 <ul class="simple">
@@ -1219,19 +967,19 @@ specify a contrast-vector, multiply it with your betas, and sum them. That’s i
 <p>We’re not only telling you about contrasts because we think it’s an elegant way of computing beta-comparisons, but also because virtually every major neuroimaging software package uses them, so that you can specify what hypotheses you exactly want to test! You’ll also see this when we’re going to work with FSL (in week 5) to perform automated whole-brain linear regression analyses.</p>
 <p>Knowing how contrast-vectors work, we now can extend our formula for <em>t</em>-tests of beta-parameters such that they can describe <strong>every possible test</strong> (not only <em>t</em>-tests, but also ANOVAs, <em>F</em>-tests, etc.) of betas “against baseline” or between betas that you can think of:</p>
 <p>Our “old” formula of the <em>t</em>-test of a beta-parameter:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-d9de71be-bd18-4be6-8eb2-4be79c28cef1">
-<span class="eqno">(29)<a class="headerlink" href="#equation-d9de71be-bd18-4be6-8eb2-4be79c28cef1" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-106cfebb-d1f7-4a40-91c2-e037b1de0caf">
+<span class="eqno">(29)<a class="headerlink" href="#equation-106cfebb-d1f7-4a40-91c2-e037b1de0caf" title="Permalink to this equation">#</a></span>\[\begin{align}
 t_{\hat{\beta}} = \frac{\hat{\beta}_{j}}{\mathrm{SE}_{\hat{\beta}}}
 \end{align}\]</div>
 <p>And now our “generalized” version of the <em>t</em>-test of <em>any</em> contrast/hypothesis:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-13d32760-cc3d-4697-b5e7-56412ae796b6">
-<span class="eqno">(30)<a class="headerlink" href="#equation-13d32760-cc3d-4697-b5e7-56412ae796b6" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-86073ded-7704-42a8-9422-3ceb41087ef2">
+<span class="eqno">(30)<a class="headerlink" href="#equation-86073ded-7704-42a8-9422-3ceb41087ef2" title="Permalink to this equation">#</a></span>\[\begin{align}
 t_{\mathbf{c}\hat{\beta}} = \frac{\sum_{j=1}^{P}{c_{j}\hat{\beta}_{j}}}{\mathrm{SE}_{\mathbf{c}\hat{\beta}}} 
 \end{align}\]</div>
 <p>in which <span class="math notranslate nohighlight">\(\mathbf{c}\)</span> represents the entire contrast-vector, and <span class="math notranslate nohighlight">\(c_{j}\)</span> represents the <span class="math notranslate nohighlight">\(j^{\mathrm{th}}\)</span> value in our contrast vector. By the way, we can simplify the (notation of the) numerator a little bit using some matrix algebra. Remember that multiplying two (equal length) vectors with each other and then summing the values together is the same thing as the (inner) “dot product” between the two vectors?</p>
 <p>This means that you can also evaluate this elementwise multiplication and sum of the contrast-vector and the betas using the dot-product:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-b6d64851-e614-4693-8d8e-f9d2252cd564">
-<span class="eqno">(31)<a class="headerlink" href="#equation-b6d64851-e614-4693-8d8e-f9d2252cd564" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-c888793a-8c4f-49b5-bd4c-fa1f702ba0cd">
+<span class="eqno">(31)<a class="headerlink" href="#equation-c888793a-8c4f-49b5-bd4c-fa1f702ba0cd" title="Permalink to this equation">#</a></span>\[\begin{align}
 t_{\mathbf{c}\hat{\beta}} = \frac{\mathbf{c}\hat{\beta}}{\mathrm{SE}_{\mathbf{c}\hat{\beta}}} 
 \end{align}\]</div>
 <div class='alert alert-warning'>
@@ -1303,9 +1051,9 @@ t_{\mathbf{c}\hat{\beta}} = \frac{\mathbf{c}\hat{\beta}}{\mathrm{SE}_{\mathbf{c}
 </div>
 </div>
 <div class="section" id="f-tests-on-contrasts">
-<h3><em>F</em>-tests on contrasts<a class="headerlink" href="#f-tests-on-contrasts" title="Permalink to this headline">#</a></h3>
+<h3><em>F</em>-tests on contrasts<a class="headerlink" href="#f-tests-on-contrasts" title="Permalink to this heading">#</a></h3>
 <p>In the previous section we discussed how to calculate <em>t</em>-values for single contrasts. However, sometimes you might have a hypothesis about multiple contrasts at the same time. This may sound weird, but let’s consider an experiment.</p>
-<p>Suppose you have data from an experiment in which you showed images circles which were either blue, red, or green. In that case, you have three predictors. Then, you could have very specific question, like “Do blue circles activate a voxel significantly compared to baseline”, which corresponds to the following null and alternative hypothesis:</p>
+<p>Suppose you have data from an experiment in which you showed images of circles which were either blue, red, or green. In that case, you have three predictors. Then, you could have very specific question, like “Do blue circles activate a voxel significantly compared to baseline”, which corresponds to the following null and alternative hypothesis:</p>
 <ul class="simple">
 <li><p><span class="math notranslate nohighlight">\(H_{0}: \beta_{blue} = 0\)</span> (our null-hypothesis, i.e. there is no activation compared to baseline)</p></li>
 <li><p><span class="math notranslate nohighlight">\(H_{a}: \beta_{blue} &gt; 0\)</span>   (our alternative hypothesis, i.e. blue activates relative to baseline)</p></li>
@@ -1323,8 +1071,8 @@ t_{\mathbf{c}\hat{\beta}} = \frac{\mathbf{c}\hat{\beta}}{\mathrm{SE}_{\mathbf{c}
 </ul>
 <p>Thus, a <em>F</em>-test basically tests this contrast-<em>matrix</em> all at once! Therefore, the <em>F</em>-tests is a type of “omnibus test”!</p>
 <p>Now, let’s look at the math behind the <em>F</em>-statistic. The <em>F</em>-statistic for set of <span class="math notranslate nohighlight">\(K\)</span> contrasts (i.e., the number of rows in the contrast-matrix) is defined as follows:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-9f85f8cc-d816-41e0-be46-7ff5fb3f5c4b">
-<span class="eqno">(32)<a class="headerlink" href="#equation-9f85f8cc-d816-41e0-be46-7ff5fb3f5c4b" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-65a951ba-1ca0-4571-aad5-3075359c776a">
+<span class="eqno">(32)<a class="headerlink" href="#equation-65a951ba-1ca0-4571-aad5-3075359c776a" title="Permalink to this equation">#</a></span>\[\begin{align}
 F = (\mathbf{c}\hat{\beta})^{T}[K\mathbf{c}((X^{T}X)^{-1}\hat{\sigma}^{2})\mathbf{c}^{T}]^{-1}(\mathbf{c}\hat{\beta})
 \end{align}\]</div>
 <p>With a little imagination, you can see how the <em>F</em>-test is an extension of the <em>t</em>-test of a single contrast to accomodate testing a set of contrasts together. Don’t worry, you don’t have to understand how the formula for the <em>F</em>-statistic works mathematically and you don’t have to implement this in Python. But you <em>do</em> need to understand what type of hypothesis an <em>F</em>-test tests!</p>
@@ -1374,7 +1122,7 @@ F = (\mathbf{c}\hat{\beta})^{T}[K\mathbf{c}((X^{T}X)^{-1}\hat{\sigma}^{2})\mathb
 </div>
 </div>
 <div class="section" id="summary">
-<h3>Summary<a class="headerlink" href="#summary" title="Permalink to this headline">#</a></h3>
+<h3>Summary<a class="headerlink" href="#summary" title="Permalink to this heading">#</a></h3>
 <p>Alright, now you know basically everything about how to perform a univariate fMRI analysis!</p>
 <p>“Wait, that’s it?”, you might ask (or not). Well, yeah, regular univariate analyses as you might read about in scientific journals do basically what you’ve just learned, but then not on a single voxel, but on each voxel in the brain separately. Basically just a gigantic for-loop across voxels in which everytime the same design (<span class="math notranslate nohighlight">\(\mathbf{X}\)</span>) is used to predict a new voxel-signal (<span class="math notranslate nohighlight">\(\mathbf{y}\)</span>). Afterwards, the <em>t</em>-values of the contrast (hypothesis) you’re interested in are plotted back onto a brain, color-code it (high t-values yellow, low t-values red), and voilà, you have your pretty brain plot.</p>
 <div class='alert alert-info'>
@@ -1420,7 +1168,7 @@ F = (\mathbf{c}\hat{\beta})^{T}[K\mathbf{c}((X^{T}X)^{-1}\hat{\sigma}^{2})\mathb
             mode: "python"
         },
         kernelOptions: {
-            kernelName: "python3",
+            name: "python3",
             path: "./fMRI-introduction/week_3"
         },
         predefinedOutput: true
@@ -1428,50 +1176,110 @@ F = (\mathbf{c}\hat{\beta})^{T}[K\mathbf{c}((X^{T}X)^{-1}\hat{\sigma}^{2})\mathb
     </script>
     <script>kernelName = 'python3'</script>
 
-              </div>
+                </article>
               
-            </main>
-            <footer class="footer-article noprint">
-                
-    <!-- Previous / next buttons -->
-<div class='prev-next-area'>
-    <a class='left-prev' id="prev-link" href="../week_2/glm_part1_estimation.html" title="previous page">
-        <i class="fas fa-angle-left"></i>
-        <div class="prev-next-info">
-            <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title">The GLM, part 1: estimation</p>
-        </div>
+
+              
+              
+                <footer class="bd-footer-article">
+                  <!-- Previous / next buttons -->
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="../week_2/glm_part1_estimation.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">The GLM, part 1: estimation</p>
+      </div>
     </a>
-    <a class='right-next' id="next-link" href="../../section_intros/3_design_of_experiments_T.html" title="next page">
-    <div class="prev-next-info">
+    <a class="right-next"
+       href="../../section_intros/3_design_of_experiments_T.html"
+       title="next page">
+      <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
         <p class="prev-next-title">Design of experiments</p>
-    </div>
-    <i class="fas fa-angle-right"></i>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
     </a>
 </div>
-            </footer>
-        </div>
-    </div>
-    <div class="footer-content row">
-        <footer class="col footer"><p>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction">Introduction</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#how-to-compute-t-values-and-p-values">How to compute <em>t</em>-values and <em>p</em>-values</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#t-values"><em>t</em>-values</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#p-values">P-values</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#contrasts">Contrasts</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#t-tests"><em>t</em>-tests</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#f-tests-on-contrasts"><em>F</em>-tests on contrasts</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#summary">Summary</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            <div class="bd-footer-content__inner">
+<div class="bd-footer-content__inner container">
   
-    By Lukas Snoek<br/>
-  
-      &copy; Copyright 2021.<br/>
-</p>
-        </footer>
-    </div>
+  <div class="footer-item">
     
-</div>
+<p class="component-author">
+By Lukas Snoek
+</p>
 
+  </div>
+  
+  <div class="footer-item">
+    
+  <p class="copyright">
+    
+      © Copyright 2021.
+      <br/>
+    
+  </p>
 
-      </div>
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div></div>
+          </footer>
+        
+
+      </main>
     </div>
+  </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+  <script src="../../_static/scripts/bootstrap.js?digest=12da95d707ffb74b382d"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=12da95d707ffb74b382d"></script>
 
-
+  <footer class="bd-footer">
+  </footer>
   </body>
 </html>

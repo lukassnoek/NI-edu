@@ -1,47 +1,58 @@
 
+
 <!DOCTYPE html>
 
-<html>
+
+<html lang="en" >
+
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Spatial preprocessing &#8212; NI-edu</title>
-    
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
   <!-- Loaded before other Sphinx assets -->
-  <link href="../../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
-<link href="../../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+  <link href="../../_static/styles/theme.css?digest=12da95d707ffb74b382d" rel="stylesheet" />
+<link href="../../_static/styles/bootstrap.css?digest=12da95d707ffb74b382d" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=12da95d707ffb74b382d" rel="stylesheet" />
 
-    
-  <link rel="stylesheet"
-    href="../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
-  <link rel="preload" as="font" type="font/woff2" crossorigin
-    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
-  <link rel="preload" as="font" type="font/woff2" crossorigin
-    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+  
+  <link href="../../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=12da95d707ffb74b382d" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
 
     <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
-    <link rel="stylesheet" href="../../_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
+    <link rel="stylesheet" href="../../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
-    
+    <link rel="stylesheet" type="text/css" href="../../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=12da95d707ffb74b382d" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=12da95d707ffb74b382d" />
 
     <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
     <script src="../../_static/jquery.js"></script>
     <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="../../_static/doctools.js"></script>
     <script src="../../_static/clipboard.min.js"></script>
     <script src="../../_static/copybutton.js"></script>
-    <script src="../../_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
     <script src="../../_static/togglebutton.js"></script>
-    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script src="../../_static/design-tabs.js"></script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
 const thebe_selector = ".thebe,.cell"
@@ -49,65 +60,95 @@ const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
     <script async="async" src="../../_static/sphinx-thebe.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
-    <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.1/dist/embed-amd.js"></script>
     <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'fMRI-introduction/week_4/spatial_preprocessing';</script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
     <link rel="next" title="Fmriprep" href="fmriprep.html" />
     <link rel="prev" title="Temporal preprocessing" href="temporal_preprocessing.html" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="docsearch:language" content="None">
-    
-
-    <!-- Google Analytics -->
-    
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
   </head>
-  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
-<!-- Checkboxes to toggle the left sidebar -->
-<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
-<label class="overlay overlay-navbar" for="__navigation">
-    <div class="visually-hidden">Toggle navigation sidebar</div>
-</label>
-<!-- Checkboxes to toggle the in-page toc -->
-<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
-<label class="overlay overlay-pagetoc" for="__page-toc">
-    <div class="visually-hidden">Toggle in-page Table of Contents</div>
-</label>
-<!-- Headers at the top -->
-<div class="announcement header-item noprint"></div>
-<div class="header header-item noprint"></div>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
 
-    
-    <div class="container-fluid" id="banner"></div>
-
-    
-
-    <div class="container-xl">
-      <div class="row">
-          
-<!-- Sidebar -->
-<div class="bd-sidebar noprint" id="site-navigation">
-    <div class="bd-sidebar__content">
-        <div class="bd-sidebar__top"><div class="navbar-brand-box">
-    <a class="navbar-brand text-wrap" href="../../index.html">
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
       
-        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+      <div class="bd-sidebar-primary bd-sidebar">
         
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
+
+<a class="navbar-brand logo" href="../../index.html">
+  
+  
+  
+  
+    
+    
       
-      
-      <img src="../../_static/fmri.gif" class="logo" alt="logo">
-      
-      
-      <h1 class="site-logo" id="site-title">NI-edu</h1>
-      
-    </a>
-</div><form class="bd-search d-flex align-items-center" action="../../search.html" method="get">
-  <i class="icon fas fa-search"></i>
-  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
-</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
-    <div class="bd-toc-item active">
+    
+    
+    <img src="../../_static/fmri.gif" class="logo__image only-light" alt="Logo image"/>
+    <script>document.write(`<img src="../../_static/fmri.gif" class="logo__image only-dark" alt="Logo image"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
         
         <ul class="nav bd-sidenav bd-sidenav__home-link">
             <li class="toctree-l1">
@@ -116,593 +157,345 @@ const thebe_selector_output = ".output, .cell_output"
                 </a>
             </li>
         </ul>
-        <p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  Getting started
- </span>
-</p>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Getting started</span></p>
 <ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="../../getting_started/about.html">
-   About this course
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../../getting_started/installation.html">
-   Installation
-  </a>
- </li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/about.html">About this course</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/installation.html">Installation</a></li>
 </ul>
-<p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  fMRI-introduction
- </span>
-</p>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">fMRI-introduction</span></p>
 <ul class="current nav bd-sidenav">
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../../section_intros/1_python.html">
-   Python for (f)MRI analysis
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
-  <label for="toctree-checkbox-1">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../../other/python_recap.html">
-     Python recap
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../week_1/python_for_mri.html">
-     Working with MRI data in Python (T)
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../../section_intros/2_glm.html">
-   Using the GLM to model fMRI data
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
-  <label for="toctree-checkbox-2">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../week_2/glm_part1_estimation.html">
-     The GLM: estimation (T)
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../week_3/glm_part2_inference.html">
-     The GLM: inference (T)
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../../section_intros/3_design_of_experiments_T.html">
-   Design of experiments
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
-  <label for="toctree-checkbox-3">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../week_3/design_of_experiments.html">
-     Design of experiments (T)
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../week_3/neurodesign.html">
-     Neurodesign (T)
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toctree-l1 current active has-children">
-  <a class="reference internal" href="../../section_intros/4_preprocessing.html">
-   Preprocessing
-  </a>
-  <input checked="" class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
-  <label for="toctree-checkbox-4">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul class="current">
-   <li class="toctree-l2">
-    <a class="reference internal" href="temporal_preprocessing.html">
-     Temporal preprocessing (T)
-    </a>
-   </li>
-   <li class="toctree-l2 current active">
-    <a class="current reference internal" href="#">
-     Spatial preprocessing (T)
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="fmriprep.html">
-     Fmriprep (T)
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../../section_intros/5_multilevel.html">
-   First &amp; run-level analyses
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/>
-  <label for="toctree-checkbox-5">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../week_5/linux_and_the_command_line.html">
-     Linux and the CMD (T)
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../week_5/first_level_analyses.html">
-     First level analyses (T)
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../week_5/run_level_analyses.html">
-     Run-level analyses (T)
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../../section_intros/6_grouplevel.html">
-   Group-level analyses
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/>
-  <label for="toctree-checkbox-6">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../week_6/group_level_analyses.html">
-     Group-level analyses (T)
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../week_6/MCC.html">
-     Multiple comparison correction (T)
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../week_6/ROI_analysis.html">
-     ROI analysis (T)
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../../section_intros/7_nilearn.html">
-   Introduction to Nilearn
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/>
-  <label for="toctree-checkbox-7">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../week_7/nilearn.html">
-     Introduction to Nilearn (T)
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../week_7/nilearn_stats.html">
-     Statistics with Nilearn (T)
-    </a>
-   </li>
-  </ul>
- </li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../section_intros/1_python.html">Python for (f)MRI analysis</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../other/python_recap.html">Python recap</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../week_1/python_for_mri.html">Working with MRI data in Python (T)</a></li>
 </ul>
-<p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  fMRI-pattern-analysis
- </span>
-</p>
-<ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="../../fMRI-pattern-analysis/week_1/design_and_pattern_estimation.html">
-   Design and pattern estimation (T)
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../../fMRI-pattern-analysis/week_2/decoding_analyses.html">
-   Machine learning/decoding (T)
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../../fMRI-pattern-analysis/week_3/rsa.html">
-   Representational Similarity Analysis (T)
-  </a>
- </li>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../section_intros/2_glm.html">Using the GLM to model fMRI data</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../week_2/glm_part1_estimation.html">The GLM: estimation (T)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../week_3/glm_part2_inference.html">The GLM: inference (T)</a></li>
 </ul>
-<p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  Misc
- </span>
-</p>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../section_intros/3_design_of_experiments_T.html">Design of experiments</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../week_3/design_of_experiments.html">Design of experiments (T)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../week_3/neurodesign.html">Neurodesign (T)</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="../../section_intros/4_preprocessing.html">Preprocessing</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-4"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="temporal_preprocessing.html">Temporal preprocessing (T)</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">Spatial preprocessing (T)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="fmriprep.html">Fmriprep (T)</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../section_intros/5_multilevel.html">First &amp; run-level analyses</a><input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-5"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../week_5/linux_and_the_command_line.html">Linux and the CMD (T)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../week_5/first_level_analyses.html">First level analyses (T)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../week_5/run_level_analyses.html">Run-level analyses (T)</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../section_intros/6_grouplevel.html">Group-level analyses</a><input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-6"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../week_6/group_level_analyses.html">Group-level analyses (T)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../week_6/MCC.html">Multiple comparison correction (T)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../week_6/ROI_analysis.html">ROI analysis (T)</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../section_intros/7_nilearn.html">Introduction to Nilearn</a><input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-7"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../week_7/nilearn.html">Introduction to Nilearn (T)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../week_7/nilearn_stats.html">Statistics with Nilearn (T)</a></li>
+</ul>
+</li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">fMRI-pattern-analysis</span></p>
 <ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="../../misc/bibliography.html">
-   Bibliography
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../../misc/for_educators.html">
-   For educators
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../../misc/CONTRIBUTING.html">
-   Contributing
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../../misc/CONDUCT.html">
-   Code of Conduct
-  </a>
- </li>
+<li class="toctree-l1"><a class="reference internal" href="../../fMRI-pattern-analysis/week_1/design_and_pattern_estimation.html">Design and pattern estimation (T)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../fMRI-pattern-analysis/week_2/decoding_analyses.html">Machine learning/decoding (T)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../fMRI-pattern-analysis/week_3/rsa.html">Representational Similarity Analysis (T)</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Misc</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../misc/bibliography.html">Bibliography</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../misc/for_educators.html">For educators</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../misc/CONTRIBUTING.html">Contributing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../misc/CONDUCT.html">Code of Conduct</a></li>
 </ul>
 
     </div>
 </nav></div>
-        <div class="bd-sidebar__bottom">
-             <!-- To handle the deprecated key -->
-            
-            <div class="navbar_extra_footer">
-            Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
-            </div>
-            
-        </div>
     </div>
-    <div id="rtd-footer-container"></div>
-</div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
 
 
-          
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
 
-
-          
-<!-- A tiny helper pixel to detect if we've scrolled -->
 <div class="sbt-scroll-pixel-helper"></div>
-<!-- Main content -->
-<div class="col py-0 content-container">
-    
-    <div class="header-article row sticky-top noprint">
-        
 
-
-
-<div class="col py-1 d-flex header-article-main">
-    <div class="header-article__left">
-        
-        <label for="__navigation"
-  class="headerbtn"
-  data-toggle="tooltip"
-data-placement="right"
-title="Toggle navigation"
->
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
   
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-bars"></i>
-  </span>
-
-</label>
-
-        
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
     </div>
-    <div class="header-article__right">
-<div class="menu-dropdown menu-dropdown-launch-buttons">
-  <button class="headerbtn menu-dropdown__trigger"
-      aria-label="Launch interactive content">
-      <i class="fas fa-rocket"></i>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-launch-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Launch interactive content">
+    <i class="fas fa-rocket"></i>
   </button>
-  <div class="menu-dropdown__content">
-    <ul>
-      <li>
-        <a href="https://mybinder.org/v2/gh/lukassnoek/NI-edu/master?urlpath=tree/NI-edu/fMRI-introduction/week_4/spatial_preprocessing.ipynb"
-   class="headerbtn"
-   data-toggle="tooltip"
-data-placement="left"
-title="Launch on Binder"
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://mybinder.org/v2/gh/lukassnoek/NI-edu/master?urlpath=tree/NI-edu/fMRI-introduction/week_4/spatial_preprocessing.ipynb" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch onBinder"
+   data-bs-placement="left" data-bs-toggle="tooltip"
 >
   
 
-<span class="headerbtn__icon-container">
+<span class="btn__icon-container">
   
     <img src="../../_static/images/logo_binder.svg">
   </span>
-<span class="headerbtn__text-container">Binder</span>
+<span class="btn__text-container">Binder</span>
 </a>
-
-      </li>
+</li>
       
-      <li>
-        <a href="https://neuroimaging.lukas-snoek.com/hub/user-redirect/git-pull?repo=https%3A//github.com/lukassnoek/NI-edu&urlpath=tree/NI-edu/NI-edu/fMRI-introduction/week_4/spatial_preprocessing.ipynb&branch=master"
-   class="headerbtn"
-   data-toggle="tooltip"
-data-placement="left"
-title="Launch on JupyterHub"
+      
+      
+      
+      <li><a href="https://neuroimaging.lukas-snoek.com/hub/user-redirect/git-pull?repo=https%3A//github.com/lukassnoek/NI-edu&urlpath=tree/NI-edu/NI-edu/fMRI-introduction/week_4/spatial_preprocessing.ipynb&branch=master" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch onJupyterHub"
+   data-bs-placement="left" data-bs-toggle="tooltip"
 >
   
 
-<span class="headerbtn__icon-container">
+<span class="btn__icon-container">
   
     <img src="../../_static/images/logo_jupyterhub.svg">
   </span>
-<span class="headerbtn__text-container">JupyterHub</span>
+<span class="btn__text-container">JupyterHub</span>
 </a>
-
-      </li>
+</li>
       
-    </ul>
-  </div>
+  </ul>
 </div>
 
-<button onclick="toggleFullScreen()"
-  class="headerbtn"
-  data-toggle="tooltip"
-data-placement="bottom"
-title="Fullscreen mode"
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/lukassnoek/NI-edu" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
 >
   
 
-<span class="headerbtn__icon-container">
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/lukassnoek/NI-edu/edit/master/NI-edu/fMRI-introduction/week_4/spatial_preprocessing.ipynb" target="_blank"
+   class="btn btn-sm btn-source-edit-button dropdown-item"
+   title="Suggest edit"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-pencil-alt"></i>
+  </span>
+<span class="btn__text-container">Suggest edit</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/lukassnoek/NI-edu/issues/new?title=Issue%20on%20page%20%2FfMRI-introduction/week_4/spatial_preprocessing.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../../_sources/fMRI-introduction/week_4/spatial_preprocessing.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
   <i class="fas fa-expand"></i>
   </span>
 
 </button>
 
-<div class="menu-dropdown menu-dropdown-repository-buttons">
-  <button class="headerbtn menu-dropdown__trigger"
-      aria-label="Source repositories">
-      <i class="fab fa-github"></i>
+
+<script>
+document.write(`
+  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
   </button>
-  <div class="menu-dropdown__content">
-    <ul>
-      <li>
-        <a href="https://github.com/lukassnoek/NI-edu"
-   class="headerbtn"
-   data-toggle="tooltip"
-data-placement="left"
-title="Source repository"
->
-  
+`);
+</script>
 
-<span class="headerbtn__icon-container">
-  <i class="fab fa-github"></i>
-  </span>
-<span class="headerbtn__text-container">repository</span>
-</a>
-
-      </li>
-      
-      <li>
-        <a href="https://github.com/lukassnoek/NI-edu/issues/new?title=Issue%20on%20page%20%2FfMRI-introduction/week_4/spatial_preprocessing.html&body=Your%20issue%20content%20here."
-   class="headerbtn"
-   data-toggle="tooltip"
-data-placement="left"
-title="Open an issue"
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-lightbulb"></i>
-  </span>
-<span class="headerbtn__text-container">open issue</span>
-</a>
-
-      </li>
-      
-      <li>
-        <a href="https://github.com/lukassnoek/NI-edu/edit/master/NI-edu/fMRI-introduction/week_4/spatial_preprocessing.ipynb"
-   class="headerbtn"
-   data-toggle="tooltip"
-data-placement="left"
-title="Edit this page"
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-pencil-alt"></i>
-  </span>
-<span class="headerbtn__text-container">suggest edit</span>
-</a>
-
-      </li>
-      
-    </ul>
-  </div>
-</div>
-
-<div class="menu-dropdown menu-dropdown-download-buttons">
-  <button class="headerbtn menu-dropdown__trigger"
-      aria-label="Download this page">
-      <i class="fas fa-download"></i>
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
   </button>
-  <div class="menu-dropdown__content">
-    <ul>
-      <li>
-        <a href="../../_sources/fMRI-introduction/week_4/spatial_preprocessing.ipynb"
-   class="headerbtn"
-   data-toggle="tooltip"
-data-placement="left"
-title="Download source file"
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-file"></i>
-  </span>
-<span class="headerbtn__text-container">.ipynb</span>
-</a>
-
-      </li>
-      
-      <li>
-        
-<button onclick="printPdf(this)"
-  class="headerbtn"
-  data-toggle="tooltip"
-data-placement="left"
-title="Print to PDF"
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-file-pdf"></i>
-  </span>
-<span class="headerbtn__text-container">.pdf</span>
-</button>
-
-      </li>
-      
-    </ul>
-  </div>
-</div>
-<label for="__page-toc"
-  class="headerbtn headerbtn-page-toc"
-  
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-list"></i>
-  </span>
-
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
 </label>
-
+</div></div>
+      
     </div>
+  
 </div>
-
-<!-- Table of contents -->
-<div class="col-md-3 bd-toc show noprint">
-    <div class="tocsection onthispage pt-5 pb-3">
-        <i class="fas fa-list"></i> Contents
-    </div>
-    <nav id="bd-toc-nav" aria-label="Page">
-        <ul class="visible nav section-nav flex-column">
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#spatial-filtering-blurring-smoothing">
-   Spatial filtering (blurring/smoothing)
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#susceptibility-distortion-correction-sdc">
-   Susceptibility distortion correction (SDC)
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#motion-correction-realignment">
-   Motion correction / realignment
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#rigid-body-registration">
-     Rigid body registration
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#affine-registrations">
-     Affine registrations
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#anatomical-realignment-registration-and-normalization">
-   Anatomical realignment/registration and normalization
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#motion-filtering">
-   Motion filtering
-  </a>
- </li>
-</ul>
-
-    </nav>
 </div>
-    </div>
-    <div class="article row">
-        <div class="col pl-md-3 pl-lg-5 content-container">
-            <!-- Table of contents that is only displayed when printing the page -->
-            <div id="jb-print-docs-body" class="onlyprint">
-                <h1>Spatial preprocessing</h1>
-                <!-- Table of contents -->
-                <div id="print-main-content">
-                    <div id="jb-print-toc">
-                        
-                        <div>
-                            <h2> Contents </h2>
-                        </div>
-                        <nav aria-label="Page">
-                            <ul class="visible nav section-nav flex-column">
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#spatial-filtering-blurring-smoothing">
-   Spatial filtering (blurring/smoothing)
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#susceptibility-distortion-correction-sdc">
-   Susceptibility distortion correction (SDC)
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#motion-correction-realignment">
-   Motion correction / realignment
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#rigid-body-registration">
-     Rigid body registration
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#affine-registrations">
-     Affine registrations
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#anatomical-realignment-registration-and-normalization">
-   Anatomical realignment/registration and normalization
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#motion-filtering">
-   Motion filtering
-  </a>
- </li>
-</ul>
+              
+              
 
-                        </nav>
-                    </div>
-                </div>
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Spatial preprocessing</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
             </div>
-            <main id="main-content" role="main">
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#spatial-filtering-blurring-smoothing">Spatial filtering (blurring/smoothing)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#susceptibility-distortion-correction-sdc">Susceptibility distortion correction (SDC)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#motion-correction-realignment">Motion correction / realignment</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#rigid-body-registration">Rigid body registration</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#affine-registrations">Affine registrations</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#anatomical-realignment-registration-and-normalization">Anatomical realignment/registration and normalization</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#motion-filtering">Motion filtering</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
                 
-              <div>
-                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
   <div class="tex2jax_ignore mathjax_ignore section" id="spatial-preprocessing">
-<h1>Spatial preprocessing<a class="headerlink" href="#spatial-preprocessing" title="Permalink to this headline">#</a></h1>
+<h1>Spatial preprocessing<a class="headerlink" href="#spatial-preprocessing" title="Permalink to this heading">#</a></h1>
 <p><em>If you haven’t gone through the <code class="docutils literal notranslate"><span class="pre">temporal_preprocessing.ipynb</span></code> notebook, please do so first!</em></p>
 <p>In the previous notebook, we’ve looked at how to temporally preprocess our signal through high-pass filtering, prewhitening, and nuisance regression. Importantly, these operations are <em>performed on the timeseries of each voxel separately</em>! Essentially, given our 4D fMRI data (<span class="math notranslate nohighlight">\(X \times Y \times Z \times T\)</span>), temporal filtering as we discussed here is only applied to the fourth dimension (the time-dimension, <span class="math notranslate nohighlight">\(T\)</span>).</p>
 <p>In addition to these temporal operations, there are several spatial operations performed on (f)MRI data, including spatial smoothing (a form of filtering), distortion correction, and spatial registration/resampling, which are discussed in this notebook.</p>
@@ -725,7 +518,7 @@ title="Print to PDF"
 </div>
 </div>
 <div class="section" id="spatial-filtering-blurring-smoothing">
-<h2>Spatial filtering (blurring/smoothing)<a class="headerlink" href="#spatial-filtering-blurring-smoothing" title="Permalink to this headline">#</a></h2>
+<h2>Spatial filtering (blurring/smoothing)<a class="headerlink" href="#spatial-filtering-blurring-smoothing" title="Permalink to this heading">#</a></h2>
 <p>Spatial filtering refers to operations applied to the <em>spatial</em> dimensions (<span class="math notranslate nohighlight">\(X\)</span>, <span class="math notranslate nohighlight">\(Y\)</span>, and <span class="math notranslate nohighlight">\(Z\)</span>) of our 4D data. The most common spatial filtering operation — spatial smoothing — is usually implemented using a “3D gaussian (low-pass) smoothing kernel”. Sounds familiar? Well, it should, because it’s essentially the same type of filter as we used for our temporal high-pass filter! Only this time, it’s not a 1-dimensional gaussian (“kernel”) that does the high-pass filtering, but it’s a 3-dimensional gaussian that does <em>low-pass</em> filtering. Just like the temporal gaussian-weighted running line smoother is applied across time, we apply the 3D gaussian across space (i.e., the 3 spatial dimensions, <span class="math notranslate nohighlight">\(X\)</span>, <span class="math notranslate nohighlight">\(Y\)</span>, and <span class="math notranslate nohighlight">\(Z\)</span>). The figure below schematically visualized the process*:</p>
 <p><img alt="" src="https://docs.google.com/drawings/d/e/2PACX-1vQZ8Eb8uNU9F0ZLLD1rRNwEE6zab8kVNFsUUZpDcPyDFWrfaPTSNB5otplVAuTV4lR0PhYWM-60_pMD/pub?w=850&amp;h=421" /></p>
 <p>(Note that we show the spatial data in 2D, simply because it’s easier to visualize, but in reality this is always 3D!)</p>
@@ -735,13 +528,13 @@ title="Print to PDF"
 <p>Before we go on and demonstrate smoothing on fMRI data, we need to determine the sigma of our (3D) gaussian kernel that we’ll use to smooth the data. Annoyingly, smoothing kernels in the fMRI literature (and software packages!) are usually not reported in terms of sigma, but as “full-width half maximum” (FWHM), which refers to the width of the gaussian at half the maximum height:</p>
 <p><img alt="fwhm" src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/cb/FWHM.svg/1200px-FWHM.svg.png" /></p>
 <p>For example, you might read in papers something like “We smoothed our data with a gaussian kernel with a FWHM of 3 millimeter”. So, we need to convert our desired FWHM (in millimeters) to sigma. In fact, this is the same conversion that we needed to do for our temporal Gaussian running line high-pass filter, but this time applied to the spatial domain (i.e., FWHM in mm) instead of the temporal domain (i.e., TR in seconds). We can use the same formula to convert FWHM (in mm.) to sigma:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-554ab7ff-b063-4f34-b146-f61697499331">
-<span class="eqno">(60)<a class="headerlink" href="#equation-554ab7ff-b063-4f34-b146-f61697499331" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-00e36014-aba9-4af9-bea1-908b0edf72ae">
+<span class="eqno">(60)<a class="headerlink" href="#equation-00e36014-aba9-4af9-bea1-908b0edf72ae" title="Permalink to this equation">#</a></span>\[\begin{align}
 \sigma_{kernel} = \frac{\mathrm{FWHM}_{mm}}{\sqrt{8 \ln{2}} \cdot \mathrm{voxel\ size}_{mm}}
 \end{align}\]</div>
 <p>So, for example, if I want to smooth at FWHM = 6 mm and my voxels are 3 mm in size (assuming equal size in the three spatial dimensions, which is common), my sigma becomes:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-caa0f500-5f7b-4713-86a8-d7a4b1bffc74">
-<span class="eqno">(61)<a class="headerlink" href="#equation-caa0f500-5f7b-4713-86a8-d7a4b1bffc74" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-fe2b1117-320a-4cfa-9b2d-39813426d7e0">
+<span class="eqno">(61)<a class="headerlink" href="#equation-fe2b1117-320a-4cfa-9b2d-39813426d7e0" title="Permalink to this equation">#</a></span>\[\begin{align}
 \sigma_{kernel} = \frac{6}{\sqrt{8 \ln{2}} \cdot 3} \approx 0.85
 \end{align}\]</div>
 <p>The entire conversion process is a bit annoying, but it’s simply necessary due to conventions in the fMRI literature/software packages.</p>
@@ -774,7 +567,7 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/spatial_preprocessing_5_0.png" src="../../_images/spatial_preprocessing_5_0.png" />
+<img alt="../../_images/b2de3e7ea69ebe0358d7ed0f417a04e4366862993c887b820f879d51932f3016.png" src="../../_images/b2de3e7ea69ebe0358d7ed0f417a04e4366862993c887b820f879d51932f3016.png" />
 </div>
 </div>
 <div class='alert alert-warning'>
@@ -805,7 +598,7 @@ title="Print to PDF"
 </div><p>YOUR ANSWER HERE</p>
 </div>
 <div class="section" id="susceptibility-distortion-correction-sdc">
-<h2>Susceptibility distortion correction (SDC)<a class="headerlink" href="#susceptibility-distortion-correction-sdc" title="Permalink to this headline">#</a></h2>
+<h2>Susceptibility distortion correction (SDC)<a class="headerlink" href="#susceptibility-distortion-correction-sdc" title="Permalink to this heading">#</a></h2>
 <p>Most functional MRI sequences use a technique called “gradient-echo echo planar imaging” (GE-EPI), which is a relatively sensitive and well-established technique for BOLD-MRI. For reasons beyond the scope of this course, GE-EPI scans unfortunately show signs of <strong>“geometric distortion”</strong> (sometimes called susceptibility distortion) and <strong>signal loss</strong> in some areas of the brain. Signal loss, which is most apparent in areas with B0 (static magnetic field) inhomogeneities caused by sudden air-tissue transitions (like around the ears, earduct → brain, and the ventromedial cortex, frontal sinus → brain). Geometric distortion is most visible in the phase-encoding direction of the scan (usually posterior → anterior or left → right). These geometric distorions are usually visible as tissue “folding” inwards or outwards (depending on the exact phase-encoding direction, e.g., posterior → anterior or anterior → posterior).</p>
 <p>In the gif below, you can see where signal loss (in ventromedial cortex and around the ears, best visible in slice <code class="docutils literal notranslate"><span class="pre">z=12</span></code>) and geometric distortion is most apparent. The “before” image is the one <em>with</em> geometric distortion (most apparent as folding inwards of the cerebellum and frontal cortex). Hover your cursor above the image to see it changing from uncorrected (“before”) to corrected (“after”).</p>
 <p><img alt="SegmentLocal" src="../../_images/sdc.gif" /></p>
@@ -813,7 +606,7 @@ title="Print to PDF"
 <p>The mathematics and implementation of distortion correction is beyond the scope of this course, but we just wanted it to show you so that you’re familiar with the term!</p>
 </div>
 <div class="section" id="motion-correction-realignment">
-<h2>Motion correction / realignment<a class="headerlink" href="#motion-correction-realignment" title="Permalink to this headline">#</a></h2>
+<h2>Motion correction / realignment<a class="headerlink" href="#motion-correction-realignment" title="Permalink to this heading">#</a></h2>
 <p>Participant movement during scanning arguably affects your data quality most, and should be taken care of accordingly. As such, <em>motion correction</em> (or sometimes called <em>motion realignment</em>) is an important step in any preprocessing pipeline. Motion correction makes sure that all volumes (i.e., 3D fMRI images) are spatially aligned. Before discussing motion correction in more detail, let’s take a look at how a motion corrupted scan looks like. Actually, the data that we’ve been using so far (<code class="docutils literal notranslate"><span class="pre">data_4d</span></code>) actually has very little motion, so we’re going to add some motion to it (with a custom function <code class="docutils literal notranslate"><span class="pre">add_motion_to_vols</span></code>). Then, we’ll plot it volume by volume as a short movie:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -825,11 +618,11 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/spatial_preprocessing_14_0.png" src="../../_images/spatial_preprocessing_14_0.png" />
+<img alt="../../_images/73a56e0158ba7fb59b522bab7439d61d5af538600066953e7451ab1ae6e88097.png" src="../../_images/73a56e0158ba7fb59b522bab7439d61d5af538600066953e7451ab1ae6e88097.png" />
 </div>
 </div>
 <div class="section" id="rigid-body-registration">
-<h3>Rigid body registration<a class="headerlink" href="#rigid-body-registration" title="Permalink to this headline">#</a></h3>
+<h3>Rigid body registration<a class="headerlink" href="#rigid-body-registration" title="Permalink to this heading">#</a></h3>
 <p>Motion correction aligns all volumes by picking a reference volume (usually the first or middle one) and subsequently “moving” all the other volumes such that they are spatially aligned with the reference volume. Specifically, motion correction uses <em>translation</em> (movement along the primary axes: left/right, up/down, front/back) and <em>rotation</em> (around the center of the image).</p>
 <p><img alt="pitchrollyaw" src="https://www.researchgate.net/profile/Tsang_Ing_Ren/publication/279291928/figure/fig1/AS:292533185462272&#64;1446756754388/Orientation-of-the-head-in-terms-of-pitch-roll-and-yaw-movements-describing-the-three.png" />
 <em>Image from <a class="reference external" href="https://www.researchgate.net/figure/Orientation-of-the-head-in-terms-of-pitch-roll-and-yaw-movements-describing-the-three_fig1_279291928">Arcoverde Neto et al. (2014)</a>.</em></p>
@@ -839,10 +632,10 @@ title="Print to PDF"
     <b>ToThink</b> (0 points): Why do you think motion correction not use scaling and shearing transformations?
 </div></div>
 <div class="section" id="affine-registrations">
-<h3>Affine registrations<a class="headerlink" href="#affine-registrations" title="Permalink to this headline">#</a></h3>
+<h3>Affine registrations<a class="headerlink" href="#affine-registrations" title="Permalink to this heading">#</a></h3>
 <p>For affine registrations, the way the image should be moved is defined in the affine matrix, a <span class="math notranslate nohighlight">\(4 \times 4\)</span> matrix. This matrix is similar to the one we discussed in week 1, but instead of describing how each image coordinate (<span class="math notranslate nohighlight">\(i, j, k\)</span>) relates to world coordinates (<span class="math notranslate nohighlight">\(x, y, z\)</span>), the affine matrix, here, describes how the coordinates from the original (non-corrected) image related to the corrected image:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-4075d318-6f8a-4210-8090-c45e834089fd">
-<span class="eqno">(62)<a class="headerlink" href="#equation-4075d318-6f8a-4210-8090-c45e834089fd" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-5a9d531a-983d-4ed3-87a1-99ee616b6db1">
+<span class="eqno">(62)<a class="headerlink" href="#equation-5a9d531a-983d-4ed3-87a1-99ee616b6db1" title="Permalink to this equation">#</a></span>\[\begin{align}
 \begin{bmatrix} i_{corr}, j_{corr}, k_{corr}, 1 \end{bmatrix} = A\begin{bmatrix}
            i \\
            j \\
@@ -874,8 +667,8 @@ title="Print to PDF"
 </div>
 </div>
 <p>As expected, the affine transformation above shows us that the middle coordinate <span class="math notranslate nohighlight">\((0, 0, 0)\)</span> refers to the corrected coordinate <span class="math notranslate nohighlight">\((0, 0, 3)\)</span> after translating the image 3 voxels downwards. But how is this particular translation encoded in the affine? For translation, this is relatively straightforward. For any translation <span class="math notranslate nohighlight">\((x, y, z)\)</span>, the affine matrix looks like:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-7dc78a2f-a98a-48a0-ac60-af26b4e3c086">
-<span class="eqno">(63)<a class="headerlink" href="#equation-7dc78a2f-a98a-48a0-ac60-af26b4e3c086" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-2962f87e-d744-4ac2-9050-56e11c493417">
+<span class="eqno">(63)<a class="headerlink" href="#equation-2962f87e-d744-4ac2-9050-56e11c493417" title="Permalink to this equation">#</a></span>\[\begin{align}
 \begin{bmatrix} i_{\mathrm{trans}} &amp; j_{\mathrm{trans}} &amp; k_{\mathrm{trans}} &amp; 1 \end{bmatrix} =
 \begin{bmatrix}
            1 &amp; 0 &amp; 0 &amp; x \\
@@ -891,8 +684,8 @@ title="Print to PDF"
          \end{bmatrix}
 \end{align}\]</div>
 <p>For rotation, however, it is slightly more complicated! For rotation transformations (with rotations <span class="math notranslate nohighlight">\(x, y, z\)</span> in radians), the affine is computed by the matrix</p>
-<div class="amsmath math notranslate nohighlight" id="equation-46b754b5-90e1-4bfc-bc72-65212422db68">
-<span class="eqno">(64)<a class="headerlink" href="#equation-46b754b5-90e1-4bfc-bc72-65212422db68" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-d8785cca-5422-40a0-b5e3-ff5b3dc2dcbd">
+<span class="eqno">(64)<a class="headerlink" href="#equation-d8785cca-5422-40a0-b5e3-ff5b3dc2dcbd" title="Permalink to this equation">#</a></span>\[\begin{align}
 \begin{bmatrix} i_{\mathrm{rot}} &amp; j_{\mathrm{rot}} &amp; k_{\mathrm{rot}} &amp; 1 \end{bmatrix} =
     \begin{bmatrix}
            1 &amp; 0 &amp; 0 &amp; 0 \\
@@ -923,7 +716,7 @@ title="Print to PDF"
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">get_rotation_matrix</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">z</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot; Computes the rotation matrix.</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot; Computes the rotation matrix.</span>
 <span class="sd">    </span>
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
@@ -984,8 +777,8 @@ title="Print to PDF"
 </div>
 </div>
 <p>Now, if we want to combine both rotations and translations, we multiply the translation matrix (<span class="math notranslate nohighlight">\(T\)</span>) with our rotation matrix (<span class="math notranslate nohighlight">\(R = R_{x}R_{y}R_{z}\)</span>):</p>
-<div class="amsmath math notranslate nohighlight" id="equation-e099bd9e-c7f5-40f8-84c5-56f8ea6d6c43">
-<span class="eqno">(65)<a class="headerlink" href="#equation-e099bd9e-c7f5-40f8-84c5-56f8ea6d6c43" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-c806e755-6c99-4b0d-808f-059234597c57">
+<span class="eqno">(65)<a class="headerlink" href="#equation-c806e755-6c99-4b0d-808f-059234597c57" title="Permalink to this equation">#</a></span>\[\begin{align}
 A = TR
 \end{align}\]</div>
 <div class='alert alert-warning'>
@@ -993,7 +786,7 @@ A = TR
 </div><div class="cell tag_raises-exception tag_remove-output docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">get_translation_matrix</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">z</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot; Computes the translation matrix.</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot; Computes the translation matrix.</span>
 <span class="sd">    </span>
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
@@ -1035,7 +828,7 @@ A = TR
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">scipy.ndimage</span> <span class="kn">import</span> <span class="n">affine_transform</span>
 
 <span class="k">def</span> <span class="nf">resample_image</span><span class="p">(</span><span class="n">image</span><span class="p">,</span> <span class="n">trans_mat</span><span class="p">,</span> <span class="n">rot_mat</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot; Resamples an image given a translation and rotation matrix.</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot; Resamples an image given a translation and rotation matrix.</span>
 <span class="sd">    </span>
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
@@ -1099,13 +892,13 @@ A = TR
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/spatial_preprocessing_28_0.png" src="../../_images/spatial_preprocessing_28_0.png" />
+<img alt="../../_images/b8a83b555552bb5280da42fe2da3b23be36b6fff7ca56369007151c9c98efc73.png" src="../../_images/b8a83b555552bb5280da42fe2da3b23be36b6fff7ca56369007151c9c98efc73.png" />
 </div>
 </div>
 <p>Now, suppose that we want to align two volumes with each other. How would we go about it? Visually, it’s quite hard to assess whether a particular affine matrix works well. In practice, most neuroimaging software packages use automatic algorithms that try to find a affine matrix that <em>minimizes some cost function</em>. In other words, it defines a function to evaluate the mismatch (or cost) of the alignment of two volumes given an affine matrix, and then it tries to minimize this function by (in a smart way) trying out different rotation and translation parameters.</p>
 <p>One cost function that is often used for rigid body registration is “least squares”, which is defined as the sum over the squared (voxel-wise, <span class="math notranslate nohighlight">\(v\)</span>) differences between the reference image (sometimes called the “fixed” image) and the realigned image (sometimes called the “moving” image):</p>
-<div class="amsmath math notranslate nohighlight" id="equation-35f41c6c-71e0-42e5-8fe2-e68c86bc3fdd">
-<span class="eqno">(66)<a class="headerlink" href="#equation-35f41c6c-71e0-42e5-8fe2-e68c86bc3fdd" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-d73feac8-7774-4db2-8bee-7f7ad0ad15cc">
+<span class="eqno">(66)<a class="headerlink" href="#equation-d73feac8-7774-4db2-8bee-7f7ad0ad15cc" title="Permalink to this equation">#</a></span>\[\begin{align}
 \mathrm{cost}_{LS} = \sum_{v}(\mathrm{fixed}_{v} - \mathrm{moving}_{v})^2
 \end{align}\]</div>
 <div class='alert alert-warning'>
@@ -1167,7 +960,7 @@ Hint 2: rotation is counter clockwise (if you define negative rotation, e.g. -20
 </div>
 </div>
 <div class="section" id="anatomical-realignment-registration-and-normalization">
-<h2>Anatomical realignment/registration and normalization<a class="headerlink" href="#anatomical-realignment-registration-and-normalization" title="Permalink to this headline">#</a></h2>
+<h2>Anatomical realignment/registration and normalization<a class="headerlink" href="#anatomical-realignment-registration-and-normalization" title="Permalink to this heading">#</a></h2>
 <p>So far, we discussed how to register volumes to a reference volume using rigid body registrations (with a six parameter affine) in the context of motion correction. This is, however, only the first step in the complete registration protocol of (most) studies. If your goal is, in the end, to perform some kind of group analysis (in which you pool together data from multiple subjects), you want to make sure that each voxel (at location <span class="math notranslate nohighlight">\((X, Y, Z)\)</span>) is in (roughly) the same location in the brain. The problem is that people’s brains differ quite a bit in terms of anatomy! Therefore, you need to register (transform) your subject-level (functional) data to some kind of common template. This process is often done in two stages: first, you compute a registration from (a reference volume of) your functional data (“moving”) to your anatomical data (your high-resolution T1-weighted scan; “fixed”), and second you compute a registration from your anatomical data (“moving”) to a common template (“fixed”). Then, you can register your functional data to the common template by sequentially applying the first and second stage registration parameters. This is visualized in the figure below.</p>
 <p><img alt="reg" src="https://docs.google.com/drawings/d/e/2PACX-1vQEpo53zns0VHAgEBkEU9lqQ58RnqINqdUpdLDX-5X9pjLk_BNghfuPBp9zu2nRNzgVQBJZ4GuX5ejz/pub?w=1698&amp;h=516" /></p>
 <p>In the figure above, you can see that the first stage (BOLD → T1w) uses the same registration protocol as we used with motion-correction: an affine transformation with 6 parameters (translation and rotation in 3 directions; a “rigid body registration”). The second stage (T1w → template) also uses an affine transformation, but this time with 12 parameters. In addition to the 6 rigid body registration parameters, a 12 parameter affine (sometimes reffered to as an affine with 12 degrees-of-freedom, DOF) also includes global scaling in 3 directions (i.e., making the brain bigger of smaller) and shearing in 3 directions (i.e., “stretching” in 3 directions). These extra parameters attempt to overcome the anatomical differences between the individual subjects’ brains and the template.</p>
@@ -1177,7 +970,7 @@ Hint 2: rotation is counter clockwise (if you define negative rotation, e.g. -20
 </div><p>YOUR ANSWER HERE</p>
 </div>
 <div class="section" id="motion-filtering">
-<h2>Motion filtering<a class="headerlink" href="#motion-filtering" title="Permalink to this headline">#</a></h2>
+<h2>Motion filtering<a class="headerlink" href="#motion-filtering" title="Permalink to this heading">#</a></h2>
 <p>Even after motion realignment, your data is still ‘contaminated’ by motion. This is because movement itself influences the measured activity. For example, suppose that you measure a single voxel in someone’s brain; then, this person moves his/her head 2 centimeters. Now, we can do motion realigment to make sure we measure the same voxel before and after the movement, but <em>this does not change the fact that this particular voxel was originally measured at two different locations</em>. It could be that after the movement, the voxel was actually a little bit closer to the headcoil, which results in a (slight) increase in signal compared to before the movement (this is also known as “spin history effects”).</p>
 <p>Ideally, you want to account for these interactions between motion and the measured activity. One way to do this is through “motion filtering”, of which one popular approach is to simply add the 6 realignment parameters (rotation and translation in 3 directions) to the design-matrix (<span class="math notranslate nohighlight">\(X\)</span>)! In other words, we treat the motion realignment parameters as “nuisance regressors” that are aimed to explain activity that is related to motion. Realize that this is, thus, as temporal preprocessing step (which we discuss here instead of the previous notebook because we needed to explain motion correction first).</p>
 <p>Alright, let’s load some realigment parameters (6 in total) from an fMRI run of 200 volumes. We’ll plot them below:</p>
@@ -1215,12 +1008,12 @@ Hint 2: rotation is counter clockwise (if you define negative rotation, e.g. -20
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/spatial_preprocessing_39_0.png" src="../../_images/spatial_preprocessing_39_0.png" />
+<img alt="../../_images/c80fbaa3aa9bdf73958c9a67461312bf21c072f5d5ee66ab8e863bfee36bd0ce.png" src="../../_images/c80fbaa3aa9bdf73958c9a67461312bf21c072f5d5ee66ab8e863bfee36bd0ce.png" />
 </div>
 </div>
 <p>So, is this good data or not? In general, you could say that higher values (in either translation or rotation) are worse. That said, from the translation and rotation parameters alone it is hard to judge whether the participant moved <em>too</em> much, partly because we’re dealing with 6 parameter traces here. One way to make this decision process a little easier is to convert these parameters to a single “framewise displacement” (FD) trace. FD aims to represent “bulk motion” and is a summary statistic of motion that combines all motion parameters into a single metric. It is calculated as follows:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-adeedb0b-d9ef-47c3-ad99-a14dd006f1a8">
-<span class="eqno">(67)<a class="headerlink" href="#equation-adeedb0b-d9ef-47c3-ad99-a14dd006f1a8" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-97d6afb5-de7f-4cea-a69d-9e7fe76e0ff9">
+<span class="eqno">(67)<a class="headerlink" href="#equation-97d6afb5-de7f-4cea-a69d-9e7fe76e0ff9" title="Permalink to this equation">#</a></span>\[\begin{align}
 FD_{t} = |r(\mathrm{rot}_{tx} - \mathrm{rot}_{(t-1)x})| + |r(\mathrm{rot}_{ty} - \mathrm{rot}_{(t-1)y})| + |r(\mathrm{rot}_{tz} - \mathrm{rot}_{(t-1)z})| + |\mathrm{trans}_{xt} - \mathrm{trans}_{x(t-1)}| + |\mathrm{trans}_{yt} - \mathrm{trans}_{y(t-1)}| + |\mathrm{trans}_{zt} - \mathrm{trans}_{z(t-1)}|
 \end{align}\]</div>
 <p>where <span class="math notranslate nohighlight">\(|x|\)</span> means the absolute value of <span class="math notranslate nohighlight">\(x\)</span> and <span class="math notranslate nohighlight">\(r\)</span> stands for a predefined radius in millimeters (which is usually taken to be 50). So, basically it is a sum across the absolute successive differences (<span class="math notranslate nohighlight">\(x_{t} - x_{t-1}\)</span>) of parameter traces.</p>
@@ -1334,7 +1127,7 @@ Shape of signal: (341,)
             mode: "python"
         },
         kernelOptions: {
-            kernelName: "python3",
+            name: "python3",
             path: "./fMRI-introduction/week_4"
         },
         predefinedOutput: true
@@ -1342,50 +1135,107 @@ Shape of signal: (341,)
     </script>
     <script>kernelName = 'python3'</script>
 
-              </div>
+                </article>
               
-            </main>
-            <footer class="footer-article noprint">
-                
-    <!-- Previous / next buttons -->
-<div class='prev-next-area'>
-    <a class='left-prev' id="prev-link" href="temporal_preprocessing.html" title="previous page">
-        <i class="fas fa-angle-left"></i>
-        <div class="prev-next-info">
-            <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title">Temporal preprocessing</p>
-        </div>
+
+              
+              
+                <footer class="bd-footer-article">
+                  <!-- Previous / next buttons -->
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="temporal_preprocessing.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Temporal preprocessing</p>
+      </div>
     </a>
-    <a class='right-next' id="next-link" href="fmriprep.html" title="next page">
-    <div class="prev-next-info">
+    <a class="right-next"
+       href="fmriprep.html"
+       title="next page">
+      <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
         <p class="prev-next-title">Fmriprep</p>
-    </div>
-    <i class="fas fa-angle-right"></i>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
     </a>
 </div>
-            </footer>
-        </div>
-    </div>
-    <div class="footer-content row">
-        <footer class="col footer"><p>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#spatial-filtering-blurring-smoothing">Spatial filtering (blurring/smoothing)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#susceptibility-distortion-correction-sdc">Susceptibility distortion correction (SDC)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#motion-correction-realignment">Motion correction / realignment</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#rigid-body-registration">Rigid body registration</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#affine-registrations">Affine registrations</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#anatomical-realignment-registration-and-normalization">Anatomical realignment/registration and normalization</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#motion-filtering">Motion filtering</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            <div class="bd-footer-content__inner">
+<div class="bd-footer-content__inner container">
   
-    By Lukas Snoek<br/>
-  
-      &copy; Copyright 2021.<br/>
-</p>
-        </footer>
-    </div>
+  <div class="footer-item">
     
-</div>
+<p class="component-author">
+By Lukas Snoek
+</p>
 
+  </div>
+  
+  <div class="footer-item">
+    
+  <p class="copyright">
+    
+      © Copyright 2021.
+      <br/>
+    
+  </p>
 
-      </div>
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div></div>
+          </footer>
+        
+
+      </main>
     </div>
+  </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+  <script src="../../_static/scripts/bootstrap.js?digest=12da95d707ffb74b382d"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=12da95d707ffb74b382d"></script>
 
-
+  <footer class="bd-footer">
+  </footer>
   </body>
 </html>

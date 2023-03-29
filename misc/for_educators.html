@@ -1,47 +1,58 @@
 
+
 <!DOCTYPE html>
 
-<html>
+
+<html lang="en" >
+
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>For educators &#8212; NI-edu</title>
-    
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
   <!-- Loaded before other Sphinx assets -->
-  <link href="../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
-<link href="../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+  <link href="../_static/styles/theme.css?digest=12da95d707ffb74b382d" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=12da95d707ffb74b382d" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=12da95d707ffb74b382d" rel="stylesheet" />
 
-    
-  <link rel="stylesheet"
-    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
-  <link rel="preload" as="font" type="font/woff2" crossorigin
-    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
-  <link rel="preload" as="font" type="font/woff2" crossorigin
-    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+  
+  <link href="../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=12da95d707ffb74b382d" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
 
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
-    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
-    
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=12da95d707ffb74b382d" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=12da95d707ffb74b382d" />
 
     <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
     <script src="../_static/underscore.js"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="../_static/doctools.js"></script>
     <script src="../_static/clipboard.min.js"></script>
     <script src="../_static/copybutton.js"></script>
-    <script src="../_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
     <script src="../_static/togglebutton.js"></script>
-    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script src="../_static/design-tabs.js"></script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
 const thebe_selector = ".thebe,.cell"
@@ -49,63 +60,93 @@ const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
     <script async="async" src="../_static/sphinx-thebe.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
-    <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.1/dist/embed-amd.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'misc/for_educators';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="Contributing" href="CONTRIBUTING.html" />
     <link rel="prev" title="Bibliography" href="bibliography.html" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="docsearch:language" content="None">
-    
-
-    <!-- Google Analytics -->
-    
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
   </head>
-  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
-<!-- Checkboxes to toggle the left sidebar -->
-<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
-<label class="overlay overlay-navbar" for="__navigation">
-    <div class="visually-hidden">Toggle navigation sidebar</div>
-</label>
-<!-- Checkboxes to toggle the in-page toc -->
-<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
-<label class="overlay overlay-pagetoc" for="__page-toc">
-    <div class="visually-hidden">Toggle in-page Table of Contents</div>
-</label>
-<!-- Headers at the top -->
-<div class="announcement header-item noprint"></div>
-<div class="header header-item noprint"></div>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
 
-    
-    <div class="container-fluid" id="banner"></div>
-
-    
-
-    <div class="container-xl">
-      <div class="row">
-          
-<!-- Sidebar -->
-<div class="bd-sidebar noprint" id="site-navigation">
-    <div class="bd-sidebar__content">
-        <div class="bd-sidebar__top"><div class="navbar-brand-box">
-    <a class="navbar-brand text-wrap" href="../index.html">
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
       
-        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+      <div class="bd-sidebar-primary bd-sidebar">
         
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
+
+<a class="navbar-brand logo" href="../index.html">
+  
+  
+  
+  
+    
+    
       
-      
-      <img src="../_static/fmri.gif" class="logo" alt="logo">
-      
-      
-      <h1 class="site-logo" id="site-title">NI-edu</h1>
-      
-    </a>
-</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
-  <i class="icon fas fa-search"></i>
-  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
-</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
-    <div class="bd-toc-item active">
+    
+    
+    <img src="../_static/fmri.gif" class="logo__image only-light" alt="Logo image"/>
+    <script>document.write(`<img src="../_static/fmri.gif" class="logo__image only-dark" alt="Logo image"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
         
         <ul class="nav bd-sidenav bd-sidenav__home-link">
             <li class="toctree-l1">
@@ -114,711 +155,350 @@ const thebe_selector_output = ".output, .cell_output"
                 </a>
             </li>
         </ul>
-        <p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  Getting started
- </span>
-</p>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Getting started</span></p>
 <ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="../getting_started/about.html">
-   About this course
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../getting_started/installation.html">
-   Installation
-  </a>
- </li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/about.html">About this course</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/installation.html">Installation</a></li>
 </ul>
-<p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  fMRI-introduction
- </span>
-</p>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">fMRI-introduction</span></p>
 <ul class="nav bd-sidenav">
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../section_intros/1_python.html">
-   Python for (f)MRI analysis
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
-  <label for="toctree-checkbox-1">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../other/python_recap.html">
-     Python recap
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../fMRI-introduction/week_1/python_for_mri.html">
-     Working with MRI data in Python (T)
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../section_intros/2_glm.html">
-   Using the GLM to model fMRI data
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
-  <label for="toctree-checkbox-2">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../fMRI-introduction/week_2/glm_part1_estimation.html">
-     The GLM: estimation (T)
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../fMRI-introduction/week_3/glm_part2_inference.html">
-     The GLM: inference (T)
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../section_intros/3_design_of_experiments_T.html">
-   Design of experiments
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
-  <label for="toctree-checkbox-3">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../fMRI-introduction/week_3/design_of_experiments.html">
-     Design of experiments (T)
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../fMRI-introduction/week_3/neurodesign.html">
-     Neurodesign (T)
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../section_intros/4_preprocessing.html">
-   Preprocessing
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
-  <label for="toctree-checkbox-4">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../fMRI-introduction/week_4/temporal_preprocessing.html">
-     Temporal preprocessing (T)
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../fMRI-introduction/week_4/spatial_preprocessing.html">
-     Spatial preprocessing (T)
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../fMRI-introduction/week_4/fmriprep.html">
-     Fmriprep (T)
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../section_intros/5_multilevel.html">
-   First &amp; run-level analyses
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/>
-  <label for="toctree-checkbox-5">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../fMRI-introduction/week_5/linux_and_the_command_line.html">
-     Linux and the CMD (T)
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../fMRI-introduction/week_5/first_level_analyses.html">
-     First level analyses (T)
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../fMRI-introduction/week_5/run_level_analyses.html">
-     Run-level analyses (T)
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../section_intros/6_grouplevel.html">
-   Group-level analyses
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/>
-  <label for="toctree-checkbox-6">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../fMRI-introduction/week_6/group_level_analyses.html">
-     Group-level analyses (T)
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../fMRI-introduction/week_6/MCC.html">
-     Multiple comparison correction (T)
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../fMRI-introduction/week_6/ROI_analysis.html">
-     ROI analysis (T)
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../section_intros/7_nilearn.html">
-   Introduction to Nilearn
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/>
-  <label for="toctree-checkbox-7">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../fMRI-introduction/week_7/nilearn.html">
-     Introduction to Nilearn (T)
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../fMRI-introduction/week_7/nilearn_stats.html">
-     Statistics with Nilearn (T)
-    </a>
-   </li>
-  </ul>
- </li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../section_intros/1_python.html">Python for (f)MRI analysis</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../other/python_recap.html">Python recap</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../fMRI-introduction/week_1/python_for_mri.html">Working with MRI data in Python (T)</a></li>
 </ul>
-<p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  fMRI-pattern-analysis
- </span>
-</p>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../section_intros/2_glm.html">Using the GLM to model fMRI data</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../fMRI-introduction/week_2/glm_part1_estimation.html">The GLM: estimation (T)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../fMRI-introduction/week_3/glm_part2_inference.html">The GLM: inference (T)</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../section_intros/3_design_of_experiments_T.html">Design of experiments</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../fMRI-introduction/week_3/design_of_experiments.html">Design of experiments (T)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../fMRI-introduction/week_3/neurodesign.html">Neurodesign (T)</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../section_intros/4_preprocessing.html">Preprocessing</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-4"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../fMRI-introduction/week_4/temporal_preprocessing.html">Temporal preprocessing (T)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../fMRI-introduction/week_4/spatial_preprocessing.html">Spatial preprocessing (T)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../fMRI-introduction/week_4/fmriprep.html">Fmriprep (T)</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../section_intros/5_multilevel.html">First &amp; run-level analyses</a><input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-5"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../fMRI-introduction/week_5/linux_and_the_command_line.html">Linux and the CMD (T)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../fMRI-introduction/week_5/first_level_analyses.html">First level analyses (T)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../fMRI-introduction/week_5/run_level_analyses.html">Run-level analyses (T)</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../section_intros/6_grouplevel.html">Group-level analyses</a><input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-6"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../fMRI-introduction/week_6/group_level_analyses.html">Group-level analyses (T)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../fMRI-introduction/week_6/MCC.html">Multiple comparison correction (T)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../fMRI-introduction/week_6/ROI_analysis.html">ROI analysis (T)</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../section_intros/7_nilearn.html">Introduction to Nilearn</a><input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-7"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../fMRI-introduction/week_7/nilearn.html">Introduction to Nilearn (T)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../fMRI-introduction/week_7/nilearn_stats.html">Statistics with Nilearn (T)</a></li>
+</ul>
+</li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">fMRI-pattern-analysis</span></p>
 <ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="../fMRI-pattern-analysis/week_1/design_and_pattern_estimation.html">
-   Design and pattern estimation (T)
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../fMRI-pattern-analysis/week_2/decoding_analyses.html">
-   Machine learning/decoding (T)
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../fMRI-pattern-analysis/week_3/rsa.html">
-   Representational Similarity Analysis (T)
-  </a>
- </li>
+<li class="toctree-l1"><a class="reference internal" href="../fMRI-pattern-analysis/week_1/design_and_pattern_estimation.html">Design and pattern estimation (T)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../fMRI-pattern-analysis/week_2/decoding_analyses.html">Machine learning/decoding (T)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../fMRI-pattern-analysis/week_3/rsa.html">Representational Similarity Analysis (T)</a></li>
 </ul>
-<p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  Misc
- </span>
-</p>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Misc</span></p>
 <ul class="current nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="bibliography.html">
-   Bibliography
-  </a>
- </li>
- <li class="toctree-l1 current active">
-  <a class="current reference internal" href="#">
-   For educators
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="CONTRIBUTING.html">
-   Contributing
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="CONDUCT.html">
-   Code of Conduct
-  </a>
- </li>
+<li class="toctree-l1"><a class="reference internal" href="bibliography.html">Bibliography</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">For educators</a></li>
+<li class="toctree-l1"><a class="reference internal" href="CONTRIBUTING.html">Contributing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="CONDUCT.html">Code of Conduct</a></li>
 </ul>
 
     </div>
 </nav></div>
-        <div class="bd-sidebar__bottom">
-             <!-- To handle the deprecated key -->
-            
-            <div class="navbar_extra_footer">
-            Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
-            </div>
-            
-        </div>
     </div>
-    <div id="rtd-footer-container"></div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/lukassnoek/NI-edu" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/lukassnoek/NI-edu/edit/master/NI-edu/misc/for_educators.md" target="_blank"
+   class="btn btn-sm btn-source-edit-button dropdown-item"
+   title="Suggest edit"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-pencil-alt"></i>
+  </span>
+<span class="btn__text-container">Suggest edit</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/lukassnoek/NI-edu/issues/new?title=Issue%20on%20page%20%2Fmisc/for_educators.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
 </div>
 
 
-          
-
-
-          
-<!-- A tiny helper pixel to detect if we've scrolled -->
-<div class="sbt-scroll-pixel-helper"></div>
-<!-- Main content -->
-<div class="col py-0 content-container">
-    
-    <div class="header-article row sticky-top noprint">
-        
 
 
 
-<div class="col py-1 d-flex header-article-main">
-    <div class="header-article__left">
-        
-        <label for="__navigation"
-  class="headerbtn"
-  data-toggle="tooltip"
-data-placement="right"
-title="Toggle navigation"
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/misc/for_educators.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
 >
   
 
-<span class="headerbtn__icon-container">
-  <i class="fas fa-bars"></i>
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
   </span>
-
-</label>
-
-        
-    </div>
-    <div class="header-article__right">
-<button onclick="toggleFullScreen()"
-  class="headerbtn"
-  data-toggle="tooltip"
-data-placement="bottom"
-title="Fullscreen mode"
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
 >
   
 
-<span class="headerbtn__icon-container">
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
   <i class="fas fa-expand"></i>
   </span>
 
 </button>
 
-<div class="menu-dropdown menu-dropdown-repository-buttons">
-  <button class="headerbtn menu-dropdown__trigger"
-      aria-label="Source repositories">
-      <i class="fab fa-github"></i>
+
+<script>
+document.write(`
+  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
   </button>
-  <div class="menu-dropdown__content">
-    <ul>
-      <li>
-        <a href="https://github.com/lukassnoek/NI-edu"
-   class="headerbtn"
-   data-toggle="tooltip"
-data-placement="left"
-title="Source repository"
->
-  
+`);
+</script>
 
-<span class="headerbtn__icon-container">
-  <i class="fab fa-github"></i>
-  </span>
-<span class="headerbtn__text-container">repository</span>
-</a>
-
-      </li>
-      
-      <li>
-        <a href="https://github.com/lukassnoek/NI-edu/issues/new?title=Issue%20on%20page%20%2Fmisc/for_educators.html&body=Your%20issue%20content%20here."
-   class="headerbtn"
-   data-toggle="tooltip"
-data-placement="left"
-title="Open an issue"
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-lightbulb"></i>
-  </span>
-<span class="headerbtn__text-container">open issue</span>
-</a>
-
-      </li>
-      
-      <li>
-        <a href="https://github.com/lukassnoek/NI-edu/edit/master/NI-edu/misc/for_educators.md"
-   class="headerbtn"
-   data-toggle="tooltip"
-data-placement="left"
-title="Edit this page"
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-pencil-alt"></i>
-  </span>
-<span class="headerbtn__text-container">suggest edit</span>
-</a>
-
-      </li>
-      
-    </ul>
-  </div>
-</div>
-
-<div class="menu-dropdown menu-dropdown-download-buttons">
-  <button class="headerbtn menu-dropdown__trigger"
-      aria-label="Download this page">
-      <i class="fas fa-download"></i>
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
   </button>
-  <div class="menu-dropdown__content">
-    <ul>
-      <li>
-        <a href="../_sources/misc/for_educators.md"
-   class="headerbtn"
-   data-toggle="tooltip"
-data-placement="left"
-title="Download source file"
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-file"></i>
-  </span>
-<span class="headerbtn__text-container">.md</span>
-</a>
-
-      </li>
-      
-      <li>
-        
-<button onclick="printPdf(this)"
-  class="headerbtn"
-  data-toggle="tooltip"
-data-placement="left"
-title="Print to PDF"
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-file-pdf"></i>
-  </span>
-<span class="headerbtn__text-container">.pdf</span>
-</button>
-
-      </li>
-      
-    </ul>
-  </div>
-</div>
-<label for="__page-toc"
-  class="headerbtn headerbtn-page-toc"
-  
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-list"></i>
-  </span>
-
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
 </label>
-
+</div></div>
+      
     </div>
+  
 </div>
-
-<!-- Table of contents -->
-<div class="col-md-3 bd-toc show noprint">
-    <div class="tocsection onthispage pt-5 pb-3">
-        <i class="fas fa-list"></i> Contents
-    </div>
-    <nav id="bd-toc-nav" aria-label="Page">
-        <ul class="visible nav section-nav flex-column">
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#installing-jupyterhub">
-   Installing Jupyterhub
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#install-tljh">
-     1. Install TLJH
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#enable-ssl-encryption">
-     2. Enable SSL encryption
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#configure-tljh">
-     3. Configure TLJH
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#configure-python">
-     4. Configure Python
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#install-niedu">
-     5. Install
-     <code class="docutils literal notranslate">
-      <span class="pre">
-       niedu
-      </span>
-     </code>
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#installing-configuring-nbgrader">
-     6. Installing/configuring
-     <em>
-      nbgrader
-     </em>
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#enable-ssh">
-     7. Enable SSH
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#troubleshooting">
-   Troubleshooting
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#the-formgrader-is-not-loading">
-     The formgrader is not loading
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#letsencrypt-cannot-renew-the-certificates">
-     Letsencrypt cannot renew the certificates
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#a-student-cannot-login-even-though-it-s-their-first-time-logging-in">
-     A student cannot login even though it’s their first time logging in!
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#a-student-forgot-their-password-and-cannot-log-in">
-     A student forgot their password and cannot log in!
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#a-student-cannot-access-the-jupyterhub-interface">
-     A student cannot access the Jupyterhub interface
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#i-can-not-generate-an-assignment">
-     I can not generate an assignment!
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#students-cannot-see-an-assignment">
-     Students cannot see an assignment!
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#jupyterhub-launches-jupyterlab-but-i-want-the-classic-interface">
-     Jupyterhub launches JupyterLab, but I want the classic interface
-    </a>
-   </li>
-  </ul>
- </li>
-</ul>
-
-    </nav>
 </div>
-    </div>
-    <div class="article row">
-        <div class="col pl-md-3 pl-lg-5 content-container">
-            <!-- Table of contents that is only displayed when printing the page -->
-            <div id="jb-print-docs-body" class="onlyprint">
-                <h1>For educators</h1>
-                <!-- Table of contents -->
-                <div id="print-main-content">
-                    <div id="jb-print-toc">
-                        
-                        <div>
-                            <h2> Contents </h2>
-                        </div>
-                        <nav aria-label="Page">
-                            <ul class="visible nav section-nav flex-column">
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#installing-jupyterhub">
-   Installing Jupyterhub
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#install-tljh">
-     1. Install TLJH
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#enable-ssl-encryption">
-     2. Enable SSL encryption
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#configure-tljh">
-     3. Configure TLJH
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#configure-python">
-     4. Configure Python
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#install-niedu">
-     5. Install
-     <code class="docutils literal notranslate">
-      <span class="pre">
-       niedu
-      </span>
-     </code>
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#installing-configuring-nbgrader">
-     6. Installing/configuring
-     <em>
-      nbgrader
-     </em>
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#enable-ssh">
-     7. Enable SSH
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#troubleshooting">
-   Troubleshooting
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#the-formgrader-is-not-loading">
-     The formgrader is not loading
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#letsencrypt-cannot-renew-the-certificates">
-     Letsencrypt cannot renew the certificates
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#a-student-cannot-login-even-though-it-s-their-first-time-logging-in">
-     A student cannot login even though it’s their first time logging in!
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#a-student-forgot-their-password-and-cannot-log-in">
-     A student forgot their password and cannot log in!
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#a-student-cannot-access-the-jupyterhub-interface">
-     A student cannot access the Jupyterhub interface
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#i-can-not-generate-an-assignment">
-     I can not generate an assignment!
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#students-cannot-see-an-assignment">
-     Students cannot see an assignment!
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#jupyterhub-launches-jupyterlab-but-i-want-the-classic-interface">
-     Jupyterhub launches JupyterLab, but I want the classic interface
-    </a>
-   </li>
-  </ul>
- </li>
-</ul>
+              
+              
 
-                        </nav>
-                    </div>
-                </div>
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>For educators</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
             </div>
-            <main id="main-content" role="main">
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#installing-jupyterhub-nbgrader">Installing Jupyterhub + <code class="docutils literal notranslate"><span class="pre">nbgrader</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#install-tljh">1. Install TLJH</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#enable-ssl-encryption">2. Enable SSL encryption</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#configure-tljh">3. Configure TLJH</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#configure-python">4. Configure Python</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#install-niedu">5. Install <code class="docutils literal notranslate"><span class="pre">niedu</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#add-users">6. Add users</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#installing-configuring-nbgrader">6. Installing/configuring <em>nbgrader</em></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#enable-ssh">7. Enable SSH</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#troubleshooting">Troubleshooting</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-formgrader-is-not-loading">The formgrader is not loading</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#letsencrypt-cannot-renew-the-certificates">Letsencrypt cannot renew the certificates</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#a-student-cannot-login-even-though-it-s-their-first-time-logging-in">A student cannot login even though it’s their first time logging in!</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#a-student-forgot-their-password-and-cannot-log-in">A student forgot their password and cannot log in!</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#a-student-cannot-access-the-jupyterhub-interface">A student cannot access the Jupyterhub interface</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#i-can-not-generate-an-assignment">I can not generate an assignment!</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#students-cannot-see-an-assignment">Students cannot see an assignment!</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#jupyterhub-launches-jupyterlab-but-i-want-the-classic-interface">Jupyterhub launches JupyterLab, but I want the classic interface</a></li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
                 
-              <div>
-                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
   <div class="tex2jax_ignore mathjax_ignore section" id="for-educators">
-<h1>For educators<a class="headerlink" href="#for-educators" title="Permalink to this headline">#</a></h1>
+<h1>For educators<a class="headerlink" href="#for-educators" title="Permalink to this heading">#</a></h1>
 <p>The publicly available version of NI-edu is geared towards students At the University of Amsterdam, but
-we also have an “teacher” version available: NI-edu-admin. The source material (i.e., the notebooks)
+we also have an “teacher” (or “admin”) version available: NI-edu-admin. The source material (i.e., the notebooks)
 are identical, but they contain the solutions to the exercises (the “ToDos” and “ToThinks”). These
 excercises are implemented such that they can be easily (and for a large part automatically) graded using
-<a class="reference external" href="https://nbgrader.readthedocs.io/en/stable/">nbgrader</a>. Although not strictly necessary, we advise educators
-to teach this course in a Jupyterhub environment. Using the shared environment provided by Jupyterhub results in a
-smooth experience for both students and teachers. (Trust me, setting up personal Python environments of students’ own
-laptops is a nightmare.)</p>
-<p>How to get access to NI-edu-admin? Email Lukas (his email address can be found on his <a class="reference external" href="https://lukas-snoek.com/">website</a>), who will add you to the NI-edu-admin Github repository. In case you have access to a Linux server to use for Jupyterhub, see the installation instructions below.</p>
-<div class="section" id="installing-jupyterhub">
-<h2>Installing Jupyterhub<a class="headerlink" href="#installing-jupyterhub" title="Permalink to this headline">#</a></h2>
-<p>At the University of Amsterdam, we use Jupyterhub on a Linux (Ubuntu 20.04 with MATE desktop) in combination with <em>nbgrader</em> on a shared server for our “labs” (i.e., the notebooks). If you have access to a Linux server (which can be virtual, like an AWS/Azure/Google cloud instance) <em>and</em> you have root access, we highly recommend to teach this course using Jupyterhub (and <em>nbgrader</em>). By far the easiest way to install Jupyterhub (for relatively small classes) is through “<a class="reference external" href="https://tljh.jupyter.org/en/latest/index.html">The Littlest Jupyterhub</a>” (TLJH). Setting up TLJH in combination with <em>nbgrader</em> and the NI-edu materials can be a bit tricky, so I’m documenting the installation procedure below.</p>
+<a class="reference external" href="https://nbgrader.readthedocs.io/en/stable/">nbgrader</a>.</p>
+<p>How to get access to NI-edu-admin? Email Lukas (his email address can be found on his <a class="reference external" href="https://lukas-snoek.com/">website</a>), who will add you to the NI-edu-admin Github repository. We’d like to ask those added to the admin repository not to share the materials with others (e.g. in a separate Github repository).</p>
+<p>Although not strictly necessary, we advise educators to teach this course in a Jupyterhub environment in combination with <a class="reference external" href="https://nbgrader.readthedocs.io/en/stable/">nbgrader</a>. This setup allows for easy distribution, submission, and grading of the course’s notebooks with exercises. Setting up Jupyterhub, nbgrader, and the course materials is far from trivial, though. Below, we outline how this is done.</p>
+<div class="section" id="installing-jupyterhub-nbgrader">
+<h2>Installing Jupyterhub + <code class="docutils literal notranslate"><span class="pre">nbgrader</span></code><a class="headerlink" href="#installing-jupyterhub-nbgrader" title="Permalink to this heading">#</a></h2>
+<p>Jupyterhub can be installed on your own server or a virtual server (e.g., from AWS/Azure/Google Cloud). The only prerequisity is that the server runs Ubuntu (18.04 or 20.04) and you have root access. By far the easiest way to install Jupyterhub (for relatively small classes) is through “<a class="reference external" href="https://tljh.jupyter.org/en/latest/index.html">The Littlest Jupyterhub</a>” (TLJH).</p>
 <div class="section" id="install-tljh">
-<h3>1. Install TLJH<a class="headerlink" href="#install-tljh" title="Permalink to this headline">#</a></h3>
-<p>Read through the <a class="reference external" href="https://tljh.jupyter.org/en/latest/install/index.html">TLJH installation manual</a>. Again, this is only possible if you have root access (i.e., you have <em>sudo</em> rights). Follow step 1 (“Installing The Littlest Jupyterhub”) until (sub)step 5. Step 5-7 can, at least in the case of the UvA TUX server, not be executed literally, because all access to the ports of the server are restricted to the IP range of the UvA. So instead of accessing Jupyterhub through your browser to complete step 5-7, create a remote desktop connection with X2Go.</p>
-<p>Using the remote desktop, you can complete (sub)step 5-7 and step 2 of the manual (“Adding more users”). For example, you can add a co-teacher as “admin” to the course. For example, to add Lukas Snoek (Linux username: lukassnoek) as a co-teacher, go to the “Admin” tab in the Jupyterhub interface, click on “Add Users”, and fill in his username (i.e., “lukassnoek”, <em>not</em> “jupyter-lukassnoek”) and check the “Admin” box.</p>
-<p>It is important to remember that no one will be able to access the Jupyterhub interface unless his/her username has been added (“whitelisted”) using this interface (Admin tab → Add Users) — even if this person already has a Linux (or even Jupyterhub) account on the server!</p>
+<h3>1. Install TLJH<a class="headerlink" href="#install-tljh" title="Permalink to this heading">#</a></h3>
+<p>Read through the <a class="reference external" href="https://tljh.jupyter.org/en/latest/install/index.html">TLJH installation manual</a>. Again, this is only possible if you have root access (i.e., you have <em>sudo</em> rights). Follow step 1 (“Installing The Littlest Jupyterhub”) until (sub)step 5. Step 5-7 can, at least in the case of the UvA TUX server, not be executed literally, because all access to the ports of the server are restricted to the IP range of the UvA. So instead of accessing Jupyterhub through your browser to complete step 5-7, create a remote desktop connection (e.g., with <a class="reference external" href="https://wiki.x2go.org/doku.php/download:start">X2Go</a> and complete these steps in the remote desktop environment.</p>
 <p>You can skip step 3 (“Install conda / pip packages for all users”) for now. We’ll get to this later.</p>
 </div>
 <div class="section" id="enable-ssl-encryption">
-<h3>2. Enable SSL encryption<a class="headerlink" href="#enable-ssl-encryption" title="Permalink to this headline">#</a></h3>
+<h3>2. Enable SSL encryption<a class="headerlink" href="#enable-ssl-encryption" title="Permalink to this heading">#</a></h3>
 <p>The next step is to enable SSL encryption (step 4 of the installation manual). Please see the instructions <a class="reference external" href="https://tljh.jupyter.org/en/latest/howto/admin/https.html#howto-admin-https">here</a>. I’m going to assume that Letsencrypt will be used for SSL certificates (which is what we’ve always done). For the TUX server, you’d run the following commands</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">tljh</span><span class="o">-</span><span class="n">config</span> <span class="nb">set</span> <span class="n">https</span><span class="o">.</span><span class="n">enabled</span> <span class="n">true</span>
 <span class="n">sudo</span> <span class="n">tljh</span><span class="o">-</span><span class="n">config</span> <span class="nb">set</span> <span class="n">https</span><span class="o">.</span><span class="n">letsencrypt</span><span class="o">.</span><span class="n">email</span> <span class="p">{</span><span class="n">your</span> <span class="n">email</span><span class="p">}</span>
-<span class="n">sudo</span> <span class="n">tljh</span><span class="o">-</span><span class="n">config</span> <span class="n">add</span><span class="o">-</span><span class="n">item</span> <span class="n">https</span><span class="o">.</span><span class="n">letsencrypt</span><span class="o">.</span><span class="n">domains</span> <span class="n">neuroimaging</span><span class="o">.</span><span class="n">lukas</span><span class="o">-</span><span class="n">snoek</span><span class="o">.</span><span class="n">com</span>
+<span class="n">sudo</span> <span class="n">tljh</span><span class="o">-</span><span class="n">config</span> <span class="n">add</span><span class="o">-</span><span class="n">item</span> <span class="n">https</span><span class="o">.</span><span class="n">letsencrypt</span><span class="o">.</span><span class="n">domains</span> <span class="p">{</span><span class="n">your_domain_name</span><span class="p">}</span>
 </pre></div>
 </div>
-<p>Now, before you reload the proxy (<code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">tljh-config</span> <span class="pre">reload</span> <span class="pre">proxy</span></code>), you need to make sure that port 80 is actually accessible (which isn’t the case for the TUX) because Letsencrypt will perform a “verification” necessary to enable SSL encryption. To do so, run <code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">ufw</span> <span class="pre">allow</span> <span class="pre">80</span></code>. Then, run <code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">tljh-config</span> <span class="pre">reload</span> <span class="pre">proxy</span></code> and finally close port 80 again by running <code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">ufw</span> <span class="pre">delete</span> <span class="pre">allow</span> <span class="pre">80</span></code>.</p>
+<p>Now, before you reload the proxy (<code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">tljh-config</span> <span class="pre">reload</span> <span class="pre">proxy</span></code>), you need to make sure that port 80 is actually accessible (which isn’t the case for the server at the UvA) because Letsencrypt will perform a “verification” necessary to enable SSL encryption. To do so, run <code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">ufw</span> <span class="pre">allow</span> <span class="pre">80</span></code>. Then, run <code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">tljh-config</span> <span class="pre">reload</span> <span class="pre">proxy</span></code> and finally close port 80 again by running <code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">ufw</span> <span class="pre">delete</span> <span class="pre">allow</span> <span class="pre">80</span></code>.</p>
 <p>Finally, Jupyterhub communicates through port 443, so this needs to be open to the world! At the UvA, we restrict access to our servers (through any port) to the IP range of the UvA network, which means that you can only access the server if you’re either at the UvA and connected to the UvA network or connected to the UvA VPN. Assuming you have a firewall enabled (through <code class="docutils literal notranslate"><span class="pre">ufw</span></code>), you can open up port 443 with restricted access to a particular IP address by running:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">ufw</span> <span class="n">allow</span> <span class="n">proto</span> <span class="n">tcp</span> <span class="kn">from</span> <span class="p">{</span><span class="n">your_ip_address</span><span class="p">}</span> <span class="n">to</span> <span class="nb">any</span> <span class="n">port</span> <span class="mi">443</span>
 </pre></div>
 </div>
-<p>After opening up port 443 (if it wasn’t already), you should be able to access Jupyterhub through your own browser (e.g., at <em><a class="reference external" href="https://neuroimaging.lukas-snoek.com">https://neuroimaging.lukas-snoek.com</a></em> in the case of the TUX14 server). Make sure you actually access the HTTP<strong>S</strong> version (i.e., the SSL-encrypted website), and not the HTTP website.</p>
+<p>After opening up port 443 (if it wasn’t already), you should be able to access Jupyterhub through your own browser (e.g., at <em><a class="reference external" href="https://your.domain.com">https://your.domain.com</a></em>). Make sure you actually access the HTTP<strong>S</strong> version (i.e., the SSL-encrypted website), and not the HTTP website. If not, reload the TLJH environment with <code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">tljh-config</span> <span class="pre">reload</span></code>.</p>
 </div>
 <div class="section" id="configure-tljh">
-<h3>3. Configure TLJH<a class="headerlink" href="#configure-tljh" title="Permalink to this headline">#</a></h3>
-<p>Next, I recommend increasing the idle timeout (i.e., maximum time in seconds that a user’s notebook server can be inactive before it will be shut down). By default, each notebook server is shut down after 10 minutes of inactivity, which is a bit short. To increase this, run the following (to increase it to 24 hrs):</p>
+<h3>3. Configure TLJH<a class="headerlink" href="#configure-tljh" title="Permalink to this heading">#</a></h3>
+<p>Next, I recommend to change some of the default TLJH parameters. First, increase the idle timeout (i.e., maximum time in seconds that a user’s notebook server can be inactive before it will be shut down). By default, each notebook server is shut down after 10 minutes of inactivity, which is a bit short. To increase this, run the following (to increase it to 24 hrs):</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">tljh</span><span class="o">-</span><span class="n">config</span> <span class="nb">set</span> <span class="n">services</span><span class="o">.</span><span class="n">cull</span><span class="o">.</span><span class="n">timeout</span> <span class="mi">86400</span>
 <span class="n">sudo</span> <span class="n">tljh</span><span class="o">-</span><span class="n">config</span> <span class="n">reload</span>
 </pre></div>
 </div>
 </div>
 <div class="section" id="configure-python">
-<h3>4. Configure Python<a class="headerlink" href="#configure-python" title="Permalink to this headline">#</a></h3>
-<p>The Anaconda-based Python version installed with TLJH (located at <code class="docutils literal notranslate"><span class="pre">/opt/tljh/user/bin/python</span></code>) is not the same NI-edu except (which is 3.8.5). It is important that the right version of Python is used when running the notebooks, because the compiled test functions only work with Python version 3.8.5. To use Python version 3.8.5, run the following command from the user account you used to install TLJH (which needs to have sudo rights):</p>
+<h3>4. Configure Python<a class="headerlink" href="#configure-python" title="Permalink to this heading">#</a></h3>
+<p>The Anaconda-based Python version installed with TLJH (located at <code class="docutils literal notranslate"><span class="pre">/opt/tljh/user/bin/python</span></code>) is not the same as the one used by NI-edu (which is 3.8.5). It is important that the right version of Python is used when running the notebooks, because the compiled test functions only work with Python version 3.8.5. To use Python version 3.8.5, run the following command from the user account you used to install TLJH (which needs to have sudo rights):</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">source</span> <span class="o">/</span><span class="n">opt</span><span class="o">/</span><span class="n">tljh</span><span class="o">/</span><span class="n">user</span><span class="o">/</span><span class="nb">bin</span><span class="o">/</span><span class="n">activate</span>
 <span class="n">pip</span> <span class="nb">list</span> <span class="o">--</span><span class="nb">format</span><span class="o">=</span><span class="n">freeze</span> <span class="o">&gt;</span> <span class="n">pip_pkgs</span><span class="o">.</span><span class="n">txt</span>              <span class="c1"># store currently installed pkgs</span>
 <span class="n">sudo</span> <span class="o">/</span><span class="n">opt</span><span class="o">/</span><span class="n">tljh</span><span class="o">/</span><span class="n">user</span><span class="o">/</span><span class="nb">bin</span><span class="o">/</span><span class="n">conda</span> <span class="n">update</span> <span class="o">--</span><span class="nb">all</span>
@@ -827,7 +507,12 @@ laptops is a nightmare.)</p>
 </pre></div>
 </div>
 <p>Note that this is slightly different than outlined by the <a class="reference external" href="https://tljh.jupyter.org/en/latest/howto/env/user-environment.html">instructions of TLJH</a>, but at least for me those instructions didn’t work properly (and the above does). Also, the reinstallation of the <code class="docutils literal notranslate"><span class="pre">pip_pkgs.txt</span></code> is important! Otherwise, the new Python version won’t have all the required packages to make Jupyterhub work, and you’ll get a “Cannot Spawn” error when trying to access Jupyterhub.</p>
-<p><strong>Important</strong>: if you access the server through SSH (e.g., when you’re administering/configuring the server), your default Python version will <em>not</em> be the TLJH Python version, but the one that’s in your path (e.g., your own Anaconda Python, if you installed one, or the system Python version). So, whenever you want to use the TLJH Python outside of the Jupyterhub interface, you need to run <code class="docutils literal notranslate"><span class="pre">source</span> <span class="pre">/opt/tljh/user/bin/activate</span></code> first. Also, note that this Python installation cannot be modified by regular users (for good reasons), so whenever you — as an admin user — want to modify the installation (e.g., install packages), you need to do this with <code class="docutils literal notranslate"><span class="pre">sudo</span></code>. Make sure to specify the full path to the Python program you want to use, like <code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">/opt/tljh/user/bin/pip</span> <span class="pre">install</span> <span class="pre">nilearn</span></code>, and <em>not</em> <code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">pip</span> <span class="pre">install</span> <span class="pre">nilearn</span></code>. The latter should work, but doesn’t (might be specific to the TUX server).</p>
+<p><strong>Important</strong>: if you access the server through SSH (e.g., when you’re administering/configuring the server), your default Python version will <em>not</em> be the TLJH Python version, but the one that’s in your path (e.g., your own Anaconda Python, if you installed one, or the system Python version). So, whenever you want to use the TLJH Python outside of the Jupyterhub interface, you need to run <code class="docutils literal notranslate"><span class="pre">source</span> <span class="pre">/opt/tljh/user/bin/activate</span></code> first. Also, note that this Python installation cannot be modified by regular users (for good reasons), so whenever you — as an admin user — want to modify the installation (e.g., install packages), you need to do this with <code class="docutils literal notranslate"><span class="pre">sudo</span></code>. Make sure to specify the full path to the Python program you want to use, like <code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">/opt/tljh/user/bin/pip</span> <span class="pre">install</span> <span class="pre">nilearn</span></code>, and <em>not</em> <code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">pip</span> <span class="pre">install</span> <span class="pre">nilearn</span></code>.</p>
+<p>Alternatively, you can add the following line to your <code class="docutils literal notranslate"><span class="pre">.bashrc</span></code> file (assuming you use bash):</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>export PATH=/opt/tljh/user/bin:${PATH}
+</pre></div>
+</div>
+<p>This will make the TLJH version of Python your default Python. Importantly, if students also use SSH (or a remote desktop client), the TLJH Python is not automatically available. To do so, add the same <code class="docutils literal notranslate"><span class="pre">export</span> <span class="pre">PATH=/opt/tljh/user/bin:${PATH}</span></code> line to the <code class="docutils literal notranslate"><span class="pre">/etc/skel/.bashrc</span></code> file.</p>
 <p>After installing a new Python version, you might need to restart the Jupyterhub service by running:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">tljh</span><span class="o">-</span><span class="n">config</span> <span class="n">reload</span> <span class="n">hub</span>
 </pre></div>
@@ -835,8 +520,8 @@ laptops is a nightmare.)</p>
 <p>To check if everything worked, open a terminal in Jupyterhub (New → Terminal) and run <code class="docutils literal notranslate"><span class="pre">Python</span> <span class="pre">-V</span></code>. It should print out “Python 3.8.5”.</p>
 </div>
 <div class="section" id="install-niedu">
-<h3>5. Install <code class="docutils literal notranslate"><span class="pre">niedu</span></code><a class="headerlink" href="#install-niedu" title="Permalink to this headline">#</a></h3>
-<p>The NI-edu course materials basically consist of two elements: the tutorial notebooks and the <code class="docutils literal notranslate"><span class="pre">niedu</span></code> Python package. The latter contains some utilities used in the notebooks and, importantly, the test that check the answers to the programming exercises. The course materials (so notebooks + <code class="docutils literal notranslate"><span class="pre">niedu</span></code>) are hosted on Github: <a class="reference external" href="https://github.com/lukassnoek/NI-edu-admin">https://github.com/lukassnoek/NI-edu-admin</a>. Importantly, you need the <em>admin</em> version of the materials, not the student version (which has the same URL, but without the <code class="docutils literal notranslate"><span class="pre">-admin</span></code> suffix). If you don’t have access to this, you can contact Lukas.</p>
+<h3>5. Install <code class="docutils literal notranslate"><span class="pre">niedu</span></code><a class="headerlink" href="#install-niedu" title="Permalink to this heading">#</a></h3>
+<p>The NI-edu course materials basically consist of two elements: the tutorial notebooks and the <code class="docutils literal notranslate"><span class="pre">niedu</span></code> Python package. The latter contains some utilities used in the notebooks and, importantly, the test that check the answers to the programming exercises. The course materials (so notebooks + <code class="docutils literal notranslate"><span class="pre">niedu</span></code>) are hosted on Github: <a class="github reference external" href="https://github.com/lukassnoek/NI-edu-admin">lukassnoek/NI-edu-admin</a>. Importantly, you need the <em>admin</em> version of the materials, not the student version (which has the same URL, but without the <code class="docutils literal notranslate"><span class="pre">-admin</span></code> suffix). If you don’t have access to this, you can contact Lukas.</p>
 <p>In a terminal on the server, download the course materials using <code class="docutils literal notranslate"><span class="pre">git</span></code> (<code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">clone</span> <span class="pre">https://github.com/lukassnoek/NI-edu-admin</span></code>). Then, install the <code class="docutils literal notranslate"><span class="pre">niedu</span></code> package by running the following command:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="o">/</span><span class="n">opt</span><span class="o">/</span><span class="n">tljh</span><span class="o">/</span><span class="n">user</span><span class="o">/</span><span class="nb">bin</span><span class="o">/</span><span class="n">pip</span> <span class="n">install</span> <span class="o">./</span><span class="n">NI</span><span class="o">-</span><span class="n">edu</span><span class="o">-</span><span class="n">admin</span>
 </pre></div>
@@ -848,8 +533,12 @@ laptops is a nightmare.)</p>
 </div>
 <p>This should print out whether the Python and <code class="docutils literal notranslate"><span class="pre">niedu</span></code> installations are as expected (“OK” or “WARNING”).</p>
 </div>
+<div class="section" id="add-users">
+<h3>6. Add users<a class="headerlink" href="#add-users" title="Permalink to this heading">#</a></h3>
+<p>It is important to remember that no one will be able to access the Jupyterhub interface unless his/her username has been added (“whitelisted”) using this interface (Admin tab → Add Users) — even if this person already has a Linux (or even Jupyterhub) account on the server!</p>
+</div>
 <div class="section" id="installing-configuring-nbgrader">
-<h3>6. Installing/configuring <em>nbgrader</em><a class="headerlink" href="#installing-configuring-nbgrader" title="Permalink to this headline">#</a></h3>
+<h3>6. Installing/configuring <em>nbgrader</em><a class="headerlink" href="#installing-configuring-nbgrader" title="Permalink to this heading">#</a></h3>
 <p>Making the <em>nbgrader</em> package work is by far the trickiest part of teaching this course on Jupyterhub, but it’s worth it, trust me. Grading becomes a whole lot easier and faster. The instructions below have worked for me in the past, but YMMV.</p>
 <p>Install the webinterface of the <em>nbgrader</em> package (including the Formgrader):</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">jupyter</span> <span class="n">nbextension</span> <span class="n">install</span> <span class="o">--</span><span class="n">sys</span><span class="o">-</span><span class="n">prefix</span> <span class="o">--</span><span class="n">py</span> <span class="n">nbgrader</span> <span class="o">--</span><span class="n">overwrite</span>
@@ -860,11 +549,21 @@ laptops is a nightmare.)</p>
 <p>Then, we need to make sure the <code class="docutils literal notranslate"><span class="pre">nbgrader_config.py</span></code> can be found by <em>nbgrader</em>. There is a <code class="docutils literal notranslate"><span class="pre">nbgrader_config</span></code> file in the root of the <code class="docutils literal notranslate"><span class="pre">NI-edu-admin</span></code> repository. Uncomment and set the following settings:</p>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">c.CourseDirectory.course_id</span></code> (either “fMRI-introduction” or “fMRI-pattern-analysis”)</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">c.CourseDirectory.root</span></code> (e.g., “/home/{your_admin_account}/NI-edu-admin/fMRI-introduction”)</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">c.ExecutePreprocessor.timeout</span></code> (I set it to <code class="docutils literal notranslate"><span class="pre">600</span></code>, because some exercises take a long time to run)</p></li>
 </ul>
-<p>Then, copy this file to the directory with the course materials (either <code class="docutils literal notranslate"><span class="pre">fMRI-introduction</span></code> or <code class="docutils literal notranslate"><span class="pre">fMRI-pattern-analysis</span></code>) <em>and</em> to the <code class="docutils literal notranslate"><span class="pre">~/.jupyter/</span></code> folder (e.g., <code class="docutils literal notranslate"><span class="pre">/home/{your_admin_account}/.jupyter/</span></code>).</p>
-<p>Note: your Formgrader tab may not yet “find” your <code class="docutils literal notranslate"><span class="pre">nbgrader_config.py</span></code> file, so it’ll complain about it. Restarting the Hub usually works (<code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">tljh-config</span> <span class="pre">reload</span> <span class="pre">hub</span></code>). Alternatively, you can try restarting the hub from the Jupyterhub interface (Control Panel → Admin → Stop All → Shutdown Hub).</p>
+<p>Then, copy this file to the following three locations (yes, you need to do all three):</p>
+<ol class="arabic simple">
+<li><p>The directory with the course materials (either <code class="docutils literal notranslate"><span class="pre">fMRI-introduction</span></code> or <code class="docutils literal notranslate"><span class="pre">fMRI-pattern-analysis</span></code>);</p></li>
+<li><p>The <code class="docutils literal notranslate"><span class="pre">~/.jupyter</span></code> directory of your account (needed for the formgrader);</p></li>
+<li><p>The <code class="docutils literal notranslate"><span class="pre">/opt/tljh/user/etc/jupyter</span></code> directory (needed for fetching/submitting)</p></li>
+</ol>
+<p>Then, reload TLJH (<code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">tljh-config</span> <span class="pre">reload</span></code>) and log in again. You should now be able to open the formgrader and see the list with notebooks per week (e.g., <code class="docutils literal notranslate"><span class="pre">week_1</span></code>, <code class="docutils literal notranslate"><span class="pre">week_2</span></code>, etc.). If it doesn’t show, you can try restarting the hub from the Jupyterhub interface (Control Panel → Admin → Stop All → Shutdown Hub) and try again.</p>
+<p>Lastly, you need to create and configure the “exchange” directory, which is the directory on the server that the released assignments are copied to and where the submitted assignments appear. The default directory is <code class="docutils literal notranslate"><span class="pre">/srv/nbgrader/exchange</span></code>. To create this directory and make it accessible by everyone, run the following two commands:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">mkdir</span> <span class="o">-</span><span class="n">p</span> <span class="o">/</span><span class="n">srv</span><span class="o">/</span><span class="n">nbgrader</span><span class="o">/</span><span class="n">exchange</span>
+<span class="n">sudo</span> <span class="n">chmod</span> <span class="n">ugo</span><span class="o">+</span><span class="n">rw</span> <span class="o">/</span><span class="n">srv</span><span class="o">/</span><span class="n">nbgrader</span><span class="o">/</span><span class="n">exchange</span>
+</pre></div>
+</div>
+<p>Now, you should be able to release the assignment and students should be able to fetch them. Double-check this by generating and releasing an assignment and, in the “Assignments” tab in the Jupyter interface, trying to fetch the assignment.</p>
 <p>Lastly, you need to add students to the database. Personally, I do that programatically using the command line interface of the <em>nbgrader</em> package but you can also do this manually in the Formgrader. Note: <strong>you don’t have to create the Linux accounts yourself!</strong> This is handles by the Jupyterhub interface.</p>
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
@@ -872,7 +571,7 @@ laptops is a nightmare.)</p>
 </div>
 </div>
 <div class="section" id="enable-ssh">
-<h3>7. Enable SSH<a class="headerlink" href="#enable-ssh" title="Permalink to this headline">#</a></h3>
+<h3>7. Enable SSH<a class="headerlink" href="#enable-ssh" title="Permalink to this heading">#</a></h3>
 <p>For some of the tutorials, students need to access the server through SSH (via X2Go). When Jupyterhub creates the student accounts, SSH is <em>not</em> enabled by default.  To do so, do the following <em>for every student account</em>:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span># Add user to group `users`
 sudo usermod -a -G users ${username}
@@ -889,38 +588,38 @@ sudo passwd $username
 </div>
 </div>
 <div class="section" id="troubleshooting">
-<h2>Troubleshooting<a class="headerlink" href="#troubleshooting" title="Permalink to this headline">#</a></h2>
+<h2>Troubleshooting<a class="headerlink" href="#troubleshooting" title="Permalink to this heading">#</a></h2>
 <p>See the short troubleshooting guide when encountering issues.</p>
 <div class="section" id="the-formgrader-is-not-loading">
-<h3>The formgrader is not loading<a class="headerlink" href="#the-formgrader-is-not-loading" title="Permalink to this headline">#</a></h3>
+<h3>The formgrader is not loading<a class="headerlink" href="#the-formgrader-is-not-loading" title="Permalink to this heading">#</a></h3>
 <p>Try reinstalling nbgrader (<code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">/opt/tljh/user/bin/pip</span> <span class="pre">install</span> <span class="pre">-U</span> <span class="pre">nbgrader</span></code>), reinstall the nbextension and serverextension, and reload the hub (<code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">tljh-config</span> <span class="pre">reload</span> <span class="pre">hub</span></code>).</p>
 </div>
 <div class="section" id="letsencrypt-cannot-renew-the-certificates">
-<h3>Letsencrypt cannot renew the certificates<a class="headerlink" href="#letsencrypt-cannot-renew-the-certificates" title="Permalink to this headline">#</a></h3>
+<h3>Letsencrypt cannot renew the certificates<a class="headerlink" href="#letsencrypt-cannot-renew-the-certificates" title="Permalink to this heading">#</a></h3>
 <p>Letsencrypt renews certificates using a test that uses port 80. At the UvA, we don’t allow connections to this port, so the automatic renewal after 3 months will fail. To renew the certificates, temporarily open up port 80 (<code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">ufw</span> <span class="pre">allow</span> <span class="pre">80</span></code>), run <code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">tljh-config</span> <span class="pre">reload</span> <span class="pre">proxy</span></code>, and close the port again (run <code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">ufw</span> <span class="pre">delete</span> <span class="pre">allow</span> <span class="pre">80</span></code>).</p>
 </div>
 <div class="section" id="a-student-cannot-login-even-though-it-s-their-first-time-logging-in">
-<h3>A student cannot login even though it’s their first time logging in!<a class="headerlink" href="#a-student-cannot-login-even-though-it-s-their-first-time-logging-in" title="Permalink to this headline">#</a></h3>
+<h3>A student cannot login even though it’s their first time logging in!<a class="headerlink" href="#a-student-cannot-login-even-though-it-s-their-first-time-logging-in" title="Permalink to this heading">#</a></h3>
 <p>The first time a student logs in, it sets their password. If this doesn’t work, check whether you added the student to the “whitelist”. Using an admin account, go to “Control panel”, “Admin”, and check if the student (e.g., “nim_01”) is included in the list of Users. If not, click “Add user” and add the user (e.g., “nim_01”, <strong>not</strong> “jupyter-nim_01”).</p>
 </div>
 <div class="section" id="a-student-forgot-their-password-and-cannot-log-in">
-<h3>A student forgot their password and cannot log in!<a class="headerlink" href="#a-student-forgot-their-password-and-cannot-log-in" title="Permalink to this headline">#</a></h3>
+<h3>A student forgot their password and cannot log in!<a class="headerlink" href="#a-student-forgot-their-password-and-cannot-log-in" title="Permalink to this heading">#</a></h3>
 <p>Check the <a class="reference external" href="https://tljh.jupyter.org/en/latest/howto/auth/firstuse.html">TLJH</a> website under “Resetting user password”.</p>
 </div>
 <div class="section" id="a-student-cannot-access-the-jupyterhub-interface">
-<h3>A student cannot access the Jupyterhub interface<a class="headerlink" href="#a-student-cannot-access-the-jupyterhub-interface" title="Permalink to this headline">#</a></h3>
+<h3>A student cannot access the Jupyterhub interface<a class="headerlink" href="#a-student-cannot-access-the-jupyterhub-interface" title="Permalink to this heading">#</a></h3>
 <p>At the UvA, our Jupyterhub is behind a firewall that only accepts requests from the UvA network. Make sure students are connected to VPN!</p>
 </div>
 <div class="section" id="i-can-not-generate-an-assignment">
-<h3>I can not generate an assignment!<a class="headerlink" href="#i-can-not-generate-an-assignment" title="Permalink to this headline">#</a></h3>
+<h3>I can not generate an assignment!<a class="headerlink" href="#i-can-not-generate-an-assignment" title="Permalink to this heading">#</a></h3>
 <p>When you get an error when you generate an assignment, you most likely forgot a ### BEGIN SOLUTION or ### END SOLUTION marker or you added these to a non-test cell.</p>
 </div>
 <div class="section" id="students-cannot-see-an-assignment">
-<h3>Students cannot see an assignment!<a class="headerlink" href="#students-cannot-see-an-assignment" title="Permalink to this headline">#</a></h3>
+<h3>Students cannot see an assignment!<a class="headerlink" href="#students-cannot-see-an-assignment" title="Permalink to this heading">#</a></h3>
 <p>Make sure that you, in the formgrader, generated <em>and</em> released the assignment!</p>
 </div>
 <div class="section" id="jupyterhub-launches-jupyterlab-but-i-want-the-classic-interface">
-<h3>Jupyterhub launches JupyterLab, but I want the classic interface<a class="headerlink" href="#jupyterhub-launches-jupyterlab-but-i-want-the-classic-interface" title="Permalink to this headline">#</a></h3>
+<h3>Jupyterhub launches JupyterLab, but I want the classic interface<a class="headerlink" href="#jupyterhub-launches-jupyterlab-but-i-want-the-classic-interface" title="Permalink to this heading">#</a></h3>
 <p>Create a <code class="docutils literal notranslate"><span class="pre">*.py</span></code> file (e.g., <code class="docutils literal notranslate"><span class="pre">classic.py</span></code>) and save it in <code class="docutils literal notranslate"><span class="pre">/opt/tljh/config/jupyterhub_config.d/</span></code>. In this Python file, add a single line with:
 <code class="docutils literal notranslate"><span class="pre">c.Spawner.default_url</span> <span class="pre">=</span> <span class="pre">'/tree'</span></code></p>
 </div>
@@ -939,7 +638,7 @@ sudo passwd $username
             mode: "python"
         },
         kernelOptions: {
-            kernelName: "python3",
+            name: "python3",
             path: "./misc"
         },
         predefinedOutput: true
@@ -947,50 +646,120 @@ sudo passwd $username
     </script>
     <script>kernelName = 'python3'</script>
 
-              </div>
+                </article>
               
-            </main>
-            <footer class="footer-article noprint">
-                
-    <!-- Previous / next buttons -->
-<div class='prev-next-area'>
-    <a class='left-prev' id="prev-link" href="bibliography.html" title="previous page">
-        <i class="fas fa-angle-left"></i>
-        <div class="prev-next-info">
-            <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title">Bibliography</p>
-        </div>
+
+              
+              
+                <footer class="bd-footer-article">
+                  <!-- Previous / next buttons -->
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="bibliography.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Bibliography</p>
+      </div>
     </a>
-    <a class='right-next' id="next-link" href="CONTRIBUTING.html" title="next page">
-    <div class="prev-next-info">
+    <a class="right-next"
+       href="CONTRIBUTING.html"
+       title="next page">
+      <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
         <p class="prev-next-title">Contributing</p>
-    </div>
-    <i class="fas fa-angle-right"></i>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
     </a>
 </div>
-            </footer>
-        </div>
-    </div>
-    <div class="footer-content row">
-        <footer class="col footer"><p>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#installing-jupyterhub-nbgrader">Installing Jupyterhub + <code class="docutils literal notranslate"><span class="pre">nbgrader</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#install-tljh">1. Install TLJH</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#enable-ssl-encryption">2. Enable SSL encryption</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#configure-tljh">3. Configure TLJH</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#configure-python">4. Configure Python</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#install-niedu">5. Install <code class="docutils literal notranslate"><span class="pre">niedu</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#add-users">6. Add users</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#installing-configuring-nbgrader">6. Installing/configuring <em>nbgrader</em></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#enable-ssh">7. Enable SSH</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#troubleshooting">Troubleshooting</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-formgrader-is-not-loading">The formgrader is not loading</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#letsencrypt-cannot-renew-the-certificates">Letsencrypt cannot renew the certificates</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#a-student-cannot-login-even-though-it-s-their-first-time-logging-in">A student cannot login even though it’s their first time logging in!</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#a-student-forgot-their-password-and-cannot-log-in">A student forgot their password and cannot log in!</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#a-student-cannot-access-the-jupyterhub-interface">A student cannot access the Jupyterhub interface</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#i-can-not-generate-an-assignment">I can not generate an assignment!</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#students-cannot-see-an-assignment">Students cannot see an assignment!</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#jupyterhub-launches-jupyterlab-but-i-want-the-classic-interface">Jupyterhub launches JupyterLab, but I want the classic interface</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            <div class="bd-footer-content__inner">
+<div class="bd-footer-content__inner container">
   
-    By Lukas Snoek<br/>
-  
-      &copy; Copyright 2021.<br/>
-</p>
-        </footer>
-    </div>
+  <div class="footer-item">
     
-</div>
+<p class="component-author">
+By Lukas Snoek
+</p>
 
+  </div>
+  
+  <div class="footer-item">
+    
+  <p class="copyright">
+    
+      © Copyright 2021.
+      <br/>
+    
+  </p>
 
-      </div>
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div></div>
+          </footer>
+        
+
+      </main>
     </div>
+  </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+  <script src="../_static/scripts/bootstrap.js?digest=12da95d707ffb74b382d"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=12da95d707ffb74b382d"></script>
 
-
+  <footer class="bd-footer">
+  </footer>
   </body>
 </html>
