@@ -1,19 +1,18 @@
 """ This script tests whether you're ready to start with the course! """
 import os
 import sys
-import yaml
 import os.path as op
-from pathlib import Path
 
 here = op.dirname(__file__)
 
 
 print("Checking Python version ... \t\t\t", end='')
-if sys.version[:5] == '3.8.5':
-    has_py38 = True
+py_version = sys.version.split(' ')[0]
+if py_version == '3.9.16':
+    has_py3916 = True
     print("OK!")
 else:
-    has_py38 = False
+    has_py3916 = False
     print("NOT OK!")
 
 # Check anaconda
@@ -53,12 +52,13 @@ else:
 
 if not has_anaconda:
     print("\nWhile it's not strictly necessary, we highly recommend\n"
-          "using the Anaconda distrution for Python! See this website\n"
+          "using the Anaconda distrution for Python! See course website\n"
           "for more information: https://lukas-snoek.com/NI-edu/getting_started/installation.html")
 else:
-    if not has_py38:
-        print("\nYou seem to have the 'wrong' Python version. Please see the installation\n"
-              "instructions here: https://lukas-snoek.com/NI-edu/getting_started/installation.html")
+    if not has_py3916:
+        print(f"\nYou seem to have the 'wrong' Python version (has {py_version}, need 3.9.16).\n"
+              "Please see the installation instructions here:\n"
+              "https://lukas-snoek.com/NI-edu/getting_started/installation.html")
 
 if not has_niedu:
     print("\nYou MUST install the 'niedu' package to follow this course.\n"
