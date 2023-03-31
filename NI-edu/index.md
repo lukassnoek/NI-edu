@@ -1,4 +1,8 @@
 # Welcome to NI-edu
+
+![test](https://github.com/lukassnoek/NI-edu/workflows/CI/badge.svg)
+![deploy](https://github.com/lukassnoek/NI-edu/workflows/website/badge.svg)
+
 NI-edu is a collection of neuroimaging-related course materials developed at the University of Amsterdam. This website contains, at the moment, information about two courses, "fMRI-introduction" and "fMRI-pattern-analysis", which are completely free and open-source. The courses contain lectures, extensive computer labs/tutorials, and seminars. The materials documented here only contain the computer labs (i.e., interactive Jupyter notebooks).
 
 Below, the contents of the two courses are described in more detail.
