@@ -528,26 +528,26 @@ document.write(`
 <div class="section" id="parametric-analyses">
 <h2>Parametric analyses<a class="headerlink" href="#parametric-analyses" title="Permalink to this heading">#</a></h2>
 <p>The most often used “flavor” of fMRI (group-level) analyses are <em>parametric</em>: it assumes that the data can be modeled using specific probability distributions. For example, we assume that the results of statistical tests of parameters (i.e., <span class="math notranslate nohighlight">\(t\)</span>-values), given that null hypothesis is true, are distributed according to the Students <span class="math notranslate nohighlight">\(t\)</span>-distribution (with a particular degrees-of-freedom):</p>
-<div class="amsmath math notranslate nohighlight" id="equation-2c18d344-f9ea-4a95-a026-c18d322b954f">
-<span class="eqno">(74)<a class="headerlink" href="#equation-2c18d344-f9ea-4a95-a026-c18d322b954f" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-4b12853e-e129-47ea-b210-49b963063328">
+<span class="eqno">(74)<a class="headerlink" href="#equation-4b12853e-e129-47ea-b210-49b963063328" title="Permalink to this equation">#</a></span>\[\begin{align}
 t_{c\hat{\beta}} \sim \mathcal{T}(\mathrm{df})
 \end{align}\]</div>
 <p>where you can read the <span class="math notranslate nohighlight">\(\sim\)</span> symbol as “is distributed as”. Importantly, the validity of the computed <span class="math notranslate nohighlight">\(p\)</span>-values depends on whether the choice of distribution is appropriate. If not, you might risk inflated type 1 or type 2 errors.</p>
 <p>The first-level and run-level GLMs that we have discussed so far are examples of parametric analyses. There are also <em>non-parametric</em> versions of the GLM that do not assume any particular form of distribution; while somewhat more computationally expensive, this is become a more and more popular alternative to (group-level) parametric analyses. Importantly, the difference between parametric and non-parametric analyses is only important for the <em>inference</em> (not the <em>estimation</em>) aspect of the (group-level) analyses.</p>
 <p>Now, let’s focus on the parametric version of group-level analyses. Basically, this amounts to doing the same thing as we did last week with the run-level analyses, but this time, the results from our run-level analyses (<span class="math notranslate nohighlight">\(c\hat{\beta}^{*}\)</span>) across different subjects will become our target (<span class="math notranslate nohighlight">\(y^{\dagger}\)</span>). Note that we will use the “dagger” (<span class="math notranslate nohighlight">\(^{\dagger}\)</span>) superscript to denote that the mathematical terms belong to the group-level model (just like the <span class="math notranslate nohighlight">\(^{*}\)</span> superscript in our notebooks refers to terms belonging to the run-level models).</p>
 <p>To reiterate, the results from our run-level analyses (<span class="math notranslate nohighlight">\(c\hat{\beta}^{*}\)</span>), or first-level analyses if we only have a single run, become our dependent variable in our group-level analysis (<span class="math notranslate nohighlight">\(y^{\dagger}\)</span>):</p>
-<div class="amsmath math notranslate nohighlight" id="equation-709b3f8a-0b11-47b7-8bf1-af2afc607073">
-<span class="eqno">(75)<a class="headerlink" href="#equation-709b3f8a-0b11-47b7-8bf1-af2afc607073" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-f87171e8-3ba4-46e2-97d5-224c3434692a">
+<span class="eqno">(75)<a class="headerlink" href="#equation-f87171e8-3ba4-46e2-97d5-224c3434692a" title="Permalink to this equation">#</a></span>\[\begin{align}
 y^{\dagger} = c\hat{\beta}^{*}
 \end{align}\]</div>
 <p>Again, the group-level represents a GLM with a particular design matrix (<span class="math notranslate nohighlight">\(\mathbf{X}^{\dagger}\)</span>) and parameters (<span class="math notranslate nohighlight">\(\beta^{\dagger}\)</span>):</p>
-<div class="amsmath math notranslate nohighlight" id="equation-b8f91264-76f5-46ab-a746-9f4fc9b76466">
-<span class="eqno">(76)<a class="headerlink" href="#equation-b8f91264-76f5-46ab-a746-9f4fc9b76466" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-25ba5987-0260-47a0-8fea-a80c32215aee">
+<span class="eqno">(76)<a class="headerlink" href="#equation-25ba5987-0260-47a0-8fea-a80c32215aee" title="Permalink to this equation">#</a></span>\[\begin{align}
 y^{\dagger} = \mathbf{X}^{\dagger}\beta^{\dagger} + \epsilon^{\dagger}
 \end{align}\]</div>
 <p>And the group-level parameters can be estimated with OLS:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-b696b225-7e67-44e2-80c2-55425cb424d7">
-<span class="eqno">(77)<a class="headerlink" href="#equation-b696b225-7e67-44e2-80c2-55425cb424d7" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-08f9db5a-b5dd-41bd-b4bf-4a18b0abe02e">
+<span class="eqno">(77)<a class="headerlink" href="#equation-08f9db5a-b5dd-41bd-b4bf-4a18b0abe02e" title="Permalink to this equation">#</a></span>\[\begin{align}
 \hat{\beta}^{\dagger} = (\mathbf{X}^{\dagger\ T} \mathbf{X}^{\dagger})^{-1}\mathbf{X}^{\dagger}y^{\dagger}
 \end{align}\]</div>
 <p>As mentioned last week, the parameter estimation procedure (i.e., estimating <span class="math notranslate nohighlight">\(\hat{\beta}^{\dagger}\)</span>) is relatively straightforward, but the inference procedure depends on the specific variance approach: fixed, random, or mixed effects. If your aim is to perform inference to the population, <em>you should never use a fixed-effects type of analysis across subjects</em>, as this will typically inflate your type 1 error greatly.</p>
@@ -555,8 +555,8 @@ y^{\dagger} = \mathbf{X}^{\dagger}\beta^{\dagger} + \epsilon^{\dagger}
 <div class="section" id="random-effects">
 <h3>Random effects<a class="headerlink" href="#random-effects" title="Permalink to this heading">#</a></h3>
 <p>Let’s first focus on a random effects type of analysis (which is commonly used in group-level analysis in the SPM software package, for example), as this is relatively easy to understand. For now, let’s use simulated data. Suppose that we want to do a group-analysis of our run-level <code class="docutils literal notranslate"><span class="pre">flocBLOCKED</span></code> data. Specifically, we are interested in the difference between faces and places (<span class="math notranslate nohighlight">\(H_{0}: \beta_{face}^{*} = \beta_{house}^{*} = 0\)</span>, <span class="math notranslate nohighlight">\(H_{a}: \beta_{face}^{*} &gt; \beta_{house}^{*}\)</span>). As such, we’ll use the corresponding <span class="math notranslate nohighlight">\(c\hat{\beta}^{*}\)</span> terms from our run-level analysis (i.e., the contrasts against baseline, COPE1 and COPE2) as our new target <span class="math notranslate nohighlight">\(y^{\dagger}\)</span> as follows:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-778cc4c2-57f9-4364-8486-bd0212e7f751">
-<span class="eqno">(78)<a class="headerlink" href="#equation-778cc4c2-57f9-4364-8486-bd0212e7f751" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-9a4b82da-1e56-4b40-864a-f85a1249250a">
+<span class="eqno">(78)<a class="headerlink" href="#equation-9a4b82da-1e56-4b40-864a-f85a1249250a" title="Permalink to this equation">#</a></span>\[\begin{align}
 y^{\dagger} = \begin{bmatrix}
 c\hat{\beta}^{*}_{1, F&gt;0} \\
 c\hat{\beta}^{*}_{2, F&gt;0} \\
@@ -632,13 +632,13 @@ c\hat{\beta}^{*}_{N, P&gt;0}
     <b>ToThink</b> (1 point): In the above design matrix, we did not specify an intercept (i.e., a vector of ones). With good reason, because our group-level GLM will crash if we did. Explain shortly why an intercept for this particular design matrix (i.e., as represented by the variable <tt>X</tt> above) is not only redundant, but will make the GLM impossible to estimate. Hint: try adding an intercept, run a GLM, and see what happens.
 </div><p>YOUR ANSWER HERE</p>
 <p>We are going to simulate data for a single voxel, which shows a slight preference (in run-level <span class="math notranslate nohighlight">\(c\hat{\beta}^{*}\)</span> estimates across subjects) for faces relative to places. Specifically, we’ll assume that the voxel activates on average with <span class="math notranslate nohighlight">\(\beta^{\dagger}_{faces} = 5\)</span> for faces, while it activates on average with <span class="math notranslate nohighlight">\(\beta^{\dagger}_{places} = 4.5\)</span> for places:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-c8a338f8-1375-43a3-ab72-cb90e0e914ef">
-<span class="eqno">(79)<a class="headerlink" href="#equation-c8a338f8-1375-43a3-ab72-cb90e0e914ef" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-4c211d8f-f44b-4932-8b3b-1436d7e7e4c3">
+<span class="eqno">(79)<a class="headerlink" href="#equation-4c211d8f-f44b-4932-8b3b-1436d7e7e4c3" title="Permalink to this equation">#</a></span>\[\begin{align}
 y^{*} = \mathbf{X}^{\dagger}_{faces}\cdot 5 + \mathbf{X}^{\dagger}_{places} \cdot 4.5 + \epsilon^{\dagger} 
 \end{align}\]</div>
 <p>where the noise, <span class="math notranslate nohighlight">\(\epsilon^{\dagger}\)</span>, is normally distributed with mean 0 and a standard deviation of 1:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-ffbcf232-2495-494e-968a-b341ccedf185">
-<span class="eqno">(80)<a class="headerlink" href="#equation-ffbcf232-2495-494e-968a-b341ccedf185" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-342799d1-aecd-4c91-9ac8-2c27d2837840">
+<span class="eqno">(80)<a class="headerlink" href="#equation-342799d1-aecd-4c91-9ac8-2c27d2837840" title="Permalink to this equation">#</a></span>\[\begin{align}
 \epsilon^{\dagger} \sim \mathcal{N}(0, 1)
 \end{align}\]</div>
 <p>(The symbol <span class="math notranslate nohighlight">\(\sim\)</span> stands for “is distributed as”.) We’ll implement this in code below:</p>
@@ -740,8 +740,8 @@ y^{*} = \mathbf{X}^{\dagger}_{faces}\cdot 5 + \mathbf{X}^{\dagger}_{places} \cdo
 <span class="math notranslate nohighlight">\(H_{a}: \beta_{face}^{*} - \beta_{house}^{*} &gt; 0\)</span></p>
 <p>Note that the contrast evaluating the difference between these two parameters was <em>not</em> computed in the first-level or run-level analyses, so we have to create this ourselves by concatenating the COPEs corresponding to the <span class="math notranslate nohighlight">\(\beta_{face}^{*} &gt; 0\)</span> and <span class="math notranslate nohighlight">\(\beta_{house}^{*} &gt; 0\)</span> run-level contrasts, just like you did last week.</p>
 <p>Doing this for all subjects becomes a bit cumbersome though, so you only need to do this for <code class="docutils literal notranslate"><span class="pre">sub-02</span></code>, <code class="docutils literal notranslate"><span class="pre">sub-03</span></code>, and <code class="docutils literal notranslate"><span class="pre">sub-04</span></code>. Make sure the first three inputs correspond to the face-against-baseline COPE (COPE nr. 1) and the last three inputs correspond to the place-against-baseline COPE (COPE nr. 2).</p>
-<div class="amsmath math notranslate nohighlight" id="equation-cf5ae30c-1d9f-45b3-8f63-25edf1a66a19">
-<span class="eqno">(81)<a class="headerlink" href="#equation-cf5ae30c-1d9f-45b3-8f63-25edf1a66a19" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-bec51c11-c6c2-4d8e-b86b-01db7fd68297">
+<span class="eqno">(81)<a class="headerlink" href="#equation-bec51c11-c6c2-4d8e-b86b-01db7fd68297" title="Permalink to this equation">#</a></span>\[\begin{align}
 y^{\dagger} = \begin{bmatrix}
 c\hat{\beta}^{*}_{\mathrm{face&gt;0,\ sub-02}} \\
 c\hat{\beta}^{*}_{\mathrm{face&gt;0,\ sub-03}} \\
@@ -873,8 +873,8 @@ c\hat{\beta}^{*}_{\mathrm{place&gt;0,\ sub-04}} \\
 <div class="section" id="calculate-the-p-value">
 <h3>Calculate the p-value<a class="headerlink" href="#calculate-the-p-value" title="Permalink to this heading">#</a></h3>
 <p>The last step is to calculate the <span class="math notranslate nohighlight">\(p\)</span>-value. This is done by dividing the number of permuted statistics <em>larger</em> than the observed statistic plus one by the total number of permutations plus one. Or, mathematically, for <span class="math notranslate nohighlight">\(P\)</span> permutations, the <span class="math notranslate nohighlight">\(p\)</span>-value for any statistic <span class="math notranslate nohighlight">\(s\)</span> with observed value <span class="math notranslate nohighlight">\(s^{\mathrm{obs}}\)</span> and vector of permuted values <span class="math notranslate nohighlight">\(\mathbf{s}^{\mathrm{perm}}\)</span> is defined as:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-76fa83a3-ab63-443a-926c-d7c7841ab5cc">
-<span class="eqno">(82)<a class="headerlink" href="#equation-76fa83a3-ab63-443a-926c-d7c7841ab5cc" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-7a02c98c-7018-4f31-86e8-1b641049589c">
+<span class="eqno">(82)<a class="headerlink" href="#equation-7a02c98c-7018-4f31-86e8-1b641049589c" title="Permalink to this equation">#</a></span>\[\begin{align}
 p = \frac{\sum_{i=1}^{P}\mathbf{I}(\mathbf{s}^{\mathrm{perm}}_{i} \geq s^{\mathrm{obs}}) + 1}{P + 1}
 \end{align}\]</div>
 <p>where <span class="math notranslate nohighlight">\(\mathbf{I}\)</span> is an indicator function, returning <span class="math notranslate nohighlight">\(1\)</span> when the condition is true and <span class="math notranslate nohighlight">\(0\)</span> otherwise.</p>

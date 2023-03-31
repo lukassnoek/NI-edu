@@ -608,8 +608,8 @@ Suppose a researcher wants to implement a decoding analysis in which he/she aims
 <p>However, you are definitely not limited to using <em>activity estimates</em> for your patterns. For example, you could apply pattern analyses to structural data (e.g., patterns of voxelwise gray-matter volume values, like in <a class="reference external" href="https://en.wikipedia.org/wiki/Voxel-based_morphometry">voxel-based morphometry</a>) or to functional connectivity data (e.g., patterns of time series correlations between voxels, or even topological properties of brain networks). (In fact, the connectivity examples from the Nilearn tutorial represents a way to estimate these connectivity features, which can be used in pattern analyses.) In short, pattern analyses can be applied to patterns composed of <em>any</em> type of measurement or metric!</p>
 <p>Now, let’s get a little more technical. Usually, as mentioned in the beginning, pattern analyses represent the data as a 2D array of brain patterns. Let’s call this <span class="math notranslate nohighlight">\(\mathbf{R}\)</span>. The rows of <span class="math notranslate nohighlight">\(\mathbf{R}\)</span> represent different instances of patterns (sometimes called “samples” or “observations”) and the columns represent different brain features (e.g., voxels; sometimes simply called “features”). Note that we thus lose all spatial information by “flattening” our patterns into 1D rows!</p>
 <p>Let’s call the number of samples <span class="math notranslate nohighlight">\(N\)</span> and the number of brain features <span class="math notranslate nohighlight">\(K\)</span>. We can thus represent <span class="math notranslate nohighlight">\(\mathbf{R}\)</span> as a <span class="math notranslate nohighlight">\(N\times K\)</span> matrix (2D array):</p>
-<div class="amsmath math notranslate nohighlight" id="equation-a07b3f61-be3b-45d0-b7ab-d0d4063b2a80">
-<span class="eqno">(88)<a class="headerlink" href="#equation-a07b3f61-be3b-45d0-b7ab-d0d4063b2a80" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-2fa9739f-e562-45ab-9c86-b9d2af9f5d2f">
+<span class="eqno">(88)<a class="headerlink" href="#equation-2fa9739f-e562-45ab-9c86-b9d2af9f5d2f" title="Permalink to this equation">#</a></span>\[\begin{align}
 \mathbf{R} = 
 \begin{bmatrix}
  R_{1,1} &amp; R_{1,2} &amp; R_{1,3} &amp; \dots &amp; R_{1,K}\\
@@ -633,19 +633,19 @@ Suppose a researcher wants to implement a decoding analysis in which he/she aims
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[ 0.90788902, -1.41065445, -1.07903328, ..., -0.04303696,
-        -0.87298196,  0.18676307],
-       [ 2.36271512,  0.32974605, -1.4845798 , ..., -0.30415037,
-         0.51769317,  2.32857541],
-       [-1.72114674, -1.662776  ,  1.06343976, ...,  1.67651065,
-        -1.62357252, -0.29349467],
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[ 1.15339263, -0.22330473, -0.64831454, ..., -0.73946864,
+         1.25998358,  0.00431696],
+       [ 0.86280123, -1.42090204, -0.05381566, ..., -1.01176081,
+         0.24330926,  0.36903122],
+       [ 1.41362587,  0.89873264, -0.98157562, ..., -0.46425587,
+         1.28319916,  0.14008011],
        ...,
-       [ 1.61918455, -0.55924821, -0.55494949, ..., -1.23368218,
-        -1.34989093,  1.05369724],
-       [-0.40119192,  3.03829728, -2.74533853, ...,  0.18111998,
-         0.95359675,  0.11546553],
-       [-0.50642037, -0.24633369, -0.31125333, ..., -0.22534047,
-         0.15281965,  0.78268454]])
+       [-0.32058043, -1.20927449, -1.49755011, ..., -1.57452056,
+         0.07369649,  1.61001617],
+       [ 0.20092411, -0.06283372,  0.88994314, ..., -2.03043571,
+         0.17528074,  0.53970261],
+       [ 1.02283767, -0.90966306, -0.27389087, ..., -0.52319604,
+         1.62955379,  0.85457804]])
 </pre></div>
 </div>
 </div>
@@ -667,7 +667,7 @@ Suppose a researcher wants to implement a decoding analysis in which he/she aims
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/1d3a8b6f1ebaef2275d19ba5dc3be1ddf11845aed7b88e3b68db835808df7dca.png" src="../../_images/1d3a8b6f1ebaef2275d19ba5dc3be1ddf11845aed7b88e3b68db835808df7dca.png" />
+<img alt="../../_images/4ffae1e1dfe119f2bca144a4a0b38c70528c81c8582f55ea2471e3a72b966e0b.png" src="../../_images/4ffae1e1dfe119f2bca144a4a0b38c70528c81c8582f55ea2471e3a72b966e0b.png" />
 </div>
 </div>
 <div class='alert alert-warning'>
@@ -865,7 +865,7 @@ Suppose a researcher wants to implement a decoding analysis in which he/she aims
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Shape of R: (20, 2)
 </pre></div>
 </div>
-<img alt="../../_images/69365e742b5c9216b20ac182be3defe1e768b7a2ae2cc5d7080e26a7b7b1dd98.png" src="../../_images/69365e742b5c9216b20ac182be3defe1e768b7a2ae2cc5d7080e26a7b7b1dd98.png" />
+<img alt="../../_images/7afdd47d98f4763ddce566dd9558929bf0e818681ab47dee50de91d1aca81949.png" src="../../_images/7afdd47d98f4763ddce566dd9558929bf0e818681ab47dee50de91d1aca81949.png" />
 </div>
 </div>
 <p>Now, we mentioned that each pattern (row of <span class="math notranslate nohighlight">\(\mathbf{R}\)</span>, i.e., <span class="math notranslate nohighlight">\(\mathbf{R}_{i}\)</span>) can be interpreted as a point in 2D space. With space, here, we mean a space where each feature (e.g., voxel; column of <span class="math notranslate nohighlight">\(\mathbf{R}\)</span>, i.e., <span class="math notranslate nohighlight">\(\mathbf{R}_{j}\)</span>) represents a separate axis. In our simulated data, we have two features (e.g., voxel 1 and voxel 2), so our space will have two axes:</p>
@@ -894,7 +894,7 @@ Suppose a researcher wants to implement a decoding analysis in which he/she aims
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[-0.09302255  0.88640349]
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[-0.69508693  2.2473697 ]
 </pre></div>
 </div>
 </div>
@@ -921,7 +921,7 @@ Suppose a researcher wants to implement a decoding analysis in which he/she aims
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/d38bf70b0ff6e496fe4a0f098a5c0c14f0f859e9eb15b4bc2c0b09124d28cf8c.png" src="../../_images/d38bf70b0ff6e496fe4a0f098a5c0c14f0f859e9eb15b4bc2c0b09124d28cf8c.png" />
+<img alt="../../_images/2f3188039f1d45e7a4f7b2fad4bd9d2b578338a1ddae9e80271f6b8050378253.png" src="../../_images/2f3188039f1d45e7a4f7b2fad4bd9d2b578338a1ddae9e80271f6b8050378253.png" />
 </div>
 </div>
 <p>If we do this for all patterns, we get an ordinary scatter plot of the data:</p>
@@ -946,7 +946,7 @@ Suppose a researcher wants to implement a decoding analysis in which he/she aims
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/b572eabdb42b1d2b16f43cc7d8f3ca30c633222e72c3bd155ce7d616369e73b6.png" src="../../_images/b572eabdb42b1d2b16f43cc7d8f3ca30c633222e72c3bd155ce7d616369e73b6.png" />
+<img alt="../../_images/66642ebde3037bb112e5671afc9d20641f347bea5a071419e46f43366c104732.png" src="../../_images/66642ebde3037bb112e5671afc9d20641f347bea5a071419e46f43366c104732.png" />
 </div>
 </div>
 <p>It is important to realize that both perspectives — as a 2D array and as a set of points in <span class="math notranslate nohighlight">\(K\)</span>-dimensional space — represents the same data! Practically, pattern analysis algorithms usually expect the data as a 2D array, but (in our experience) the operations and mechanisms implemented by those algorithms are easiest to explain and to understand from the “points in space” perspective.</p>
@@ -991,7 +991,7 @@ Suppose a researcher wants to implement a decoding analysis in which he/she aims
 Shape R2D: (100, 2)
 </pre></div>
 </div>
-<img alt="../../_images/4e5ed6c49fde93f7bccf95364680050feed2ff2530377ac5d05f2ffcfa9b0cb5.png" src="../../_images/4e5ed6c49fde93f7bccf95364680050feed2ff2530377ac5d05f2ffcfa9b0cb5.png" />
+<img alt="../../_images/56cc41c312c3438f17fa01a25d17fa205da1e94f29dfb1757605e255a7807685.png" src="../../_images/56cc41c312c3438f17fa01a25d17fa205da1e94f29dfb1757605e255a7807685.png" />
 </div>
 </div>
 <div class='alert alert-warning'>
@@ -1131,7 +1131,7 @@ Conditions: [&#39;A&#39;, &#39;B&#39;, &#39;A&#39;, &#39;B&#39;, &#39;A&#39;, &#
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/be8cc977971b6be878481f4fb0bc4c9d490f6d7aad846889488096fa59189b2b.png" src="../../_images/be8cc977971b6be878481f4fb0bc4c9d490f6d7aad846889488096fa59189b2b.png" />
+<img alt="../../_images/f06b8ca4a473a51b19750b092c7945ed4564bc0e51fd5c2fd79faf1d64a3de26.png" src="../../_images/f06b8ca4a473a51b19750b092c7945ed4564bc0e51fd5c2fd79faf1d64a3de26.png" />
 </div>
 </div>
 <div class='alert alert-success'>
@@ -1180,7 +1180,7 @@ Conditions: [&#39;A&#39;, &#39;B&#39;, &#39;A&#39;, &#39;B&#39;, &#39;A&#39;, &#
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/29ef37bf772e6fd9dd5b9ec5ee14f6360083099e550e81f39c1d00f8fe1bbbe5.png" src="../../_images/29ef37bf772e6fd9dd5b9ec5ee14f6360083099e550e81f39c1d00f8fe1bbbe5.png" />
+<img alt="../../_images/2e5fbaca14ecf89eaca538f32d106446af6df7ca4ef4e684f004546c186109b2.png" src="../../_images/2e5fbaca14ecf89eaca538f32d106446af6df7ca4ef4e684f004546c186109b2.png" />
 </div>
 </div>
 <p>Now, extracting these timepoints 6 seconds after stimulus presentation is easy when this timepoint is a multiple of the scan’s TR (here: 2 seconds). For example, to extract the value for the first trial (onset: 10 seconds), we simply take the 8th value in our timeseries, because <span class="math notranslate nohighlight">\((10 + 6) / 2 = 8\)</span>. But what if our trial onset + 6 seconds is <em>not</em> a multiple of the TR, such as with trial 2 (onset: 19 seconds)? Well, we can interpolate this value! We will use the same function for this operation as we did for slice-timing correction (from the previous course): <code class="docutils literal notranslate"><span class="pre">interp1d</span></code> from the <code class="docutils literal notranslate"><span class="pre">scipy.interpolate</span></code> module.</p>
@@ -1245,7 +1245,7 @@ Conditions: [&#39;A&#39;, &#39;B&#39;, &#39;A&#39;, &#39;B&#39;, &#39;A&#39;, &#
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Shape extracted pattern: (20, 4)
 </pre></div>
 </div>
-<img alt="../../_images/57d49e9d03c27a71af8e1c39813d49c6e4368cacabb5b132a413fc82bc450b93.png" src="../../_images/57d49e9d03c27a71af8e1c39813d49c6e4368cacabb5b132a413fc82bc450b93.png" />
+<img alt="../../_images/ef1a56a58923601dcffc663a1966dd56f7a61891a1be0c6daf7720fdd0cc53ad.png" src="../../_images/ef1a56a58923601dcffc663a1966dd56f7a61891a1be0c6daf7720fdd0cc53ad.png" />
 </div>
 </div>
 <p>Yay, we have extracted our first pattern! Does it look like what you expected given the known mean amplitude of the trials from the two conditions (<span class="math notranslate nohighlight">\(\beta_{\mathrm{A,even}} = 0.8, \beta_{\mathrm{B,even}} = 0.2\)</span> and vice versa for odd voxels)?</p>
@@ -1749,7 +1749,7 @@ Shape beta_hat (intercept removed): (20, 4)
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/fcd39965410e629f83ac3d1602376c0b51e7adb344f3c24e51cf9dda3acbe600.png" src="../../_images/fcd39965410e629f83ac3d1602376c0b51e7adb344f3c24e51cf9dda3acbe600.png" />
+<img alt="../../_images/b7cb7cbc54e59e5a6ae728acd76e41c4efd1493c3208567f4455288a14f7f951.png" src="../../_images/b7cb7cbc54e59e5a6ae728acd76e41c4efd1493c3208567f4455288a14f7f951.png" />
 </div>
 </div>
 <p>Ultimately, though, the estimated GLM parameters are just another way to estimate our pattern array (<span class="math notranslate nohighlight">\(\mathbf{R}\)</span>) — this time, we just estimated it using a different method (GLM-based) than before (timepoint-based). Therefore, let’s visualize this array as we did with the other methods:</p>
@@ -1769,7 +1769,7 @@ Shape beta_hat (intercept removed): (20, 4)
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/1b80e158db332886e7c0bea342da93da93141b047a5e037e39639028ea2f3d38.png" src="../../_images/1b80e158db332886e7c0bea342da93da93141b047a5e037e39639028ea2f3d38.png" />
+<img alt="../../_images/f972f2b80874ad3c5ff1c65ca4c806404ffdaafb38e54a8c1419c6a05fabc087.png" src="../../_images/f972f2b80874ad3c5ff1c65ca4c806404ffdaafb38e54a8c1419c6a05fabc087.png" />
 </div>
 </div>
 <div class='alert alert-warning'>
@@ -1794,13 +1794,13 @@ Shape beta_hat (intercept removed): (20, 4)
 <div class="section" id="noise-normalization">
 <h4>Noise normalization<a class="headerlink" href="#noise-normalization" title="Permalink to this heading">#</a></h4>
 <p>One often used preprocessing step for pattern analyses (using GLM-estimation methods) is to use “noise normalization” on the estimated patterns. There are two flavours: “univariate” and “multivariate” noise normalization. In univariate noise normalization, the estimated parameters (<span class="math notranslate nohighlight">\(\hat{\beta}\)</span>) are divided (normalized) by the standard deviation of the estimated parameters — which you might recognize as the formula for <span class="math notranslate nohighlight">\(t\)</span>-values (for a contrast against baseline)!</p>
-<div class="amsmath math notranslate nohighlight" id="equation-29f4278a-92c8-406d-bb7e-eb384f435a53">
-<span class="eqno">(89)<a class="headerlink" href="#equation-29f4278a-92c8-406d-bb7e-eb384f435a53" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-22bf3fe1-255e-4e00-aeee-13c37cef8120">
+<span class="eqno">(89)<a class="headerlink" href="#equation-22bf3fe1-255e-4e00-aeee-13c37cef8120" title="Permalink to this equation">#</a></span>\[\begin{align}
 t_{c\hat{\beta}} = \frac{c\hat{\beta}}{\sqrt{\hat{\sigma}^{2}c(X^{T}X)^{-1}c^{T}}}
 \end{align}\]</div>
 <p>where <span class="math notranslate nohighlight">\(\hat{\sigma}^{2}\)</span> is the estimate of the error variance (sum of squared errors divided by the degrees of freedom) and <span class="math notranslate nohighlight">\(c(X^{T}X)^{-1}c^{T}\)</span> is the “design variance”. Sometimes people disregard the design variance and the degrees of freedom (DF) and instead only use the standard deviation of the noise:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-6bc038e6-fbdc-47b2-804e-cb1a809d9236">
-<span class="eqno">(90)<a class="headerlink" href="#equation-6bc038e6-fbdc-47b2-804e-cb1a809d9236" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-0c0e7857-673f-470a-9c06-959849a55111">
+<span class="eqno">(90)<a class="headerlink" href="#equation-0c0e7857-673f-470a-9c06-959849a55111" title="Permalink to this equation">#</a></span>\[\begin{align}
 t_{c\hat{\beta}} \approx \frac{c\hat{\beta}}{\sqrt{\sum (y_{i} - X_{i}\hat{\beta})^{2}}}
 \end{align}\]</div>
 <div class='alert alert-info'>
@@ -1869,7 +1869,7 @@ t_{c\hat{\beta}} \approx \frac{c\hat{\beta}}{\sqrt{\sum (y_{i} - X_{i}\hat{\beta
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/35e9aab7c2f3d9bbe8a67f15eaae376904a37ea73b91e68a949ed7c6fb333707.png" src="../../_images/35e9aab7c2f3d9bbe8a67f15eaae376904a37ea73b91e68a949ed7c6fb333707.png" />
+<img alt="../../_images/81727e453c15ece2663271aa93fc2e485eb23219247768900a0cdcf291b0da10.png" src="../../_images/81727e453c15ece2663271aa93fc2e485eb23219247768900a0cdcf291b0da10.png" />
 </div>
 </div>
 <div class='alert alert-info'>
@@ -2563,8 +2563,8 @@ sub-03_ses-1_task-face_run-1_space-T1w_desc-preproc_bold.nii.gz
 <h3>Temporal uncorrelation<a class="headerlink" href="#temporal-uncorrelation" title="Permalink to this heading">#</a></h3>
 <p>Another method to deal with trial-by-trial correlations is the “uncorrelation” method by <a class="reference external" href="https://www.sciencedirect.com/science/article/pii/S1053811919310407">Soch and colleagues (2020)</a>. As opposed to the LSS method, the uncorrelation approach takes care of the correlation structure in the data in a post-hoc manner. It does so, in essence, by “removing” the correlations in the data that are due to the correlations in the design in a way that is similar to what prewhitening does in generalized least squares.</p>
 <p>Formally, the “uncorrelated” patterns (<span class="math notranslate nohighlight">\(R_{\mathrm{unc}}\)</span>) are estimated by (matrix) multiplying the square root (<span class="math notranslate nohighlight">\(^{\frac{1}{2}}\)</span>) of covariance matrix of the LSA design matrix (<span class="math notranslate nohighlight">\(X^{T}X\)</span>) with the patterns (<span class="math notranslate nohighlight">\(R\)</span>):</p>
-<div class="amsmath math notranslate nohighlight" id="equation-fe31ea67-1482-4d11-a973-ed5f92cb7232">
-<span class="eqno">(91)<a class="headerlink" href="#equation-fe31ea67-1482-4d11-a973-ed5f92cb7232" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-a1cb2ff4-308a-4ac1-9800-7cd080fdc9c2">
+<span class="eqno">(91)<a class="headerlink" href="#equation-a1cb2ff4-308a-4ac1-9800-7cd080fdc9c2" title="Permalink to this equation">#</a></span>\[\begin{align}
 R_{\mathrm{unc}} = (X^{T}X)^{\frac{1}{2}}R
 \end{align}\]</div>
 <p>Here, <span class="math notranslate nohighlight">\((X^{T}X)^{\frac{1}{2}}\)</span> represents the “whitening” matrix which uncorrelates the patterns. Let’s implement this in code. Note that we can use the <code class="docutils literal notranslate"><span class="pre">sqrtm</span></code> function from the <code class="docutils literal notranslate"><span class="pre">scipy.linalg</span></code> package to take the square root of a matrix:</p>
