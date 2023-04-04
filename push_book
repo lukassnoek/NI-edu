@@ -1,0 +1,2 @@
+#!/usr/bin/env bash
+ghp-import -n -p -f NI-edu/_build/html
