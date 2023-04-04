@@ -443,6 +443,7 @@ document.write(`
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#i-can-not-generate-an-assignment">I can not generate an assignment!</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#students-cannot-see-an-assignment">Students cannot see an assignment!</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#jupyterhub-launches-jupyterlab-but-i-want-the-classic-interface">Jupyterhub launches JupyterLab, but I want the classic interface</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#renewal-or-initial-validation-of-ssl-certificate-doesn-t-work">Renewal or initial validation of SSL certificate doesn’t work</a></li>
 </ul>
 </li>
 </ul>
@@ -498,15 +499,20 @@ excercises are implemented such that they can be easily (and for a large part au
 </div>
 <div class="section" id="configure-python">
 <h3>4. Configure Python<a class="headerlink" href="#configure-python" title="Permalink to this heading">#</a></h3>
-<p>The Anaconda-based Python version installed with TLJH (located at <code class="docutils literal notranslate"><span class="pre">/opt/tljh/user/bin/python</span></code>) is not the same as the one used by NI-edu (which is 3.8.5). It is important that the right version of Python is used when running the notebooks, because the compiled test functions only work with Python version 3.8.5. To use Python version 3.8.5, run the following command from the user account you used to install TLJH (which needs to have sudo rights):</p>
+<p>Currently (April 2023), the default TLJH python version (3.9.16) is the same as the version used by
+the course. If not (e.g., either TLJH or the course updates its python version), it is important to make sure to change the TLJH version such that it matches the course’s version, because the compiled test functions only work with the Python version used in the course. To change to Python version X (where X may be <code class="docutils literal notranslate"><span class="pre">3.10.2</span></code> or something), run the following command from the user account you used to install TLJH (which needs to have sudo rights):</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">source</span> <span class="o">/</span><span class="n">opt</span><span class="o">/</span><span class="n">tljh</span><span class="o">/</span><span class="n">user</span><span class="o">/</span><span class="nb">bin</span><span class="o">/</span><span class="n">activate</span>
 <span class="n">pip</span> <span class="nb">list</span> <span class="o">--</span><span class="nb">format</span><span class="o">=</span><span class="n">freeze</span> <span class="o">&gt;</span> <span class="n">pip_pkgs</span><span class="o">.</span><span class="n">txt</span>              <span class="c1"># store currently installed pkgs</span>
 <span class="n">sudo</span> <span class="o">/</span><span class="n">opt</span><span class="o">/</span><span class="n">tljh</span><span class="o">/</span><span class="n">user</span><span class="o">/</span><span class="nb">bin</span><span class="o">/</span><span class="n">conda</span> <span class="n">update</span> <span class="o">--</span><span class="nb">all</span>
-<span class="n">sudo</span> <span class="o">/</span><span class="n">opt</span><span class="o">/</span><span class="n">tljh</span><span class="o">/</span><span class="n">user</span><span class="o">/</span><span class="nb">bin</span><span class="o">/</span><span class="n">conda</span> <span class="n">install</span> <span class="n">python</span><span class="o">=</span><span class="mf">3.8.5</span>
+<span class="n">sudo</span> <span class="o">/</span><span class="n">opt</span><span class="o">/</span><span class="n">tljh</span><span class="o">/</span><span class="n">user</span><span class="o">/</span><span class="nb">bin</span><span class="o">/</span><span class="n">conda</span> <span class="n">install</span> <span class="n">python</span><span class="o">=</span><span class="n">X</span>
 <span class="n">sudo</span> <span class="o">/</span><span class="n">opt</span><span class="o">/</span><span class="n">tljh</span><span class="o">/</span><span class="n">user</span><span class="o">/</span><span class="nb">bin</span><span class="o">/</span><span class="n">pip</span> <span class="n">install</span> <span class="o">-</span><span class="n">r</span> <span class="n">pip_pkgs</span><span class="o">.</span><span class="n">txt</span>  <span class="c1"># reinstall previously installed pkgs</span>
 </pre></div>
 </div>
 <p>Note that this is slightly different than outlined by the <a class="reference external" href="https://tljh.jupyter.org/en/latest/howto/env/user-environment.html">instructions of TLJH</a>, but at least for me those instructions didn’t work properly (and the above does). Also, the reinstallation of the <code class="docutils literal notranslate"><span class="pre">pip_pkgs.txt</span></code> is important! Otherwise, the new Python version won’t have all the required packages to make Jupyterhub work, and you’ll get a “Cannot Spawn” error when trying to access Jupyterhub.</p>
+<p>Alternatively, you can recompile the tests before installing the package:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">python</span> <span class="n">compile_test_modules</span><span class="o">.</span><span class="n">py</span>
+</pre></div>
+</div>
 <p><strong>Important</strong>: if you access the server through SSH (e.g., when you’re administering/configuring the server), your default Python version will <em>not</em> be the TLJH Python version, but the one that’s in your path (e.g., your own Anaconda Python, if you installed one, or the system Python version). So, whenever you want to use the TLJH Python outside of the Jupyterhub interface, you need to run <code class="docutils literal notranslate"><span class="pre">source</span> <span class="pre">/opt/tljh/user/bin/activate</span></code> first. Also, note that this Python installation cannot be modified by regular users (for good reasons), so whenever you — as an admin user — want to modify the installation (e.g., install packages), you need to do this with <code class="docutils literal notranslate"><span class="pre">sudo</span></code>. Make sure to specify the full path to the Python program you want to use, like <code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">/opt/tljh/user/bin/pip</span> <span class="pre">install</span> <span class="pre">nilearn</span></code>, and <em>not</em> <code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">pip</span> <span class="pre">install</span> <span class="pre">nilearn</span></code>.</p>
 <p>Alternatively, you can add the following line to your <code class="docutils literal notranslate"><span class="pre">.bashrc</span></code> file (assuming you use bash):</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>export PATH=/opt/tljh/user/bin:${PATH}
@@ -517,7 +523,7 @@ excercises are implemented such that they can be easily (and for a large part au
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">tljh</span><span class="o">-</span><span class="n">config</span> <span class="n">reload</span> <span class="n">hub</span>
 </pre></div>
 </div>
-<p>To check if everything worked, open a terminal in Jupyterhub (New → Terminal) and run <code class="docutils literal notranslate"><span class="pre">Python</span> <span class="pre">-V</span></code>. It should print out “Python 3.8.5”.</p>
+<p>To check if everything worked, open a terminal in Jupyterhub (New → Terminal) and run <code class="docutils literal notranslate"><span class="pre">Python</span> <span class="pre">-V</span></code>. It should print out “Python 3.9.16”.</p>
 </div>
 <div class="section" id="install-niedu">
 <h3>5. Install <code class="docutils literal notranslate"><span class="pre">niedu</span></code><a class="headerlink" href="#install-niedu" title="Permalink to this heading">#</a></h3>
@@ -623,6 +629,17 @@ sudo passwd $username
 <p>Create a <code class="docutils literal notranslate"><span class="pre">*.py</span></code> file (e.g., <code class="docutils literal notranslate"><span class="pre">classic.py</span></code>) and save it in <code class="docutils literal notranslate"><span class="pre">/opt/tljh/config/jupyterhub_config.d/</span></code>. In this Python file, add a single line with:
 <code class="docutils literal notranslate"><span class="pre">c.Spawner.default_url</span> <span class="pre">=</span> <span class="pre">'/tree'</span></code></p>
 </div>
+<div class="section" id="renewal-or-initial-validation-of-ssl-certificate-doesn-t-work">
+<h3>Renewal or initial validation of SSL certificate doesn’t work<a class="headerlink" href="#renewal-or-initial-validation-of-ssl-certificate-doesn-t-work" title="Permalink to this heading">#</a></h3>
+<p>It might be the case that port 80 is behind a firewall (which you cannot open up). In this situation,
+you need to make sure Letsencrypt (via Traefik) uses a different verification protocol. To do so,
+change the <code class="docutils literal notranslate"><span class="pre">/opt/tljh/state/traefik.toml</span></code> file as follows:</p>
+<ul class="simple">
+<li><p>Remove the lines with <code class="docutils literal notranslate"><span class="pre">[acme.httpChallenge]</span></code> and <code class="docutils literal notranslate"><span class="pre">entryPoint</span> <span class="pre">=</span> <span class="pre">&quot;http&quot;</span></code></p></li>
+<li><p>Add a new line with <code class="docutils literal notranslate"><span class="pre">[acme.tlsChallenge]</span></code></p></li>
+</ul>
+<p>Then, instead of running <code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">tljh-config</span> <span class="pre">reload</span> <span class="pre">proxy</span></code> (which will overwrite the <code class="docutils literal notranslate"><span class="pre">traefik.toml</span></code> file), run  <code class="docutils literal notranslate"><span class="pre">systemctl</span> <span class="pre">restart</span> <span class="pre">traefik</span></code>. This will attempt the certificate renewal again. Afterwards, JupyterHub should be available via HTTPS.</p>
+</div>
 </div>
 </div>
 
@@ -707,6 +724,7 @@ sudo passwd $username
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#i-can-not-generate-an-assignment">I can not generate an assignment!</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#students-cannot-see-an-assignment">Students cannot see an assignment!</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#jupyterhub-launches-jupyterlab-but-i-want-the-classic-interface">Jupyterhub launches JupyterLab, but I want the classic interface</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#renewal-or-initial-validation-of-ssl-certificate-doesn-t-work">Renewal or initial validation of SSL certificate doesn’t work</a></li>
 </ul>
 </li>
 </ul>

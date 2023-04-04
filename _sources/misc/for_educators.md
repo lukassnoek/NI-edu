@@ -46,17 +46,24 @@ sudo tljh-config reload
 ```
 
 ### 4. Configure Python
-The Anaconda-based Python version installed with TLJH (located at `/opt/tljh/user/bin/python`) is not the same as the one used by NI-edu (which is 3.8.5). It is important that the right version of Python is used when running the notebooks, because the compiled test functions only work with Python version 3.8.5. To use Python version 3.8.5, run the following command from the user account you used to install TLJH (which needs to have sudo rights):
+Currently (April 2023), the default TLJH python version (3.9.16) is the same as the version used by 
+the course. If not (e.g., either TLJH or the course updates its python version), it is important to make sure to change the TLJH version such that it matches the course's version, because the compiled test functions only work with the Python version used in the course. To change to Python version X (where X may be `3.10.2` or something), run the following command from the user account you used to install TLJH (which needs to have sudo rights):
 
 ```
 source /opt/tljh/user/bin/activate
 pip list --format=freeze > pip_pkgs.txt              # store currently installed pkgs
 sudo /opt/tljh/user/bin/conda update --all
-sudo /opt/tljh/user/bin/conda install python=3.8.5
+sudo /opt/tljh/user/bin/conda install python=X
 sudo /opt/tljh/user/bin/pip install -r pip_pkgs.txt  # reinstall previously installed pkgs
 ```
 
 Note that this is slightly different than outlined by the [instructions of TLJH](https://tljh.jupyter.org/en/latest/howto/env/user-environment.html), but at least for me those instructions didn't work properly (and the above does). Also, the reinstallation of the `pip_pkgs.txt` is important! Otherwise, the new Python version won't have all the required packages to make Jupyterhub work, and you'll get a "Cannot Spawn" error when trying to access Jupyterhub.
+
+Alternatively, you can recompile the tests before installing the package:
+
+```
+python compile_test_modules.py
+```
 
 **Important**: if you access the server through SSH (e.g., when you're administering/configuring the server), your default Python version will *not* be the TLJH Python version, but the one that's in your path (e.g., your own Anaconda Python, if you installed one, or the system Python version). So, whenever you want to use the TLJH Python outside of the Jupyterhub interface, you need to run `source /opt/tljh/user/bin/activate` first. Also, note that this Python installation cannot be modified by regular users (for good reasons), so whenever you &mdash; as an admin user &mdash; want to modify the installation (e.g., install packages), you need to do this with `sudo`. Make sure to specify the full path to the Python program you want to use, like `sudo /opt/tljh/user/bin/pip install nilearn`, and *not* `sudo pip install nilearn`.
 
@@ -74,7 +81,7 @@ After installing a new Python version, you might need to restart the Jupyterhub 
 sudo tljh-config reload hub
 ```
 
-To check if everything worked, open a terminal in Jupyterhub (New &rarr; Terminal) and run `Python -V`. It should print out "Python 3.8.5".
+To check if everything worked, open a terminal in Jupyterhub (New &rarr; Terminal) and run `Python -V`. It should print out "Python 3.9.16".
 
 ### 5. Install `niedu`
 The NI-edu course materials basically consist of two elements: the tutorial notebooks and the `niedu` Python package. The latter contains some utilities used in the notebooks and, importantly, the test that check the answers to the programming exercises. The course materials (so notebooks + `niedu`) are hosted on Github: [https://github.com/lukassnoek/NI-edu-admin](https://github.com/lukassnoek/NI-edu-admin). Importantly, you need the *admin* version of the materials, not the student version (which has the same URL, but without the `-admin` suffix). If you don't have access to this, you can contact Lukas. 
@@ -191,3 +198,14 @@ Make sure that you, in the formgrader, generated *and* released the assignment!
 
 Create a `*.py` file (e.g., `classic.py`) and save it in `/opt/tljh/config/jupyterhub_config.d/`. In this Python file, add a single line with:
 `c.Spawner.default_url = '/tree'`
+
+### Renewal or initial validation of SSL certificate doesn't work
+
+It might be the case that port 80 is behind a firewall (which you cannot open up). In this situation,
+you need to make sure Letsencrypt (via Traefik) uses a different verification protocol. To do so,
+change the `/opt/tljh/state/traefik.toml` file as follows:
+
+* Remove the lines with `[acme.httpChallenge]` and `entryPoint = "http"`
+* Add a new line with `[acme.tlsChallenge]`
+
+Then, instead of running `sudo tljh-config reload proxy` (which will overwrite the `traefik.toml` file), run  `systemctl restart traefik`. This will attempt the certificate renewal again. Afterwards, JupyterHub should be available via HTTPS.
