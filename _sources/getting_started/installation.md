@@ -16,7 +16,7 @@ After installation, you need to create a new *environment* to make sure you're u
 To create a new environment called `ni-edu` with the proper Python version after installing Anaconda, open a terminal and run the following command:
 
 ```
-conda create -n niedu anaconda python=3.9.16
+conda create -n ni-edu anaconda python=3.9.16
 ```
 
 Note that you specifically need Python version 3.9.16, because the code that tests the answers to the exercises was compiled with this specific version. After running this command, you'll be promped to install a long list of packages (`Proceed ([y]/n)?`), type "y" and press enter. This will install a bunch of Python packages contained in the Anaconda distribution into the new environment. This may take a while. After the creation of the new environment (named "ni-edu") is done, you can activate the environment as follows:

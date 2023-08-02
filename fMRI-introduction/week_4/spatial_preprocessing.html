@@ -18,12 +18,12 @@
   </script>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="../../_static/styles/theme.css?digest=12da95d707ffb74b382d" rel="stylesheet" />
-<link href="../../_static/styles/bootstrap.css?digest=12da95d707ffb74b382d" rel="stylesheet" />
-<link href="../../_static/styles/pydata-sphinx-theme.css?digest=12da95d707ffb74b382d" rel="stylesheet" />
+  <link href="../../_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="../../_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
 
   
-  <link href="../../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=12da95d707ffb74b382d" rel="stylesheet" />
+  <link href="../../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
   <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
 <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
 <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
@@ -37,8 +37,8 @@
     <link rel="stylesheet" type="text/css" href="../../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=12da95d707ffb74b382d" />
-<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=12da95d707ffb74b382d" />
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
 
     <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
     <script src="../../_static/jquery.js"></script>
@@ -528,13 +528,13 @@ document.write(`
 <p>Before we go on and demonstrate smoothing on fMRI data, we need to determine the sigma of our (3D) gaussian kernel that we’ll use to smooth the data. Annoyingly, smoothing kernels in the fMRI literature (and software packages!) are usually not reported in terms of sigma, but as “full-width half maximum” (FWHM), which refers to the width of the gaussian at half the maximum height:</p>
 <p><img alt="fwhm" src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/cb/FWHM.svg/1200px-FWHM.svg.png" /></p>
 <p>For example, you might read in papers something like “We smoothed our data with a gaussian kernel with a FWHM of 3 millimeter”. So, we need to convert our desired FWHM (in millimeters) to sigma. In fact, this is the same conversion that we needed to do for our temporal Gaussian running line high-pass filter, but this time applied to the spatial domain (i.e., FWHM in mm) instead of the temporal domain (i.e., TR in seconds). We can use the same formula to convert FWHM (in mm.) to sigma:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-1c8f9407-953f-4638-97bd-fe3ccd9db7c3">
-<span class="eqno">(60)<a class="headerlink" href="#equation-1c8f9407-953f-4638-97bd-fe3ccd9db7c3" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-3db9f25f-06db-433a-a850-887c35fc4e03">
+<span class="eqno">(60)<a class="headerlink" href="#equation-3db9f25f-06db-433a-a850-887c35fc4e03" title="Permalink to this equation">#</a></span>\[\begin{align}
 \sigma_{kernel} = \frac{\mathrm{FWHM}_{mm}}{\sqrt{8 \ln{2}} \cdot \mathrm{voxel\ size}_{mm}}
 \end{align}\]</div>
 <p>So, for example, if I want to smooth at FWHM = 6 mm and my voxels are 3 mm in size (assuming equal size in the three spatial dimensions, which is common), my sigma becomes:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-bacfc602-6d1a-4c87-9d25-8b730d380d44">
-<span class="eqno">(61)<a class="headerlink" href="#equation-bacfc602-6d1a-4c87-9d25-8b730d380d44" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-53944e47-f17a-45f5-84e2-8f9b09ca3efc">
+<span class="eqno">(61)<a class="headerlink" href="#equation-53944e47-f17a-45f5-84e2-8f9b09ca3efc" title="Permalink to this equation">#</a></span>\[\begin{align}
 \sigma_{kernel} = \frac{6}{\sqrt{8 \ln{2}} \cdot 3} \approx 0.85
 \end{align}\]</div>
 <p>The entire conversion process is a bit annoying, but it’s simply necessary due to conventions in the fMRI literature/software packages.</p>
@@ -567,7 +567,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/b2de3e7ea69ebe0358d7ed0f417a04e4366862993c887b820f879d51932f3016.png" src="../../_images/b2de3e7ea69ebe0358d7ed0f417a04e4366862993c887b820f879d51932f3016.png" />
+<img alt="../../_images/d009870cb608a617362d152c2b9a4c38f7ebc6b962f75e486bcde877b4d5a787.png" src="../../_images/d009870cb608a617362d152c2b9a4c38f7ebc6b962f75e486bcde877b4d5a787.png" />
 </div>
 </div>
 <div class='alert alert-warning'>
@@ -618,7 +618,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/f64aeba39282530ac6abb8486d0cb298632cf424317b0e5ee45f65e33edd24e3.png" src="../../_images/f64aeba39282530ac6abb8486d0cb298632cf424317b0e5ee45f65e33edd24e3.png" />
+<img alt="../../_images/2257de63e9422cd0d73d9779e3f95090715f8474f3b28286e89499d6502fd46a.png" src="../../_images/2257de63e9422cd0d73d9779e3f95090715f8474f3b28286e89499d6502fd46a.png" />
 </div>
 </div>
 <div class="section" id="rigid-body-registration">
@@ -634,8 +634,8 @@ document.write(`
 <div class="section" id="affine-registrations">
 <h3>Affine registrations<a class="headerlink" href="#affine-registrations" title="Permalink to this heading">#</a></h3>
 <p>For affine registrations, the way the image should be moved is defined in the affine matrix, a <span class="math notranslate nohighlight">\(4 \times 4\)</span> matrix. This matrix is similar to the one we discussed in week 1, but instead of describing how each image coordinate (<span class="math notranslate nohighlight">\(i, j, k\)</span>) relates to world coordinates (<span class="math notranslate nohighlight">\(x, y, z\)</span>), the affine matrix, here, describes how the coordinates from the original (non-corrected) image related to the corrected image:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-074ea854-e9a2-4b63-a859-cc9278783025">
-<span class="eqno">(62)<a class="headerlink" href="#equation-074ea854-e9a2-4b63-a859-cc9278783025" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-10aefba0-350f-4695-a89a-dd5a5c86fcd4">
+<span class="eqno">(62)<a class="headerlink" href="#equation-10aefba0-350f-4695-a89a-dd5a5c86fcd4" title="Permalink to this equation">#</a></span>\[\begin{align}
 \begin{bmatrix} i_{corr}, j_{corr}, k_{corr}, 1 \end{bmatrix} = A\begin{bmatrix}
            i \\
            j \\
@@ -667,8 +667,8 @@ document.write(`
 </div>
 </div>
 <p>As expected, the affine transformation above shows us that the middle coordinate <span class="math notranslate nohighlight">\((0, 0, 0)\)</span> refers to the corrected coordinate <span class="math notranslate nohighlight">\((0, 0, 3)\)</span> after translating the image 3 voxels downwards. But how is this particular translation encoded in the affine? For translation, this is relatively straightforward. For any translation <span class="math notranslate nohighlight">\((x, y, z)\)</span>, the affine matrix looks like:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-340e3083-0215-43be-9b24-2daf62f8295a">
-<span class="eqno">(63)<a class="headerlink" href="#equation-340e3083-0215-43be-9b24-2daf62f8295a" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-1446a383-da4d-40b1-8c89-ff1bc174dfa9">
+<span class="eqno">(63)<a class="headerlink" href="#equation-1446a383-da4d-40b1-8c89-ff1bc174dfa9" title="Permalink to this equation">#</a></span>\[\begin{align}
 \begin{bmatrix} i_{\mathrm{trans}} &amp; j_{\mathrm{trans}} &amp; k_{\mathrm{trans}} &amp; 1 \end{bmatrix} =
 \begin{bmatrix}
            1 &amp; 0 &amp; 0 &amp; x \\
@@ -684,8 +684,8 @@ document.write(`
          \end{bmatrix}
 \end{align}\]</div>
 <p>For rotation, however, it is slightly more complicated! For rotation transformations (with rotations <span class="math notranslate nohighlight">\(x, y, z\)</span> in radians), the affine is computed by the matrix</p>
-<div class="amsmath math notranslate nohighlight" id="equation-4f7c2711-b845-4208-a903-14f97b6ef4ea">
-<span class="eqno">(64)<a class="headerlink" href="#equation-4f7c2711-b845-4208-a903-14f97b6ef4ea" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-7ce3b8d5-8276-4d3d-a55e-521f983c4dfb">
+<span class="eqno">(64)<a class="headerlink" href="#equation-7ce3b8d5-8276-4d3d-a55e-521f983c4dfb" title="Permalink to this equation">#</a></span>\[\begin{align}
 \begin{bmatrix} i_{\mathrm{rot}} &amp; j_{\mathrm{rot}} &amp; k_{\mathrm{rot}} &amp; 1 \end{bmatrix} =
     \begin{bmatrix}
            1 &amp; 0 &amp; 0 &amp; 0 \\
@@ -777,8 +777,8 @@ document.write(`
 </div>
 </div>
 <p>Now, if we want to combine both rotations and translations, we multiply the translation matrix (<span class="math notranslate nohighlight">\(T\)</span>) with our rotation matrix (<span class="math notranslate nohighlight">\(R = R_{x}R_{y}R_{z}\)</span>):</p>
-<div class="amsmath math notranslate nohighlight" id="equation-1e842170-ecf4-4055-ba2d-bf54ff9f93ba">
-<span class="eqno">(65)<a class="headerlink" href="#equation-1e842170-ecf4-4055-ba2d-bf54ff9f93ba" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-7e1d1d2c-70f1-475b-8176-ae4489d59dfc">
+<span class="eqno">(65)<a class="headerlink" href="#equation-7e1d1d2c-70f1-475b-8176-ae4489d59dfc" title="Permalink to this equation">#</a></span>\[\begin{align}
 A = TR
 \end{align}\]</div>
 <div class='alert alert-warning'>
@@ -892,13 +892,13 @@ A = TR
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/b8a83b555552bb5280da42fe2da3b23be36b6fff7ca56369007151c9c98efc73.png" src="../../_images/b8a83b555552bb5280da42fe2da3b23be36b6fff7ca56369007151c9c98efc73.png" />
+<img alt="../../_images/196ed4ad4e592f1ed6e77df1f5102c58e899dea6a79d8089026a3ece8fc562fd.png" src="../../_images/196ed4ad4e592f1ed6e77df1f5102c58e899dea6a79d8089026a3ece8fc562fd.png" />
 </div>
 </div>
 <p>Now, suppose that we want to align two volumes with each other. How would we go about it? Visually, it’s quite hard to assess whether a particular affine matrix works well. In practice, most neuroimaging software packages use automatic algorithms that try to find a affine matrix that <em>minimizes some cost function</em>. In other words, it defines a function to evaluate the mismatch (or cost) of the alignment of two volumes given an affine matrix, and then it tries to minimize this function by (in a smart way) trying out different rotation and translation parameters.</p>
 <p>One cost function that is often used for rigid body registration is “least squares”, which is defined as the sum over the squared (voxel-wise, <span class="math notranslate nohighlight">\(v\)</span>) differences between the reference image (sometimes called the “fixed” image) and the realigned image (sometimes called the “moving” image):</p>
-<div class="amsmath math notranslate nohighlight" id="equation-58f8b6ac-7c7d-406f-81c5-fe1d3dc40d80">
-<span class="eqno">(66)<a class="headerlink" href="#equation-58f8b6ac-7c7d-406f-81c5-fe1d3dc40d80" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-02d4d376-5be0-4db1-aa95-d5cc39ecd629">
+<span class="eqno">(66)<a class="headerlink" href="#equation-02d4d376-5be0-4db1-aa95-d5cc39ecd629" title="Permalink to this equation">#</a></span>\[\begin{align}
 \mathrm{cost}_{LS} = \sum_{v}(\mathrm{fixed}_{v} - \mathrm{moving}_{v})^2
 \end{align}\]</div>
 <div class='alert alert-warning'>
@@ -1008,12 +1008,12 @@ Hint 2: rotation is counter clockwise (if you define negative rotation, e.g. -20
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/c80fbaa3aa9bdf73958c9a67461312bf21c072f5d5ee66ab8e863bfee36bd0ce.png" src="../../_images/c80fbaa3aa9bdf73958c9a67461312bf21c072f5d5ee66ab8e863bfee36bd0ce.png" />
+<img alt="../../_images/9d709fb8f9ccab9f921c36427a92aebb8921146019bd580344749ea8a28ab6b5.png" src="../../_images/9d709fb8f9ccab9f921c36427a92aebb8921146019bd580344749ea8a28ab6b5.png" />
 </div>
 </div>
 <p>So, is this good data or not? In general, you could say that higher values (in either translation or rotation) are worse. That said, from the translation and rotation parameters alone it is hard to judge whether the participant moved <em>too</em> much, partly because we’re dealing with 6 parameter traces here. One way to make this decision process a little easier is to convert these parameters to a single “framewise displacement” (FD) trace. FD aims to represent “bulk motion” and is a summary statistic of motion that combines all motion parameters into a single metric. It is calculated as follows:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-88767103-0b5c-4156-954f-4b24a3f5e162">
-<span class="eqno">(67)<a class="headerlink" href="#equation-88767103-0b5c-4156-954f-4b24a3f5e162" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-97981d5f-eee9-41b3-9c09-00704d065265">
+<span class="eqno">(67)<a class="headerlink" href="#equation-97981d5f-eee9-41b3-9c09-00704d065265" title="Permalink to this equation">#</a></span>\[\begin{align}
 FD_{t} = |r(\mathrm{rot}_{tx} - \mathrm{rot}_{(t-1)x})| + |r(\mathrm{rot}_{ty} - \mathrm{rot}_{(t-1)y})| + |r(\mathrm{rot}_{tz} - \mathrm{rot}_{(t-1)z})| + |\mathrm{trans}_{xt} - \mathrm{trans}_{x(t-1)}| + |\mathrm{trans}_{yt} - \mathrm{trans}_{y(t-1)}| + |\mathrm{trans}_{zt} - \mathrm{trans}_{z(t-1)}|
 \end{align}\]</div>
 <p>where <span class="math notranslate nohighlight">\(|x|\)</span> means the absolute value of <span class="math notranslate nohighlight">\(x\)</span> and <span class="math notranslate nohighlight">\(r\)</span> stands for a predefined radius in millimeters (which is usually taken to be 50). So, basically it is a sum across the absolute successive differences (<span class="math notranslate nohighlight">\(x_{t} - x_{t-1}\)</span>) of parameter traces.</p>
@@ -1141,7 +1141,10 @@ Shape of signal: (341,)
               
               
                 <footer class="bd-footer-article">
-                  <!-- Previous / next buttons -->
+                  
+<div class="footer-article-items footer-article__inner">
+  
+    <div class="footer-article-item"><!-- Previous / next buttons -->
 <div class="prev-next-area">
     <a class="left-prev"
        href="temporal_preprocessing.html"
@@ -1161,7 +1164,10 @@ Shape of signal: (341,)
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
+</div></div>
+  
 </div>
+
                 </footer>
               
             </div>
@@ -1193,7 +1199,7 @@ Shape of signal: (341,)
             
           </div>
           <footer class="bd-footer-content">
-            <div class="bd-footer-content__inner">
+            
 <div class="bd-footer-content__inner container">
   
   <div class="footer-item">
@@ -1223,7 +1229,7 @@ By Lukas Snoek
     
   </div>
   
-</div></div>
+</div>
           </footer>
         
 
@@ -1232,8 +1238,8 @@ By Lukas Snoek
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="../../_static/scripts/bootstrap.js?digest=12da95d707ffb74b382d"></script>
-<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=12da95d707ffb74b382d"></script>
+  <script src="../../_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
 
   <footer class="bd-footer">
   </footer>
